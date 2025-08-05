@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học liệu tương tác với AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="exam-data.js" defer></script>
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+
+        /* THAY ĐỔI: Cập nhật lại lớp .menu-button */
+        .menu-button {
+            @apply w-full sm:w-auto bg-white text-blue-800 font-bold py-3 px-10 rounded-lg transition-all duration-300 text-lg shadow-md border border-blue-200 hover:shadow-xl hover:bg-blue-600 hover:text-white hover:-translate-y-1;
+        }
+
+        .question-container {
+            @apply bg-white p-6 rounded-lg border border-gray-200 mb-6 shadow-sm;
+        }
+
+        .ai-feedback-area {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #f3f4f6;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            line-height: 1.6;
+        }
+
+        .question-checkbox-item {
+            @apply flex items-center p-2 rounded-md hover:bg-gray-100;
+        }
+
+        .question-checkbox-item input {
+            @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 mr-3;
+        }
+
+        .question-checkbox-item label {
+            @apply w-full cursor-pointer;
+        }
+
+        /* Thêm vào phần style */
+        #class-selection-screen {
+            perspective: 1000px;
+        }
+
+        #class-menu button {
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        #class-menu button:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        #class-menu button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #class-menu button:hover::before {
+            opacity: 1;
+        }
+        #class-menu button > * {
+    pointer-events: none;
+}
+
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <div id="app-container" class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <div id="class-selection-screen">
+            <div
+                class="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl shadow-lg text-center border border-gray-200 relative overflow-hidden">
+                <!-- Background decorative elements -->
+                <div class="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-blue-200 opacity-20"></div>
+                <div class="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-indigo-200 opacity-20"></div>
+
+                <!-- Logo/Icon -->
+                <div
+                    class="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center shadow-md -mt-16 border-4 border-white transform hover:rotate-12 transition-transform duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-600" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                </div>
+
+                <!-- Title -->
+                <h1 class="text-4xl font-bold text-blue-800 mt-6 mb-3">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+                        Học liệu Tương tác
+                    </span>
+                </h1>
+                <p class="text-gray-600 mb-10 text-lg">Chào mừng bạn đến với hệ thống học liệu số của thầy Đậu</p>
+
+                <!-- Class Buttons Grid -->
+                <div id="class-menu" class="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-2xl mx-auto">
+                    <!-- Lớp 9 -->
+                    <button data-grade="9"
+                        class="group relative overflow-hidden bg-white rounded-xl shadow-md border border-gray-200 p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-blue-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                                <span class="text-2xl font-bold">9</span>
+                            </div>
+                            <span
+                                class="text-lg font-semibold text-gray-800 group-hover:text-blue-700 transition-colors duration-300">Lớp
+                                9</span>
+                        </div>
+                    </button>
+
+                    <!-- Lớp 10 -->
+                    <button data-grade="10"
+                        class="group relative overflow-hidden bg-white rounded-xl shadow-md border border-gray-200 p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-indigo-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-indigo-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
+                                <span class="text-2xl font-bold">10</span>
+                            </div>
+                            <span
+                                class="text-lg font-semibold text-gray-800 group-hover:text-indigo-700 transition-colors duration-300">Lớp
+                                10</span>
+                        </div>
+                    </button>
+
+                    <!-- Lớp 11 -->
+                    <button data-grade="11"
+                        class="group relative overflow-hidden bg-white rounded-xl shadow-md border border-gray-200 p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-purple-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300">
+                                <span class="text-2xl font-bold">11</span>
+                            </div>
+                            <span
+                                class="text-lg font-semibold text-gray-800 group-hover:text-purple-700 transition-colors duration-300">Lớp
+                                11</span>
+                        </div>
+                    </button>
+
+                    <!-- Lớp 12 -->
+                    <button data-grade="12"
+                        class="group relative overflow-hidden bg-white rounded-xl shadow-md border border-gray-200 p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-pink-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-pink-50 to-red-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div class="relative z-10">
+                            <div
+                                class="w-16 h-16 mx-auto mb-4 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 group-hover:bg-pink-600 group-hover:text-white transition-colors duration-300">
+                                <span class="text-2xl font-bold">12</span>
+                            </div>
+                            <span
+                                class="text-lg font-semibold text-gray-800 group-hover:text-pink-700 transition-colors duration-300">Lớp
+                                12</span>
+                        </div>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="exam-selection-screen" class="hidden">
+            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                <h1 id="exam-selection-title" class="text-3xl font-bold text-blue-600 mb-2">Chọn Bài kiểm tra</h1>
+                <p class="text-gray-600 mb-8">Vui lòng chọn một bài kiểm tra để tiếp tục.</p>
+                <div id="exam-menu" class="flex flex-col items-center space-y-4">
+                </div>
+                <button id="back-to-class-selection" class="mt-8 text-blue-600 hover:underline">Quay lại</button>
+            </div>
+        </div>
+
+        <div id="exam-screen" class="hidden">
+            <header class="bg-white p-4 rounded-xl shadow-md mb-6 sticky top-4 z-10">
+                <div class="flex justify-between items-center">
+                    <h1 id="exam-title-header" class="text-xl font-bold text-blue-600">Đề kiểm tra</h1>
+                    <div id="timer" class="text-lg font-semibold bg-blue-100 text-blue-700 px-4 py-1 rounded-full">
+                        1:30:00</div>
+                </div>
+            </header>
+
+            <main class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                <div id="exam-questions-container">
+                </div>
+            </main>
+
+            <footer class="mt-8">
+                <button type="button" id="submit-exam-btn"
+                    class="w-full bg-green-600 text-white font-bold py-4 px-6 rounded-lg hover:bg-green-700 transition-colors text-xl">Nộp
+                    bài & Xem đáp án</button>
+            </footer>
+        </div>
+
+        <div id="results-screen" class="hidden">
+            <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                <h1 class="text-3xl font-bold text-blue-600 mb-8 text-center">Đáp Án & Giải Thích</h1>
+
+                <div id="results-container" class="space-y-6">
+                </div>
+
+                <div id="ai-interaction-section" class="mt-12 pt-8 border-t-2 border-blue-200">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Bạn có thắc mắc về lời giải?</h2>
+                    <p class="text-gray-600 mb-4">Chọn một hoặc nhiều câu hỏi, nhập thắc mắc cụ thể (nếu có) và AI sẽ
+                        giải đáp giúp bạn.</p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                        <div id="question-checkbox-container"
+                            class="w-full sm:w-1/2 p-3 border border-gray-300 rounded-lg h-40 overflow-y-auto">
+                        </div>
+                        <textarea id="user-query-input" rows="3"
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                            placeholder="Ví dụ: Tại sao ở bước 2 của câu 1b lại phải nhân với 2? (Để trống nếu chỉ muốn AI giải thích lại các câu đã chọn)"></textarea>
+                    </div>
+
+                    <button type="button" id="get-ai-explanation-btn"
+                        class="bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors">
+                        🤖 Gửi câu hỏi cho AI
+                    </button>
+
+                    <div id="ai-explanation-area" class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <p class="text-gray-500">Câu trả lời của AI sẽ xuất hiện ở đây...</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8">
+                    <button id="restart-btn"
+                        class="w-full sm:w-auto bg-blue-600 text-white font-bold py-3 px-10 rounded-lg hover:bg-blue-700">Làm
+                        bài khác</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

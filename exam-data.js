@@ -67,7 +67,7 @@ const mathData = {
                         <br>B. \\(3 y - 1 = 5 ( y - 2 )\\)
                         <br>C. \\(2 x + \\frac{y}{3} - 1 = 0\\)
                         <br>D. \\(3 \\sqrt{x} + y^{2} = 0\\)
-                        <br>E. \\(x y + x = 1\\)
+                        <br>E. x y + x = 1\\)
                         <br>F. Không có lựa chọn nào là chính xác.`,
                     model_answer: `<strong>Đáp án đúng:</strong> C. \\(2 x + \\frac{y}{3} - 1 = 0\\).<br><br>
                        <strong>Phân tích:</strong> Phương trình bậc nhất hai ẩn có dạng \\(ax + by = c\\) (với a và b không đồng thời bằng 0). Phương trình C có thể viết lại thành \\(2x + \\frac{1}{3}y = 1\\), hoàn toàn khớp với định dạng.<br><br>
@@ -80,7 +80,7 @@ const mathData = {
                         <br>B. Vuông góc với trục tung.
                         <br>C. Đi qua gốc tọa độ.
                         <br>D. Đi qua điểm A(1; 1).
-                        <br>E. Đi qua điểm B(0; 1).
+                        <br>E. Đi qua điểm \\(B(0; 1)\\).
                         <br>F. Không có lựa chọn nào là chính xác.`,
                     model_answer: `<strong>Đáp án đúng:</strong> D. Đi qua điểm A(1; 1).<br><br>
                        <strong>Phân tích:</strong> Ta kiểm tra bằng cách thay tọa độ các điểm vào phương trình.<br>

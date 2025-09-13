@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công Cụ So Sánh Tập Hợp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        .infinity-btn {
+            @apply bg-gray-200 text-gray-700 font-bold w-10 h-10 rounded-md flex items-center justify-center transition hover:bg-gray-300 text-lg;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen py-8">
+    <div class="container bg-white p-6 sm:p-8 rounded-2xl shadow-lg w-full">
+        <header class="text-center mb-6">
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Công Cụ So Sánh Tập Hợp</h1>
+            <p class="text-gray-600 mt-2">Biểu diễn và so sánh hai tập hợp trên cùng một trục số.</p>
+        </header>
+
+        <!-- Input Area -->
+        <div id="controls" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- Input A -->
+            <div class="p-4 border rounded-lg bg-blue-50">
+                <h3 class="font-semibold text-lg text-blue-800 mb-3">Tập hợp A</h3>
+                <div class="flex items-center gap-2">
+                    <select id="startBracketA" class="font-mono text-xl p-2 rounded-md border-gray-300">
+                        <option selected>[</option> <option>(</option>
+                    </select>
+                    <div class="flex items-center gap-1 w-full">
+                        <button type="button" class="infinity-btn" data-target="startA" data-value="-inf">-∞</button>
+                        <input type="text" id="startA" value="-2" class="w-full p-2 text-center rounded-md border-gray-300" placeholder="Giá trị">
+                    </div>
+                    <span class="font-semibold">;</span>
+                     <div class="flex items-center gap-1 w-full">
+                        <input type="text" id="endA" value="5" class="w-full p-2 text-center rounded-md border-gray-300" placeholder="Giá trị">
+                        <button type="button" class="infinity-btn" data-target="endA" data-value="inf">+∞</button>
+                    </div>
+                    <select id="endBracketA" class="font-mono text-xl p-2 rounded-md border-gray-300">
+                        <option selected>]</option> <option>)</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Input B -->
+            <div class="p-4 border rounded-lg bg-green-50">
+                <h3 class="font-semibold text-lg text-green-800 mb-3">Tập hợp B</h3>
+                <div class="flex items-center gap-2">
+                    <select id="startBracketB" class="font-mono text-xl p-2 rounded-md border-gray-300">
+                        <option>(</option> <option selected>[</option>
+                    </select>
+                    <div class="flex items-center gap-1 w-full">
+                        <button type="button" class="infinity-btn" data-target="startB" data-value="-inf">-∞</button>
+                        <input type="text" id="startB" value="1" class="w-full p-2 text-center rounded-md border-gray-300" placeholder="Giá trị">
+                    </div>
+                    <span class="font-semibold">;</span>
+                    <div class="flex items-center gap-1 w-full">
+                        <input type="text" id="endB" value="8" class="w-full p-2 text-center rounded-md border-gray-300" placeholder="Giá trị">
+                        <button type="button" class="infinity-btn" data-target="endB" data-value="inf">+∞</button>
+                    </div>
+                    <select id="endBracketB" class="font-mono text-xl p-2 rounded-md border-gray-300">
+                        <option selected>]</option> <option>)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Button -->
+        <div class="flex justify-center mb-6">
+             <button id="mergeBtn" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 shadow-md">
+                Nhập hai trục làm một
+            </button>
+        </div>
+
+        <!-- Visualization Area -->
+        <div id="visualization-container" class="w-full h-[500px] bg-gray-50 rounded-lg p-4 border relative">
+            <svg id="svg-canvas" width="100%" height="100%"></svg>
+        </div>
+    </div>
+
+    <script>
+        const svg = document.getElementById('svg-canvas');
+        const mergeBtn = document.getElementById('mergeBtn');
+        const NS = "http://www.w3.org/2000/svg";
+        const PADDING = 40;
+
+        let state = {
+            intervalA: null,
+            intervalB: null,
+            view: { min: -10, max: 10 },
+            showComparison: false
+        };
+
+        const parseInterval = (id) => {
+            const startBracket = document.getElementById(`startBracket${id}`).value;
+            const endBracket = document.getElementById(`endBracket${id}`).value;
+            let startVal = document.getElementById(`start${id}`).value.trim().toLowerCase();
+            let endVal = document.getElementById(`end${id}`).value.trim().toLowerCase();
+            let start = startVal.includes('inf') ? -Infinity : parseFloat(startVal);
+            let end = endVal.includes('inf') ? Infinity : parseFloat(endVal);
+
+            if (isNaN(start) || isNaN(end)) { alert(`Giá trị không hợp lệ cho Tập hợp ${id}.`); return null; }
+            if (start > end) { alert(`Giá trị bắt đầu không thể lớn hơn giá trị kết thúc cho Tập hợp ${id}.`); return null; }
+            return { start, end, startBracket, endBracket, id };
+        };
+
+        const calculateView = () => {
+            const allIntervals = [state.intervalA, state.intervalB].filter(Boolean);
+            if (allIntervals.length === 0) return { min: -10, max: 10 };
+            const finiteValues = allIntervals.flatMap(i => [i.start, i.end]).filter(isFinite);
+            if (finiteValues.length === 0) return { min: -10, max: 10 };
+            const dataMin = Math.min(...finiteValues);
+            const dataMax = Math.max(...finiteValues);
+            const range = dataMax - dataMin === 0 ? 10 : dataMax - dataMin;
+            return { min: dataMin - range * 0.2 - 2, max: dataMax + range * 0.2 + 2 };
+        };
+        
+        const drawIntervalContent = (group, yPos, interval, bracketColor, fillColor, scale) => {
+            const width = svg.clientWidth;
+            const { start, end, startBracket, endBracket } = interval;
+
+            const fillRect = document.createElementNS(NS, 'rect');
+            const x1 = isFinite(start) ? scale(start) : PADDING / 2;
+            const x2 = isFinite(end) ? scale(end) : width - PADDING / 2;
+            fillRect.setAttribute('x', x1);
+            fillRect.setAttribute('y', yPos - 10);
+            fillRect.setAttribute('width', x2 - x1);
+            fillRect.setAttribute('height', 20);
+            fillRect.setAttribute('fill', fillColor);
+            fillRect.setAttribute('opacity', '0.7');
+            group.appendChild(fillRect);
+
+            if (isFinite(start)) {
+                const hatchLeft = document.createElementNS(NS, 'rect');
+                hatchLeft.setAttribute('x', 0);
+                hatchLeft.setAttribute('y', yPos - 10);
+                hatchLeft.setAttribute('width', scale(start));
+                hatchLeft.setAttribute('height', 20);
+                hatchLeft.setAttribute('fill', 'url(#hatch)');
+                group.appendChild(hatchLeft);
+            }
+            if (isFinite(end)) {
+                const hatchRight = document.createElementNS(NS, 'rect');
+                hatchRight.setAttribute('x', scale(end));
+                hatchRight.setAttribute('y', yPos - 10);
+                hatchRight.setAttribute('width', width - scale(end));
+                hatchRight.setAttribute('height', 20);
+                hatchRight.setAttribute('fill', 'url(#hatch)');
+                group.appendChild(hatchRight);
+            }
+
+            [start, end].forEach((val, i) => {
+                if (isFinite(val)) {
+                    const x = scale(val);
+                    const bracket = i === 0 ? startBracket : endBracket;
+                    const yOffset = yPos + 7;
+                    const yLabelOffset = yPos + 30;
+
+                    const bracketText = document.createElementNS(NS, 'text');
+                    bracketText.setAttribute('x', x);
+                    bracketText.setAttribute('y', yOffset);
+                    bracketText.setAttribute('text-anchor', 'middle');
+                    bracketText.setAttribute('font-size', '28');
+                    bracketText.setAttribute('font-family', 'monospace');
+                    bracketText.setAttribute('fill', bracketColor);
+                    bracketText.textContent = bracket;
+                    group.appendChild(bracketText);
+
+                    const label = document.createElementNS(NS, 'text');
+                    label.setAttribute('x', x);
+                    label.setAttribute('y', yLabelOffset);
+                    label.setAttribute('text-anchor', 'middle');
+                    label.setAttribute('font-size', '14');
+                    label.textContent = val;
+                    group.appendChild(label);
+                }
+            });
+        };
+        
+        const drawSingleAxis = (yPos, interval, bracketColor, fillColor, scale) => {
+            const group = document.createElementNS(NS, 'g');
+            const line = document.createElementNS(NS, 'line');
+            const width = svg.clientWidth;
+            line.setAttribute('x1', PADDING / 2); line.setAttribute('y1', yPos);
+            line.setAttribute('x2', width - PADDING / 2); line.setAttribute('y2', yPos);
+            line.setAttribute('stroke', '#333'); line.setAttribute('stroke-width', 2);
+            line.setAttribute('marker-end', 'url(#arrow)');
+            group.appendChild(line);
+            
+            drawIntervalContent(group, yPos, interval, bracketColor, fillColor, scale);
+            svg.appendChild(group);
+        };
+        
+        const drawComparisonAxis = (yPos, intervalA, intervalB, scale) => {
+            const group = document.createElementNS(NS, 'g');
+            const width = svg.clientWidth;
+            
+            const line = document.createElementNS(NS, 'line');
+            line.setAttribute('x1', PADDING / 2); line.setAttribute('y1', yPos);
+            line.setAttribute('x2', width - PADDING / 2); line.setAttribute('y2', yPos);
+            line.setAttribute('stroke', '#333'); line.setAttribute('stroke-width', 2);
+            line.setAttribute('marker-end', 'url(#arrow)');
+            group.appendChild(line);
+
+            drawIntervalContent(group, yPos - 12, intervalA, '#3b82f6', '#bfdbfe', scale);
+            drawIntervalContent(group, yPos + 12, intervalB, '#16a34a', '#dcfce7', scale);
+            
+            svg.appendChild(group);
+        }
+
+        const drawScene = () => {
+            svg.innerHTML = '';
+            const defs = document.createElementNS(NS, 'defs');
+            defs.innerHTML = `<marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#333" /></marker><pattern id="hatch" patternUnits="userSpaceOnUse" width="8" height="8"><path d="M-2,2 l4,-4 M0,8 l8,-8 M6,10 l4,-4" stroke="#9ca3af" stroke-width="1"/></pattern>`;
+            svg.appendChild(defs);
+
+            state.view = calculateView();
+            const height = svg.clientHeight;
+            const scale = (val) => PADDING + (val - state.view.min) / (state.view.max - state.view.min) * (svg.clientWidth - 2 * PADDING);
+
+            if (state.intervalA) {
+                drawSingleAxis(height * 0.2, state.intervalA, '#3b82f6', '#bfdbfe', scale);
+            }
+            if (state.intervalB) {
+                drawSingleAxis(height * 0.5, state.intervalB, '#16a34a', '#dcfce7', scale);
+            }
+            if (state.showComparison && state.intervalA && state.intervalB) {
+                drawComparisonAxis(height * 0.8, state.intervalA, state.intervalB, scale);
+            }
+        };
+
+        // --- Event Listeners ---
+        document.querySelectorAll('input, select').forEach(el => el.addEventListener('change', () => {
+            state.intervalA = parseInterval('A');
+            state.intervalB = parseInterval('B');
+            state.showComparison = false;
+            drawScene();
+        }));
+
+        document.querySelectorAll('.infinity-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.dataset.target;
+                const value = button.dataset.value;
+                const targetInput = document.getElementById(targetId);
+                
+                if (targetInput) {
+                    targetInput.value = value;
+                    const changeEvent = new Event('change');
+                    targetInput.dispatchEvent(changeEvent);
+                }
+            });
+        });
+
+        mergeBtn.addEventListener('click', () => {
+            state.intervalA = parseInterval('A');
+            state.intervalB = parseInterval('B');
+            if (!state.intervalA || !state.intervalB) {
+                alert("Vui lòng nhập đầy đủ và hợp lệ cho cả hai tập hợp.");
+                return;
+            }
+            state.showComparison = true;
+            drawScene();
+        });
+
+        // Initial Draw
+        state.intervalA = parseInterval('A');
+        state.intervalB = parseInterval('B');
+        drawScene();
+    </script>
+</body>
+</html>
+

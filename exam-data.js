@@ -256,7 +256,15 @@ const mathData = {
             ]
         }
     ],
-    grade10: [],
+    grade10: [
+        {
+            id: 'lop10_cong_cu_bieu_dien_tap_hop',
+            title: 'Công cụ biểu diễn tập hợp',
+            type: 'tool',
+            url: 'cong-cu-bieu-dien-tap-hop.html',
+            description: 'Công cụ tương tác để biểu diễn và so sánh các tập hợp số thực trên trục số'
+        }
+    ],
     grade11: [],
     grade12: []
 };

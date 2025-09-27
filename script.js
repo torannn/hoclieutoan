@@ -1,5 +1,5 @@
 // const API_URL = "http://localhost:3000";
-const API_URL = "";
+const API_URL = ""; 
 
 document.addEventListener('DOMContentLoaded', () => {
     // === Lấy các phần tử HTML ===
@@ -42,21 +42,28 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateExamMenu(grade) {
         examMenu.innerHTML = '';
         const gradeKey = `grade${grade}`;
-        const examsForGrade = window.examData[gradeKey] || [];
+        const gradeData = window.examData.grades[gradeKey] || {};
+
+        // Combine exams and tools for display
+        const allItems = [
+            ...(gradeData.exams || []),
+            ...(gradeData.tools || [])
+        ];
+
         document.getElementById('exam-selection-title').textContent = `Bài kiểm tra Lớp ${grade}`;
 
-        if (examsForGrade.length > 0) {
-            examsForGrade.forEach(exam => {
+        if (allItems.length > 0) {
+            allItems.forEach(item => {
                 const button = document.createElement('button');
                 button.className = 'w-full sm:w-3/4 bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-600';
-                button.textContent = exam.title;
+                button.textContent = item.title;
                 button.addEventListener('click', () => {
-                    if (exam.type === 'tool' && exam.url) {
+                    if (item.type === 'tool' && item.url) {
                         // Redirect to the tool page
-                        window.location.href = exam.url;
+                        window.location.href = item.url;
                     } else {
                         // Start regular exam
-                        startExam(exam);
+                        startExam(item);
                     }
                 });
                 examMenu.appendChild(button);
@@ -115,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     submitExamBtn.addEventListener('click', () => {
         clearInterval(timerInterval);
         let resultsHTML = '';
-
+        
         currentExamData.questions.forEach((q, index) => {
             resultsHTML += `<div class="p-4 rounded-lg border bg-gray-50 border-gray-200 mb-4">`;
             if (q.is_group) {
@@ -134,16 +141,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             resultsHTML += `</div>`;
         });
-
+        
         resultsContainer.innerHTML = resultsHTML;
         if (window.MathJax) {
             MathJax.typeset();
         }
-
+    
         populateQuestionCheckboxes(); // THAY ĐỔI: gọi hàm mới
         aiExplanationArea.innerHTML = '<p class="text-gray-500">Câu trả lời của AI sẽ xuất hiện ở đây...</p>';
         userQueryInput.value = '';
-
+    
         examScreen.classList.add('hidden');
         resultsScreen.classList.remove('hidden');
         window.scrollTo(0, 0);
@@ -158,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const questionId = sub_q.q_id;
                     const questionLabel = sub_q.question_text.substring(0, 2); // Lấy "a)", "b)"...
                     const questionText = `Bài ${q.q_id.slice(-1)}${questionLabel}`; // vd: Bài 1a
-
+                    
                     const item = document.createElement('div');
                     item.className = 'question-checkbox-item';
                     item.innerHTML = `
@@ -170,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const questionId = q.q_id;
                 const questionText = q.question_text.substring(q.question_text.indexOf('<strong>') + 8, q.question_text.indexOf(':'));
-
+                
                 const item = document.createElement('div');
                 item.className = 'question-checkbox-item';
                 item.innerHTML = `
@@ -219,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (userQuery === '') {
             finalUserQuery = "Hãy giải thích kĩ hơn về các câu đã được chọn.";
         }
-
+        
         aiExplanationArea.innerHTML = `<p class="text-indigo-600">🤖 AI đang suy nghĩ... Vui lòng chờ.</p>`;
         getAIExplanationBtn.disabled = true;
 

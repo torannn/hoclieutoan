@@ -1,0 +1,248 @@
+{
+  "duration": 5400,
+  "questions": [
+    {
+      "q_id": "d1_tn_1",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Trong các câu sau, câu nào là mệnh đề?",
+      "options": [
+        "12 là số tự nhiên lẻ.",
+        "An học lớp mấy?",
+        "Các bạn có chăm học không?",
+        "Các bạn hãy làm bài đi!"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "d1_tn_2",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Trong các tập hợp sau, tập hợp nào là tập rỗng ?",
+      "options": [
+        "A=\{x\\in\\mathbb{N}|x^{2}-4=0\}",
+        "B=\{x\\in\\mathbb{R}|x^{2}+2x+3=0\}",
+        "C=\{x\\in\\mathbb{R}|x^{2}-5=0\}",
+        "D=\{x\\in\\mathbb{Q}|x^{2}+x-12=0\}"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "d1_tn_3",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Cho tam giác $ABC$, mệnh đề nào sau đây đúng?",
+      "options": [
+        "a^{2}=b^{2}+c^{2}+2bc \\cos A",
+        "a^{2}=b^{2}+c^{2}-2bc \\cos A",
+        "a^{2}=b^{2}+c^{2}-2bc \\cos C",
+        "a^{2}=b^{2}+c^{2}-2bc \\cos B"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "d1_tn_4",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Miền nghiệm của bất phương trình $(1+\\sqrt{3})x-(1-\\sqrt{3})y\\ge2$ chứa điểm nào sau đây?",
+      "options": [
+        "A(1;-1)",
+        "B(-1;-1)",
+        "C(-1;1)",
+        "D(-\\sqrt{3};\\sqrt{3})"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "d1_tn_5",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Trong các bất phương trình sau, bất phương trình nào là bất phương trình bậc nhất hai ẩn?",
+      "options": [
+        "2x-5y+3z \\le 0",
+        "3x^{2}+2x-4>0",
+        "2x^{2}+5y>3",
+        "2x+3y<5"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "d1_tn_6",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Cho $X=\\{7;2;8;4;9;12\\}$; $Y=\\{1;3;7;4\\}$. Tập nào sau đây bằng tập $X\\cap Y$?",
+      "options": [
+        "\\{1;2;3;4;8;9;7;12\\}",
+        "\\{2;8;9;12\\}",
+        "\\{4;7\\}",
+        "\\{1;3\\}"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "d1_tn_7",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Cho tập hợp $A=\\{0;3;4;6\\}$. Số tập hợp con gồm hai phần tử của $A$ là?",
+      "options": [
+        "12",
+        "8",
+        "10",
+        "6"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "d1_tn_8",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Cho $X=\\{2;4;6;9\\}$, $Y=\\{1;2;3;4\\}$. Tập nào sau đây bằng tập $X\\setminus Y$?",
+      "options": [
+        "\\{1;2;3;5\\}",
+        "\\{1;3;6;9\\}",
+        "\\{6;9\\}",
+        "\\{1\\}"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "d1_tn_9",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Cho tam giác $ABC$ với $BC=a$, $AC=b$, $AB=c$. Khẳng định nào sau đây đúng?",
+      "options": [
+        "a=2R \\cos A",
+        "a=2R \\sin A",
+        "a=2R \\tan A",
+        "a=R \\sin A"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "d1_tn_10",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Mệnh đề phủ định của mệnh đề “Phương trình $ax^{2}+bx+c=0(a\\ne0)$ vô nghiệm” là mệnh đề nào sau đây?",
+      "options": [
+        "Phương trình $ax^{2}+bx+c=0(a\\ne0)$ có nghiệm.",
+        "Phương trình $ax^{2}+bx+c=0(a\\ne0)$ có 2 nghiệm phân biệt.",
+        "Phương trình $ax^{2}+bx+c=0(a\\ne0)$ có nghiệm kép.",
+        "Phương trình $ax^{2}+bx+c=0(a\\ne0)$ không có nghiệm."
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "d1_tn_11",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Cho tam giác $ABC$ có $AB=4cm$, $BC=7cm$, $AC=9cm$. Giá trị $\\cos B$ là:",
+      "options": [
+        "\\frac{2}{7}",
+        "-\\frac{2}{7}",
+        "-\\frac{2}{3}",
+        "\\frac{1}{2}"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "d1_tn_12",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn",
+      "type": "multiple_choice",
+      "stem": "Cho tam giác $ABC$ có $AB=2a$; $AC=4a$ và $\\widehat{BAC}=120^{\\circ}$. Tính diện tích tam giác $ABC$.",
+      "options": [
+        "S=8a^{2}",
+        "S=2a^{2}\\sqrt{3}",
+        "S=a^{2}\\sqrt{3}",
+        "S=4a^{2}"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "d1_ds_1",
+      "section": "PHẦN II. Câu trắc nghiệm đúng sai",
+      "type": "true_false",
+      "stem": "Tam giác $ABC$ có $AB=5$, $BC=7$, $CA=8$. Xét tính đúng sai của các khẳng định sau:",
+      "statements": [
+        "$AB^{2}=BC^{2}+AC^{2}-2BC.AC \\cos A$",
+        "Số đo góc $A$ bằng 30°.",
+        "Độ dài đường trung tuyến từ đỉnh $A$ trong $\\Delta ABC$ là $\\sqrt{129}$.",
+        "Điểm $M$ thuộc đoạn $BC$ sao cho $MC=2MB$. Độ dài cạnh $AM$ bằng $\\frac{2\\sqrt{61}}{3}$"
+      ],
+      "correct_values": [
+        false,
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "q_id": "d1_ds_2",
+      "section": "PHẦN II. Câu trắc nghiệm đúng sai",
+      "type": "true_false",
+      "stem": "Cho tập hợp $A=\\{x\\in\\mathbb{R}|(x^{2}-6x+5).(x-m)=0\\}$. Xét tính đúng sai của các khẳng định sau:",
+      "statements": [
+        "$1\\in A$",
+        "Tập hợp $A$ có ba phần tử với mọi giá trị của tham số $m$.",
+        "Có hai giá trị của tham số $m$ để tập hợp $A$ có đúng hai phần tử.",
+        "Có hai giá trị của tham số $m$ để tổng tất cả các phần tử của tập $A$ bằng 6."
+      ],
+      "correct_values": [
+        true,
+        false,
+        true,
+        false
+      ]
+    },
+    {
+      "q_id": "d1_tl_group",
+      "is_group": true,
+      "section": "PHẦN III. Câu trắc nghiệm trả lời ngắn",
+      "type": "short",
+      "sub_questions": [
+        {
+          "q_id": "d1_tl_1",
+          "question_text": "Cho $\\tan\\alpha=\\frac{1}{3}$. Tính giá trị của biểu thức $A=\\frac{\\sin\\alpha+\\cos\\alpha}{\\sin\\alpha-\\cos\\alpha}$",
+          "final_answer": "-2"
+        },
+        {
+          "q_id": "d1_tl_2",
+          "question_text": "Một lớp học có 25 học sinh chơi bóng đá, 23 học sinh chơi bóng bàn, 14 học sinh chơi cả bóng đá và bóng bàn và 6 học sinh không chơi môn nào. Số học sinh chỉ chơi 1 môn thể thao là bao nhiêu?",
+          "final_answer": "20"
+        },
+        {
+          "q_id": "d1_tl_3",
+          "question_text": "Một cái cây dạng thẳng đứng bị gió mạnh làm gãy không hoàn toàn. Một người muốn đo chiều cao của cây trước khi gãy, người ấy đo được đoạn thẳng nối từ gốc cây đến ngọn cây đã ngã là $AB=6m$, hai góc $\\widehat{CAB}=76^{\\circ}$, $\\widehat{CBA}=35^{\\circ}$. Tính chiều dài của cây trước khi bị gãy? (Làm tròn kết quả đến hàng phần trăm)",
+          "final_answer": "9,92"
+        },
+        {
+          "q_id": "d1_tl_4",
+          "question_text": "Có ba nhóm máy $A$, $B$, $C$ dùng để sản xuất ra hai loại sản phẩm I và II. Số máy trong một nhóm và số máy của từng nhóm cần thiết để sản xuất ra một đơn vị sản phẩm được cho trong bảng. Một đơn vị sản phẩm loại I lãi 3 triệu đồng, một đơn vị sản phẩm loại II lãi 5 triệu đồng. Số lãi cao nhất mà đơn vị thu được là bao nhiêu?",
+          "final_answer": "17"
+        }
+      ]
+    },
+    {
+      "q_id": "d1_tln_group",
+      "is_group": true,
+      "section": "PHẦN IV. Tự luận",
+      "type": "short",
+      "sub_questions": [
+        {
+          "q_id": "d1_tln_1",
+          "question_text": "Cho tập $A=[m^{2}+2m;m^{2}+2m+1]$ và $B=[2m-1;2m+5)$. Có tất cả bao nhiêu số $m$ nguyên để $A\\subset B$?",
+          "final_answer": "3"
+        },
+        {
+          "q_id": "d1_tln_2",
+          "question_text": "Cho hệ bất phương trình $\\begin{cases}x-2y\\le0\\\\ x+3y\\ge-2\\\\ x\\le0\\\\ y\\le0\\end{cases}$. Tìm giá trị lớn nhất của hàm số $f(x;y)=2x-3y$ trên miền nghiệm của hệ bất phương trình đã cho.",
+          "final_answer": "4"
+        },
+        {
+          "q_id": "d1_tln_3",
+          "question_text": "Cho tam giác $ABC$ vuông cân tại $A$ và $M$ là điểm nằm trong tam giác $ABC$ sao cho tỉ lệ $MA: MB: MC=1:2:3$. Tính góc $AMB$.",
+          "final_answer": "135"
+        }
+      ]
+    }
+  ]
+}

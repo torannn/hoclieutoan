@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "version": "3.0",
+    "description": "Mục lục các bài kiểm tra và công cụ học tập"
+  },
+  "grades": {
+    "grade9": {
+      "exams": [],
+      "tools": []
+    },
+    "grade10": {
+      "exams": [
+        {
+          "id": "lop10_tonghop_chuong1_5_goc",
+          "title": "Đề kiểm tra Chương 1 & 5",
+          "type": "exam",
+          "description": "Đề kiểm tra tổng hợp kiến thức Mệnh đề, Tập hợp và Lượng giác.",
+          "path": "data/grade10/de-kiem-tra-chuong-1-5/"
+        }
+      ],
+      "tools": [
+        {
+          "id": "cong-cu-venn",
+          "title": "Công cụ Sơ đồ Venn 📊",
+          "type": "tool",
+          "description": "Minh họa và giải các bài toán logic bằng sơ đồ Venn tương tác",
+          "url": "cong-cu-venn.html"
+        },
+        {
+          "id": "cong-cu-bieu-dien-tap-hop",
+          "title": "Công cụ Biểu diễn tập hợp ↔️",
+          "type": "tool",
+          "description": "Công cụ tương tác để biểu diễn và so sánh các tập hợp số thực trên trục số.",
+          "url": "cong-cu-bieu-dien-tap-hop.html"
+        }
+      ]
+    },
+    "grade11": {
+        "exams": [],
+        "tools": []
+    },
+    "grade12": {
+        "exams": [],
+        "tools": []
+    }
+  }
+}

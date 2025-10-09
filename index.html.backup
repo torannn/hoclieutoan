@@ -16,14 +16,7 @@
             background-color: #f0f4f8;
         }
 
-        .option-letter {
-            font-weight: 700 !important;
-            color: #2563eb;
-            /* Màu xanh blue-600 */
-            display: inline-block;
-            margin-right: 2px;
-        }
-
+        /* THAY ĐỔI: Cập nhật lại lớp .menu-button */
         .menu-button {
             @apply w-full sm:w-auto bg-white text-blue-800 font-bold py-3 px-10 rounded-lg transition-all duration-300 text-lg shadow-md border border-blue-200 hover:shadow-xl hover:bg-blue-600 hover:text-white hover:-translate-y-1;
         }
@@ -54,66 +47,7 @@
             @apply w-full cursor-pointer;
         }
 
-        /* === PHẦN CSS ĐÃ CẬP NHẬT === */
-        .question-content {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 8px;
-        }
-
-        .question-label {
-            font-weight: 700 !important;
-            color: #1e3a8a;
-            margin-right: 8px;
-            flex-shrink: 0;
-            white-space: nowrap;
-        }
-
-        .sub-questions-container {
-            padding-left: 24px;
-            margin-top: 8px;
-        }
-
-        .sub-question,
-        .sub-question-result {
-            margin-top: 16px;
-        }
-
-        .model-answer-container {
-            margin-top: 12px;
-            padding: 12px;
-            background-color: #f3f4f6;
-            border-left: 4px solid #16a34a;
-            border-radius: 4px;
-        }
-
-        .answer-label {
-            font-weight: 700;
-            color: #15803d;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .answer-text {
-            margin-top: 8px;
-            line-height: 1.6;
-        }
-
-        /* Đảm bảo các thẻ strong trong answer-text được in đậm */
-        .answer-text strong {
-            font-weight: 700 !important;
-            color: #15803d;
-        }
-
-        /* Liên kết trong lời giải mẫu hiển thị màu xanh */
-        .answer-text a {
-            color: #2563eb;
-            text-decoration: underline;
-        }
-        .answer-text a:hover {
-            color: #1d4ed8; /* blue-700 */
-        }
-
+        /* Thêm vào phần style */
         #class-selection-screen {
             perspective: 1000px;
         }
@@ -142,6 +76,10 @@
         #class-menu button:hover::before {
             opacity: 1;
         }
+        #class-menu button > * {
+    pointer-events: none;
+}
+
     </style>
 </head>
 
@@ -252,13 +190,6 @@
             <div class="bg-white p-8 rounded-xl shadow-lg text-center">
                 <h1 id="exam-selection-title" class="text-3xl font-bold text-blue-600 mb-2">Chọn Bài kiểm tra</h1>
                 <p class="text-gray-600 mb-8">Vui lòng chọn một bài kiểm tra để tiếp tục.</p>
-                <div class="mb-6 text-left max-w-xl mx-auto">
-                    <label for="exam-mode-select" class="mr-2 font-medium text-gray-700">Chế độ đề:</label>
-                    <select id="exam-mode-select" class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        <option value="static">Tĩnh (chỉ đọc)</option>
-                        <option value="interactive">Tương tác (làm bài)</option>
-                    </select>
-                </div>
                 <div id="exam-menu" class="flex flex-col items-center space-y-4">
                 </div>
                 <button id="back-to-class-selection" class="mt-8 text-blue-600 hover:underline">Quay lại</button>
@@ -271,12 +202,11 @@
                     <div class="flex justify-between items-center">
                         <h1 id="exam-title-header" class="text-2xl font-bold text-blue-800">Đề kiểm tra</h1>
                         <div class="flex items-center space-x-4">
-                            <div id="timer"
-                                class="text-lg font-semibold bg-blue-100 text-blue-700 px-4 py-1 rounded-full">
+                            <div id="timer" class="text-lg font-semibold bg-blue-100 text-blue-700 px-4 py-1 rounded-full">
                                 1:30:00
                             </div>
-                            <button id="submit-exam-btn"
-                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <button id="submit-exam-btn" 
+                                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 Nộp bài
                             </button>
                         </div>
@@ -295,16 +225,39 @@
                 <div id="results-container" class="space-y-6">
                     <!-- Results will be inserted here by JavaScript -->
                 </div>
-
+                
+                <div class="mt-8">
+                    <div class="mb-4">
+                        <label for="user-query-input" class="block text-sm font-medium text-gray-700 mb-2">
+                            Bạn có câu hỏi gì về bài làm của mình không?
+                        </label>
+                        <div class="flex space-x-2">
+                            <input type="text" id="user-query-input" 
+                                   class="flex-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="Nhập câu hỏi của bạn...">
+                            <button id="get-ai-explanation-btn" 
+                                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                Hỏi AI
+                            </button>
+                        </div>
+                    </div>
+                    <div id="ai-explanation-area" class="mt-4 p-4 bg-gray-50 rounded-lg hidden">
+                        <!-- AI explanation will be inserted here -->
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button id="restart-btn" 
                 <div id="ai-interaction-section" class="mt-12 pt-8 border-t-2 border-blue-200">
                     <h2 class="text-2xl font-semibold text-gray-800 mb-4">Bạn có thắc mắc về lời giải?</h2>
                     <p class="text-gray-600 mb-4">Chọn một hoặc nhiều câu hỏi, nhập thắc mắc cụ thể (nếu có) và AI sẽ
                         giải đáp giúp bạn.</p>
+
                     <div class="flex flex-col sm:flex-row gap-4 mb-4">
                         <div id="question-checkbox-container"
                             class="w-full sm:w-1/2 p-3 border border-gray-300 rounded-lg h-40 overflow-y-auto">
                         </div>
-                        <textarea id="user-query-text" rows="3"
+                        <textarea id="user-query-input" rows="3"
                             class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                             placeholder="Ví dụ: Tại sao ở bước 2 của câu 1b lại phải nhân với 2? (Để trống nếu chỉ muốn AI giải thích lại các câu đã chọn)"></textarea>
                     </div>
@@ -313,6 +266,7 @@
                         class="bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors">
                         🤖 Gửi câu hỏi cho AI
                     </button>
+
                     <div id="ai-explanation-area" class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
                         <p class="text-gray-500">Câu trả lời của AI sẽ xuất hiện ở đây...</p>
                     </div>

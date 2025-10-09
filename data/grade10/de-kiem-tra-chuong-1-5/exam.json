@@ -1,0 +1,239 @@
+{
+  "duration": 5400,
+  "questions": [
+    {
+      "q_id": "l10c15_tn1",
+      "section": "Phần I: Trắc nghiệm khách quan",
+      "type": "multiple_choice",
+      "stem": "Trong các phát biểu sau, đâu là một mệnh đề?",
+      "options": [
+        "Hàn Mạc Tử là một nhà thơ.",
+        "Áo em trắng quá nhìn không ra !",
+        "Hàn Mạc Tử có phải là nhà thơ trữ tình không?",
+        "Đây Thôn Vĩ Dạ có phải là do Hàn Mạc Tử sáng tác không?"
+      ],
+      "correct_index": 0,
+      "question_text": "Trong các phát biểu sau, đâu là một mệnh đề?<br>A. Hàn Mạc Tử là một nhà thơ.<br>B. Áo em trắng quá nhìn không ra !<br>C. Hàn Mạc Tử có phải là nhà thơ trữ tình không?<br>D. Đây Thôn Vĩ Dạ có phải là do Hàn Mạc Tử sáng tác không?"
+    },
+    {
+      "q_id": "l10c15_tn2",
+      "section": "Phần I: Trắc nghiệm khách quan",
+      "type": "multiple_choice",
+      "stem": "Cho mệnh đề chứa biến \\(P(x): \"x+15 \\le x^2\"\\) với x là số thực. Mệnh đề nào sau đây là đúng?",
+      "options": [
+        "\\(P(0)\\)",
+        "\\(P(3)\\)",
+        "\\(P(4)\\)",
+        "\\(P(5)\\)"
+      ],
+      "correct_index": 3,
+      "question_text": "Cho mệnh đề chứa biến \\(P(x): \"x+15 \\le x^2\"\\) với x là số thực. Mệnh đề nào sau đây là đúng?<br>A. \\(P(0)\\)<br>B. \\(P(3)\\)<br>C. \\(P(4)\\)<br>D. \\(P(5)\\)"
+    },
+    {
+      "q_id": "l10c15_tn3",
+      "section": "Phần I: Trắc nghiệm khách quan",
+      "type": "multiple_choice",
+      "stem": "Mệnh đề phủ định của mệnh đề \\(P: “ \\exists x \\in \\mathbb{N}, x^2+2x+5\\) là số nguyên tố” là:",
+      "options": [
+        "\\(\\forall x \\in \\mathbb{N}, x^2+2x+5\\) không là số nguyên tố.",
+        "\\(\\exists x \\in \\mathbb{N}, x^2+2x+5\\) là hợp số.",
+        "\\(\\forall x \\in \\mathbb{N}, x^2+2x+5\\) không phải là hợp số.",
+        "\\(\\exists x \\in \\mathbb{N}, x^2+2x+5\\) là số thực."
+      ],
+      "correct_index": 0,
+      "question_text": "Mệnh đề phủ định của mệnh đề \\(P: “ \\exists x \\in \\mathbb{N}, x^2+2x+5\\) là số nguyên tố” là:<br>A. \\(\\forall x \\in \\mathbb{N}, x^2+2x+5\\) không là số nguyên tố.<br>B. \\(\\exists x \\in \\mathbb{N}, x^2+2x+5\\) là hợp số.<br>C. \\(\\forall x \\in \\mathbb{N}, x^2+2x+5\\) không phải là hợp số.<br>D. \\(\\exists x \\in \\mathbb{N}, x^2+2x+5\\) là số thực."
+    },
+    {
+      "q_id": "l10c15_tn4",
+      "section": "Phần I: Trắc nghiệm khách quan",
+      "type": "multiple_choice",
+      "stem": "Cho tập hợp \\(A=\\{x \\in \\mathbb{R} | x^2-x-2=0\\}\\). Viết lại tập A bằng cách liệt kê các phần tử?",
+      "options": [
+        "\\(A=\\{-1; 2\\}\\)",
+        "\\(A=\\{-1\\}\\)",
+        "\\(A=\\{2\\}\\)",
+        "\\(A=\\{1; -2\\}\\)"
+      ],
+      "correct_index": 0,
+      "question_text": "Cho tập hợp \\(A=\\{x \\in \\mathbb{R} | x^2-x-2=0\\}\\). Viết lại tập A bằng cách liệt kê các phần tử?<br>A. \\(A=\\{-1; 2\\}\\)<br>B. \\(A=\\{-1\\}\\)<br>C. \\(A=\\{2\\}\\)<br>D. \\(A=\\{1; -2\\}\\)"
+    },
+    {
+      "q_id": "l10c15_tn5",
+      "section": "Phần I: Trắc nghiệm khách quan",
+      "type": "multiple_choice",
+      "stem": "Cho hai tập hợp \\(A=(-\\infty; 2]\\) và \\(B=(-6; +\\infty)\\). Tìm \\(A \\cap B\\).",
+      "options": [
+        "\\(A \\cap B = \\{-6; 2\\}\\)",
+        "\\(A \\cap B = (-6; 2]\\)",
+        "\\(A \\cap B = (-6; 2)\\)",
+        "\\(A \\cap B = (-\\infty; +\\infty)\\)"
+      ],
+      "correct_index": 1,
+      "question_text": "Cho hai tập hợp \\(A=(-\\infty; 2]\\) và \\(B=(-6; +\\infty)\\). Tìm \\(A \\cap B\\).<br>A. \\(A \\cap B = \\{-6; 2\\}\\)<br>B. \\(A \\cap B = (-6; 2]\\)<br>C. \\(A \\cap B = (-6; 2)\\)<br>D. \\(A \\cap B = (-\\infty; +\\infty)\\)"
+    },
+    {
+      "q_id": "l10c15_tn6",
+      "section": "Phần I: Trắc nghiệm khách quan",
+      "type": "multiple_choice",
+      "stem": "Cho tập hợp \\(X=\\{1; 2; 3; 4\\}\\). Số tập con có 3 phần tử của X là:",
+      "options": [
+        "4",
+        "6",
+        "8",
+        "12"
+      ],
+      "correct_index": 0,
+      "question_text": "Cho tập hợp \\(X=\\{1; 2; 3; 4\\}\\). Số tập con có 3 phần tử của X là:<br>A. 4<br>B. 6<br>C. 8<br>D. 12"
+    },
+    {
+      "q_id": "l10c15_tn7",
+      "section": "Phần I: Trắc nghiệm khách quan",
+      "type": "multiple_choice",
+      "stem": "Cho góc \\(\\alpha\\) tù (\\(90^\\circ < \\alpha < 180^\\circ\\)). Điều khẳng định nào sau đây là đúng?",
+      "options": [
+        "\\(\\sin{\\alpha} < 0\\)",
+        "\\(\\cos{\\alpha} > 0\\)",
+        "\\(\\tan{\\alpha} < 0\\)",
+        "\\(\\cot{\\alpha} > 0\\)"
+      ],
+      "correct_index": 2,
+      "question_text": "Cho góc \\(\\alpha\\) tù (\\(90^\\circ < \\alpha < 180^\\circ\\)). Điều khẳng định nào sau đây là đúng?<br>A. \\(\\sin{\\alpha} < 0\\)<br>B. \\(\\cos{\\alpha} > 0\\)<br>C. \\(\\tan{\\alpha} < 0\\)<br>D. \\(\\cot{\\alpha} > 0\\)"
+    },
+    {
+      "q_id": "l10c15_tn8",
+      "section": "Phần I: Trắc nghiệm khách quan",
+      "type": "multiple_choice",
+      "stem": "Cho \\(\\triangle ABC\\) có \\(BC=3, AC=4, \\hat{C}=60^\\circ\\). Khi đó độ dài cạnh AB bằng:",
+      "options": [
+        "\\(25\\)",
+        "\\(\\sqrt{13}\\)",
+        "\\(13\\)",
+        "\\(5\\)"
+      ],
+      "correct_index": 1,
+      "question_text": "Cho \\(\\triangle ABC\\) có \\(BC=3, AC=4, \\hat{C}=60^\\circ\\). Khi đó độ dài cạnh AB bằng:<br>A. \\(25\\)<br>B. \\(\\sqrt{13}\\)<br>C. \\(13\\)<br>D. \\(5\\)"
+    },
+    {
+      "q_id": "l10c15_tn9",
+      "section": "Phần I: Trắc nghiệm khách quan",
+      "type": "multiple_choice",
+      "stem": "Cho tam giác ABC có độ dài ba cạnh lần lượt là \\(a=8, b=7, c=3\\). Số đo góc B là:",
+      "options": [
+        "\\(60^\\circ\\)",
+        "\\(30^\\circ\\)",
+        "\\(120^\\circ\\)",
+        "\\(45^\\circ\\)"
+      ],
+      "correct_index": 0,
+      "question_text": "Cho tam giác ABC có độ dài ba cạnh lần lượt là \\(a=8, b=7, c=3\\). Số đo góc B là:<br>A. \\(60^\\circ\\)<br>B. \\(30^\\circ\\)<br>C. \\(120^\\circ\\)<br>D. \\(45^\\circ\\)"
+    },
+    {
+      "q_id": "l10c15_tn10",
+      "section": "Phần I: Trắc nghiệm khách quan",
+      "type": "multiple_choice",
+      "stem": "Cho \\(\\tan{x}=3\\). Tính \\(P=\\frac{2\\sin{x}-\\cos{x}}{\\sin{x}+\\cos{x}}\\).",
+      "options": [
+        "\\(\\frac{3}{2}\\)",
+        "\\(\\frac{5}{4}\\)",
+        "3",
+        "\\(\\frac{2}{5}\\)"
+      ],
+      "correct_index": 1,
+      "question_text": "Cho \\(\\tan{x}=3\\). Tính \\(P=\\frac{2\\sin{x}-\\cos{x}}{\\sin{x}+\\cos{x}}\\).<br>A. \\(\\frac{3}{2}\\)<br>B. \\(\\frac{5}{4}\\)<br>C. 3<br>D. \\(\\frac{2}{5}\\)"
+    },
+    {
+      "q_id": "l10c15_ds1",
+      "section": "Phần II: Đúng/Sai",
+      "type": "true_false",
+      "stem": "Cho mệnh đề chứa biến \\(P(x): \"x > x^3\"\\).",
+      "statements": [
+        "\\(P(1)\\) là mệnh đề đúng.",
+        "\\(P(\\frac{1}{3})\\) là mệnh đề đúng.",
+        "\\(\\forall x \\in \\mathbb{N}, P(x)\\) là mệnh đề đúng.",
+        "\\(\\exists x \\in \\mathbb{Q}, P(x)\\) là mệnh đề đúng."
+      ],
+      "correct_values": [false, true, false, true],
+      "question_text": "Cho mệnh đề chứa biến \\(P(x): \"x > x^3\"\\).<br>a) \\(P(1)\\) là mệnh đề đúng.<br>b) \\(P(\\frac{1}{3})\\) là mệnh đề đúng.<br>c) \\(\\forall x \\in \\mathbb{N}, P(x)\\) là mệnh đề đúng.<br>d) \\(\\exists x \\in \\mathbb{Q}, P(x)\\) là mệnh đề đúng."
+    },
+    {
+      "q_id": "l10c15_ds2",
+      "section": "Phần II: Đúng/Sai",
+      "type": "true_false",
+      "stem": "Cho hai tập hợp \\(M=\\{x \\in \\mathbb{N} | -1 \\le x \\le 2\\}\\), \\(N=\\{-1; 0; 2\\}\\).",
+      "statements": [
+        "Viết lại tập M bằng cách liệt kê các phần tử, ta có \\(M=\\{0; 1; 2\\}\\).",
+        "\\(M \\cap N = \\{0; 2\\}\\).",
+        "\\(M \\cup N = \\{-1; 0; 1; 2\\}\\).",
+        "\\(M \\setminus N = \\{1\\}\\)."
+      ],
+      "correct_values": [true, true, true, true],
+      "question_text": "Cho hai tập hợp \\(M=\\{x \\in \\mathbb{N} | -1 \\le x \\le 2\\}\\), \\(N=\\{-1; 0; 2\\}\\).<br>a) Viết lại tập M bằng cách liệt kê các phần tử, ta có \\(M=\\{0; 1; 2\\}\\).<br>b) \\(M \\cap N = \\{0; 2\\}\\).<br>c) \\(M \\cup N = \\{-1; 0; 1; 2\\}\\).<br>d) \\(M \\setminus N = \\{1\\}\\)."
+    },
+    {
+      "q_id": "l10c15_ds3",
+      "section": "Phần II: Đúng/Sai",
+      "type": "true_false",
+      "stem": "Cho \\(\\sin{\\alpha} = \\frac{5}{13}\\) và \\(90^\\circ < \\alpha < 180^\\circ\\).",
+      "statements": [
+        "\\(\\cos{\\alpha} < 0\\).",
+        "\\(\\cos{\\alpha} = -\\frac{12}{13}\\).",
+        "\\(\\tan{\\alpha} = -\\frac{5}{12}\\).",
+        "\\(\\cot{\\alpha} = \\frac{12}{5}\\)."
+      ],
+      "correct_values": [true, true, true, false],
+      "question_text": "Cho \\(\\sin{\\alpha} = \\frac{5}{13}\\) và \\(90^\\circ < \\alpha < 180^\\circ\\).<br>a) \\(\\cos{\\alpha} < 0\\).<br>b) \\(\\cos{\\alpha} = -\\frac{12}{13}\\).<br>c) \\(\\tan{\\alpha} = -\\frac{5}{12}\\).<br>d) \\(\\cot{\\alpha} = \\frac{12}{5}\\)."
+    },
+    {
+      "q_id": "l10c15_ds4",
+      "section": "Phần II: Đúng/Sai",
+      "type": "true_false",
+      "stem": "Cho tam giác MNP có \\(MN=13\\), \\(MP=10\\), \\(\\cos{M}=\\frac{5}{13}\\).",
+      "statements": [
+        "\\(NP^2 = MN^2+MP^2 - 2 \\cdot MN \\cdot MP \\cdot \\cos{M}\\).",
+        "Độ dài cạnh NP là 13.",
+        "Tam giác MNP cân tại M.",
+        "\\(\\sin{P} = \\frac{12}{13}\\)."
+      ],
+      "correct_values": [true, true, false, true],
+      "question_text": "Cho tam giác MNP có \\(MN=13\\), \\(MP=10\\), \\(\\cos{M}=\\frac{5}{13}\\).<br>a) \\(NP^2 = MN^2+MP^2 - 2 \\cdot MN \\cdot MP \\cdot \\cos{M}\\).<br>b) Độ dài cạnh NP là 13.<br>c) Tam giác MNP cân tại M.<br>d) \\(\\sin{P} = \\frac{12}{13}\\)."
+    },
+    {
+      "q_id": "l10c15_tl1",
+      "is_group": true,
+      "section": "Phần III: Tự luận",
+      "type": "short",
+      "sub_questions": [
+        {
+          "q_id": "l10c15_tl1a",
+          "final_answer": "247",
+          "question_text": "Thầy Đạt giao cho lớp 10A2 dự án điều tra về tình hình sử dụng nước uống trong sinh hoạt hằng ngày của các học sinh trong trường. Sau một tuần tiến hành phỏng vấn thu thập thông tin, nhóm điều tra thu được số liệu sau đây:<br>- Có 184 bạn trả lời phỏng vấn là có uống nước đun sôi hằng ngày;<br>- Có 150 bạn trả lời phỏng vấn là có uống nước đóng chai hằng ngày;<br>Trong số những bạn trả lời phỏng vấn, 87 bạn trả lời là có sử dụng cả nước đun sôi và nước đóng chai hằng ngày.<br>Hãy giúp nhóm điều tra xác định số lượng học sinh đã tham gia phỏng vấn, biết rằng tất cả các bạn được phỏng vấn đều chỉ uống nước đun sôi hoặc uống nước đóng chai."
+        },
+        {
+          "q_id": "l10c15_tl1b",
+          "final_answer": "2",
+          "question_text": "Cho tập hợp \\(A=(-\\infty; 3)\\) và \\(B=[-2; 5)\\). Số phần tử nguyên dương của tập \\(C=A \\cap B\\) là bao nhiêu?"
+        },
+        {
+          "q_id": "l10c15_tl1c",
+          "final_answer": "8",
+          "question_text": "Cho tập \\(A=\\{3;4;5;6;7\\}\\) và \\(B=\\{3;5;7\\}\\). Tìm số tập X sao cho \\(X \\cup B = A\\)?"
+        },
+        {
+          "q_id": "l10c15_tl1d",
+          "final_answer": "8.5",
+          "question_text": "Tính giá trị của biểu thức \\(S = \\cos^2{5^\\circ} + \\cos^2{10^\\circ} + ... + \\cos^2{85^\\circ}\\)."
+        },
+        {
+          "q_id": "l10c15_tl1e",
+          "final_answer": "18",
+          "question_text": "Ở lớp 10A, mỗi học sinh đều có thể chơi được ít nhất 1 trong 3 môn thể thao là cầu lông, bóng đá và bóng chuyền. Có 11 em chơi được bóng đá, 10 em chơi được cầu lông và 8 em chơi được bóng chuyền. Có 2 em chơi được cả 3 môn, có 5 em chơi được bóng đá và bóng chuyền, có 4 em chơi được bóng đá và cầu lông, có 4 em chơi được bóng chuyền và cầu lông. Hỏi lớp học có bao nhiêu học sinh?"
+        },
+        {
+          "q_id": "l10c15_tl1f",
+          "final_answer": "304.14",
+          "question_text": "Một ô tô muốn đi từ A đến C nhưng giữa A và C là một ngọn núi cao nên ô tô phải đi thành hai đoạn từ A đến B rồi từ B đến C. Các đoạn đường tạo thành tam giác ABC có \\(AB=150km\\), \\(BC=200km\\) và \\(\\hat{ABC}=120^\\circ\\). Nếu người ta làm một đoạn đường hầm xuyên núi chạy thẳng từ A đến C thì chiều dài của đường hầm là bao nhiêu km? (làm tròn đến hàng phần trăm)"
+        }
+      ]
+    }
+  ]
+}

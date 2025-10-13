@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Liệu Số: Vẽ Miền Nghiệm (Bản nâng cấp)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        #controls-container {
+            width: 380px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+        #canvas-container {
+            flex-grow: 1;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e9ebee;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: grab;
+        }
+        canvas:active {
+            cursor: grabbing;
+        }
+        h1, h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .inequality-form {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s;
+        }
+        .inequality-form:focus-within {
+            background-color: #eef5ff;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: nowrap;
+            margin-bottom: 10px;
+        }
+        .input-group input {
+            width: 45px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .input-group select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .input-group span {
+            font-weight: bold;
+            white-space: nowrap;
+            margin: 0 2px;
+        }
+        .controls-main button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #007bff;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 15px;
+            transition: background-color 0.3s;
+        }
+        .controls-main button:hover {
+            background-color: #0056b3;
+        }
+        #inequality-list {
+            margin-top: 20px;
+        }
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 8px;
+        }
+        .list-item-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            word-break: break-all;
+        }
+        .color-box {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #888;
+            flex-shrink: 0;
+        }
+        .list-item-controls button {
+            padding: 5px 8px;
+            margin-left: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+        }
+         .list-item-controls button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="controls-container">
+        <h1>Vẽ Miền Nghiệm</h1>
+        <p>Nhập bất phương trình dạng <strong>ax + by ≤ c</strong> và nhấn vẽ.</p>
+        
+        <div id="forms-container">
+            </div>
+
+        <div class="controls-main">
+            <button id="add-btn">Thêm bất phương trình khác</button>
+        </div>
+
+        <div id="inequality-list-container">
+            <h2>Danh sách miền nghiệm</h2>
+            <div id="inequality-list">
+                </div>
+        </div>
+    </div>
+
+    <div id="canvas-container">
+        <canvas id="graph-canvas"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('graph-canvas');
+            const ctx = canvas.getContext('2d');
+            const formsContainer = document.getElementById('forms-container');
+            const addBtn = document.getElementById('add-btn');
+            const inequalityListDiv = document.getElementById('inequality-list');
+
+            let inequalities = [];
+            let nextId = 0;
+            const colors = ['rgba(255, 99, 132, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(255, 206, 86, 0.4)', 'rgba(75, 192, 192, 0.4)', 'rgba(153, 102, 255, 0.4)'];
+            
+            let scale = 30;
+            let origin = { x: 0, y: 0 };
+            let panStart = { x: 0, y: 0 };
+            let isPanning = false;
+            const EPSILON = 1e-9; // Hằng số nhỏ để so sánh với 0
+
+            function resizeCanvas() {
+                const container = document.getElementById('canvas-container');
+                const size = Math.min(container.clientWidth, container.clientHeight) - 40;
+                canvas.width = size;
+                canvas.height = size;
+                origin = { x: canvas.width / 2, y: canvas.height / 2 };
+                drawAll();
+            }
+
+            // --- Các hàm tính toán và vẽ ---
+
+            function drawAll() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawGrid();
+                drawAxes();
+                inequalities.forEach(ineq => {
+                    if (ineq.visible) {
+                        drawInequality(ineq);
+                    }
+                });
+            }
+
+            function drawGrid() {
+                ctx.beginPath();
+                ctx.strokeStyle = '#e0e0e0';
+                ctx.lineWidth = 1;
+
+                const startX = -origin.x / scale;
+                const endX = (canvas.width - origin.x) / scale;
+                const startY = -origin.y / scale;
+                const endY = (canvas.height - origin.y) / scale;
+
+                for (let i = Math.ceil(startX); i <= endX; i++) {
+                    const x = origin.x + i * scale;
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height);
+                }
+                for (let i = Math.ceil(startY); i <= endY; i++) {
+                    const y = origin.y + i * scale;
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                }
+                ctx.stroke();
+            }
+
+            function drawAxes() {
+                ctx.beginPath();
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 2;
+                ctx.moveTo(0, origin.y);
+                ctx.lineTo(canvas.width, origin.y);
+                ctx.moveTo(origin.x, 0);
+                ctx.lineTo(origin.x, canvas.height);
+                ctx.stroke();
+
+                ctx.font = "12px Arial";
+                ctx.fillStyle = "#000";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+
+                const startX = Math.ceil(startX_world());
+                const endX = Math.floor(endX_world());
+                for (let i = startX; i <= endX; i++) {
+                    if (i !== 0) {
+                       ctx.fillText(i, origin.x + i * scale, origin.y + 15);
+                    }
+                }
+
+                const startY = Math.ceil(startY_world());
+                const endY = Math.floor(endY_world());
+                 for (let i = startY; i <= endY; i++) {
+                    if (i !== 0) {
+                        ctx.fillText(i, origin.x - 15, origin.y - i * scale);
+                    }
+                }
+                ctx.fillText("0", origin.x - 10, origin.y + 12);
+            }
+
+            // Helper functions for world coordinates
+            const startX_world = () => -origin.x / scale;
+            const endX_world = () => (canvas.width - origin.x) / scale;
+            const startY_world = () => (origin.y - canvas.height) / scale;
+            const endY_world = () => origin.y / scale;
+            
+            function drawInequality(ineq) {
+                const { a, b, c, sign, color } = ineq;
+                if (Math.abs(a) < EPSILON && Math.abs(b) < EPSILON) return;
+
+                ctx.save();
+                
+                // --- Vẽ đường thẳng bờ ---
+                ctx.beginPath();
+                if (sign === '<' || sign === '>') ctx.setLineDash([6, 6]);
+                ctx.lineWidth = 2.5;
+                ctx.strokeStyle = color.replace('0.4', '1');
+
+                let p1, p2;
+                if (Math.abs(b) > EPSILON) { // Not a vertical line
+                    p1 = { x: startX_world() - 1, y: (c - a * (startX_world() - 1)) / b };
+                    p2 = { x: endX_world() + 1, y: (c - a * (endX_world() + 1)) / b };
+                } else { // Vertical line
+                    p1 = { x: c / a, y: startY_world() - 1 };
+                    p2 = { x: c / a, y: endY_world() + 1 };
+                }
+                ctx.moveTo(origin.x + p1.x * scale, origin.y - p1.y * scale);
+                ctx.lineTo(origin.x + p2.x * scale, origin.y - p2.y * scale);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                
+                // --- THUẬT TOÁN VẼ MIỀN NGHIỆM NÂNG CẤP ---
+                // 1. Chọn điểm kiểm tra (test point) một cách an toàn
+                let testX = 0, testY = 0;
+                if (Math.abs(a * testX + b * testY - c) < EPSILON) {
+                    // Nếu (0,0) nằm trên đường thẳng, chọn một điểm "siêu dị"
+                    testX = 5 * Math.PI / 19;
+                    testY = 4 * Math.E / 7;
+                }
+                
+                const testValue = a * testX + b * testY;
+                let isTestPointSolution;
+                switch (sign) {
+                    case '<': isTestPointSolution = testValue < c; break;
+                    case '≤': isTestPointSolution = testValue <= c; break;
+                    case '>': isTestPointSolution = testValue > c; break;
+                    case '≥': isTestPointSolution = testValue >= c; break;
+                }
+
+                const isInNonSolutionRegion = (x, y) => {
+                    const val = a * x + b * y;
+                    const testSide = testValue - c;
+                    const pointSide = val - c;
+                    return isTestPointSolution ? (testSide * pointSide < 0) : (testSide * pointSide >= 0);
+                };
+                
+                // 2. Bắt đầu vẽ miền gạch bỏ
+                ctx.beginPath();
+                const worldBounds = { xMin: startX_world(), xMax: endX_world(), yMin: startY_world(), yMax: endY_world() };
+                
+                // 3. XỬ LÝ RIÊNG CÁC TRƯỜNG HỢP ĐẶC BIỆT
+                if (Math.abs(b) < EPSILON) { // CASE 1: Đường thẳng đứng (x = k)
+                    const lineX = c / a;
+                    if (isInNonSolutionRegion(lineX + 1, testY)) { // Miền không nghiệm là bên phải
+                        ctx.rect(origin.x + lineX * scale, 0, canvas.width, canvas.height);
+                    } else { // Miền không nghiệm là bên trái
+                        ctx.rect(0, 0, origin.x + lineX * scale, canvas.height);
+                    }
+                } else if (Math.abs(a) < EPSILON) { // CASE 2: Đường thẳng ngang (y = k)
+                    const lineY = c / b;
+                    if (isInNonSolutionRegion(testX, lineY + 1)) { // Miền không nghiệm là bên trên
+                        ctx.rect(0, 0, canvas.width, origin.y - lineY * scale);
+                    } else { // Miền không nghiệm là bên dưới
+                        ctx.rect(0, origin.y - lineY * scale, canvas.width, canvas.height);
+                    }
+                } else { // CASE 3: Đường thẳng xiên (thuật toán cũ đã ổn)
+                    const corners = [
+                        {x: worldBounds.xMin, y: worldBounds.yMax}, {x: worldBounds.xMax, y: worldBounds.yMax},
+                        {x: worldBounds.xMax, y: worldBounds.yMin}, {x: worldBounds.xMin, y: worldBounds.yMin}
+                    ];
+
+                    const vertices = corners.filter(p => isInNonSolutionRegion(p.x, p.y));
+
+                    // Giao điểm với các cạnh
+                    let y_at_xMin = (c - a * worldBounds.xMin) / b;
+                    if(y_at_xMin >= worldBounds.yMin && y_at_xMin <= worldBounds.yMax) vertices.push({x: worldBounds.xMin, y: y_at_xMin});
+                    let y_at_xMax = (c - a * worldBounds.xMax) / b;
+                    if(y_at_xMax >= worldBounds.yMin && y_at_xMax <= worldBounds.yMax) vertices.push({x: worldBounds.xMax, y: y_at_xMax});
+                    let x_at_yMin = (c - b * worldBounds.yMin) / a;
+                    if(x_at_yMin >= worldBounds.xMin && x_at_yMin <= worldBounds.xMax) vertices.push({x: x_at_yMin, y: worldBounds.yMin});
+                    let x_at_yMax = (c - b * worldBounds.yMax) / a;
+                    if(x_at_yMax >= worldBounds.xMin && x_at_yMax <= worldBounds.xMax) vertices.push({x: x_at_yMax, y: worldBounds.yMax});
+                    
+                    if(vertices.length < 2) { ctx.restore(); return; }
+
+                    const centerX = vertices.reduce((sum, v) => sum + v.x, 0) / vertices.length;
+                    const centerY = vertices.reduce((sum, v) => sum + v.y, 0) / vertices.length;
+                    vertices.sort((p1, p2) => Math.atan2(p1.y - centerY, p1.x - centerX) - Math.atan2(p2.y - centerY, p2.x - centerX));
+
+                    ctx.moveTo(origin.x + vertices[0].x * scale, origin.y - vertices[0].y * scale);
+                    for(let i = 1; i < vertices.length; i++) {
+                         ctx.lineTo(origin.x + vertices[i].x * scale, origin.y - vertices[i].y * scale);
+                    }
+                    ctx.closePath();
+                }
+
+                // 4. Tiến hành gạch bỏ vùng đã xác định
+                ctx.clip();
+                ctx.strokeStyle = color.replace('0.4', '0.6');
+                ctx.lineWidth = 1;
+                const len = Math.sqrt(a*a + b*b);
+                if (len < EPSILON) { ctx.restore(); return; }
+                
+                const hatchSpacing = 10;
+                for(let i = -canvas.width * 1.5; i < canvas.width * 1.5; i += hatchSpacing) {
+                    ctx.beginPath();
+                    const pX = origin.x + i * (b/len);
+                    const pY = origin.y + i * (a/len);
+                    ctx.moveTo(pX - a/len * canvas.width * 2, pY + b/len * canvas.width * 2);
+                    ctx.lineTo(pX + a/len * canvas.width * 2, pY - b/len * canvas.width * 2);
+                    ctx.stroke();
+                }
+
+                ctx.restore();
+            }
+            
+            // --- Quản lý Form và danh sách ---
+
+            function createNewForm() {
+                const id = nextId++;
+                const form = document.createElement('div');
+                form.className = 'inequality-form';
+                form.dataset.id = id;
+                // Ví dụ mặc định cho đường thẳng đứng
+                form.innerHTML = `
+                    <div class="input-group">
+                        <input type="number" value="1" class="coeff-a"><span>x&nbsp;+</span>
+                        <input type="number" value="0" class="coeff-b"><span>y</span>
+                        <select class="sign">
+                            <option value=">">&gt;</option>
+                            <option value="≥">≥</option>
+                            <option value="<">&lt;</option>
+                            <option value="≤">≤</option>
+                        </select>
+                        <input type="number" value="2" class="coeff-c">
+                    </div>
+                    <div class="controls-main">
+                        <button class="draw-btn">Vẽ / Cập nhật</button>
+                    </div>
+                `;
+                formsContainer.appendChild(form);
+
+                const newIneq = {
+                    id: id, a: 1, b: 0, c: 2, sign: '>',
+                    color: colors[id % colors.length], visible: true
+                };
+                inequalities.push(newIneq);
+
+                form.querySelector('.draw-btn').addEventListener('click', () => updateAndDraw(id));
+                updateAndDraw(id);
+            }
+            
+            function updateAndDraw(id) {
+                const form = formsContainer.querySelector(`.inequality-form[data-id='${id}']`);
+                const ineq = inequalities.find(i => i.id === id);
+                if (!form || !ineq) return;
+
+                ineq.a = parseFloat(form.querySelector('.coeff-a').value) || 0;
+                ineq.b = parseFloat(form.querySelector('.coeff-b').value) || 0;
+                ineq.c = parseFloat(form.querySelector('.coeff-c').value) || 0;
+                ineq.sign = form.querySelector('.sign').value;
+                
+                drawAll();
+                updateList();
+            }
+
+            function updateList() {
+                inequalityListDiv.innerHTML = '';
+                inequalities.forEach(ineq => {
+                    const listItem = document.createElement('div');
+                    listItem.className = 'list-item';
+                    listItem.dataset.id = ineq.id;
+                    const b_sign = ineq.b < 0 ? '-' : '+';
+                    const b_val = Math.abs(ineq.b);
+                    const label = `${ineq.a}x ${b_sign} ${b_val}y ${ineq.sign.replace('<', '&lt;')} ${ineq.c}`;
+
+                    listItem.innerHTML = `
+                        <div class="list-item-label">
+                            <div class="color-box" style="background-color: ${ineq.color};"></div>
+                            <span>${label}</span>
+                        </div>
+                        <div class="list-item-controls">
+                            <button class="toggle-btn">${ineq.visible ? 'Ẩn' : 'Hiện'}</button>
+                            <button class="delete-btn">Xóa</button>
+                        </div>
+                    `;
+                    inequalityListDiv.appendChild(listItem);
+                });
+            }
+            
+            // --- Event Listeners ---
+            addBtn.addEventListener('click', createNewForm);
+
+            inequalityListDiv.addEventListener('click', (e) => {
+                const target = e.target;
+                const listItem = target.closest('.list-item');
+                if (!listItem) return;
+                const id = parseInt(listItem.dataset.id);
+                const ineq = inequalities.find(i => i.id === id);
+                if (!ineq) return;
+
+                if (target.classList.contains('toggle-btn')) {
+                    ineq.visible = !ineq.visible;
+                }
+                if (target.classList.contains('delete-btn')) {
+                    inequalities = inequalities.filter(i => i.id !== id);
+                    formsContainer.querySelector(`.inequality-form[data-id='${id}']`).remove();
+                }
+                drawAll();
+                updateList();
+            });
+
+            canvas.addEventListener('mousedown', e => { isPanning = true; panStart = { x: e.clientX, y: e.clientY }; canvas.style.cursor = 'grabbing'; });
+            canvas.addEventListener('mouseup', () => { isPanning = false; canvas.style.cursor = 'grab'; });
+            canvas.addEventListener('mouseleave', () => { isPanning = false; canvas.style.cursor = 'grab'; });
+            canvas.addEventListener('mousemove', e => {
+                if (!isPanning) return;
+                const dx = e.clientX - panStart.x;
+                const dy = e.clientY - panStart.y;
+                origin.x += dx;
+                origin.y += dy;
+                panStart = { x: e.clientX, y: e.clientY };
+                drawAll();
+            });
+            canvas.addEventListener('wheel', e => {
+                e.preventDefault();
+                const zoomIntensity = 0.1;
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                const worldX = (mouseX - origin.x) / scale;
+                const worldY = (origin.y - mouseY) / scale;
+                const direction = e.deltaY < 0 ? 1 : -1;
+                const newScale = scale * (1 + direction * zoomIntensity);
+                if (newScale > 5 && newScale < 500) { scale = newScale; }
+                origin.x = mouseX - worldX * scale;
+                origin.y = mouseY + worldY * scale;
+                drawAll();
+            });
+            
+            // --- Khởi tạo ---
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            createNewForm();
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Công cụ giải Quy hoạch tuyến tính</title>
+
+    <!-- MathJax (render LaTeX) - Cập nhật và sửa lỗi -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']] // Giữ lại cấu hình delimiter cho TeX
+            },
+            output: {
+                font: 'mathjax-pagella' // Thêm khối này để chọn font
+            },
+            startup: {
+                ready: () => {
+                    console.log('MathJax is ready!');
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --danger-color: #dc3545;
+            --success-color: #28a745;
+            --background-color: #f4f7f9;
+            --text-color: #333;
+            --feasible-region-color: rgba(153, 102, 255, 0.3);
+            --highlight-result-color: #d4edda;
+        }
+
+        body {
+            font-family: 'Lora',-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* --- Input Screen Styles --- */
+        #input-screen {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #input-screen h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .input-section {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 25px;
+        }
+
+        .input-section h2 {
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        .objective-function-input,
+        .constraint-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .constraint-row.non-removable .remove-btn {
+            visibility: hidden;
+        }
+
+        input[type="number"],
+        select {
+            width: 80px;
+            padding: 8px;
+            font-size: 1.1em;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.2s;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .label {
+            font-size: 1.2em;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            transition: opacity 0.2s;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        #add-constraint-btn {
+            background-color: var(--success-color);
+        }
+
+        .remove-btn {
+            background-color: var(--danger-color);
+        }
+
+        #solve-btn {
+            background-color: var(--primary-color);
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        #error-message {
+            color: var(--danger-color);
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* --- Solution Screen Styles --- */
+        #main-container {
+            display: flex;
+            width: 100%;
+            height: 95vh;
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #controls-container {
+            width: 470px;
+            padding: 22px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #canvas-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #e9ebee;
+        }
+
+        canvas {
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: grab;
+        }
+
+        canvas:active {
+            cursor: grabbing;
+        }
+
+        .slide {
+            display: none;
+            flex-grow: 1;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide h1,
+        .slide h2 {
+            color: var(--primary-color);
+        }
+
+        .slide h1 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        #navigation {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 16px;
+        }
+
+        #navigation button {
+            background-color: var(--secondary-color);
+        }
+
+        #navigation #next-btn {
+            background-color: var(--primary-color);
+        }
+
+        #navigation button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .equation {
+            font-size: 1.1em;
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .highlight-result {
+            background-color: var(--highlight-result-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="input-screen" class="container">
+        <h1>Công cụ giải Quy hoạch tuyến tính</h1>
+        <div class="input-section">
+            <h2>1. Hàm mục tiêu</h2>
+            <div class="objective-function-input">
+                <span class="label">F(x, y) =</span>
+                <input type="number" id="obj-coeff-a" value="3" step="any">
+                <span class="label">x +</span>
+                <input type="number" id="obj-coeff-b" value="5" step="any">
+                <span class="label">y &rarr;</span>
+                <select id="obj-type">
+                    <option value="max" selected>max (GTLN)</option>
+                    <option value="min">min (GTNN)</option>
+                </select>
+            </div>
+        </div>
+        <div class="input-section">
+            <h2>2. Các bất phương trình ràng buộc</h2>
+            <div id="constraints-list">
+                <div class="constraint-row non-removable"><input type="number" value="1" step="any" class="coeff-a">
+                    <span class="label">x +</span><input type="number" value="0" step="any" class="coeff-b"> <span
+                        class="label">y</span><select class="sign">
+                        <option value=">=" selected>&ge;</option>
+                        <option value="<=">&le;</option>
+                    </select><input type="number" value="0" step="any" class="const-c"><button
+                        class="button remove-btn">&times;</button></div>
+                <div class="constraint-row non-removable"><input type="number" value="0" step="any" class="coeff-a">
+                    <span class="label">x +</span><input type="number" value="1" step="any" class="coeff-b"> <span
+                        class="label">y</span><select class="sign">
+                        <option value=">=" selected>&ge;</option>
+                        <option value="<=">&le;</option>
+                    </select><input type="number" value="0" step="any" class="const-c"><button
+                        class="button remove-btn">&times;</button></div>
+                <div class="constraint-row"><input type="number" value="1" step="any" class="coeff-a"> <span
+                        class="label">x +</span><input type="number" value="1" step="any" class="coeff-b"> <span
+                        class="label">y</span><select class="sign">
+                        <option value=">=">&ge;</option>
+                        <option value="<=" selected>&le;</option>
+                    </select><input type="number" value="5" step="any" class="const-c"><button
+                        class="button remove-btn">&times;</button></div>
+                <div class="constraint-row"><input type="number" value="1" step="any" class="coeff-a"> <span
+                        class="label">x +</span><input type="number" value="2" step="any" class="coeff-b"> <span
+                        class="label">y</span><select class="sign">
+                        <option value=">=">&ge;</option>
+                        <option value="<=" selected>&le;</option>
+                    </select><input type="number" value="6" step="any" class="const-c"><button
+                        class="button remove-btn">&times;</button></div>
+                <div class="constraint-row"><input type="number" value="0" step="any" class="coeff-a"> <span
+                        class="label">x +</span><input type="number" value="1" step="any" class="coeff-b"> <span
+                        class="label">y</span><select class="sign">
+                        <option value=">=">&ge;</option>
+                        <option value="<=" selected>&le;</option>
+                    </select><input type="number" value="2" step="any" class="const-c"><button
+                        class="button remove-btn">&times;</button></div>
+            </div>
+            <button id="add-constraint-btn" class="button">Thêm ràng buộc</button>
+        </div>
+        <button id="solve-btn" class="button">Tiến hành giải</button>
+        <p id="error-message" class="hidden"></p>
+    </div>
+
+    <div id="solution-screen" class="container hidden">
+        <div id="main-container">
+            <div id="controls-container"></div>
+            <div id="canvas-container"><canvas id="graph-canvas"></canvas></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- ============================ ---
+            // ---        GLOBAL STATE          ---
+            // --- ============================ ---
+            const inputScreen = document.getElementById('input-screen');
+            const solutionScreen = document.getElementById('solution-screen');
+            const controlsContainer = document.getElementById('controls-container');
+            const canvas = document.getElementById('graph-canvas');
+            const ctx = canvas.getContext('2d');
+
+            let problemData = {};
+            let solutionData = {};
+            let slides = [];
+            let currentStep = 0;
+
+            // Canvas state
+            let scale = 30;
+            let origin = { x: 0, y: 0 };
+            let panStart = { x: 0, y: 0 };
+            let isPanning = false;
+            let visibility = { constraints: [], feasible: true, vertices: true };
+
+            const EPSILON = 1e-9;
+            const lineColors = ['#D9534F', '#5BC0DE', '#5CB85C', '#F0AD4E', '#FF6699', '#A970FF'];
+
+            // --- ============================ ---
+            // ---     CALCULATION ENGINE       ---
+            // --- ============================ ---
+            function findIntersection(l1, l2) {
+                const d = l1.a * l2.b - l2.a * l1.b;
+                if (Math.abs(d) < EPSILON) return null;
+                return { x: (l2.b * l1.c - l1.b * l2.c) / d, y: (l1.a * l2.c - l2.a * l1.c) / d };
+            }
+
+            function isPointFeasible(p, constraints) {
+                for (const i of constraints) {
+                    const v = i.a * p.x + i.b * p.y;
+                    if ((i.sign === '<=' && v > i.c + EPSILON) || (i.sign === '>=' && v < i.c - EPSILON)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function calculateSolution(data) {
+                const { objective, constraints } = data;
+
+                const labeledConstraints = constraints.map((c, i) => {
+                    let latexStr;
+                    if (Math.abs(c.a) > EPSILON && Math.abs(c.b) < EPSILON && Math.abs(c.c) < EPSILON) latexStr = "trục tung ($x=0$)";
+                    else if (Math.abs(c.b) > EPSILON && Math.abs(c.a) < EPSILON && Math.abs(c.c) < EPSILON) latexStr = "trục hoành ($y=0$)";
+                    else latexStr = inequalityToLatex(c, true);
+
+                    return { ...c, id: `d_${i}`, latex: latexStr };
+                });
+
+                const BBOX_SIZE = 1e4;
+                const bbox = [
+                    { a: 1, b: 0, c: BBOX_SIZE, sign: '<=' }, { a: 1, b: 0, c: -BBOX_SIZE, sign: '>=' },
+                    { a: 0, b: 1, c: BBOX_SIZE, sign: '<=' }, { a: 0, b: 1, c: -BBOX_SIZE, sign: '>=' }
+                ];
+
+                const allLinesForIntersection = [...labeledConstraints, ...bbox];
+
+                let iPoints = [];
+                for (let i = 0; i < allLinesForIntersection.length; i++) {
+                    for (let j = i + 1; j < allLinesForIntersection.length; j++) {
+                        const p = findIntersection(allLinesForIntersection[i], allLinesForIntersection[j]);
+                        if (p) {
+                            p.parents = [allLinesForIntersection[i], allLinesForIntersection[j]];
+                            iPoints.push(p);
+                        }
+                    }
+                }
+
+                let fVertices = iPoints.filter(p => isPointFeasible(p, constraints));
+
+                const map = new Map();
+                fVertices.forEach(v => map.set(`${v.x.toFixed(6)},${v.y.toFixed(6)}`, v));
+                fVertices = Array.from(map.values());
+
+                if (fVertices.length < 2) {
+                    return { success: false, message: "Không tìm thấy miền nghiệm hoặc miền nghiệm không phải là một đa giác." };
+                }
+
+                const cx = fVertices.reduce((s, v) => s + v.x, 0) / fVertices.length;
+                const cy = fVertices.reduce((s, v) => s + v.y, 0) / fVertices.length;
+                fVertices.sort((a, b) => Math.atan2(a.y - cy, a.x - cx) - Math.atan2(b.y - cy, b.x - cx));
+
+                const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                let optimalPoint = null,
+                    optimalValue = objective.type === 'max' ? -Infinity : Infinity;
+                let multipleSolutions = [];
+
+                fVertices.forEach((v, i) => {
+                    v.name = alphabet[i % alphabet.length];
+                    v.objectiveValue = objective.a * v.x + objective.b * v.y;
+
+                    v.parents = v.parents.filter(p => p.id && !p.id.startsWith('bbox'));
+
+                    if (objective.type === 'max') {
+                        if (v.objectiveValue > optimalValue) {
+                            optimalValue = v.objectiveValue;
+                            optimalPoint = v;
+                            multipleSolutions = [v];
+                        } else if (Math.abs(v.objectiveValue - optimalValue) < EPSILON) {
+                            multipleSolutions.push(v);
+                        }
+                    } else { // min
+                        if (v.objectiveValue < optimalValue) {
+                            optimalValue = v.objectiveValue;
+                            optimalPoint = v;
+                            multipleSolutions = [v];
+                        } else if (Math.abs(v.objectiveValue - optimalValue) < EPSILON) {
+                            multipleSolutions.push(v);
+                        }
+                    }
+                });
+                const isUnbounded = optimalPoint && (Math.abs(optimalPoint.x) > BBOX_SIZE - 1 || Math.abs(optimalPoint.y) > BBOX_SIZE - 1);
+                return {
+                    success: true,
+                    vertices: fVertices,
+                    optimalPoint,
+                    optimalValue,
+                    isUnbounded,
+                    multipleSolutions: multipleSolutions.length > 1 ? multipleSolutions : []
+                };
+            }
+
+            // --- ============================ ---
+            // --- DYNAMIC UI & SLIDE GENERATION ---
+            // --- ============================ ---
+            function formatNumber(num) {
+                if (Math.abs(num) < EPSILON) return '0';
+                return Math.abs(num - Math.round(num)) < EPSILON ? Math.round(num) : num.toFixed(2);
+            }
+
+            function inequalityToLatex(ineq, useEquation = false) {
+                let parts = [];
+                const { a, b, c, sign } = ineq;
+                if (Math.abs(a) > EPSILON) {
+                    if (a === 1) parts.push('x');
+                    else if (a === -1) parts.push('-x');
+                    else parts.push(`${formatNumber(a)}x`);
+                }
+                if (Math.abs(b) > EPSILON) {
+                    if (parts.length > 0 && b > 0) parts.push('+');
+                    if (b === 1) parts.push('y');
+                    else if (b === -1) parts.push('-y');
+                    else parts.push(`${formatNumber(b)}y`);
+                }
+                const operator = useEquation ? '=' : (sign === '<=' ? '\\le' : '\\ge');
+                parts.push(operator);
+                parts.push(formatNumber(c));
+                return `$${parts.join(' ')}$`;
+            }
+
+            function inequalityToText(ineq) {
+                let parts = [];
+                const { a, b, c, sign } = ineq;
+                if (Math.abs(a) > EPSILON) {
+                    if (a === 1) parts.push('x');
+                    else if (a === -1) parts.push('-x');
+                    else parts.push(`${formatNumber(a)}x`);
+                }
+                if (Math.abs(b) > EPSILON) {
+                    if (parts.length > 0 && b > 0) parts.push(' +');
+                    if (b === 1) parts.push(' y');
+                    else if (b === -1) parts.push(' - y');
+                    else parts.push(` ${formatNumber(b)}y`);
+                }
+                const operator = sign === '<=' ? '≤' : '≥';
+                parts.push(` ${operator} `);
+                parts.push(formatNumber(c));
+                return parts.join('');
+            }
+
+            function generateSlidesHTML(data, sol) {
+                let html = '';
+                const numConstraints = data.constraints.length;
+                html += `<div class="slide"><h1>Bài toán</h1><h3>Hàm mục tiêu:</h3><div class="equation">$F(x,y) = ${formatNumber(data.objective.a)}x + ${formatNumber(data.objective.b)}y \\rightarrow ${data.objective.type}$</div><h3>Ràng buộc:</h3><div class="equation">$\\begin{cases} ${data.constraints.map(ineq => inequalityToLatex(ineq).slice(1, -1)).join('\\\\')} \\end{cases}$</div></div>`;
+
+                data.constraints.forEach((ineq, i) => {
+                    let hint = '';
+                    const { a, b, c } = ineq;
+                    if (Math.abs(b) > EPSILON) {
+                        const y_intercept = c / b;
+                        if (Math.abs(a) > EPSILON) {
+                            const y_at_1 = (c - a) / b;
+                            hint = `Bờ của miền nghiệm là đường thẳng đi qua hai điểm <b>(0, ${formatNumber(y_intercept)})</b> và <b>(1, ${formatNumber(y_at_1)})</b>.`;
+                        } else {
+                            hint = `Bờ của miền nghiệm là đường thẳng ngang <b>y = ${formatNumber(y_intercept)}</b>, song song với trục hoành.`;
+                        }
+                    } else {
+                        const x_intercept = c / a;
+                        hint = `Đây là đường thẳng đứng <b>x = ${formatNumber(x_intercept)}</b>, song song với trục tung.`;
+                    }
+                    html += `<div class="slide"><h2>Bước ${i + 1}: Vẽ miền nghiệm cho BPT ${inequalityToLatex(ineq)}</h2><p>${hint}</p></div>`;
+                });
+
+                const verticesList = sol.vertices.map(v => {
+                    let description = '';
+                    if (v.parents && v.parents.length === 2) {
+                        description = `Giao điểm của ${v.parents[0].latex} và ${v.parents[1].latex}, `;
+                    }
+                    return `<li><b>${v.name}</b>: ${description}có tọa độ (${formatNumber(v.x)}, ${formatNumber(v.y)})</li>`;
+                }).join('');
+                html += `<div class="slide"><h2>Bước ${numConstraints + 1}: Xác định đỉnh</h2><p>Miền nghiệm (phần không bị gạch) là đa giác lồi có các đỉnh sau:</p><ul>${verticesList}</ul></div>`;
+
+                const goalText = data.objective.type === 'max' ? 'Giá trị lớn nhất' : 'Giá trị nhỏ nhất';
+                let conclusion = '';
+                if (sol.isUnbounded) {
+                    conclusion = `Miền nghiệm không bị chặn. Hàm mục tiêu tiến tới <b>${data.objective.type === 'max' ? '+&infin;' : '-&infin;'}</b>.`;
+                } else if (sol.multipleSolutions.length > 1) {
+                    conclusion = `Hàm mục tiêu đạt ${goalText} <b>${formatNumber(sol.optimalValue)}</b> trên đoạn thẳng nối các đỉnh ${sol.multipleSolutions.map(v => `<b>${v.name}</b>`).join(' và ')}.`;
+                } else {
+                    conclusion = `${goalText} là <b>${formatNumber(sol.optimalValue)}</b>, đạt được tại điểm <b>${sol.optimalPoint.name}(${formatNumber(sol.optimalPoint.x)}, ${formatNumber(sol.optimalPoint.y)})</b>.`;
+                }
+                const toggleControls = data.constraints.map((ineq, i) => `<label><input type="checkbox" class="visibility-toggle" data-index="${i}" checked><span style="display:inline-block;width:15px;height:15px;background-color:${lineColors[i % lineColors.length]};margin-right:5px;vertical-align:middle;"></span>${inequalityToLatex(ineq)}</label>`).join('<br>');
+                html += `<div class="slide"><h2>Bước cuối: Tối ưu hóa</h2><p>Tính giá trị F(x,y) tại mỗi đỉnh:</p>
+            <table id="results-table"><thead><tr><th>Đỉnh</th><th>Tọa độ</th><th>Giá trị F(x,y)</th></tr></thead>
+            <tbody>${sol.vertices.map(v => `<tr class="${(sol.multipleSolutions.includes(v) || v === sol.optimalPoint) ? 'highlight-result' : ''}"><td><b>${v.name}</b></td><td>(${formatNumber(v.x)}, ${formatNumber(v.y)})</td><td>${formatNumber(v.objectiveValue)}</td></tr>`).join('')}</tbody>
+            </table><hr><p><b>Kết luận:</b> ${conclusion}</p>
+            <div style="margin-top:20px;padding-top:10px;border-top:1px solid #eee;"><h3>Điều khiển đồ thị:</h3>${toggleControls}<br><label><input type="checkbox" id="toggle-feasible" checked> Tô miền nghiệm</label><br><label><input type="checkbox" id="toggle-vertices" checked> Hiện các đỉnh</label></div>
+        </div>`;
+                html += `<div id="navigation"><button id="prev-btn" class="button">Quay lại</button><button id="next-btn" class="button">Tiếp theo</button><button id="restart-btn" class="button" style="background-color:var(--success-color);">Làm lại</button></div>`;
+                return html;
+            }
+
+            // --- ============================ ---
+            // ---      CANVAS & DRAWING        ---
+            // --- ============================ ---
+            function fromCanvasX(cx) { return (cx - origin.x) / scale; }
+            function fromCanvasY(cy) { return (origin.y - cy) / scale; }
+            function toCanvasX(wx) { return origin.x + wx * scale; }
+            function toCanvasY(wy) { return origin.y - wy * scale; }
+
+            function drawAxesAndGrid() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.save();
+                ctx.strokeStyle = '#f0f0f0';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                const startX = Math.floor(fromCanvasX(0));
+                const endX = Math.ceil(fromCanvasX(canvas.width));
+                const startY = Math.floor(fromCanvasY(canvas.height));
+                const endY = Math.ceil(fromCanvasY(0));
+                for (let i = startX; i <= endX; i++) {
+                    ctx.moveTo(toCanvasX(i), 0);
+                    ctx.lineTo(toCanvasX(i), canvas.height);
+                }
+                for (let i = startY; i <= endY; i++) {
+                    ctx.moveTo(0, toCanvasY(i));
+                    ctx.lineTo(canvas.width, toCanvasY(i));
+                }
+                ctx.stroke();
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(0, origin.y);
+                ctx.lineTo(canvas.width, origin.y);
+                ctx.moveTo(origin.x, 0);
+                ctx.lineTo(origin.x, canvas.height);
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            function drawInequality(ineq, color, options = { highlight: false, showLabel: false }) {
+                const { a, b, c, sign } = ineq;
+                if (Math.abs(a) < EPSILON && Math.abs(b) < EPSILON) return;
+                ctx.save();
+
+                // --- Draw Line ---
+                ctx.beginPath();
+                ctx.lineWidth = options.highlight ? 4 : 2.5;
+                ctx.strokeStyle = color;
+                const startX = fromCanvasX(-10);
+                const endX = fromCanvasX(canvas.width + 10);
+                const startY = fromCanvasY(canvas.height + 10);
+                const endY = fromCanvasY(-10);
+                let p1, p2;
+                if (Math.abs(b) > EPSILON) {
+                    p1 = { x: startX, y: (c - a * startX) / b };
+                    p2 = { x: endX, y: (c - a * endX) / b };
+                } else {
+                    p1 = { x: c / a, y: startY };
+                    p2 = { x: c / a, y: endY };
+                }
+                ctx.moveTo(toCanvasX(p1.x), toCanvasY(p1.y));
+                ctx.lineTo(toCanvasX(p2.x), toCanvasY(p2.y));
+                ctx.stroke();
+
+                // --- Draw Label ---
+                if (options.showLabel) {
+                    const worldBounds = { xMin: fromCanvasX(0), xMax: fromCanvasX(canvas.width), yMin: fromCanvasY(canvas.height), yMax: fromCanvasY(0) };
+                    const intersections = [];
+                    if (Math.abs(b) > EPSILON) {
+                        let y_at_xMin = (c - a * worldBounds.xMin) / b; if (y_at_xMin >= worldBounds.yMin && y_at_xMin <= worldBounds.yMax) intersections.push({ x: worldBounds.xMin, y: y_at_xMin });
+                        let y_at_xMax = (c - a * worldBounds.xMax) / b; if (y_at_xMax >= worldBounds.yMin && y_at_xMax <= worldBounds.yMax) intersections.push({ x: worldBounds.xMax, y: y_at_xMax });
+                    }
+                    if (Math.abs(a) > EPSILON) {
+                        let x_at_yMin = (c - b * worldBounds.yMin) / a; if (x_at_yMin >= worldBounds.xMin && x_at_yMin <= worldBounds.xMax) intersections.push({ x: x_at_yMin, y: worldBounds.yMin });
+                        let x_at_yMax = (c - b * worldBounds.yMax) / a; if (x_at_yMax >= worldBounds.xMin && x_at_yMax <= worldBounds.xMax) intersections.push({ x: x_at_yMax, y: worldBounds.yMax });
+                    }
+                    if (intersections.length > 0) {
+                        intersections.sort((pA, pB) => { if (Math.abs(pB.y - pA.y) > 0.1) return pB.y - pA.y; return pA.x - pB.x; });
+                        const labelPoint = intersections[0];
+                        let labelX = toCanvasX(labelPoint.x);
+                        let labelY = toCanvasY(labelPoint.y);
+                        ctx.fillStyle = color;
+                        ctx.font = 'bold 16px Arial';
+                        const padding = 8;
+                        if (Math.abs(labelPoint.y - worldBounds.yMax) < EPSILON) { ctx.textAlign = 'left'; ctx.textBaseline = 'top'; labelX += padding; labelY += padding; }
+                        else if (Math.abs(labelPoint.x - worldBounds.xMin) < EPSILON) { ctx.textAlign = 'left'; ctx.textBaseline = 'top'; labelX += padding; labelY += padding; }
+                        else if (Math.abs(labelPoint.x - worldBounds.xMax) < EPSILON) { ctx.textAlign = 'right'; ctx.textBaseline = 'top'; labelX -= padding; labelY += padding; }
+                        else { ctx.textAlign = 'left'; ctx.textBaseline = 'bottom'; labelX += padding; labelY -= padding; }
+                        ctx.fillText(inequalityToText(ineq), labelX, labelY);
+                    }
+                }
+
+                // --- Hatching ---
+                let testX = 0, testY = 0;
+                if (Math.abs(a * testX + b * testY - c) < EPSILON) { testX = Math.PI; testY = Math.E; }
+                const testValue = a * testX + b * testY;
+                let isTestPointSolution;
+                switch (sign) {
+                    case '<=': isTestPointSolution = testValue <= c + EPSILON; break;
+                    case '>=': isTestPointSolution = testValue >= c - EPSILON; break;
+                }
+                const isInNonSolutionRegion = (x, y) => {
+                    const val = a * x + b * y;
+                    const testSide = testValue > c;
+                    const pointSide = val > c;
+                    return isTestPointSolution ? (testSide !== pointSide) : (testSide === pointSide);
+                };
+                ctx.beginPath();
+                const worldBounds = { xMin: fromCanvasX(0), xMax: fromCanvasX(canvas.width), yMin: fromCanvasY(canvas.height), yMax: fromCanvasY(0) };
+                const corners = [{ x: worldBounds.xMin, y: worldBounds.yMax }, { x: worldBounds.xMax, y: worldBounds.yMax }, { x: worldBounds.xMax, y: worldBounds.yMin }, { x: worldBounds.xMin, y: worldBounds.yMin }];
+                const vertices = corners.filter(p => isInNonSolutionRegion(p.x, p.y));
+                if (Math.abs(b) > EPSILON) {
+                    let y_at_xMin = (c - a * worldBounds.xMin) / b; if (y_at_xMin >= worldBounds.yMin && y_at_xMin <= worldBounds.yMax) vertices.push({ x: worldBounds.xMin, y: y_at_xMin });
+                    let y_at_xMax = (c - a * worldBounds.xMax) / b; if (y_at_xMax >= worldBounds.yMin && y_at_xMax <= worldBounds.yMax) vertices.push({ x: worldBounds.xMax, y: y_at_xMax });
+                }
+                if (Math.abs(a) > EPSILON) {
+                    let x_at_yMin = (c - b * worldBounds.yMin) / a; if (x_at_yMin >= worldBounds.xMin && x_at_yMin <= worldBounds.xMax) vertices.push({ x: x_at_yMin, y: worldBounds.yMin });
+                    let x_at_yMax = (c - b * worldBounds.yMax) / a; if (x_at_yMax >= worldBounds.xMin && x_at_yMax <= worldBounds.xMax) vertices.push({ x: x_at_yMax, y: worldBounds.yMax });
+                }
+                if (vertices.length >= 2) {
+                    const centerX = vertices.reduce((sum, v) => sum + v.x, 0) / vertices.length;
+                    const centerY = vertices.reduce((sum, v) => sum + v.y, 0) / vertices.length;
+                    vertices.sort((p1, p2) => Math.atan2(p1.y - centerY, p1.x - centerX) - Math.atan2(p2.y - centerY, p2.x - centerX));
+                    ctx.moveTo(toCanvasX(vertices[0].x), toCanvasY(vertices[0].y));
+                    for (let i = 1; i < vertices.length; i++) { ctx.lineTo(toCanvasX(vertices[i].x), toCanvasY(vertices[i].y)); }
+                    ctx.closePath();
+                }
+                ctx.clip();
+                ctx.strokeStyle = color.replace('0.8', '0.6') || color;
+                ctx.lineWidth = 1;
+                const len = Math.sqrt(a * a + b * b);
+                if (len < EPSILON) { ctx.restore(); return; }
+                const hatchSpacing = 12;
+                const canvasDiagonal = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height);
+                for (let i = -canvasDiagonal; i < canvasDiagonal; i += hatchSpacing) {
+                    ctx.beginPath();
+                    const pX = origin.x + i * (b / len);
+                    const pY = origin.y + i * (a / len);
+                    ctx.moveTo(pX - a / len * canvasDiagonal, pY + b / len * canvasDiagonal);
+                    ctx.lineTo(pX + a / len * canvasDiagonal, pY - b / len * canvasDiagonal);
+                    ctx.stroke();
+                }
+                ctx.restore();
+            }
+
+            function drawFeasibleRegion(vertices) {
+                if (!vertices || vertices.length < 2) return;
+                ctx.save();
+                ctx.beginPath();
+                ctx.fillStyle = 'rgba(153, 102, 255, 0.3)';
+                ctx.moveTo(toCanvasX(vertices[0].x), toCanvasY(vertices[0].y));
+                for (let i = 1; i < vertices.length; i++) {
+                    ctx.lineTo(toCanvasX(vertices[i].x), toCanvasY(vertices[i].y));
+                }
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+
+            function drawVertices(vertices) {
+                vertices.forEach(v => {
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.fillStyle = '#C0392B';
+                    ctx.arc(toCanvasX(v.x), toCanvasY(v.y), 6, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.font = 'bold 14px Arial';
+                    ctx.fillStyle = '#C0392B';
+                    ctx.fillText(`${v.name}(${formatNumber(v.x)}, ${formatNumber(v.y)})`, toCanvasX(v.x) + 8, toCanvasY(v.y) - 8);
+                    ctx.restore();
+                });
+            }
+
+            // --- ============================ ---
+            // ---   MAIN CONTROLLER & EVENTS   ---
+            // --- ============================ ---
+            function drawForStep(step) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawAxesAndGrid();
+                const numConstraints = problemData.constraints.length;
+                problemData.constraints.forEach((ineq, i) => {
+                    if (visibility.constraints[i] && step > i) {
+                        const isCurrentStepLine = (step === i + 1);
+                        drawInequality(ineq, lineColors[i % lineColors.length], {
+                            highlight: isCurrentStepLine,
+                            showLabel: isCurrentStepLine || step > numConstraints
+                        });
+                    }
+                });
+                if (step > numConstraints) {
+                    if (visibility.feasible) drawFeasibleRegion(solutionData.vertices);
+                    if (visibility.vertices) drawVertices(solutionData.vertices);
+                }
+            }
+
+            function updateSlide(newStep) {
+                if (newStep < 0 || newStep >= slides.length) return;
+                slides[currentStep].classList.remove('active');
+                slides[newStep].classList.add('active');
+                currentStep = newStep;
+                document.getElementById('prev-btn').disabled = (currentStep === 0);
+                document.getElementById('next-btn').disabled = (currentStep === slides.length - 1);
+                drawForStep(currentStep);
+            }
+
+            function startSolutionProcess(data) {
+                solutionData = calculateSolution(data);
+                if (!solutionData.success) {
+                    controlsContainer.innerHTML = `<h1>Lỗi</h1><p>${solutionData.message}</p><button onclick="window.location.reload()" class="button" style="background-color:var(--primary-color);">Thử lại</button>`;
+                    return;
+                }
+                controlsContainer.innerHTML = generateSlidesHTML(data, solutionData);
+                if (window.MathJax) {
+                    MathJax.typesetPromise();
+                }
+                slides = controlsContainer.querySelectorAll('.slide');
+                document.getElementById('prev-btn').addEventListener('click', () => updateSlide(currentStep - 1));
+                document.getElementById('next-btn').addEventListener('click', () => updateSlide(currentStep + 1));
+                document.getElementById('restart-btn').addEventListener('click', () => window.location.reload());
+                visibility.constraints = data.constraints.map(() => true);
+                controlsContainer.querySelectorAll('.visibility-toggle').forEach(el => {
+                    el.addEventListener('change', () => {
+                        visibility.constraints[parseInt(el.dataset.index)] = el.checked;
+                        drawForStep(currentStep);
+                    });
+                });
+                document.getElementById('toggle-feasible').addEventListener('change', (e) => {
+                    visibility.feasible = e.target.checked;
+                    drawForStep(currentStep);
+                });
+                document.getElementById('toggle-vertices').addEventListener('change', (e) => {
+                    visibility.vertices = e.target.checked;
+                    drawForStep(currentStep);
+                });
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+                updateSlide(0);
+            }
+
+            function gatherAndSolve() {
+                const objective = {
+                    a: parseFloat(document.getElementById('obj-coeff-a').value),
+                    b: parseFloat(document.getElementById('obj-coeff-b').value),
+                    type: document.getElementById('obj-type').value
+                };
+                const constraints = Array.from(document.querySelectorAll('#constraints-list .constraint-row')).map(row => ({
+                    a: parseFloat(row.querySelector('.coeff-a').value),
+                    b: parseFloat(row.querySelector('.coeff-b').value),
+                    sign: row.querySelector('.sign').value,
+                    c: parseFloat(row.querySelector('.const-c').value)
+                }));
+                const errorMessage = document.getElementById('error-message');
+                if (constraints.some(c => isNaN(c.a) || isNaN(c.b) || isNaN(c.c)) || isNaN(objective.a) || isNaN(objective.b)) {
+                    errorMessage.textContent = 'Lỗi: Vui lòng đảm bảo tất cả các trường đều là số hợp lệ.';
+                    errorMessage.classList.remove('hidden');
+                    return;
+                }
+                errorMessage.classList.add('hidden');
+                problemData = {
+                    objective,
+                    constraints
+                };
+                inputScreen.classList.add('hidden');
+                solutionScreen.classList.remove('hidden');
+                startSolutionProcess(problemData);
+            }
+
+            function resizeCanvas() {
+                const container = document.getElementById('canvas-container');
+                if (!container) return;
+                const size = Math.min(container.clientWidth, container.clientHeight) - 40;
+                canvas.width = Math.max(400, size);
+                canvas.height = Math.max(400, size);
+                origin = { x: canvas.width / 2, y: canvas.height / 2 };
+                if (slides.length > 0) drawForStep(currentStep);
+            }
+
+            // --- INITIALIZATION ---
+            (function main() {
+                const addConstraintBtn = document.getElementById('add-constraint-btn');
+                const constraintsList = document.getElementById('constraints-list');
+                const solveBtn = document.getElementById('solve-btn');
+                addConstraintBtn.addEventListener('click', () => {
+                    const row = document.createElement('div');
+                    row.className = 'constraint-row';
+                    row.innerHTML = `<input type="number" value="1" step="any" class="coeff-a"> <span class="label">x +</span><input type="number" value="1" step="any" class="coeff-b"> <span class="label">y</span><select class="sign"><option value=">=">&ge;</option><option value="<=" selected>&le;</option></select><input type="number" value="10" step="any" class="const-c"><button class="button remove-btn">&times;</button>`;
+                    constraintsList.appendChild(row);
+                });
+                constraintsList.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('remove-btn') && !e.target.parentElement.classList.contains('non-removable')) e.target.parentElement.remove();
+                });
+                solveBtn.addEventListener('click', gatherAndSolve);
+                canvas.addEventListener('mousedown', e => {
+                    isPanning = true;
+                    panStart = { x: e.clientX, y: e.clientY };
+                    canvas.style.cursor = 'grabbing';
+                });
+                canvas.addEventListener('mouseup', () => {
+                    isPanning = false;
+                    canvas.style.cursor = 'grab';
+                });
+                canvas.addEventListener('mouseleave', () => {
+                    isPanning = false;
+                    canvas.style.cursor = 'grab';
+                });
+                canvas.addEventListener('mousemove', e => {
+                    if (!isPanning) return;
+                    const dx = e.clientX - panStart.x;
+                    const dy = e.clientY - panStart.y;
+                    origin.x += dx;
+                    origin.y += dy;
+                    panStart = { x: e.clientX, y: e.clientY };
+                    drawForStep(currentStep);
+                });
+                canvas.addEventListener('wheel', e => {
+                    e.preventDefault();
+                    const zoom = 1 - e.deltaY * 0.001;
+                    const mouseX = e.offsetX;
+                    const mouseY = e.offsetY;
+                    const worldX = fromCanvasX(mouseX);
+                    const worldY = fromCanvasY(mouseY);
+                    scale *= zoom;
+                    origin.x = mouseX - worldX * scale;
+                    origin.y = mouseY + worldY * scale;
+                    drawForStep(currentStep);
+                });
+            })();
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trực quan hóa Miền nghiệm: x + 2y < 4</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        #description {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #eaf2f8;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+            min-height: 50px;
+            width: 500px; /* Fixed width for better layout */
+            text-align: left;
+            font-size: 1.1em;
+            line-height: 1.6;
+            transition: background-color 0.5s ease;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #description.final {
+             background-color: #d1eafb;
+        }
+        .valid { color: #27ae60; font-weight: bold; }
+        .invalid { color: #c0392b; font-weight: bold; }
+        .controls {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        button {
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        #startButton {
+            background-color: #3498db;
+        }
+        #startButton:hover {
+            background-color: #2980b9;
+        }
+        #pauseButton {
+            background-color: #f39c12;
+        }
+        #pauseButton:hover {
+            background-color: #e67e22;
+        }
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Trực quan hóa Miền nghiệm: <code>x + 2y < 4</code></h1>
+        <canvas id="graphCanvas" width="500" height="500"></canvas>
+        <div id="description">
+            <p>Nhấn "Bắt đầu" để xem quá trình trực quan hóa.</p>
+        </div>
+        <div class="controls">
+            <button id="startButton">Bắt đầu</button>
+            <button id="pauseButton" disabled>Tạm dừng</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('graphCanvas');
+        const ctx = canvas.getContext('2d');
+        const startButton = document.getElementById('startButton');
+        const pauseButton = document.getElementById('pauseButton');
+        const description = document.getElementById('description');
+
+        // --- CÁC HÀM VẼ (giữ nguyên không đổi) ---
+        const width = canvas.width, height = canvas.height, padding = 30;
+        const xMin = -6, xMax = 10, yMin = -6, yMax = 10;
+        const mapX = (x) => padding + (x - xMin) / (xMax - xMin) * (width - 2 * padding);
+        const mapY = (y) => height - padding - (y - yMin) / (yMax - yMin) * (height - 2 * padding);
+        
+        function drawAxes() {
+            ctx.clearRect(0, 0, width, height); ctx.strokeStyle = '#aaa'; ctx.fillStyle = '#555'; ctx.lineWidth = 1; ctx.font = '12px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            ctx.beginPath(); ctx.moveTo(mapX(xMin), mapY(0)); ctx.lineTo(mapX(xMax), mapY(0)); ctx.moveTo(mapX(0), mapY(yMin)); ctx.lineTo(mapX(0), mapY(yMax)); ctx.stroke();
+            ctx.strokeStyle = '#eee';
+            for (let i = Math.ceil(xMin); i <= xMax; i++) { ctx.beginPath(); ctx.moveTo(mapX(i), mapY(yMin)); ctx.lineTo(mapX(i), mapY(yMax)); ctx.stroke(); if (i !== 0) ctx.fillText(i, mapX(i), mapY(0) + 10); }
+            for (let i = Math.ceil(yMin); i <= yMax; i++) { ctx.beginPath(); ctx.moveTo(mapX(xMin), mapY(i)); ctx.lineTo(mapX(xMax), mapY(i)); ctx.stroke(); if (i !== 0) ctx.fillText(i, mapX(0) - 10, mapY(i)); }
+        }
+        function drawBoundaryLine() {
+            const y1 = (4 - xMin) / 2, y2 = (4 - xMax) / 2;
+            ctx.beginPath(); ctx.moveTo(mapX(xMin), mapY(y1)); ctx.lineTo(mapX(xMax), mapY(y2)); ctx.strokeStyle = '#e74c3c'; ctx.lineWidth = 2.5; ctx.setLineDash([8, 8]); ctx.stroke(); ctx.setLineDash([]);
+        }
+        function shadeSolutionRegion() {
+            ctx.beginPath(); ctx.moveTo(mapX(xMin), mapY(yMin)); ctx.lineTo(mapX(xMax), mapY(yMin)); const yAtXMax = (4 - xMax) / 2; ctx.lineTo(mapX(xMax), mapY(yAtXMax)); const yAtXMin = (4 - xMin) / 2; ctx.lineTo(mapX(xMin), mapY(yAtXMin)); ctx.closePath(); ctx.fillStyle = 'rgba(52, 152, 219, 0.3)'; ctx.fill();
+        }
+
+        // --- LOGIC HOẠT ẢNH VÀ ĐIỀU KHIỂN ---
+        
+        // BIẾN TRẠNG THÁI MỚI
+        let isPaused = false;
+
+        // Xử lý nút Tạm dừng/Tiếp tục
+        pauseButton.addEventListener('click', () => {
+            isPaused = !isPaused; // Đảo ngược trạng thái
+            if (isPaused) {
+                pauseButton.innerText = "Tiếp tục";
+                pauseButton.style.backgroundColor = '#2ecc71'; // Màu xanh lá
+            } else {
+                pauseButton.innerText = "Tạm dừng";
+                pauseButton.style.backgroundColor = '#f39c12'; // Màu cam
+            }
+        });
+        
+        async function startAnimation() {
+            startButton.disabled = true;
+            startButton.innerText = "Đang chạy...";
+            pauseButton.disabled = false; // Kích hoạt nút tạm dừng
+            pauseButton.innerText = "Tạm dừng";
+            isPaused = false;
+            
+            description.classList.remove('final');
+            drawAxes();
+            drawBoundaryLine();
+
+            // Slide 1: Chạy chậm, có thể tạm dừng
+            description.innerHTML = "<p><strong>Slide 1:</strong> Lấy và kiểm tra từng điểm. Bạn có thể Tạm dừng/Tiếp tục.</p>";
+            await new Promise(r => setTimeout(r, 1500));
+
+            for (let i = 0; i < 10; i++) {
+                // Vòng lặp kiểm tra trạng thái tạm dừng
+                // Sẽ "kẹt" ở đây nếu isPaused là true
+                while (isPaused) {
+                    await new Promise(r => setTimeout(r, 100)); // Chờ 100ms rồi kiểm tra lại
+                }
+
+                const x = parseFloat((Math.random() * (xMax - xMin) + xMin).toFixed(1));
+                const y = parseFloat((Math.random() * (yMax - yMin) + yMin).toFixed(1));
+                const result = parseFloat((x + 2 * y).toFixed(2));
+                let pointText = `Lấy điểm (${x}, ${y})<br>Kiểm tra: ${x} + 2*(${y}) = ${result}. `;
+                
+                if (result < 4) {
+                    pointText += `<span class="valid">&lt; 4. Hợp lệ!</span>`;
+                    ctx.fillStyle = 'rgba(52, 152, 219, 1)';
+                    ctx.beginPath(); ctx.arc(mapX(x), mapY(y), 4, 0, Math.PI * 2); ctx.fill();
+                } else {
+                    pointText += `<span class="invalid">&ge; 4. Không hợp lệ!</span>`;
+                    ctx.fillStyle = 'rgba(231, 76, 60, 0.5)';
+                    ctx.beginPath(); ctx.arc(mapX(x), mapY(y), 3, 0, Math.PI * 2); ctx.fill();
+                }
+                description.innerHTML = `<p>${pointText}</p>`;
+                await new Promise(r => setTimeout(r, 2500));
+            }
+            
+            // Hết Slide 1, vô hiệu hóa nút tạm dừng
+            pauseButton.disabled = true;
+            pauseButton.innerText = "Tạm dừng";
+            pauseButton.style.backgroundColor = ''; // Reset màu
+
+            // Slide 2, 3, 4: Chạy nhanh không tạm dừng
+            description.innerHTML = "<p><strong>Slide 2:</strong> Tăng tốc độ và lấy nhiều điểm hơn...</p>";
+            await new Promise(r => setTimeout(r, 1000));
+            for (let i = 0; i < 300; i++) { if (i % 20 === 0) await new Promise(r => setTimeout(r, 1)); const x = Math.random()*(xMax-xMin)+xMin, y = Math.random()*(yMax-yMin)+yMin; if(x+2*y<4){ ctx.fillStyle='rgba(52,152,219,0.7)'; ctx.beginPath(); ctx.arc(mapX(x), mapY(y), 2.5, 0, Math.PI * 2); ctx.fill(); } }
+            
+            description.innerHTML = "<p><strong>Slide 3:</strong> Lấp đầy hoàn toàn miền nghiệm...</p>";
+            await new Promise(r => setTimeout(r, 500));
+            for(let i=0; i<3000; i++){ const x=Math.random()*(xMax-xMin)+xMin, y=Math.random()*(yMax-yMin)+yMin; if(x+2*y<4){ ctx.fillStyle='rgba(52,152,219,0.5)'; ctx.fillRect(mapX(x), mapY(y), 1, 1); } }
+            
+            await new Promise(r => setTimeout(r, 1000));
+            
+            description.innerHTML = "<p><strong>Slide 4:</strong> Hoàn thành! Đây là miền nghiệm của bất phương trình.</p>";
+            description.classList.add('final');
+            shadeSolutionRegion();
+            drawBoundaryLine();
+
+            startButton.disabled = false;
+            startButton.innerText = "Chạy lại";
+        }
+
+        startButton.addEventListener('click', startAnimation);
+        
+        drawAxes();
+        drawBoundaryLine();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Liệu Số: Vẽ Miền Nghiệm (Bản nâng cấp)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #f4f7f9;
+            --text-color: #333;
+            --danger-color: #dc3545;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+        }
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-family: 'Lora', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow: hidden;
+        }
+
+        #controls-container {
+            width: 470px;
+            flex-shrink: 0;
+            padding: 22px;
+            background-color: #fff;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #canvas-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #e9ebee;
+            min-width: 0;
+        }
+
+        canvas {
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: grab;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        canvas:active {
+            cursor: grabbing;
+        }
+
+        h1,
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .inequality-form {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s;
+        }
+
+        .inequality-form:focus-within {
+            background-color: #eef5ff;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: nowrap;
+            margin-bottom: 10px;
+        }
+
+        .input-group input {
+            width: 50px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .input-group select {
+            padding: 8px 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .input-group span {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .controls-main {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .controls-main button {
+            flex: 1 1 150px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Lora', serif;
+            transition: background-color 0.25s, transform 0.08s;
+        }
+
+        .controls-main button:active {
+            transform: scale(0.98);
+        }
+
+        #add-btn {
+            background-color: var(--primary-color);
+        }
+
+        #add-btn:hover {
+            background-color: #0069d9;
+        }
+
+        #find-vertices-btn {
+            background-color: var(--secondary-color);
+        }
+
+        #find-vertices-btn:hover {
+            background-color: #5a6268;
+        }
+
+        #export-btn {
+            background-color: var(--info-color);
+        }
+        #export-btn:hover {
+            background-color: #138496;
+        }
+        
+        .form-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .form-controls button {
+            padding: 9px;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: 'Lora', serif;
+            transition: background-color .2s, color .2s, border-color .2s, transform .1s;
+        }
+        .form-controls button:active {
+            transform: scale(0.97);
+        }
+        .form-controls .update-btn {
+            flex: 1;
+            background-color: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+        }
+        .form-controls .update-btn:hover {
+            background-color: #218838;
+        }
+        .form-controls .delete-btn {
+            background-color: #f8f9fa;
+            color: var(--danger-color);
+            border: 1px solid #ddd;
+        }
+        .form-controls .delete-btn:hover {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        #vertices-list ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        #vertices-list li {
+            background: #e9ecef;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            font-size: 15px;
+            font-family: monospace;
+        }
+        #vertices-list li b {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="controls-container">
+        <h1>Công Cụ Vẽ Miền Nghiệm</h1>
+        <p>Nhập bất phương trình, nhấn "Vẽ / Cập nhật" trong từng khung. Sau đó, nhấn "Tìm các đỉnh" để xác định giao điểm.</p>
+
+        <div id="forms-container">
+            <!-- Form bất phương trình sẽ được thêm vào đây bằng JS -->
+        </div>
+
+        <div class="controls-main">
+            <button id="add-btn">Thêm bất phương trình</button>
+            <button id="find-vertices-btn">Tìm các đỉnh</button>
+            <button id="export-btn">Chụp ảnh màn hình</button>
+        </div>
+
+        <div id="vertices-list-container">
+            <h2>Các đỉnh của miền nghiệm</h2>
+            <div id="vertices-list">
+                <p><i>Nhấn nút "Tìm các đỉnh" để tính toán.</i></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="canvas-container">
+        <canvas id="graph-canvas"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- DOM references ---
+            const canvas = document.getElementById('graph-canvas');
+            const ctx = canvas.getContext('2d');
+            const formsContainer = document.getElementById('forms-container');
+            const addBtn = document.getElementById('add-btn');
+            const findVerticesBtn = document.getElementById('find-vertices-btn');
+            const exportBtn = document.getElementById('export-btn');
+            const verticesListDiv = document.getElementById('vertices-list');
+
+            // --- State variables ---
+            let inequalities = [];
+            let vertices = [];
+            let nextId = 0;
+            const colors = ['rgba(217, 83, 79, 0.8)', 'rgba(91, 192, 222, 0.8)', 'rgba(92, 184, 92, 0.8)', 'rgba(240, 173, 78, 0.8)', 'rgba(153, 102, 255, 0.8)'];
+
+            // --- Canvas pan and zoom ---
+            let scale = 30;
+            let origin = { x: 0, y: 0 };
+            let panStart = { x: 0, y: 0 };
+            let isPanning = false;
+            const EPSILON = 1e-9;
+
+            // --- Helper functions for fractional arithmetic ---
+            function gcd(a, b) {
+                a = Math.abs(a);
+                b = Math.abs(b);
+                while (b) {
+                    [a, b] = [b, a % b];
+                }
+                return a;
+            }
+
+            function formatNumber(num, den) {
+                if (den === 0) return "NaN";
+                if (num === 0) return "0";
+
+                if (den < 0) {
+                    num = -num;
+                    den = -den;
+                }
+                const commonDivisor = gcd(num, den);
+                const s_num = num / commonDivisor;
+                const s_den = den / commonDivisor;
+
+                if (s_den === 1) {
+                    return s_num.toString();
+                }
+                
+                const floatVal = s_num / s_den;
+                // Check if the string representation is reasonably short to display as decimal
+                if (floatVal.toString().length < 8) {
+                    return floatVal.toString();
+                }
+
+                return `${s_num}/${s_den}`;
+            }
+
+
+            // --- Canvas coordinate helpers ---
+            function resizeCanvas() {
+                const container = document.getElementById('canvas-container');
+                const size = Math.min(container.clientWidth, container.clientHeight) - 40;
+                canvas.width = Math.max(400, size);
+                canvas.height = Math.max(400, size);
+                origin = { x: canvas.width / 2, y: canvas.height / 2 };
+                drawAll();
+            }
+
+            function toCanvasX(x) { return origin.x + x * scale; }
+            function toCanvasY(y) { return origin.y - y * scale; }
+            const fromCanvasX = (cx) => (cx - origin.x) / scale;
+            const fromCanvasY = (cy) => (origin.y - cy) / scale;
+
+            // World coordinate bounds
+            const startX_world = () => fromCanvasX(0);
+            const endX_world = () => fromCanvasX(canvas.width);
+            const startY_world = () => fromCanvasY(canvas.height);
+            const endY_world = () => fromCanvasY(0);
+
+
+            // --- Main drawing logic ---
+            function drawAll() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawGridAndAxes();
+                inequalities.forEach(ineq => {
+                    if (ineq.visible) {
+                        drawInequality(ineq);
+                    }
+                });
+                drawFoundVertices();
+            }
+
+
+            function drawGridAndAxes() {
+                ctx.beginPath();
+                ctx.strokeStyle = '#f0f0f0';
+                ctx.lineWidth = 1;
+
+                const startX = Math.ceil(startX_world());
+                const endX = Math.floor(endX_world());
+                const startY = Math.ceil(startY_world());
+                const endY = Math.floor(endY_world());
+
+                for (let i = startX; i <= endX; i++) {
+                    ctx.moveTo(toCanvasX(i), 0);
+                    ctx.lineTo(toCanvasX(i), canvas.height);
+                }
+                for (let i = startY; i <= endY; i++) {
+                    ctx.moveTo(0, toCanvasY(i));
+                    ctx.lineTo(canvas.width, toCanvasY(i));
+                }
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 2;
+                ctx.moveTo(0, origin.y); ctx.lineTo(canvas.width, origin.y);
+                ctx.moveTo(origin.x, 0); ctx.lineTo(origin.x, canvas.height);
+                ctx.stroke();
+                
+                ctx.fillStyle = '#333';
+                ctx.font = `12px Arial`;
+                for (let i = startX; i <= endX; i++) {
+                    if (i !== 0) ctx.fillText(i, toCanvasX(i) - 6, origin.y + 14);
+                }
+                for (let i = startY; i <= endY; i++) {
+                    if (i !== 0) ctx.fillText(i, origin.x - 24, toCanvasY(i) + 4);
+                }
+            }
+
+            function drawInequality(ineq) {
+                const { a, b, c, sign, color, label } = ineq;
+                if (Math.abs(a) < EPSILON && Math.abs(b) < EPSILON) return;
+
+                ctx.save();
+                
+                ctx.beginPath();
+                if (sign === '<' || sign === '>') ctx.setLineDash([6, 6]);
+                ctx.lineWidth = 2.5;
+                ctx.strokeStyle = color;
+
+                let p1, p2;
+                if (Math.abs(b) > EPSILON) {
+                    p1 = { x: startX_world() - 1, y: (c - a * (startX_world() - 1)) / b };
+                    p2 = { x: endX_world() + 1, y: (c - a * (endX_world() + 1)) / b };
+                } else {
+                    p1 = { x: c / a, y: startY_world() - 1 };
+                    p2 = { x: c / a, y: endY_world() + 1 };
+                }
+
+                ctx.moveTo(toCanvasX(p1.x), toCanvasY(p1.y));
+                ctx.lineTo(toCanvasX(p2.x), toCanvasY(p2.y));
+                ctx.stroke();
+                ctx.setLineDash([]);
+                
+                const worldBounds = { xMin: startX_world(), xMax: endX_world(), yMin: startY_world(), yMax: endY_world() };
+                const intersections = [];
+                if (Math.abs(b) > EPSILON) {
+                    let y_at_xMin = (c - a * worldBounds.xMin) / b;
+                    if (y_at_xMin >= worldBounds.yMin && y_at_xMin <= worldBounds.yMax) intersections.push({ x: worldBounds.xMin, y: y_at_xMin });
+                    let y_at_xMax = (c - a * worldBounds.xMax) / b;
+                    if (y_at_xMax >= worldBounds.yMin && y_at_xMax <= worldBounds.yMax) intersections.push({ x: worldBounds.xMax, y: y_at_xMax });
+                }
+                if (Math.abs(a) > EPSILON) {
+                    let x_at_yMin = (c - b * worldBounds.yMin) / a;
+                    if (x_at_yMin >= worldBounds.xMin && x_at_yMin <= worldBounds.xMax) intersections.push({ x: x_at_yMin, y: worldBounds.yMin });
+                    let x_at_yMax = (c - b * worldBounds.yMax) / a;
+                    if (x_at_yMax >= worldBounds.xMin && x_at_yMax <= worldBounds.xMax) intersections.push({ x: x_at_yMax, y: worldBounds.yMax });
+                }
+
+                if (intersections.length > 0) {
+                    intersections.sort((pA, pB) => (Math.abs(pB.y - pA.y) > 0.1) ? pB.y - pA.y : pA.x - pB.x);
+                    const labelPoint = intersections[0];
+                    let labelX = toCanvasX(labelPoint.x), labelY = toCanvasY(labelPoint.y);
+                    
+                    ctx.fillStyle = color; ctx.font = `bold 16px Arial`;
+                    const padding = 8;
+                    if (Math.abs(labelPoint.y - worldBounds.yMax) < EPSILON) { 
+                        ctx.textAlign = 'left'; ctx.textBaseline = 'top'; labelX += padding; labelY += padding;
+                    } else if (Math.abs(labelPoint.x - worldBounds.xMin) < EPSILON) {
+                        ctx.textAlign = 'left'; ctx.textBaseline = 'top'; labelX += padding; labelY += padding;
+                    } else if (Math.abs(labelPoint.x - worldBounds.xMax) < EPSILON) {
+                        ctx.textAlign = 'right'; ctx.textBaseline = 'top'; labelX -= padding; labelY += padding;
+                    } else {
+                        ctx.textAlign = 'left'; ctx.textBaseline = 'bottom'; labelX += padding; labelY -= padding;
+                    }
+                    ctx.fillText(label, labelX, labelY);
+                }
+
+                let testX = 0, testY = 0;
+                if (Math.abs(a * testX + b * testY - c) < EPSILON) { testX = Math.PI; testY = Math.E; }
+                const testValue = a * testX + b * testY;
+                let isTestPointSolution;
+                switch (sign) {
+                    case '<': isTestPointSolution = testValue < c; break;
+                    case '≤': isTestPointSolution = testValue <= c; break;
+                    case '>': isTestPointSolution = testValue > c; break;
+                    case '≥': isTestPointSolution = testValue >= c; break;
+                }
+                const isInNonSolutionRegion = (x, y) => {
+                    const val = a * x + b * y;
+                    const testSide = testValue - c;
+                    const pointSide = val - c;
+                    return isTestPointSolution ? (testSide * pointSide < 0) : (testSide * pointSide >= 0);
+                };
+
+                ctx.beginPath();
+                const clipVertices = [];
+                const corners = [
+                    {x: worldBounds.xMin, y: worldBounds.yMax}, {x: worldBounds.xMax, y: worldBounds.yMax},
+                    {x: worldBounds.xMax, y: worldBounds.yMin}, {x: worldBounds.xMin, y: worldBounds.yMin}
+                ];
+                corners.forEach(p => { if (isInNonSolutionRegion(p.x, p.y)) clipVertices.push(p); });
+                intersections.forEach(p => clipVertices.push(p));
+
+                if (clipVertices.length >= 2) {
+                    const centerX = clipVertices.reduce((sum, v) => sum + v.x, 0) / clipVertices.length;
+                    const centerY = clipVertices.reduce((sum, v) => sum + v.y, 0) / clipVertices.length;
+                    clipVertices.sort((p1, p2) => Math.atan2(p1.y - centerY, p1.x - centerX) - Math.atan2(p2.y - centerY, p2.x - centerX));
+                    
+                    ctx.moveTo(toCanvasX(clipVertices[0].x), toCanvasY(clipVertices[0].y));
+                    for (let i = 1; i < clipVertices.length; i++) {
+                        ctx.lineTo(toCanvasX(clipVertices[i].x), toCanvasY(clipVertices[i].y));
+                    }
+                    ctx.closePath();
+                    ctx.clip();
+                    
+                    ctx.strokeStyle = color.replace('0.8', '0.6');
+                    ctx.lineWidth = 1;
+                    const len = Math.sqrt(a * a + b * b);
+                    if (len > EPSILON) {
+                        const hatchSpacing = 10;
+                        for (let i = -canvas.width * 1.5; i < canvas.width * 1.5; i += hatchSpacing) {
+                            ctx.beginPath();
+                            const pX = origin.x + i * (b / len);
+                            const pY = origin.y + i * (a / len);
+                            ctx.moveTo(pX - a / len * canvas.width * 2, pY + b / len * canvas.width * 2);
+                            ctx.lineTo(pX + a / len * canvas.width * 2, pY - b / len * canvas.width * 2);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                ctx.restore();
+            }
+
+            function findAndDrawVertices() {
+                let foundPoints = [];
+                const visibleIneqs = inequalities.filter(i => i.visible && (Math.abs(i.a) > EPSILON || Math.abs(i.b) > EPSILON));
+
+                for (let i = 0; i < visibleIneqs.length; i++) {
+                    for (let j = i + 1; j < visibleIneqs.length; j++) {
+                        const ineq1 = visibleIneqs[i];
+                        const ineq2 = visibleIneqs[j];
+
+                        const den = ineq1.a * ineq2.b - ineq2.a * ineq1.b;
+                        if (Math.abs(den) < EPSILON) continue;
+                        
+                        const x_num = ineq1.c * ineq2.b - ineq2.c * ineq1.b;
+                        const y_num = ineq1.a * ineq2.c - ineq2.a * ineq1.c;
+                        const point = { x_num, y_num, den };
+
+                        if (isPointInFeasibleRegion(point, visibleIneqs)) {
+                            const isDuplicate = foundPoints.some(p => 
+                                Math.abs(p.x_num * point.den - point.x_num * p.den) < EPSILON &&
+                                Math.abs(p.y_num * point.den - point.y_num * p.den) < EPSILON
+                            );
+                            if (!isDuplicate) {
+                                foundPoints.push(point);
+                            }
+                        }
+                    }
+                }
+
+                if (foundPoints.length > 0) {
+                    const centerX = foundPoints.reduce((sum, p) => sum + p.x_num / p.den, 0) / foundPoints.length;
+                    const centerY = foundPoints.reduce((sum, p) => sum + p.y_num / p.den, 0) / foundPoints.length;
+
+                    foundPoints.sort((p1, p2) => 
+                        Math.atan2((p1.y_num / p1.den) - centerY, (p1.x_num / p1.den) - centerX) - 
+                        Math.atan2((p2.y_num / p2.den) - centerY, (p2.x_num / p2.den) - centerX)
+                    );
+
+                    vertices = foundPoints.map((point, index) => ({
+                        ...point,
+                        name: String.fromCharCode(65 + index)
+                    }));
+                } else {
+                    vertices = [];
+                }
+
+                updateVerticesList();
+                drawAll();
+            }
+
+            function isPointInFeasibleRegion(point, ineqs) {
+                const { x_num, y_num, den } = point;
+                for (const ineq of ineqs) {
+                    const val = ineq.a * x_num + ineq.b * y_num;
+                    const comp = ineq.c * den;
+                    
+                    let effectiveSign = ineq.sign;
+                    if (den < 0) {
+                        if (ineq.sign === '<') effectiveSign = '>';
+                        else if (ineq.sign === '≤') effectiveSign = '≥';
+                        else if (ineq.sign === '>') effectiveSign = '<';
+                        else if (ineq.sign === '≥') effectiveSign = '≤';
+                    }
+
+                    let satisfied = false;
+                    switch (effectiveSign) {
+                        case '<': satisfied = val < comp - EPSILON; break;
+                        case '≤': satisfied = val <= comp + EPSILON; break;
+                        case '>': satisfied = val > comp + EPSILON; break;
+                        case '≥': satisfied = val >= comp - EPSILON; break;
+                    }
+                    if (!satisfied) return false;
+                }
+                return true;
+            }
+            
+            function drawPoint(x, y, label, color = 'red') {
+                const size = 3;
+                ctx.beginPath();
+                ctx.fillStyle = color;
+                ctx.arc(toCanvasX(x), toCanvasY(y), size, 0, 2 * Math.PI);
+                ctx.fill();
+                if (label) {
+                    ctx.font = `bold 14px 'Lora'`;
+                    ctx.fillStyle = color;
+                    ctx.fillText(label, toCanvasX(x) + 8, toCanvasY(y) - 8);
+                }
+            }
+            
+            function drawFoundVertices() {
+                vertices.forEach(v => {
+                    const x = v.x_num / v.den;
+                    const y = v.y_num / v.den;
+                    const label = `${v.name}(${formatNumber(v.x_num, v.den)}; ${formatNumber(v.y_num, v.den)})`;
+                    drawPoint(x, y, label);
+                });
+            }
+
+            function createNewForm() {
+                const id = nextId++;
+                const form = document.createElement('div');
+                form.className = 'inequality-form';
+                form.dataset.id = id;
+
+                const defaults = [
+                    { a: 1, b: 1, c: 5, sign: '≤' }, { a: 1, b: 2, c: 6, sign: '≤' },
+                    { a: 1, b: 0, c: 0, sign: '≥' }, { a: 0, b: 1, c: 0, sign: '≥' }
+                ];
+                const d = defaults[id] || {a: 1, b: 1, c: id + 1, sign: '≤' };
+
+                form.innerHTML = `
+                    <div class="input-group">
+                        <input type="number" value="${d.a}" class="coeff-a" step="any"><span>x +</span>
+                        <input type="number" value="${d.b}" class="coeff-b" step="any"><span>y</span>
+                        <select class="sign">
+                            <option value="≥" ${d.sign === '≥' ? 'selected' : ''}>≥</option>
+                            <option value="≤" ${d.sign === '≤' ? 'selected' : ''}>≤</option>
+                            <option value=">" ${d.sign === '>' ? 'selected' : ''}>&gt;</option>
+                            <option value="<" ${d.sign === '<' ? 'selected' : ''}>&lt;</option>
+                        </select>
+                        <input type="number" value="${d.c}" class="coeff-c" step="any">
+                    </div>
+                    <div class="form-controls">
+                        <button class="update-btn">Vẽ / Cập nhật</button>
+                        <button class="delete-btn">Xóa</button>
+                    </div>
+                `;
+                formsContainer.appendChild(form);
+
+                const newIneq = { id, visible: true, color: colors[id % colors.length] };
+                inequalities.push(newIneq);
+                
+                form.querySelector('.update-btn').addEventListener('click', () => updateAndDraw(id));
+                form.querySelector('.delete-btn').addEventListener('click', () => {
+                    inequalities = inequalities.filter(i => i.id !== id);
+                    form.remove();
+                    vertices = [];
+                    updateVerticesList();
+                    drawAll();
+                });
+                
+                updateAndDraw(id);
+            }
+
+            function updateAndDraw(id) {
+                const form = formsContainer.querySelector(`.inequality-form[data-id='${id}']`);
+                const ineq = inequalities.find(i => i.id === id);
+                if (!form || !ineq) return;
+
+                ineq.a = parseFloat(form.querySelector('.coeff-a').value) || 0;
+                ineq.b = parseFloat(form.querySelector('.coeff-b').value) || 0;
+                ineq.c = parseFloat(form.querySelector('.coeff-c').value) || 0;
+                ineq.sign = form.querySelector('.sign').value;
+                
+                const b_sign_str = ineq.b < 0 ? '-' : '+';
+                const b_val_str = Math.abs(ineq.b);
+                ineq.label = `${ineq.a}x ${b_sign_str} ${b_val_str}y ${ineq.sign} ${ineq.c}`;
+
+                drawAll();
+            }
+
+            function updateVerticesList() {
+                if (vertices.length === 0) {
+                    verticesListDiv.innerHTML = '<p><i>Không tìm thấy đỉnh nào hoặc chưa tính toán.</i></p>';
+                    return;
+                }
+                let listHtml = '<ul>';
+                vertices.forEach(v => {
+                    listHtml += `<li><b>${v.name}:</b> (${formatNumber(v.x_num, v.den)}, ${formatNumber(v.y_num, v.den)})</li>`;
+                });
+                listHtml += '</ul>';
+                verticesListDiv.innerHTML = listHtml;
+            }
+
+            function exportCanvasAsPNG() {
+                const scaleFactor = 3; 
+                const offscreenCanvas = document.createElement('canvas');
+                offscreenCanvas.width = canvas.width * scaleFactor;
+                offscreenCanvas.height = canvas.height * scaleFactor;
+                const offscreenCtx = offscreenCanvas.getContext('2d');
+
+                const tempScale = scale * scaleFactor;
+                const tempOrigin = {
+                    x: origin.x * scaleFactor,
+                    y: origin.y * scaleFactor
+                };
+                
+                offscreenCtx.fillStyle = 'white';
+                offscreenCtx.fillRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+                
+                const toOffX = (x) => tempOrigin.x + x * tempScale;
+                const toOffY = (y) => tempOrigin.y - y * tempScale;
+                const fromOffX = (cx) => (cx - tempOrigin.x) / tempScale;
+                const fromOffY = (cy) => (tempOrigin.y - cy) / tempScale;
+                
+                // 1. Draw grid and axes
+                offscreenCtx.beginPath();
+                offscreenCtx.strokeStyle = '#f0f0f0';
+                offscreenCtx.lineWidth = 1 * scaleFactor;
+                const startX = Math.ceil(fromOffX(0));
+                const endX = Math.floor(fromOffX(offscreenCanvas.width));
+                const startY = Math.ceil(fromOffY(offscreenCanvas.height));
+                const endY = Math.floor(fromOffY(0));
+                for (let i = startX; i <= endX; i++) {
+                    offscreenCtx.moveTo(toOffX(i), 0);
+                    offscreenCtx.lineTo(toOffX(i), offscreenCanvas.height);
+                }
+                for (let i = startY; i <= endY; i++) {
+                    offscreenCtx.moveTo(0, toOffY(i));
+                    offscreenCtx.lineTo(offscreenCanvas.width, toOffY(i));
+                }
+                offscreenCtx.stroke();
+                offscreenCtx.beginPath();
+                offscreenCtx.strokeStyle = '#333';
+                offscreenCtx.lineWidth = 2 * scaleFactor;
+                offscreenCtx.moveTo(0, tempOrigin.y); offscreenCtx.lineTo(offscreenCanvas.width, tempOrigin.y);
+                offscreenCtx.moveTo(tempOrigin.x, 0); offscreenCtx.lineTo(tempOrigin.x, offscreenCanvas.height);
+                offscreenCtx.stroke();
+                
+                // 2. Draw inequalities (lines, labels, and hatching)
+                inequalities.forEach(ineq => {
+                   if(ineq.visible) {
+                        const { a, b, c, sign, color, label } = ineq;
+                        if (Math.abs(a) < EPSILON && Math.abs(b) < EPSILON) return;
+                        
+                        offscreenCtx.save();
+                        
+                        // Draw Line
+                        offscreenCtx.beginPath();
+                        if (sign === '<' || sign === '>') offscreenCtx.setLineDash([6 * scaleFactor, 6 * scaleFactor]);
+                        offscreenCtx.lineWidth = 2.5 * scaleFactor;
+                        offscreenCtx.strokeStyle = color;
+                        let p1, p2;
+                        if (Math.abs(b) > EPSILON) {
+                            p1 = { x: fromOffX(0) - 1, y: (c - a * (fromOffX(0) - 1)) / b };
+                            p2 = { x: fromOffX(offscreenCanvas.width) + 1, y: (c - a * (fromOffX(offscreenCanvas.width) + 1)) / b };
+                        } else {
+                            p1 = { x: c / a, y: fromOffY(offscreenCanvas.height) - 1 };
+                            p2 = { x: c / a, y: fromOffY(0) + 1 };
+                        }
+                        offscreenCtx.moveTo(toOffX(p1.x), toOffY(p1.y));
+                        offscreenCtx.lineTo(toOffX(p2.x), toOffY(p2.y));
+                        offscreenCtx.stroke();
+                        offscreenCtx.setLineDash([]);
+
+                        const offscreenWorldBounds = { xMin: fromOffX(0), xMax: fromOffX(offscreenCanvas.width), yMin: fromOffY(offscreenCanvas.height), yMax: fromOffY(0) };
+                        
+                        // Draw Label
+                        const intersections = [];
+                        if (Math.abs(b) > EPSILON) {
+                            let y_at_xMin = (c - a * offscreenWorldBounds.xMin) / b;
+                            if (y_at_xMin >= offscreenWorldBounds.yMin && y_at_xMin <= offscreenWorldBounds.yMax) intersections.push({ x: offscreenWorldBounds.xMin, y: y_at_xMin });
+                            let y_at_xMax = (c - a * offscreenWorldBounds.xMax) / b;
+                            if (y_at_xMax >= offscreenWorldBounds.yMin && y_at_xMax <= offscreenWorldBounds.yMax) intersections.push({ x: offscreenWorldBounds.xMax, y: y_at_xMax });
+                        }
+                        if (Math.abs(a) > EPSILON) {
+                            let x_at_yMin = (c - b * offscreenWorldBounds.yMin) / a;
+                            if (x_at_yMin >= offscreenWorldBounds.xMin && x_at_yMin <= offscreenWorldBounds.xMax) intersections.push({ x: x_at_yMin, y: offscreenWorldBounds.yMin });
+                            let x_at_yMax = (c - b * offscreenWorldBounds.yMax) / a;
+                            if (x_at_yMax >= offscreenWorldBounds.xMin && x_at_yMax <= offscreenWorldBounds.xMax) intersections.push({ x: x_at_yMax, y: offscreenWorldBounds.yMax });
+                        }
+
+                        if (intersections.length > 0) {
+                            intersections.sort((pA, pB) => (Math.abs(pB.y - pA.y) > 0.1) ? pB.y - pA.y : pA.x - pB.x);
+                            const labelPoint = intersections[0];
+                            let labelX = toOffX(labelPoint.x), labelY = toOffY(labelPoint.y);
+                            
+                            offscreenCtx.fillStyle = color;
+                            offscreenCtx.font = `bold ${16 * scaleFactor}px Arial`;
+                            const padding = 8 * scaleFactor;
+                            if (Math.abs(labelPoint.y - offscreenWorldBounds.yMax) < EPSILON) { 
+                                offscreenCtx.textAlign = 'left'; offscreenCtx.textBaseline = 'top'; labelX += padding; labelY += padding;
+                            } else if (Math.abs(labelPoint.x - offscreenWorldBounds.xMin) < EPSILON) {
+                                offscreenCtx.textAlign = 'left'; offscreenCtx.textBaseline = 'top'; labelX += padding; labelY += padding;
+                            } else if (Math.abs(labelPoint.x - offscreenWorldBounds.xMax) < EPSILON) {
+                                offscreenCtx.textAlign = 'right'; offscreenCtx.textBaseline = 'top'; labelX -= padding; labelY += padding;
+                            } else {
+                                offscreenCtx.textAlign = 'left'; offscreenCtx.textBaseline = 'bottom'; labelX += padding; labelY -= padding;
+                            }
+                            offscreenCtx.fillText(label, labelX, labelY);
+                        }
+
+
+                        // Draw Hatching
+                        let testX = 0, testY = 0;
+                        if (Math.abs(a * testX + b * testY - c) < EPSILON) { testX = Math.PI; testY = Math.E; }
+                        const testValue = a * testX + b * testY;
+                        let isTestPointSolution;
+                        switch (sign) {
+                            case '<': isTestPointSolution = testValue < c; break;
+                            case '≤': isTestPointSolution = testValue <= c; break;
+                            case '>': isTestPointSolution = testValue > c; break;
+                            case '≥': isTestPointSolution = testValue >= c; break;
+                        }
+                        const isInNonSolutionRegion = (x, y) => {
+                            const val = a * x + b * y;
+                            const testSide = testValue - c;
+                            const pointSide = val - c;
+                            return isTestPointSolution ? (testSide * pointSide < 0) : (testSide * pointSide >= 0);
+                        };
+
+                        const clipVertices = [];
+                        const corners = [
+                            { x: offscreenWorldBounds.xMin, y: offscreenWorldBounds.yMax }, { x: offscreenWorldBounds.xMax, y: offscreenWorldBounds.yMax },
+                            { x: offscreenWorldBounds.xMax, y: offscreenWorldBounds.yMin }, { x: offscreenWorldBounds.xMin, y: offscreenWorldBounds.yMin }
+                        ];
+                        corners.forEach(p => { if (isInNonSolutionRegion(p.x, p.y)) clipVertices.push(p); });
+                        intersections.forEach(p => clipVertices.push(p));
+
+                        if (clipVertices.length >= 2) {
+                            const centerX = clipVertices.reduce((sum, v) => sum + v.x, 0) / clipVertices.length;
+                            const centerY = clipVertices.reduce((sum, v) => sum + v.y, 0) / clipVertices.length;
+                            clipVertices.sort((p1, p2) => Math.atan2(p1.y - centerY, p1.x - centerX) - Math.atan2(p2.y - centerY, p2.x - centerX));
+                            
+                            offscreenCtx.beginPath();
+                            offscreenCtx.moveTo(toOffX(clipVertices[0].x), toOffY(clipVertices[0].y));
+                            for (let i = 1; i < clipVertices.length; i++) {
+                                offscreenCtx.lineTo(toOffX(clipVertices[i].x), toOffY(clipVertices[i].y));
+                            }
+                            offscreenCtx.closePath();
+                            offscreenCtx.clip();
+                            
+                            offscreenCtx.strokeStyle = color.replace('0.8', '0.5');
+                            offscreenCtx.lineWidth = 1 * scaleFactor;
+                            const len = Math.sqrt(a * a + b * b);
+                            if (len > EPSILON) {
+                                const hatchSpacing = 10 * scaleFactor;
+                                for (let i = -offscreenCanvas.width * 1.5; i < offscreenCanvas.width * 1.5; i += hatchSpacing) {
+                                    offscreenCtx.beginPath();
+                                    const pX = tempOrigin.x + i * (b / len);
+                                    const pY = tempOrigin.y + i * (a / len);
+                                    offscreenCtx.moveTo(pX - a / len * offscreenCanvas.width * 2, pY + b / len * offscreenCanvas.width * 2);
+                                    offscreenCtx.lineTo(pX + a / len * offscreenCanvas.width * 2, pY - b / len * offscreenCanvas.width * 2);
+                                    offscreenCtx.stroke();
+                                }
+                            }
+                        }
+                       offscreenCtx.restore();
+                   }
+                });
+
+                // 3. Draw vertices and labels
+                vertices.forEach(v => {
+                    const size = 3 * scaleFactor;
+                    const x_val = v.x_num / v.den;
+                    const y_val = v.y_num / v.den;
+
+                    offscreenCtx.beginPath();
+                    offscreenCtx.fillStyle = 'red';
+                    offscreenCtx.arc(toOffX(x_val), toOffY(y_val), size, 0, 2 * Math.PI);
+                    offscreenCtx.fill();
+                    
+                    const label = `${v.name}(${formatNumber(v.x_num, v.den)}; ${formatNumber(v.y_num, v.den)})`;
+                    offscreenCtx.font = `bold ${14 * scaleFactor}px 'Lora'`;
+                    offscreenCtx.fillStyle = 'red';
+                    offscreenCtx.fillText(label, toOffX(x_val) + 8 * scaleFactor, toOffY(y_val) - 8 * scaleFactor);
+                });
+
+
+                const dataUrl = offscreenCanvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = 'mien-nghiem.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+
+            // --- Event Listeners ---
+            addBtn.addEventListener('click', createNewForm);
+            findVerticesBtn.addEventListener('click', findAndDrawVertices);
+            exportBtn.addEventListener('click', exportCanvasAsPNG);
+
+            canvas.addEventListener('mousedown', e => { isPanning = true; panStart = { x: e.clientX, y: e.clientY }; canvas.style.cursor = 'grabbing'; });
+            canvas.addEventListener('mouseup', () => { isPanning = false; canvas.style.cursor = 'grab'; });
+            canvas.addEventListener('mouseleave', () => { isPanning = false; canvas.style.cursor = 'grab'; });
+            canvas.addEventListener('mousemove', e => {
+                if (!isPanning) return;
+                const dx = e.clientX - panStart.x;
+                const dy = e.clientY - panStart.y;
+                origin.x += dx; origin.y += dy;
+                panStart = { x: e.clientX, y: e.clientY };
+                drawAll();
+            });
+            canvas.addEventListener('wheel', e => {
+                e.preventDefault();
+                const zoomIntensity = 0.1;
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                
+                const worldX = fromCanvasX(mouseX);
+                const worldY = fromCanvasY(mouseY);
+                
+                const direction = e.deltaY < 0 ? 1 : -1;
+                const newScale = scale * (1 + direction * zoomIntensity);
+                if (newScale > 5 && newScale < 500) { 
+                    scale = newScale; 
+                }
+
+                origin.x = mouseX - worldX * scale;
+                origin.y = mouseY + worldY * scale;
+
+                drawAll();
+            });
+
+            // --- Initialization ---
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            createNewForm();
+            createNewForm();
+            createNewForm();
+            createNewForm();
+        });
+    </script>
+</body>
+
+</html>
+

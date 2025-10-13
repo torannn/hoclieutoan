@@ -11,6 +11,13 @@
     "grade10": {
       "exams": [
         {
+          "id": "lop10_ontap_1",
+          "title": "Đề ôn tập số 1",
+          "type": "exam",
+          "description": "Đề ôn tập tổng hợp kiến thức Toán 10, bao gồm Mệnh đề, Tập hợp, Lượng giác và Hình học.",
+          "path": "data/grade10/de-on-tap-1/"
+        },
+        {
           "id": "lop10_tonghop_chuong1_5_goc",
           "title": "Đề kiểm tra Chương 1 & 5",
           "type": "exam",
@@ -32,6 +39,13 @@
           "type": "tool",
           "description": "Công cụ tương tác để biểu diễn và so sánh các tập hợp số thực trên trục số.",
           "url": "cong-cu-bieu-dien-tap-hop.html"
+        },
+        {
+          "id": "hoc-lieu-mien-nghiem",
+          "title": "📐 Học liệu: Miền nghiệm hệ BPT",
+          "type": "tool",
+          "description": "Tổng hợp các học liệu và công cụ về miền nghiệm hệ bất phương trình bậc nhất: từ lý thuyết, hướng dẫn vẽ, mô hình hóa đến công cụ vẽ tương tác.",
+          "url": "hoc-lieu-mien-nghiem-hub.html"
         }
       ]
     },

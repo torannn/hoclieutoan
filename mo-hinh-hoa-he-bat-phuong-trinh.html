@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Liệu Tương Tác: Quy Hoạch Tuyến Tính</title>
+
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            output: {
+                font: 'mathjax-pagella'
+            },
+            startup: {
+                ready: () => {
+                    console.log('MathJax is ready!');
+                    MathJax.startup.defaultReady();
+                    if (window.updateMath) window.updateMath();
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --danger-color: #dc3545;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --background-color: #f4f7f9;
+            --text-color: #333;
+            --slide-bg-color: #ffffff;
+            --slide-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --highlight-pastel-color: rgba(255, 204, 204, 0.9);
+            /* Pastel Red */
+        }
+
+        body {
+            font-family: 'Lora', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 1.7;
+            margin: 0;
+            padding: 2rem;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .main-container {
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        .content-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .left-panel {
+            flex: 1 1 40%;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .right-panel {
+            flex: 1 1 60%;
+        }
+
+        .slide {
+            display: none;
+            background-color: var(--slide-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--slide-shadow);
+            padding: 2rem 2.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .problem-statement {
+            background-color: var(--slide-bg-color);
+            box-shadow: var(--slide-shadow);
+            border-left: 5px solid #ccc;
+            margin: 0 0 1.5em 0;
+            padding: 1em 1.5em;
+            font-style: italic;
+            border-radius: var(--border-radius);
+            line-height: 2;
+        }
+
+        .highlight-pastel {
+            background-color: var(--highlight-pastel-color);
+            padding: 2px 5px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+
+        .processed {
+            text-decoration: line-through;
+            color: #adb5bd;
+            background-color: transparent !important;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        strong,
+        b {
+            color: var(--danger-color);
+            font-weight: 700;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: var(--slide-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--slide-shadow);
+        }
+
+        .nav-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .nav-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .nav-button:disabled {
+            background-color: #a0c9ff;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            font-size: 16px;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .exercise-input-group {
+            margin: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exercise-input-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .exercise-input-group input[type="text"],
+        .exercise-input-group input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Lora', sans-serif;
+        }
+
+        .exercise-input-group input[type="text"]::placeholder,
+        .exercise-input-group input[type="number"]::placeholder {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .exercise-input-group input.correct {
+            border-color: var(--success-color);
+            background-color: #e9f7ef;
+        }
+
+        .exercise-input-group input.incorrect {
+            border-color: var(--danger-color);
+            background-color: #fbe9e9;
+        }
+
+        .radio-option {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .radio-option:hover {
+            background-color: #f8f9fa;
+        }
+
+        .radio-option input {
+            margin-right: 12px;
+        }
+
+        .radio-option.correct {
+            border-color: var(--success-color);
+            background-color: #e9f7ef;
+        }
+
+        .radio-option.incorrect {
+            border-color: var(--danger-color);
+            background-color: #fbe9e9;
+        }
+
+        .feedback-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .feedback-message.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .feedback-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .hint-button {
+            background-color: var(--warning-color);
+            color: #333;
+            margin-right: 1rem;
+        }
+
+        .hint-button:hover {
+            background-color: #e0a800;
+        }
+
+        .hint-content {
+            background-color: #fffbe6;
+            border: 1px dashed var(--warning-color);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 5px;
+            font-style: italic;
+        }
+
+        .exercise-buttons {
+            margin-top: 1.5rem;
+        }
+
+        .multiplier-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+
+        .multiplier-row .bpt {
+            flex: 1;
+            font-size: 1.1em;
+        }
+
+        .multiplier-row input {
+            width: 60px;
+            text-align: center;
+        }
+
+        .multiplier-row .result {
+            min-width: 150px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .left-panel {
+                position: static;
+                width: 100%;
+            }
+
+            .multiplier-row {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <h1 style="text-align:center; margin-bottom: 2rem;">Học Liệu Tương Tác: Quy Hoạch Tuyến Tính</h1>
+
+        <div class="content-wrapper">
+            <div class="left-panel">
+                <div id="problem1-statement-display" class="problem-statement" style="display: none;">
+                    <strong>Bài toán 1.</strong> <br> Người ta định dùng hai loại nguyên liệu để chiết xuất <span
+                        id="p1_req_A">ít nhất 120 kg</span> hóa chất A và <span id="p1_req_B">9 kg</span> hóa chất B. Từ
+                    mỗi tấn <span id="p1_type_1">nguyên liệu loại I</span> giá <span id="p1_cost_1">4 triệu đồng</span>
+                    có thể chiết xuất được <span id="p1_yield_A1">20 kg chất A</span> và <span id="p1_yield_B1">0,6 kg
+                        chất B</span>. Từ mỗi tấn <span id="p1_type_2">nguyên liệu loại II</span> giá <span
+                        id="p1_cost_2">3 triệu đồng</span> có thể chiết xuất được <span id="p1_yield_A2">10 kg chất
+                        A</span> và <span id="p1_yield_B2">1,5 kg chất B</span>. Hỏi phải dùng <span
+                        id="p1_variables">bao nhiêu tấn nguyên liệu mỗi loại</span> để <span id="p1_objective">chi phí
+                        mua nguyên liệu là ít nhất</span>. Biết rằng cơ sở cung cấp nguyên liệu chỉ có thể cung cấp
+                    <span id="p1_limit_1">không quá 10 tấn</span> nguyên liệu loại I và <span id="p1_limit_2">không quá
+                        9 tấn</span> nguyên liệu loại II.
+                </div>
+
+                <div id="problem2-statement-display" class="problem-statement" style="display: none;">
+                    <strong>Bài toán 2.</strong> <br> Một xưởng sản xuất <span id="p2_products">hai loại sản phẩm A và
+                        B</span>. Để sản xuất <span id="p2_product_A">1 sản phẩm A</span> cần <span id="p2_labor_A">2
+                        giờ lao động</span> và <span id="p2_material_A">1kg nguyên liệu</span>; <span
+                        id="p2_product_B">1 sản phẩm B</span> cần <span id="p2_labor_B">1 giờ lao động</span> và <span
+                        id="p2_material_B">2kg nguyên liệu</span>. Xưởng có tối đa <span id="p2_limit_labor">10 giờ lao
+                        động</span> và <span id="p2_limit_material">8kg nguyên liệu</span> mỗi ngày. <span
+                        id="p2_profit_A">Lợi nhuận mỗi sản phẩm A là 3 triệu đồng</span>, <span id="p2_profit_B">mỗi sản
+                        phẩm B là 2 triệu đồng</span>. Hỏi mỗi ngày xưởng nên <span id="p2_variables">sản xuất bao nhiêu
+                        sản phẩm mỗi loại</span> để <span id="p2_objective">lợi nhuận lớn nhất</span>?
+                </div>
+
+                <div id="problem3-statement-display" class="problem-statement" style="display: none;">
+                    <strong>Bài toán 3.</strong> <br> Trong một cuộc thi gói bánh trong dịp Tết Nguyên Đán của một
+                    trường cấp ba, mỗi lớp được sử dụng <span id="p3_limit_gao">tối đa 10 kg gạo nếp</span>, <span
+                        id="p3_limit_thit">1 kg thịt</span> và <span id="p3_limit_dau">2,5 kg đậu xanh</span> để gói
+                    <span id="p3_products">bánh chưng và bánh tét</span>. Để gói <span id="p3_bc">1 cái bánh
+                        chưng</span> cần <span id="p3_bc_gao">0,4 kg gạo nếp</span>, <span id="p3_bc_thit">0,05 kg
+                        thịt</span> và <span id="p3_bc_dau">0,1 kg đậu xanh</span>. Để gói <span id="p3_bt">1 cái bánh
+                        tét</span> cần <span id="p3_bt_gao">0,6 kg gạo nếp</span>, <span id="p3_bt_thit">0,075 kg
+                        thịt</span> và <span id="p3_bt_dau">0,15 kg đậu xanh</span>. <span id="p3_bc_diem">Mỗi bánh
+                        chưng được 6 điểm thưởng</span>, <span id="p3_bt_diem">mỗi bánh tét được 8 điểm thưởng</span>.
+                    Hỏi <span id="p3_objective">tổng số điểm thưởng cao nhất</span> mà mỗi lớp có thể đạt được là bao
+                    nhiêu?
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div id="slides-container"></div>
+                <div class="navigation">
+                    <button id="prevBtn" class="nav-button">Trang trước</button>
+                    <span id="slideCounter" class="slide-counter"></span>
+                    <button id="nextBtn" class="nav-button">Trang sau</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- CONFIGURATION ---
+            const slidesConfig = [
+                // === Problem 1 ===
+                {
+                    problem: 1,
+                    title: 'Bắt đầu: Đặt biến số',
+                    content: `<h3>Mục tiêu: Xác định các ẩn số của bài toán.</h3>
+                    <p>Câu hỏi của bài toán là: "Hỏi phải dùng <strong>bao nhiêu tấn nguyên liệu mỗi loại</strong>...". Đây chính là thứ chúng ta cần tìm.</p>
+                    <p>Hãy đặt:</p>
+                    <ul>
+                        <li>$x$ là số tấn nguyên liệu <strong>loại I</strong>.</li>
+                        <li>$y$ là số tấn nguyên liệu <strong>loại II</strong>.</li>
+                    </ul>
+                    <p>Vì số lượng không thể âm, ta luôn có điều kiện ban đầu: $x \\ge 0, y \\ge 0$.</p>`,
+                    highlights: { current: ['p1_variables', 'p1_type_1', 'p1_type_2'] }
+                },
+                {
+                    problem: 1,
+                    title: 'Xây dựng Hàm mục tiêu',
+                    content: `<h3>Mục tiêu: Viết biểu thức cho đại lượng cần tối ưu.</h3>
+                    <p>Bài toán yêu cầu "<strong>chi phí mua nguyên liệu là ít nhất</strong>". Đây là mục tiêu cần tối ưu (tìm min).</p>
+                    <ul>
+                        <li>Giá nguyên liệu loại I là <strong>4 triệu/tấn</strong> $\\implies$ Chi phí cho $x$ tấn là $4x$.</li>
+                        <li>Giá nguyên liệu loại II là <strong>3 triệu/tấn</strong> $\\implies$ Chi phí cho $y$ tấn là $3y$.</li>
+                    </ul>
+                    <p>Vậy, hàm mục tiêu (tổng chi phí) là: $F(x, y) = 4x + 3y \\rightarrow \\min$</p>`,
+                    highlights: { current: ['p1_objective', 'p1_cost_1', 'p1_cost_2'], processed: ['p1_variables', 'p1_type_1', 'p1_type_2'] }
+                },
+                {
+                    problem: 1,
+                    title: 'Ràng buộc về Hóa chất A',
+                    content: `<h3>Mục tiêu: Lập bất phương trình từ các giới hạn.</h3>
+                    <p>Ta cần chiết xuất "<strong>ít nhất 120 kg</strong>" hóa chất A, nghĩa là tổng lượng hóa chất A $\\ge 120$.</p>
+                    <ul>
+                        <li>Từ $x$ tấn loại I, thu được: $20x$ kg chất A.</li>
+                        <li>Từ $y$ tấn loại II, thu được: $10y$ kg chất A.</li>
+                    </ul>
+                    <p>Tổng cộng, ta có bất phương trình: $20x + 10y \\ge 120$ (hay $2x + y \\ge 12$).</p>`,
+                    highlights: { current: ['p1_req_A', 'p1_yield_A1', 'p1_yield_A2'], processed: ['p1_objective', 'p1_cost_1', 'p1_cost_2'] }
+                },
+                {
+                    problem: 1,
+                    title: 'Ràng buộc về Hóa chất B',
+                    content: `<h3>Mục tiêu: Tiếp tục lập các bất phương trình.</h3>
+                    <p>Tương tự, ta cần "<strong>ít nhất 9 kg</strong>" hóa chất B, nghĩa là tổng lượng hóa chất B $\\ge 9$.</p>
+                    <ul>
+                        <li>Từ $x$ tấn loại I, thu được: $0.6x$ kg chất B.</li>
+                        <li>Từ $y$ tấn loại II, thu được: $1.5y$ kg chất B.</li>
+                    </ul>
+                    <p>Tổng cộng, ta có: $0.6x + 1.5y \\ge 9$ (hay $2x + 5y \\ge 30$).</p>`,
+                    highlights: { current: ['p1_req_B', 'p1_yield_B1', 'p1_yield_B2'], processed: ['p1_req_A', 'p1_yield_A1', 'p1_yield_A2'] }
+                },
+                {
+                    problem: 1,
+                    title: 'Ràng buộc về Nguồn cung',
+                    content: `<h3>Mục tiêu: Hoàn thành các ràng buộc còn lại.</h3>
+                    <p>Cơ sở cung cấp có giới hạn:</p>
+                    <ul>
+                        <li>"<strong>không quá 10 tấn</strong>" nguyên liệu loại I $\\implies x \\le 10$.</li>
+                        <li>"<strong>không quá 9 tấn</strong>" nguyên liệu loại II $\\implies y \\le 9$.</li>
+                    </ul>`,
+                    highlights: { current: ['p1_limit_1', 'p1_limit_2'], processed: ['p1_req_B', 'p1_yield_B1', 'p1_yield_B2'] }
+                },
+                {
+                    problem: 1,
+                    title: 'Tổng kết Mô hình Toán học',
+                    content: `<h3>Mục tiêu: Ghép nối thành một hệ hoàn chỉnh.</h3>
+                    <p>Tất cả các thông tin trong đề bài đã được xử lý. Mô hình toán học của chúng ta là:</p>
+                    <p>Tìm $x, y$ để $F(x, y) = 4x + 3y \\rightarrow \\min$ với các điều kiện:</p>
+                    <div class="math-system" style="text-align: left; padding-left: 2rem;">
+                    $$
+                    \\begin{cases}
+                      2x + y \\ge 12 \\\\
+                      2x + 5y \\ge 30 \\\\
+                      x \\le 10 \\\\
+                      y \\le 9 \\\\
+                      x \\ge 0, y \\ge 0
+                    \\end{cases}
+                    $$
+                    </div>`,
+                    highlights: { processed: ['p1_limit_1', 'p1_limit_2'] }
+                },
+                // === Transition Slide ===
+                {
+                    problem: 2,
+                    title: 'Đến lượt bạn luyện tập!',
+                    content: `<h3 style="text-align:center;">Bây giờ, hãy áp dụng những gì đã học để giải một bài toán mới nhé!</h3>
+                              <p style="text-align:center; font-size: 1.1em;">Hãy đọc kĩ đề bài và hoàn thành các bước mô hình hoá sau đây.</p>`,
+                    highlights: {}
+                },
+                // === Problem 2 ===
+                {
+                    problem: 2,
+                    title: 'Bài tập: Đặt biến số',
+                    content: `<h3>Lượt của bạn: Hãy xác định các ẩn số.</h3>
+                    <p>Dựa vào câu hỏi, hãy chọn đáp án đúng cho các biến.</p>
+                    <div class="exercise-input-group">
+                        <label>Biến $x$ là:</label>
+                        <label class="radio-option"><input type="radio" name="var_x" value="correct"> Số sản phẩm loại A (đơn vị: sản phẩm)</label>
+                        <label class="radio-option"><input type="radio" name="var_x" value="wrong1"> Số giờ lao động để sản xuất sản phẩm loại A (đơn vị: giờ)</label>
+                        <label class="radio-option"><input type="radio" name="var_x" value="wrong2"> Số kg nguyên liệu để làm sản phẩm A (đơn vị: kg)</label>
+                        <label class="radio-option"><input type="radio" name="var_x" value="wrong3"> Lợi nhuận của sản phẩm loại A (đơn vị: triệu đồng)</label>
+                    </div>
+                    <div class="exercise-input-group">
+                        <label>Biến $y$ là:</label>
+                        <label class="radio-option"><input type="radio" name="var_y" value="correct"> Số sản phẩm loại B (đơn vị: sản phẩm)</label>
+                        <label class="radio-option"><input type="radio" name="var_y" value="wrong1"> Lợi nhuận sản phẩm B (đơn vị: triệu đồng)</label>
+                        <label class="radio-option"><input type="radio" name="var_y" value="wrong2"> Số giờ lao động để sản xuất sản phẩm loại B (đơn vị: giờ)</label>
+                    </div>
+                    <div id="hint-8" class="hint-content" style="display: none;">
+                        <strong>Gợi ý:</strong> Hãy đọc kĩ câu hỏi cuối cùng của bài toán: "...sản xuất <strong>bao nhiêu sản phẩm mỗi loại</strong>...". Biến số chính là đại lượng mà bài toán yêu cầu chúng ta tìm kiếm.
+                    </div>`,
+                    highlights: { current: ['p2_variables', 'p2_products'] },
+                    isExercise: true,
+                    answers: { var_x: "correct", var_y: "correct" }
+                },
+                {
+                    problem: 2,
+                    title: 'Bài tập: Hàm mục tiêu',
+                    content: `<h3>Lượt của bạn: Xây dựng hàm mục tiêu.</h3>
+                    <p>Xác định biểu thức lợi nhuận và mục tiêu cần tối ưu.</p>
+                     <div class="exercise-input-group">
+                        <label for="objective_expr">Biểu thức lợi nhuận $F(x,y)$:</label>
+                        <div style="display: flex; align-items: center;">
+                           <input type="text" id="objective_expr" placeholder="...x + ...y"> 
+                           <span style="margin-left: 10px; font-weight: 600;">(triệu đồng)</span>
+                        </div>
+                    </div>
+                    <div class="exercise-input-group">
+                        <label>Mục tiêu:</label>
+                        <label class="radio-option"><input type="radio" name="objective_goal" value="max"> $\\rightarrow \\max$</label>
+                        <label class="radio-option"><input type="radio" name="objective_goal" value="min"> $\\rightarrow \\min$</label>
+                    </div>
+                    <div id="hint-9" class="hint-content" style="display: none;">
+                        <strong>Gợi ý:</strong> 1 sản phẩm A lời 3 triệu đồng, vậy $x$ sản phẩm A lời được ... <br> 1 sản phẩm B lời được 2 triệu đồng, vậy $y$ sản phẩm B lời được ...
+                    </div>`,
+                    highlights: { current: ['p2_objective', 'p2_profit_A', 'p2_profit_B'], processed: ['p2_variables', 'p2_products'] },
+                    isExercise: true,
+                    answers: { objective_expr: "3x+2y", objective_goal: "max" }
+                },
+                {
+                    problem: 2,
+                    title: 'Bài tập: Các ràng buộc',
+                    content: `<h3>Lượt của bạn: Viết các bất phương trình ràng buộc.</h3>
+                    <p>Viết các bất phương trình cho giờ lao động và nguyên liệu.</p>
+                     <div class="exercise-input-group">
+                        <label for="constraint_1">Ràng buộc về giờ lao động:</label>
+                        <input type="text" id="constraint_1" placeholder="Gợi ý: ...x + ...y <= ...">
+                    </div>
+                     <div class="exercise-input-group">
+                        <label for="constraint_2">Ràng buộc về nguyên liệu:</label>
+                        <input type="text" id="constraint_2" placeholder="Gợi ý: ...x + ...y <= ...">
+                    </div>
+                    <div id="hint-10" class="hint-content" style="display: none;">
+                        <strong>Gợi ý:</strong> 1 sản phẩm A cần 2 giờ lao động và 1kg nguyên liệu. $x$ sản phẩm A cần ? giờ lao động và ? kg nguyên liệu.<br>1 sản phẩm B cần 1 giờ lao động và 2kg nguyên liệu. $y$ sản phẩm B cần ? giờ lao động và ? kg nguyên liệu.
+                    </div>`,
+                    highlights: { current: ['p2_labor_A', 'p2_labor_B', 'p2_material_A', 'p2_material_B', 'p2_limit_labor', 'p2_limit_material'], processed: ['p2_objective', 'p2_profit_A', 'p2_profit_B'] },
+                    isExercise: true,
+                    answers: { constraint_1: "2x+y<=10", constraint_2: "x+2y<=8" }
+                },
+                {
+                    problem: 2,
+                    title: 'Tổng kết Mô hình Bài tập',
+                    content: `<h3>Chúc mừng! Bạn đã hoàn thành mô hình.</h3>
+                    <p>Đây là mô hình toán học hoàn chỉnh cho bài toán thứ hai:</p>
+                    <p>Tìm $x, y$ để $F(x, y) = 3x + 2y \\rightarrow \\max$ với các điều kiện:</p>
+                     <div class="math-system" style="text-align: left; padding-left: 2rem;">
+                    $$
+                    \\begin{cases}
+                      2x + y \\le 10 \\\\
+                      x + 2y \\le 8 \\\\
+                      x \\ge 0, y \\ge 0
+                    \\end{cases}
+                    $$
+                    </div>
+                    <p>Bạn đã làm rất tốt trong việc chuyển đổi một bài toán thực tế sang ngôn ngữ toán học!</p>`,
+                    highlights: { processed: ['p2_labor_A', 'p2_labor_B', 'p2_material_A', 'p2_material_B', 'p2_limit_labor', 'p2_limit_material'] }
+                },
+
+                // === Transition Slide for Problem 3 ===
+                {
+                    problem: 3,
+                    title: 'Bài tập cuối cùng!',
+                    content: `<h3 style="text-align:center;">Hãy cùng chinh phục thử thách cuối cùng nhé!</h3>
+                              <p style="text-align:center; font-size: 1.1em;">Bài toán này có nhiều ràng buộc hơn một chút, hãy cẩn thận nhé.</p>`,
+                    highlights: {}
+                },
+
+                // === Problem 3 ===
+                {
+                    problem: 3,
+                    title: 'Bài tập 3: Đặt biến số',
+                    content: `<h3>Lượt của bạn: Xác định các ẩn số.</h3>
+                    <p>Bài toán hỏi về số điểm thưởng cao nhất, nhưng để đạt được điều đó, ta cần quyết định số lượng mỗi loại bánh cần gói.</p>
+                    <div class="exercise-input-group">
+                        <label>Biến $x$ là:</label>
+                        <label class="radio-option"><input type="radio" name="var_x_p3" value="correct"> Số bánh chưng cần gói (cái)</label>
+                        <label class="radio-option"><input type="radio" name="var_x_p3" value="wrong1"> Số kg gạo nếp để gói bánh chưng (kg)</label>
+                        <label class="radio-option"><input type="radio" name="var_x_p3" value="wrong2"> Điểm thưởng của bánh chưng (điểm)</label>
+                    </div>
+                    <div class="exercise-input-group">
+                        <label>Biến $y$ là:</label>
+                        <label class="radio-option"><input type="radio" name="var_y_p3" value="correct"> Số bánh tét cần gói (cái)</label>
+                        <label class="radio-option"><input type="radio" name="var_y_p3" value="wrong1"> Số kg thịt để gói bánh tét (kg)</label>
+                        <label class="radio-option"><input type="radio" name="var_y_p3" value="wrong2"> Điểm thưởng của bánh tét (điểm)</label>
+                    </div>
+                    <div id="hint-13" class="hint-content" style="display: none;">
+                        <strong>Gợi ý:</strong> Câu hỏi cuối cùng là "tổng số điểm thưởng cao nhất là bao nhiêu?". Có thể thấy, câu hỏi không có thông tin để ta đặt $x$ và $y$ là gì. Trong trường hợp này, hãy quan sát các yếu tố "đơn vị": "1 cái bánh chưng cần ...".
+                    </div>`,
+                    highlights: { current: ['p3_products', 'p3_bc', 'p3_bt'] },
+                    isExercise: true,
+                    answers: { var_x_p3: "correct", var_y_p3: "correct" }
+                },
+                {
+                    problem: 3,
+                    title: 'Bài tập 3: Hàm mục tiêu',
+                    content: `<h3>Lượt của bạn: Xây dựng hàm mục tiêu.</h3>
+                    <p>Xác định biểu thức tổng điểm thưởng và mục tiêu cần tối ưu.</p>
+                     <div class="exercise-input-group">
+                        <label for="objective_expr_p3">Biểu thức tổng điểm thưởng $F(x,y)$:</label>
+                        <div style="display: flex; align-items: center;">
+                           <input type="text" id="objective_expr_p3" placeholder="...x + ...y"> 
+                           <span style="margin-left: 10px; font-weight: 600;">(điểm)</span>
+                        </div>
+                    </div>
+                    <div class="exercise-input-group">
+                        <label>Mục tiêu:</label>
+                        <label class="radio-option"><input type="radio" name="objective_goal_p3" value="max"> $\\rightarrow \\max$</label>
+                        <label class="radio-option"><input type="radio" name="objective_goal_p3" value="min"> $\\rightarrow \\min$</label>
+                    </div>
+                    <div id="hint-14" class="hint-content" style="display: none;">
+                        <strong>Gợi ý:</strong> Mỗi bánh chưng được 6 điểm, vậy $x$ cái được bao nhiêu điểm? Tương tự với bánh tét. Bài toán yêu cầu tìm điểm thưởng "cao nhất".
+                    </div>`,
+                    highlights: { current: ['p3_objective', 'p3_bc_diem', 'p3_bt_diem'], processed: ['p3_products', 'p3_bc', 'p3_bt'] },
+                    isExercise: true,
+                    answers: { objective_expr_p3: "6x+8y", objective_goal_p3: "max" }
+                },
+                {
+                    problem: 3,
+                    title: 'Bài tập 3: Các ràng buộc',
+                    content: `<h3>Lượt của bạn: Viết các bất phương trình ràng buộc.</h3>
+                    <p>Viết các bất phương trình cho gạo nếp, thịt và đậu xanh.</p>
+                     <div class="exercise-input-group">
+                        <label for="constraint_p3_1">Ràng buộc về gạo nếp (kg):</label>
+                        <input type="text" id="constraint_p3_1" placeholder="Gợi ý: ...x + ...y <= ...">
+                    </div>
+                     <div class="exercise-input-group">
+                        <label for="constraint_p3_2">Ràng buộc về thịt (kg):</label>
+                        <input type="text" id="constraint_p3_2" placeholder="Gợi ý: ...x + ...y <= ...">
+                    </div>
+                     <div class="exercise-input-group">
+                        <label for="constraint_p3_3">Ràng buộc về đậu xanh (kg):</label>
+                        <input type="text" id="constraint_p3_3" placeholder="Gợi ý: ...x + ...y <= ...">
+                    </div>
+                    <div id="hint-15" class="hint-content" style="display: none;">
+                        <strong>Gợi ý:</strong> Tổng lượng nguyên liệu sử dụng cho cả hai loại bánh không được vượt quá ("tối đa") giới hạn cho phép. Ví dụ với gạo nếp: (gạo cho $x$ bánh chưng) + (gạo cho $y$ bánh tét) $\\le$ 10.
+                    </div>`,
+                    highlights: { current: ['p3_limit_gao', 'p3_limit_thit', 'p3_limit_dau', 'p3_bc_gao', 'p3_bc_thit', 'p3_bc_dau', 'p3_bt_gao', 'p3_bt_thit', 'p3_bt_dau'], processed: ['p3_objective', 'p3_bc_diem', 'p3_bt_diem'] },
+                    isExercise: true,
+                    answers: { constraint_p3_1: "0.4x+0.6y<=10", constraint_p3_2: "0.05x+0.075y<=1", constraint_p3_3: "0.1x+0.15y<=2.5" }
+                },
+                {
+                    problem: 3,
+                    title: 'Tổng kết Mô hình Bài tập 3',
+                    content: `<h3>Xuất sắc! Bạn đã hoàn thành bài toán cuối.</h3>
+                    <p>Đây là mô hình toán học hoàn chỉnh cho bài toán gói bánh:</p>
+                    <p>Tìm $x, y$ để $F(x, y) = 6x + 8y \\rightarrow \\max$ với các điều kiện:</p>
+                     <div class="math-system" style="text-align: left; padding-left: 2rem;">
+                    $$
+                    \\begin{cases}
+                      0,4x + 0,6y \\le 10 \\\\
+                      0,05x + 0,075y \\le 1 \\\\
+                      0,1x + 0,15y \\le 2,5 \\\\
+                      x \\ge 0, y \\ge 0
+                    \\end{cases}
+                    $$
+                    </div>
+                    <p>Bây giờ, hãy cùng rút gọn hệ bất phương trình này để dễ giải quyết hơn ở các bước tiếp theo nhé!</p>`,
+                    highlights: { processed: ['p3_limit_gao', 'p3_limit_thit', 'p3_limit_dau', 'p3_bc_gao', 'p3_bc_thit', 'p3_bc_dau', 'p3_bt_gao', 'p3_bt_thit', 'p3_bt_dau'] }
+                },
+                {
+                    problem: 3,
+                    title: 'Bước 4: Rút gọn hệ số về số nguyên',
+                    content: `<p>Hệ số thập phân có thể gây khó khăn khi tính toán. Hãy nhân mỗi bất phương trình với một số nguyên dương thích hợp để các hệ số trở thành số nguyên và tối giản.</p>
+                    <p>Hãy điền số nhân thích hợp vào ô trống:</p>
+                    <div class="exercise-input-group">
+                        <div class="multiplier-row">
+                            <span class="bpt">$0,4x + 0,6y \\le 10$</span>
+                            <span>×</span>
+                            <input type="number" id="multiplier_1" class="multiplier-input" data-answer="5" data-coef-x="0.4" data-coef-y="0.6" data-rhs="10">
+                            <span>→</span>
+                            <span class="result" id="result_1">?</span>
+                        </div>
+                        <div class="multiplier-row">
+                             <span class="bpt">$0,05x + 0,075y \\le 1$</span>
+                            <span>×</span>
+                            <input type="number" id="multiplier_2" class="multiplier-input" data-answer="40" data-coef-x="0.05" data-coef-y="0.075" data-rhs="1">
+                            <span>→</span>
+                             <span class="result" id="result_2">?</span>
+                        </div>
+                         <div class="multiplier-row">
+                            <span class="bpt">$0,1x + 0,15y \\le 2,5$</span>
+                            <span>×</span>
+                            <input type="number" id="multiplier_3" class="multiplier-input" data-answer="20" data-coef-x="0.1" data-coef-y="0.15" data-rhs="2.5">
+                            <span>→</span>
+                            <span class="result" id="result_3">?</span>
+                        </div>
+                    </div>
+                    <div id="hint-17" class="hint-content" style="display: none;">
+                        <strong>Gợi ý:</strong> Hãy thử nhân toàn bộ với 10, 100 hoặc 1000 để khử đi phần thập phân, rồi từ từ thu gọn về dạng tối giản.
+                    </div>
+                    `,
+                    isExercise: true,
+                    customCheck: 'checkMultipliers'
+                },
+                {
+                    problem: 3,
+                    title: 'Bước 5: Rút gọn hệ bất phương trình',
+                    content: `<h3>Tuyệt vời! Hệ bất phương trình tương đương bây giờ là:</h3>
+                    <div class="math-system" style="text-align: left; padding-left: 2rem;">
+                    $$
+                    \\begin{cases}
+                      2x+3y \\le 50 \\\\
+                      2x+3y \\le 40 \\\\
+                      2x+3y \\le 50 \\\\
+                      x \\ge 0, y \\ge 0
+                    \\end{cases}
+                    $$
+                    </div>
+                    <p>Ta thấy vế trái của ba bất phương trình đầu tiên giống hệt nhau. Điều này cho phép ta rút gọn chúng thành một. Bất phương trình nào dưới đây có thể đại diện cho cả ba?</p>
+                    <div class="exercise-input-group">
+                        <label class="radio-option"><input type="radio" name="final_bpt" value="wrong1"> $2x+3y \\le 50$</label>
+                        <label class="radio-option"><input type="radio" name="final_bpt" value="correct"> $2x+3y \\le 40$</label>
+                    </div>
+                     <div id="hint-18" class="hint-content" style="display: none;">
+                        <strong>Gợi ý:</strong> Nếu một biểu thức $\\le 50$ thì có chắc chắn $\\le 40$ hay không?
+                    </div>
+                    <div id="final_bpt_feedback" style="display:none; margin-top: 1rem;">
+                        <p><strong>Chính xác!</strong> Nếu một biểu thức phải nhỏ hơn hoặc bằng 40, thì nó cũng tự động nhỏ hơn 50. Vì vậy, điều kiện $2x+3y \\le 40$ là chặt chẽ nhất và bao hàm cả hai điều kiện còn lại.</p>
+                        <p>Hệ bất phương trình cuối cùng của chúng ta là:</p>
+                        <div class="math-system" style="text-align: left; padding-left: 2rem;">
+                        $$
+                        \\begin{cases}
+                          2x+3y \\le 40 \\\\
+                          x \\ge 0, y \\ge 0
+                        \\end{cases}
+                        $$
+                     </div>
+                    </div>
+                    `,
+                    isExercise: true,
+                    answers: { final_bpt: "correct" },
+                    onCorrect: () => { document.getElementById('final_bpt_feedback').style.display = 'block'; window.MathJax.typeset(); }
+                },
+                // === FINAL SUMMARY SLIDE ===
+                {
+                    problem: 3,
+                    title: 'Tổng kết: Một số lưu ý quan trọng',
+                    content: `<h3>Chúc mừng bạn đã hoàn thành các bài tập!</h3>
+                              <p>Dưới đây là một vài chiến lược quan trọng bạn đã học được để mô hình hoá bài toán quy hoạch tuyến tính:</p>
+                              <ul>
+                                <li><strong>Xác định ẩn số ($x, y$):</strong> Nếu câu hỏi không chỉ rõ đại lượng cần tìm, hãy tìm các yếu tố "đơn vị" trong đề bài, ví dụ: "<em>để gói <strong>1 cái</strong> bánh chưng...</em>", "<em>để sản xuất <strong>1 sản phẩm</strong> A...</em>". Từ đó, ta có thể đặt $x$ là số cái bánh chưng; $x$ là số sản phẩm A.</li>
+                                <li><strong>Thiết lập ràng buộc:</strong> Gạch chân các thông tin về giới hạn (ví dụ: "tối đa", "ít nhất", "không quá"). Mỗi ràng buộc thường được biểu diễn dưới dạng tổng $a \\cdot x + b \\cdot y$ so sánh với một hằng số.</li>
+                                <li><strong>Rút gọn và tối ưu hoá mô hình:</strong> Thử tìm cách đưa các hệ số thập phân về số nguyên để việc tính toán dễ dàng hơn. Sau khi biến đổi, hãy kiểm tra xem có bất phương trình nào bị thừa (bị bao hàm bởi một bất phương trình khác chặt chẽ hơn) để rút gọn hệ.</li>
+                              </ul>
+                              <p>Nắm vững các kỹ năng này sẽ giúp bạn giải quyết các bài toán tối ưu trong thực tế một cách hiệu quả!</p>`,
+                    highlights: {}
+                }
+            ];
+
+            // --- SCRIPT LOGIC ---
+            const slidesContainer = document.getElementById('slides-container');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            const problem1Display = document.getElementById('problem1-statement-display');
+            const problem2Display = document.getElementById('problem2-statement-display');
+            const problem3Display = document.getElementById('problem3-statement-display');
+
+            let currentSlide = 0;
+
+            function generateSlides() {
+                slidesConfig.forEach((slide, index) => {
+                    const slideEl = document.createElement('div');
+                    slideEl.className = 'slide';
+                    slideEl.id = `slide-${index}`;
+
+                    let contentHTML = `<h2>${slide.title}</h2><div>${slide.content}</div>`;
+
+                    if (slide.isExercise) {
+                        const checkFunctionName = slide.customCheck ? slide.customCheck : `checkAnswers`;
+                        contentHTML += `
+                        <div class="exercise-buttons">
+                            <button class="nav-button hint-button" onclick="toggleHint(${index})">Gợi ý</button>
+                            <button class="nav-button" style="background-color: var(--success-color);" onclick="${checkFunctionName}(${index})">Kiểm tra đáp án</button>
+                        </div>
+                        <div id="feedback-message-${index}" class="feedback-message"></div>`;
+                    }
+
+                    slideEl.innerHTML = contentHTML;
+                    slidesContainer.appendChild(slideEl);
+                });
+            }
+
+            function normalizeAnswer(str) {
+                if (typeof str !== 'string') return '';
+                return str.toLowerCase().replace(/\s+/g, '').replace('->', '').replace(/,/g, '.');
+            }
+
+            window.checkMultipliers = function (slideIndex) {
+                const feedbackMsg = document.getElementById(`feedback-message-${slideIndex}`);
+                const inputs = document.querySelectorAll(`#slide-${slideIndex} .multiplier-input`);
+                let allCorrect = true;
+
+                // Helper to format numbers nicely (removes trailing zeros and handles floating point inaccuracies)
+                const formatNumber = (num) => parseFloat(num.toPrecision(12));
+
+                inputs.forEach(input => {
+                    const resultSpan = document.getElementById(input.id.replace('multiplier', 'result'));
+                    const userMultiplier = parseFloat(input.value);
+                    input.classList.remove('correct', 'incorrect');
+
+                    if (isNaN(userMultiplier)) {
+                        resultSpan.innerHTML = '?';
+                        input.classList.add('incorrect');
+                        allCorrect = false;
+                        return; // Skips to the next iteration of the loop
+                    }
+
+                    // Get original coefficients from data attributes
+                    const coefX = parseFloat(input.dataset.coefX);
+                    const coefY = parseFloat(input.dataset.coefY);
+                    const rhs = parseFloat(input.dataset.rhs);
+
+                    // Calculate the result based on user's input
+                    const newCoefX = formatNumber(userMultiplier * coefX);
+                    const newCoefY = formatNumber(userMultiplier * coefY);
+                    const newRhs = formatNumber(userMultiplier * rhs);
+
+                    // Display the result of the user's multiplication
+                    resultSpan.innerHTML = `$${newCoefX}x + ${newCoefY}y \\le ${newRhs}$`;
+
+                    // Check if the user's multiplier is correct
+                    if (input.value === input.dataset.answer) {
+                        input.classList.add('correct');
+                    } else {
+                        input.classList.add('incorrect');
+                        allCorrect = false;
+                    }
+                });
+
+                window.MathJax.typesetPromise();
+
+                feedbackMsg.style.display = 'block';
+                feedbackMsg.classList.remove('success', 'error');
+                if (allCorrect) {
+                    feedbackMsg.textContent = 'Chính xác! Tất cả các bất phương trình đã được rút gọn.';
+                    feedbackMsg.classList.add('success');
+                } else {
+                    feedbackMsg.textContent = 'Chưa đúng. Hãy kiểm tra lại các số nhân và kết quả tương ứng.';
+                    feedbackMsg.classList.add('error');
+                }
+            }
+
+
+            window.checkAnswers = function (slideIndex) {
+                const slide = slidesConfig[slideIndex];
+                if (!slide.isExercise) return;
+
+                let allCorrect = true;
+                const feedbackMsg = document.getElementById(`feedback-message-${slideIndex}`);
+
+                for (const [key, correctAnswer] of Object.entries(slide.answers)) {
+                    const inputEl = document.getElementById(key);
+                    const radioGroup = document.querySelectorAll(`input[name="${key}"]`);
+
+                    if (radioGroup.length > 0) {
+                        const checkedRadio = document.querySelector(`input[name="${key}"]:checked`);
+                        radioGroup.forEach(radio => radio.parentElement.classList.remove('correct', 'incorrect'));
+
+                        if (checkedRadio && checkedRadio.value === correctAnswer) {
+                            checkedRadio.parentElement.classList.add('correct');
+                        } else {
+                            if (checkedRadio) checkedRadio.parentElement.classList.add('incorrect');
+                            allCorrect = false;
+                        }
+                    } else if (inputEl) { // Text input
+                        const userAnswer = normalizeAnswer(inputEl.value);
+                        const normalizedCorrectAnswer = normalizeAnswer(correctAnswer);
+                        inputEl.classList.remove('correct', 'incorrect');
+                        if (userAnswer === normalizedCorrectAnswer) {
+                            inputEl.classList.add('correct');
+                        } else {
+                            inputEl.classList.add('incorrect');
+                            allCorrect = false;
+                        }
+                    }
+                }
+
+                feedbackMsg.style.display = 'block';
+                feedbackMsg.classList.remove('success', 'error');
+                if (allCorrect) {
+                    feedbackMsg.textContent = 'Chính xác! Bạn đã làm rất tốt.';
+                    feedbackMsg.classList.add('success');
+                    if (slide.onCorrect) {
+                        slide.onCorrect();
+                    }
+                } else {
+                    feedbackMsg.textContent = 'Có lỗi sai. Hãy kiểm tra lại các phần được tô đỏ.';
+                    feedbackMsg.classList.add('error');
+                }
+            }
+
+            window.toggleHint = function (slideIndex) {
+                const currentSlideEl = document.getElementById(`slide-${slideIndex}`);
+                if (currentSlideEl) {
+                    let hintEl = currentSlideEl.querySelector('.hint-content');
+                    if (hintEl) {
+                        hintEl.style.display = hintEl.style.display === 'none' ? 'block' : 'none';
+                    }
+                }
+            }
+
+            function updateHighlights() {
+                const allSpans = document.querySelectorAll('.problem-statement span');
+                allSpans.forEach(span => {
+                    span.classList.remove('highlight-pastel', 'processed');
+                });
+
+                const slideConf = slidesConfig[currentSlide];
+                if (!slideConf || !slideConf.highlights) return;
+
+                for (let i = 0; i < currentSlide; i++) {
+                    const pastConf = slidesConfig[i];
+                    if (pastConf.problem === slideConf.problem && pastConf.highlights) {
+                        const allPastHighlights = [
+                            ...(pastConf.highlights.current || []),
+                            ...(pastConf.highlights.processed || [])
+                        ];
+                        allPastHighlights.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el) el.classList.add('processed');
+                        });
+                    }
+                }
+
+                if (slideConf.highlights.current) {
+                    slideConf.highlights.current.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) {
+                            el.classList.remove('processed');
+                            el.classList.add('highlight-pastel');
+                        }
+                    });
+                }
+            }
+
+            function showSlide(index) {
+                const allSlides = document.querySelectorAll('.slide');
+                allSlides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+
+                const currentProblem = slidesConfig[index].problem;
+                problem1Display.style.display = (currentProblem === 1) ? 'block' : 'none';
+                problem2Display.style.display = (currentProblem === 2) ? 'block' : 'none';
+                problem3Display.style.display = (currentProblem === 3) ? 'block' : 'none';
+
+                slideCounter.textContent = `Trang ${index + 1} / ${slidesConfig.length}`;
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === slidesConfig.length - 1;
+
+                updateHighlights();
+                if (window.MathJax && window.MathJax.typeset) {
+                    window.MathJax.typeset();
+                }
+            }
+
+            window.updateMath = function () {
+                if (window.MathJax && window.MathJax.typeset) {
+                    window.MathJax.typeset();
+                }
+            };
+
+            // Initialize
+            generateSlides();
+            showSlide(currentSlide);
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slidesConfig.length - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

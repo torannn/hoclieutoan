@@ -255,7 +255,7 @@ function getTFParsed(question) {
     }
     // Old schema: object with a,b,c,d keys
     if (question.statements && typeof question.statements === 'object') {
-        const items = ['a','b','c','d'].filter(k => k in question.statements)
+        const items = ['a', 'b', 'c', 'd'].filter(k => k in question.statements)
             .map(k => ({ key: k, text: question.statements[k] || '' }));
         return { stem: (question.stem || '').replace(/\n/g, '<br>'), items };
     }
@@ -277,20 +277,20 @@ function getExpectedShortSpec(question, answerText) {
     return extractCorrectShortNumeric(answerText);
 }
 
-function getStemText(question, parentType) {
+function getStemText(question, parentType, forceFullText = false) {
     const qType = question.type || parentType;
     const qt = question.question_text || '';
-    
-    // In interactive mode, just return the stem
-    if (examMode === 'interactive') {
+
+    // In interactive mode, just return the stem unless forceFullText is true
+    if (examMode === 'interactive' && !forceFullText) {
         if (qType === 'multiple_choice') { const parsed = getMCParsed(question); return parsed.stem || qt; }
         if (qType === 'true_false') { const parsed = getTFParsed(question); return parsed.stem || qt; }
         return question.stem || qt;
     }
-    
-    // In static mode, include options/statements in the output
+
+    // In static mode or when forceFullText is true, include options/statements in the output
     let output = question.stem || qt;
-    
+
     // Add multiple choice options if available
     if (qType === 'multiple_choice') {
         const parsed = getMCParsed(question);
@@ -313,7 +313,7 @@ function getStemText(question, parentType) {
             output += '</div>';
         }
     }
-    
+
     return output;
 }
 
@@ -373,7 +373,7 @@ function renderInputElement(question, parentType) {
 /**
  * Save student answer
  */
-window.saveAnswer = function(qId, answer) {
+window.saveAnswer = function (qId, answer) {
     studentAnswers[qId] = answer;
     console.log('Saved answer for', qId, ':', answer);
     saveAnswersToStorage();
@@ -382,7 +382,7 @@ window.saveAnswer = function(qId, answer) {
 /**
  * Save true/false answer
  */
-window.saveTrueFalseAnswer = function(qId, option, value) {
+window.saveTrueFalseAnswer = function (qId, option, value) {
     // If option is a number (index), store as an array for the new schema
     if (typeof option === 'number') {
         if (!Array.isArray(studentAnswers[qId])) studentAnswers[qId] = [];
@@ -516,17 +516,17 @@ function getStudentAnswerDisplay(question) {
     const answer = studentAnswers[qId];
     const ansText = answersMap[qId] || question.model_answer || '';
     // Infer type if missing (use answers content)
-    const qType = (question.type) ? question.type : (function(){
+    const qType = (question.type) ? question.type : (function () {
         if (extractCorrectMC(ansText)) return 'multiple_choice';
         const tf = extractCorrectTF(ansText);
         if (Object.keys(tf).length) return 'true_false';
         return 'short';
     })();
-    
+
     if (!answer) {
         return '<div class="mt-3 p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded"><span class="text-yellow-700 font-semibold">Bạn chưa trả lời câu này</span></div>';
     }
-    
+
     if (qType === 'multiple_choice') {
         // Normalize user answer -> index
         const userIdx = (typeof answer === 'number') ? answer : indexFromLetter(answer);
@@ -741,7 +741,9 @@ async function startExam(examInfo) {
         });
 
         examQuestionsContainer.innerHTML = examHTML;
-        if (window.MathJax) MathJax.typeset();
+        if (window.MathJax) {
+            MathJax.typesetPromise([examQuestionsContainer]).catch((err) => console.log('MathJax Typeset Error: ' + err.message));
+        }
 
         // Load saved answers and apply to UI (interactive mode)
         studentAnswers = loadAnswersFromStorage();
@@ -874,21 +876,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     // SỬA LỖI: Thay ExamBtn bằng submitExamBtn
     submitExamBtn.addEventListener('click', () => {
         console.log('Submit button clicked');
-        if (!currentExamData) { 
+        if (!currentExamData) {
             console.warn('No currentExamData. Did the exam load correctly?');
             alert('Chưa có dữ liệu bài làm để chấm. Vui lòng chọn đề và làm bài trước.');
             return;
         }
-    
+
         // Render results (show lời giải mẫu) by sections
         let resultsHTML = '';
         const checkboxItems = [];
         const resSections = partitionIntoSections(currentExamData);
         let autoScorePoints = 0;
         let autoMaxPoints = 0;
-        
+
         let questionCounter = 1;
-        
+
         resSections.forEach(sec => {
             resultsHTML += `<h2 class="text-xl font-bold text-blue-700 mt-6 mb-3">${sec.title}</h2>`;
             sec.items.forEach((item) => {
@@ -901,16 +903,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 <div class="question-text">${formattedGroupTitle}</div>
                             </div>
                             <div class="sub-questions-container">`;
-    
+
                     item.sub_questions.forEach((sub, subIdx) => {
                         const currentQuestionNumber = questionCounter;
                         checkboxItems.push({ id: sub.q_id, label: `Câu ${currentQuestionNumber}` });
-                        
+
                         // Format câu hỏi và đáp án
-                        const formattedSubQuestion = formatQuestionText(getStemText(sub, item.type));
+                        const formattedSubQuestion = formatQuestionText(getStemText(sub, item.type, true));
                         const formattedAnswer = formatAnswerText(sub.model_answer || 'Chưa có đáp án.');
                         const studentAns = getStudentAnswerDisplay(sub);
-                        
+
                         // Auto-grading (interactive mode)
                         if (examMode === 'interactive') {
                             const subType = sub.type || item.type;
@@ -945,7 +947,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             }
                             // short: không chấm tự động
                         }
-                        
+
                         resultsHTML += `
                             <div class="sub-question-result">
                                 <div class="question-content">
@@ -961,16 +963,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                         questionCounter++;
                     });
                     resultsHTML += `</div></div>`;
-    
+
                 } else {
                     // Xử lý câu hỏi đơn
                     checkboxItems.push({ id: item.q_id, label: `Câu ${questionCounter}` });
-                    
+
                     // Format câu hỏi và đáp án
-                    const formattedQuestion = formatQuestionText(getStemText(item));
+                    const formattedQuestion = formatQuestionText(getStemText(item, null, true));
                     const formattedAnswer = formatAnswerText(item.model_answer || 'Chưa có đáp án.');
                     const studentAns = getStudentAnswerDisplay(item);
-                    
+
                     // Auto-grading (interactive mode)
                     if (examMode === 'interactive') {
                         const itemType = item.type;
@@ -1004,7 +1006,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             }
                         }
                     }
-                    
+
                     resultsHTML += `
                         <div class="question-container result-item">
                             <div class="question-content">
@@ -1020,7 +1022,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             });
         });
-    
+
         // Prepend auto-grading summary (interactive mode)
         if (examMode === 'interactive') {
             const percent = autoMaxPoints > 0 ? Math.round(100 * autoScorePoints / autoMaxPoints) : 0;
@@ -1035,13 +1037,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Inject results
         if (resultsContainer) {
-            resultsContainer.innerHTML = resultsHTML || '<p class="text-gray-500">Chưa có dữ liệu kết quả để hiển thị.</p>';
-            // Re-typeset MathJax for LaTeX in answers
-            if (window.MathJax && typeof MathJax.typeset === 'function') {
-                try { MathJax.typeset(); } catch (e) { console.warn('MathJax typeset error:', e); }
+            resultsContainer.innerHTML = resultsHTML || '<p>Chưa có dữ liệu kết quả để hiển thị.</p>';
+            if (window.MathJax) {
+                MathJax.typesetPromise([resultsContainer]).catch((err) => console.log('MathJax Typeset Error: ' + err.message));
             }
         }
-    
+
         // Populate checkbox list for AI questions
         if (questionCheckboxContainer) {
             questionCheckboxContainer.innerHTML = checkboxItems.map(item => `
@@ -1051,7 +1052,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
             `).join('');
         }
-    
+
         // Điều hướng sang trang kết quả (router sẽ hiển thị results screen)
         navigateTo('#/results');
         window.scrollTo(0, 0);

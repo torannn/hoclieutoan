@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học liệu: Miền nghiệm hệ bất phương trình bậc nhất</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 500;
+        }
+
+        .card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-left-color: #3b82f6;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .badge-theory {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-practice {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-tool {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .icon-wrapper {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .icon-theory {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+
+        .icon-practice {
+            background: linear-gradient(135deg, #10b981 0%, #065f46 100%);
+        }
+
+        .icon-tool {
+            background: linear-gradient(135deg, #f59e0b 0%, #92400e 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
+
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="inline-block mb-4">
+                <div
+                    class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                Học liệu: Miền nghiệm hệ bất phương trình bậc nhất
+            </h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Khám phá các học liệu tương tác và công cụ hỗ trợ học tập về miền nghiệm, từ lý thuyết cơ bản đến ứng
+                dụng thực tế trong bài toán quy hoạch tuyến tính.
+            </p>
+        </div>
+
+        <!-- Learning Path -->
+        <div class="grid gap-6 md:gap-8">
+
+            <!-- Card 1: Hình thành kiến thức -->
+            <div class="card bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="icon-wrapper icon-theory">
+                        <span>📚</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="badge badge-theory">Lý thuyết</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-3">
+                            Hình thành kiến thức về miền nghiệm
+                        </h2>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Học liệu giải thích <strong>tại sao miền nghiệm</strong> của bất phương trình
+                            <code>ax + by < c</code> là nửa mặt phẳng có bờ là đường thẳng <code>ax + by = c</code>.
+                            Bạn sẽ hiểu được bản chất hình học của bất phương trình bậc nhất hai ẩn thông qua các minh
+                            họa trực quan và giải thích chi tiết.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Trực quan hóa</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Lý thuyết cơ
+                                bản</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Hình học</span>
+                        </div>
+                        <a href="Hinh-thanh-kien-thuc-mien-nghiem.html"
+                            class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
+                            Bắt đầu học
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Hướng dẫn vẽ miền nghiệm -->
+            <div class="card bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="icon-wrapper icon-practice">
+                        <span>✏️</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="badge badge-practice">Thực hành</span>
+                            <span class="text-sm text-gray-500">Quan trọng</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-3">
+                            Hướng dẫn vẽ miền nghiệm và xác định đa giác
+                        </h2>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Học liệu hướng dẫn <strong>các bước chi tiết</strong> để vẽ miền nghiệm cho một hệ bất
+                            phương trình, đồng thời <strong>xác định tọa độ các đỉnh</strong> của miền đa giác tạo
+                            thành. Bạn sẽ nắm vững kỹ thuật vẽ đường thẳng, xác định nửa mặt phẳng nghiệm, và tìm giao
+                            điểm của các đường biên.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full">Từng bước</span>
+                            <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full">Xác định
+                                đỉnh</span>
+                            <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full">Minh họa</span>
+                        </div>
+                        <a href="huong-dan-ve-mien-nghiem-va-xac-dinh-da-giac.html"
+                            class="inline-flex items-center px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors shadow-md hover:shadow-lg">
+                            Học cách vẽ
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Mô hình hóa -->
+            <div class="card bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="icon-wrapper icon-practice">
+                        <span>🎯</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="badge badge-practice">Bài tập tương tác</span>
+                            <span class="text-sm text-gray-500">Quan trọng</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-3">
+                            Mô hình hóa hệ bất phương trình
+                        </h2>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Học liệu hướng dẫn <strong>các bước để tìm ra hệ bất phương trình</strong> từ bài toán thực
+                            tế dạng tối ưu (quy hoạch tuyến tính). Bạn sẽ học cách đặt ẩn, xây dựng hàm mục tiêu, và
+                            thiết lập các ràng buộc. Kèm theo là <strong>các bài tập tương tác</strong> để luyện tập kỹ
+                            năng mô hình hóa.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full">Quy hoạch tuyến
+                                tính</span>
+                            <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full">Bài tập tương
+                                tác</span>
+                            <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full">Ứng dụng thực
+                                tế</span>
+                        </div>
+                        <a href="mo-hinh-hoa-he-bat-phuong-trinh.html"
+                            class="inline-flex items-center px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors shadow-md hover:shadow-lg">
+                            Luyện tập mô hình hóa
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Công cụ vẽ -->
+            <div class="card bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="icon-wrapper icon-tool">
+                        <span>🛠️</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="badge badge-tool">Công cụ</span>
+                            <span class="text-sm text-gray-500">Hỗ trợ</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-3">
+                            Công cụ vẽ miền nghiệm
+                        </h2>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Công cụ tương tác cho phép bạn <strong>nhập các bất phương trình</strong> và tự động
+                            <strong>vẽ miền nghiệm</strong> của hệ bất phương trình đó. Hỗ trợ nhiều bất phương trình,
+                            hiển thị đồ thị trực quan với các màu sắc phân biệt, và cho phép điều chỉnh tham số để quan
+                            sát sự thay đổi của miền nghiệm.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full">Tương tác</span>
+                            <span class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full">Trực quan
+                                hóa</span>
+                            <span class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full">Đa bất phương
+                                trình</span>
+                        </div>
+                        <a href="cong-cu-ve-mien-nghiem.html"
+                            class="inline-flex items-center px-6 py-3 bg-amber-600 text-white font-semibold rounded-lg hover:bg-amber-700 transition-colors shadow-md hover:shadow-lg">
+                            Mở công cụ
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-12 text-center">
+            <a href="index.html"
+                class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+                Quay lại trang chủ
+            </a>
+        </div>
+
+        <!-- Learning Tips -->
+        <div class="mt-12 bg-white rounded-xl shadow-lg p-6 md:p-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-600" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+                Gợi ý học tập
+            </h3>
+            <ul class="space-y-3 text-gray-600">
+                <li class="flex items-start">
+                    <span class="text-blue-600 mr-2">•</span>
+                    <span>Bắt đầu với <strong>Hình thành kiến thức</strong> để hiểu bản chất của miền nghiệm trước khi
+                        thực hành.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-600 mr-2">•</span>
+                    <span>Luyện tập vẽ miền nghiệm bằng tay theo <strong>Hướng dẫn vẽ</strong>, sau đó kiểm tra kết
+                        quả bằng <strong>Công cụ vẽ</strong>.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-600 mr-2">•</span>
+                    <span>Hoàn thành các bài tập trong <strong>Mô hình hóa</strong> để áp dụng kiến thức vào bài toán
+                        thực tế.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-600 mr-2">•</span>
+                    <span>Sử dụng <strong>Công cụ vẽ</strong> để thử nghiệm với các hệ bất phương trình khác nhau và
+                        quan sát sự thay đổi của miền nghiệm.</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>

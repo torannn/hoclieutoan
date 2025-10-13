@@ -5,14 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']] // Giữ lại cấu hình delimiter cho TeX
+            },
+            output: {
+                font: 'mathjax-pagella' // Thêm khối này để chọn font
+            },
+            startup: {
+                ready: () => {
+                    console.log('MathJax is ready!');
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
     <script src="script.js" defer></script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Lora', 'Inter', 'Palatino', sans-serif;
+            font-weight: 500;
             background-color: #f0f4f8;
         }
 
@@ -110,8 +129,10 @@
             color: #2563eb;
             text-decoration: underline;
         }
+
         .answer-text a:hover {
-            color: #1d4ed8; /* blue-700 */
+            color: #1d4ed8;
+            /* blue-700 */
         }
 
         #class-selection-screen {
@@ -141,6 +162,95 @@
 
         #class-menu button:hover::before {
             opacity: 1;
+        }
+
+        /* === PHẦN CSS CHO TÍNH NĂNG PHÓNG TO ẢNH === */
+
+        /* Container cho hình ảnh có thể phóng to */
+        .image-zoomable-container {
+            position: relative;
+            /* Cần thiết để định vị icon phóng to */
+            display: inline-block;
+            /* Hoặc 'block' tùy vào layout của bạn */
+            cursor: pointer;
+            overflow: hidden;
+            /* Giúp bo góc đẹp hơn nếu ảnh có border-radius */
+            border-radius: 0.5rem;
+            /* Bo góc nhẹ cho đẹp */
+        }
+
+        /* Icon phóng to nằm trên góc ảnh */
+        .image-zoomable-container::after {
+            content: '🔍';
+            /* Biểu tượng kính lúp, bạn có thể thay bằng SVG icon */
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 6px;
+            border-radius: 50%;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            /* Mặc định ẩn đi */
+            transition: opacity 0.3s ease;
+            /* Hiệu ứng mờ dần */
+            pointer-events: none;
+            /* Để không cản trở việc click vào ảnh */
+        }
+
+        /* Khi hover chuột vào container, icon sẽ hiện ra */
+        .image-zoomable-container:hover::after {
+            opacity: 1;
+        }
+
+        /* Lớp phủ (overlay) nền mờ khi ảnh được phóng to */
+        #image-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            /* Mặc định ẩn đi */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            /* Đảm bảo nó nằm trên cùng */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Thêm class 'active' để hiển thị modal */
+        #image-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Hình ảnh được phóng to bên trong modal */
+        #image-modal-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Nút đóng (X) */
+        #image-modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        #image-modal-close-btn:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -254,7 +364,8 @@
                 <p class="text-gray-600 mb-8">Vui lòng chọn một bài kiểm tra để tiếp tục.</p>
                 <div class="mb-6 text-left max-w-xl mx-auto">
                     <label for="exam-mode-select" class="mr-2 font-medium text-gray-700">Chế độ đề:</label>
-                    <select id="exam-mode-select" class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <select id="exam-mode-select"
+                        class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         <option value="static">Tĩnh (chỉ đọc)</option>
                         <option value="interactive">Tương tác (làm bài)</option>
                     </select>
@@ -326,6 +437,51 @@
             </div>
         </div>
     </div>
+    <div id="image-modal-overlay">
+        <span id="image-modal-close-btn">&times;</span>
+        <img src="" alt="Hình ảnh phóng to">
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modalOverlay = document.getElementById('image-modal-overlay');
+            const modalImage = modalOverlay.querySelector('img');
+            const closeModalBtn = document.getElementById('image-modal-close-btn');
+
+            // Tìm tất cả các container ảnh có thể phóng to
+            document.querySelectorAll('.image-zoomable-container').forEach(container => {
+                container.addEventListener('click', function () {
+                    const imageToZoom = this.querySelector('img');
+                    if (imageToZoom) {
+                        // Lấy nguồn ảnh và hiển thị trong modal
+                        modalImage.src = imageToZoom.src;
+                        modalOverlay.classList.add('active');
+                    }
+                });
+            });
+
+            // Hàm để đóng modal
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+            }
+
+            // Đóng modal khi bấm nút X
+            closeModalBtn.addEventListener('click', closeModal);
+
+            // Đóng modal khi bấm vào nền mờ
+            modalOverlay.addEventListener('click', function (event) {
+                if (event.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            // Đóng modal khi nhấn phím Escape
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

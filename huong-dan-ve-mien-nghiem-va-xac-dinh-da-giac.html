@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Học liệu số: Giải bài toán Quy hoạch tuyến tính (Nâng cấp đồ họa)</title>
+
+    <!-- MathJax v4 (render LaTeX) -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                packages: { '[+]': ['color'] }
+            },
+            output: {
+                font: 'mathjax-pagella'
+            },
+            startup: {
+                ready: () => {
+                    console.log('MathJax is ready!');
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-color: #f4f7f9;
+            --text-color: #333;
+            --line1-color: rgba(217, 83, 79, 0.8);
+            --line2-color: rgba(91, 192, 222, 0.8);
+            --line3-color: rgba(92, 184, 92, 0.8);
+            --line4-color: rgba(240, 173, 78, 0.8);
+            --feasible-region-color: rgba(153, 102, 255, 0.3);
+        }
+
+        /* Thêm box-sizing để quản lý padding và border tốt hơn */
+        html {
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-family: 'Lora',-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            height: 100vh;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow: hidden; /* Ngăn cuộn trang không cần thiết */
+        }
+
+        #main-container {
+            display: flex;
+            width: 50%;
+            height: 100%;
+            flex-direction: row;
+        }
+
+        #controls-container {
+            width: 470px;
+            flex-shrink: 0;
+            padding: 22px;
+            background-color: #fff;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #canvas-container {
+            flex: 1; /* Cho phép container này lấp đầy không gian còn lại */
+            display: flex;
+            flex-direction: row;
+            width: 900px;
+            height: 750px;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #e9ebee;
+            min-width: 0; /* Quan trọng để flex-item co lại đúng cách */
+        }
+
+        canvas {
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: grab;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        canvas:active {
+            cursor: grabbing;
+        }
+
+        .slide {
+            display: none;
+            flex-grow: 1;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--primary-color);
+        }
+
+        h1 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        p,
+        li {
+            line-height: 1.5;
+            font-size: 15px;
+            margin: 8px 0;
+        }
+
+        code {
+            background-color: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-size: 0.95em;
+        }
+
+        #navigation {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 16px;
+        }
+
+        #navigation button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.25s, transform 0.08s;
+        }
+
+        #navigation button:hover {
+            opacity: 0.95;
+        }
+
+        #navigation button:active {
+            transform: scale(0.98);
+        }
+
+        #prev-btn {
+            background-color: var(--secondary-color);
+        }
+
+        #next-btn {
+            background-color: var(--primary-color);
+        }
+
+        #navigation button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .equation {
+            font-size: 1.05em;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+
+        .sub-step {
+            opacity: 0.45;
+            transition: opacity 0.25s ease-in-out;
+            padding-left: 10px;
+            margin: 6px 0;
+            border-left: 3px solid transparent;
+        }
+
+        .sub-step.active {
+            opacity: 1;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .highlight-coeff {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: background-color 0.25s;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .objective-function-input {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.05em;
+            margin-top: 8px;
+        }
+
+        .objective-function-input input {
+            width: 60px;
+            font-size: 1em;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .highlight-result {
+            background-color: #d4edda;
+            font-weight: bold;
+        }
+
+        .small-muted {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 6px;
+        }
+
+        .inequality-controls {
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .inequality-controls h3 {
+            margin-top: 0;
+            font-size: 1.1em;
+        }
+
+        .inequality-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .inequality-toggle label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .color-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main-container">
+        <div id="controls-container">
+
+            <!-- Slide 0: Intro -->
+            <div id="step-0" class="slide active">
+                <h1>Giải bài toán Quy hoạch tuyến tính</h1>
+                <p>Hướng dẫn từng bước để xác định miền nghiệm và tìm GTLN/GTNN của hàm mục tiêu trên miền đó.</p>
+                <h3>Bài toán ban đầu (dưới dạng chưa rút gọn):</h3>
+                <div class="equation">\(\displaystyle
+                    \begin{cases}
+                    2x + 2y \le 10\\[4pt]
+                    2x + 4y \le 12\\[4pt]
+                    0x + 2y \le 4\\[4pt]
+                    x \ge 0\\[4pt]
+                    y \ge 0
+                    \end{cases}
+                    \)</div>
+                <p>Nhấn <b>"Tiếp theo"</b> để xem bước <i>rút gọn</i> hệ rồi vẽ từng đường biên.</p>
+
+                <div class="inequality-controls">
+                    <h3>Điều khiển đồ thị:</h3>
+                    <p>Bạn có thể:</p>
+                    <ul>
+                        <li>Kéo để di chuyển hệ trục tọa độ</li>
+                        <li>Cuộn chuột để phóng to/thu nhỏ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 1: Rút gọn hệ -->
+            <div id="step-1" class="slide">
+                <h2>Bước Rút gọn hệ</h2>
+                <p>Ta chia các bất phương trình cho hệ số chung khi cần để đơn giản hóa:</p>
+                <div class="equation">\(\displaystyle
+                    \begin{cases}
+                    2x + 2y \le 10 &\xrightarrow{\div 2}& x + y \le 5\\[6pt]
+                    2x + 4y \le 12 &\xrightarrow{\div 2}& x + 2y \le 6\\[6pt]
+                    0x + 2y \le 4 &\xrightarrow{\div 2}& y \le 2\\[6pt]
+                    x \ge 0, \; y \ge 0
+                    \end{cases}
+                    \)</div>
+                <p class="small-muted">Hệ tương đương (rút gọn) sẽ là cơ sở để vẽ các đường biên \(d_1, d_2, d_3\).</p>
+            </div>
+
+            <!-- Slide 2: Vẽ d1 (sub-steps) -->
+            <div id="step-2" class="slide">
+                <h2>Bước 1: Vẽ miền nghiệm cho BPT \(x + y \le 5\)</h2>
+                <p>Bờ của miền nghiệm BPT này là đường thẳng \(d_1: x + y = 5\). Ta thực hiện theo các bước:</p>
+                <div id="sub-steps-container-1">
+                    <div class="sub-step" data-step="0">
+                        <p><b>1. Viết dạng \(y = ax + b\):</b></p>
+                        <div class="equation" id="eq1"> \(\; y = -1x + 5 \; \)</div>
+                    </div>
+                    <div class="sub-step" data-step="1">
+                        <p><b>2. Giao điểm với trục tung:</b> \( (0,5) \).</p>
+                    </div>
+                    <div class="sub-step" data-step="2">
+                        <p><b>3. Vẽ điểm thứ hai:</b> Từ \((0,5)\) sang phải \(1\) đơn vị rồi xuống \(1\) đơn vị (vì
+                            \(a=-1\)) → \((1,4)\).</p>
+                    </div>
+                    <div class="sub-step" data-step="3">
+                        <p><b>4. Nối hai điểm để được \(d_1\).</b></p>
+                    </div>
+                    <div class="sub-step" data-step="4">
+                        <p><b>5. Thay \(O(0,0)\) vào BPT:</b> \(0 + 0 = 0 \le 5\) (Đúng) → miền nghiệm chứa \(O\). Gạch
+                            bỏ phần không chứa \(O\).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Vẽ d2 (sub-steps) -->
+            <div id="step-3" class="slide">
+                <h2>Bước 2: Vẽ miền nghiệm cho BPT \(x + 2y \le 6\)</h2>
+                <p>Bờ của miền nghiệm là đường thẳng \(x + 2y = 6\). Ta thực hiện các bước tương tự:</p>
+                <div id="sub-steps-container-2">
+                    <div class="sub-step" data-step="0">
+                        <p><b>1. Viết dạng \(y = ax + b\):</b></p>
+                        <div class="equation" id="eq2"> \(\; y = -\frac{1}{2}x + 3 \; \)</div>
+                    </div>
+                    <div class="sub-step" data-step="1">
+                        <p><b>2. Giao điểm với trục tung:</b> \( (0,3) \).</p>
+                    </div>
+                    <div class="sub-step" data-step="2">
+                        <p><b>3. Vẽ điểm thứ hai:</b> Từ \((0,3)\) sang phải \(1\) đơn vị rồi xuống \(0.5\) đơn vị (vì
+                            \(a=-0.5\)) → \((1,2.5)\).</p>
+                    </div>
+                    <div class="sub-step" data-step="3">
+                        <p><b>4. Nối hai điểm để được \(d_2\).</b></p>
+                    </div>
+                    <div class="sub-step" data-step="4">
+                        <p><b>5. Thay \(O(0,0)\) vào BPT:</b> \(0 + 2\cdot0 = 0 \le 6\) (Đúng) → miền nghiệm chứa \(O\).
+                            Gạch phần không chứa \(O\).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Vẽ d3 và trục -->
+            <div id="step-4" class="slide">
+                <h2>Bước 3: Vẽ \(d_3: y = 2\) và hai ràng buộc \(x\ge0, y\ge0\)</h2>
+                <p>Ta xét bất phương trình \(y \le 2\) và các điều kiện \(x \ge 0, y \ge 0\).</p>
+                <div id="sub-steps-container-3">
+                    <div class="sub-step" data-step="0">
+                        <p><b>1. Vẽ đường thẳng \(y = 2\):</b> Đây là đường thẳng ngang đi qua điểm \((0,2)\).</p>
+                    </div>
+                    <div class="sub-step" data-step="1">
+                        <p><b>2. Miền nghiệm của \(y\le 2\) là tập tất cả các điểm có tung độ \(y\le 2\). Do đó, ta bỏ
+                                phần phía trên \(y=2\) và lấy phần phía dưới \(y=2\).</p>
+                    </div>
+                    <div class="sub-step" data-step="2">
+                        <p><b>3. Vẽ trục \(x = 0\) (trục tung):</b> Đây là trục thẳng đứng đi qua gốc tọa độ.</p>
+                    </div>
+                    <div class="sub-step" data-step="3">
+                        <p><b>4. Miền nghiệm của \(x\ge 0\) là tập tất cả các điểm có hoành độ \(x\le 0\). Do đó, ta bỏ
+                                phần bên trái \(x=0\) và lấy phần bên phải \(x=0\).</p>
+                    </div>
+                    <div class="sub-step" data-step="4">
+                        <p><b>5. Vẽ trục \(y = 0\) (trục hoành):</b> Đây là trục nằm ngang đi qua gốc tọa độ.</p>
+                    </div>
+                    <div class="sub-step" data-step="5">
+                        <p><b>6. Miền nghiệm của \(y\ge 0\) là tập tất cả các điểm có tung độ \(y\ge 0\). Do đó, ta bỏ
+                                phần phía dưới \(y=0\) và lấy phần phía trên \(y=0\).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Đỉnh miền nghiệm -->
+            <div id="step-5" class="slide">
+                <h2>Bước 4: Xác định các đỉnh của miền nghiệm</h2>
+                <p>Miền nghiệm là đa giác lồi có các đỉnh sau (tính giao điểm các đường biên và trục):</p>
+                <ul>
+                    <li><b>O:</b> \( (0,0) \)</li>
+                    <li><b>A:</b> \( (5,0) \) — giao \(x+y=5\) với \(y=0\).</li>
+                    <li><b>B:</b> \( (4,1) \) — giao \(x+y=5\) và \(x+2y=6\).</li>
+                    <li><b>C:</b> \( (2,2) \) — giao \(x+2y=6\) và \(y=2\).</li>
+                    <li><b>D:</b> \( (0,2) \) — giao \(y=2\) và \(x=0\).</li>
+                </ul>
+                <p class="small-muted">Miền nghiệm của bất phương trình được tô màu trên canvas.</p>
+            </div>
+
+            <!-- Slide 6: Tối ưu hóa -->
+            <div id="step-6" class="slide">
+                <h2>Bước 5: Tối ưu hóa hàm mục tiêu</h2>
+                <p>Như yêu cầu, hàm mục tiêu là:</p>
+                <div class="equation"> \(\; f(x,y) = 3x + 5y \; \)</div>
+
+                <p><b>Nhập hệ số (mặc định đã là 3 và 5):</b></p>
+                <div class="objective-function-input">
+                    <span>f(x, y) = </span>
+                    <input type="number" id="coeff-a" value="3" step="0.1">
+                    <span>x +</span>
+                    <input type="number" id="coeff-b" value="5" step="0.1">
+                    <span>y</span>
+                </div>
+
+                <table id="results-table">
+                    <thead>
+                        <tr>
+                            <th>Đỉnh</th>
+                            <th>Tọa độ (x, y)</th>
+                            <th>Giá trị \(f(x,y)\)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <div class="inequality-controls">
+                    <h3>Điều khiển hiển thị:</h3>
+                    <div class="inequality-toggle">
+                        <label>
+                            <input type="checkbox" id="toggle-d1" checked>
+                            <span class="color-indicator" style="background-color: var(--line1-color);"></span>
+                            Hiển thị \(d_1: x + y \le 5\)
+                        </label>
+                    </div>
+                    <div class="inequality-toggle">
+                        <label>
+                            <input type="checkbox" id="toggle-d2" checked>
+                            <span class="color-indicator" style="background-color: var(--line2-color);"></span>
+                            Hiển thị \(d_2: x + 2y \le 6\)
+                        </label>
+                    </div>
+                    <div class="inequality-toggle">
+                        <label>
+                            <input type="checkbox" id="toggle-d3" checked>
+                            <span class="color-indicator" style="background-color: var(--line3-color);"></span>
+                            Hiển thị \(d_3: y \le 2\)
+                        </label>
+                    </div>
+                    <div class="inequality-toggle">
+                        <label>
+                            <input type="checkbox" id="toggle-feasible" checked>
+                            <span class="color-indicator"
+                                style="background-color: var(--feasible-region-color);"></span>
+                            Hiển thị miền khả thi
+                        </label>
+                    </div>
+                    <div class="inequality-toggle">
+                        <label>
+                            <input type="checkbox" id="toggle-vertices" checked>
+                            <span class="color-indicator" style="background-color: red;"></span>
+                            Hiển thị các đỉnh
+                        </label>
+                    </div>
+                    <div class="inequality-toggle">
+                        <label>
+                            <input type="checkbox" id="toggle-all" checked>
+                            Hiển thị tất cả
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="navigation">
+                <button id="prev-btn" disabled>Quay lại</button>
+                <button id="next-btn">Tiếp theo</button>
+            </div>
+        </div>
+
+        <div id="canvas-container">
+            <canvas id="graph-canvas"></canvas>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- DOM references ---
+            const canvas = document.getElementById('graph-canvas');
+            const ctx = canvas.getContext('2d');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const coeffA = document.getElementById('coeff-a');
+            const coeffB = document.getElementById('coeff-b');
+
+            // Toggle controls (chỉ có ở slide cuối)
+            const toggleD1 = document.getElementById('toggle-d1');
+            const toggleD2 = document.getElementById('toggle-d2');
+            const toggleD3 = document.getElementById('toggle-d3');
+            const toggleFeasible = document.getElementById('toggle-feasible');
+            const toggleVertices = document.getElementById('toggle-vertices');
+            const toggleAll = document.getElementById('toggle-all');
+
+            // sub-step containers
+            const subStepsContainer1 = document.getElementById('sub-steps-container-1');
+            const subStepsContainer2 = document.getElementById('sub-steps-container-2');
+            const subStepsContainer3 = document.getElementById('sub-steps-container-3');
+
+            let slides = document.querySelectorAll('.slide');
+            let currentStep = 0;
+            let currentSubStep = -1;
+            let activeSubSteps = []; // NodeList for current step's sub-steps
+            const EPSILON = 1e-9;
+
+            // scaling & origin
+            let scale = 30;
+            let origin = { x: 0, y: 0 };
+            let panStart = { x: 0, y: 0 };
+            let isPanning = false;
+
+            // --- Hệ rút gọn (đang sử dụng cho vẽ) ---
+            const inequalities = [
+                { a: 1, b: 1, c: 5, sign: '<=', color: getComputedStyle(document.body).getPropertyValue('--line1-color').trim(), label: 'd₁: x+y≤5', visible: true },
+                { a: 1, b: 2, c: 6, sign: '<=', color: getComputedStyle(document.body).getPropertyValue('--line2-color').trim(), label: 'd₂: x+2y≤6', visible: true },
+                { a: 0, b: 1, c: 2, sign: '<=', color: getComputedStyle(document.body).getPropertyValue('--line3-color').trim(), label: 'd₃: y≤2', visible: true },
+                { a: 1, b: 0, c: 0, sign: '>=', color: getComputedStyle(document.body).getPropertyValue('--line4-color').trim(), label: 'x≥0', visible: true },
+                { a: 0, b: 1, c: 0, sign: '>=', color: '#999', label: 'y≥0', visible: true }
+            ];
+
+            // Đỉnh miền nghiệm đã tính: O, A, B, C, D
+            const vertices = {
+                O: { x: 0, y: 0 },
+                A: { x: 5, y: 0 },
+                B: { x: 4, y: 1 },
+                C: { x: 2, y: 2 },
+                D: { x: 0, y: 2 }
+            };
+            const feasibleVertices = [
+                { name: 'O', x: 0, y: 0 },
+                { name: 'A', x: 5, y: 0 },
+                { name: 'B', x: 4, y: 1 },
+                { name: 'C', x: 2, y: 2 },
+                { name: 'D', x: 0, y: 2 }
+            ];
+
+            // --- Canvas coordinate helpers ---
+            function resizeCanvas() {
+                const container = document.getElementById('canvas-container');
+                
+                // *** SỬA LỖI ***:
+                // Quay lại logic cũ để đảm bảo canvas là hình vuông và nằm gọn trong container.
+                // Lấy kích thước nhỏ hơn của container (rộng hoặc cao) để làm cạnh của canvas.
+                const size = Math.min(container.clientWidth, container.clientHeight) - 40; // trừ 20px padding mỗi bên
+
+                // Đảm bảo canvas có kích thước tối thiểu để không quá nhỏ
+                canvas.width = Math.max(400, size);
+                canvas.height = Math.max(400, size);
+
+                // Cập nhật lại gốc tọa độ để nó luôn ở giữa canvas mới
+                origin = { x: canvas.width / 2, y: canvas.height / 2 };
+                
+                drawForStep(currentStep);
+                typesetMath();
+            }
+
+            function toCanvasX(x) { return origin.x + x * scale; }
+            function toCanvasY(y) { return origin.y - y * scale; }
+            function fromCanvasX(canvasX) { return (canvasX - origin.x) / scale; }
+            function fromCanvasY(canvasY) { return (origin.y - canvasY) / scale; }
+
+            // Helper functions for world coordinates
+            function startX_world() { return -origin.x / scale; }
+            function endX_world() { return (canvas.width - origin.x) / scale; }
+            function startY_world() { return (origin.y - canvas.height) / scale; }
+            function endY_world() { return origin.y / scale; }
+
+            // --- Draw utilities ---
+            function drawAxesAndGrid() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // light grid
+                ctx.beginPath(); ctx.strokeStyle = '#f0f0f0'; ctx.lineWidth = 1;
+                const startX = Math.ceil(startX_world());
+                const endX = Math.floor(endX_world());
+                const startY = Math.ceil(startY_world());
+                const endY = Math.floor(endY_world());
+
+                for (let i = startX; i <= endX; i++) {
+                    ctx.moveTo(toCanvasX(i), 0); ctx.lineTo(toCanvasX(i), canvas.height);
+                }
+                for (let i = startY; i <= endY; i++) {
+                    ctx.moveTo(0, toCanvasY(i)); ctx.lineTo(canvas.width, toCanvasY(i));
+                }
+                ctx.stroke();
+
+                // axes
+                ctx.beginPath(); ctx.strokeStyle = '#333'; ctx.lineWidth = 2;
+                ctx.moveTo(0, origin.y); ctx.lineTo(canvas.width, origin.y);
+                ctx.moveTo(origin.x, 0); ctx.lineTo(origin.x, canvas.height);
+                ctx.stroke();
+
+                // labels
+                ctx.fillStyle = '#333'; ctx.font = '12px Arial';
+                for (let i = startX; i <= endX; i++) {
+                    if (i !== 0) {
+                        ctx.fillText(i, toCanvasX(i) - 6, origin.y + 14);
+                    }
+                }
+                for (let i = startY; i <= endY; i++) {
+                    if (i !== 0) {
+                        ctx.fillText(i, origin.x - 24, toCanvasY(i) + 4);
+                    }
+                }
+            }
+
+            function drawPoint(x, y, label, color = 'black', size = 6) {
+                ctx.beginPath();
+                ctx.fillStyle = color;
+                ctx.arc(toCanvasX(x), toCanvasY(y), size, 0, 2 * Math.PI);
+                ctx.fill();
+                if (label) {
+                    ctx.font = 'bold 14px Arial';
+                    ctx.fillStyle = color;
+                    ctx.fillText(label, toCanvasX(x) + 8, toCanvasY(y) - 8);
+                }
+            }
+
+            // vẽ mũi tên (hữu ích cho minh họa chuyển dịch)
+            function drawArrow(fromX, fromY, toX, toY, color) {
+                const headlen = 8;
+                const dx = toX - fromX;
+                const dy = toY - fromY;
+                const angle = Math.atan2(dy, dx);
+                ctx.save();
+                ctx.strokeStyle = color; ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(fromX, fromY); ctx.lineTo(toX, toY);
+                ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+                ctx.moveTo(toX, toY);
+                ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            // THUẬT TOÁN VẼ MIỀN NGHIỆM NÂNG CẤP (ĐÃ SỬA LỖI VỊ TRÍ LABEL)
+            function drawInequality(index, options = {}) {
+                const { showLine = true, showHatching = true, showLabel = true } = options;
+                const ineq = inequalities[index];
+                const { a, b, c, sign, color, label } = ineq;
+
+                if (Math.abs(a) < EPSILON && Math.abs(b) < EPSILON) return;
+
+                ctx.save();
+
+                // --- Vẽ đường thẳng bờ ---
+                if (showLine) {
+                    ctx.beginPath();
+                    if (sign === '<' || sign === '>') ctx.setLineDash([6, 6]);
+                    ctx.lineWidth = 2.5;
+                    ctx.strokeStyle = color;
+
+                    let p1, p2;
+                    if (Math.abs(b) > EPSILON) { // Not a vertical line
+                        p1 = { x: startX_world() - 1, y: (c - a * (startX_world() - 1)) / b };
+                        p2 = { x: endX_world() + 1, y: (c - a * (endX_world() + 1)) / b };
+                    } else { // Vertical line
+                        p1 = { x: c / a, y: startY_world() - 1 };
+                        p2 = { x: c / a, y: endY_world() + 1 };
+                    }
+                    ctx.moveTo(toCanvasX(p1.x), toCanvasY(p1.y));
+                    ctx.lineTo(toCanvasX(p2.x), toCanvasY(p2.y));
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+
+                    // --- LOGIC VẼ LABEL ĐÃ ĐƯỢC CẬP NHẬT HOÀN CHỈNH ---
+                    if (showLabel) {
+                        const worldBounds = { xMin: startX_world(), xMax: endX_world(), yMin: startY_world(), yMax: endY_world() };
+                        const intersections = [];
+
+                        // Tìm giao điểm với các cạnh của vùng nhìn thấy
+                        if (Math.abs(b) > EPSILON) {
+                            let y_at_xMin = (c - a * worldBounds.xMin) / b;
+                            if (y_at_xMin >= worldBounds.yMin && y_at_xMin <= worldBounds.yMax) intersections.push({ x: worldBounds.xMin, y: y_at_xMin });
+                            let y_at_xMax = (c - a * worldBounds.xMax) / b;
+                            if (y_at_xMax >= worldBounds.yMin && y_at_xMax <= worldBounds.yMax) intersections.push({ x: worldBounds.xMax, y: y_at_xMax });
+                        }
+                        if (Math.abs(a) > EPSILON) {
+                            let x_at_yMin = (c - b * worldBounds.yMin) / a;
+                            if (x_at_yMin >= worldBounds.xMin && x_at_yMin <= worldBounds.xMax) intersections.push({ x: x_at_yMin, y: worldBounds.yMin });
+                            let x_at_yMax = (c - b * worldBounds.yMax) / a;
+                            if (x_at_yMax >= worldBounds.xMin && x_at_yMax <= worldBounds.xMax) intersections.push({ x: x_at_yMax, y: worldBounds.yMax });
+                        }
+
+                        if (intersections.length > 0) {
+                            // Ưu tiên điểm cao nhất, sau đó đến điểm trái nhất
+                            intersections.sort((pA, pB) => {
+                                if (Math.abs(pB.y - pA.y) > 0.1) return pB.y - pA.y;
+                                return pA.x - pB.x;
+                            });
+
+                            const labelPoint = intersections[0];
+                            let labelX = toCanvasX(labelPoint.x);
+                            let labelY = toCanvasY(labelPoint.y);
+
+                            ctx.fillStyle = color;
+                            ctx.font = 'bold 16px Arial';
+                            const padding = 8; // Đặt một khoảng đệm chung
+
+                            // **SỬA LỖI:** Dựa vào cạnh giao cắt để đặt label VÀO TRONG viewport
+                            if (Math.abs(labelPoint.y - worldBounds.yMax) < EPSILON) { // Trên cạnh trên cùng
+                                ctx.textAlign = 'left';
+                                ctx.textBaseline = 'top'; // neo văn bản từ đỉnh
+                                labelX += padding;
+                                labelY += padding; // **Đẩy xuống** để nhìn thấy
+                            } else if (Math.abs(labelPoint.x - worldBounds.xMin) < EPSILON) { // Trên cạnh trái
+                                ctx.textAlign = 'left';
+                                ctx.textBaseline = 'top';
+                                labelX += padding;
+                                labelY += padding; // **Đẩy xuống** một chút từ điểm giao cắt
+                            } else if (Math.abs(labelPoint.x - worldBounds.xMax) < EPSILON) { // Trên cạnh phải
+                                ctx.textAlign = 'right';
+                                ctx.textBaseline = 'top';
+                                labelX -= padding;
+                                labelY += padding;
+                            } else { // Các trường hợp khác (cạnh dưới, v.v.)
+                                ctx.textAlign = 'left';
+                                ctx.textBaseline = 'bottom';
+                                labelX += padding;
+                                labelY -= padding;
+                            }
+
+                            ctx.fillText(label, labelX, labelY);
+                        }
+                    }
+                }
+
+                // --- Phần code gạch bỏ miền nghiệm giữ nguyên ---
+                if (showHatching) {
+                    let testX = 0, testY = 0;
+                    if (Math.abs(a * testX + b * testY - c) < EPSILON) {
+                        testX = 5 * Math.PI / 19;
+                        testY = 4 * Math.E / 7;
+                    }
+                    const testValue = a * testX + b * testY;
+                    let isTestPointSolution;
+                    switch (sign) {
+                        case '<': isTestPointSolution = testValue < c; break;
+                        case '<=': isTestPointSolution = testValue <= c; break;
+                        case '>': isTestPointSolution = testValue > c; break;
+                        case '>=': isTestPointSolution = testValue >= c; break;
+                    }
+                    const isInNonSolutionRegion = (x, y) => {
+                        const val = a * x + b * y;
+                        const testSide = testValue - c;
+                        const pointSide = val - c;
+                        return isTestPointSolution ? (testSide * pointSide < 0) : (testSide * pointSide >= 0);
+                    };
+                    ctx.beginPath();
+                    const worldBounds = { xMin: startX_world(), xMax: endX_world(), yMin: startY_world(), yMax: endY_world() };
+                    if (Math.abs(b) < EPSILON) {
+                        const lineX = c / a;
+                        if (isInNonSolutionRegion(lineX + 1, testY)) {
+                            ctx.rect(toCanvasX(lineX), 0, canvas.width, canvas.height);
+                        } else {
+                            ctx.rect(0, 0, toCanvasX(lineX), canvas.height);
+                        }
+                    } else if (Math.abs(a) < EPSILON) {
+                        const lineY = c / b;
+                        if (isInNonSolutionRegion(testX, lineY + 1)) {
+                            ctx.rect(0, 0, canvas.width, toCanvasY(lineY));
+                        } else {
+                            ctx.rect(0, toCanvasY(lineY), canvas.width, canvas.height);
+                        }
+                    } else {
+                        const corners = [
+                            { x: worldBounds.xMin, y: worldBounds.yMax }, { x: worldBounds.xMax, y: worldBounds.yMax },
+                            { x: worldBounds.xMax, y: worldBounds.yMin }, { x: worldBounds.xMin, y: worldBounds.yMin }
+                        ];
+                        const vertices = corners.filter(p => isInNonSolutionRegion(p.x, p.y));
+                        let y_at_xMin = (c - a * worldBounds.xMin) / b;
+                        if (y_at_xMin >= worldBounds.yMin && y_at_xMin <= worldBounds.yMax) vertices.push({ x: worldBounds.xMin, y: y_at_xMin });
+                        let y_at_xMax = (c - a * worldBounds.xMax) / b;
+                        if (y_at_xMax >= worldBounds.yMin && y_at_xMax <= worldBounds.yMax) vertices.push({ x: worldBounds.xMax, y: y_at_xMax });
+                        let x_at_yMin = (c - b * worldBounds.yMin) / a;
+                        if (x_at_yMin >= worldBounds.xMin && x_at_yMin <= worldBounds.xMax) vertices.push({ x: x_at_yMin, y: worldBounds.yMin });
+                        let x_at_yMax = (c - b * worldBounds.yMax) / a;
+                        if (x_at_yMax >= worldBounds.xMin && x_at_yMax <= worldBounds.xMax) vertices.push({ x: x_at_yMax, y: worldBounds.yMax });
+                        if (vertices.length < 2) { ctx.restore(); return; }
+                        const centerX = vertices.reduce((sum, v) => sum + v.x, 0) / vertices.length;
+                        const centerY = vertices.reduce((sum, v) => sum + v.y, 0) / vertices.length;
+                        vertices.sort((p1, p2) => Math.atan2(p1.y - centerY, p1.x - centerX) - Math.atan2(p2.y - centerY, p2.x - centerX));
+                        ctx.moveTo(toCanvasX(vertices[0].x), toCanvasY(vertices[0].y));
+                        for (let i = 1; i < vertices.length; i++) {
+                            ctx.lineTo(toCanvasX(vertices[i].x), toCanvasY(vertices[i].y));
+                        }
+                        ctx.closePath();
+                    }
+                    ctx.clip();
+                    ctx.strokeStyle = color.replace('0.8', '0.6') || color;
+                    ctx.lineWidth = 1;
+                    const len = Math.sqrt(a * a + b * b);
+                    if (len < EPSILON) { ctx.restore(); return; }
+                    const hatchSpacing = 10;
+                    for (let i = -canvas.width * 1.5; i < canvas.width * 1.5; i += hatchSpacing) {
+                        ctx.beginPath();
+                        const pX = origin.x + i * (b / len);
+                        const pY = origin.y + i * (a / len);
+                        ctx.moveTo(pX - a / len * canvas.width * 2, pY + b / len * canvas.width * 2);
+                        ctx.lineTo(pX + a / len * canvas.width * 2, pY - b / len * canvas.width * 2);
+                        ctx.stroke();
+                    }
+                }
+
+                ctx.restore();
+            }
+            // draw feasible region polygon from vertices
+            function drawFeasibleRegion() {
+                ctx.beginPath();
+                ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--feasible-region-color').trim();
+                // polygon order: O -> A -> B -> C -> D
+                const poly = [vertices.O, vertices.A, vertices.B, vertices.C, vertices.D];
+                ctx.moveTo(toCanvasX(poly[0].x), toCanvasY(poly[0].y));
+                for (let i = 1; i < poly.length; i++) ctx.lineTo(toCanvasX(poly[i].x), toCanvasY(poly[i].y));
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            function drawVertices() {
+                Object.entries(vertices).forEach(([name, coords]) => {
+                    drawPoint(coords.x, coords.y, `${name}(${coords.x},${coords.y})`, 'red', 6);
+                });
+            }
+
+            // --- Sub-step management & slide navigation ---
+            function setActiveSubStepsForStep(step) {
+                if (step === 2) activeSubSteps = subStepsContainer1.querySelectorAll('.sub-step');
+                else if (step === 3) activeSubSteps = subStepsContainer2.querySelectorAll('.sub-step');
+                else if (step === 4) activeSubSteps = subStepsContainer3.querySelectorAll('.sub-step');
+                else activeSubSteps = [];
+            }
+
+            function updateSubStep(subIndex) {
+                activeSubSteps.forEach((el, idx) => {
+                    if (idx === subIndex) el.classList.add('active');
+                    else if (idx > subIndex) el.classList.remove('active');
+                    else el.classList.add('active'); // keep previous ones active (progressive reveal)
+                });
+                // redraw to reflect points/lines shown for that substep
+                drawForStep(currentStep);
+            }
+
+            function updateSlide(newStep) {
+                // update slides NodeList (in case layout changed)
+                slides = document.querySelectorAll('.slide');
+                slides[currentStep].classList.remove('active');
+                slides[newStep].classList.add('active');
+                currentStep = newStep;
+
+                // reset substeps
+                currentSubStep = -1;
+                setActiveSubStepsForStep(currentStep);
+
+                // auto-start first substep if the slide has sub-steps
+                if (activeSubSteps.length > 0) {
+                    // go to first sub-step on entering
+                    handleNext(); // will increment and call updateSubStep
+                    prevBtn.disabled = false;
+                } else {
+                    // normal slide
+                    prevBtn.disabled = (currentStep === 0);
+                    nextBtn.disabled = (currentStep === slides.length - 1);
+                    drawForStep(currentStep);
+                }
+                typesetMath();
+            }
+
+            function handleNext() {
+                if (activeSubSteps.length > 0 && currentSubStep < activeSubSteps.length - 1) {
+                    currentSubStep++;
+                    updateSubStep(currentSubStep);
+                    prevBtn.disabled = false;
+                    return;
+                }
+                // no more substeps or none exist -> move to next main slide
+                if (currentStep < slides.length - 1) updateSlide(currentStep + 1);
+            }
+
+            function handlePrev() {
+                if (activeSubSteps.length > 0 && currentSubStep > -1) {
+                    currentSubStep--;
+                    if (currentSubStep === -1) {
+                        // leave to previous main slide
+                        if (currentStep > 0) updateSlide(currentStep - 1);
+                    } else updateSubStep(currentSubStep);
+                    return;
+                }
+                if (currentStep > 0) updateSlide(currentStep - 1);
+            }
+
+            // --- Main drawing logic per slide ---
+            function drawForStep(step) {
+                drawAxesAndGrid();
+                // draw according to step:
+                switch (step) {
+                    case 0: // Intro - chỉ vẽ trục và lưới
+                        // Không vẽ gì thêm
+                        break;
+
+                    case 1: // Rút gọn hệ - chỉ vẽ trục và lưới
+                        // Không vẽ gì thêm
+                        break;
+
+                    case 2: // vẽ d1 (x + y = 5)
+                        // show partials according to activeSubSteps length / currentSubStep
+                        if (currentSubStep >= 0) {
+                            // show intercept (0,5)
+                            drawPoint(0, 5, '(0,5)', inequalities[0].color, 6);
+                        }
+                        if (currentSubStep >= 2) {
+                            // show second point (1,4) and arrows
+                            drawPoint(1, 4, '(1,4)', inequalities[0].color, 6);
+                            // Vẽ mũi tên ngang từ (0,5) đến (1,5)
+                            drawArrow(toCanvasX(0), toCanvasY(5), toCanvasX(1), toCanvasY(5), '#333');
+                            // Vẽ mũi tên dọc từ (1,5) đến (1,4)
+                            drawArrow(toCanvasX(1), toCanvasY(5), toCanvasX(1), toCanvasY(4), '#333');
+                        }
+                        if (currentSubStep >= 3) {
+                            drawInequality(0, { showLine: true, showHatching: false });
+                        }
+                        if (currentSubStep >= 4) {
+                            drawInequality(0, { showLine: true, showHatching: true });
+                        }
+                        break;
+
+                    case 3: // vẽ d2 (x+2y=6)
+                        // Vẽ d1 trước
+                        drawInequality(0, { showLine: true, showHatching: true });
+
+                        if (currentSubStep >= 0) {
+                            // show equation
+                        }
+                        if (currentSubStep >= 1) {
+                            drawPoint(0, 3, '(0,3)', inequalities[1].color, 6);
+                        }
+                        if (currentSubStep >= 2) {
+                            // Vẽ điểm thứ hai: (1, 2.5)
+                            drawPoint(1, 2.5, '(1,2.5)', inequalities[1].color, 6);
+                            // Vẽ mũi tên ngang từ (0,3) đến (1,3)
+                            drawArrow(toCanvasX(0), toCanvasY(3), toCanvasX(1), toCanvasY(3), '#333');
+                            // Vẽ mũi tên dọc từ (1,3) đến (1,2.5)
+                            drawArrow(toCanvasX(1), toCanvasY(3), toCanvasX(1), toCanvasY(2.5), '#333');
+                        }
+                        if (currentSubStep >= 3) {
+                            drawInequality(1, { showLine: true, showHatching: false });
+                        }
+                        if (currentSubStep >= 4) {
+                            drawInequality(1, { showLine: true, showHatching: true });
+                        }
+                        break;
+
+                    case 4: // d3 and axes
+                        // Vẽ d1 và d2 trước
+                        drawInequality(0, { showLine: true, showHatching: true });
+                        drawInequality(1, { showLine: true, showHatching: true });
+
+                        if (currentSubStep >= 0) {
+                            // show y=2 line
+                            drawInequality(2, { showLine: true, showHatching: false, showLabel: false });
+                        }
+                        if (currentSubStep >= 1) {
+                            // show hatching for y=2
+                            drawInequality(2, { showLine: true, showHatching: true, showLabel: true });
+                        }
+                        if (currentSubStep >= 2) {
+                            // show x=0 line
+                            drawInequality(3, { showLine: true, showHatching: false, showLabel: false });
+                        }
+                        if (currentSubStep >= 3) {
+                            // show hatching for x=0
+                            drawInequality(3, { showLine: true, showHatching: true, showLabel: true });
+                        }
+                        if (currentSubStep >= 4) {
+                            // show y=0 line
+                            drawInequality(4, { showLine: true, showHatching: false, showLabel: false });
+                        }
+                        if (currentSubStep >= 5) {
+                            // show hatching for y=0
+                            drawInequality(4, { showLine: true, showHatching: true, showLabel: true });
+                        }
+                        break;
+
+                    case 5: // show vertices
+                        drawInequality(0); drawInequality(1); drawInequality(2); drawInequality(3); drawInequality(4);
+                        drawFeasibleRegion();
+                        drawVertices();
+                        break;
+
+                    case 6: // compute objective & show points
+                        // Sử dụng trạng thái toggle để vẽ
+                        if (toggleD1.checked) drawInequality(0);
+                        if (toggleD2.checked) drawInequality(1);
+                        if (toggleD3.checked) drawInequality(2);
+                        drawInequality(3); drawInequality(4); // Luôn vẽ các trục
+
+                        if (toggleFeasible.checked) drawFeasibleRegion();
+                        if (toggleVertices.checked) drawVertices();
+
+                        calculateObjective();
+                        break;
+
+                    default:
+                        // step 0 or 1: just draw grid/axes (and for step1 show nothing else)
+                        drawAxesAndGrid();
+                        break;
+                }
+            }
+
+            // calculate objective on vertices list and fill table
+            function formatNumberLocale(num) {
+                // two decimals and comma decimal separator
+                return (num).toFixed(2).replace('.', ',');
+            }
+            function calculateObjective() {
+                const a = parseFloat(coeffA.value) || 0;
+                const b = parseFloat(coeffB.value) || 0;
+                const tableBody = document.querySelector('#results-table tbody');
+                tableBody.innerHTML = '';
+                let minVal = Infinity, maxVal = -Infinity;
+
+                // compute values
+                const results = feasibleVertices.map(v => {
+                    const value = a * v.x + b * v.y;
+                    minVal = Math.min(minVal, value);
+                    maxVal = Math.max(maxVal, value);
+                    return { name: v.name, coords: `(${v.x}, ${v.y})`, value: value };
+                });
+
+                results.forEach(res => {
+                    const row = document.createElement('tr');
+                    let valText = formatNumberLocale(res.value);
+                    let valueCell = `<td>${valText}</td>`;
+                    if (results.length > 1) {
+                        if (Math.abs(res.value - minVal) < 1e-9 && Math.abs(res.value - maxVal) < 1e-9) {
+                            valueCell = `<td class="highlight-result">${formatNumberLocale(res.value)} (GTNN, GTLN)</td>`;
+                        } else if (Math.abs(res.value - minVal) < 1e-9) {
+                            valueCell = `<td class="highlight-result">${formatNumberLocale(res.value)} (GTNN)</td>`;
+                        } else if (Math.abs(res.value - maxVal) < 1e-9) {
+                            valueCell = `<td class="highlight-result">${formatNumberLocale(res.value)} (GTLN)</td>`;
+                        }
+                    }
+                    row.innerHTML = `<td><b>${res.name}</b></td><td>${res.coords}</td>${valueCell}`;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            // --- Events ---
+            prevBtn.addEventListener('click', handlePrev);
+            nextBtn.addEventListener('click', handleNext);
+            coeffA.addEventListener('input', () => {
+                if (currentStep === 6) calculateObjective();
+            });
+            coeffB.addEventListener('input', () => {
+                if (currentStep === 6) calculateObjective();
+            });
+
+            // Toggle events (chỉ có ở slide cuối)
+            toggleD1.addEventListener('change', () => {
+                if (currentStep === 6) drawForStep(currentStep);
+            });
+            toggleD2.addEventListener('change', () => {
+                if (currentStep === 6) drawForStep(currentStep);
+            });
+            toggleD3.addEventListener('change', () => {
+                if (currentStep === 6) drawForStep(currentStep);
+            });
+            toggleFeasible.addEventListener('change', () => {
+                if (currentStep === 6) drawForStep(currentStep);
+            });
+            toggleVertices.addEventListener('change', () => {
+                if (currentStep === 6) drawForStep(currentStep);
+            });
+            toggleAll.addEventListener('change', function () {
+                if (currentStep === 6) {
+                    const isChecked = this.checked;
+                    toggleD1.checked = isChecked;
+                    toggleD2.checked = isChecked;
+                    toggleD3.checked = isChecked;
+                    toggleFeasible.checked = isChecked;
+                    toggleVertices.checked = isChecked;
+                    drawForStep(currentStep);
+                }
+            });
+
+            window.addEventListener('resize', resizeCanvas);
+
+            // Pan and zoom functionality
+            canvas.addEventListener('mousedown', e => {
+                isPanning = true;
+                panStart = { x: e.clientX, y: e.clientY };
+                canvas.style.cursor = 'grabbing';
+            });
+            canvas.addEventListener('mouseup', () => {
+                isPanning = false;
+                canvas.style.cursor = 'grab';
+            });
+            canvas.addEventListener('mouseleave', () => {
+                isPanning = false;
+                canvas.style.cursor = 'grab';
+            });
+            canvas.addEventListener('mousemove', e => {
+                if (!isPanning) return;
+                const dx = e.clientX - panStart.x;
+                const dy = e.clientY - panStart.y;
+                origin.x += dx;
+                origin.y += dy;
+                panStart = { x: e.clientX, y: e.clientY };
+                drawForStep(currentStep);
+            });
+            canvas.addEventListener('wheel', e => {
+                e.preventDefault();
+                const zoomIntensity = 0.1;
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                const worldX = (mouseX - origin.x) / scale;
+                const worldY = (origin.y - mouseY) / scale;
+                const direction = e.deltaY < 0 ? 1 : -1;
+                const newScale = scale * (1 + direction * zoomIntensity);
+                if (newScale > 5 && newScale < 500) { scale = newScale; }
+                origin.x = mouseX - worldX * scale;
+                origin.y = mouseY + worldY * scale;
+                drawForStep(currentStep);
+            });
+
+            // initial setup
+            resizeCanvas();
+
+            // ensure MathJax renders newly inserted math
+            function typesetMath() {
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    MathJax.typesetPromise();
+                }
+            }
+            typesetMath();
+
+            // ensure initial slide's active sub-steps config (none)
+            setActiveSubStepsForStep(currentStep);
+        });
+    </script>
+</body>
+
+</html>
+

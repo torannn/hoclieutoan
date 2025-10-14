@@ -1,0 +1,46 @@
+/* Shared styles for lesson/content pages (non-canvas) */
+
+/* Headings (defer to page tokens if present) */
+h1, h2, h3 {
+  color: var(--primary-color, #2563eb);
+}
+h2 {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Equations block */
+.equation {
+  font-size: 1.05em;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 5px;
+  background: #fafafa;
+}
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+th { background-color: #f2f2f2; }
+
+/* Results highlight */
+.highlight-result { background-color: #d4edda; font-weight: bold; }
+
+/* Objective function inline inputs */
+.objective-function-input { display: flex; align-items: center; gap: 8px; font-size: 1.05em; margin-top: 8px; }
+.objective-function-input input { width: 60px; font-size: 1em; text-align: center; padding: 5px; }
+
+/* Slides */
+.slide { display: none; }
+.slide.active { display: block; }
+
+/* Navigation area */
+#navigation { margin-top: 20px; display: flex; justify-content: space-between; border-top: 1px solid #eee; padding-top: 16px; }
+#navigation button { padding: 10px 20px; border: none; border-radius: 5px; color: white; cursor: pointer; font-size: 15px; transition: background-color 0.25s, transform 0.08s; }
+#navigation button:hover { opacity: 0.95; }
+#navigation button:active { transform: scale(0.98); }
+#navigation button:disabled { background-color: #ccc; cursor: not-allowed; }

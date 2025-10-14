@@ -8,24 +8,7 @@ let answersMap = {}; // Lưu toàn bộ answers.json để chấm điểm
 let currentExamKey = ''; // Khóa lưu bài làm theo từng đề (dựa theo path)
 
 // === HELPER FUNCTIONS ===
-/**
- * Format và tô đậm các chữ cái A, B, C, D trong câu hỏi và đáp án
- * CHỈ xử lý các đáp án có dạng "A. ", "B. ", "C. ", "D. "
- */
-function formatOptionLetters(text) {
-    if (!text) return '';
-
-    // Tô đậm và đổi màu các chữ cái A, B, C, D
-    let formattedText = text
-        // Xử lý dạng "<br>A. " hoặc "A. " (có thẻ <br> hoặc khoảng trắng)
-        .replace(/(<br>|\s|^)([A-D])\.\s/g, '$1<span class="option-letter">$2.</span> ')
-        // Xử lý dạng "<br>a. " hoặc "a. " (có thẻ <br> hoặc khoảng trắng)
-        .replace(/(<br>|\s|^)([a-d])\.\s/g, '$1<span class="option-letter">$2.</span> ')
-        // Xử lý dạng "<br>a) " hoặc "a) " (có thẻ <br> hoặc khoảng trắng)
-        .replace(/(<br>|\s|^)([a-d]\)\s)/g, '$1<span class="option-letter">$2</span> ');
-
-    return formattedText;
-}
+ 
 
 // Prefer in-question expected for MC; fallback to answers text
 function getExpectedMCIndex(question, answerText) {
@@ -105,7 +88,15 @@ async function renderRoute() {
         const modeSel = document.getElementById('exam-mode-select');
         if (modeSel) modeSel.value = mode;
         if (path) {
-            await startExam({ title: '(đang tải)', path, type: 'exam' });
+            let examTitle = '(đang tải)';
+            try {
+                const allGrades = examManifest && examManifest.grades ? Object.values(examManifest.grades) : [];
+                for (const g of allGrades) {
+                    const found = (g.exams || []).find(it => it.path === path);
+                    if (found) { examTitle = found.title || examTitle; break; }
+                }
+            } catch (e) {}
+            await startExam({ title: examTitle, path, type: 'exam' });
         }
         examScreen && examScreen.classList.remove('hidden');
         return;
@@ -124,9 +115,7 @@ async function renderRoute() {
  */
 function formatQuestionText(text) {
     if (!text) return '';
-    // Thêm vào bước chuyển đổi ký tự xuống dòng \n thành thẻ <br>
-    // để đảm bảo câu hỏi được hiển thị nhất quán trên mọi màn hình.
-    let formattedText = formatOptionLetters(text).replace(/\n/g, '<br>');
+    let formattedText = String(text).replace(/\n/g, '<br>');
     return formattedText;
 }
 
@@ -136,7 +125,7 @@ function formatQuestionText(text) {
 function formatAnswerText(text) {
     if (!text) return 'Chưa có đáp án.';
 
-    let formattedText = formatOptionLetters(text)
+    let formattedText = String(text)
         .replace(/Lời giải:/g, '<strong>Lời giải:</strong>')
         .replace(/Đáp án đúng:/g, '<strong>Đáp án đúng:</strong>')
         .replace(/Đáp án:/g, '<strong>Đáp án:</strong>')
@@ -297,7 +286,7 @@ function getStemText(question, parentType, forceFullText = false) {
         if (parsed.options && parsed.options.length > 0) {
             output += '<div class="mt-2 ml-4 space-y-1">';
             parsed.options.forEach((opt, idx) => {
-                output += `<div><span class="font-semibold">${letterFromIndex(idx)}.</span> ${opt.text || ''}</div>`;
+                output += `<div><span class="option-letter">${letterFromIndex(idx)}.</span> ${opt.text || ''}</div>`;
             });
             output += '</div>';
         }
@@ -308,7 +297,7 @@ function getStemText(question, parentType, forceFullText = false) {
         if (parsed.items && parsed.items.length > 0) {
             output += '<div class="mt-2 ml-4 space-y-1">';
             parsed.items.forEach((item, idx) => {
-                output += `<div><span class="font-semibold">${String.fromCharCode(97 + idx)})</span> ${item.text || ''}</div>`;
+                output += `<div><span class="option-letter">${String.fromCharCode(97 + idx)})</span> ${item.text || ''}</div>`;
             });
             output += '</div>';
         }
@@ -344,7 +333,7 @@ function renderInputElement(question, parentType) {
             <div class="answer-input-container mt-3 space-y-2">
                 ${parsed.items.map(it => `
                     <div class=\"flex items-start justify-between gap-4 p-2 bg-gray-50 rounded\">
-                        <div class=\"flex-1\"><span class=\"font-semibold\">${it.key})</span> ${it.text}</div>
+                        <div class=\"flex-1\"><span class=\"option-letter\">${it.key})</span> ${it.text}</div>
                         <div class=\"flex items-center gap-4 flex-shrink-0\">
                             <label class=\"flex items-center gap-1 cursor-pointer\">
                                 <input type=\"radio\" name=\"${qId}_${it.key}\" value=\"true\" class=\"w-4 h-4 text-green-600\" onchange=\"saveTrueFalseAnswer('${qId}', '${it.key}', true)\" />
@@ -431,6 +420,13 @@ function applySavedAnswersToUI() {
         if (typeof val === 'number') {
             let sel = `input[type="radio"][name="${qId}"][value="${String(val)}"]`;
             let el = document.querySelector(sel);
+            if (!el) {
+                const letter = letterFromIndex(val);
+                if (letter && letter !== '?') {
+                    sel = `input[type="radio"][name="${qId}"][value="${letter}"]`;
+                    el = document.querySelector(sel);
+                }
+            }
             if (el) el.checked = true;
         } else if (typeof val === 'string') {
             // Back-compat: old MC saved as letter 'A'-'D'. Try letter -> index.
@@ -540,8 +536,8 @@ function getStudentAnswerDisplay(question) {
                 verdict = `<div class="mt-2 ${isCorrect ? 'text-green-700' : 'text-red-700'} font-semibold">Đánh giá: ${isCorrect ? 'Đúng' : 'Sai'}${isCorrect ? '' : ` (Đáp án đúng: ${expLetter})`}</div>`;
             }
         }
-        return `<div class="mt-3 p-3 bg-blue-50 border-l-4 border-blue-400 rounded">
-                    <div class="text-blue-700 font-semibold">Câu trả lời của bạn: ${userLetter}</div>
+        return `<div class=\"mt-3 p-3 bg-blue-50 border-l-4 border-blue-400 rounded\">\
+                    <div class=\"text-blue-700 font-semibold\">Câu trả lời của bạn: <span class=\"option-letter\">${userLetter}</span></div>
                     ${verdict}
                 </div>`;
     } else if (qType === 'true_false') {
@@ -551,7 +547,7 @@ function getStudentAnswerDisplay(question) {
         let correctCount = 0, total = parsed.items.length;
         const rows = parsed.items.map((it, idx) => {
             const userVal = (answer && (typeof answer[idx] !== 'undefined' ? answer[idx] : answer[it.key]));
-            let part = `${it.key}) `;
+            let part = `<span class=\"option-letter\">${it.key})</span> `;
             if (typeof userVal === 'boolean') {
                 const color = userVal ? 'text-green-600' : 'text-red-600';
                 part += `<span class="${color} font-semibold">${userVal ? 'Đúng' : 'Sai'}</span>`;
@@ -694,7 +690,17 @@ async function startExam(examInfo) {
         const modeSel = document.getElementById('exam-mode-select');
         examMode = modeSel ? modeSel.value : 'static';
 
-        examTitleHeader.textContent = examInfo.title;
+        let finalTitle = examInfo.title;
+        if (!finalTitle || finalTitle === '(đang tải)') {
+            try {
+                const allGrades = examManifest && examManifest.grades ? Object.values(examManifest.grades) : [];
+                for (const g of allGrades) {
+                    const found = (g.exams || []).find(it => it.path === basePath || it.path === examInfo.path);
+                    if (found) { finalTitle = found.title || finalTitle; break; }
+                }
+            } catch (e) {}
+        }
+        examTitleHeader.textContent = finalTitle;
 
         let examHTML = '';
         const sections = partitionIntoSections(currentExamData);
@@ -749,6 +755,10 @@ async function startExam(examInfo) {
         studentAnswers = loadAnswersFromStorage();
         applySavedAnswersToUI();
         window.scrollTo(0, 0);
+        try { if (timerInterval) clearInterval(timerInterval); } catch (e) {}
+        if (currentExamData && currentExamData.duration && typeof window.startTimer === 'function') {
+            window.startTimer(currentExamData.duration);
+        }
 
     } catch (error) {
         console.error(error);
@@ -1126,24 +1136,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // 1. Timer countdown (nếu có chức năng hẹn giờ)
-    function startTimer(duration) {
-        let timer = duration, minutes, seconds;
+    window.startTimer = function (duration) {
+        try { if (timerInterval) clearInterval(timerInterval); } catch (e) {}
+        let remaining = parseInt(duration, 10) || 0;
+        const render = () => {
+            const hours = Math.floor(remaining / 3600);
+            const minutes = Math.floor((remaining % 3600) / 60);
+            const seconds = remaining % 60;
+            const h = String(hours).padStart(1, '0');
+            const m = String(minutes).padStart(2, '0');
+            const s = String(seconds).padStart(2, '0');
+            if (timerDisplay) timerDisplay.textContent = `${h}:${m}:${s}`;
+        };
+        render();
         timerInterval = setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
-
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            timerDisplay.textContent = minutes + ":" + seconds;
-
-            if (--timer < 0) {
+            remaining -= 1;
+            if (remaining <= 0) {
+                remaining = 0;
+                render();
                 clearInterval(timerInterval);
-                // Tự động nộp bài khi hết giờ
-                submitExamBtn.click();
+                submitExamBtn && submitExamBtn.click();
+                return;
             }
+            render();
         }, 1000);
-    }
+    };
 
     // 2. Xử lý input cho học sinh nhập đáp án (nếu có)
     function setupAnswerInputs() {

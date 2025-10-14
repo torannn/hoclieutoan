@@ -6,25 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Công cụ giải Quy hoạch tuyến tính</title>
 
-    <!-- MathJax (render LaTeX) - Cập nhật và sửa lỗi -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']] // Giữ lại cấu hình delimiter cho TeX
-            },
-            output: {
-                font: 'mathjax-pagella' // Thêm khối này để chọn font
-            },
-            startup: {
-                ready: () => {
-                    console.log('MathJax is ready!');
-                    MathJax.startup.defaultReady();
-                }
-            }
-        };
-    </script>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/lesson.css">
+    <script src="assets/js/mathjax-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary-color: #007bff;

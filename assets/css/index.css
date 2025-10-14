@@ -1,0 +1,238 @@
+/* Page-specific styles extracted from index.html */
+
+body {
+  background-color: #f0f4f8;
+}
+
+.option-letter {
+  font-weight: 700 !important;
+  color: #15803d;
+  display: inline-block;
+  margin-right: 2px;
+}
+
+.menu-button {
+  display: inline-block;
+  width: 100%;
+  background-color: #ffffff;
+  color: #1e40af;
+  font-weight: 700;
+  padding: 0.75rem 2.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #bfdbfe;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
+}
+.menu-button:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4), 0 4px 6px -4px rgba(37, 99, 235, 0.4);
+}
+
+.question-container {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ai-feedback-area {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  line-height: 1.6;
+}
+
+.question-checkbox-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s ease;
+}
+.question-checkbox-item:hover {
+  background-color: #f3f4f6;
+}
+.question-checkbox-item input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #2563eb;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  margin-right: 0.75rem;
+  outline: none;
+}
+.question-checkbox-item input:focus {
+  box-shadow: 0 0 0 2px #93c5fd;
+}
+.question-checkbox-item label {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* === PHẦN CSS ĐÃ CẬP NHẬT === */
+.question-content {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.question-label {
+  font-weight: 700 !important;
+  color: #1e3a8a;
+  margin-right: 8px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.sub-questions-container {
+  padding-left: 24px;
+  margin-top: 8px;
+}
+
+.sub-question,
+.sub-question-result {
+  margin-top: 16px;
+}
+
+.model-answer-container {
+  margin-top: 12px;
+  padding: 12px;
+  background-color: #f3f4f6;
+  border-left: 4px solid #16a34a;
+  border-radius: 4px;
+}
+
+.answer-label {
+  font-weight: 700;
+  color: #15803d;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.answer-text {
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+.answer-text strong {
+  font-weight: 700 !important;
+  color: #15803d;
+}
+
+.answer-text a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.answer-text a:hover {
+  color: #1d4ed8;
+}
+
+#class-selection-screen {
+  perspective: 1000px;
+}
+
+#class-menu button {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+#class-menu button:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+#class-menu button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#class-menu button:hover::before {
+  opacity: 1;
+}
+
+/* === PHẦN CSS CHO TÍNH NĂNG PHÓNG TO ẢNH === */
+.image-zoomable-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.image-zoomable-container::after {
+  content: '🔍';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 6px;
+  border-radius: 50%;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.image-zoomable-container:hover::after {
+  opacity: 1;
+}
+
+#image-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#image-modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+#image-modal-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+#image-modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#image-modal-close-btn:hover {
+  transform: scale(1.1);
+}

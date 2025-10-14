@@ -5,21 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Công Cụ So Sánh Tập Hợp</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/base.css">
     <style>
-        body {
-            font-family: 'Be Vietnam Pro', sans-serif;
-            background-color: #f0f4f8;
-        }
+        body { background-color: #f0f4f8; }
         .container {
             max-width: 900px;
             margin: auto;
         }
         .infinity-btn {
-            @apply bg-gray-200 text-gray-700 font-bold w-10 h-10 rounded-md flex items-center justify-center transition hover:bg-gray-300 text-lg;
+            background-color: #e5e7eb;
+            color: #374151;
+            font-weight: 700;
+            width: 2.5rem; /* w-10 */
+            height: 2.5rem; /* h-10 */
+            border-radius: 0.375rem; /* rounded-md */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            font-size: 1.125rem; /* text-lg */
         }
+        .infinity-btn:hover { background-color: #d1d5db; }
     </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen py-8">

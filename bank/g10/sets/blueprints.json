@@ -1,0 +1,12 @@
+[
+  {
+    "id": "G10-SET-BP-01",
+    "label": "Chủ đề Tập hợp – 15 phút",
+    "targets": [
+      {"ref": "G10-SET-TASK-012", "weight": 0.25},
+      {"ref": "G10-SET-TASK-013", "weight": 0.25},
+      {"ref": "G10-SET-TASK-014", "weight": 0.25},
+      {"ref": "G10-SET-TASK-015", "weight": 0.25}
+    ]
+  }
+]

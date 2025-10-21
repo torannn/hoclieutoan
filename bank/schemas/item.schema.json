@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hoclieutoan.local/schemas/item.schema.json",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/definitions/mc" },
+    { "$ref": "#/definitions/tf" },
+    { "$ref": "#/definitions/short" }
+  ],
+  "definitions": {
+    "base": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^G10-SET-I-\\d{4}$"},
+        "type": {"type": "string"},
+        "stem": {"type": "string"},
+        "measures": {"type": "array", "items": {"type": "string", "pattern": "^G10-SET-TASK-\\d{3}$"}},
+        "requires": {"type": "array", "items": {"type": "string", "pattern": "^G10-SET-TECHNIQUE-\\d{3}[a-z]?$"}},
+        "rationalized_by": {"type": "array", "items": {"type": "string", "pattern": "^G10-SET-TECHNOLOGY-\\d{3}[a-z]?$"}},
+        "grounded_in": {"type": "array", "items": {"type": "string", "pattern": "^G10-SET-THEORY-\\d{3}$"}},
+        "difficulty": {"type": "string", "enum": ["easy", "medium", "hard"]},
+        "points": {"type": "number"}
+      },
+      "required": ["id", "type", "stem", "measures", "requires"]
+    },
+    "mc": {
+      "allOf": [
+        {"$ref": "#/definitions/base"},
+        {
+          "properties": {
+            "type": {"const": "mc"},
+            "options": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+            "answer_index": {"type": "integer", "minimum": 0}
+          },
+          "required": ["options", "answer_index"]
+        }
+      ]
+    },
+    "tf": {
+      "allOf": [
+        {"$ref": "#/definitions/base"},
+        {
+          "properties": {
+            "type": {"const": "tf"},
+            "statements": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+            "answers": {"type": "array", "minItems": 1, "items": {"type": "boolean"}}
+          },
+          "required": ["statements"]
+        }
+      ]
+    },
+    "short": {
+      "allOf": [
+        {"$ref": "#/definitions/base"},
+        {
+          "properties": {
+            "type": {"const": "short"},
+            "final_answer": {"type": ["string", "number"]}
+          }
+        }
+      ]
+    }
+  }
+}

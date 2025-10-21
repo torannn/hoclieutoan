@@ -1,0 +1,83 @@
+{
+  "version": "1.0.0",
+  "grade": "G10",
+  "domain": "sets",
+  "unit": "Tập hợp",
+  "language": "vi",
+  "updated_at": "2025-10-18",
+  "id_conventions": {
+    "format": "GRADE-DOMAIN-ENTITY-INDEX",
+    "entities": ["TASK", "TECHNIQUE", "TECHNOLOGY", "THEORY", "ITEM", "BLUEPRINT", "SOURCE"]
+  },
+  "tasks": [
+    {"id": "G10-SET-TASK-001", "description": "Liệt kê {x ∈ D | P(x) = 0} với P(x) bậc ≤ 3; D ∈ {ℕ, ℤ, ℚ, ℝ}", "solved_by": ["G10-SET-TECHNIQUE-001a"], "tags": ["enumeration","polynomial","domain"], "prerequisites": []},
+    {"id": "G10-SET-TASK-002", "description": "Liệt kê {x ∈ D | Q(x) < 0} hoặc Q(x) > 0 với Q(x) bậc 1–2", "solved_by": ["G10-SET-TECHNIQUE-002a"], "tags": ["inequality","polynomial","domain"], "prerequisites": []},
+    {"id": "G10-SET-TASK-003", "description": "Liệt kê {x ∈ D | |ax + b| = c}", "solved_by": ["G10-SET-TECHNIQUE-003a"], "tags": ["absolute-value","equation","domain"], "prerequisites": []},
+    {"id": "G10-SET-TASK-004", "description": "Viết tính chất đặc trưng từ tập phần tử liệt kê (dãy có quy luật)", "solved_by": ["G10-SET-TECHNIQUE-004a"], "tags": ["characteristic-property"], "prerequisites": []},
+    {"id": "G10-SET-TASK-005", "description": "Liệt kê tất cả tập con của tập hữu hạn", "solved_by": ["G10-SET-TECHNIQUE-005a"], "tags": ["subset","power-set"], "prerequisites": []},
+    {"id": "G10-SET-TASK-006", "description": "Liệt kê tập con có k phần tử của tập n phần tử", "solved_by": ["G10-SET-TECHNIQUE-006a"], "tags": ["combination"], "prerequisites": []},
+    {"id": "G10-SET-TASK-007", "description": "Tìm tất cả X sao cho A ⊂ X ⊂ B", "solved_by": ["G10-SET-TECHNIQUE-007a"], "tags": ["subset","between"], "prerequisites": []},
+    {"id": "G10-SET-TASK-008", "description": "Chứng minh A = B bằng A ⊂ B và B ⊂ A", "solved_by": ["G10-SET-TECHNIQUE-008a"], "tags": ["set-equality"], "prerequisites": []},
+    {"id": "G10-SET-TASK-009", "description": "Tìm giao của hai tập liệt kê phần tử", "solved_by": ["G10-SET-TECHNIQUE-009a"], "tags": ["intersection"], "prerequisites": []},
+    {"id": "G10-SET-TASK-010", "description": "Tìm hợp của hai tập liệt kê phần tử", "solved_by": ["G10-SET-TECHNIQUE-010a"], "tags": ["union"], "prerequisites": []},
+    {"id": "G10-SET-TASK-011", "description": "Tìm hiệu của hai tập liệt kê phần tử", "solved_by": ["G10-SET-TECHNIQUE-011a"], "tags": ["difference"], "prerequisites": []},
+    {"id": "G10-SET-TASK-012", "description": "Tìm giao của hai khoảng/đoạn trên trục số", "solved_by": ["G10-SET-TECHNIQUE-012a"], "tags": ["interval","intersection"], "prerequisites": []},
+    {"id": "G10-SET-TASK-013", "description": "Tìm hợp của hai khoảng/đoạn trên trục số", "solved_by": ["G10-SET-TECHNIQUE-013a"], "tags": ["interval","union"], "prerequisites": []},
+    {"id": "G10-SET-TASK-014", "description": "Tìm hiệu của hai khoảng/đoạn trên trục số", "solved_by": ["G10-SET-TECHNIQUE-014a"], "tags": ["interval","difference"], "prerequisites": []},
+    {"id": "G10-SET-TASK-015", "description": "Tìm phần bù của một tập trong tập vũ trụ", "solved_by": ["G10-SET-TECHNIQUE-015a"], "tags": ["complement"], "prerequisites": []},
+    {"id": "G10-SET-TASK-016", "description": "Bài toán thực tế với 2 tập bằng biểu đồ Ven (n(A ∪ B))", "solved_by": ["G10-SET-TECHNIQUE-016a"], "tags": ["venn","counting"], "prerequisites": []},
+    {"id": "G10-SET-TASK-017", "description": "Bài toán thực tế với 3 tập và bao hàm–loại trừ", "solved_by": ["G10-SET-TECHNIQUE-017a"], "tags": ["venn","inclusion-exclusion"], "prerequisites": []},
+    {"id": "G10-SET-TASK-018", "description": "Tìm tham số m để các tập (khoảng/đoạn) thỏa điều kiện (giao ≠ ∅, tập con, độ dài hợp)", "solved_by": ["G10-SET-TECHNIQUE-018a"], "tags": ["parameter","interval"], "prerequisites": []}
+  ],
+  "techniques": [
+    {"id": "G10-SET-TECHNIQUE-001a", "description": "Giải P(x)=0 (phân tích nhân tử/công thức nghiệm), lọc nghiệm theo D", "solves": ["G10-SET-TASK-001"], "explained_by": ["G10-SET-TECHNOLOGY-001a"]},
+    {"id": "G10-SET-TECHNIQUE-002a", "description": "Giải bất phương trình đa thức bằng xét dấu/đồ thị, lọc theo D", "solves": ["G10-SET-TASK-002"], "explained_by": ["G10-SET-TECHNOLOGY-002a"]},
+    {"id": "G10-SET-TECHNIQUE-003a", "description": "Giải |ax+b|=c thành 2 trường hợp, lọc nghiệm theo D", "solves": ["G10-SET-TASK-003"], "explained_by": ["G10-SET-TECHNOLOGY-003a"]},
+    {"id": "G10-SET-TECHNIQUE-004a", "description": "Suy ra tính chất đặc trưng từ mẫu liệt kê (cấp số, tính chất chung)", "solves": ["G10-SET-TASK-004"], "explained_by": ["G10-SET-TECHNOLOGY-004a"]},
+    {"id": "G10-SET-TECHNIQUE-005a", "description": "Liệt kê toàn bộ tập con (hệ nhị phân/duyệt tổ hợp)", "solves": ["G10-SET-TASK-005"], "explained_by": ["G10-SET-TECHNOLOGY-005a"]},
+    {"id": "G10-SET-TECHNIQUE-006a", "description": "Dùng C(n,k) để liệt kê các tập con có k phần tử", "solves": ["G10-SET-TASK-006"], "explained_by": ["G10-SET-TECHNOLOGY-006a"]},
+    {"id": "G10-SET-TECHNIQUE-007a", "description": "Từ A suy ra phần tử bắt buộc của X, thêm phần tử tùy chọn từ B\\A", "solves": ["G10-SET-TASK-007"], "explained_by": ["G10-SET-TECHNOLOGY-007a"]},
+    {"id": "G10-SET-TECHNIQUE-008a", "description": "Chứng minh A=B bằng 2 chiều hoặc tính chất đặc trưng", "solves": ["G10-SET-TASK-008"], "explained_by": ["G10-SET-TECHNOLOGY-008a"]},
+    {"id": "G10-SET-TECHNIQUE-009a", "description": "So sánh phần tử, chọn phần tử chung (giao)", "solves": ["G10-SET-TASK-009"], "explained_by": ["G10-SET-TECHNOLOGY-009a"]},
+    {"id": "G10-SET-TECHNIQUE-010a", "description": "Hợp hai tập liệt kê và loại phần tử trùng", "solves": ["G10-SET-TASK-010"], "explained_by": ["G10-SET-TECHNOLOGY-010a"]},
+    {"id": "G10-SET-TECHNIQUE-011a", "description": "Giữ phần tử thuộc A không thuộc B (hiệu)", "solves": ["G10-SET-TASK-011"], "explained_by": ["G10-SET-TECHNOLOGY-011a"]},
+    {"id": "G10-SET-TECHNIQUE-012a", "description": "Biểu diễn khoảng/đoạn, xác định phần chồng lấp (giao)", "solves": ["G10-SET-TASK-012"], "explained_by": ["G10-SET-TECHNOLOGY-012a"], "tool_links": [{"label": "Set Visualization Tool", "url": "cong-cu-bieu-dien-tap-hop.html"}]},
+    {"id": "G10-SET-TECHNIQUE-013a", "description": "Biểu diễn khoảng/đoạn, kết hợp phần thuộc ít nhất một tập (hợp)", "solves": ["G10-SET-TASK-013"], "explained_by": ["G10-SET-TECHNOLOGY-013a"], "tool_links": [{"label": "Set Visualization Tool", "url": "cong-cu-bieu-dien-tap-hop.html"}]},
+    {"id": "G10-SET-TECHNIQUE-014a", "description": "Biểu diễn khoảng/đoạn, lấy phần thuộc A không thuộc B (hiệu)", "solves": ["G10-SET-TASK-014"], "explained_by": ["G10-SET-TECHNOLOGY-014a"], "tool_links": [{"label": "Set Visualization Tool", "url": "cong-cu-bieu-dien-tap-hop.html"}]},
+    {"id": "G10-SET-TECHNIQUE-015a", "description": "Xác định U rồi lấy U\\A (phần bù)", "solves": ["G10-SET-TASK-015"], "explained_by": ["G10-SET-TECHNOLOGY-015a"], "tool_links": [{"label": "Set Visualization Tool", "url": "cong-cu-bieu-dien-tap-hop.html"}]},
+    {"id": "G10-SET-TECHNIQUE-016a", "description": "Vẽ Ven 2 tập, điền số liệu, dùng n(A∪B)=n(A)+n(B)-n(A∩B)", "solves": ["G10-SET-TASK-016"], "explained_by": ["G10-SET-TECHNOLOGY-016a"]},
+    {"id": "G10-SET-TECHNIQUE-017a", "description": "Vẽ Ven 3 tập, điền số liệu, dùng công thức bao hàm–loại trừ", "solves": ["G10-SET-TASK-017"], "explained_by": ["G10-SET-TECHNOLOGY-017a"]},
+    {"id": "G10-SET-TECHNIQUE-018a", "description": "Biểu diễn tập có tham số, thiết lập (hệ) bất phương trình cho tham số", "solves": ["G10-SET-TASK-018"], "explained_by": ["G10-SET-TECHNOLOGY-018a"], "tool_links": [{"label": "Set Visualization Tool", "url": "cong-cu-bieu-dien-tap-hop.html"}]}
+  ],
+  "technologies": [
+    {"id": "G10-SET-TECHNOLOGY-001a", "description": "Lý thuyết nghiệm đa thức bậc thấp; cơ sở giải phương trình", "grounded_in": ["G10-SET-THEORY-002", "G10-SET-THEORY-001"]},
+    {"id": "G10-SET-TECHNOLOGY-002a", "description": "Dấu của đa thức bậc 1–2; xét dấu trên trục số", "grounded_in": ["G10-SET-THEORY-002", "G10-SET-THEORY-001"]},
+    {"id": "G10-SET-TECHNOLOGY-003a", "description": "Định nghĩa và tính chất giá trị tuyệt đối", "grounded_in": ["G10-SET-THEORY-001"]},
+    {"id": "G10-SET-TECHNOLOGY-004a", "description": "Khái niệm tập hợp và tính chất đặc trưng", "grounded_in": ["G10-SET-THEORY-005"]},
+    {"id": "G10-SET-TECHNOLOGY-005a", "description": "Khái niệm tập con; số tập con 2^n", "grounded_in": ["G10-SET-THEORY-005"]},
+    {"id": "G10-SET-TECHNOLOGY-006a", "description": "Tổ hợp chập k: C(n,k)=n!/(k!(n-k)!)", "grounded_in": ["G10-SET-THEORY-004"]},
+    {"id": "G10-SET-TECHNOLOGY-007a", "description": "Tính chất quan hệ tập con", "grounded_in": ["G10-SET-THEORY-005"]},
+    {"id": "G10-SET-TECHNOLOGY-008a", "description": "Định nghĩa A=B ⇔ A⊂B và B⊂A", "grounded_in": ["G10-SET-THEORY-005"]},
+    {"id": "G10-SET-TECHNOLOGY-009a", "description": "Định nghĩa giao: A∩B", "grounded_in": ["G10-SET-THEORY-005"]},
+    {"id": "G10-SET-TECHNOLOGY-010a", "description": "Định nghĩa hợp: A∪B", "grounded_in": ["G10-SET-THEORY-005"]},
+    {"id": "G10-SET-TECHNOLOGY-011a", "description": "Định nghĩa hiệu: A\\B", "grounded_in": ["G10-SET-THEORY-005"]},
+    {"id": "G10-SET-TECHNOLOGY-012a", "description": "Khoảng, nửa khoảng và phép giao của chúng", "grounded_in": ["G10-SET-THEORY-003"]},
+    {"id": "G10-SET-TECHNOLOGY-013a", "description": "Khoảng, nửa khoảng và phép hợp của chúng", "grounded_in": ["G10-SET-THEORY-003"]},
+    {"id": "G10-SET-TECHNOLOGY-014a", "description": "Khoảng, nửa khoảng và phép hiệu của chúng", "grounded_in": ["G10-SET-THEORY-003"]},
+    {"id": "G10-SET-TECHNOLOGY-015a", "description": "Phần bù trong vũ trụ U", "grounded_in": ["G10-SET-THEORY-005"]},
+    {"id": "G10-SET-TECHNOLOGY-016a", "description": "Biểu đồ Ven 2 tập; n(A∪B)", "grounded_in": ["G10-SET-THEORY-005", "G10-SET-THEORY-004"]},
+    {"id": "G10-SET-TECHNOLOGY-017a", "description": "Biểu đồ Ven 3 tập; bao hàm–loại trừ", "grounded_in": ["G10-SET-THEORY-005", "G10-SET-THEORY-004"]},
+    {"id": "G10-SET-TECHNOLOGY-018a", "description": "Kết hợp phép toán tập hợp và bất phương trình tham số", "grounded_in": ["G10-SET-THEORY-003", "G10-SET-THEORY-001"]}
+  ],
+  "theories": [
+    {"id": "G10-SET-THEORY-001", "label": "Real numbers and algebraic operations", "statements": ["Field properties of R, order, square root, absolute value"], "scope": "G10 core", "cross_domain": []},
+    {"id": "G10-SET-THEORY-002", "label": "Linear and quadratic polynomials", "statements": ["Roots of degree-1/2 polynomials, identities, factorization"], "scope": "G10 core", "cross_domain": []},
+    {"id": "G10-SET-THEORY-003", "label": "Intervals on R", "statements": ["Definitions of intervals/half-lines, operations on intervals"], "scope": "G10 sets", "cross_domain": []},
+    {"id": "G10-SET-THEORY-004", "label": "Basic combinatorics and inclusion–exclusion", "statements": ["Binomial coefficients C(n,k), inclusion–exclusion formulas"], "scope": "G10 combinatorics", "cross_domain": []},
+    {"id": "G10-SET-THEORY-005", "label": "Basic set theory", "statements": ["Definitions of set, subset, equality, union, intersection, difference, complement"], "scope": "G10 sets", "cross_domain": []}
+  ],
+  "sources": [
+    {"id": "G10-SET-SOURCE-001", "label": "Chuyên đề Mệnh đề & Tập hợp Toán 10", "markdown_path": "bank/source/chuyen-de-menh-de-va-tap-hop-toan-10.md", "pdf_path": "bank/source/chuyen-de-menh-de-va-tap-hop-toan-10_origin.pdf", "domain": "sets", "unit": "Mệnh đề & Tập hợp", "language": "vi"},
+    {"id": "G10-SET-SOURCE-002", "label": "Phân dạng & Bài tập Mệnh đề & Tập hợp", "markdown_path": "bank/source/phan-dang-va-bai-tap-menh-de-va-tap-hop.md", "pdf_path": "bank/source/phan-dang-va-bai-tap-menh-de-va-tap-hop_origin.pdf", "domain": "sets", "unit": "Mệnh đề & Tập hợp", "language": "vi"}
+  ]
+}

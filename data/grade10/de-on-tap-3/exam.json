@@ -1,0 +1,241 @@
+{
+  "duration": 5400,
+  "questions": [
+    {
+      "q_id": "htk_gk1_312_tn_1",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho $0^{\\circ}<\\alpha<90^{\\circ}$. Khẳng định nào sau đây đúng?",
+      "options": [
+        "$cot(90^{\\circ}-\\alpha)=-tan~\\alpha$",
+        "$cos(90^{\\circ}-\\alpha)=sin~\\alpha$",
+        "$sin(90^{\\circ}-\\alpha)=-cos~\\alpha$",
+        "$tan(90^{\\circ}-\\alpha)=-cot~\\alpha$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "htk_gk1_312_tn_2",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Phần không bị gạch chéo trong hình vẽ bên (kể cả bờ) là hình biểu diễn miền nghiệm của hệ bất phương trình nào dưới đây?",
+      "options": [
+        "$\\begin{cases}2x-3y\\ge-6\\\\ y\\le0\\end{cases}$",
+        "$\\begin{cases}2x-3y\\le-6\\\\ y\\ge0\\end{cases}$",
+        "$\\begin{cases}2x-3y\\ge-6\\\\ x\\ge0\\end{cases}$",
+        "$\\begin{cases}2x-3y\\ge-6\\\\ y\\ge0\\end{cases}$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "htk_gk1_312_tn_3",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hình bình hành ABCD. Đẳng thức nào sau đây SAI ?",
+      "options": [
+        "$\\vec{BD}=\\vec{BC}+\\vec{BA}$",
+        "$\\vec{AC}=\\vec{AB}+\\vec{AD}$",
+        "$\\vec{BD}=\\vec{DC}+\\vec{CB}$",
+        "$\\vec{BD}=\\vec{CD}-\\vec{CB}$"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "htk_gk1_312_tn_4",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho A, B là hai tập hợp được minh họa như hình vẽ. Phần tô đen trong hình vẽ là tập hợp nào sau đây?",
+      "options": [
+        "$B\\backslash A$",
+        "$A\\cup B$",
+        "$A\\backslash B$",
+        "$A\\cap B$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "htk_gk1_312_tn_5",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho ba điểm M, N, P thẳng hàng như hình vẽ. Khi đó, cặp vectơ cùng hướng là:",
+      "options": [
+        "$\\vec{NM}$ và $\\vec{NP}$",
+        "$\\vec{MN}$ và $\\vec{MP}$",
+        "$\\vec{MN}$ và $\\vec{PN}$",
+        "$\\vec{MP}$ và $\\vec{PN}$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "htk_gk1_312_tn_6",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Mệnh đề phủ định của mệnh đề “$\\forall x\\in\\mathbb{R}, x^{2}-2x+1>0$” là:",
+      "options": [
+        "$\\exists x\\in\\mathbb{R}, x^{2}-2x+1\\le0$",
+        "$\\forall x\\in\\mathbb{R}, x^{2}-2x+1\\le0$",
+        "$\\exists x\\in\\mathbb{R}, x^{2}-2x+1>0$",
+        "$\\exists x\\in\\mathbb{R}, x^{2}-2x+1<0$"
+      ],
+      "correct_index": 0
+    },
+     {
+      "q_id": "htk_gk1_312_tn_7",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong các câu dưới đây, câu nào là mệnh đề?",
+      "options": [
+        "Thời tiết hôm nay thật đẹp !",
+        "Không làm việc riêng trong giờ học.",
+        "Bạn đã làm bài tập chưa ?",
+        "7 là số nguyên tố."
+      ],
+      "correct_index": 3
+    },
+     {
+      "q_id": "htk_gk1_312_tn_8",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho $90^{\\circ}<\\alpha<180^{\\circ}$ và $sin~\\alpha=\\frac{\\sqrt{2}}{2}$. Giá trị của $cos~\\alpha$ bằng:",
+      "options": [
+        "$\\frac{\\sqrt{2}}{2}$",
+        "$-\\frac{\\sqrt{2}}{2}$",
+        "$-\\frac{\\sqrt{3}}{2}$",
+        "$-\\frac{1}{2}$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "htk_gk1_312_tn_9",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho tam giác ABC, có độ dài ba cạnh là $BC=a$, $AC=b$, $AB=c$. Gọi R,r lần lượt là bán kính đường tròn ngoại tiếp, nội tiếp và S là diện tích tam giác ABC. Mệnh đề nào sau đây SAI?",
+      "options": [
+        "$S=\\frac{abc}{4R}$",
+        "$S=\\frac{1}{2}ab \\cdot cos~C$",
+        "$\\frac{a}{sin~A}=\\frac{b}{sin~B}=\\frac{c}{sin~C}=2R$",
+        "$a^{2}=b^{2}+c^{2}-2bc~cos~A$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "htk_gk1_312_tn_10",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho tập hợp $M=\\{x\\in\\mathbb{R}|2\\le x<5\\}$. Hãy viết tập M dưới dạng khoảng, đoạn.",
+      "options": [
+        "$M=[2;5)$",
+        "$M=(2;5]$",
+        "$M=(2;5)$",
+        "$M=[2;5]$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "htk_gk1_312_tn_11",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong các cặp số sau đây, cặp nào không là nghiệm của bất phương trình $x-4y+5\\ge0$?",
+      "options": [
+        "(-2;1)",
+        "(-5;0)",
+        "(1;-3)",
+        "(0;0)"
+      ],
+      "correct_index": 0
+    },
+     {
+      "q_id": "htk_gk1_312_tn_12",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong các hệ sau, hệ bất phương trình bậc nhất hai ẩn là:",
+      "options": [
+        "$\\begin{cases}x-y<2\\\\ x+y^{2}>1\\end{cases}$",
+        "$\\begin{cases}x\\le0\\\\ x^{2}+y^{2}<1\\end{cases}$",
+        "$\\begin{cases}x-2y\\le3\\\\ x+y>-1\\end{cases}$",
+        "$\\begin{cases}x-y>0\\\\ 2xy<1\\end{cases}$"
+      ],
+      "correct_index": 2
+    },
+     {
+      "q_id": "htk_gk1_312_ds_1",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Cho hai tập hợp $A=\\{x\\in\\mathbb{N}/-1\\le x\\le2\\}$, $B=\\{-1;0;2\\}$. Khi đó:",
+      "statements": [
+        "Viết lại tập A bằng cách liệt kê các phần tử, ta có $A=\\{0;1;2\\}$",
+        "$A\\subset B$",
+        "$A\\cup B=\\{0;2\\}$",
+        "$A\\backslash B=\\{1\\}$"
+      ],
+      "correct_values": [true, false, false, true]
+    },
+    {
+      "q_id": "htk_gk1_312_ds_2",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Cho tam giác ABC có $C=60^{\\circ}$, $b=10$, $a=20$. Khi đó:",
+      "statements": [
+        "Độ dài cạnh còn lại của tam giác ABC là $c=10$",
+        "Diện tích tam giác ABC bằng $50\\sqrt{3}$",
+        "Độ dài đường cao hạ từ đỉnh A bằng $h_{a}=\\sqrt{123}$",
+        "Gọi bán kính đường tròn nội tiếp, ngoại tiếp tam giác ABC lần lượt là r, R. Khi đó $\\frac{R}{r}>2$"
+      ],
+      "correct_values": [false, true, false, true]
+    },
+    {
+      "q_id": "htk_gk1_312_ds_3",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Cho hình chữ nhật ABCD tâm I và $AB=3; BC=4$. Khi đó:",
+      "statements": [
+        "$\\vec{AB}=\\vec{DC}$",
+        "$|\\vec{AC}|=6$",
+        "$\\vec{DC}-\\vec{DA}=\\vec{BD}$",
+        "$|\\vec{IA}+\\vec{IB}+\\vec{IC}|=\\frac{5}{2}$"
+      ],
+      "correct_values": [true, false, false, true]
+    },
+    {
+      "q_id": "htk_gk1_312_ds_4",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Nhân dịp tết trung thu một doanh nghiệp đã nhập về 500 kg đường để sản xuất 2 loại bánh: Bánh nướng và bánh dẻo. Lượng đường cần cho mỗi bánh nướng và mỗi bánh dẻo lần lượt là 0,05kg và 0,06 kg. Gọi số bánh nướng là x và số bánh dẻo là y $(x,y\\in\\mathbb{N})$. Khi đó:",
+      "statements": [
+        "Số kg đường cần dùng sản xuất x bánh nướng và y bánh dẻo là: $0,05x+0,06y$",
+        "Bất phương trình biểu thị mối liên hệ giữa x, y và số đường doanh nghiệp nhập về làm bánh là: $0,05x+0,06y>500$",
+        "Cặp (100;500) là một nghiệm của bất phương trình biểu thị mối liên hệ giữa x, y và số đường doanh nghiệp nhập về làm bánh.",
+        "Miền nghiệm bất phương trình biểu thị mối liên hệ giữa x, y và số đường doanh nghiệp nhập về làm bánh là nửa mặt phẳng bờ là đường thẳng $d:0,05x+0,06y=500$ không chứa điểm $O(0;0)$, kể cả bờ."
+      ],
+      "correct_values": [true, false, true, false]
+    },
+     {
+      "q_id": "htk_gk1_312_tl_group",
+      "section": "PHẦN III. CÂU TỰ LUẬN",
+      "type": "short",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "htk_gk1_312_tl_1",
+          "question_text": "Cho hai tập hợp $A=[-3;5)$ và $B=[0;+\\infty)$. Tính $|A\\cup B| + |A\\cap B| + |C_{\\mathbb{R}}B|$. (Lưu ý: $|X|$ ở đây kí hiệu độ dài của tập hợp X, nếu tập hợp không bị chặn thì độ dài là $+\\infty$).",
+          "final_answer": "infinity"
+        },
+        {
+          "q_id": "htk_gk1_312_tl_2",
+          "question_text": "Để đo khoảng cách từ vị trí A đến vị trí B ở hai bên bờ hồ, bạn Hùng tiến hành đo khoảng cách AC và các góc $\\hat{BAC}$, $\\hat{BCA}$. Kết quả nhận được là: $AC=21~m$, $\\hat{BAC}=58^{\\circ}$ và $\\hat{BCA}=80^{\\circ}$. Khoảng cách từ vị trí A đến vị trí B là bao nhiêu mét (làm tròn kết quả đến hàng đơn vị của mét)?",
+          "final_answer": "31"
+        },
+        {
+          "q_id": "htk_gk1_312_tl_3",
+          "question_text": "Cho tam giác ABC đều cạnh a. Gọi M, N, P lần lượt là trung điểm của các cạnh AB, AC, BC. Tính $|\\vec{BM}+\\vec{MP}-\\vec{CN}|$.",
+          "final_answer": "a*sqrt(3)/2"
+        },
+        {
+          "q_id": "htk_gk1_312_tl_4",
+          "question_text": "Trong đợt hỗ trợ, tặng quà cho người dân vùng lũ lụt ở miền Bắc, một doanh nghiệp cần thuê xe để chở ít nhất 100 người và 6 tấn hàng. Nơi thuê xe có hai loại xe A và B, trong đó xe loại A có 8 chiếc và xe loại B có 6 chiếc. Một chiếc xe loại A cho thuê với giá 4 triệu đồng, một chiếc xe loại B cho thuê với giá 3 triệu đồng. Biết rằng mỗi chiếc xe loại A có thể chở tối đa 20 người và 0,5 tấn hàng; mỗi chiếc xe loại B có thể chở tối đa 10 người và 2 tấn hàng. Nếu là chủ doanh nghiệp, em hãy đề xuất phương án để chi phí thuê xe là ít nhất (chi phí tính bằng triệu đồng)?",
+          "final_answer": "22"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hoclieutoan.local/schemas/praxeology.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "grade", "domain", "tasks", "techniques", "technologies", "theories"],
+  "properties": {
+    "version": {"type": "string"},
+    "grade": {"type": "string"},
+    "domain": {"type": "string"},
+    "unit": {"type": "string"},
+    "language": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "id_conventions": {"type": "object"},
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "description", "solved_by"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^G10-SET-TASK-\\d{3}$"},
+          "description": {"type": "string"},
+          "prerequisites": {"type": "array", "items": {"type": "string"}},
+          "tags": {"type": "array", "items": {"type": "string"}},
+          "solved_by": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^G10-SET-TECHNIQUE-\\d{3}[a-z]?$"}}
+        }
+      }
+    },
+    "techniques": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "description", "solves", "explained_by"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^G10-SET-TECHNIQUE-\\d{3}[a-z]?$"},
+          "description": {"type": "string"},
+          "solves": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^G10-SET-TASK-\\d{3}$"}},
+          "explained_by": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^G10-SET-TECHNOLOGY-\\d{3}[a-z]?$"}},
+          "tool_links": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["label", "url"],
+              "properties": {"label": {"type": "string"}, "url": {"type": "string"}}
+            }
+          }
+        }
+      }
+    },
+    "technologies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "description", "grounded_in"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^G10-SET-TECHNOLOGY-\\d{3}[a-z]?$"},
+          "description": {"type": "string"},
+          "grounded_in": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^G10-SET-THEORY-\\d{3}$"}}
+        }
+      }
+    },
+    "theories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "statements", "scope", "cross_domain"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^G10-SET-THEORY-\\d{3}$"},
+          "label": {"type": "string"},
+          "statements": {"type": "array", "items": {"type": "string"}},
+          "scope": {"type": "string"},
+          "cross_domain": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

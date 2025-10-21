@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "grade": "G10",
+  "domain": "sets",
+  "unit": "Mệnh đề (Logic)",
+  "language": "vi",
+  "updated_at": "2025-10-18",
+  "id_conventions": {
+    "format": "GRADE-DOMAIN-ENTITY-INDEX",
+    "entities": ["TASK", "TECHNIQUE", "TECHNOLOGY", "THEORY", "ITEM", "BLUEPRINT", "SOURCE"]
+  },
+  "tasks": [
+    {"id": "G10-SET-TASK-019", "description": "Nhận biết câu là mệnh đề hay không", "solved_by": ["G10-SET-TECHNIQUE-019a"], "tags": ["logic","proposition"], "prerequisites": []},
+    {"id": "G10-SET-TASK-020", "description": "Mệnh đề chứa biến: xác định mệnh đề khi gán giá trị và xét đúng/sai", "solved_by": ["G10-SET-TECHNIQUE-020a"], "tags": ["logic","predicate"], "prerequisites": []},
+    {"id": "G10-SET-TASK-021", "description": "Phủ định mệnh đề không định lượng (∧, ∨, =, ≠, >, <, ≥, ≤)", "solved_by": ["G10-SET-TECHNIQUE-021a"], "tags": ["logic","negation","demorgan"], "prerequisites": []},
+    {"id": "G10-SET-TASK-022", "description": "Phủ định mệnh đề có lượng từ ∀/∃", "solved_by": ["G10-SET-TECHNIQUE-022a"], "tags": ["logic","quantifier","negation"], "prerequisites": []},
+    {"id": "G10-SET-TASK-023", "description": "Xét đúng/sai mệnh đề kéo theo P⇒Q; tìm phản ví dụ", "solved_by": ["G10-SET-TECHNIQUE-023a"], "tags": ["logic","implication"], "prerequisites": []},
+    {"id": "G10-SET-TASK-024", "description": "Xét tương đương P⇔Q; điều kiện cần và đủ", "solved_by": ["G10-SET-TECHNIQUE-024a"], "tags": ["logic","equivalence"], "prerequisites": []},
+    {"id": "G10-SET-TASK-025", "description": "Tìm mệnh đề đảo và xét đúng/sai", "solved_by": ["G10-SET-TECHNIQUE-025a"], "tags": ["logic","converse"], "prerequisites": []},
+    {"id": "G10-SET-TASK-026", "description": "Diễn đạt mệnh đề bằng kí hiệu ∀, ∃, ∈, ⊂,... từ ngôn ngữ tự nhiên", "solved_by": ["G10-SET-TECHNIQUE-026a"], "tags": ["logic","symbolization"], "prerequisites": []}
+  ],
+  "techniques": [
+    {"id": "G10-SET-TECHNIQUE-019a", "description": "Tiêu chí mệnh đề; phân loại câu khẳng định/cảm thán/cầu khiến/nghi vấn", "solves": ["G10-SET-TASK-019"], "explained_by": ["G10-SET-TECHNOLOGY-019a"]},
+    {"id": "G10-SET-TECHNIQUE-020a", "description": "Gán giá trị cho biến, xác định miền xác định, đánh giá đúng/sai", "solves": ["G10-SET-TASK-020"], "explained_by": ["G10-SET-TECHNOLOGY-019a", "G10-SET-TECHNOLOGY-020a"]},
+    {"id": "G10-SET-TECHNIQUE-021a", "description": "Luật phủ định: De Morgan; đảo dấu quan hệ (=↔≠, >↔≤, <↔≥)", "solves": ["G10-SET-TASK-021"], "explained_by": ["G10-SET-TECHNOLOGY-021a"]},
+    {"id": "G10-SET-TECHNIQUE-022a", "description": "Phủ định lượng từ: ¬∀x P ≡ ∃x ¬P; ¬∃x P ≡ ∀x ¬P", "solves": ["G10-SET-TASK-022"], "explained_by": ["G10-SET-TECHNOLOGY-020a", "G10-SET-TECHNOLOGY-021a"]},
+    {"id": "G10-SET-TECHNIQUE-023a", "description": "Bảng chân trị và phản ví dụ cho kéo theo", "solves": ["G10-SET-TASK-023"], "explained_by": ["G10-SET-TECHNOLOGY-022a"]},
+    {"id": "G10-SET-TECHNIQUE-024a", "description": "Hai chiều kéo theo, điều kiện cần/đủ, phản ví dụ", "solves": ["G10-SET-TASK-024"], "explained_by": ["G10-SET-TECHNOLOGY-022a"]},
+    {"id": "G10-SET-TECHNIQUE-025a", "description": "Lập mệnh đề đảo và kiểm tra tính đúng/sai", "solves": ["G10-SET-TASK-025"], "explained_by": ["G10-SET-TECHNOLOGY-022a"]},
+    {"id": "G10-SET-TECHNIQUE-026a", "description": "Dịch câu tự nhiên ↔ kí hiệu logic (∀, ∃, ∈, ⊂, ... )", "solves": ["G10-SET-TASK-026"], "explained_by": ["G10-SET-TECHNOLOGY-019a", "G10-SET-TECHNOLOGY-020a"]}
+  ],
+  "technologies": [
+    {"id": "G10-SET-TECHNOLOGY-019a", "description": "Định nghĩa mệnh đề, mệnh đề chứa biến; logic cơ bản", "grounded_in": ["G10-SET-THEORY-006"]},
+    {"id": "G10-SET-TECHNOLOGY-020a", "description": "Lượng từ ∀, ∃; miền xác định; ký hiệu hoá mệnh đề", "grounded_in": ["G10-SET-THEORY-006"]},
+    {"id": "G10-SET-TECHNOLOGY-021a", "description": "Phủ định, luật De Morgan; quy tắc đảo dấu quan hệ", "grounded_in": ["G10-SET-THEORY-006"]},
+    {"id": "G10-SET-TECHNOLOGY-022a", "description": "Kéo theo (⇒), tương đương (⇔), mệnh đề đảo", "grounded_in": ["G10-SET-THEORY-006"]}
+  ],
+  "theories": [
+    {"id": "G10-SET-THEORY-006", "label": "Propositional and predicate logic (G10)", "statements": ["Propositions and predicates", "Connectives: ¬, ∧, ∨, ⇒, ⇔", "Quantifiers ∀, ∃ and negation rules", "Converse/contrapositive/necessary & sufficient conditions"], "scope": "G10 logic", "cross_domain": []}
+  ],
+  "sources": [
+    {"id": "G10-SET-SOURCE-001", "label": "Chuyên đề Mệnh đề & Tập hợp Toán 10", "markdown_path": "bank/source/chuyen-de-menh-de-va-tap-hop-toan-10.md", "pdf_path": "bank/source/chuyen-de-menh-de-va-tap-hop-toan-10_origin.pdf", "domain": "sets", "unit": "Mệnh đề & Tập hợp", "language": "vi"},
+    {"id": "G10-SET-SOURCE-002", "label": "Phân dạng & Bài tập Mệnh đề & Tập hợp", "markdown_path": "bank/source/phan-dang-va-bai-tap-menh-de-va-tap-hop.md", "pdf_path": "bank/source/phan-dang-va-bai-tap-menh-de-va-tap-hop_origin.pdf", "domain": "sets", "unit": "Mệnh đề & Tập hợp", "language": "vi"}
+  ]
+}

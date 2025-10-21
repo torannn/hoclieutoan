@@ -18,6 +18,20 @@
           "path": "data/grade10/de-on-tap-1/"
         },
         {
+          "id": "lop10_ontap_2",
+          "title": "Đề ôn tập số 2",
+          "type": "exam",
+          "description": "Đề ôn tập tổng hợp kiến thức Toán 10, bao gồm Mệnh đề, Tập hợp, Lượng giác và Hình học.",
+          "path": "data/grade10/de-on-tap-2/"
+        },
+        {
+          "id": "lop10_ontap_3",
+          "title": "Đề ôn tập số 3",
+          "type": "exam",
+          "description": "Đề ôn tập tổng hợp kiến thức Toán 10, bao gồm Mệnh đề, Tập hợp, Lượng giác và Hình học.",
+          "path": "data/grade10/de-on-tap-3/"
+        },
+        {
           "id": "lop10_tonghop_chuong1_5_goc",
           "title": "Đề kiểm tra Chương 1 & 5",
           "type": "exam",

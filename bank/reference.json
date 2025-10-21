@@ -1,0 +1,347 @@
+{
+  "version": "1.0.0",
+  "grade": "G10",
+  "domain": "sets",
+  "unit": "Mệnh đề & Tập hợp",
+  "language": "vi",
+  "updated_at": "2025-10-16",
+  "sources": [
+    {
+      "id": "SRC-PHE",
+      "file": "bank/cac-dang-bai-tap-menh-de-va-tap-hop-phung-hoang-em.pdf",
+      "title": "Các dạng bài tập mệnh đề và tập hợp - Phùng Hoàng Em"
+    },
+    {
+      "id": "SRC-CHUYENDE",
+      "file": "bank/chuyen-de-menh-de-va-tap-hop-toan-10.pdf",
+      "title": "Chuyên đề mệnh đề và tập hợp - Toán 10"
+    },
+    {
+      "id": "SRC-DECUONG",
+      "file": "bank/de-cuong-hoc-tap-toan-10-chu-de-menh-de-va-tap-hop.pdf",
+      "title": "Đề cương học tập Toán 10 - Chủ đề mệnh đề và tập hợp"
+    },
+    {
+      "id": "SRC-ON-TAP",
+      "file": "bank/on-kien-thuc-luyen-ky-nang-chuyen-de-menh-de-va-tap-hop.pdf",
+      "title": "Ôn kiến thức luyện kỹ năng - Chủ đề mệnh đề và tập hợp"
+    }
+  ],
+  "items": [],
+  "blueprints": [],
+  "id_conventions": {
+    "format": "GRADE-DOMAIN-ENTITY-INDEX",
+    "entities": ["TASK", "TECHNIQUE", "TECHNOLOGY", "THEORY", "ITEM", "BLUEPRINT", "SOURCE"]
+  },
+  "tasks": [
+    {
+      "id": "T-TH-01",
+      "description": "Liệt kê phần tử của tập hợp có dạng {x ∈ D | P(x) = 0} với P(x) là đa thức một biến bậc thấp (≤ 3) và D là tập số cụ thể (ℕ, ℤ, ℚ, ℝ)."
+    },
+    {
+      "id": "T-TH-02",
+      "description": "Liệt kê phần tử của tập hợp có dạng {x ∈ D | Q(x) < 0} hoặc Q(x) > 0, với Q(x) là đa thức bậc nhất hoặc bậc hai và D là tập số."
+    },
+    {
+      "id": "T-TH-03",
+      "description": "Liệt kê phần tử của tập hợp có dạng {x ∈ D | |ax + b| = c} với a, b, c là hằng số và D là tập số."
+    },
+    {
+      "id": "T-TH-04",
+      "description": "Viết tập hợp bằng cách nêu tính chất đặc trưng từ một tập hợp các phần tử được liệt kê, đặc biệt cho dãy số có quy luật."
+    },
+    {
+      "id": "T-TH-05",
+      "description": "Tìm tất cả các tập con của một tập hợp hữu hạn cho trước."
+    },
+    {
+      "id": "T-TH-06",
+      "description": "Tìm tất cả các tập con có k phần tử của một tập hợp hữu hạn cho trước."
+    },
+    {
+      "id": "T-TH-07",
+      "description": "Tìm tất cả các tập hợp X sao cho A ⊂ X ⊂ B với A và B là các tập hợp cho trước."
+    },
+    {
+      "id": "T-TH-08",
+      "description": "Chứng minh hai tập hợp A và B bằng nhau bằng cách chứng minh A ⊂ B và B ⊂ A."
+    },
+    {
+      "id": "T-TH-09",
+      "description": "Tìm giao của hai tập hợp được cho bằng phương pháp liệt kê phần tử."
+    },
+    {
+      "id": "T-TH-10",
+      "description": "Tìm hợp của hai tập hợp được cho bằng phương pháp liệt kê phần tử."
+    },
+    {
+      "id": "T-TH-11",
+      "description": "Tìm hiệu của hai tập hợp được cho bằng phương pháp liệt kê phần tử."
+    },
+    {
+      "id": "T-TH-12",
+      "description": "Tìm giao của hai tập hợp được biểu diễn bằng khoảng hoặc nửa khoảng trên trục số."
+    },
+    {
+      "id": "T-TH-13",
+      "description": "Tìm hợp của hai tập hợp được biểu diễn bằng khoảng hoặc nửa khoảng trên trục số."
+    },
+    {
+      "id": "T-TH-14",
+      "description": "Tìm hiệu của hai tập hợp được biểu diễn bằng khoảng hoặc nửa khoảng trên trục số."
+    },
+    {
+      "id": "T-TH-15",
+      "description": "Tìm phần bù của một tập hợp trong tập hợp khác trên trục số."
+    },
+    {
+      "id": "T-TH-16",
+      "description": "Giải bài toán thực tế liên quan đến hai tập hợp bằng biểu đồ Ven, sử dụng công thức n(A ∪ B) = n(A) + n(B) - n(A ∩ B)."
+    },
+    {
+      "id": "T-TH-17",
+      "description": "Giải bài toán thực tế liên quan đến ba tập hợp bằng biểu đồ Ven, sử dụng nguyên lý bao hàm-loại trừ."
+    },
+    {
+      "id": "T-TH-18",
+      "description": "Tìm tham số để các tập hợp (dạng khoảng/đoạn) thỏa mãn một quan hệ cho trước (giao khác rỗng, là tập con, hợp có độ dài xác định)."
+    }
+  ],
+  "techniques": [
+    {
+      "id": "τ-TH-01a",
+      "description": "Giải phương trình đa thức P(x) = 0 bằng phân tích thành nhân tử hoặc công nghiệm, sau đó kiểm tra nghiệm thuộc tập D.",
+      "related_tasks": ["T-TH-01"]
+    },
+    {
+      "id": "τ-TH-02a",
+      "description": "Giải bất phương trình đa thức bằng cách xét dấu hoặc sử dụng đồ thị, sau đó kiểm tra nghiệm thuộc tập D.",
+      "related_tasks": ["T-TH-02"]
+    },
+    {
+      "id": "τ-TH-03a",
+      "description": "Giải phương trình |ax + b| = c bằng cách chia thành hai trường hợp ax + b = c hoặc ax + b = -c, sau đó kiểm tra nghiệm thuộc tập D.",
+      "related_tasks": ["T-TH-03"]
+    },
+    {
+      "id": "τ-TH-04a",
+      "description": "Quan sát các phần tử liệt kê, tìm quy luật (cấp số cộng, cấp số nhân) hoặc tính chất chung, rồi biểu diễn bằng mệnh đề chứa biến.",
+      "related_tasks": ["T-TH-04"]
+    },
+    {
+      "id": "τ-TH-05a",
+      "description": "Liệt kê lần lượt tất cả các tập con có thể có, từ tập rỗng đến tập đầy đủ, sử dụng phương pháp hệ nhị phân hoặc duyệt tổ hợp.",
+      "related_tasks": ["T-TH-05"]
+    },
+    {
+      "id": "τ-TH-06a",
+      "description": "Sử dụng tổ hợp chập k của n phần tử để liệt kê tất cả tập con có k phần tử.",
+      "related_tasks": ["T-TH-06"]
+    },
+    {
+      "id": "τ-TH-07a",
+      "description": "Xác định các phần tử bắt buộc thuộc X từ A, sau đó thêm các phần tử tùy chọn từ B \\ A để tạo các tập X thỏa mãn.",
+      "related_tasks": ["T-TH-07"]
+    },
+    {
+      "id": "τ-TH-08a",
+      "description": "Chứng minh từng phần tử của A thuộc B và ngược lại, hoặc sử dụng tính chất đặc trưng của tập hợp.",
+      "related_tasks": ["T-TH-08"]
+    },
+    {
+      "id": "τ-TH-09a",
+      "description": "So sánh từng phần tử của hai tập hợp liệt kê, chọn các phần tử chung để hình thành giao.",
+      "related_tasks": ["T-TH-09"]
+    },
+    {
+      "id": "τ-TH-10a",
+      "description": "Kết hợp tất cả phần tử của hai tập hợp liệt kê, loại bỏ phần tử trùng lặp để hình thành hợp.",
+      "related_tasks": ["T-TH-10"]
+    },
+    {
+      "id": "τ-TH-11a",
+      "description": "So sánh từng phần tử của tập A với tập B, giữ lại các phần tử thuộc A nhưng không thuộc B.",
+      "related_tasks": ["T-TH-11"]
+    },
+    {
+      "id": "τ-TH-12a",
+      "description": "Biểu diễn các khoảng trên trục số, xác định phần chồng lấp giữa hai tập hợp để tìm giao.",
+      "related_tasks": ["T-TH-12"],
+      "tool_links": [
+        {"label": "Set Visualization Tool", "url": "cong-cu-bieu-dien-tap-hop.html"}
+      ]
+    },
+    {
+      "id": "τ-TH-13a",
+      "description": "Biểu diễn các khoảng trên trục số, kết hợp các phần thuộc ít nhất một tập hợp để tìm hợp.",
+      "related_tasks": ["T-TH-13"],
+      "tool_links": [
+        {"label": "Set Visualization Tool", "url": "cong-cu-bieu-dien-tap-hop.html"}
+      ]
+    },
+    {
+      "id": "τ-TH-14a",
+      "description": "Biểu diễn các khoảng trên trục số, xác định phần thuộc tập A nhưng không thuộc tập B để tìm hiệu.",
+      "related_tasks": ["T-TH-14"],
+      "tool_links": [
+        {"label": "Set Visualization Tool", "url": "cong-cu-bieu-dien-tap-hop.html"}
+      ]
+    },
+    {
+      "id": "τ-TH-15a",
+      "description": "Xác định tập vũ trụ U, sau đó tìm phần bù của A trong U bằng cách lấy U \\ A.",
+      "related_tasks": ["T-TH-15"],
+      "tool_links": [
+        {"label": "Set Visualization Tool", "url": "cong-cu-bieu-dien-tap-hop.html"}
+      ]
+    },
+    {
+      "id": "τ-TH-16a",
+      "description": "Vẽ biểu đồ Ven với hai vòng tròn, điền các giá trị đã biết vào các vùng, sử dụng công thức n(A ∪ B) = n(A) + n(B) - n(A ∩ B) để tìm giá trị chưa biết.",
+      "related_tasks": ["T-TH-16"]
+    },
+    {
+      "id": "τ-TH-17a",
+      "description": "Vẽ biểu đồ Ven với ba vòng tròn, điền các giá trị đã biết vào các vùng, sử dụng nguyên lý bao hàm-loại trừ cho ba tập hợp: n(A ∪ B ∪ C) = n(A) + n(B) + n(C) - n(A ∩ B) - n(A ∩ C) - n(B ∩ C) + n(A ∩ B ∩ C).",
+      "related_tasks": ["T-TH-17"]
+    },
+    {
+      "id": "τ-TH-18a",
+      "description": "Biểu diễn các tập hợp chứa tham số trên trục số và thiết lập các bất phương trình hoặc hệ bất phương trình cho tham số dựa trên điều kiện của bài toán.",
+      "related_tasks": ["T-TH-18"],
+      "tool_links": [
+        {"label": "Set Visualization Tool", "url": "cong-cu-bieu-dien-tap-hop.html"}
+      ]
+    }
+  ],
+  "technologies": [
+    {
+      "id": "θ-TH-01a",
+      "description": "Định lý cơ bản của đại số: mọi đa thức bậc n có đúng n nghiệm phức (tính cả bội), và các phương pháp giải phương trình đa thức bậc thấp.",
+      "related_tasks": ["T-TH-01"]
+    },
+    {
+      "id": "θ-TH-02a",
+      "description": "Lý thuyết về dấu của đa thức bậc nhất và bậc hai, và phương pháp xét dấu trên trục số.",
+      "related_tasks": ["T-TH-02"]
+    },
+    {
+      "id": "θ-TH-03a",
+      "description": "Định nghĩa giá trị tuyệt đối: |a| = a nếu a ≥ 0, |a| = -a nếu a < 0, và các tính chất của giá trị tuyệt đối.",
+      "related_tasks": ["T-TH-03"]
+    },
+    {
+      "id": "θ-TH-04a",
+      "description": "Khái niệm tập hợp và tính chất đặc trưng: một tập hợp có thể được mô tả bằng một mệnh đề chứa biến đúng cho tất cả các phần tử của nó.",
+      "related_tasks": ["T-TH-04"]
+    },
+    {
+      "id": "θ-TH-05a",
+      "description": "Định nghĩa tập con: A là tập con của B nếu mọi phần tử của A đều thuộc B, và công thức số tập con của tập n phần tử là 2^n.",
+      "related_tasks": ["T-TH-05", "T-TH-06", "T-TH-07"]
+    },
+    {
+      "id": "θ-TH-06a",
+      "description": "Tổ hợp chập k của n: số cách chọn k phần tử từ n phần tử không kể thứ tự, được tính bằng C(n, k) = n! / (k!(n-k)!).",
+      "related_tasks": ["T-TH-06"]
+    },
+    {
+      "id": "θ-TH-07a",
+      "description": "Tính chất của quan hệ tập con: nếu A ⊂ B thì mọi tập X thỏa A ⊂ X ⊂ B phải chứa A và được chứa trong B.",
+      "related_tasks": ["T-TH-07"]
+    },
+    {
+      "id": "θ-TH-08a",
+      "description": "Định nghĩa hai tập hợp bằng nhau: A = B khi và chỉ khi A ⊂ B và B ⊂ A.",
+      "related_tasks": ["T-TH-08"]
+    },
+    {
+      "id": "θ-TH-09a",
+      "description": "Định nghĩa giao tập hợp: A ∩ B = {x | x ∈ A và x ∈ B}.",
+      "related_tasks": ["T-TH-09", "T-TH-12"]
+    },
+    {
+      "id": "θ-TH-10a",
+      "description": "Định nghĩa hợp tập hợp: A ∪ B = {x | x ∈ A hoặc x ∈ B}.",
+      "related_tasks": ["T-TH-10", "T-TH-13"]
+    },
+    {
+      "id": "θ-TH-11a",
+      "description": "Định nghĩa hiệu tập hợp: A \\ B = {x | x ∈ A và x ∉ B}.",
+      "related_tasks": ["T-TH-11", "T-TH-14"]
+    },
+    {
+      "id": "θ-TH-12a",
+      "description": "Lý thuyết về các tập con của ℝ: khoảng, nửa khoảng, và phép toán giao trên chúng.",
+      "related_tasks": ["T-TH-12"]
+    },
+    {
+      "id": "θ-TH-13a",
+      "description": "Lý thuyết về các tập con của ℝ: khoảng, nửa khoảng, và phép toán hợp trên chúng.",
+      "related_tasks": ["T-TH-13"]
+    },
+    {
+      "id": "θ-TH-14a",
+      "description": "Lý thuyết về các tập con của ℝ: khoảng, nửa khoảng, và phép toán hiệu trên chúng.",
+      "related_tasks": ["T-TH-14"]
+    },
+    {
+      "id": "θ-TH-15a",
+      "description": "Định nghĩa phần bù: nếu A ⊂ U thì phần bù của A trong U là C_U A = U \\ A.",
+      "related_tasks": ["T-TH-15"]
+    },
+    {
+      "id": "θ-TH-16a",
+      "description": "Nguyên lý biểu đồ Ven cho hai tập hợp và công thức số phần tử trong hợp và giao.",
+      "related_tasks": ["T-TH-16"]
+    },
+    {
+      "id": "θ-TH-17a",
+      "description": "Nguyên lý biểu đồ Ven cho ba tập hợp và công thức bao hàm-loại trừ cho ba tập hợp.",
+      "related_tasks": ["T-TH-17"]
+    },
+    {
+      "id": "θ-TH-18a",
+      "description": "Vận dụng kết hợp định nghĩa các phép toán trên tập hợp với việc giải bất phương trình để tìm điều kiện của tham số.",
+      "related_tasks": ["T-TH-18"]
+    }
+  ],
+  "theories": [
+    {
+      "id": "G10-SET-THEORY-001",
+      "label": "Real numbers and algebraic operations",
+      "statements": [
+        "Field properties of R, order, square root properties, absolute value properties"
+      ],
+      "scope": "G10 core",
+      "cross_domain": []
+    },
+    {
+      "id": "G10-SET-THEORY-002",
+      "label": "Linear and quadratic polynomials",
+      "statements": [
+        "Roots of degree-1 and degree-2 polynomials, identities, factorization"
+      ],
+      "scope": "G10 core",
+      "cross_domain": []
+    },
+    {
+      "id": "G10-SET-THEORY-003",
+      "label": "Intervals on R",
+      "statements": [
+        "Definitions of intervals and half-lines, operations on intervals"
+      ],
+      "scope": "G10 sets",
+      "cross_domain": []
+    },
+    {
+      "id": "G10-SET-THEORY-004",
+      "label": "Inclusion–exclusion principle",
+      "statements": [
+        "Counting formulae for two and three sets"
+      ],
+      "scope": "G10 combinatorics",
+      "cross_domain": []
+    }
+  ]
+}

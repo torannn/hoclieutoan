@@ -1,0 +1,241 @@
+{
+  "duration": 5400,
+  "questions": [
+    {
+      "q_id": "lop10_de2_tn_1",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hình bình hành ABCD. Đẳng thức nào sau đây SAI ?",
+      "options": [
+        "$\\vec{BD}=\\vec{BA}+\\vec{BC}$",
+        "$\\vec{AB}=\\vec{DC}$",
+        "$\\vec{AC}=\\vec{BA}-\\vec{BC}$",
+        "$\\vec{AC}=\\vec{AB}+\\vec{BC}$"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "lop10_de2_tn_2",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho tập hợp $M=\\{x\\in\\mathbb{R}|-1<x\\le3\\}$. Hãy viết tập M dưới dạng khoảng, đoạn.",
+      "options": [
+        "$M=[-1;3)$",
+        "$M=(-1;3]$",
+        "$M=[-1;3]$",
+        "$M=(-1;3)$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "lop10_de2_tn_3",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Với mọi góc a với $(0^{\\circ}\\le\\alpha\\le180^{\\circ})$. Khẳng định nào SAI ?",
+      "options": [
+        "$sin(180^{\\circ}-\\alpha)=sin~\\alpha$",
+        "$cos(180^{\\circ}-\\alpha)=cos~\\alpha$",
+        "$cot(180^{\\circ}-\\alpha)=-cot~\\alpha(0^{\\circ}<\\alpha<180^{\\circ})$",
+        "$tan(180^{\\circ}-\\alpha)=-tan~\\alpha(\\alpha\\ne90^{\\circ})$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "lop10_de2_tn_4",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Mệnh đề phủ định của mệnh đề “$\\forall x \\in \\mathbb{R}, x^{2}-x+5<0$” là:",
+      "options": [
+        "$\\exists x\\in\\mathbb{R}, x^{2}-x+5<0$",
+        "$\\exists x\\in\\mathbb{R}, x^{2}-x+5\\ge0$",
+        "$\\forall x\\in\\mathbb{R}, x^{2}-x+5<0$",
+        "$\\forall x\\in\\mathbb{R}, x^{2}-x+5>0$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "lop10_de2_tn_5",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho ba điểm M, N, P thẳng hàng như hình vẽ. Khi đó, cặp vectơ ngược hướng là:",
+      "options": [
+        "$\\vec{NM}$ và $\\vec{PN}$",
+        "$\\vec{MP}$ và $\\vec{PN}$",
+        "$\\vec{MN}$ và $\\vec{MP}$",
+        "$\\vec{MN}$ và $\\vec{NP}$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "lop10_de2_tn_6",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho $sin~\\alpha=\\frac{1}{3}$ với $90^{\\circ}<\\alpha<180^{\\circ}$. Khi đó, $cos~\\alpha$ bằng:",
+      "options": [
+        "$cos~\\alpha=-\\frac{2\\sqrt{2}}{3}$",
+        "$cos~\\alpha=\\frac{2}{3}$",
+        "$cos~\\alpha=-\\frac{2}{3}$",
+        "$cos~\\alpha=\\frac{2\\sqrt{2}}{3}$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "lop10_de2_tn_7",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho tam giác ABC, có độ dài ba cạnh là $BC=a$, $AC=b$, $AB=c$. Gọi R,r lần lượt là bán kính đường tròn ngoại tiếp, nội tiếp và S là diện tích tam giác ABC. Mệnh đề đúng là:",
+      "options": [
+        "$\\frac{a}{cos~A}=2R$",
+        "$S=\\frac{abc}{4r}$",
+        "$S=\\sqrt{p(p+a)(p+b)(p+c)}$",
+        "$a^{2}=b^{2}+c^{2}-2bc~cos~A$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "lop10_de2_tn_8",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Phần không bị gạch chéo, kể cả biên trong hình vẽ là miền nghiệm của hệ bất phương trình nào?",
+      "options": [
+        "$\\begin{cases}x-y\\ge0\\\\ x\\ge0\\end{cases}$",
+        "$\\begin{cases}x-y\\ge0\\\\ y\\ge0\\end{cases}$",
+        "$\\begin{cases}x-y\\le0\\\\ x\\ge0\\end{cases}$",
+        "$\\begin{cases}x-y\\ge0\\\\ x\\le0\\end{cases}$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "lop10_de2_tn_9",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Biểu đồ Ven dưới đây, phần tô đậm thể hiện cho phép toán nào?",
+      "options": [
+        "$A\\backslash T$",
+        "$A\\cup T$",
+        "$C_{A}T$",
+        "$A\\cap T$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "lop10_de2_tn_10",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong các hệ sau, hệ bất phương trình bậc nhất hai ẩn là:",
+      "options": [
+        "$\\begin{cases}3x+2y>2\\\\ x-y<0\\end{cases}$",
+        "$\\begin{cases}7x-y<1\\\\ x+6y^{2}>4y\\end{cases}$",
+        "$\\begin{cases}x^{2}+y\\ge0\\\\ x-y<0\\end{cases}$",
+        "$\\begin{cases}2x^{3}-y-1>0\\\\ x-2>0\\\\ x+5y=4\\end{cases}$"
+      ],
+      "correct_index": 0
+    },
+     {
+      "q_id": "lop10_de2_tn_11",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Điểm $A(-1;3)$ thuộc miền nghiệm của bất phương trình nào?",
+      "options": [
+        "$x+3y<0$",
+        "$x-3y>0$",
+        "$-3x+2y-4>0$",
+        "$2x+y-4>0$"
+      ],
+      "correct_index": 2
+    },
+     {
+      "q_id": "lop10_de2_tn_12",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong các câu dưới đây, câu nào là mệnh đề?",
+      "options": [
+        "Bạn bao nhiêu tuổi?",
+        "Mùa thu Hà Nội đẹp quá!",
+        "Bạn có thích học toán không?",
+        "$2+2=5$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "lop10_de2_ds_1",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Cho hình chữ nhật ABCD tâm I và $AB=6; AD=8$. Khi đó:",
+      "statements": [
+        "$\\vec{AD}=\\vec{BC}$",
+        "$|\\vec{BD}|=10$",
+        "$\\vec{CB}-\\vec{CD}=\\vec{AC}$",
+        "$|\\vec{IA}+\\vec{IB}+\\vec{IC}|=\\frac{7}{2}$"
+      ],
+      "correct_values": [true, true, false, false]
+    },
+     {
+      "q_id": "lop10_de2_ds_2",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Cho tam giác ABC có $b=4$, $c=3$, $A=60^{\\circ}$. Khi đó:",
+      "statements": [
+        "Độ dài cạnh còn lại của tam giác ABC là $a=\\sqrt{13}$",
+        "Diện tích tam giác ABC bằng $10\\sqrt{3}$",
+        "Độ dài đường cao hạ từ đỉnh B bằng $h_{b}=6\\sqrt{3}$",
+        "Gọi bán kính đường tròn nội tiếp, ngoại tiếp tam giác ABC lần lượt là r, R. Khi đó $\\frac{R}{r}<3$"
+      ],
+      "correct_values": [true, false, false, true]
+    },
+     {
+      "q_id": "lop10_de2_ds_3",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Cho hai tập hợp $A=\\{x\\in\\mathbb{N}/-1\\le x\\le3\\}$, $B=\\{-1;0;3\\}$. Khi đó:",
+      "statements": [
+        "Viết lại tập A bằng cách liệt kê các phần tử, ta có $A=\\{0;1;2;3\\}$",
+        "$A\\subset B$",
+        "$A\\cup B=\\{-1;0;1;2;3\\}$",
+        "$A\\backslash B=\\{-1\\}$"
+      ],
+      "correct_values": [true, false, true, false]
+    },
+    {
+      "q_id": "lop10_de2_ds_4",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Một cửa hàng dành tối đa 20 triệu đồng để nhập x tạ gạo và y tạ mì. Biết mỗi tạ gạo mua hết 2 triệu đồng, mỗi tạ mì mua hết 1,6 triệu đồng. Khi đó:",
+      "statements": [
+        "Số tiền (triệu đồng) mua x tạ gạo và y tạ mì là: $2x+1,6y$",
+        "Bất phương trình biểu thị mối liên hệ giữa x, y và số tiền cửa hàng đó dành để mua gạo và mì là: $2x+1,6y > 20$",
+        "Cặp (4;7) là một nghiệm của bất phương trình biểu thị mối liên hệ giữa x, y và số tiền cửa hàng đó dành để mua gạo và mì.",
+        "Miền nghiệm bất phương trình biểu thị mối liên hệ giữa x, y và số tiền cửa hàng đó dành để mua gạo và mì là nửa mặt phẳng bờ là đường thẳng $d:2x+1,6y=20$ chứa điểm $O(0;0)$, kể cả bờ."
+      ],
+      "correct_values": [true, false, true, true]
+    },
+    {
+      "q_id": "lop10_de2_tl_group",
+      "section": "PHẦN III. CÂU TỰ LUẬN",
+      "type": "short",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "lop10_de2_tl_1",
+          "question_text": "Cho tập hợp $A=(-\\infty;3]$ ; $B=(1;5]$. Tính $|A\\cup B| + |A\\cap B| + |C_{\\mathbb{R}}A|$. (Lưu ý: $|X|$ ở đây kí hiệu độ dài của tập hợp X, nếu tập hợp không bị chặn thì độ dài là $+\\infty$).",
+          "final_answer": "infinity"
+        },
+        {
+          "q_id": "lop10_de2_tl_2",
+          "question_text": "Để đo khoảng cách từ vị trí A đến vị trí B ở hai bên bờ ao, bạn Hải tiến hành đo khoảng cách AC và các góc $\\hat{BAC}$, $\\hat{BCA}$. Kết quả nhận được là: $AC=25$ m, $\\hat{BAC}=59,95^{\\circ}$ và $\\hat{BCA}=82,15^{\\circ}$. Khoảng cách từ vị trí A đến vị trí B là bao nhiêu mét (làm tròn kết quả đến hàng đơn vị của mét)?",
+          "final_answer": "40"
+        },
+        {
+          "q_id": "lop10_de2_tl_3",
+          "question_text": "Cho tam giác ABC đều cạnh a. Gọi M, N, P lần lượt là trung điểm của các cạnh AB, AC, BC. Tính $|\\vec{AM}+\\vec{MN}-\\vec{BM}|$.",
+          "final_answer": "a*sqrt(3)/2"
+        },
+        {
+          "q_id": "lop10_de2_tl_4",
+          "question_text": "Trong đợt hỗ trợ khắc phục, tặng quà cho người dân vùng lũ lụt ở miền Bắc, một doanh nghiệp cần thuê xe để chở ít nhất 70 người và 9 tấn hàng. Nơi thuê xe có hai loại xe A và B, trong đó xe loại A có 10 chiếc và xe loại B có 10 chiếc. Một chiếc xe loại A cho thuê với giá 5 triệu đồng, một chiếc xe loại B cho thuê với giá 3 triệu đồng. Biết rằng mỗi chiếc xe loại A có thể chở tối đa 10 người và 0,6 tấn hàng; mỗi chiếc xe loại B có thể chở tối đa 5 người và 1,5 tấn hàng. Nếu là chủ doanh nghiệp, em hãy đề xuất phương án để chi phí thuê xe là ít nhất (chi phí tính bằng triệu đồng)?",
+          "final_answer": "37"
+        }
+      ]
+    }
+  ]
+}

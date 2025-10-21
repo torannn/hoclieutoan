@@ -18,6 +18,198 @@ function getExpectedMCIndex(question, answerText) {
     return null;
 }
 
+async function loadJSONL(url) {
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Không thể tải ${url} (${res.status})`);
+    const text = await res.text();
+    const lines = text.split(/\r?\n/);
+    const items = [];
+    for (const ln of lines) {
+        const t = ln.trim();
+        if (!t) continue;
+        try { items.push(JSON.parse(t)); } catch (e) {}
+    }
+    return items;
+}
+
+function isLogicItem(it) {
+    const ms = Array.isArray(it.measures) ? it.measures : [];
+    return ms.some(m => /^G10-SET-TASK-02/.test(String(m)));
+}
+
+function isSetsItem(it) {
+    const ms = Array.isArray(it.measures) ? it.measures : [];
+    return ms.some(m => /^G10-SET-TASK-01/.test(String(m)));
+}
+
+function hasCorrectness(it) {
+    if (it.type === 'mc') {
+        return Number.isInteger(it.answer_index) && Array.isArray(it.options) && it.answer_index >= 0 && it.answer_index < it.options.length;
+    }
+    if (it.type === 'tf') {
+        return Array.isArray(it.statements) && it.statements.length > 0 && Array.isArray(it.answers) && it.answers.length === it.statements.length && it.answers.every(v => typeof v === 'boolean');
+    }
+    if (it.type === 'short') {
+        if (typeof it.final_answer !== 'string') return false;
+        return /-?\d+(?:[\.,]\d+)?/.test(it.final_answer);
+    }
+    return false;
+}
+
+function toExamQuestion(it, idPrefix) {
+    const q = { q_id: `${idPrefix}-${Math.random().toString(36).slice(2, 10)}` };
+    if (it.type === 'mc') {
+        q.type = 'multiple_choice';
+        q.stem = it.stem || '';
+        q.options = Array.isArray(it.options) ? it.options.slice(0, 4) : [];
+        q.correct_index = it.answer_index;
+        q.section = 'Phần 1. Trắc nghiệm nhiều lựa chọn';
+        if (Number.isInteger(it.answer_index)) {
+            const letter = letterFromIndex(it.answer_index);
+            q.model_answer = `Đáp án đúng: ${letter}`;
+        } else {
+            q.model_answer = 'Chưa có đáp án.';
+        }
+        return q;
+    }
+    if (it.type === 'tf') {
+        q.type = 'true_false';
+        q.stem = it.stem || '';
+        q.statements = Array.isArray(it.statements) ? it.statements.slice() : [];
+        q.correct_values = Array.isArray(it.answers) ? it.answers.slice(0, q.statements.length) : [];
+        q.section = 'Phần 2. Trắc nghiệm đúng sai';
+        if (Array.isArray(q.statements) && Array.isArray(q.correct_values) && q.correct_values.length === q.statements.length) {
+            const parts = q.correct_values.map((v, i) => `${String.fromCharCode(97 + i)}) ${v ? 'Đúng' : 'Sai'}`);
+            q.model_answer = parts.join('\n');
+        } else {
+            q.model_answer = 'Chưa có đáp án.';
+        }
+        return q;
+    }
+    if (it.type === 'short') {
+        q.type = 'short';
+        q.stem = it.stem || '';
+        q.final_answer = it.final_answer;
+        q.section = 'Phần 3. Tự luận trả lời ngắn';
+        if (typeof it.final_answer === 'string' && it.final_answer.trim()) {
+            q.model_answer = `Đáp số: ${it.final_answer}`;
+        } else {
+            q.model_answer = 'Chưa có đáp án.';
+        }
+        return q;
+    }
+    return null;
+}
+
+function shuffleInPlace(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+}
+
+function pickWithCoverage(poolQuestions, n) {
+    const mc = poolQuestions.filter(q => q && q.type === 'multiple_choice');
+    const tf = poolQuestions.filter(q => q && q.type === 'true_false');
+    const sh = poolQuestions.filter(q => q && q.type === 'short');
+    shuffleInPlace(mc); shuffleInPlace(tf); shuffleInPlace(sh);
+    const out = [];
+    if (tf.length) out.push(tf[0]);
+    if (sh.length) out.push(sh[0]);
+    const combined = [...mc, ...tf.slice(1), ...sh.slice(1)];
+    shuffleInPlace(combined);
+    for (const q of combined) { if (out.length >= n) break; if (!out.includes(q)) out.push(q); }
+    if (out.length < n) {
+        const all = [...mc, ...tf, ...sh];
+        shuffleInPlace(all);
+        for (const q of all) { if (out.length >= n) break; if (!out.includes(q)) out.push(q); }
+    }
+    return out.slice(0, n);
+}
+
+async function startRandomExamForGrade(grade) {
+    const examTitleHeader = document.getElementById('exam-title-header');
+    const examQuestionsContainer = document.getElementById('exam-questions-container');
+    const examScreen = document.getElementById('exam-screen');
+    examTitleHeader.textContent = 'Đang tạo: Luyện đề ngẫu nhiên...';
+    const urls = [
+        'bank/g10/sets/import/chuyen-de-menh-de-va-tap-hop-toan-10.items.jsonl',
+        'bank/g10/sets/import/phan-dang-va-bai-tap-menh-de-va-tap-hop.items.jsonl'
+    ];
+    const allItems = [];
+    for (const u of urls) {
+        try { const arr = await loadJSONL(u); allItems.push(...arr); } catch (e) { console.warn('Load failed', u, e); }
+    }
+    const logicPool = allItems.filter(it => (it && hasCorrectness(it) && isLogicItem(it)));
+    const setsPool = allItems.filter(it => (it && hasCorrectness(it) && isSetsItem(it)));
+    const logicQs = pickWithCoverage(logicPool.map(it => toExamQuestion(it, 'L')), 10);
+    const setsQs = pickWithCoverage(setsPool.map(it => toExamQuestion(it, 'S')), 10);
+    const questions = [...logicQs, ...setsQs].filter(Boolean);
+    const sectionOrder = {
+        'Phần 1. Trắc nghiệm nhiều lựa chọn': 1,
+        'Phần 2. Trắc nghiệm đúng sai': 2,
+        'Phần 3. Tự luận trả lời ngắn': 3,
+    };
+    questions.sort((a, b) => (sectionOrder[a.section] || 99) - (sectionOrder[b.section] || 99));
+    const examContent = { title: `Luyện đề ngẫu nhiên Lớp ${grade}`, questions };
+    const answersContent = {};
+    for (const q of questions) {
+        if (q && q.q_id) answersContent[q.q_id] = q.model_answer || '';
+    }
+    currentExamData = examContent;
+    answersMap = answersContent;
+    const modeSel = document.getElementById('exam-mode-select');
+    examMode = modeSel ? modeSel.value : 'static';
+    const finalTitle = examContent.title || 'Luyện đề ngẫu nhiên';
+    examTitleHeader.textContent = finalTitle;
+    let examHTML = '';
+    const sections = partitionIntoSections(currentExamData);
+    let questionCounter = 1;
+    sections.forEach(sec => {
+        examHTML += `<h2 class="text-xl font-bold text-blue-700 mt-6 mb-3">${sec.title}</h2>`;
+        sec.items.forEach((item) => {
+            if (item.is_group && item.sub_questions) {
+                item.sub_questions.forEach(subItem => {
+                    const label = `Câu ${questionCounter}:`;
+                    const stem = getStemText(subItem, item.type);
+                    const formattedQuestion = formatQuestionText(stem);
+                    const inputHTML = renderInputElement(subItem, item.type);
+                    examHTML += `
+                            <div class="question-container">
+                                <div class="question-content">
+                                    <span class="question-label">${label}</span>
+                                    <div class="question-text">${formattedQuestion}</div>
+                                </div>
+                                ${inputHTML}
+                            </div>`;
+                    questionCounter++;
+                });
+            } else {
+                const label = `Câu ${questionCounter}:`;
+                const stem = getStemText(item);
+                const formattedQuestion = formatQuestionText(stem);
+                const inputHTML = renderInputElement(item);
+                examHTML += `
+                        <div class="question-container">
+                            <div class="question-content">
+                                <span class="question-label">${label}</span>
+                                <div class="question-text">${formattedQuestion}</div>
+                            </div>
+                            ${inputHTML}
+                        </div>`;
+                questionCounter++;
+            }
+        });
+    });
+    examQuestionsContainer.innerHTML = examHTML;
+    if (window.MathJax) { MathJax.typesetPromise([examQuestionsContainer]).catch((err) => console.log('MathJax Typeset Error: ' + err.message)); }
+    studentAnswers = loadAnswersFromStorage();
+    applySavedAnswersToUI();
+    window.scrollTo(0, 0);
+    try { if (timerInterval) clearInterval(timerInterval); } catch (e) {}
+    examScreen && examScreen.classList.remove('hidden');
+}
+
 // Prefer in-question expected for TF; return array aligned with statements order
 function getExpectedTFArray(question, answerText) {
     const parsed = getTFParsed(question); // know number of items
@@ -87,7 +279,10 @@ async function renderRoute() {
         const mode = params.mode || 'static';
         const modeSel = document.getElementById('exam-mode-select');
         if (modeSel) modeSel.value = mode;
-        if (path) {
+        const gradeParam = params.grade || '10';
+        if (params.random === '1') {
+            await startRandomExamForGrade(gradeParam);
+        } else if (path) {
             let examTitle = '(đang tải)';
             try {
                 const allGrades = examManifest && examManifest.grades ? Object.values(examManifest.grades) : [];
@@ -622,6 +817,17 @@ function populateExamMenu(grade) {
 
     document.getElementById('exam-selection-title').textContent = `Học liệu Lớp ${grade}`;
 
+    {
+        const randBtn = document.createElement('button');
+        randBtn.className = 'w-full sm:w-3/4 bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-600';
+        randBtn.textContent = 'Luyện đề ngẫu nhiên';
+        randBtn.addEventListener('click', () => {
+            const modeSel = document.getElementById('exam-mode-select');
+            const mode = modeSel ? modeSel.value : 'static';
+            navigateTo(`#/exam?random=1&grade=${encodeURIComponent(grade)}&mode=${encodeURIComponent(mode)}`);
+        });
+        examMenu.appendChild(randBtn);
+    }
     if (allItems.length > 0) {
         allItems.forEach(item => {
             const button = document.createElement('button');

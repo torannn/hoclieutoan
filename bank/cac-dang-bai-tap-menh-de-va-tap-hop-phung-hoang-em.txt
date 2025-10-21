@@ -1,0 +1,1409 @@
+
+--- Page 1 ---
+Muåc luåc
+Chương 1.
+MỆNH ĐỀVÀ TẬP HỢP
+1
+Bài 1.
+MỆNH ĐỀ
+1
+A
+TÓM TẮT LÝ THUYẾT. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .1
+B
+RÈN LUYỆN KĨ NĂNG GIẢI TOÁN . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .3
+Kĩ năng 1. Mệnh đề, phủđịnh của mệnh đề. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .3
+Kĩ năng 2. Mệnh đềkéo theo, mệnh đềđảo, mệnh đềtương đương . . . . . . . . . . . . . . .3
+Kĩ năng 3. Mệnh đềchứa kí hiệu với mọi, tồn tại . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .4
+C
+BÀI TẬP TỰLUYỆN . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .5
+D
+BÀI TẬP TRẮC NGHIỆM . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .6
+Bài 2.
+TẬP HỢP VÀ CÁC PHÉP TOÁN TRÊN TẬP HỢP
+9
+A
+TÓM TẮT LÝ THUYẾT. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .9
+B
+RÈN LUYỆN KĨ NĂNG GIẢI TOÁN . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .10
+Kĩ năng 1. Xác định tập hợp . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .10
+Kĩ năng 2. Tập hợp con, xác định tập hợp con. Hai tập hợp bằng nhau . . . . .11
+Kĩ năng 3. Các phép toán trên tập hợp . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+Kĩ năng 4. các phép toán trên tập hợp số. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .12
+C
+VẬN DỤNG, THỰC TIỄN . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .13
+Kĩ năng 5. Các bài toán biện luận theo tham số. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .13
+Kĩ năng 6. Ứng dụng thực tếcác phép toán tập hợp . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .13
+D
+BÀI TẬP TỰLUYỆN . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .14
+E
+BÀI TẬP TRẮC NGHIỆM. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .15
+
+--- Page 2 ---
+Mục lục
+ii
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 3 ---
+MỆNH ĐỀVÀ TẬP HỢP
+Chûúng
+Chûúng 1
+MỆNH ĐỀVÀ TẬP HỢP
+MỆNH ĐỀVÀ TẬP HỢP
+MỆNH ĐỀ
+1
+Baâi
+A
+A
+TÓM TẮT LÝ THUYẾT
+1.
+Mệnh đề, mệnh đềchứa biến
+☼Mệnh đề: Mệnh đềlà một câu khẳng định đúng hoặc sai. Một mệnh đềkhông thểvừa đúng
+hoặc vừa sai. Những mệnh đềliên quan đến toán học được gọi là mệnh đềtoán học.
+☼Mệnh đềchứa biến: Mệnh đềchứa biến là một câu khẳng định chứa biến nhận giá trịtrong một
+tập X nào đó và với mỗi giá trịcủa biến thuộc X ta được một mệnh đề.
+VÍ DỤ
+1
+Xét P(n) : “n chia hết cho 5” với n là sốtựnhiên. Khẳng định này còn phụthuộc vào biến
+n. Với n = 2 ta được P(2) là mệnh đềsai. Với n = 10 ta được P(10) là mệnh đềđúng.
+VÍ DỤ
+2
+P(x;y) : “2x +y = 5”, với x,y là sốthực. Khẳng định này còn phụthuộc hai biến x,y. Với
+x = 1, y = 2 ta được mệnh đềsai. Với x = 1, y = 3 ta được mệnh đềđúng.
+2.
+Mệnh đềphủđịnh
+☼Cho mệnh đềP. Mệnh đề“không phải P ”gọi là mệnh đềphủđịnh của P.
+☼Chú ý:
+• Mệnh đềphủđịnh của P, kí hiệu là P.
+• Nếu P đúng thì P sai, nếu P sai thì P đúng.
+3.
+Mệnh đềkéo theo và mệnh đềđảo
+Cho hai mệnh đềP và Q.
+☼Mệnh đềkéo theo:
+• Mệnh đề"Nếu P thì Q" gọi là mệnh đềkéo theo, kí hiệu P ⇒Q.
+• Mệnh đềnày chỉsai khi P đúng và Q sai.
+1
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 4 ---
+Chương 1. MỆNH ĐỀVÀ TẬP HỢP
+Lưu ý
+Xét định lý dạng P ⇒Q. Khi đó, ta có thểphát biểu định lý này theo một trong 2 cách sau:
+①P là điều kiện đủđểcó Q.
+②Q là điều kiện cần đểcó P.
+☼Mệnh đềđảo: Cho mệnh đềP ⇒Q. Khi đó, Q ⇒P gọi là mệnh đềđảo của P ⇒Q.
+4.
+Mệnh đềtương đương
+☼Cho hai mệnh đềP và Q. Mệnh đề“P nếu và chỉnếu Q” gọi là hai mệnh đềtương đương.
+☼Chú ý:
+• Mệnh đề“P nếu và chỉnếu Q” được kí hiệu là P ⇔Q.
+• Mệnh đềP ⇔Q đúng khi cảP ⇒Q và Q ⇒P cùng đúng.
+Lưu ý
+Xét định lý dạng P ⇔Q. Khi đó, ta có thểphát biểu định lý này theo một trong 2 cách sau:
+①P là điều cần và đủđểcó Q.
+②P khi và chỉkhi Q.
+5.
+Mệnh đềcó chứa kí hiệu ∀,∃
+☼Mệnh đềchứa kí hiệu với mọi: ∀x ∈X, P(x).
+• Mệnh đềnày đúng khi tất cảcác giá trịcủa x ∈X đều làm cho phát biểu P(x) đúng.
+• Nếu ta tìm được ít nhất một giá trịx ∈X làm cho P(x) sai thì mệnh đềnày sai.
+VÍ DỤ
+3
+Mệnh đề"Bình phương mọi sốthực đều không âm" được viết là ∀x ∈R, x2 ≥0.
+☼Mệnh đềchứa kí hiệu tồn tại: ∃x ∈X, P(x).
+• Mệnh đềnày đúng khi ta tìm được ít nhất một giá trịcủa x ∈X làm cho phát biểu P(x)
+đúng.
+• Nếu tất cảgiá trịcủa x ∈X đều làm cho P(x) sai thì mệnh đềnày sai.
+VÍ DỤ
+4
+Mệnh đề"Có một sốtựnhiên mà bình phương của nó bằng 3" được viết là ∃x ∈N, x2 = 3.
+☼Phủđịnh của Mệnh đềchứa kí hiệu ∀, ∃.
+• Phủđịnh của mệnh đề“∀x ∈X,P(x)” là mệnh đề“∃x ∈X,P(x)”.
+• Phủđịnh của mệnh đề“∃x ∈X,P(x)” là mệnh đề“∀x ∈X,P(x)”.
+2
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 5 ---
+1. MỆNH ĐỀ
+A
+B
+RÈN LUYỆN KĨ NĂNG GIẢI TOÁN
+1
+KN
+Mệnh đề, phủđịnh của mệnh đề
+☼Mệnh đề:
+①Khẳng định đúng là mệnh đềđúng, khẳng định sai là mệnh đềsai.
+②Câu không phải là câu khẳng định hoặc câu khẳng định mà không có tính đúng-sai đều
+không phải là mệnh đề.
+☼Mệnh đềphủđịnh: Cho mệnh đềP.
+①Mệnh đềphủđịnh của P, kí hiệu là P.
+②Nếu P đúng thì P sai; P sai thì P đúng.
+í Ví dụ1. Các câu sau đây, câu nào là mệnh đề, câu nào không phải là mệnh đề? Nếu là mệnh đề
+hay cho biết mệnh đềđó đúng hay sai?
+Không được đi lối này!
+a)
+Bây giờlà mấy giờ?
+b)
+7 không là sốnguyên tố.
+c)
+√
+5 là sốvô tỉ.
+d)
+í Ví dụ2. Xét tính đúng sai của các mệnh đềsau và lập mệnh đềphủđịnh của chúng.
+5 là sốnguyên tố.
+a)
+Phương trình 2x2 −3x+1 = 0 có nghiệm nguyên.
+b)
+Tổng ba góc trong một tam giác bằng 180◦.
+c)
+Ấn Độcó dân sốlớn nhất thếgiới.
+d)
+2
+KN
+Mệnh đềkéo theo, mệnh đềđảo, mệnh đềtương đương
+í Ví dụ3. Cho tam giác ABC. Xét hai mệnh đềP: “Tam giác ABC vuông” và Q: “Tam giác
+ABC có AB2 +AC2 = BC2 ”. Phát biểu các mệnh đềsau và cho biết mệnh đềsau đúng hay sai?
+P ⇒Q.
+a)
+Q ⇒P.
+b)
+í Ví dụ4. Xét hai câu sau:
+P: “Phương trình bậc hai ax2 +bx+c = 0 có hai nghiệm thực phân biệt”.
+Q: “Phương trình bậc hai ax2 +bx+c = 0 có biệt thức ∆= b2 −4ac > 0”.
+Phát biểu mệnh đềP ⇒Q.
+a)
+Phát biểu mệnh đềQ ⇒P.
+b)
+í Ví dụ5. Cho tam giác ABC với trung tuyến AM. Xét hai mệnh đềP: “Tam giác ABC vuông tại
+A” và Q: “Trung tuyến AM bằng một nửa cạnh BC”.
+a) Hãy phát biểu mệnh đềP ⇒Q. Mệnh đềnày đúng hay sai?
+3
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 6 ---
+Chương 1. MỆNH ĐỀVÀ TẬP HỢP
+b) Hãy phát biểu mệnh đềQ ⇒P. Mệnh đềnày đúng hay sai?
+c) Phát biểu mệnh đềP ⇔Q và cho biết mệnh đềđó đúng hay sai?
+í Ví dụ6. Cho định lí “Cho sốtựnhiên n, nếu n5 chia hết cho 5 thì n chia hết cho 5”. Định lí này
+được viết dưới dạng P ⇒Q.
+a) Hãy xác định các mệnh đềP và Q.
+b) Phát biểu định lí trên bằng cách dùng thuật ngữ“điều kiện cần”.
+c) Phát biểu định lí trên bằng cách dùng thuật ngữ“điều kiện đủ”. Hãy phát biểu định lí đảo (nếu
+có) của định lí trên rồi dùng các thuật ngữ“điều kiện cần và điều kiện đủ” phát biểu gộp cả
+hai định lí thuận và đảo.
+í Ví dụ7. Cho hai mệnh đềP : “Tứgiác ABCD là hình thoi” và Q : “Tứgiác ABCD là hình bình
+hành có hai đường chéo vuông góc với nhau”. Phát biểu định lý P ⇔Q bằng hai cách.
+í Ví dụ8.
+a) Phát biểu điều kiện cần và đủđểsốtựnhiên n chia hết cho 2.
+b) Phát biểu điều kiện cần và đủđểsốtựnhiên n chia hết cho 5.
+c) Phát biểu điều kiện cần và đủđểsốtựnhiên n chia hết cho 3.
+3
+KN
+Mệnh đềchứa kí hiệu với mọi, tồn tại
+☼Tính đúng sai:
+①Mệnh đềchứa kí hiệu với mọi: ∀x ∈X, P(x).
+• Mệnh đềnày đúng khi tất cảcác giá trịcủa x ∈X đều làm cho phát biểu P(x) đúng.
+• Nếu ta tìm được ít nhất một giá trịx ∈X làm cho P(x) sai thì mệnh đềnày sai.
+②Mệnh đềchứa kí hiệu tồn tại: ∃x ∈X, P(x).
+• Mệnh đềnày đúng khi ta tìm được ít nhất một giá trịcủa x ∈X làm cho phát biểu P(x)
+đúng.
+• Nếu tất cảgiá trịcủa x ∈X đều làm cho P(x) sai thì mệnh đềnày sai.
+☼Phủđịnh của mệnh đềcó dấu ∀,∃:
+①∀x ∈X,P(x) thành ∃x ∈X,P(x).
+②∃x ∈X,P(x) thành ∀x ∈X,P(x).
+Chú ý: Khi lấy phủđịnh, ta chú ý các vấn đềđối lập sau:
+①Quan hệ= thành quan hệ̸=, và ngượclại.
+②Quan hệ> thành quan hệ≤, và ngược lại.
+③Quan hệ≥thành quan hệ<, và ngược lại.
+④Liên kết "và" thành liên kết "hoặc", và ngược lại.
+4
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 7 ---
+1. MỆNH ĐỀ
+í Ví dụ9. Sửdụng kí hiệu “∀” đểviết mỗi mệnh đềsau và xét xem mệnh đềđó là đúng hay sai?
+Giải thích vì sao?
+a) P: “Với mọi sốthực x,x2 +1 > 0”.
+b) Q: “Với mọi sốtựnhiên n,n2 +n chia hết cho 6”.
+í Ví dụ10. Sửdụng kí hiệu “∃” đểviết mỗi mệnh đềsau và xét xem mệnh đềđó là đúng hay
+sai? Giải thích vì sao?
+a) M : “Có ít nhất một sốthực x sao cho x3 = −8”.
+b) N : “Tồn tại sốnguyên x sao cho 2x+1 = 0”.
+í Ví dụ11. Nêu mệnh đềphủđịnh của các mệnh đềsau và cho biết tính đúng sai của mệnh đề
+phủđịnh đó.
+A : “∃n ∈N,n2 +3 chia hết cho 4”.
+a)
+B : “∃x ∈N, x chia hết cho x+1”.
+b)
+í Ví dụ12. Xét tính đúng sai của mệnh đềsau và nêu mệnh đềphủđịnh của nó.
+∃x ∈Z,x2 = 3.
+a)
+∀n ∈N∗: 2n +3 là một sốnguyên tố.
+b)
+∀x ∈R,x2 +4x+5 > 0.
+c)
+∀x ∈R,x4 −x2 +2x+2 ≥0.
+d)
+A
+C
+BÀI TẬP TỰLUYỆN
+1
+Trong các mệnh đềtoán học sau đây, mệnh đềnào là một khẳng định đúng? Mệnh đềnào là một
+khẳng định sai?
+a) P: “Tổng hai góc đối của một tứgiác nội tiếp bằng 180◦”.
+b) Q: “7 là sốchính phương”.
+c) R: “1 là sốnguyên tố”.
+2
+Xét tính đúng sai của mỗi mệnh đềsau
+π < 10
+3 .
+a)
+Phương trình 3x+7 = 0 có nghiệm.
+b)
+Tồn tại một sốcộng với chính nó bằng 0.
+c)
+2022 là hợp số.
+d)
+3
+Xét tính đúng sai của mỗi mệnh đềsau
+1993 chia hết cho 3.
+a)
+√
+12 là một sốhữu tỉ.
+b)
+9 là một sốchính phương.
+c)
+|−1997| ⩽0.
+d)
+4
+Dùng thuật ngữ“điều kiện cần” đểphát biểu các định lí sau.
+a) Nếu MA ⊥MB thì M thuộc đường tròn đường kính AB.
+b) a ̸= 0 hoặc b ̸= 0 là điều kiện đủđểa2 +b2 > 0.
+5
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 8 ---
+Chương 1. MỆNH ĐỀVÀ TẬP HỢP
+5
+Sửdụng thuật ngữ“điều kiện đủ” đểphát biểu các định lí sau.
+a) Nếu a và b là hai sốhữu tỉthì tổng a+b là sốhữu tỉ.
+b) Nếu hai tam giác bằng nhau thì chúng có diện tích bằng nhau.
+c) Nếu một sốtựnhiên có chữsốtận cùng là chữsố5 thì nó chia hết cho 5.
+6
+Nêu mệnh đềphủđịnh của các mệnh đềsau và cho biết tính đúng sai của mệnh đềphủđịnh đó.
+a) A: “∀x ∈R,x3 −x2 +1 > 0”.
+b) B: “Tồn tại sốthực a sao cho a+1+
+1
+a+1 ⩽2”.
+7
+Lập mệnh đềphủđịnh của mỗi mệnh đềsau
+∀x ∈R,|x| ≥x.
+a)
+∃x ∈R,x2 +1 = 0.
+b)
+8
+Lập mệnh đềphủđịnh của mỗi mệnh đềsau và xét tính đúng sai của mỗi mệnh đềphủđịnh đó
+∀x ∈R,x2 ̸= 2x−2.
+a)
+∀x ∈R,x2 ≤2x−1.
+b)
+∃x ∈R,x+ 1
+x ≥2.
+c)
+∃x ∈R,x2 −x+1 < 0.
+d)
+A
+D
+BÀI TẬP TRẮC NGHIỆM
+Câu 1. Trong các câu sau, câu nào là mệnh đề?
+A. Các bạn hãy làm bài đi!.
+B. Các bạn có chăm học không ?.
+C. An học lớp mấy ?.
+D. Việt Nam là một nước thuộc Châu Á.
+Câu 2. Trong các câu sau, câu nào là mệnh đề?
+A. 15 là sốnguyên tố.
+B. a+b = c.
+C. x2 +x = 0.
+D. 2n+1 chia hết cho 3.
+Câu 3. Trong các câu sau, câu nào không phải là mệnh đề?
+A. 5+2 = 8.
+B. 2 > 0.
+C. 4−
+√
+17 > 0.
+D. 5+x = 2.
+Câu 4. Câu nào sau đây là một mệnh đề?
+A. Số150 có phải là sốchẵn không?.
+B. Số30 là sốchẵn.
+C. 2x−1 là sốlẻ.
+D. x3 +1 = 0.
+Câu 5. Định lý có dạng A ⇒B được hiểu như thếnào?
+A. A khi và chỉkhi B.
+B. B suy ra A.
+C. A là điều kiện cần đểcó B.
+D. A là điều kiện đủđểcó B.
+Câu 6. Phủđịnh của mệnh đề"5+4 = 10" là mệnh đềnào sau đây ?
+A. 5+4 < 10.
+B. 5+4 > 10.
+C. 5+4 ≤10.
+D. 5+4 ̸= 10.
+Câu 7. Phủđịnh của mệnh đề“5+π > 10” là mệnh đềnào sau đây ?
+A. 5+π < 10.
+B. 5+π > 10.
+C. 5+π ≤10.
+D. 5+π ̸= 10.
+Câu 8. Phủđịnh của mệnh đề“14 là sốnguyên tố” là mệnh đềnào sau đây?
+A. 14 không phải là sốnguyên tố.
+B. 14 chia hết cho 2.
+C. 14 không phải là hợp số.
+D. 14 chia hết cho 7.
+Câu 9. Phủđịnh của mệnh đề“Dơi là một loài chim” là mệnh đềnào sau đây?
+6
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 9 ---
+1. MỆNH ĐỀ
+A. Dơi là một loài có cánh.
+B. Chim cùng loài với dơi.
+C. Dơi là một loài ăn trái cây.
+D. Dơi không phải là loài chim.
+Câu 10. Trong các mệnh đềsau, mệnh đềnào là mệnh đềsai?
+A. 20 chia hết cho 5.
+B. 5 chia hết cho 20.
+C. 20 là bội sốcủa 5.
+D. 5 là ước sốcủa 20.
+Câu 11. Cho mệnh đềchứa biến P(x) : x2 −3x+2 = 0, với x ∈R. Tìm mệnh đềđúng trong các mệnh
+đềsau đây
+A. P(0).
+B. P(1).
+C. P(−1).
+D. P(−2).
+Câu 12. Với giá trịnào của n ∈N, mệnh đềchứa biến P(n): "n chia hết cho 12" là đúng?
+A. n = 48.
+B. n = 4.
+C. n = 3.
+D. n = 88.
+Câu 13. Cho mệnh đềchứa biến P(x): "√x > x", với x ∈R. Tìm mệnh đềđúng.
+A. P(0).
+B. P(1).
+C. P
+Å1
+2
+ã
+.
+D. P(2).
+Câu 14. Xét mệnh đềchứa biến P(x) "x2 −3x = 0", với x ∈R. Với giá trịnào của x thì P(x) là mệnh
+đềđúng?
+A. x = 0.
+B. x = 2.
+C. x = −1.
+D. x = −3.
+Câu 15. Trong các mệnh đềsau, mệnh đềnào là mệnh đềđúng?
+A. Nếu “33 là hợp số” thì “15 chia hết cho 25”.
+B. Nếu “7 là sốnguyên tố” thì “8 là bội sốcủa 3”.
+C. Nếu “20 là hợp số” thì “24 chia hết cho 6 ”.
+D. Nếu “3+9 = 12” thì “4 > 7”.
+Câu 16. Trong các phát biểu sau phát biểu nào là mệnh đềđúng?
+A. π là sốhữu tỉ.
+B. Tổng hai cạnh của một tam giác lớn hơn cạnh còn lại.
+C. Bạn có chăm học không ?.
+D. Số12 không chia hết cho 3.
+Câu 17. Trong các mệnh đềsau, mệnh đềnào có mệnh đềđảo sai?
+A. “Tứgiác là hình bình hành thì có hai cặp cạnh đối song song và bằng nhau”.
+B. “Tam giác đều thì có ba góc có sốđo bằng 60◦”.
+C. “Hai tam giác bằng nhau thì có diện tích bằng nhau”.
+D. “Một tứgiác có 4 góc vuông thì tứgiác đó là hình chữnhật”.
+Câu 18. Mệnh đề"∃x ∈R : x2 = 3" khẳng định rằng
+A. Bình phương của mỗi sốthực bằng 3.
+B. Có ít nhất một sốthực mà bình phương của nó bằng 3.
+C. Chỉcó một sốthực bình phương bằng 3.
+D. Nếu x là sốthực thì x2 = 3.
+Câu 19. Kí hiệu X là tập hợp các cầu thủx trong đội bóng rổ, P(x) là mệnh đềchứa biến x cao trên
+180 cm. Mệnh đề"∀x ∈X,P(x)" khẳng định rằng
+A. Mọi cầu thủtrong đội tuyển bóng rổđều cao trên 180cm.
+B. Trong sốcác cầu thủcủa đội tuyển bóng rổcó một cầu thủcao trên 180cm.
+C. Bất cứai cao trên 180cm đềlà cầu thủcủa đội tuyển bóng rổ.
+D. Có một sốngười cao trên 180cm là cầu thủcủa đội tuyển bóng rổ.
+Câu 20. Mệnh đề“Mọi động vật đều di chuyển” có mệnh đềphủđịnh là
+A. Mọi động vật đều không di chuyển.
+B. Mọi động vật đều đứng yên.
+C. Có ít nhất một động vật di chuyển.
+D. Có ít nhất một động vật không di chuyển.
+7
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 10 ---
+Chương 1. MỆNH ĐỀVÀ TẬP HỢP
+Câu 21. Phủđịnh của mệnh đề“Có ít nhất một sốvô tỷlà sốthập phân vô hạn tuần hoàn” là mệnh đề
+nào sau đây?
+A. Mọi sốvô tỷđều là sốthập phân vô hạn tuần hoàn.
+B. Có ít nhất một sốvô tỷlà sốthập phân vô hạn không tuần hoàn.
+C. Mọi sốvô tỷđều không phải là sốthập phân vô hạn tuần hoàn.
+D. Mọi sốvô tỷđều là sốthập phân tuần hoàn.
+Câu 22. Tìm mệnh đềphủđịnh của mệnh đềP: “∀x ∈N, x2 +x−1 > 0”.
+A. P: “∃x ∈N, x2 +x−1 > 0”.
+B. P: “∀x ∈N, x2 +x−1 > 0”.
+C. P: “∃x ∈N, x2 +x−1 ≤0”.
+D. P: “∀x ∈N, x2 +x−1 ≤0”.
+Câu 23. Xét mệnh đềP: "∃x ∈R : 2x−3 < 0". Mệnh đềphủđịnh của mệnh đềP là
+A. “∀x ∈R : 2x−3 ≤0”.
+B. “∃x ∈R : 2x−3 > 0”.
+C. “∀x ∈R : 2x−3 ≥0”.
+D. “∀x ∈R : 2x−3 ≤0”.
+Câu 24. Cho mệnh đề∀x ∈R : x2 +x > 0. Phủđịnh của mệnh đềnày là
+A. ∀x ∈R,x2 +x ≤0.
+B. ∃x ∈R,x2 +x = 0.
+C. ∃x ∈R,x2 +x < 0.
+D. ∃x ∈R,x2 +x ≤0.
+Câu 25. Tìm mệnh đềsai.
+A. ∀x ∈R,x2 +2x+3 > 0.
+B. ∀x ∈R,x2 ≥x.
+C. ∃x ∈R,x2 +5x+6 = 0.
+D. ∃x ∈R,x < 1
+x.
+Câu 26. Tìm mệnh đềđúng.
+A. ∃x ∈R,x2 +3 = 0.
+B. ∃x ∈R,x4 +3x2 +2 = 0.
+C. ∀x ∈N,(2x+1)2 −1 chia hết cho 4.
+D. ∀x ∈Z,x5 > x2.
+Câu 27. Mệnh đềnào sau đây sai?
+A. ∀n ∈N,n ≤2n.
+B. ∀x ∈R,x2 > 0.
+C. ∃n ∈N,n2 = n.
+D. ∃x ∈R,x > x2.
+Câu 28. Cho các mệnh đề
+X: “∀x ∈R, x2 −2x+3 > 0”
+①
+Y: “∃x ∈R, x2 −4 = 0”
+②
+P: “∃x ∈R, x2 +2 = 0”
+③
+Q: “∀x ∈R, x > 0”
+④
+Các mệnh đềđúng là
+A. X, P.
+B. Y, Q.
+C. X, Y.
+D. P, Q.
+Câu 29. Trong các mệnh đềsau mệnh đềnào đúng ?
+A. ∃n ∈N, n3 −n không chia hết cho 3.
+B. ∀x ∈R, x < 3 ⇒x2 < 9.
+C. ∃m ∈Z, m2 +m+1 là một sốchẵn.
+D. ∀x ∈Z, 2x3 −6x2 +x−3
+2x2 +1
+∈Z.
+Câu 30. Mệnh đềnào sau đây đúng?
+A. ∀n ∈N : n(n+1) là sốchính phương.
+B. ∀n ∈N : n(n+1) là sốlẻ.
+C. ∀n ∈N : n(n+1)(n+2) là sốlẻ.
+D. ∀n ∈N : n(n+1)(n+2) chia hết cho 6.
+—HẾT—
+8
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 11 ---
+2. TẬP HỢP VÀ CÁC PHÉP TOÁN TRÊN TẬP HỢP
+TẬP HỢP VÀ CÁC PHÉP TOÁN TRÊN TẬP HỢP
+2
+Baâi
+A
+A
+TÓM TẮT LÝ THUYẾT
+1.
+Các khái niệm cơ bản vềtập hợp
+☼Tập hợp
+L Khi muốn mô tảcác đối tượng (phần tử) có chung một tính chất gì đó thì ta xây dựng khái niệm
+tập hợp.
+L Cách xác định tập hợp:
+①Liệt kê các phần tử: viết các phần tửcủa tập hợp trong hai dấu móc {...}.
+②Chỉra tính chất đăc trưng cho các phần tửcủa tập hợp.
+L Tập rỗng: là tập hợp không chứa phần tửnào, kí hiệu ∅.
+☼Tập hợp con - Tập hợp bằng nhau
+L Tập hợp con:
+• A ⊂B ⇔(∀x: x ∈A ⇒x ∈B).
+• Các tính chất:
+①A ⊂A,∀A.
+②∅⊂A,∀A.
+③A ⊂B, và B ⊂C suy ra A ⊂C.
+Biểu đồVen minh họa iA ⊂B
+A
+B
+L Tập hợp bằng nhau:
+A = B ⇔A ⊂B và B ⊂A ⇔(∀x: x ∈A ⇔x ∈B).
+2.
+Các tập hợp số
+☼Các tập hợp sốvà mối quan hệgiữa các tập hợp số:
+Tập sốtựnhiên N.
+①
+Tập sốnguyên Z.
+②
+Tập sốhữu tỉQ.
+③
+Tập sốvô tỉI.
+④
+Tập sốthực R.
+⑤
+Tập N∗ta bỏsố0.
+⑥
+Mối quan hệ:
+N ⊂Z ⊂Q ⊂R.
+①
+Q∪I = R.
+②
+☼Các tập con thường dùng của tập R
+Khoảng (a;b) = {x ∈R|a < x < b}.
+ a
+
+b
+①
+Đoạn [a;b] = {x ∈R|a ≤x ≤b}.
+
+a
+
+b
+②
+9
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 12 ---
+Chương 1. MỆNH ĐỀVÀ TẬP HỢP
+Khoảng (a;+∞) = {x ∈R|x > a}.
++∞
+ a
+③
+Nửa khoảng [a;+∞) = {x ∈R|x ≥a}.
++∞
+
+a
+④
+Khoảng (−∞;b) = {x ∈R|x < b}.
+−∞
+
+b
+⑤
+Nửa khoảng (−∞;b] = {x ∈R|x ≤b}.
+−∞
+
+b
+⑥
+Nửa khoảng [a;b) = {x ∈R|a ≤x < b}.
+
+a
+
+b
+⑦
+Nửa khoảng (a;b] = {x ∈R|a < x ≤b}.
+ a
+
+b
+⑧
+3.
+Các phép toán trên tập hợp
+☼Giao của hai tập hợp:
+• A∩B = {x|x ∈A và x ∈B}.
+• Ghi nhớ: Lấy phần chung của 2 tập hợp.
+Biểu đồVen minh họa A∩B
+A
+B
+☼Hợp của hai tập hợp:
+• A∪B = {x|x ∈A hoặc x ∈B}.
+• Ghi nhớ: Gom hết phần tửcủa cảhai tập, các phần tửtrùng nhau
+thì ta ghi 1 lần.
+Biểu đồVen minh họa A∪B
+A
+B
+☼Hiệu của hai tập hợp:
+• A\B = {x|x ∈A và x /∈B}.
+• Ghi nhớ: Lấy phần riêng (thuộc A mà không thuộc B)
+• Đặc biệt: Nếu B ⊂A thì A\B được kí hiệu là CAB (gọi là phần bù
+của B trong A).
+Biểu đồVen minh họa A\B
+A
+B
+A
+B
+RÈN LUYỆN KĨ NĂNG GIẢI TOÁN
+1
+KN
+Xác định tập hợp
+í Ví dụ1. Cho D = {n ∈N | n là sốnguyên tố, 5 < n < 20}.
+a) Dùng kí hiệu ∈, /∈đểviết câu trảlời cho câu hỏi sau: Trong các số5; 12; 17; 18, sốnào thuộc
+tập D, sốnào không thuộc tập D?
+10
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 13 ---
+2. TẬP HỢP VÀ CÁC PHÉP TOÁN TRÊN TẬP HỢP
+b) Viết tập hợp D bằng cách liệt kê các phần tử. Tập hợp D có bao nhiêu phần tử?
+í Ví dụ2. Viết mỗi tập hợp sau bằng cách liệt kê các phần tử.
+A = x ∈R| 2x−x2(3x−2) = 0	.
+a)
+B = x ∈Z|2x3 −3x2 −5x = 0	.
+b)
+C = x ∈Z|2x2 −75x−77 = 0	.
+c)
+D = x ∈R|(x2 −x−2)(x2 −9) = 0	.
+d)
+í Ví dụ3. Viết mỗi tập hợp sau bằng cách liệt kê các phần tử.
+A = n ∈N∗|3 < n2 < 30	.
+a)
+B = {n ∈Z||n| < 3}.
+b)
+C = {x|x = 3k với k ∈Z và −4 < x < 12}.
+c)
+A = n2 +3
+n ∈N và n < 5	.
+d)
+í Ví dụ4. Viết mỗi tập hợp sau bằng cách nêu tính chất đặc trưng.
+A = {2;3;5;7}.
+a)
+B = {−3;−2;−1;0;1;2;3}.
+b)
+C = {−5;0;5;10}.
+c)
+D = {1;2;3;4;6;9;12;18;36}.
+d)
+í Ví dụ5. Trong các tập hợp sau, tập hợp nào rỗng?
+A = x ∈R|x2 −x+1 = 0	.
+a)
+B = {x ∈Q| x2 −4x+2 = 0}.
+b)
+C = {x ∈Z| 6x2 −7x+1 = 0}.
+c)
+D = {x ∈Z| |x| < 1}.
+d)
+2
+KN
+Tập hợp con, xác định tập hợp con. Hai tập hợp bằng nhau
+Cho tập hợp A gồm n phần tử.
+①Khi liệt kê tất cảcác tập con của A, ta liệt kê đầy đủtheo thứtự:
+∅; tập 1 phần tử; tập 2 phần tử; tập 3 phần tử;...; A.
+②Sốtập con của A là 2n.
+③Sốtập con gồm k phần tửcủa A là Ck
+n.
+í Ví dụ6. Cho tập hợp A = {2;3;4} và B = {2;3;4;5;6}.
+Xác định tất cảtập con có hai phần tửcủa A.
+a)
+Xác định tất cảtập con có ít hơn hai phần tửcủa A.
+b)
+Tập A có tất cảbao nhiêu tập con.
+c)
+Xác định tất cảcác tập X thỏa A ⊂X ⊂B.
+d)
+í Ví dụ7. Cho A = {2;5},B = {5;x},C = {x;y;5}. Tìm các cặp số{x;y} đểA = B = C.
+11
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 14 ---
+Chương 1. MỆNH ĐỀVÀ TẬP HỢP
+3
+KN
+Các phép toán trên tập hợp
+í Ví dụ8. Cho A là tập hợp các học sinh lớp 10 đang học ởtrường em, B là tập hợp học sinh đang
+học tiếng Anh ởtrường em. Hãy diễn đạt bằng lời các tập hợp sau.
+A∩B.
+a)
+A\B.
+b)
+A∪B.
+c)
+B\A
+d)
+í Ví dụ9. Cho hai tập hợp A = {0;1;2;3;4} và B = {2;3;4;5;6}. Tìm các tập hợp A ∪B,A ∩
+B,A\B,B\A.
+í Ví dụ10. Cho A = {x ∈N| x ≤5}, B = {x ∈N| x = 3k −1,k ∈N,k ≤3}. Xác định tập
+A,B,A∩B,A∪B,A\B,B\A.
+í Ví dụ11. Cho tập hợp E = {1;2;3;4;5;6;7;8;9} và các tập hợp con A = {1;2;3;4}, B =
+{2;4;6;8}. Xác định CEA, CEB, CE (A∪B), CEA∩CEB.
+í Ví dụ12. Xác định hai tập A, B biết rằng A\B = {1;5;7;8},B\A = {2;10},A∩B = {3;6;9}.
+í Ví dụ13. Cho hai tập hợp A = {1;2} và B = {1;2;3;4}. Tìm tất cảcác tập hợp X sao cho
+A∪X = B.
+4
+KN
+các phép toán trên tập hợp số
+í Ví dụ14. Xác định các tập hợp sau đây và biểu diễn chúng trên trục số.
+(0;3)∩(2;4).
+a)
+[−1;4]∩(2;5).
+b)
+R∩(−1;1).
+c)
+í Ví dụ15. Cho hai tập hợp A = {x ∈R|−1 ≤x ≤3}, B = {x ∈R|−2 < x < 2}. Tìm A∩B.
+í Ví dụ16. Cho A = [−2;4],B = (2;+∞),C = (−∞;3). Xác định các tập hợp sau đây và biểu
+diễn chúng trên trục số.
+A∩B;
+a)
+B∩C;
+b)
+A∩C;
+c)
+R∩A;
+d)
+R∩B;
+e)
+A∩B∩C.
+f)
+í Ví dụ17. Cho các tập hợp A = {x ∈R||x+2| < 2}, B = {x ∈R||x+4| ≥3}, C = [−5;3). Tìm
+các tập hợp
+A∪B.
+a)
+A∩B∪C.
+b)
+(A∪B)∩(B∪C).
+c)
+í Ví dụ18. Xác định các tập hợp sau đây và biểu diễn chúng trên trục số.
+(0;3)\(2;4).
+a)
+(−4;2]\[2;4).
+b)
+R\(−1;1).
+c)
+í Ví dụ19. Cho hai tập hợp A = {x ∈R|−1 ≤x ≤3}, B = {x ∈R|−2 < x < 2}. Tìm A\B,B\A.
+12
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 15 ---
+2. TẬP HỢP VÀ CÁC PHÉP TOÁN TRÊN TẬP HỢP
+í Ví dụ20. Cho hai tập hợp A = {x ∈R|1 < x ≤4}, B = {x ∈R|−3 < x}. Tìm CBA.
+í Ví dụ21. Cho hai nửa khoảng A = (−1;0],B = [0;1). Tìm A\B và CRA.
+A
+C
+VẬN DỤNG, THỰC TIỄN
+5
+KN
+Các bài toán biện luận theo tham số
+í Ví dụ22. Cho hai tập hợp A = [−4;1], B = [−3;m]. Tìm m để
+A∩B = [−3;1].
+a)
+A∪B = A
+b)
+í Ví dụ23. Cho hai tập hợp A = (m−1;5) và B = (3;+∞). Tìm m đểA\B = ∅.
+í Ví dụ24. Cho hai tập hợp A = (−4;3) và B = (m−7;m). Tìm m đểB ⊂A.
+í Ví dụ25. Cho sốthực a < 0 và hai tập hợp A = (−∞;9a), B =
+Å4
+a;+∞
+ã
+. Tìm a đểA∩B ̸= ∅.
+í Ví dụ26. Cho hai tập hợp A = [2;m+1] và B =
+ï1
+2;+∞
+ã
+. Tìm m đểA∩B chỉcó đúng 1 phần
+tử.
+6
+KN
+Ứng dụng thực tếcác phép toán tập hợp
+í Ví dụ27. Trong kì thi học sinh giỏi cấp trường, lớp 10C1 có 45 học sinh trong đó có 17 bạn đạt
+học sinh giỏi Văn, 25 bạn đạt học sinh giỏi Toán và 13 bạn học sinh không đạt học sinh giỏi. Tìm số
+học sinh giỏi cảVăn và Toán của lớp 10C1.
+í Ví dụ28. Một lớp học có 50 học sinh trong đó có 30 em biết chơi bóng chuyền, 25 em biết chơi
+bóng đá, 10 em biết chơi cảbóng đá và bóng chuyền. Hỏi có bao nhiêu em không biết chơi môn nào
+trong hai môn ởtrên?
+í Ví dụ29. Lớp 10A có 15 bạn thích môn Văn, 20 bạn thích môn Toán. Trong sốcác bạn thích
+văn hoặc toán có 8 bạn thích cả2 môn. Trong lớp vẫn còn 10 bạn không thích môn nào trong 2 môn
+Văn và Toán. Hỏi lớp 10A có bao nhiêu học sinh?
+í Ví dụ30. Kết quảthi học kì một của một trường THPT có 48 thí sinh giỏi môn Toán, 37 thí
+sinh giỏi môn Vật Lí,42 thí sinh giỏi môn Văn. Biết rằng có 75 thí sinh giỏi môn Toán hoặc môn Vật
+lí, 76 thí sinh giỏi môn Toán hoặc môn Văn, 66 thí sinh giỏi môn Vật lí hoặc môn Văn và có 4 thí
+sinh giỏi cảba môn. Hỏi
+a) có bao nhiêu học sinh chỉgiỏi 1 môn.
+b) có bao nhiêu học sinh chỉgiỏi 2 môn.
+13
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 16 ---
+Chương 1. MỆNH ĐỀVÀ TẬP HỢP
+c) có bao nhiêu học sinh giỏi ít nhất 1 môn.
+A
+D
+BÀI TẬP TỰLUYỆN
+1
+Liệt kê các phần tửcủa các tập hợp sau:
+a) A = {n ∈N | n < 5}.
+b) B là tập hợp các sốtựnhiên lớn hơn 0 và nhỏhơn 5.
+c) C = {x ∈R | (x−1)(x+2) = 0}.
+2
+Viết các tập hợp sau bằng phương pháp liệt kê
+A = x ∈Q | (x2 −2x+1)(x2 −5)	 = 0.
+a)
+B = x ∈N | 5 < x2 < 40	.
+b)
+C = x ∈Z | x2 < 9	.
+c)
+D = {x ∈R | |2x+1| = 5}.
+d)
+3
+Cho các tập hợp sau
+A = {x ∈Z|−1 ≤x < 6};
+B = x ∈Q|(1−3x) x4 −3x2 +2 = 0	;
+C = {0;1;2;3;4;5;6}.
+Viết các tập hợp A,B dưới dạng liệt kê các phần tử.
+a)
+Tìm A∩B,A∪B,A\B,CB∪AA∩B.
+b)
+Chứng minh rằng A∩(B∪C) = A.
+c)
+4
+Cho hai tập A, B khác ∅, A∪B có 6 phần tử, sốphần tửcủa A∩B bằng nửa sốphần tửcủa B. Hỏi
+A, B có thểcó bao nhiêu phần tử?
+5
+Cho các tập hợp
+A = x ∈R| x2 +7x+6 x2 −4 = 0	
+B = {x ∈N|2x ≤8}
+C = {2x+1|x ∈Z và −2 ≤x ≤4}.
+Hãy viết lại các tập hợp A,B,C dưới dạng liệt kê các phần tử.
+a)
+Tìm A∪B, A∩B, B\C, CA∪B (B\C).
+b)
+Tìm (A∪C)\B.
+c)
+6
+Cho đoạn A = [−5;1] và khoảng B = (−3;2). Xác định A∪B, A∩B, A\B, CRB.
+7
+Cho các tập hợp A = x ∈R
+x2 ⩽4	, B = x ∈R
+x < 1	. Viết các tập hợp sau đây A∪B, A∩B,
+A\B, CRB dưới dạng các khoảng, nửa khoảng, đoạn.
+8
+Một nhóm học sinh giỏi các bộmôn: Anh, Toán, Văn. Có 18 em giỏi Văn, 10 em giỏi Anh, 12 em
+giỏi Toán, 3 em giỏi Văn và Toán, 4 em giỏi Toán và Anh, 5 em giỏi Văn và Anh, 2 em giỏi cảba
+môn. Hỏi nhóm đó có bao nhiêu em?
+14
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 17 ---
+2. TẬP HỢP VÀ CÁC PHÉP TOÁN TRÊN TẬP HỢP
+9
+Một lớp có 40 học sinh, mỗi học sinh đều đăng ký chơi ít nhất 1 trong 2 môn thểthao là bóng đá
+hoặc cầu lông. Có 30 học sinh có đăng ký môn bóng đá, 25 học sinh có đăng ký môn cầu lông.
+Hỏi có bao nhiêu em đăng ký cả2 môn.
+10
+Mỗi học sinh của lớp 10A đều chơi bóng đá hoặc bóng chuyền. Biết rằng có 25 bạn chơi bóng đá,
+20 bạn chơi bóng chuyền và 10 bạn chơi cả2 môn thểthao. Hỏi lớp 10A có bao nhiêu học sinh.
+11
+Lớp 10A có 45 học sinh, có 15 học sinh giỏi và 20 học sinh xếp hạnh kiểm tốt, trong đó có 10 bạn
+vừa học giỏi vừa xếp hạnh kiểm tốt. Các học sinh được học sinh giỏi hoặc hạnh kiểm tốt đều được
+khen thưởng. Sốhọc sinh được khen thưởng của lớp 10A là là bao nhiêu?
+12
+Trong số42 học sinh của lớp 10A có 13 bạn được xếp loại học lực giỏi, 22 bạn được xếp loại hạnh
+kiểm tốt, trong đó 7 bạn vừa học lực giỏi, vừa có hạnh kiểm tốt. Hỏi lớp 10A có bao nhiêu bạn
+được khen thưởng? Biết rằng muốn được khen thưởng thì bạn đó phải có học lực giỏi hoặc có hạnh
+kiểm tốt.
+13
+Một nhóm học sinh giỏi các bộmôn: Anh, Toán, Văn. Có 18 em giỏi Văn, 10 em giỏi Anh, 12 em
+giỏi Toán, 3 em giỏi Văn và Toán, 4 em giỏi Toán và Anh, 5 em giỏi Văn và Anh, 2 em giỏi cảba
+môn. Hỏi nhóm đó có bao nhiêu em?
+14
+Có 45 học sinh giỏi, mỗi em giỏi ít nhất một môn. Có 22 em giỏi Văn, 25 em giỏi Toán, 20 em
+giỏi Anh. Có 8 em giỏi đúng hai môn Văn, Toán; Có 7 em giỏi đúng hai môn Toán, Anh; Có 6 em
+giỏi đúng hai môn Anh, Văn. Hỏi có bao nhiêu em giỏi cảba môn Văn, Toán, Anh?
+15
+Đểthành lập đội tuyển học sinh giỏi khối 10, nhà trường tổchức thi chọn các môn Toán, Văn, Anh
+trên tổng số111 học sinh. Kết quảcó: 70 học sinh giỏi Toán, 65 học sinh giỏi Văn, 62 học sinh
+giỏi Anh. Trong đó có 49 học sinh giỏi cảhai môn Văn và Toán, 32 học sinh giỏi cảhai môn Toán
+và Anh, 34 học sinh giỏi cảhai môn Văn và Anh. Xác định sốhọc sinh giỏi cảba môn Văn, Toán,
+Anh. Biết rằng có 6 học sinh không đạt yêu cầu cảba môn.
+A
+E
+BÀI TẬP TRẮC NGHIỆM
+ĐỀSỐ1
+Câu 1. Kí hiệu nào sau đây dùng đểviết đúng mệnh đề"7 là sốtựnhiên"?
+A. 7 ⊂N.
+B. 7 ∈N.
+C. 7 < N.
+D. 7 ≤N.
+Câu 2. Kí hiệu nào sau đây dùng đểviết đúng mệnh đề"
+√
+2 không phải là sốhữu tỉ"?
+A.
+√
+2 ̸= Q.
+B.
+√
+2 ̸⊂Q.
+C.
+√
+2 /∈Q.
+D.
+√
+2 ∈Q.
+Câu 3. Cho A là một tập hợp, hãy tìm mệnh đềsai trong các mệnh đềsau.
+A. A ∈A.
+B. ∅⊂A.
+C. A ⊂A.
+D. A ∈{A}.
+Câu 4. Cho tập hợp A = {n ∈N | 3 ≤n ≤10}. Dạng liệt kê của tập hợp A là
+A. A = {3;4;5;6;7;8;9}.
+B. A = {4;5;6;7;8;9;10}.
+C. A = {4;5;6;7;8;9}.
+D. A = {3;4;5;6;7;8;9;10}.
+Câu 5. Cho tập hợp A = {n ∈Z | −2 < n ≤5}. Tập hợp A bằng tập hợp nào sau đây?
+A. M = {−1;0;1;2;3;4}.
+B. N = {−1;1;2;3;4;5}.
+C. P = {−1;0;1;2;3;4;5}.
+D. Q = {−2;−1;0;1;2;3;4}.
+Câu 6. Tập hợp A = x ∈R | x2 +3x−7 = 0	 có bao nhiêu phần tử?
+A. 0.
+B. 1.
+C. 2.
+D. 3.
+15
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 18 ---
+Chương 1. MỆNH ĐỀVÀ TẬP HỢP
+Câu 7. Cho tập hợp B = x ∈R
+x2 −3x−4 = 0	. Dùng phương pháp liệt kê phần tử, xác định tập hợp
+B.
+A. B = {−1}.
+B. B = {4}.
+C. B = (−1;4).
+D. B = {−1;4}.
+Câu 8. Cho tập hợp A = x ∈N
+x2 +8x+15 = 0	. Khẳng định nào sau đây đúng?
+A. A = {−3;−5}.
+B. A = ∅.
+C. A = {∅}.
+D. A = {0}.
+Câu 9. Tập hợp Y = {a} có bao nhiêu tập hợp con?
+A. 2.
+B. 4.
+C. 1.
+D. 0.
+Câu 10. Tập hợp A = {1;2;3} có bao nhiêu tập con gồm hai phần tử?
+A. 1.
+B. 2.
+C. 3.
+D. 4.
+Câu 11. Tập hợp {a;b;c} có bao nhiêu tập con?
+A. 3.
+B. 6.
+C. 7.
+D. 8.
+Câu 12. Cho tập hợp A ̸= ∅. Trong các mệnh đềsau, mệnh đềnào là mệnh đềđúng?
+A. A∪∅= A.
+B. A∪∅= ∅.
+C. A∪A = ∅.
+D. ∅∪A = ∅.
+Câu 13. Cho các tập hợp A, B được minh họa bằng biểu đồVen như hình bên.
+Phần tô màu xám trong hình là biểu diễn của tập hợp nào sau đây?
+A. A∪B.
+B. A∩B.
+C. A\B.
+D. B\A.
+A
+B
+Câu 14. Cho các tập hợp A, B được minh họa bằng biểu đồVen như hình bên.
+Phần tô màu xám trong hình là biểu diễn của tập hợp nào sau đây?
+A. A∪B.
+B. A∩B.
+C. A\B.
+D. B\A.
+A
+B
+Câu 15. Trong các tập hợp sau, tập hợp nào bằng tập ∅?
+A. A = n ∈N | n2 −1 < 0	.
+B. B = {x ∈R | 2x+1 = 0}.
+C. C = {n ∈Z | −2 < n < 5}.
+D. D = x ∈R | x2 +2x+2 = 0	.
+Câu 16. Trong các tập hợp sau, tập hợp nào khác tập ∅?
+A. A = {n ∈N | n+1 = 0}.
+B. B = (x;y) | x,y ∈R và x2 +y2 = 0	.
+C. C = n ∈Z | n2 = 2	.
+D. D = x ∈R | −x2 +x−1 = 0	.
+Câu 17. Cho tập hợp B = {(x;y) | x,y ∈N và x+y = 2}. Tập hợp B có bao nhiêu phần tử?
+A. 4.
+B. 8.
+C. 3.
+D. 9.
+Câu 18. Cho tập hợp A = x ∈Z | (x2 −4)(2x+3)(3x2 +x−4) = 0	. Dạng liệt kê của tập hợp A
+là
+A. A = {−2;2}.
+B. A =
+ß
+−2;−−3
+2 ;−−4
+3 ;1;2
+™
+.
+C. A = {x ∈N | −2 ≤x ≤2}.
+D. A = {−2;1;2}.
+Câu 19. Cho hai tập hợp X = {7,2,8,4,9,12} và Y = {1,3,7,4}. Tìm tập hợp X ∩Y.
+A. {1,2,3,4,8,9,7,12}.
+B. {2,8,9,12}.
+C. {4,7}.
+D. {1,3}.
+Câu 20. Cho hai tập hợp X = {2,4,6,9} và Y = {1,2,3,4}. Tìm tập hợp X ∪Y.
+A. {1,3} .
+B. {6,9}.
+C. {1,2,3,4,6,9}.
+D. {2,4}.
+16
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 19 ---
+2. TẬP HỢP VÀ CÁC PHÉP TOÁN TRÊN TẬP HỢP
+Câu 21. Cho hai tập hợp X = {0,1,2,3,4} và Y = {2,3,4,5,6}. Tìm tập hợp X \Y.
+A. {0}.
+B. {0,1}.
+C. {1,2}.
+D. {1,5}.
+Câu 22. Cho hai tập hợp X = {1,5} và Y = {1,3,5}. Chọn khẳng định đúng trong các khẳng định
+sau.
+A. CYX = {3}.
+B. CYX = {1}.
+C. CYX = {1,3,5}.
+D. CYX = {1,3,5}.
+Câu 23. Cho hai tập hợp A = {1,2,3,4} và B = {2,4,6,8}. Tìm tập hợp A\B.
+A. {1,2,3}.
+B. {1,3}.
+C. {6,8}.
+D. {2,4,6}.
+Câu 24. Cho hai tập hợp A = {1,2,3,4,5,6,7} và B = {2,4,6}. Tìm tập hợp CAB.
+A. {2,4,6}.
+B. {1,2,3,4,5,6,7}.
+C. {1,2,3,4,5,6}.
+D. {1,3,5,7}.
+Câu 25. Cho hai tập hợp A = x ∈R
+ x2 −1 x2 −3x−4 = 0	 và B = x ∈Z
+|x| ≤2	. Tìm tập
+hợp A∪B.
+A. {−2,−1,0,1,2,4}.
+B. {−2,−1,0,1,2,−4}.
+C. {−1,1}.
+D. {−2,0,2}.
+Câu 26. Cho tập hợp B = x ∈N∗x ≤4	 và tập hợp A gồm những sốtựnhiên lẻkhông lớn hơn 8.
+Tìm tập hợp A∩B.
+A. {1,3}.
+B. {1,2,3,4}.
+C. {0,1,3,5}.
+D. {0,1,2,3,4,5,7}.
+Câu 27. Có bao nhiêu tập hợp X thoảmãn điều kiện {a;b} ⊂X ⊂{a;b;c;d;e}?
+A. 2.
+B. 4.
+C. 8.
+D. 10.
+Câu 28. Cho hai tập A = {1,2,3} và B = {0,1,3,5}. Tất cảcác tập X thỏa mãn X ⊂(A∩B) là
+A. ∅;{1};{1,3};{3};{1,3,5}.
+B. {1};{3};{1,3}.
+C. ∅;{1};{3}.
+D. ∅;{1};{3};{1,3}.
+Câu 29. Ta gọi H là tập hợp các hình bình hành, V là tập hợp tất cảcác hình vuông, N là tập hợp tất
+cảcác hình chữnhật và T là tập hợp tất cảcác hình tứgiác. Hãy tìm mệnh đềsai trong các mệnh đề
+sau:
+A. H ⊂T.
+B. V ⊂N.
+C. V ⊂H.
+D. N ⊂V.
+Câu 30. Cho A là tập các sốnguyên dương và chia hết cho 6, B là tập hợp các sốnguyên dương chia hết
+cho 2, C là tập hợp các sốnguyên dương chia hết cho 3. Trong các mệnh đềsau, mệnh đềnào đúng?
+A. A∩B = ∅.
+B. A∪B = C.
+C. A∩C = B.
+D. B∩C = A.
+Câu 31. Trong kì thi học sinh giỏi cấp trường, lớp 10A có 45 học sinh trong đó có 17 bạn được công
+nhận học sinh giỏi Văn, 25 bạn học sinh giỏi Toán và 13 bạn học sinh không đạt học sinh giỏi. Tìm số
+học sinh giỏi cảVăn và Toán của lớp 10A.
+A. 42 .
+B. 32.
+C. 17.
+D. 10.
+Câu 32. Lớp 10A có 10 học sinh giỏi Toán, 15 học sinh giỏi Văn, 5 học sinh giỏi cả2 môn Toán Văn
+và 2 học sinh không giỏi môn nào. Hỏi lớp 10A có bao nhiêu học sinh?
+A. 20 .
+B. 22.
+C. 25.
+D. 28.
+Câu 33. Lớp 10B1 có 7 học sinh giỏi Toán, 5 học sinh giỏi Lý, 6 học sinh giỏi Hóa, 3 học sinh giỏi
+cảToán và Lý, 4 học sinh giỏi cảToán và Hóa, 2 học sinh giỏi cảLý và Hóa, 1 học sinh giỏi cả3 môn
+Toán, Lý, Hóa. Sốhọc sinh giỏi ít nhất một môn (Toán, Lý, Hóa) của lớp 10B1 là
+A. 9.
+B. 10.
+C. 18.
+D. 28.
+Câu 34. Cho hai đa thức f(x) và g(x). Xét các tập hợp A = {x ∈R|f(x) = 0}, B = {x ∈R|g(x) = 0},
+C =
+ß
+x ∈R| f(x)
+g(x) = 0
+™
+. Trong các mệnh đềsau, mệnh đềnào đúng?
+A. C = A∪B.
+B. C = A∩B.
+C. C = A\B.
+D. C = B\A.
+17
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 20 ---
+Chương 1. MỆNH ĐỀVÀ TẬP HỢP
+Câu 35. Cho hai đa thức f(x)và g(x). Xét các tập hợp A = {x ∈R|f(x) = 0}, B = {x ∈R|g(x) = 0},
+C = x ∈R|f 2(x)+g2(x) = 0	. Trong các mệnh đềsau, mệnh đềnào đúng?
+A. C = A∪B.
+B. C = A∩B.
+C. C = A\B.
+D. C = B\A.
+ĐỀSỐ2
+Câu 1. Cho tập hợp A = x ∈R
+−1 < x ≤4	. Khẳng định nào sau đây đúng?
+A. A = (−1;4].
+B. A = {−1;4}.
+C. A = (−1;4).
+D. A = [−1;4].
+Câu 2. Cho tập hợp X = x ∈R
+−2 ≤x ≤5	. Khẳng định nào sau đây đúng?
+A. X = (−2;5).
+B. X = {−2;5}.
+C. X = [−2;5).
+D. X = [−2;5].
+Câu 3. Tập hợp X = [−1;4] có bao nhiêu phần tử?
+A. 2.
+B. 1.
+C. 5.
+D. Vô số.
+Câu 4. Cho tập hợp A = x ∈R
+|x−1| ≤1	. Tập A bằng tập nào trong các tập hợp sau?
+A. (0;1).
+B. [0;1].
+C. [0;2].
+D. [−1;2].
+Câu 5. Cho a,b ∈R sao cho a < b. Nửa khoảng (a;b] được biểu diễn bởi trục sốnào sau đây?
+A.
+ a
+
+b
+.
+B.
+ a
+
+b
+.
+C.
+
+a
+
+b
+.
+D.
+
+a
+
+b
+.
+Câu 6. Tập hợp A = x ∈R
+2 > x > 0	 bằng tập hợp nào dưới đây?
+A. (0;2].
+B. (0;2).
+C. [0;2].
+D. {0;2}.
+Câu 7. Tập hợp A = (1;5) có bao nhiêu phần tử?
+A. 2.
+B. vô số.
+C. 3.
+D. 5.
+Câu 8. Cho tập hợp A = [−2;1). Tập hợp A là tập con của tập hợp nào sau đây?
+A. B = [−1;2).
+B. C = {x ∈R | −2 ≤x < 1}.
+C. D = {x ∈Z | −2 ≤x < 1}.
+D. E = {x ∈N | −2 ≤x < 1}.
+Câu 9. Cho tập hợp X = {x ∈R | x > −1}. Tập hợp nào trong các tập hợp sau đây không chứa tập
+hợp X?
+A. A = [−3;7).
+B. R.
+C. B = [−3;+∞).
+D. C = [−1;+∞).
+Câu 10. Cho tập hợp X = [−3;5]. Biểu diễn tập hợp X trên trục sốta được hình biểu diễn nào trong
+các hình sau (phần không bịgạch chéo)?
+A.
+
+−3
+
+5
+.
+B.
+ −3
+
+5
+.
+C.
+
+−3
+
+5
+.
+D.
+ −3
+
+5
+.
+Câu 11. Cho tập hợp A được biểu diễn trên trục sốnhư sau (phần không bịgạch chéo).
+
+3
+
+5
+18
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 21 ---
+2. TẬP HỢP VÀ CÁC PHÉP TOÁN TRÊN TẬP HỢP
+Khẳng định nào sau đây đúng?
+A. A = (3;5).
+B. A = [3;5).
+C. A = [3;5].
+D. A = (3;5].
+Câu 12. Cho các tập hợp A = (−1;3), B = (−∞;4) và C = [−1;3]. Khẳng định nào sau đây đúng?
+A. B ⊂A.
+B. B ⊂C.
+C. C ⊂B.
+D. C ⊂A.
+Câu 13. Cho các sốthực a,b,c,d thoảmãn a < b < c < d. Hãy chọn mệnh đềsai trong các mệnh đề
+sau:
+A. (a;c) ⊂(c;d).
+B. (b;c) ⊂(b;d).
+C. (b;c) ⊂(a;d).
+D. (a;c) ⊂(a;d).
+Câu 14. Cho các sốthực a, b, c, d và a < b < c < d. Trong các mệnh đềsau, mệnh đềnào đúng?
+A. (a;c)∩(b;d) = (b;c).
+B. (a;c)∩[b;d) = [b;c].
+C. (a;c)∩[b;d) = [b;c].
+D. (a;c)∪(b;d) = (b;c).
+Câu 15. Trên trục số, phần không bịgạch biểu diễn tập hợp nào trong các tập hợp sau?
+]
+−2
+(
+2
+A. (−∞;−2]∪[2;+∞).
+B. (−∞;−2]∪(2;+∞).
+C. (−∞;−2)∪[2;+∞).
+D. (−∞;−2)∪(2;+∞).
+Câu 16. Cho hai tập hợp X = [−2;3] và Y = (1;5]. Tìm tập hợp X\Y.
+A. [−2;1].
+B. (3;5].
+C. [−2;1).
+D. (−2;1].
+Câu 17. Cho hai tập hợp A = x ∈R
+x+2 ≥0	 và B = x ∈R
+5−x ≥0	. Tìm tập hợp A∩B.
+A. [−2;5].
+B. [−2;6].
+C. [−5;2].
+D. (−2;+∞).
+Câu 18. Cho hai tâp hợp A = [−5;3);B = [0;2). Tìm tập hợp R\(B∩A).
+A. (−∞;0)∪[2;+∞).
+B. [0;2).
+C. [2;+∞).
+D. (−∞;0).
+Câu 19. Cho tập hợp A = (2;+∞). Tìm tập hợp CRA.
+A. [2;+∞).
+B. (2;+∞).
+C. (−∞;2].
+D. (−∞;−2].
+Câu 20. Cho các tập hợp sau A = (−1;5],B = (2;7). Tìm tập hợp A\B.
+A. (−1;2].
+B. (2;5].
+C. (−1;7).
+D. (−1;2).
+Câu 21. Cho hai tập hợp A = x ∈R
+x+2 ≥0	 và B = x ∈R
+5−x ≥0	. Tìm tập hợp A\B.
+A. [−2;5].
+B. [−2;6].
+C. (5;+∞).
+D. (2;+∞).
+Câu 22. Biểu diễn trên trục sốcủa tập hợp [−3;1)∩(−2;4] là hình nào?
+A.
+(
+−2
+)
+1
+B.
+[
+−3
+]
+4
+C.
+[
+−3
+)
+1
+D.
+(
+−2
+]
+4
+Câu 23. Biểu diễn trên trục sốcủa tập hợp (0;2)∪[−1;1) là hình nào?
+A.
+(
+−1
+]
+2
+B.
+[
+−1
+]
+2
+C.
+(
+−1
+)
+2
+D.
+[
+−1
+)
+2
+Câu 24. Xác định tất cảcác giá trịcủa m sao cho (m−7;m) ⊂(−4;3)?
+A. m > 3.
+B. m < 3.
+C. m = 3.
+D. Không tồn tại m.
+19
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617
+
+--- Page 22 ---
+Chương 1. MỆNH ĐỀVÀ TẬP HỢP
+Câu 25. Tìm tất cảcác giá trịnguyên của tham sốm đểtập hợp (1;m) chứa đúng 1 sốnguyên
+dương.
+A. m = 2.
+B. m > 2.
+C. m = 3.
+D. m = 4.
+Câu 26. Tìm tất cảcác giá trịnguyên của tham sốm đểtập hợp (1;m) chứa đúng 2 sốnguyên
+dương.
+A. m = 2.
+B. m > 2.
+C. m = 3.
+D. m = 4.
+Câu 27. Cho hai tập hợp A = [1;3] và B = [m;m+1]. Tìm tất cảcác giá trịcủa tham sốm đểB ⊂A.
+A. m = 1.
+B. m = 2.
+C. 1 < m < 2.
+D. 1 ⩽m ⩽2.
+Câu 28. Cho hai tập hợp A = [m;m+2];B = [−1;2]. Tìm tất cảcác giá trịthực của tham sốm để
+A ⊂B.
+A.
+ñ
+m ≤−1
+m ≥0
+.
+B. −1 ≤m ≤0.
+C. 1 ≤m ≤2.
+D.
+ñ
+m < −1
+m > 2
+.
+Câu 29. Cho hai tập hợp A = (−∞;m−1],B = [1;+∞). Tìm tất cảcác giá trịthực của tham sốm để
+A∩B = ∅.
+A. m > −1.
+B. m ≥−1.
+C. m ≤2.
+D. m < 2.
+Câu 30. Cho các tập B = {x ∈R| −5 ≤x ≤5};C = {x ∈R|x ≤a}, và D = {x ∈R|x ≥b}. Xác định
+a,b biết C ∩B và D∩B là các đoạn có độdài lần lượt bằng 5 và 9.
+A. a = 0;b = −4.
+B. a = 5;b = 9.
+C. a = −4;b = 0.
+D. a = −5;b = 5.
+—HẾT—
+20
+Gv PHÙNG V HOÀNG EM - ĐT: 0972. 657. 617

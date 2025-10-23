@@ -65,7 +65,15 @@
     },
     "grade11": {
         "exams": [],
-        "tools": []
+        "tools": [
+          {
+            "id": "hoc-lieu-11-tu-phan-vi",
+            "title": "📘 Học liệu số 11: Tứ phân vị (mẫu ghép nhóm)",
+            "type": "tool",
+            "description": "Học liệu tính các tứ phân vị của mẫu số liệu ghép nhóm.",
+            "url": "data/grade11/tu-phan-vi.html"
+          }
+        ]
     },
     "grade12": {
         "exams": [],

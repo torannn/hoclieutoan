@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Liệu Tương Tác: Tính Tứ Phân Vị (Ghép Nhóm)</title>
+    
+    <!-- Tải MathJax để hiển thị công thức toán -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+
+    <!-- Các style CSS -->
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --danger-color: #dc3545;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --background-color: #f4f7f9;
+            --text-color: #333;
+            --slide-bg-color: #ffffff;
+            --slide-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --highlight-pastel-color: rgba(255, 204, 204, 0.9);
+            /* Pastel Red */
+        }
+
+        body {
+            font-family: 'Lora', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 1.7;
+            margin: 0;
+            padding: 2rem;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .main-container {
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        .content-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .left-panel {
+            flex: 1 1 40%;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .right-panel {
+            flex: 1 1 60%;
+        }
+
+        .slide {
+            display: none;
+            background-color: var(--slide-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--slide-shadow);
+            padding: 2rem 2.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .problem-statement {
+            background-color: var(--slide-bg-color);
+            box-shadow: var(--slide-shadow);
+            border-left: 5px solid #ccc;
+            margin: 0 0 1.5em 0;
+            padding: 1em 1.5em;
+            border-radius: var(--border-radius);
+            line-height: 2;
+        }
+
+        /* Lớp CSS để tô sáng các thành phần trong đề bài */
+        .highlight-pastel {
+            background-color: var(--highlight-pastel-color);
+            padding: 2px 5px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Lớp CSS cho các thành phần đã được xử lý (gạch bỏ) */
+        .processed {
+            /* text-decoration: line-through; */ /* Bỏ gạch bỏ theo yêu cầu */
+            color: #adb5bd;
+            background-color: transparent !important;
+        }
+        
+        /* CSS cho bảng dữ liệu */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9em;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .data-table th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+        }
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* CSS cho form bài tập */
+        .quartile-form {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        .quartile-form label {
+            font-weight: 600;
+            text-align: right;
+            font-size: 0.9em;
+        }
+        .quartile-form input[type="text"],
+        .quartile-form input[type="number"] {
+            width: 100px;
+            padding: 8px;
+            font-size: 1em;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Lora', sans-serif;
+        }
+        /* THÊM MỚI: CSS cho dropdown (ô lựa chọn) */
+        .quartile-form select {
+            padding: 8px;
+            font-size: 1em;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Lora', sans-serif;
+            background-color: white;
+            width: 180px; /* Tăng chiều rộng để vừa công thức */
+        }
+        .quartile-form input.correct,
+        .quartile-form select.correct {
+            border-color: var(--success-color);
+            background-color: #e9f7ef;
+        }
+        .quartile-form input.incorrect,
+        .quartile-form select.incorrect {
+            border-color: var(--danger-color);
+            background-color: #fbe9e9;
+        }
+        /* XÓA BỎ: CSS cho giao diện điền công thức (Không còn cần thiết) */
+        /*
+        .formula-fill-in {
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .formula-fill-in input {
+            width: 60px !important; 
+            text-align: center;
+            font-size: 1em;
+            padding: 5px;
+            margin: 0 5px;
+            display: inline-block;
+        }
+        .formula-fill-in .frac {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 5px;
+            padding: 5px;
+            background-color: #f8f9fa;
+            border: 1px dashed #ccc;
+            border-radius: 5px;
+        }
+        .formula-fill-in .frac input {
+            display: block;
+            margin: 3px auto;
+        }
+        .formula-fill-in .frac .bar {
+            border-top: 2px solid #333;
+            width: 70px; 
+        }
+        */
+        
+        .formula-display {
+            background-color: #f8f9fa;
+            border: 1px dashed #ccc;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        strong,
+        b {
+            color: var(--danger-color);
+            font-weight: 700;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: var(--slide-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--slide-shadow);
+        }
+
+        .nav-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .nav-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .nav-button:disabled {
+            background-color: #a0c9ff;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            font-size: 16px;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .feedback-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .feedback-message.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .feedback-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .hint-button {
+            background-color: var(--warning-color);
+            color: #333;
+            margin-right: 1rem;
+        }
+
+        .hint-button:hover {
+            background-color: #e0a800;
+        }
+
+        .hint-content {
+            background-color: #fffbe6;
+            border: 1px dashed var(--warning-color);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 5px;
+            font-style: italic;
+        }
+
+        .exercise-buttons {
+            margin-top: 1.5rem;
+        }
+        
+        /* CSS cho các lớp đã bị vô hiệu hóa (cho bài tập) */
+        .input-group-disabled {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .left-panel {
+                position: static;
+                width: 100%;
+            }
+            .quartile-form {
+                grid-template-columns: 1fr;
+            }
+            .quartile-form label {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <h1 style="text-align:center; margin-bottom: 2rem;">Học Liệu: Tính Tứ Phân Vị (Ghép Nhóm)</h1>
+
+        <div class="content-wrapper">
+            <!-- BẢNG ĐIỀU KHIỂN BÊN TRÁI (ĐỀ BÀI) -->
+            <div class="left-panel">
+                
+                <!-- Đề bài 1 (Ví dụ Q2) -->
+                <div id="problem1-statement-display" class="problem-statement" style="display: none;">
+                    <strong>Bài toán 1 (Ví dụ):</strong> Tính <strong>Trung vị ($Q_2$)</strong> của mẫu số liệu sau:
+                    <p><i>Thời gian hoàn thành bài thi (phút) của 56 học sinh.</i></p>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Thời gian (phút)</th>
+                                <td id="p1_g1">[9,5; 12,5)</td>
+                                <td id="p1_g2">[12,5; 15,5)</td>
+                                <td id="p1_g3">[15,5; 18,5)</td>
+                                <td id="p1_g4">[18,5; 21,5)</td>
+                                <td id="p1_g5">[21,5; 24,5)</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Số học sinh (Tần số)</th>
+                                <td id="p1_m1">3</td>
+                                <td id="p1_m2">12</td>
+                                <td id="p1_m3">15</td>
+                                <td id="p1_m4">24</td>
+                                <td id="p1_m5">2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Đề bài 2 (Luyện tập Q2) -->
+                <div id="problem2-statement-display" class="problem-statement" style="display: none;">
+                    <strong>Bài toán 2 (Luyện tập):</strong> Tính <strong>Trung vị ($Q_2$)</strong> của mẫu số liệu sau:
+                    <p><i>Cân nặng (kg) của 40 vận động viên.</i></p>
+                     <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Cân nặng (kg)</th>
+                                <td>[50; 55)</td> 
+                                <td>[55; 60)</td> 
+                                <td>[60; 65)</td> 
+                                <td>[65; 70)</td>
+                            </tr>
+                        </thead>
+                         <tbody>
+                             <tr>
+                                <th>Số VĐV (Tần số)</th>
+                                <td>8</td> 
+                                <td>15</td> 
+                                <td>12</td> 
+                                <td>5</td>
+                            </tr>
+                         </tbody>
+                    </table>
+                </div>
+
+                <!-- Đề bài 3 & 4 (Luyện tập Q1, Q3) -->
+                <div id="problem3-statement-display" class="problem-statement" style="display: none;">
+                    <strong>Bài toán 3 & 4 (Luyện tập):</strong> Tính <strong>$Q_1$</strong> và <strong>$Q_3$</strong> của mẫu số liệu sau:
+                    <p><i>Điểm thi của 100 học sinh.</i></p>
+                     <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Điểm thi</th>
+                                <td>[4; 5)</td> 
+                                <td>[5; 6)</td> 
+                                <td>[6; 7)</td> 
+                                <td>[7; 8)</td>
+                                <td>[8; 9)</td>
+                                <td>[9; 10]</td>
+                            </tr>
+                        </thead>
+                         <tbody>
+                             <tr>
+                                <th>Số học sinh (Tần số)</th>
+                                <td>5</td> 
+                                <td>10</td> 
+                                <td>20</td> 
+                                <td>40</td>
+                                <td>20</td>
+                                <td>5</td>
+                            </tr>
+                         </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- BẢNG ĐIỀU KHIỂN BÊN PHẢI (SLIDES BÀI HỌC) -->
+            <div class="right-panel">
+                <div id="slides-container"></div>
+                <div class="navigation">
+                    <button id="prevBtn" class="nav-button">Trang trước</button>
+                    <span id="slideCounter" class="slide-counter"></span>
+                    <button id="nextBtn" class="nav-button">Trang sau</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // --- CẤU HÌNH SLIDES ---
+            // Đây là "bộ não" của học liệu, định nghĩa nội dung cho từng slide.
+            const slidesConfig = [
+                // === Slide Giới thiệu ===
+                {
+                    problem: 1, // Hiển thị đề bài 1 để làm ví dụ
+                    title: 'Công thức Tứ phân vị (Ghép nhóm)',
+                    content: `<h3>Mục tiêu: Tính $Q_1, Q_2, Q_3$ cho mẫu số liệu ghép nhóm.</h3>
+                    <p>Chúng ta sử dụng công thức chung để tìm Tứ phân vị thứ $k$ ($Q_k$):</p>
+                    <div class="formula-display">
+                    $$
+                    Q_k = a_p + \\left( \\frac{\\frac{kn}{4} - (m_1 + m_2 + \\dots + m_{p-1})}{m_p} \\right) \\times (a_{p+1} - a_p)
+                    $$
+                    </div>
+                    <p>Trong đó:</p>
+                    <ul>
+                        <li>$n$: Cỡ mẫu (tổng tần số).</li>
+                        <li>$k$: Bậc của tứ phân vị ($k=1$ cho $Q_1$, $k=2$ cho $Q_2$, $k=3$ cho $Q_3$).</li>
+                        <li>$\\frac{kn}{4}$: Vị trí của tứ phân vị.</li>
+                        <li>Nhóm $[a_p; a_{p+1})$: Nhóm đầu tiên có tần số tích lũy $\\ge \\frac{kn}{4}$.</li>
+                        <li>$a_p$: Cận dưới của nhóm chứa $Q_k$.</li>
+                        <li>$a_{p+1}$: Cận trên của nhóm chứa $Q_k$.</li>
+                        <li>$m_p$: Tần số của nhóm chứa $Q_k$.</li>
+                        <li>$m_1 + m_2 + \\dots + m_{p-1}$: Tổng tần số của các nhóm <strong>trước</strong> nhóm chứa $Q_k$.</li>
+                    </ul>
+                    <p>Hãy bắt đầu với một ví dụ tính Trung vị ($Q_2$).</p>`,
+                    highlights: {}
+                },
+
+                // === BÀI TOÁN 1: VÍ DỤ TÍNH TRUNG VỊ (Q2) ===
+                {
+                    problem: 1,
+                    title: 'Ví dụ (Q2): Bước 1 - Tính cỡ mẫu $n$',
+                    content: `<h3>Bước 1: Tính cỡ mẫu (tổng số học sinh).</h3>
+                    <p>Ta cộng tất cả tần số của các nhóm:</p>
+                    $$ n = 3 + 12 + 15 + 24 + 2 = 56 $$
+                    <p>Vậy cỡ mẫu là $n = 56$.</p>`,
+                    // Tô sáng các tần số trong đề bài
+                    highlights: { current: ['p1_m1', 'p1_m2', 'p1_m3', 'p1_m4', 'p1_m5'] }
+                },
+                {
+                    problem: 1,
+                    title: 'Ví dụ (Q2): Bước 2 - Xác định vị trí',
+                    content: `<h3>Bước 2: Xác định vị trí Trung vị ($Q_2$).</h3>
+                    <p>Vì ta tính $Q_2$ (Trung vị), ta dùng $k=2$.</p>
+                    <p>Vị trí của $Q_2$ là: $ \\frac{2n}{4} = \\frac{n}{2} = \\frac{56}{2} = 28 $. </p>
+                    <p>Chúng ta cần tìm xem giá trị thứ 28 nằm ở nhóm nào.</p>`,
+                    // Gạch bỏ các tần số đã dùng
+                    highlights: { processed: ['p1_m1', 'p1_m2', 'p1_m3', 'p1_m4', 'p1_m5'] }
+                },
+                {
+                    problem: 1,
+                    title: 'Ví dụ (Q2): Bước 3 - Xác định nhóm chứa $Q_2$',
+                    content: `<h3>Bước 3: Xác định nhóm chứa giá trị thứ 28.</h3>
+                    <p>Ta tính tần số tích lũy (cộng dồn) của từng nhóm:</p>
+                    <ul>
+                        <li><strong>Nhóm 1 [9,5; 12,5):</strong> Tần số = 3.
+                            <br>Tần số tích lũy = <strong>3</strong>.
+                            <br><i>(Ta có $3 < 28$, nên ta tìm tiếp)</i></li>
+                        <li style='margin-top: 1rem;'><strong>Nhóm 2 [12,5; 15,5):</strong> Tần số = 12.
+                            <br>Tần số tích lũy = (Tần số tích lũy nhóm 1) + (Tần số nhóm 2) = $3 + 12 = $ <strong>15</strong>.
+                            <br><i>(Ta có $15 < 28$, nên ta tìm tiếp)</i></li>
+                        <li style='margin-top: 1rem;'><strong>Nhóm 3 [15,5; 18,5):</strong> Tần số = 15.
+                            <br>Tần số tích lũy = (Tần số tích lũy nhóm 2) + (Tần số nhóm 3) = $15 + 15 = $ <strong>30</strong>.
+                            <br><i>(Ta có $30 \\ge 28$. Đây là nhóm đầu tiên có tần số tích lũy $\\ge 28$)</i></li>
+                    </ul>
+                    <p>Vì $15 < 28 \\le 30$, giá trị thứ 28 nằm trong <strong>Nhóm 3: [15,5; 18,5)</strong>.</p>`,
+                    // Tô sáng nhóm 3 và các tần số dùng để tính tích lũy
+                    highlights: { current: ['p1_g3', 'p1_m1', 'p1_m2', 'p1_m3'], processed: ['p1_m4', 'p1_m5'] }
+                },
+                {
+                    problem: 1,
+                    title: 'Ví dụ (Q2): Bước 4 - Lấy các giá trị',
+                    content: `<h3>Bước 4: Xác định các thành phần của công thức.</h3>
+                    <p>Từ Nhóm 3: [15,5; 18,5), ta có:</p>
+                    <ul>
+                        <li>$a_p$ (Cận dưới): $15,5$</li>
+                        <li>$a_{p+1}$ (Cận trên): $18,5$</li>
+                        <li>$m_p$ (Tần số nhóm 3): $15$</li>
+                        <li>$m_1 + m_2 + \\dots + m_{p-1}$ (Tổng tần số <strong>trước</strong> nhóm 3, tức $m_1 + m_2$): $3 + 12 = 15$</li>
+                    </ul>`,
+                    // Tô sáng các giá trị đang được sử dụng
+                    highlights: { current: ['p1_g3', 'p1_m3', 'p1_m1', 'p1_m2'] }
+                },
+                {
+                    problem: 1,
+                    title: 'Ví dụ (Q2): Bước 5 - Ráp công thức',
+                    content: `<h3>Bước 5: Thay số và tính toán.</h3>
+                    <p>Ta có vị trí $\\frac{n}{2} = 28$ và $m_1 + m_2 = 15$.</p>
+                    $$ Q_2 = a_p + \\left( \\frac{\\frac{n}{2} - (m_1 + m_2)}{m_p} \\right) \\times (a_{p+1} - a_p) $$
+                    $$ Q_2 = 15,5 + \\left( \\frac{28 - 15}{15} \\right) \\times (18,5 - 15,5) $$
+                    $$ Q_2 = 15,5 + \\left( \\frac{13}{15} \\right) \\times 3 $$
+                    $$ Q_2 = 15,5 + 2,6 = 18,1 $$
+                    <p>Vậy, trung vị của mẫu số liệu là $M_e = Q_2 = 18,1$.</p>`,
+                    highlights: { processed: ['p1_g1', 'p1_g2', 'p1_g3', 'p1_g4', 'p1_g5', 'p1_m1', 'p1_m2', 'p1_m3', 'p1_m4', 'p1_m5'] }
+                },
+
+                // === BÀI TOÁN 2: LUYỆN TẬP TÍNH TRUNG VỊ (Q2) - CHIA THÀNH 5 BƯỚC ===
+                {
+                    problem: 2,
+                    title: 'Luyện tập (Q2): Bước 1 - Cỡ mẫu',
+                    content: `<h3>Lượt của bạn: Hãy tìm Trung vị ($Q_2$) cho Bài toán 2.</h3>
+                    <h4>Bước 1: Tính cỡ mẫu (tổng số VĐV).</h4>
+                    <p>$$ n = 8 + 15 + 12 + 5 = ? $$</p>
+                    <div class="quartile-form">
+                        <label for="p2_n">Cỡ mẫu ($n$):</label>
+                        <input type="number" id="p2_n" placeholder="Tổng tần số">
+                    </div>`,
+                    isExercise: true,
+                    answers: { p2_n: "40" }
+                },
+                {
+                    problem: 2,
+                    title: 'Luyện tập (Q2): Bước 2 - Vị trí',
+                    content: `<h4>Bước 2: Xác định vị trí Trung vị ($Q_2$).</h4>
+                    <p>Cỡ mẫu là $n = 40$. Vì ta tính $Q_2$ (Trung vị), công thức xác định vị trí là:</p>
+                    <div class="quartile-form">
+                        <label for="p2_pos_formula">Công thức vị trí $Q_2$:</label>
+                        <select id="p2_pos_formula">
+                            <option value="">-- Chọn công thức --</option>
+                            <option value="n/4">n / 4</option>
+                            <option value="n/2">n / 2 (hoặc 2n / 4)</option>
+                            <option value="3n/4">3n / 4</option>
+                        </select>
+                    </div>
+                    <p><i>(Vị trí $Q_2$ sẽ là $\\frac{40}{2} = 20$)</i></p>`,
+                    isExercise: true,
+                    answers: { p2_pos_formula: "n/2" }
+                },
+                {
+                    problem: 2,
+                    title: 'Luyện tập (Q2): Bước 3 - Nhóm',
+                    content: `<h4>Bước 3: Xác định nhóm chứa $Q_2$.</h4>
+                    <p>Vị trí $Q_2$ là <strong>20</strong>. Ta tìm tần số tích lũy:</p>
+                    <ul>
+                        <li>Nhóm 1 [50; 55): Tích lũy = 8. <i style="color: #6c757d;">(8 < 20)</i></li>
+                        <li>Nhóm 2 [55; 60): Tích lũy = $8 + 15 = 23$. <i style="color: #007bff;">(23 $\\ge$ 20)</i></li>
+                    </ul>
+                    <p>Vậy, $Q_2$ nằm trong nhóm nào?</p>
+                    <div class="quartile-form">
+                        <label for="p2_group">Nhóm chứa $Q_2$ (Nhóm thứ...):</label>
+                        <input type="number" id="p2_group" placeholder="1, 2, 3, ...">
+                    </div>`,
+                    isExercise: true,
+                    answers: { p2_group: "2" }
+                },
+                {
+                    problem: 2,
+                    title: 'Luyện tập (Q2): Bước 4 - Lấy giá trị',
+                    content: `<h4>Bước 4: Xác định các thành phần.</h4>
+                    <p>Từ <strong>Nhóm 2 [55; 60)</strong> bạn vừa tìm, hãy xác định:</p>
+                    <div class="quartile-form">
+                        <label for="p2_ap">Cận dưới ($a_p$):</label>
+                        <input type="number" id="p2_ap" placeholder="Cận dưới">
+                        
+                        <label for="p2_ap1">Cận trên ($a_{p+1}$):</label>
+                        <input type="number" id="p2_ap1" placeholder="Cận trên">
+                        
+                        <label for="p2_mp">Tần số nhóm ($m_p$):</label>
+                        <input type="number" id="p2_mp" placeholder="Tần số nhóm 2">
+                        
+                        <label for="p2_mprev">Tổng tần số trước ($m_1$):</label>
+                        <input type="number" id="p2_mprev" placeholder="Tần số nhóm 1">
+                    </div>`,
+                    isExercise: true,
+                    answers: { 
+                        p2_ap: "55",
+                        p2_ap1: "60",
+                        p2_mp: "15",
+                        p2_mprev: "8"
+                    }
+                },
+                {
+                    problem: 2,
+                    title: 'Luyện tập (Q2): Bước 5 - Ráp công thức',
+                    content: `<h4>Bước 5: Thay số và tính toán.</h4>
+                    <p>Với các giá trị $a_p=55$, $a_{p+1}=60$, $m_p=15$, $\\frac{n}{2}=20$, và $m_1=8$, hãy ráp vào công thức và tính kết quả:</p>
+                    <div class="formula-display">
+                    $$ Q_2 = a_p + \\left( \\frac{\\frac{n}{2} - m_1}{m_p} \\right) \\times (a_{p+1} - a_p) $$
+                    </div>
+                    <div class="quartile-form">
+                        <label for="p2_final">Kết quả $Q_2$:</label>
+                        <input type="number" id="p2_final" placeholder="Kết quả cuối cùng">
+                    </div>`,
+                    isExercise: true,
+                    // n/2=20, m_1=8, m_p=15, a_p=55, a_p1=60
+                    // Q2 = 55 + ((20-8)/15) * (60-55) = 55 + (12/15)*5 = 55 + 4 = 59
+                    answers: { 
+                        p2_final: "59"
+                    }
+                },
+
+                // === BÀI TOÁN 3: LUYỆN TẬP TÍNH TỨ PHÂN VỊ THỨ NHẤT (Q1) ===
+                {
+                    problem: 3, // Sử dụng đề bài 3
+                    title: 'Luyện tập: Tính Tứ phân vị $Q_1$',
+                    content: `<h3>Lượt của bạn: Hãy tìm Tứ phân vị thứ nhất ($Q_1$) cho Bài toán 3.</h3>
+                    <p>Hoàn thành các ô trống dưới đây.</p>
+                    <div class="quartile-form">
+                        <label for="p3_n">1. Cỡ mẫu ($n$):</label>
+                        <input type="number" id="p3_n" placeholder="Tổng tần số">
+                        
+                        <label for="p3_pos_formula">2. Vị trí $Q_1$:</label>
+                        <select id="p3_pos_formula">
+                            <option value="">-- Chọn công thức --</option>
+                            <option value="n/4">n / 4</option>
+                            <option value="n/2">n / 2</option>
+                            <option value="3n/4">3n / 4</option>
+                        </select>
+                        
+                        <label for="p3_group">3. Nhóm chứa $Q_1$ (Nhóm thứ...):</label>
+                        <input type="number" id="p3_group" placeholder="1, 2, 3, ...">
+
+                        <label for="p3_ap">4. Cận dưới ($a_p$):</label>
+                        <input type="number" id="p3_ap" placeholder="Cận dưới của nhóm">
+                        
+                        <label for="p3_ap1">5. Cận trên ($a_{p+1}$):</label>
+                        <input type="number" id="p3_ap1" placeholder="Cận trên của nhóm">
+                        
+                        <label for="p3_mp">6. Tần số nhóm ($m_p$):</label>
+                        <input type="number" id="p3_mp" placeholder="Tần số của nhóm đó">
+                        
+                        <label for="p3_mprev">7. Tổng tần số trước ($\sum m_{prev}$):</label>
+                        <input type="number" id="p3_mprev" placeholder="Tổng tần số các nhóm TRƯỚC">
+                        
+                        <label for="p3_final">8. Kết quả $Q_1$ (làm tròn 1 chữ số):</label>
+                        <input type="number" id="p3_final" placeholder="Kết quả cuối cùng">
+                    </div>`,
+                    isExercise: true,
+                    // Đáp án cho Bài toán 3 (Q1)
+                    // n = 5 + 10 + 20 + 40 + 20 + 5 = 100
+                    // pos = 100 / 4 = 25
+                    // group: G1(5), G2(5+10=15), G3(15+20=35). 15 < 25 <= 35 -> Nhóm 3.
+                    // ap = 6, ap1 = 7, mp = 20, mprev = 5 + 10 = 15
+                    // Q1 = 6 + ((25-15)/20) * (7-6) = 6 + (10/20)*1 = 6 + 0.5 = 6.5
+                    answers: { 
+                        p3_n: "100", 
+                        p3_pos_formula: "n/4",
+                        p3_group: "3",
+                        p3_ap: "6",
+                        p3_ap1: "7",
+                        p3_mp: "20",
+                        p3_mprev: "15",
+                        p3_final: "6.5"
+                    }
+                },
+
+                // === BÀI TOÁN 4: LUYỆN TẬP TÍNH TỨ PHÂN VỊ THỨ BA (Q3) ===
+                {
+                    problem: 3, // Vẫn sử dụng đề bài 3
+                    title: 'Luyện tập: Tính Tứ phân vị $Q_3$',
+                    content: `<h3>Lượt của bạn: Hãy tìm Tứ phân vị thứ ba ($Q_3$) cho Bài toán 3.</h3>
+                    <p>Hoàn thành các ô trống dưới đây.</p>
+                    <div class="quartile-form">
+                        <label for="p4_n">1. Cỡ mẫu ($n$):</label>
+                        <input type="number" id="p4_n" placeholder="Tổng tần số">
+                        
+                        <label for="p4_pos_formula">2. Vị trí $Q_3$:</label>
+                        <select id="p4_pos_formula">
+                            <option value="">-- Chọn công thức --</option>
+                            <option value="n/4">n / 4</option>
+                            <option value="n/2">n / 2</option>
+                            <option value="3n/4">3n / 4</option>
+                        </select>
+                        
+                        <label for="p4_group">3. Nhóm chứa $Q_3$ (Nhóm thứ...):</label>
+                        <input type="number" id="p4_group" placeholder="1, 2, 3, ...">
+
+                        <label for="p4_ap">4. Cận dưới ($a_p$):</label>
+                        <input type="number" id="p4_ap" placeholder="Cận dưới của nhóm">
+                        
+                        <label for="p4_ap1">5. Cận trên ($a_{p+1}$):</label>
+                        <input type="number" id="p4_ap1" placeholder="Cận trên của nhóm">
+                        
+                        <label for="p4_mp">6. Tần số nhóm ($m_p$):</label>
+                        <input type="number" id="p4_mp" placeholder="Tần số của nhóm đó">
+                        
+                        <label for="p4_mprev">7. Tổng tần số trước ($\sum m_{prev}$):</label>
+                        <input type="number" id="p4_mprev" placeholder="Tổng tần số các nhóm TRƯỚC">
+                        
+                        <label for="p4_final">8. Kết quả $Q_3$ (làm tròn 1 chữ số):</label>
+                        <input type="number" id="p4_final" placeholder="Kết quả cuối cùng">
+                    </div>`,
+                    isExercise: true,
+                    // Đáp án cho Bài toán 3 (Q3)
+                    // n = 100
+                    // pos = 3 * 100 / 4 = 75
+                    // group: G1(5), G2(15), G3(35), G4(35+40=75). 35 < 75 <= 75 -> Nhóm 4.
+                    // ap = 7, ap1 = 8, mp = 40, mprev = 5 + 10 + 20 = 35
+                    // Q3 = 7 + ((75-35)/40) * (8-7) = 7 + (40/40)*1 = 7 + 1 = 8
+                    answers: { 
+                        p4_n: "100", 
+                        p4_pos_formula: "3n/4",
+                        p4_group: "4",
+                        p4_ap: "7",
+                        p4_ap1: "8",
+                        p4_mp: "40",
+                        p4_mprev: "35",
+                        p4_final: "8"
+                    }
+                },
+                
+                // === Slide Tổng kết ===
+                {
+                    problem: 3,
+                    title: 'Tổng kết',
+                    content: `<h3>Chúc mừng bạn đã hoàn thành!</h3>
+                              <p>Bạn đã nắm được quy trình tính các tứ phân vị ($Q_1, Q_2, Q_3$) cho mẫu số liệu ghép nhóm. Các bước chính luôn là:</p>
+                              <ol>
+                                <li><strong>Tính cỡ mẫu $n$.</strong></li>
+                                <li><strong>Xác định vị trí:</strong> $\\frac{n}{4}$ (cho $Q_1$), $\\frac{n}{2}$ (cho $Q_2$), hoặc $\\frac{3n}{4}$ (cho $Q_3$).</li>
+                                <li><strong>Xác định nhóm:</strong> Tìm nhóm đầu tiên có tần số tích lũy lớn hơn hoặc bằng vị trí vừa tìm.</li>
+                                <li><strong>Thu thập các giá trị:</strong> $a_p, a_{p+1}, m_p, \sum m_{prev}$.</li>
+                                <li><strong>Áp dụng công thức</strong> và tính toán kết quả.</li>
+                              </ul>
+                              <p>Hãy luyện tập thêm để thành thạo kỹ năng này nhé!</p>`,
+                    highlights: {}
+                }
+            ];
+
+            // --- LOGIC CỦA HỌC LIỆU ---
+            // (Phần này được sao chép và điều chỉnh từ file gốc của bạn)
+            
+            const slidesContainer = document.getElementById('slides-container');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            
+            // Lấy các div đề bài
+            const problem1Display = document.getElementById('problem1-statement-display');
+            const problem2Display = document.getElementById('problem2-statement-display');
+            const problem3Display = document.getElementById('problem3-statement-display');
+            // Bài 4 dùng chung đề bài 3, nhưng ta vẫn cần một biến (dù không dùng) để code chạy
+            const problem4Display = problem3Display; 
+
+
+            let currentSlide = 0;
+
+            // Hàm tạo các slide từ config
+            function generateSlides() {
+                slidesConfig.forEach((slide, index) => {
+                    const slideEl = document.createElement('div');
+                    slideEl.className = 'slide';
+                    slideEl.id = `slide-${index}`;
+
+                    let contentHTML = `<h2>${slide.title}</h2><div>${slide.content}</div>`;
+
+                    // Nếu slide là bài tập, thêm nút "Gợi ý" và "Kiểm tra"
+                    if (slide.isExercise) {
+                        contentHTML += `
+                        <div class="exercise-buttons">
+                            <button class="nav-button hint-button" onclick="toggleHint(${index})">Gợi ý</button>
+                            <button class="nav-button" style="background-color: var(--success-color);" onclick="checkAnswers(${index})">Kiểm tra đáp án</button>
+                        </div>
+                        <div id="feedback-message-${index}" class="feedback-message"></div>`;
+                    }
+                    
+                    // Thêm gợi ý (nếu có)
+                    if (slide.hint) {
+                        contentHTML += `<div id="hint-${index}" class="hint-content" style="display: none;">${slide.hint}</div>`
+                    }
+
+                    slideEl.innerHTML = contentHTML;
+                    slidesContainer.appendChild(slideEl);
+                });
+            }
+
+            // Hàm chuẩn hóa câu trả lời (xóa khoảng trắng, đổi , thành .)
+            function normalizeAnswer(str) {
+                if (typeof str !== 'string') return String(str);
+                return str.toLowerCase().replace(/\s+/g, '').replace(/,/g, '.');
+            }
+
+            // SỬA LỖI 1: Gán hàm vào `window` để `onclick` có thể tìm thấy
+            window.checkAnswers = function (slideIndex) {
+                const slide = slidesConfig[slideIndex];
+                if (!slide.isExercise) return;
+
+                let allCorrect = true;
+                const feedbackMsg = document.getElementById(`feedback-message-${slideIndex}`);
+
+                for (const [key, correctAnswer] of Object.entries(slide.answers)) {
+                    const inputEl = document.getElementById(key);
+                    const radioGroup = document.querySelectorAll(`input[name="${key}"]`);
+                    const selectEl = document.querySelector(`select[id="${key}"]`); // THÊM MỚI: Kiểm tra thẻ select
+
+                    if (radioGroup.length > 0) {
+                        // Xử lý trắc nghiệm (nếu có)
+                        const checkedRadio = document.querySelector(`input[name="${key}"]:checked`);
+                        radioGroup.forEach(radio => radio.parentElement.classList.remove('correct', 'incorrect'));
+
+                        if (checkedRadio && checkedRadio.value === correctAnswer) {
+                            checkedRadio.parentElement.classList.add('correct');
+                        } else {
+                            if (checkedRadio) checkedRadio.parentElement.classList.add('incorrect');
+                            allCorrect = false;
+                        }
+                    } else if (selectEl) { // THÊM MỚI: Xử lý dropdown
+                        const userAnswer = normalizeAnswer(selectEl.value);
+                        const normalizedCorrectAnswer = normalizeAnswer(correctAnswer);
+                        selectEl.classList.remove('correct', 'incorrect');
+                        if (userAnswer === normalizedCorrectAnswer) {
+                            selectEl.classList.add('correct');
+                        } else {
+                            selectEl.classList.add('incorrect');
+                            allCorrect = false;
+                        }
+                    } else if (inputEl) { 
+                        // Xử lý ô điền khuyết
+                        const userAnswer = normalizeAnswer(inputEl.value);
+                        const normalizedCorrectAnswer = normalizeAnswer(correctAnswer);
+                        inputEl.classList.remove('correct', 'incorrect');
+                        
+                        if (userAnswer === normalizedCorrectAnswer) {
+                            inputEl.classList.add('correct');
+                        } else {
+                            inputEl.classList.add('incorrect');
+                            allCorrect = false;
+                        }
+                    }
+                }
+
+                // Hiển thị thông báo kết quả
+                feedbackMsg.style.display = 'block';
+                feedbackMsg.classList.remove('success', 'error');
+                if (allCorrect) {
+                    feedbackMsg.textContent = 'Chính xác! Bạn đã làm rất tốt.';
+                    feedbackMsg.classList.add('success');
+                    if (slide.onCorrect) {
+                        slide.onCorrect();
+                    }
+                } else {
+                    feedbackMsg.textContent = 'Có lỗi sai. Hãy kiểm tra lại các phần được tô đỏ.';
+                    feedbackMsg.classList.add('error');
+                }
+            }
+
+            // Hàm hiển thị/ẩn gợi ý
+            window.toggleHint = function (slideIndex) {
+                const slide = slidesConfig[slideIndex];
+                let hintEl;
+                
+                // Tìm gợi ý trong slide
+                const slideEl = document.getElementById(`slide-${slideIndex}`);
+                if (slideEl) {
+                    hintEl = slideEl.querySelector('.hint-content');
+                }
+
+                // Nếu không có gợi ý chung, thử tìm gợi ý cho bài tập
+                if (!hintEl && slide.answers) {
+                    const firstAnswerKey = Object.keys(slide.answers)[0];
+                    const problemNum = firstAnswerKey.split('_')[0]; // vd: "p2"
+                    hintEl = document.getElementById(`hint-${problemNum}`);
+                }
+
+                if (hintEl) {
+                    hintEl.style.display = hintEl.style.display === 'none' ? 'block' : 'none';
+                }
+            }
+            
+            // Hàm cập nhật tô sáng (highlight) ở đề bài
+            function updateHighlights() {
+                // Xóa tất cả highlight cũ
+                const allSpans = document.querySelectorAll('.problem-statement span, .problem-statement td[id]');
+                allSpans.forEach(span => {
+                    span.classList.remove('highlight-pastel', 'processed');
+                });
+
+                const slideConf = slidesConfig[currentSlide];
+                if (!slideConf || !slideConf.highlights) return;
+
+                // Thêm lớp 'processed' (gạch bỏ) cho các slide trước đó CÙNG BÀI TOÁN
+                for (let i = 0; i < currentSlide; i++) {
+                    const pastConf = slidesConfig[i];
+                    if (pastConf.problem === slideConf.problem && pastConf.highlights) {
+                        const allPastHighlights = [
+                            ...(pastConf.highlights.current || []),
+                            ...(pastConf.highlights.processed || [])
+                        ];
+                        allPastHighlights.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el) el.classList.add('processed');
+                        });
+                    }
+                }
+
+                // Thêm lớp 'highlight-pastel' (tô sáng) cho slide hiện tại
+                if (slideConf.highlights.current) {
+                    slideConf.highlights.current.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) {
+                            el.classList.remove('processed'); // Ưu tiên tô sáng
+                            el.classList.add('highlight-pastel');
+                        }
+                    });
+                }
+            }
+
+            // Hàm hiển thị slide
+            function showSlide(index) {
+                const allSlides = document.querySelectorAll('.slide');
+                allSlides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+
+                // Lấy số hiệu bài toán của slide hiện tại
+                const currentProblem = slidesConfig[index].problem;
+                
+                // Hiển thị đề bài tương ứng
+                problem1Display.style.display = (currentProblem === 1) ? 'block' : 'none';
+                problem2Display.style.display = (currentProblem === 2) ? 'block' : 'none';
+                // Cả bài 3 và 4 đều dùng đề 3
+                problem3Display.style.display = (currentProblem === 3 || currentProblem === 4) ? 'block' : 'none'; 
+
+                // Cập nhật bộ đếm slide
+                slideCounter.textContent = `Trang ${index + 1} / ${slidesConfig.length}`;
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === slidesConfig.length - 1;
+
+                updateHighlights();
+                
+                // Yêu cầu MathJax render lại công thức toán trong slide mới
+                if (window.MathJax && window.MathJax.typeset) {
+                    window.MathJax.typesetPromise();
+                }
+            }
+
+            // --- KHỞI CHẠY ---
+            generateSlides();
+            showSlide(currentSlide);
+
+            // Gán sự kiện cho nút "Trước"
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            });
+
+            // Gán sự kiện cho nút "Sau"
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slidesConfig.length - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+

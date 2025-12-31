@@ -1,9 +1,10 @@
 window.MathJax = {
   tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
   },
-  output: {
-    font: 'mathjax-pagella'
+  options: {
+    enableMenu: false
   },
   startup: {
     ready: () => {

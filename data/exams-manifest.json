@@ -32,6 +32,27 @@
           "path": "data/grade10/de-on-tap-3/"
         },
         {
+          "id": "lop10_ontap_4",
+          "title": "Đề ôn tập số 4",
+          "type": "exam",
+          "description": "Đề ôn tập tổng hợp kiến thức Toán 10.",
+          "path": "data/grade10/de-on-tap-4/"
+        },
+        {
+          "id": "lop10_ontap_5",
+          "title": "Đề ôn tập số 5 (Test JSXGraph)",
+          "type": "exam",
+          "description": "Đề test để kiểm tra render JSXGraph diagrams trong đề và lời giải.",
+          "path": "data/grade10/de-on-tap-5/"
+        },
+        {
+          "id": "lop10_ontap_6",
+          "title": "Đề ôn tập số 6",
+          "type": "exam",
+          "description": "Đề ôn tập tổng hợp kiến thức Toán 10 (THSG HK1 2025).",
+          "path": "data/grade10/de-on-tap-6/"
+        },
+        {
           "id": "lop10_tonghop_chuong1_5_goc",
           "title": "Đề kiểm tra Chương 1 & 5",
           "type": "exam",
@@ -46,6 +67,13 @@
           "type": "tool",
           "description": "Minh họa và giải các bài toán logic bằng sơ đồ Venn tương tác",
           "url": "cong-cu-venn.html"
+        },
+        {
+          "id": "cong-cu-chuyen-asy-sang-jsxgraph",
+          "title": "Công cụ chuyển Asymptote → JSXGraph",
+          "type": "tool",
+          "description": "Dán mã Asymptote (GeoGebra export) và chuyển thành preset=scene để nhúng JSXGraph + xem trước.",
+          "url": "cong-cu-chuyen-asy-sang-jsxgraph.html"
         },
         {
           "id": "cong-cu-bieu-dien-tap-hop",
@@ -64,7 +92,15 @@
       ]
     },
     "grade11": {
-        "exams": [],
+        "exams": [
+          {
+            "id": "lop11_ontap_ck1",
+            "title": "Đề ôn tập cuối HK1",
+            "type": "exam",
+            "description": "Đề ôn tập tổng hợp kiến thức Toán 11 cuối học kì 1.",
+            "path": "data/grade11/de-on-tap-1/"
+          }
+        ],
         "tools": [
           {
             "id": "hoc-lieu-11-tu-phan-vi",

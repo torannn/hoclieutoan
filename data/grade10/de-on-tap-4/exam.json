@@ -1,0 +1,251 @@
+{
+  "duration": 5400,
+  "questions": [
+    {
+      "q_id": "tbt_gk1_001_tn_1",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cặp số nào sau đây không là nghiệm của hệ bất phương trình $\\begin{cases}x + 2y > 0\\\\2x + y > 1\\end{cases}$?",
+      "options": [
+        "$(1;1)$",
+        "$(0;0)$",
+        "$(1;2)$",
+        "$(0;4)$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "tbt_gk1_001_tn_2",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hình bình hành $ABCD$ tâm $O$. Vectơ nào sau đây bằng vectơ $\\overrightarrow{OA}$?",
+      "options": [
+        "$\\overrightarrow{CO}$",
+        "$\\overrightarrow{AO}$",
+        "$\\overrightarrow{OC}$",
+        "$\\overrightarrow{OB}$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "tbt_gk1_001_tn_3",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho $M(1;2)$ và $N(4;6)$. Tính khoảng cách giữa hai điểm $M$ và $N$.",
+      "options": [
+        "$\\sqrt{7}$",
+        "$25$",
+        "$10$",
+        "$5$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "tbt_gk1_001_tn_4",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Miền nghiệm của bất phương trình $2x + y > 1$ không chứa điểm nào sau đây?",
+      "options": [
+        "$(-1;-1)$",
+        "$(2;2)$",
+        "$(3;3)$",
+        "$(1;1)$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "tbt_gk1_001_tn_5",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hai điểm $A$, $B$ phân biệt, gọi $M$ là trung điểm $AB$. Khẳng định nào sau đây đúng?",
+      "options": [
+        "$\\overrightarrow{MA} = \\overrightarrow{MB}$",
+        "$\\overrightarrow{MA} = \\dfrac{1}{2}\\overrightarrow{AB}$",
+        "$\\overrightarrow{MA} - \\overrightarrow{MB} = \\vec{0}$",
+        "$\\overrightarrow{MA} + \\overrightarrow{MB} = \\vec{0}$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "tbt_gk1_001_tn_6",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Làm tròn số $234,568$ đến hàng phần chục.",
+      "options": [
+        "$234,5$",
+        "$234,6$",
+        "$234,4$",
+        "$234,7$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "tbt_gk1_001_tn_7",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho các vectơ $\\vec{a} = 2\\vec{i} - \\vec{j}$, $\\vec{b} = \\vec{i} + 3\\vec{j}$ và $\\vec{c} = (2;-8)$. Khẳng định nào sau đây sai?",
+      "options": [
+        "$\\vec{a}$ cùng phương $\\vec{b}$",
+        "$\\vec{a} - \\vec{b} = (1;-4)$",
+        "$\\vec{a} \\cdot \\vec{b} = -1$",
+        "$\\vec{c} = 2\\vec{i} - 8\\vec{j}$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "tbt_gk1_001_tn_8",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Viết mệnh đề phủ định của mệnh đề $P: \\forall x \\in \\mathbb{R}, x^2 > 0$.",
+      "options": [
+        "$\\overline{P}: \\exists x \\in \\mathbb{R}, x^2 > 0$",
+        "$\\overline{P}: \\exists x \\in \\mathbb{R}, x^2 < 0$",
+        "$\\overline{P}: \\forall x \\in \\mathbb{R}, x^2 \\leq 0$",
+        "$\\overline{P}: \\exists x \\in \\mathbb{R}, x^2 \\leq 0$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "tbt_gk1_001_tn_9",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho bốn điểm phân biệt $A$, $B$, $C$, $D$. Tính $\\overrightarrow{AB} + \\overrightarrow{CD} + \\overrightarrow{BC} - \\overrightarrow{AC}$.",
+      "options": [
+        "$\\overrightarrow{CB}$",
+        "$\\overrightarrow{DC}$",
+        "$\\overrightarrow{CD}$",
+        "$\\overrightarrow{BC}$"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "tbt_gk1_001_tn_10",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho $\\triangle ABC$ biết $AB = 5\\,cm$, $CA = 8\\,cm$, $\\widehat{BAC} = 30^\\circ$. Tính diện tích $\\triangle ABC$.",
+      "options": [
+        "$20\\,cm^2$",
+        "$10\\,cm^2$",
+        "$2\\sqrt{3}\\,cm^2$",
+        "$5\\sqrt{3}\\,cm^2$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "tbt_gk1_001_tn_11",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Bảng sau cho biết số mặt trăng của các hành tinh (theo NASA). Số mặt trăng của Mộc tinh bằng bao nhiêu?",
+      "options": [
+        "$63$",
+        "$2$",
+        "$34$",
+        "$1$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "tbt_gk1_001_tn_12",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho $\\triangle MNP$ có $M(1;4)$, $N(2;-3)$, $P(3;-4)$. Khẳng định nào sau đây đúng?",
+      "options": [
+        "$MN = MP$",
+        "$\\overrightarrow{MP} = (4;0)$",
+        "$\\overrightarrow{MN} \\cdot \\overrightarrow{MP} = 58$",
+        "$\\overrightarrow{MN} = (-1;7)$"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "tbt_gk1_001_ds_1",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho ba điểm $A(1;2)$, $B(-2;3)$, $C(0;4)$.",
+      "statements": [
+        "$\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = 5$",
+        "Ba điểm $A$, $B$, $C$ là ba đỉnh của một tam giác",
+        "Giả sử $ABCD$ là hình bình hành, khi đó tọa độ điểm $D$ là $(-3;5)$",
+        "Giả sử điểm $M$ thỏa $\\overrightarrow{MA} + 2\\overrightarrow{MB} = 3\\overrightarrow{BC}$, tọa độ điểm $M$ là $(-3;5)$"
+      ],
+      "correct_values": [true, true, false, false]
+    },
+    {
+      "q_id": "tbt_gk1_001_ds_2",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Cho hình vuông $ABCD$ có độ dài cạnh bằng 4.",
+      "statements": [
+        "Góc giữa hai vectơ $\\overrightarrow{AB}$ và $\\overrightarrow{AC}$ bằng $45^\\circ$",
+        "$\\overrightarrow{AC} = \\overrightarrow{BD}$",
+        "$|\\overrightarrow{AC} + \\overrightarrow{AB}| = 4\\sqrt{3}$",
+        "$\\overrightarrow{AC} \\cdot \\overrightarrow{AB} = 16$"
+      ],
+      "correct_values": [true, false, false, true]
+    },
+    {
+      "q_id": "tbt_gk1_001_ds_3",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Để khảo sát điểm thi giữa kỳ 1 hai môn Văn và Toán của học sinh khối 10, người ta lấy ngẫu nhiên 40 học sinh có số báo danh liên tiếp nhau và thống kê được rằng trong số đó có 17 học sinh đạt điểm giỏi môn Toán, 15 học sinh đạt điểm giỏi môn Văn, 10 học sinh đạt điểm giỏi cả Toán và Văn. (Điểm đạt giỏi là điểm từ 8 trở lên)",
+      "statements": [
+        "Số học sinh chỉ đạt điểm giỏi môn Văn nhưng không đạt điểm giỏi môn Toán là 5",
+        "Số học sinh chỉ đạt điểm giỏi môn Toán nhưng không đạt điểm giỏi môn Văn là 10",
+        "Số học sinh đạt điểm giỏi môn Toán hoặc đạt điểm giỏi môn Văn là 22",
+        "Số học sinh không đạt điểm giỏi cả hai môn Văn và Toán là 9"
+      ],
+      "correct_values": [true, false, true, false]
+    },
+    {
+      "q_id": "tbt_gk1_001_ds_4",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Thống kê số lần ném vào rổ sau 10 lần ném của tất cả thành viên trong một câu lạc bộ bóng rổ được kết quả như sau:",
+      "statements": [
+        "Số lần ném vào rổ trung bình bằng 6 lần",
+        "Số thành viên ném vào rổ 7 lần là nhiều nhất",
+        "Để tham gia Hội Khoẻ Phù Đổng, chủ tịch câu lạc bộ dự định chọn 25% thành viên có thành tích cao nhất nên cần chọn những thành viên có số lần ném vào rổ ít nhất là 9 lần",
+        "Tổng số thành viên trong câu lạc bộ bóng rổ là 26"
+      ],
+      "correct_values": [false, true, true, false]
+    },
+    {
+      "q_id": "tbt_gk1_001_tl_group",
+      "section": "PHẦN III. CÂU TỰ LUẬN",
+      "type": "short",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "tbt_gk1_001_tl_1",
+          "question_text": "Một máy bay đang bay ở độ cao cố định với hệ số gió không đáng kể. Máy bay đang bay với vận tốc 500 dặm/giờ theo hướng tạo với tia $Ox$ một góc $120^\\circ$. Khi máy bay đạt đến một điểm nhất định, nó gặp gió với vận tốc 70 dặm/giờ theo hướng N45°E (45° về phía đông bắc) và lúc này nó bay theo hướng N$\\alpha$°W. Tính $\\alpha$, làm tròn kết quả đến đơn vị độ. <div style=\"display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start\"> <div><div class=\"jxg-diagram\" data-jxg=\"preset=windVectors;axes=false;withWind=false;headingDeg=120;speed=7;bbox=-5.5,9,5.5,-1.2;height=320\"></div><div style=\"text-align:center;font-weight:700;margin-top:6px\">Hướng không có gió</div></div> <div><div class=\"jxg-diagram\" data-jxg=\"preset=windVectors;axes=false;withWind=true;headingDeg=120;speed=7;windAngleDeg=45;windSpeed=1;bbox=-5.5,9,5.5,-1.2;height=320\"></div><div style=\"text-align:center;font-weight:700;margin-top:6px\">Hướng có gió</div></div> </div>",
+          "final_answer": "23"
+        },
+        {
+          "q_id": "tbt_gk1_001_tl_2",
+          "question_text": "Một máy cắt cỏ được đẩy đi một khoảng 30 m theo một đường nằm ngang bằng một lực không đổi 222 N. Tay cầm của máy cắt cỏ được giữ ở góc $30^\\circ$ so với phương ngang. Tìm công thực hiện, làm tròn kết quả đến hàng đơn vị. <div class=\"jxg-diagram\" data-jxg=\"preset=photoAnnotate;axes=false;grid=false;img=assets/manmower.png;imgW=1952;imgH=1276;angleDeg=30;forceN=222;distanceM=30;forceTail=560,706;forceHead=1010,556;dispA=920,420;dispB=1520,420;angleCenter=1010,556;arcR=140;bbox=0,1276,1952,0;height=320;keepAspectRatio=true\"></div>",
+          "final_answer": "5768"
+        },
+        {
+          "q_id": "tbt_gk1_001_tl_3",
+          "question_text": "Sự chuyển động của một tàu thủy được thể hiện trên một mặt phẳng tọa độ (đơn vị đo lấy theo kilômét) như sau: Tàu khởi hành từ vị trí $A(1;3)$ chuyển động thẳng đều với vận tốc được biểu thị bởi vectơ $\\vec{v} = (2;5)$ (km/h). Tính từ khi khởi hành, sau bao nhiêu giờ thì tàu chuyển động đến vị trí $S(9;23)$?",
+          "final_answer": "4"
+        },
+        {
+          "q_id": "tbt_gk1_001_tl_4",
+          "question_text": "Vào ngày 30/6/1861, Sao chổi Tebbutt (C/1861 J1), một trong những sao chổi lớn nhất, đã xuất hiện trước khi mặt trời lặn. Một trong các yếu tố khiến sao chổi trở nên cực kỳ sáng là góc tán xạ nhỏ $\\theta^\\circ$. Khi Sao chổi Tebbutt có độ sáng lớn nhất, nó cách Trái đất 0,133 au, cách Mặt trời 0,894 au và Trái đất cách Mặt trời 1,017 au. Tìm $\\theta$, làm tròn đến đơn vị độ. (Chú thích: Đơn vị thiên văn au là khoảng cách trung bình từ Trái Đất đến Mặt Trời.) <div class=\"jxg-diagram\" data-jxg=\"preset=cometTebbutt;axes=false;grid=false;EC=0.133;CS=0.894;ES=1.017;bbox=-0.32,0.25,1.2,-0.1;height=260;keepAspectRatio=true\"></div>",
+          "final_answer": "24"
+        },
+        {
+          "q_id": "tbt_gk1_001_tl_5",
+          "question_text": "Lọ Lem, Elsa, Thor và Tấm cùng đi mua trà sữa. Cả bốn bạn có tất cả 185 nghìn đồng. Bốn bạn mua 4 ly trà sữa với giá 35 nghìn đồng một ly và gọi thêm trân châu cho vào trà sữa. Một phần trân châu đen có giá 5 nghìn đồng, một phần trân châu trắng có giá 10 nghìn đồng. Gọi $x$, $y$ lần lượt là số phần trân châu đen, trân châu trắng mà bốn bạn định mua thêm. Bất phương trình bậc nhất hai ẩn $x$, $y$ thể hiện số tiền các bạn có đủ khả năng chi trả cho phần trân châu đen và trắng là $ax + by \\le 9$, $a, b \\in \\mathbb{Z}$. Tính $a + b$.",
+          "final_answer": "3"
+        },
+        {
+          "q_id": "tbt_gk1_001_tl_6",
+          "question_text": "Theo thống kê GDP năm 2020 (đơn vị: tỉ USD) của 10 nước tại khu vực Đông Nam Á được cho trong bảng sau (Theo statista.com). Tính trung vị của mẫu số liệu trên, làm tròn kết quả đến hàng đơn vị. <div style='overflow-x:auto;margin:8px 0'><table style='border-collapse:collapse;width:100%;max-width:720px;text-align:center'><tr><th style='border:1px solid #94a3b8;padding:6px'>Brunei</th><th style='border:1px solid #94a3b8;padding:6px'>Campuchia</th><th style='border:1px solid #94a3b8;padding:6px'>Indonesia</th><th style='border:1px solid #94a3b8;padding:6px'>Lào</th><th style='border:1px solid #94a3b8;padding:6px'>Malaysia</th></tr><tr><td style='border:1px solid #94a3b8;padding:6px'>12,02</td><td style='border:1px solid #94a3b8;padding:6px'>25,95</td><td style='border:1px solid #94a3b8;padding:6px'>1&nbsp;059,64</td><td style='border:1px solid #94a3b8;padding:6px'>19,08</td><td style='border:1px solid #94a3b8;padding:6px'>338,28</td></tr><tr><th style='border:1px solid #94a3b8;padding:6px'>Myanmar</th><th style='border:1px solid #94a3b8;padding:6px'>Philippines</th><th style='border:1px solid #94a3b8;padding:6px'>Singapore</th><th style='border:1px solid #94a3b8;padding:6px'>Thái Lan</th><th style='border:1px solid #94a3b8;padding:6px'>Việt Nam</th></tr><tr><td style='border:1px solid #94a3b8;padding:6px'>81,26</td><td style='border:1px solid #94a3b8;padding:6px'>362,24</td><td style='border:1px solid #94a3b8;padding:6px'>339,98</td><td style='border:1px solid #94a3b8;padding:6px'>501,89</td><td style='border:1px solid #94a3b8;padding:6px'>340,82</td></tr></table></div>",
+          "final_answer": "339"
+        }
+      ]
+    }
+  ]
+}

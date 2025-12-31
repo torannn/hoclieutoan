@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/tex-gyre-pagella" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="assets/js/mathjax-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    .font-inter { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; }
+    .font-pagella { font-family: 'TeX Gyre Pagella', 'Palatino Linotype', 'Book Antiqua', Palatino, serif; }
+  </style>
+  <script src="assets/js/app-config.js" defer></script>
+  <script src="assets/js/firebase-utils.js" defer></script>
+  <script src="assets/js/grading-utils.js" defer></script>
+  <script src="assets/js/auth.js" defer></script>
+  <script src="assets/js/data.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="assets/js/proto-ui.js" defer></script>
+  <title>Học Liệu Toán — Experimental UI v2</title>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50 to-slate-100 text-slate-800 font-inter">
+
+  <!-- Global Header -->
+  <header id="site-header" class="sticky top-0 z-50">
+    <div class="mx-auto max-w-7xl px-4 py-3">
+      <div class="glass row flex items-center justify-between rounded-2xl border border-white/40 bg-white/40 backdrop-blur-xl shadow-lg px-4 py-2">
+        <a href="#/classes" class="text-lg md:text-xl font-semibold text-slate-800"><span class="text-blue-700">Học</span> Liệu Toán</a>
+        <nav class="hidden md:flex items-center gap-6 text-sm text-slate-700">
+          <a href="#/auth" class="hover:text-slate-900">Đăng nhập</a>
+          <a href="#/profile" class="hover:text-slate-900">Hồ sơ</a>
+          <a href="#/history" class="hover:text-slate-900">Lịch sử</a>
+          <a href="#/admin" class="hover:text-slate-900">Admin</a>
+          <div data-auth-area class="text-sm"></div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="app-container" class="max-w-7xl mx-auto px-4 py-8">
+
+    <!-- Classes Landing -->
+    <section id="class-selection-screen">
+      <div class="relative overflow-hidden rounded-3xl border border-white/40 bg-white/40 backdrop-blur-xl shadow-xl p-8">
+        <!-- Decorative Gradients -->
+        <div class="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-gradient-to-tr from-blue-300/50 to-indigo-300/50 blur-2xl"></div>
+        <div class="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-gradient-to-tr from-fuchsia-300/40 to-pink-300/40 blur-2xl"></div>
+
+        <div class="text-center relative z-10">
+          <h1 class="text-3xl md:text-4xl font-bold text-slate-800">Nền tảng Học liệu Toán hiện đại</h1>
+          <p class="text-slate-600 mt-2">Làm chủ kiến thức với bài kiểm tra, học liệu tương tác và công cụ trực quan</p>
+        </div>
+
+        <div id="class-menu" class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-5">
+          <button data-grade="9" class="group class-card relative overflow-hidden rounded-2xl border border-white/40 bg-white/50 backdrop-blur-xl p-6 shadow-sm hover:shadow-md transition will-change-transform">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-50/60 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="relative z-10 flex flex-col items-center">
+              <div class="w-16 h-16 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mb-3">
+                <i class="fa-solid fa-9 text-2xl"></i>
+              </div>
+              <span class="text-lg font-medium text-slate-800">Lớp 9</span>
+            </div>
+          </button>
+          <button data-grade="10" class="group class-card relative overflow-hidden rounded-2xl border border-white/40 bg-white/50 backdrop-blur-xl p-6 shadow-sm hover:shadow-md transition will-change-transform">
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/60 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="relative z-10 flex flex-col items-center">
+              <div class="w-16 h-16 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center mb-3">
+                <i class="fa-solid fa-0 text-2xl"></i>
+              </div>
+              <span class="text-lg font-medium text-slate-800">Lớp 10</span>
+            </div>
+          </button>
+          <button data-grade="11" class="group class-card relative overflow-hidden rounded-2xl border border-white/40 bg-white/50 backdrop-blur-xl p-6 shadow-sm hover:shadow-md transition will-change-transform">
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-50/60 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="relative z-10 flex flex-col items-center">
+              <div class="w-16 h-16 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center mb-3">
+                <i class="fa-solid fa-1 text-2xl"></i>
+              </div>
+              <span class="text-lg font-medium text-slate-800">Lớp 11</span>
+            </div>
+          </button>
+          <button data-grade="12" class="group class-card relative overflow-hidden rounded-2xl border border-white/40 bg-white/50 backdrop-blur-xl p-6 shadow-sm hover:shadow-md transition will-change-transform">
+            <div class="absolute inset-0 bg-gradient-to-br from-pink-50/60 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="relative z-10 flex flex-col items-center">
+              <div class="w-16 h-16 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center mb-3">
+                <i class="fa-solid fa-2 text-2xl"></i>
+              </div>
+              <span class="text-lg font-medium text-slate-800">Lớp 12</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exam Selection -->
+    <section id="exam-selection-screen" class="hidden">
+      <div class="relative overflow-hidden rounded-3xl border border-white/40 bg-white/50 backdrop-blur-xl shadow-xl p-6 md:p-8">
+        <div class="flex items-center justify-between">
+          <h2 id="exam-selection-title" class="text-2xl md:text-3xl font-bold text-slate-800">Chọn Bài kiểm tra</h2>
+          <!-- Transparent mode toggle cluster -->
+          <div class="flex items-center gap-3">
+            <span id="lbl-static" class="text-sm text-gray-700 cursor-pointer">Tĩnh</span>
+            <div id="exam-mode-toggle" class="relative inline-flex items-center w-24 h-9 rounded-full border border-blue-200/60 ring-1 ring-blue-200/40 bg-transparent select-none cursor-pointer">
+              <div class="absolute left-0.5 top-0.5 w-10 h-8 rounded-full bg-white shadow transition-transform duration-300 will-change-transform"></div>
+            </div>
+            <span id="lbl-interactive" class="text-sm text-gray-400 cursor-pointer">Tương tác</span>
+            <select id="exam-mode-select" class="hidden"><option value="static" selected>static</option><option value="interactive">interactive</option></select>
+          </div>
+        </div>
+        <p class="text-slate-600 mt-1 mb-6">Vui lòng chọn một bài kiểm tra hoặc học liệu để tiếp tục.</p>
+        <div class="flex justify-end gap-4 mb-3 text-sm text-slate-600">
+          <a href="#/history" class="hover:underline">Lịch sử làm bài</a>
+          <a href="#/admin" class="hover:underline">Tổng hợp (Admin)</a>
+        </div>
+        <div id="exam-menu" class="flex flex-col items-center space-y-4"></div>
+        <div class="mt-6 text-center">
+          <button id="back-to-class-selection" class="text-blue-600 hover:underline">Quay lại</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exam Screen -->
+    <section id="exam-screen" class="hidden font-pagella">
+      <div class="grid lg:grid-cols-4 gap-3">
+        <div class="lg:col-span-3">
+          <div class="rounded-3xl border border-white/40 bg-white/50 backdrop-blur-xl shadow-xl p-6">
+            <header class="mb-4">
+              <div class="flex items-center justify-between">
+                <h1 id="exam-title-header" class="text-2xl font-semibold text-blue-800">Đề kiểm tra</h1>
+                <div class="flex items-center gap-3">
+                  <div id="timer" class="text-lg font-semibold bg-blue-100 text-blue-700 px-4 py-1 rounded-full">1:30:00</div>
+                  <button id="submit-exam-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Nộp bài</button>
+                </div>
+              </div>
+            </header>
+            <div id="exam-questions-container" class="space-y-6"></div>
+          </div>
+        </div>
+        <aside class="hidden lg:block lg:col-span-1">
+          <div class="sticky top-24">
+            <div class="rounded-3xl border border-white/40 bg-white/50 backdrop-blur-xl shadow-xl p-4">
+              <div class="flex items-center justify-between mb-3">
+                <div class="font-semibold text-slate-800">Danh sách câu hỏi</div>
+                <div class="text-sm text-slate-500"><span id="qp-answered">0</span>/<span id="qp-total">0</span></div>
+              </div>
+              <div id="question-palette-nodes" class="grid grid-cols-5 gap-2"></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <!-- Mobile FAB + Drawer for Palette -->
+      <button id="palette-fab" class="lg:hidden fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-blue-600 text-white shadow-lg flex items-center justify-center"><i class="fa-solid fa-border-all"></i></button>
+      <div id="palette-drawer" class="lg:hidden fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/40" id="palette-drawer-backdrop"></div>
+        <div class="absolute bottom-0 left-0 right-0 rounded-t-3xl border border-white/40 bg-white/70 backdrop-blur-xl shadow-xl p-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-semibold text-slate-800">Danh sách câu hỏi</div>
+            <button id="palette-drawer-close" class="text-gray-500 hover:text-gray-700"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="text-sm text-slate-500 mb-2"><span id="qp-answered-mobile">0</span>/<span id="qp-total-mobile">0</span></div>
+          <div id="question-palette-nodes-mobile" class="grid grid-cols-6 gap-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Screen -->
+    <section id="results-screen" class="hidden">
+      <div class="rounded-3xl border border-white/40 bg-white/50 backdrop-blur-xl shadow-xl p-8">
+        <div class="text-center mb-8">
+          <div id="big-score" class="text-5xl font-bold text-blue-700 mb-2"></div>
+          <div class="text-sm text-slate-600">Kết quả của bạn</div>
+        </div>
+        <div id="results-container" class="space-y-6"></div>
+        <div class="text-center mt-8">
+          <button id="restart-btn" class="px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Làm bài khác</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- History Screen -->
+    <section id="history-screen" class="hidden">
+      <div class="rounded-3xl border border-white/40 bg-white/50 backdrop-blur-xl shadow-xl p-8">
+        <h2 class="text-2xl font-semibold mb-4">Lịch sử làm bài của bạn</h2>
+        <div id="history-container" class="space-y-4"></div>
+      </div>
+    </section>
+
+    <!-- Admin Screen -->
+    <section id="admin-summary-screen" class="hidden">
+      <div class="rounded-3xl border border-white/40 bg-white/50 backdrop-blur-xl shadow-xl p-8">
+        <h2 class="text-2xl font-semibold mb-4">Tổng hợp kết quả (Admin)</h2>
+        <div id="admin-summary-container" class="space-y-6"></div>
+      </div>
+    </section>
+
+    <!-- Auth Screen (Split) -->
+    <section id="auth-screen" class="hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div class="hidden md:block">
+          <div class="rounded-3xl h-[460px] bg-gradient-to-br from-indigo-500 via-blue-500 to-purple-500 flex items-center justify-center text-white shadow-xl">
+            <div class="text-6xl">∑ ∫ π √x</div>
+          </div>
+        </div>
+        <div>
+          <div class="rounded-3xl border border-white/40 bg-white/60 backdrop-blur-xl shadow-xl p-6">
+            <h3 class="text-xl font-semibold mb-2">Đăng nhập</h3>
+            <p class="text-slate-600 mb-4">Chọn phương thức để tiếp tục</p>
+            <div id="auth-spinner" class="hidden text-center my-3"><div class="inline-block w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div></div>
+            <button id="btn-auth-google" class="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2 mb-3 hover:bg-slate-50">
+              <i class="fab fa-google text-slate-700"></i> <span>Đăng nhập với Google</span>
+            </button>
+            <button id="btn-auth-phone" class="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-blue-300 px-4 py-2 mb-3 text-blue-700 hover:bg-blue-50">
+              <i class="fa fa-phone"></i> <span>Đăng nhập bằng Số điện thoại</span>
+            </button>
+            <button id="btn-auth-guest" class="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 px-4 py-2 hover:bg-slate-50">
+              <i class="fa fa-user-secret"></i> <span>Tiếp tục với Chế độ Khách</span>
+            </button>
+            <div class="text-center mt-4 text-slate-500 text-sm">Khi tiếp tục, bạn đồng ý với điều khoản sử dụng</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profile Screen -->
+    <section id="profile-screen" class="hidden">
+      <div class="rounded-3xl border border-white/40 bg-white/50 backdrop-blur-xl shadow-xl p-6">
+        <h2 class="text-2xl font-semibold mb-4">Hồ sơ học viên</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-slate-700">Họ và tên</label>
+            <input id="profile-fullName" type="text" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nguyễn Văn A" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700">Số điện thoại/Zalo</label>
+            <div class="mt-1 flex gap-2">
+              <input id="profile-phone" type="tel" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="+84..." />
+              <button id="profile-link-phone" class="px-3 py-2 border border-blue-300 rounded-lg text-blue-700 hover:bg-blue-50"><i class="fa fa-link mr-1"></i>Liên kết SĐT</button>
+            </div>
+            <div class="text-xs text-slate-500 mt-1">Liên kết SĐT để dùng cùng tài khoản khi đăng nhập bằng số điện thoại</div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700">Khối lớp</label>
+            <select id="profile-grade" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="9">Lớp 9</option>
+              <option value="10">Lớp 10</option>
+              <option value="11">Lớp 11</option>
+              <option value="12">Lớp 12</option>
+              <option value="lt">Luyện thi</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700">Trường học</label>
+            <input id="profile-school" type="text" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="THPT..." />
+          </div>
+        </div>
+        <div class="mt-4">
+          <button id="profile-save" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"><i class="fa fa-save mr-2"></i>Lưu thay đổi</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Subtle tilt for class cards
+    document.addEventListener('pointermove', (e)=>{
+      document.querySelectorAll('.class-card').forEach(card=>{
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - (r.left + r.width/2);
+        const y = e.clientY - (r.top + r.height/2);
+        const rx = (+1)* (y/r.height) * 6;
+        const ry = (-1)* (x/r.width) * 6;
+        card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+    });
+    document.addEventListener('pointerleave', ()=>{
+      document.querySelectorAll('.class-card').forEach(card=>{ card.style.transform = ''; });
+    }, true);
+  </script>
+</body>
+</html>

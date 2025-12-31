@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/tex-gyre-pagella" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="assets/js/mathjax-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- Embla Carousel -->
+  <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
+  <!-- Features CSS -->
+  <link rel="stylesheet" href="assets/css/features.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    .font-inter { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; }
+    .font-pagella { font-family: 'TeX Gyre Pagella', 'Palatino Linotype', 'Book Antiqua', Palatino, serif; }
+    .glass { background: rgba(255,255,255,0.55); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.45); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px);} to { opacity: 1; transform: translateY(0);} }
+    .animate-fade-up { animation: fadeUp .5s ease forwards; }
+    .flip { transform-style: preserve-3d; transition: transform .6s ease; }
+    .flipped { transform: rotateY(180deg); }
+    .flip-face { backface-visibility: hidden; }
+    .flip-back { transform: rotateY(180deg); }
+    .carousel-snap { scroll-snap-type: x mandatory; }
+    .carousel-item { scroll-snap-align: start; }
+    /* Class deck effect (adapted from Uiverse.io by Sourcesketch) */
+    #class-menu.class-deck { display: flex; justify-content: center; gap: 0; padding-bottom: 1rem; overflow-x: auto; }
+    #class-menu.class-deck .card { display: flex; position: relative; left: 0; height: 220px; width: 220px; border-radius: 12px; box-shadow: -1rem 0 3rem #00000022; transition: 0.4s ease-out; margin-left: 0; align-items: center; justify-content: center; }
+    #class-menu.class-deck .card:not(:first-child) { margin-left: -30px; }
+    #class-menu.class-deck .card:hover { transform: translateY(-16px); }
+    /* Keep deck within margins: remove neighbor shift */
+    #class-menu.class-deck .title-1 { display: none; }
+    #class-menu.class-deck .content { position: static; padding: 0; color: #374151; font-size: 0.9rem; text-align: center; }
+
+    /* Fancy toggle (from user spec) */
+    .toggle-wrapper { display: flex; justify-content: center; align-items: center; position: relative; border-radius: 32px; padding: 4px; background-image: linear-gradient(to bottom, #f0f0f0, #e8e8e8); box-shadow: 0 1px 2px rgba(0,0,0,0.08); font-size: 1em; }
+    .toggle-checkbox { appearance: none; position: absolute; z-index: 1; border-radius: inherit; width: 100%; height: 100%; font: inherit; opacity: 0; cursor: pointer; }
+    .toggle-container { display: flex; align-items: center; position: relative; border-radius: 32px; width: 52px; height: 26px; background-color: #e8e8e8; box-shadow: inset 0 0 2px rgba(0,0,0,0.18), inset 0 2px 3px rgba(0,0,0,0.08); transition: background-color 0.2s linear; }
+    .toggle-checkbox:checked + .toggle-container { background-color: #f3b519; }
+    .toggle-button { display: flex; justify-content: center; align-items: center; position: absolute; left: 2px; border-radius: 50%; width: 22px; height: 22px; background-color: #e8e8e8; box-shadow: inset 0 -2px 2px rgba(0,0,0,0.08), inset 0 -3px 2px rgba(0,0,0,0.16), inset 0 5px 2px rgba(255,255,255,0.28), 0 3px 3px rgba(0,0,0,0.35); transition: left 0.2s; }
+    .toggle-checkbox:checked + .toggle-container > .toggle-button { left: 28px; }
+    .toggle-button-circles-container { display: grid; grid-template-columns: repeat(3, 4px); gap: 2px; position: absolute; }
+    .toggle-button-circle { border-radius: 50%; width: 2px; height: 2px; background-image: radial-gradient(circle at 50% 0, #f5f5f5, #c4c4c4); }
+
+    /* UI Lab custom checkbox (from Uiverse.io by Galahhad) */
+    .ui-checkbox { --primary-color:#1677ff; --secondary-color:#fff; --primary-hover-color:#4096ff; --checkbox-diameter:20px; --checkbox-border-radius:5px; --checkbox-border-color:#d9d9d9; --checkbox-border-width:1px; --checkbox-border-style:solid; --checkmark-size:1.2; -webkit-appearance:none; -moz-appearance:none; appearance:none; width:var(--checkbox-diameter); height:var(--checkbox-diameter); border-radius:var(--checkbox-border-radius); background:var(--secondary-color); border:var(--checkbox-border-width) var(--checkbox-border-style) var(--checkbox-border-color); transition:all .3s; cursor:pointer; position:relative; }
+    .ui-checkbox::after { content:""; position:absolute; top:0; left:0; right:0; bottom:0; box-shadow:0 0 0 calc(var(--checkbox-diameter)/2.5) var(--primary-color); border-radius:inherit; opacity:0; transition:all .5s cubic-bezier(0.12,0.4,0.29,1.46); }
+    .ui-checkbox::before { top:40%; left:50%; content:""; position:absolute; width:4px; height:7px; border-right:2px solid var(--secondary-color); border-bottom:2px solid var(--secondary-color); transform:translate(-50%,-50%) rotate(45deg) scale(0); opacity:0; transition:all .1s cubic-bezier(0.71,-0.46,0.88,0.6),opacity .1s; }
+    .ui-checkbox:hover { border-color: var(--primary-color); }
+    .ui-checkbox:checked { background:var(--primary-color); border-color:transparent; }
+    .ui-checkbox:checked::before { opacity:1; transform:translate(-50%,-50%) rotate(45deg) scale(var(--checkmark-size)); transition:all .2s cubic-bezier(0.12,0.4,0.29,1.46) .1s; }
+    .ui-checkbox:active:not(:checked)::after { transition:none; box-shadow:none; opacity:1; }
+    /* Performance: reduce jank on long lists */
+    .question-container { contain: content; }
+
+    /* === Dark mode theme === */
+    body.dark-mode { color: #e5e7eb; background-image: radial-gradient(1200px 800px at 10% 10%, #0f172a, #020617); }
+    .dark-mode #site-header .glass { background: rgba(17,24,39,0.75); border-color: rgba(148,163,184,0.2); }
+    .dark-mode .text-slate-800, .dark-mode .text-slate-700, .dark-mode .text-slate-600 { color: #e5e7eb !important; }
+    .dark-mode .text-gray-700, .dark-mode .text-gray-600, .dark-mode .text-slate-500 { color: #cbd5e1 !important; }
+    .dark-mode .bg-white { background-color: #0f172a !important; }
+    .dark-mode .border-slate-200 { border-color: #334155 !important; }
+    .dark-mode .card-item, .dark-mode .carousel-item { background-color: #1e293b; border-color: #334155; }
+    .dark-mode .rounded-3xl.bg-white, .dark-mode .rounded-2xl.bg-white { background-color: #0f172a !important; border-color: #334155 !important; }
+    .dark-mode input, .dark-mode select, .dark-mode textarea { background-color: #1e293b; border-color: #475569; color: #e5e7eb; }
+    .dark-mode input::placeholder, .dark-mode textarea::placeholder { color: #94a3b8; }
+    .dark-mode .inline-flex.bg-slate-100 { background-color: #1e293b !important; }
+    .dark-mode .toggle-container { background-color: #1f2937; }
+    .dark-mode .toggle-button { background-color: #111827; }
+    .dark-mode .prose h3 { color: #e5e7eb; }
+    .dark-mode .glass { background: rgba(15,23,42,0.75); border-color: rgba(71,85,105,0.4); }
+    .dark-mode .filter-pill { background: #334155; border-color: #64748b; color: #f1f5f9; }
+    .dark-mode .filter-pill:hover { background: #475569; border-color: #94a3b8; }
+    .dark-mode .filter-pill.active { background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%); border-color: transparent; color: white; }
+    .dark-mode .filter-chip { background: #334155; border-color: #64748b; color: #f1f5f9; }
+    .dark-mode .filter-chip:hover { background: #475569; border-color: #94a3b8; }
+    .dark-mode .filter-chip.active { background: #818cf8; border-color: transparent; color: white; }
+    .dark-mode .modern-list-item { background: #1e293b; border-color: #334155; }
+    .dark-mode .modern-list-content h4 { color: #f1f5f9; }
+    .dark-mode .modern-list-content p { color: #94a3b8; }
+    .dark-mode .sticky-cards-sidebar h2, .dark-mode .sticky-cards-sidebar p { color: #e5e7eb !important; }
+    .dark-mode #class-menu .card { background: linear-gradient(145deg, #334155, #1e293b) !important; border-color: #64748b !important; box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important; }
+    .dark-mode #class-menu .card:hover { border-color: #94a3b8 !important; }
+    .dark-mode #class-menu .card .text-slate-800 { color: #f8fafc !important; font-weight: 600; }
+    .dark-mode #class-menu .card .bg-blue-100 { background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important; }
+    .dark-mode #class-menu .card .bg-blue-100 .text-blue-600 { color: white !important; }
+    .dark-mode #class-menu .card .bg-teal-100 { background: linear-gradient(135deg, #14b8a6, #0d9488) !important; }
+    .dark-mode #class-menu .card .bg-teal-100 .text-teal-600 { color: white !important; }
+    .dark-mode #class-menu .card .bg-purple-100 { background: linear-gradient(135deg, #a855f7, #7c3aed) !important; }
+    .dark-mode #class-menu .card .bg-purple-100 .text-purple-600 { color: white !important; }
+    .dark-mode #class-menu .card .bg-rose-100 { background: linear-gradient(135deg, #f43f5e, #e11d48) !important; }
+    .dark-mode #class-menu .card .bg-rose-100 .text-rose-600 { color: white !important; }
+    .dark-mode .embla__slide-inner { background: #1e293b; }
+    .dark-mode .embla__slide-body h3 { color: #f1f5f9; }
+    .dark-mode .embla__slide-body p { color: #94a3b8; }
+    .dark-mode .embla__button { background: rgba(30,41,59,0.8); border-color: #475569; }
+    .dark-mode .embla__button i { color: #e5e7eb; }
+    .dark-mode .embla__dot { background: #475569; }
+    .dark-mode .modern-list-badge { opacity: 0.9; }
+    .dark-mode h3.text-slate-800 { color: #f1f5f9 !important; }
+    
+    /* Exam sidebar dark mode */
+    .dark-mode #exam-screen .rounded-xl.bg-white,
+    .dark-mode #exam-screen .rounded-2xl.bg-white { background: #1e293b !important; border-color: #334155 !important; }
+    .dark-mode #timer-sidebar { color: #93c5fd !important; }
+    .dark-mode #exam-screen .text-slate-500, .dark-mode #exam-screen .text-slate-600, 
+    .dark-mode #exam-screen .text-slate-700 { color: #94a3b8 !important; }
+    .dark-mode #question-palette-nodes button { background: #334155; border-color: #475569; color: #e5e7eb; }
+    .dark-mode #question-palette-nodes button.answered { background: #3b82f6; border-color: #3b82f6; }
+    .dark-mode #question-palette-nodes button.current { border-color: #f59e0b; }
+    
+    /* Results sidebar dark mode */
+    .dark-mode #results-screen .rounded-xl.bg-white { background: #1e293b !important; border-color: #334155 !important; }
+    .dark-mode #results-question-palette button { opacity: 0.9; }
+
+    /* === Sticky Sidebars === */
+    #exam-screen > .grid > aside,
+    #results-screen > .grid > aside {
+      position: sticky;
+      top: 16px;
+      align-self: flex-start;
+    }
+
+    .exam-sidebar-sticky,
+    .results-sidebar-sticky {
+      max-height: calc(100vh - 32px);
+      overflow-y: auto;
+    }
+    
+    /* Hide scrollbar but allow scrolling */
+    .exam-sidebar-sticky::-webkit-scrollbar,
+    .results-sidebar-sticky::-webkit-scrollbar {
+      width: 4px;
+    }
+    .exam-sidebar-sticky::-webkit-scrollbar-thumb,
+    .results-sidebar-sticky::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    
+    /* Non-sticky header on exam and results screens */
+    body:has(#exam-screen:not(.hidden)) #site-header,
+    body:has(#results-screen:not(.hidden)) #site-header {
+      position: relative;
+    }
+    
+    /* Ensure grid allows sticky to work */
+    #exam-screen > .grid,
+    #results-screen > .grid {
+      align-items: start;
+    }
+
+    /* === Modern Grade Cards === */
+    .grade-card {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      perspective: 1000px;
+    }
+    
+    .grade-card-inner {
+      position: relative;
+      padding: 28px 20px;
+      border-radius: 20px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+    }
+    
+    .grade-card-inner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%);
+      pointer-events: none;
+    }
+    
+    .grade-card:hover .grade-card-inner {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .grade-9 { background: linear-gradient(145deg, #3b82f6, #1d4ed8); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3); }
+    .grade-10 { background: linear-gradient(145deg, #14b8a6, #0d9488); box-shadow: 0 10px 30px rgba(20, 184, 166, 0.3); }
+    .grade-11 { background: linear-gradient(145deg, #a855f7, #7c3aed); box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3); }
+    .grade-12 { background: linear-gradient(145deg, #f43f5e, #e11d48); box-shadow: 0 10px 30px rgba(244, 63, 94, 0.3); }
+    
+    .grade-icon {
+      width: 56px; height: 56px;
+      margin: 0 auto 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+      transition: all 0.3s;
+    }
+    
+    .grade-card:hover .grade-icon {
+      transform: scale(1.1) rotate(5deg);
+      background: rgba(255,255,255,0.3);
+    }
+    
+    .grade-number {
+      font-size: 48px;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .grade-label {
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+      margin-top: 4px;
+    }
+    
+    .grade-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 8px;
+    }
+    
+    .grade-arrow {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s;
+    }
+    
+    .grade-card:hover .grade-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* Dark mode grade cards */
+    .dark-mode .grade-9 { background: linear-gradient(145deg, #2563eb, #1e40af); }
+    .dark-mode .grade-10 { background: linear-gradient(145deg, #0d9488, #0f766e); }
+    .dark-mode .grade-11 { background: linear-gradient(145deg, #9333ea, #6b21a8); }
+    .dark-mode .grade-12 { background: linear-gradient(145deg, #e11d48, #be123c); }
+
+    /* === Interactive Mode Label === */
+    .interactive-label { color: #f59e0b; transition: all 0.3s; }
+    .interactive-label.active { color: #f59e0b; }
+    .interactive-label.active i { animation: boltFlash 1.5s ease-in-out infinite; }
+    .interactive-label:not(.active) { color: #94a3b8; }
+    @keyframes boltFlash { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .dark-mode .interactive-label.active { color: #fbbf24; }
+    .dark-mode .interactive-label:not(.active) { color: #64748b; }
+
+    /* === User Dropdown Menu (Uiverse.io style) === */
+    .user-menu-wrapper { position: relative; }
+    .user-menu-btn { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 10px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 500; cursor: pointer; border: none; transition: all 0.2s; }
+    .user-menu-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); }
+    .user-menu-dropdown { display: none; flex-direction: column; position: absolute; top: calc(100% + 8px); right: 0; min-width: 200px; background-color: #0D1117; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 100; overflow: hidden; }
+    .user-menu-dropdown.show { display: flex; animation: menuSlide 0.2s ease; }
+    @keyframes menuSlide { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+    .user-menu-item { background-color: transparent; border: none; padding: 12px 16px; color: #e5e7eb; display: flex; align-items: center; gap: 10px; cursor: pointer; border-radius: 0; position: relative; text-decoration: none; font-size: 14px; }
+    .user-menu-item:not(:active):hover, .user-menu-item:focus { background-color: #21262C; }
+    .user-menu-item:focus, .user-menu-item:active { background-color: #1A1F24; outline: none; }
+    .user-menu-item::before { content: ""; position: absolute; top: 6px; left: 0; width: 3px; height: calc(100% - 12px); background-color: #2F81F7; border-radius: 3px; opacity: 0; transition: opacity 0.15s; }
+    .user-menu-item:focus::before, .user-menu-item:active::before, .user-menu-item:hover::before { opacity: 1; }
+    .user-menu-item i { width: 16px; text-align: center; }
+    .user-menu-divider { height: 1px; background: #30363d; margin: 4px 0; }
+
+    /* === Sticky Stacking Cards Layout === */
+    .sticky-cards-container { position: relative; }
+    .sticky-card-wrapper { position: sticky; top: 80px; min-height: 280px; display: grid; place-content: center; padding: 16px 0; }
+    .sticky-card { width: 100%; max-width: 400px; min-height: 240px; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+    .sticky-card:hover { transform: scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+    .sticky-card.exam { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .sticky-card.tool { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+    .sticky-card.lesson { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .sticky-card.rotate-left { transform: rotate(-3deg); }
+    .sticky-card.rotate-right { transform: rotate(3deg); }
+    .sticky-card:hover.rotate-left, .sticky-card:hover.rotate-right { transform: rotate(0deg) scale(1.02); }
+    .sticky-card .card-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); border-radius: 20px; font-size: 12px; font-weight: 600; color: white; width: fit-content; }
+    .sticky-card h3 { font-size: 1.5rem; font-weight: 700; color: white; margin: 0; }
+    .sticky-card p { font-size: 0.9rem; color: rgba(255,255,255,0.85); flex: 1; line-height: 1.5; }
+    .sticky-card .card-action { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(0,0,0,0.3); border-radius: 10px; color: white; font-weight: 500; font-size: 14px; width: fit-content; transition: background 0.2s; }
+    .sticky-card .card-action:hover { background: rgba(0,0,0,0.5); }
+    .sticky-cards-sidebar { position: sticky; top: 50%; transform: translateY(-50%); height: fit-content; }
+    @media (max-width: 768px) { .sticky-card-wrapper { top: 70px; min-height: 240px; } .sticky-card { max-width: 100%; min-height: 200px; } }
+
+    /* === Modern Animated List === */
+    .modern-list { display: flex; flex-direction: column; gap: 12px; }
+    .modern-list-item { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: white; border-radius: 16px; border: 1px solid #e2e8f0; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
+    .modern-list-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, #667eea 0%, #764ba2 100%); transform: scaleY(0); transition: transform 0.3s; }
+    .modern-list-item:hover { transform: translateX(8px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-color: #c7d2fe; }
+    .modern-list-item:hover::before { transform: scaleY(1); }
+    .modern-list-item.tool::before { background: linear-gradient(180deg, #11998e 0%, #38ef7d 100%); }
+    .modern-list-item.lesson::before { background: linear-gradient(180deg, #f093fb 0%, #f5576c 100%); }
+    .modern-list-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .modern-list-icon.exam { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+    .modern-list-icon.tool { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; }
+    .modern-list-icon.lesson { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; }
+    .modern-list-content { flex: 1; min-width: 0; }
+    .modern-list-content h4 { font-size: 1rem; font-weight: 600; color: #1e293b; margin: 0 0 4px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .modern-list-content p { font-size: 0.8rem; color: #64748b; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .modern-list-badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .modern-list-badge.exam { background: #eef2ff; color: #6366f1; }
+    .modern-list-badge.tool { background: #ecfdf5; color: #10b981; }
+    .modern-list-badge.lesson { background: #fdf2f8; color: #ec4899; }
+    .modern-list-action { padding: 8px 16px; border-radius: 8px; font-weight: 500; font-size: 13px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; cursor: pointer; transition: all 0.2s; opacity: 0; transform: translateX(10px); }
+    .modern-list-item:hover .modern-list-action { opacity: 1; transform: translateX(0); }
+    .modern-list-action:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); }
+    .dark-mode .modern-list-item { background: #1e293b; border-color: #334155; }
+    .dark-mode .modern-list-content h4 { color: #f1f5f9; }
+    .dark-mode .modern-list-content p { color: #94a3b8; }
+
+    /* === Hamburger Menu (Uiverse.io style) === */
+    .hamburger { cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .hamburger input { display: none; }
+    .hamburger svg { height: 2.5em; transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1); }
+    .hamburger .line { fill: none; stroke: #334155; stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1); }
+    .hamburger .line-top-bottom { stroke-dasharray: 12 63; }
+    .hamburger input:checked + svg { transform: rotate(-45deg); }
+    .hamburger input:checked + svg .line-top-bottom { stroke-dasharray: 20 300; stroke-dashoffset: -32.42; }
+    .dark-mode .hamburger .line { stroke: #e5e7eb; }
+
+    /* === Embla Carousel === */
+    .embla { overflow: hidden; position: relative; }
+    .embla__viewport { overflow: hidden; width: 100%; }
+    .embla__container { display: flex; user-select: none; -webkit-touch-callout: none; -khtml-user-select: none; -webkit-tap-highlight-color: transparent; }
+    .embla__slide { position: relative; flex: 0 0 90%; min-width: 0; padding: 0 10px; transition: transform 0.3s ease, opacity 0.3s ease; }
+    @media (min-width: 640px) { .embla__slide { flex: 0 0 55%; } }
+    .embla__slide.is-selected { transform: scale(1); opacity: 1; }
+    .embla__slide:not(.is-selected) { transform: scale(0.9); opacity: 0.6; }
+    .embla__slide-inner { height: 400px; border-radius: 16px; overflow: hidden; background: white; box-shadow: 0 10px 40px rgba(0,0,0,0.1); display: flex; flex-direction: column; cursor: pointer; transition: box-shadow 0.3s ease; }
+    .embla__slide-inner:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+    @media (min-width: 640px) { .embla__slide-inner { height: 380px; } }
+    @media (min-width: 1536px) { .embla__slide-inner { height: 420px; } }
+    .embla__slide-header { height: 140px; position: relative; display: flex; align-items: center; justify-content: center; }
+    .embla__slide-header.exam { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .embla__slide-header.tool { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+    .embla__slide-header.lesson { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .embla__slide-header i { font-size: 48px; color: rgba(255,255,255,0.9); }
+    .embla__slide-body { flex: 1; padding: 24px; display: flex; flex-direction: column; }
+    .embla__slide-body h3 { font-size: 1.25rem; font-weight: 600; color: #1e293b; margin-bottom: 8px; }
+    .embla__slide-body p { font-size: 0.875rem; color: #64748b; flex: 1; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; }
+    .embla__slide-body .action { margin-top: auto; display: flex; align-items: center; gap: 6px; color: #6366f1; font-size: 0.875rem; font-weight: 500; }
+    .embla__button { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.25); backdrop-filter: blur(4px); border: 2px solid rgba(255,255,255,0.5); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+    .embla__button:hover { background: rgba(255,255,255,0.4); }
+    .embla__button:disabled { opacity: 0.2; cursor: not-allowed; }
+    .embla__button--prev { left: 16px; }
+    .embla__button--next { right: 16px; }
+    .embla__button i { font-size: 20px; color: #1e293b; }
+    .embla__dots { display: flex; justify-content: center; gap: 8px; padding: 16px 0; }
+    .embla__dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; border: none; cursor: pointer; transition: all 0.2s; }
+    .embla__dot.is-selected { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transform: scale(1.2); }
+    .carousel-nav-btn { width: 44px; height: 44px; border-radius: 50%; background: white; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+    .carousel-nav-btn:hover { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-color: transparent; }
+
+    /* === Filter Pills Styling === */
+    .filter-group { display: inline-flex; background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); border-radius: 30px; padding: 4px; gap: 2px; }
+    .filter-pill { padding: 8px 16px; border-radius: 26px; font-size: 13px; font-weight: 500; color: #64748b; background: transparent; border: none; cursor: pointer; transition: all 0.25s; position: relative; }
+    .filter-pill:hover { color: #475569; }
+    .filter-pill.active { background: white; color: #6366f1; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15); }
+    .filter-subgroup { display: inline-flex; gap: 6px; padding-left: 12px; margin-left: 12px; border-left: 2px solid #e2e8f0; }
+    .filter-chip { padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; cursor: pointer; transition: all 0.2s; }
+    .filter-chip:hover { border-color: #6366f1; color: #6366f1; }
+    .filter-chip.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-color: transparent; }
+
+    /* === Modern Auth Form === */
+    .auth-container { width: 100%; max-width: 400px; border-radius: 20px; background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.98)); padding: 32px; color: #f3f4f6; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); }
+    .auth-title { text-align: center; font-size: 1.75rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .auth-input-group { margin-top: 16px; }
+    .auth-input-group label { display: block; color: #9ca3af; margin-bottom: 6px; font-size: 14px; }
+    .auth-input-group input { width: 100%; border-radius: 10px; border: 1px solid #374151; outline: 0; background-color: rgba(17, 24, 39, 0.8); padding: 12px 16px; color: #f3f4f6; font-size: 15px; transition: border-color 0.2s; }
+    .auth-input-group input:focus { border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
+    .auth-btn { display: block; width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 14px; text-align: center; color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.2s; margin-top: 20px; }
+    .auth-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4); }
+    .auth-btn.outline { background: transparent; border: 1px solid #374151; color: #e5e7eb; }
+    .auth-btn.outline:hover { border-color: #667eea; background: rgba(102, 126, 234, 0.1); box-shadow: none; transform: none; }
+    .auth-divider { display: flex; align-items: center; margin: 24px 0; }
+    .auth-divider .line { flex: 1; height: 1px; background: #374151; }
+    .auth-divider .text { padding: 0 16px; font-size: 13px; color: #9ca3af; }
+    .auth-social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #374151; background: transparent; color: #e5e7eb; cursor: pointer; transition: all 0.2s; margin-bottom: 10px; }
+    .auth-social-btn:hover { border-color: #667eea; background: rgba(102, 126, 234, 0.05); }
+    .auth-social-btn i { font-size: 18px; }
+    .auth-footer { text-align: center; margin-top: 20px; font-size: 13px; color: #9ca3af; }
+    .auth-footer a { color: #667eea; text-decoration: none; font-weight: 500; }
+    .auth-footer a:hover { text-decoration: underline; }
+    .auth-tabs { display: flex; background: rgba(55, 65, 81, 0.5); border-radius: 12px; padding: 4px; margin-bottom: 24px; }
+    .auth-tab { flex: 1; padding: 10px; text-align: center; border-radius: 8px; font-size: 14px; font-weight: 500; color: #9ca3af; cursor: pointer; transition: all 0.2s; border: none; background: transparent; }
+    .auth-tab.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+  </style>
+  <script src="assets/js/app-config.js" defer></script>
+  <script src="assets/js/firebase-utils.js" defer></script>
+  <script src="assets/js/grading-utils.js" defer></script>
+  <script src="assets/js/auth.js" defer></script>
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/diagrams.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="assets/js/proto-ui.js" defer></script>
+  <title>Học Liệu Toán — Experimental UI v3</title>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-slate-100 text-slate-800 font-inter">
+
+  <header id="site-header" class="sticky top-0 z-50">
+    <div class="mx-auto max-w-7xl px-4 py-3">
+      <div class="glass flex items-center justify-between rounded-2xl shadow-lg px-4 py-2">
+        <a href="#/classes" class="text-lg md:text-xl font-semibold text-slate-800"><span class="text-blue-700">Học</span> Liệu Toán</a>
+        
+        <!-- Desktop/Mobile unified hamburger menu -->
+        <div class="user-menu-wrapper">
+          <label class="hamburger" id="hamburger-menu">
+            <input type="checkbox" id="hamburger-checkbox">
+            <svg viewBox="0 0 32 32">
+              <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+              <path class="line" d="M7 16 27 16"></path>
+            </svg>
+          </label>
+          <div id="user-menu-dropdown" class="user-menu-dropdown">
+            <!-- Auth section - changes based on login state -->
+            <a href="#/auth" class="user-menu-item" id="login-menu-item">
+              <i class="fa-solid fa-right-to-bracket"></i>
+              <span>Đăng nhập</span>
+            </a>
+            <button id="logout-menu-item" class="user-menu-item" style="display:none;">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <span>Đăng xuất</span>
+            </button>
+            <div class="user-menu-divider"></div>
+            <!-- Profile & Settings -->
+            <a href="#/profile" class="user-menu-item">
+              <i class="fa-solid fa-user"></i>
+              <span>Hồ sơ</span>
+            </a>
+            <a href="#/dashboard" class="user-menu-item">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Thống kê</span>
+            </a>
+            <a href="#/customize" class="user-menu-item">
+              <i class="fa-solid fa-sliders"></i>
+              <span>Tuỳ chỉnh cá nhân</span>
+            </a>
+            <div class="user-menu-divider"></div>
+            <!-- Home & History -->
+            <a href="#/classes" class="user-menu-item">
+              <i class="fa-solid fa-house"></i>
+              <span>Trang chủ</span>
+            </a>
+            <a href="#/history" class="user-menu-item">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>Lịch sử làm bài</span>
+            </a>
+            <a href="#/admin" class="user-menu-item" id="admin-menu-item" style="display:none;">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Quản trị</span>
+            </a>
+            <div class="user-menu-divider"></div>
+            <!-- Lab -->
+            <a href="#ui-lab" class="user-menu-item">
+              <i class="fa-solid fa-flask"></i>
+              <span>UI Lab</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="app-container" class="max-w-7xl mx-auto px-4 py-8">
+
+    <!-- Chọn lớp học - Modern Design -->
+    <section id="class-selection-screen">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          Chọn lớp học của bạn
+        </h1>
+        <p class="text-slate-500 mt-2 text-lg">Bắt đầu hành trình chinh phục Toán học</p>
+      </div>
+      
+      <!-- Modern Grade Cards Grid -->
+      <div id="class-menu" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <!-- Grade 9 -->
+        <button type="button" data-grade="9" class="grade-card group">
+          <div class="grade-card-inner grade-9">
+            <div class="grade-icon">
+              <i class="fa-solid fa-square-root-variable"></i>
+            </div>
+            <div class="grade-number">9</div>
+            <div class="grade-label">Lớp 9</div>
+            <div class="grade-arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </button>
+        
+        <!-- Grade 10 -->
+        <button type="button" data-grade="10" class="grade-card group">
+          <div class="grade-card-inner grade-10">
+            <div class="grade-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div class="grade-number">10</div>
+            <div class="grade-label">Lớp 10</div>
+            
+            <div class="grade-arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </button>
+        
+        <!-- Grade 11 -->
+        <button type="button" data-grade="11" class="grade-card group">
+          <div class="grade-card-inner grade-11">
+            <div class="grade-icon">
+              <i class="fa-solid fa-wave-square"></i>
+            </div>
+            <div class="grade-number">11</div>
+            <div class="grade-label">Lớp 11</div>
+        
+            <div class="grade-arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </button>
+        
+        <!-- Grade 12 -->
+        <button type="button" data-grade="12" class="grade-card group">
+          <div class="grade-card-inner grade-12">
+            <div class="grade-icon">
+              <i class="fa-solid fa-infinity"></i>
+            </div>
+            <div class="grade-number">12</div>
+            <div class="grade-label">Lớp 12</div>
+            
+            <div class="grade-arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </button>
+      </div>
+      
+      <!-- Quick Stats -->
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="glass rounded-2xl p-4 text-center">
+          <div class="text-2xl font-bold text-blue-600">50+</div>
+          <div class="text-sm text-slate-500">Đề thi</div>
+        </div>
+        <div class="glass rounded-2xl p-4 text-center">
+          <div class="text-2xl font-bold text-emerald-600">1000+</div>
+          <div class="text-sm text-slate-500">Câu hỏi</div>
+        </div>
+        <div class="glass rounded-2xl p-4 text-center">
+          <div class="text-2xl font-bold text-purple-600">24/7</div>
+          <div class="text-sm text-slate-500">AI Tutor</div>
+        </div>
+        <div class="glass rounded-2xl p-4 text-center">
+          <div class="text-2xl font-bold text-rose-600">∞</div>
+          <div class="text-sm text-slate-500">Luyện tập</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tuỳ chỉnh giao diện -->
+    <section id="customize-screen" class="hidden">
+      <div class="rounded-3xl glass shadow-xl p-6 md:p-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Tuỳ chỉnh giao diện</h2>
+        <p class="text-slate-600 mt-1">Chọn cách hiển thị và chế độ màu cho trang của bạn.</p>
+        <div class="mt-6 grid md:grid-cols-2 gap-6">
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <div class="font-semibold mb-3">Kiểu hiển thị Đề & Học liệu</div>
+            <div id="pref-layout" class="grid grid-cols-2 gap-3 text-sm">
+              <label class="flex items-center gap-2 p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50"><input type="radio" name="layout" value="dynamic"> Dynamic</label>
+              <label class="flex items-center gap-2 p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50"><input type="radio" name="layout" value="cards"> Cards</label>
+              <label class="flex items-center gap-2 p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50"><input type="radio" name="layout" value="table"> Bảng</label>
+              <label class="flex items-center gap-2 p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50"><input type="radio" name="layout" value="carousel"> Carousel</label>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <div class="font-semibold mb-3">Chế độ giao diện</div>
+            <div class="flex items-center gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="theme" value="light"> Light</label>
+              <label class="flex items-center gap-2"><input type="radio" name="theme" value="dark"> Dark</label>
+            </div>
+            <div class="text-xs text-slate-500 mt-2">Tuỳ chọn sẽ được áp dụng ngay và lưu lại cho lần sau.</div>
+          </div>
+        </div>
+        <div class="mt-6 text-right">
+          <button id="customize-done" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Xong</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard / Thống kê -->
+    <section id="dashboard-screen" class="hidden">
+      <div class="rounded-3xl glass shadow-xl p-6 md:p-8">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Thống kê học tập</h2>
+            <p class="text-slate-600 mt-1">Theo dõi tiến độ và thành tích của bạn</p>
+          </div>
+          <button onclick="window.Features?.AI?.open()" class="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-medium hover:shadow-lg transition">
+            <i class="fa-solid fa-robot mr-2"></i>Hỏi AI
+          </button>
+        </div>
+        <div id="dashboard-content">
+          <!-- Dashboard content will be rendered by JS -->
+          <div class="text-center py-12 text-slate-500">
+            <i class="fa-solid fa-spinner fa-spin text-4xl mb-4"></i>
+            <p>Đang tải...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chọn đề thi -->
+    <section id="exam-selection-screen" class="hidden">
+      <div class="rounded-3xl glass shadow-xl p-6 md:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Chọn đề thi</h2>
+          <div class="flex items-center gap-2">
+            <div id="exam-mode-toggle" class="toggle-wrapper">
+              <input type="checkbox" class="toggle-checkbox" checked aria-label="Exam mode" />
+              <div class="toggle-container">
+                <div class="toggle-button">
+                  <div class="toggle-button-circles-container">
+                    <div class="toggle-button-circle"></div>
+                    <div class="toggle-button-circle"></div>
+                    <div class="toggle-button-circle"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span id="lbl-interactive" class="text-sm font-medium cursor-pointer interactive-label">
+              <i class="fa-solid fa-bolt mr-1"></i>Tương tác
+            </span>
+            <select id="exam-mode-select" class="hidden"><option value="static">static</option><option value="interactive" selected>interactive</option></select>
+          </div>
+        </div>
+        
+        <!-- Modern Filter Section -->
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <!-- Type Filter Pills -->
+          <div class="filter-group">
+            <button class="filter-pill active" data-v3-filter="all">Tất cả</button>
+            <button class="filter-pill" data-v3-filter="exams">
+              <i class="fa-solid fa-file-pen mr-1"></i> Đề kiểm tra
+            </button>
+            <button class="filter-pill" data-v3-filter="lessons">
+              <i class="fa-solid fa-book-open mr-1"></i> Bài học
+            </button>
+            <button class="filter-pill" data-v3-filter="tools">
+              <i class="fa-solid fa-lightbulb mr-1"></i> Học liệu
+            </button>
+          </div>
+          
+          <!-- Subcategory Chips (only for Đề kiểm tra) -->
+          <div id="exam-subcategory-filters" class="filter-subgroup hidden">
+            <button class="filter-chip active" data-v3-cat="all">Tất cả</button>
+            <button class="filter-chip" data-v3-cat="gk1">GK1</button>
+            <button class="filter-chip" data-v3-cat="ck1">CK1</button>
+            <button class="filter-chip" data-v3-cat="gk2">GK2</button>
+            <button class="filter-chip" data-v3-cat="ck2">CK2</button>
+            <button class="filter-chip" data-v3-cat="chuong">Chương</button>
+          </div>
+          
+          <!-- Search -->
+          <div class="ml-auto">
+            <div class="relative">
+              <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+              <input id="exam-search" class="pl-9 pr-4 py-2 w-64 rounded-full border border-slate-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 text-sm" placeholder="Tìm kiếm..." />
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic variant (dùng từ script.js) -->
+        <div id="exam-variant-dynamic" class="mt-6">
+          <div id="exam-menu" class="flex flex-col items-center space-y-4"></div>
+          <div class="mt-6 text-center">
+            <button id="back-to-class-selection" class="text-blue-600 hover:underline flex items-center gap-2 mx-auto">
+              <i class="fa-solid fa-arrow-left"></i> Quay lại chọn lớp
+            </button>
+          </div>
+        </div>
+
+        <!-- Sticky Stacking Cards variant -->
+        <div id="exam-variant-cards" class="mt-6 hidden">
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="flex-1 sticky-cards-container" id="exam-cards-grid"></div>
+            <div class="hidden md:block w-64 sticky-cards-sidebar">
+              <div class="text-center">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Danh sách</h2>
+                <p class="text-slate-500 text-sm">Cuộn xuống để xem thêm</p>
+                <div class="mt-4 text-6xl">👇</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modern Animated List variant -->
+        <div id="exam-variant-table" class="mt-6 hidden">
+          <div class="modern-list" id="exam-list-container"></div>
+        </div>
+
+        <!-- Embla Carousel variant -->
+        <div id="exam-variant-carousel" class="mt-6 hidden">
+          <div class="embla" id="embla-carousel">
+            <div class="embla__viewport">
+              <div class="embla__container" id="exam-carousel"></div>
+            </div>
+            <button class="embla__button embla__button--prev" id="carousel-prev">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="embla__button embla__button--next" id="carousel-next">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <div class="embla__dots" id="carousel-dots"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Làm bài kiểm tra -->
+    <section id="exam-screen" class="hidden font-pagella">
+      <div class="grid lg:grid-cols-4 gap-3 items-start">
+        <div class="lg:col-span-3">
+          <div class="rounded-3xl bg-white border border-slate-200 shadow-xl p-6">
+            <header class="mb-4">
+              <div class="flex items-center justify-between">
+                <h1 id="exam-title-header" class="text-2xl font-semibold text-blue-800">Đề kiểm tra</h1>
+                <!-- Mobile only: timer & progress -->
+                <div class="flex items-center gap-3 lg:hidden">
+                  <div class="text-sm text-slate-500">Hoàn thành</div>
+                  <div class="w-32 h-2 bg-slate-200 rounded-full overflow-hidden"><div id="exam-progress" class="h-full w-0 bg-blue-500"></div></div>
+                  <div id="timer" class="text-lg font-semibold bg-blue-100 text-blue-700 px-4 py-1 rounded-full">--:--</div>
+                </div>
+              </div>
+            </header>
+            <div id="exam-questions-container" class="space-y-6"></div>
+            <div class="mt-6 text-right">
+              <button id="submit-exam-btn" class="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition">Nộp bài</button>
+            </div>
+          </div>
+        </div>
+        <aside class="hidden lg:block lg:col-span-1">
+          <div class="exam-sidebar-sticky space-y-3">
+            <!-- Timer + Progress (compact) -->
+            <div class="rounded-xl bg-white border border-slate-200 shadow-md p-3">
+              <div class="flex items-center justify-center gap-2 mb-2">
+                <i class="fa-regular fa-clock text-blue-600"></i>
+                <div id="timer-sidebar" class="text-xl font-bold text-blue-700">--:--</div>
+              </div>
+              <!-- Progress bar -->
+              <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                <div id="exam-progress-sidebar" class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300" style="width: 0%"></div>
+              </div>
+            </div>
+            <!-- Question Palette -->
+            <div class="rounded-xl bg-white border border-slate-200 shadow-md p-3">
+              <div class="flex items-center justify-between mb-2">
+                <div class="text-sm font-bold text-slate-700">Câu hỏi</div>
+                <div class="text-xs text-slate-500"><span id="qp-answered">0</span>/<span id="qp-total">0</span></div>
+              </div>
+              <div id="question-palette-nodes" class="grid grid-cols-5 gap-1.5"></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <!-- Mobile palette -->
+      <button id="palette-fab" class="lg:hidden fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-blue-600 text-white shadow-lg flex items-center justify-center"><i class="fa-solid fa-border-all"></i></button>
+      <div id="palette-drawer" class="lg:hidden fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/40" id="palette-drawer-backdrop"></div>
+        <div class="absolute bottom-0 left-0 right-0 rounded-t-3xl glass shadow-xl p-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-semibold text-slate-800">Danh sách câu hỏi</div>
+            <button id="palette-drawer-close" class="text-gray-500 hover:text-gray-700"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="text-sm text-slate-500 mb-2"><span id="qp-answered-mobile">0</span>/<span id="qp-total-mobile">0</span></div>
+          <div id="question-palette-nodes-mobile" class="grid grid-cols-6 gap-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Xem kết quả -->
+    <section id="results-screen" class="hidden font-pagella">
+      <div class="grid lg:grid-cols-4 gap-4 items-start">
+        <!-- Main content -->
+        <div class="lg:col-span-3 space-y-6">
+          <!-- Score Summary Card -->
+          <div class="rounded-2xl bg-gradient-to-br from-slate-50 to-white border border-slate-200 shadow-lg p-6">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+              <div class="flex-shrink-0 text-center">
+                <div id="big-score" class="text-6xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">--</div>
+                <div class="text-sm text-slate-500 mt-1">Điểm số của bạn</div>
+              </div>
+              <div class="flex-1 grid grid-cols-3 gap-4 text-center">
+                <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-100">
+                  <div id="result-correct-count" class="text-2xl font-bold text-emerald-600">0</div>
+                  <div class="text-xs text-emerald-600">Đúng</div>
+                </div>
+                <div class="p-3 rounded-xl bg-red-50 border border-red-100">
+                  <div id="result-wrong-count" class="text-2xl font-bold text-red-500">0</div>
+                  <div class="text-xs text-red-500">Sai</div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-100 border border-slate-200">
+                  <div id="result-skipped-count" class="text-2xl font-bold text-slate-500">0</div>
+                  <div class="text-xs text-slate-500">Bỏ qua</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Results Detail -->
+          <div class="rounded-2xl bg-white border border-slate-200 shadow-lg p-6">
+            <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-clipboard-list text-blue-600"></i>
+              Chi tiết đáp án
+            </h3>
+            <div id="results-container" class="space-y-4"></div>
+          </div>
+          
+          <div class="text-center">
+            <button id="restart-btn" class="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium hover:shadow-lg transition-all">
+              <i class="fa-solid fa-rotate-right mr-2"></i>Làm bài khác
+            </button>
+          </div>
+        </div>
+        
+        <!-- Results Sidebar with Question Palette -->
+        <aside class="hidden lg:block lg:col-span-1">
+          <div class="results-sidebar-sticky space-y-3">
+            <!-- Legend -->
+            <div class="rounded-xl bg-white border border-slate-200 shadow-md p-3">
+              <div class="text-sm font-medium text-slate-700 mb-2">Chú thích</div>
+              <div class="space-y-1.5 text-xs">
+                <div class="flex items-center gap-2"><span class="w-4 h-4 rounded bg-emerald-500"></span>Đúng</div>
+                <div class="flex items-center gap-2"><span class="w-4 h-4 rounded bg-red-500"></span>Sai</div>
+                <div class="flex items-center gap-2"><span class="w-4 h-4 rounded bg-slate-400"></span>Bỏ qua</div>
+              </div>
+            </div>
+            <!-- Question Palette for Results -->
+            <div class="rounded-xl bg-white border border-slate-200 shadow-md p-3">
+              <div class="text-sm font-bold text-slate-700 mb-2">Danh sách câu hỏi</div>
+              <div id="results-question-palette" class="grid grid-cols-5 gap-1.5"></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Lịch sử & Admin (reuse) -->
+    <section id="history-screen" class="hidden">
+      <div class="rounded-3xl glass shadow-xl p-8">
+        <h2 class="text-2xl font-semibold mb-4">Lịch sử làm bài của bạn</h2>
+        <div id="history-container" class="space-y-4"></div>
+      </div>
+    </section>
+
+    <section id="admin-summary-screen" class="hidden">
+      <div class="rounded-3xl glass shadow-xl p-8">
+        <h2 class="text-2xl font-semibold mb-4">Tổng hợp kết quả (Admin)</h2>
+        <div id="admin-summary-container" class="space-y-6"></div>
+      </div>
+    </section>
+
+    <!-- Auth & Profile -->
+    <section id="auth-screen" class="hidden">
+      <div class="flex items-center justify-center min-h-[70vh]">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center max-w-5xl w-full">
+          <!-- Left side - Decorative -->
+          <div class="hidden lg:flex flex-col items-center justify-center">
+            <div class="relative">
+              <div class="w-80 h-80 rounded-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 opacity-20 blur-3xl absolute -top-10 -left-10"></div>
+              <div class="relative z-10 text-center">
+                <div class="text-8xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">∑∫π</div>
+                <p class="mt-4 text-xl text-slate-600 font-medium">Học Liệu Toán</p>
+                <p class="mt-2 text-slate-500">Nền tảng học toán trực tuyến hiện đại</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right side - Auth Form -->
+          <div class="flex justify-center">
+            <div class="auth-container">
+              <h2 class="auth-title">Đăng nhập</h2>
+              
+              <!-- Auth Mode Tabs -->
+              <div class="auth-tabs mt-6">
+                <button class="auth-tab active" data-auth-mode="quick">Đăng nhập nhanh</button>
+                <button class="auth-tab" data-auth-mode="password">Dùng mật khẩu</button>
+              </div>
+              
+              <!-- Quick Login Panel -->
+              <div id="auth-quick-panel">
+                <div id="auth-spinner" class="hidden text-center my-4">
+                  <div class="inline-block w-8 h-8 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+                
+                <button id="btn-auth-google" class="auth-social-btn">
+                  <i class="fab fa-google"></i>
+                  <span>Tiếp tục với Google</span>
+                </button>
+                
+                <button id="btn-auth-phone" class="auth-social-btn">
+                  <i class="fa-solid fa-phone"></i>
+                  <span>Đăng nhập bằng SĐT</span>
+                </button>
+                
+                <div id="recaptcha-container" class="my-3"></div>
+                
+                <div class="auth-divider">
+                  <div class="line"></div>
+                  <span class="text">hoặc</span>
+                  <div class="line"></div>
+                </div>
+                
+                <button id="btn-auth-guest" class="auth-btn outline">
+                  <i class="fa-solid fa-user-secret mr-2"></i>
+                  Chế độ Khách
+                </button>
+              </div>
+              
+              <!-- Password Login Panel -->
+              <div id="auth-password-panel" class="hidden">
+                <form id="password-login-form">
+                  <div class="auth-input-group">
+                    <label for="login-email">Email hoặc Số điện thoại</label>
+                    <input type="text" id="login-email" placeholder="email@example.com" required />
+                  </div>
+                  
+                  <div class="auth-input-group">
+                    <label for="login-password">Mật khẩu</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required />
+                  </div>
+                  
+                  <div class="flex justify-end mt-2">
+                    <a href="#" class="text-sm text-indigo-400 hover:text-indigo-300">Quên mật khẩu?</a>
+                  </div>
+                  
+                  <button type="submit" class="auth-btn">
+                    Đăng nhập
+                  </button>
+                </form>
+                
+                <div class="auth-divider">
+                  <div class="line"></div>
+                  <span class="text">hoặc</span>
+                  <div class="line"></div>
+                </div>
+                
+                <button id="btn-create-password" class="auth-btn outline">
+                  <i class="fa-solid fa-user-plus mr-2"></i>
+                  Tạo mật khẩu mới
+                </button>
+              </div>
+              
+              <!-- Create Password Panel (after Google/Phone signup) -->
+              <div id="auth-create-password-panel" class="hidden">
+                <p class="text-center text-gray-400 text-sm mb-4">
+                  Tạo mật khẩu để đăng nhập nhanh hơn lần sau
+                </p>
+                
+                <form id="create-password-form">
+                  <div class="auth-input-group">
+                    <label for="new-display-name">Tên hiển thị</label>
+                    <input type="text" id="new-display-name" placeholder="Nguyễn Văn A" required />
+                  </div>
+                  
+                  <div class="auth-input-group">
+                    <label for="new-password">Mật khẩu mới</label>
+                    <input type="password" id="new-password" placeholder="Tối thiểu 6 ký tự" required minlength="6" />
+                  </div>
+                  
+                  <div class="auth-input-group">
+                    <label for="confirm-password">Xác nhận mật khẩu</label>
+                    <input type="password" id="confirm-password" placeholder="Nhập lại mật khẩu" required />
+                  </div>
+                  
+                  <p class="text-xs text-gray-500 mt-3">
+                    <i class="fa-solid fa-info-circle mr-1"></i>
+                    Mật khẩu cần có ít nhất 6 ký tự, bao gồm chữ và số
+                  </p>
+                  
+                  <button type="submit" class="auth-btn">
+                    Lưu mật khẩu
+                  </button>
+                  
+                  <button type="button" id="skip-password-btn" class="auth-btn outline mt-3">
+                    Bỏ qua
+                  </button>
+                </form>
+              </div>
+              
+              <p class="auth-footer">
+                Khi tiếp tục, bạn đồng ý với <a href="#">Điều khoản sử dụng</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="profile-screen" class="hidden">
+      <div class="rounded-3xl glass shadow-xl p-6">
+        <h2 class="text-2xl font-semibold mb-4">Hồ sơ học viên</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-slate-700">Họ và tên</label>
+            <input id="profile-fullName" type="text" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nguyễn Văn A" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700">Số điện thoại/Zalo</label>
+            <div class="mt-1 flex gap-2">
+              <input id="profile-phone" type="tel" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="+84..." />
+              <button id="profile-link-phone" class="px-3 py-2 border border-blue-300 rounded-lg text-blue-700 hover:bg-blue-50"><i class="fa fa-link mr-1"></i>Liên kết SĐT</button>
+            </div>
+            <div class="text-xs text-slate-500 mt-1">Liên kết SĐT để dùng cùng tài khoản khi đăng nhập bằng số điện thoại</div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700">Khối lớp</label>
+            <select id="profile-grade" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="9">Lớp 9</option>
+              <option value="10">Lớp 10</option>
+              <option value="11">Lớp 11</option>
+              <option value="12">Lớp 12</option>
+              <option value="lt">Luyện thi</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700">Trường học</label>
+            <input id="profile-school" type="text" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="THPT..." />
+          </div>
+        </div>
+        <div class="mt-4">
+          <button id="profile-save" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"><i class="fa fa-save mr-2"></i>Lưu thay đổi</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- UI Lab: Học lý thuyết & Tương tác nội dung -->
+    <section id="ui-lab" class="mt-12">
+      <div class="rounded-3xl glass shadow-xl p-6 md:p-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">UI Lab</h2>
+        <p class="text-slate-600 mt-1">Mô-đun Học lý thuyết và Tương tác nội dung.</p>
+
+        <div class="mt-6 grid lg:grid-cols-2 gap-6">
+          <!-- Theory 2-column -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <div class="font-semibold mb-3">Học lý thuyết — Dạng sách 2 cột</div>
+            <div class="grid md:grid-cols-5 gap-4">
+              <aside class="md:col-span-2">
+                <div class="sticky top-24 space-y-2 text-sm">
+                  <a href="#sec-1" class="block px-3 py-2 rounded-lg bg-slate-50 hover:bg-slate-100">1. Mở đầu</a>
+                  <a href="#sec-2" class="block px-3 py-2 rounded-lg bg-slate-50 hover:bg-slate-100">2. Định nghĩa</a>
+                  <a href="#sec-3" class="block px-3 py-2 rounded-lg bg-slate-50 hover:bg-slate-100">3. Ví dụ</a>
+                </div>
+              </aside>
+              <article class="md:col-span-3 prose max-w-none">
+                <section id="sec-1" class="mb-6">
+                  <h3 class="text-xl font-semibold">Mở đầu</h3>
+                  <p>Đây là phần giới thiệu. Nội dung dễ đọc, cỡ chữ rõ và khoảng cách thoáng.</p>
+                </section>
+                <section id="sec-2" class="mb-6">
+                  <h3 class="text-xl font-semibold">Định nghĩa</h3>
+                  <p>Các định nghĩa chính kèm công thức: $a^2 + b^2 = c^2$.</p>
+                </section>
+                <section id="sec-3" class="mb-6">
+                  <h3 class="text-xl font-semibold">Ví dụ minh hoạ</h3>
+                  <p>Hình ảnh/video chèn trực tiếp.</p>
+                  <div class="aspect-video rounded-xl bg-slate-200"></div>
+                </section>
+              </article>
+            </div>
+          </div>
+
+          <!-- Theory tabs -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <div class="font-semibold mb-3">Học lý thuyết — Tabs</div>
+            <div class="inline-flex bg-slate-100 rounded-full p-1 text-sm">
+              <button class="px-3 py-1 rounded-full bg-white shadow-sm" data-tab="t1">Khái niệm</button>
+              <button class="px-3 py-1" data-tab="t2">Ví dụ</button>
+              <button class="px-3 py-1" data-tab="t3">Bài tập</button>
+            </div>
+            <div class="mt-4 overflow-hidden relative">
+              <div id="tab-panels" class="grid grid-cols-3 transition-transform duration-300" style="width:300%; transform: translateX(0%)">
+                <div class="col-span-1 p-2">Khái niệm cơ bản...</div>
+                <div class="col-span-1 p-2">Ví dụ minh hoạ...</div>
+                <div class="col-span-1 p-2">Bài tập tự luyện...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flashcards -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <div class="font-semibold mb-3">Flashcards</div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative h-32 [perspective:1000px]">
+                <div class="flip w-full h-full rounded-xl border border-slate-200 bg-white p-4" data-flip>
+                  <div class="flip-face absolute inset-0 flex items-center justify-center">Định nghĩa tập hợp</div>
+                  <div class="flip-face flip-back absolute inset-0 flex items-center justify-center bg-blue-50">Tập hợp là...</div>
+                </div>
+              </div>
+              <div class="relative h-32 [perspective:1000px]">
+                <div class="flip w-full h-full rounded-xl border border-slate-200 bg-white p-4" data-flip>
+                  <div class="flip-face absolute inset-0 flex items-center justify-center">Công thức</div>
+                  <div class="flip-face flip-back absolute inset-0 flex items-center justify-center bg-emerald-50">sin^2 x + cos^2 x = 1</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Drag & Drop -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <div class="font-semibold mb-3">Kéo - Thả</div>
+            <div class="grid md:grid-cols-3 gap-4 text-sm">
+              <div class="space-y-2">
+                <div draggable="true" data-item="1" class="px-3 py-2 rounded-lg bg-slate-100 cursor-move">Bước 1</div>
+                <div draggable="true" data-item="2" class="px-3 py-2 rounded-lg bg-slate-100 cursor-move">Bước 2</div>
+                <div draggable="true" data-item="3" class="px-3 py-2 rounded-lg bg-slate-100 cursor-move">Bước 3</div>
+              </div>
+              <div class="rounded-xl border border-slate-200 min-h-[120px] p-3" data-drop="a">Vùng A</div>
+              <div class="rounded-xl border border-slate-200 min-h-[120px] p-3" data-drop="b">Vùng B</div>
+            </div>
+          </div>
+
+          <!-- Mini Quiz -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <div class="font-semibold mb-3">Mini Quiz</div>
+            <div class="space-y-3 text-sm">
+              <div>
+                <div>1) Mệnh đề "0 là số tự nhiên" là đúng?</div>
+                <div class="mt-2 flex gap-2">
+                  <button class="px-3 py-1 rounded border" data-tf="true">Đúng</button>
+                  <button class="px-3 py-1 rounded border" data-tf="false">Sai</button>
+                </div>
+                <div class="mt-1 text-xs" data-tf-feedback></div>
+              </div>
+              <div>
+                <div>2) Chọn đáp án đúng cho x^2 = 4</div>
+                <div class="mt-2 flex gap-2">
+                  <button class="px-3 py-1 rounded border" data-mc="A">x = 2</button>
+                  <button class="px-3 py-1 rounded border" data-mc="B">x = -2</button>
+                  <button class="px-3 py-1 rounded border" data-mc="C">x = ±2</button>
+                </div>
+                <div class="mt-1 text-xs" data-mc-feedback></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Checklist -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <div class="font-semibold mb-3">Checklist tiến trình</div>
+            <div class="space-y-2 text-sm" id="learn-checklist">
+              <label class="flex items-center gap-2"><input class="ui-checkbox" type="checkbox" data-chk> Nắm vững định nghĩa</label>
+              <label class="flex items-center gap-2"><input class="ui-checkbox" type="checkbox" data-chk> Làm ví dụ cơ bản</label>
+              <label class="flex items-center gap-2"><input class="ui-checkbox" type="checkbox" data-chk> Luyện tập nâng cao</label>
+              <label class="flex items-center gap-2"><input class="ui-checkbox" type="checkbox" data-chk> Kiểm tra tự đánh giá</label>
+            </div>
+            <div class="mt-3">
+              <div class="h-2 bg-slate-200 rounded-full overflow-hidden"><div id="learn-progress" class="h-full w-0 bg-emerald-500"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      // ===== Hamburger Menu =====
+      const hamburgerCheckbox = document.getElementById('hamburger-checkbox');
+      const userMenuDropdown = document.getElementById('user-menu-dropdown');
+      const loginMenuItem = document.getElementById('login-menu-item');
+      const logoutMenuItem = document.getElementById('logout-menu-item');
+      const adminMenuItem = document.getElementById('admin-menu-item');
+      
+      if(hamburgerCheckbox && userMenuDropdown){
+        hamburgerCheckbox.addEventListener('change', ()=>{
+          userMenuDropdown.classList.toggle('show', hamburgerCheckbox.checked);
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e)=>{
+          const hamburger = document.getElementById('hamburger-menu');
+          if(!userMenuDropdown.contains(e.target) && !hamburger?.contains(e.target)){
+            userMenuDropdown.classList.remove('show');
+            if(hamburgerCheckbox) hamburgerCheckbox.checked = false;
+          }
+        });
+        
+        // Close on item click
+        userMenuDropdown.querySelectorAll('.user-menu-item').forEach(item=>{
+          item.addEventListener('click', ()=>{
+            userMenuDropdown.classList.remove('show');
+            if(hamburgerCheckbox) hamburgerCheckbox.checked = false;
+          });
+        });
+      }
+      
+      // ===== Auth State Management =====
+      function updateAuthUI(){
+        const user = (window.Auth && Auth.getUser) ? Auth.getUser() : null;
+        const isLoggedIn = !!user;
+        
+        console.log('updateAuthUI: user=', user, 'isLoggedIn=', isLoggedIn, 'guestMode=', window.guestMode);
+        
+        // Toggle login/logout buttons
+        if(loginMenuItem) loginMenuItem.style.display = isLoggedIn ? 'none' : 'flex';
+        if(logoutMenuItem) logoutMenuItem.style.display = isLoggedIn ? 'flex' : 'none';
+        
+        // Show admin menu only for admins
+        if(adminMenuItem){
+          const adminCheck = typeof window.isAdmin === 'function' ? window.isAdmin() : false;
+          adminMenuItem.style.display = adminCheck ? 'flex' : 'none';
+        }
+      }
+      
+      // Logout handler
+      if(logoutMenuItem){
+        logoutMenuItem.addEventListener('click', async ()=>{
+          if(window.Auth && Auth.signOut){
+            await Auth.signOut();
+          }
+          window.guestMode = false;
+          try{ localStorage.removeItem('guest_mode'); }catch(e){}
+          updateAuthUI();
+          location.hash = '#/auth';
+        });
+      }
+      
+      // Update auth UI on load and auth changes
+      // Delay initial check to allow Auth module to initialize
+      setTimeout(updateAuthUI, 500);
+      window.addEventListener('authStateChanged', updateAuthUI);
+      
+      // Also listen for Auth.onChange if available
+      if(window.Auth && Auth.onChange){
+        Auth.onChange(updateAuthUI);
+      } else {
+        // Retry after Auth module loads
+        setTimeout(()=>{
+          if(window.Auth && Auth.onChange) Auth.onChange(updateAuthUI);
+          updateAuthUI();
+        }, 1000);
+      }
+
+      // ===== Exam Mode Toggle =====
+      const examModeToggle = document.getElementById('exam-mode-toggle');
+      const examModeCheckbox = examModeToggle?.querySelector('.toggle-checkbox');
+      const examModeSelect = document.getElementById('exam-mode-select');
+      const lblInteractive = document.getElementById('lbl-interactive');
+      
+      function updateExamModeUI(){
+        const isInteractive = examModeCheckbox?.checked;
+        if(examModeSelect) examModeSelect.value = isInteractive ? 'interactive' : 'static';
+        if(lblInteractive){
+          lblInteractive.classList.toggle('active', isInteractive);
+        }
+      }
+      
+      if(examModeCheckbox){
+        // Set initial state
+        examModeCheckbox.checked = true; // Default to interactive
+        updateExamModeUI();
+        
+        examModeCheckbox.addEventListener('change', updateExamModeUI);
+        
+        // Click on label toggles
+        if(lblInteractive){
+          lblInteractive.addEventListener('click', ()=>{
+            examModeCheckbox.checked = !examModeCheckbox.checked;
+            updateExamModeUI();
+          });
+        }
+      }
+
+      // ===== Auth Screen Handlers =====
+      const guestBtn = document.getElementById('btn-auth-guest');
+      if(guestBtn){
+        guestBtn.addEventListener('click', ()=>{
+          window.guestMode = true; try{ localStorage.setItem('guest_mode','1'); }catch(e){}
+          location.hash = '#/classes';
+        });
+      }
+
+      // Auth mode tabs
+      const authTabs = document.querySelectorAll('[data-auth-mode]');
+      const authQuickPanel = document.getElementById('auth-quick-panel');
+      const authPasswordPanel = document.getElementById('auth-password-panel');
+      const authCreatePasswordPanel = document.getElementById('auth-create-password-panel');
+      
+      authTabs.forEach(tab=>{
+        tab.addEventListener('click', ()=>{
+          authTabs.forEach(t=> t.classList.remove('active'));
+          tab.classList.add('active');
+          const mode = tab.getAttribute('data-auth-mode');
+          if(authQuickPanel) authQuickPanel.classList.toggle('hidden', mode !== 'quick');
+          if(authPasswordPanel) authPasswordPanel.classList.toggle('hidden', mode !== 'password');
+          if(authCreatePasswordPanel) authCreatePasswordPanel.classList.add('hidden');
+        });
+      });
+
+      // Create password button
+      const btnCreatePassword = document.getElementById('btn-create-password');
+      if(btnCreatePassword){
+        btnCreatePassword.addEventListener('click', ()=>{
+          if(authPasswordPanel) authPasswordPanel.classList.add('hidden');
+          if(authCreatePasswordPanel) authCreatePasswordPanel.classList.remove('hidden');
+        });
+      }
+
+      // Skip password button
+      const skipPasswordBtn = document.getElementById('skip-password-btn');
+      if(skipPasswordBtn){
+        skipPasswordBtn.addEventListener('click', ()=>{
+          location.hash = '#/classes';
+        });
+      }
+
+      // Password form handlers (placeholder - actual implementation needs backend)
+      const passwordLoginForm = document.getElementById('password-login-form');
+      if(passwordLoginForm){
+        passwordLoginForm.addEventListener('submit', (e)=>{
+          e.preventDefault();
+          // TODO: Implement password login
+          if(window.Swal) Swal.fire({icon:'info', title:'Tính năng đang phát triển', text:'Vui lòng sử dụng đăng nhập nhanh', timer:2000, showConfirmButton:false});
+        });
+      }
+
+      const createPasswordForm = document.getElementById('create-password-form');
+      if(createPasswordForm){
+        createPasswordForm.addEventListener('submit', (e)=>{
+          e.preventDefault();
+          const pw = document.getElementById('new-password')?.value || '';
+          const confirmPw = document.getElementById('confirm-password')?.value || '';
+          if(pw !== confirmPw){
+            if(window.Swal) Swal.fire({icon:'error', title:'Mật khẩu không khớp'});
+            return;
+          }
+          if(pw.length < 6){
+            if(window.Swal) Swal.fire({icon:'error', title:'Mật khẩu quá ngắn', text:'Cần tối thiểu 6 ký tự'});
+            return;
+          }
+          // TODO: Save password to profile
+          if(window.Swal) Swal.fire({icon:'success', title:'Đã lưu mật khẩu!', timer:1500, showConfirmButton:false}).then(()=> location.hash = '#/classes');
+        });
+      }
+
+      // Exam variants containers
+      const examVariants = {
+        dynamic: document.getElementById('exam-variant-dynamic'),
+        cards: document.getElementById('exam-variant-cards'),
+        table: document.getElementById('exam-variant-table'),
+        carousel: document.getElementById('exam-variant-carousel')
+      };
+
+      // === Manifest-driven builders for Cards/Table/Carousel ===
+      function getSelectedGradeFromHash(){
+        const h = (location.hash||'').slice(1);
+        const [path] = h.split('?');
+        const segs = path.split('/').filter(Boolean);
+        return (segs[0]==='exams' && segs[1])? segs[1] : null;
+      }
+
+      function getGradeData(grade){
+        try{
+          const gkey = `grade${grade}`;
+          const data = (window.examManifest && examManifest.grades)? examManifest.grades[gkey] : null;
+          console.log('getGradeData:', grade, 'found:', data ? 'yes' : 'no', 'exams:', data?.exams?.length || 0, 'tools:', data?.tools?.length || 0);
+          return data;
+        }catch(e){ console.error('getGradeData error:', e); return null; }
+      }
+
+      function tooltipHTML(desc){
+        if(!desc) return '';
+        return `
+          <div class="desc-tip absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 transition-all duration-300 ease-out transform group-hover:translate-y-0 translate-y-2 z-20">
+            <div class="relative p-4 bg-gradient-to-br from-gray-900/95 to-gray-800/95 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_0_30px_rgba(79,70,229,0.15)] text-gray-300 text-sm">${desc}</div>
+            <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-gradient-to-br from-gray-900/95 to-gray-800/95 rotate-45 border-r border-b border-white/10"></div>
+          </div>`;
+      }
+
+      function buildCards(grade){
+        const grid = document.getElementById('exam-cards-grid');
+        if(!grid){ console.log('buildCards: grid not found'); return; }
+        grid.innerHTML='';
+        const gd = getGradeData(grade) || {exams:[], tools:[]};
+        const items = [
+          ...gd.exams.map(it=>({...it,_v3type:'exam'})),
+          ...gd.tools.map(it=>({...it,_v3type:'tool'}))
+        ];
+        console.log('buildCards: building', items.length, 'items for grade', grade);
+        
+        // Rotation patterns for visual interest
+        const rotations = ['', 'rotate-left', 'rotate-right', '', 'rotate-right', 'rotate-left'];
+        
+        items.forEach((it, idx)=>{
+          const wrapper = document.createElement('figure');
+          wrapper.className = 'sticky-card-wrapper card-item';
+          wrapper.dataset.type = it._v3type; wrapper.dataset.title = (it.title||'').toLowerCase();
+          try{
+            const id = it.id || ''; const title = it.title || '';
+            let cat = 'other';
+            if(/giữa.*hk1|gk1/i.test(title) || ['lop10_ontap_1','lop10_ontap_2','lop10_ontap_3'].includes(id)) cat = 'gk1';
+            else if(/cuối.*hk1|ck1/i.test(title)) cat = 'ck1';
+            else if(/giữa.*hk2|gk2/i.test(title)) cat = 'gk2';
+            else if(/cuối.*hk2|ck2/i.test(title)) cat = 'ck2';
+            else if(/chương/i.test(title)) cat = 'chuong';
+            wrapper.dataset.cat = cat;
+          }catch(e){}
+          
+          const typeClass = it._v3type==='exam' ? 'exam' : (it._v3type==='lesson' ? 'lesson' : 'tool');
+          const iconClass = it._v3type==='exam' ? 'fa-file-pen' : (it._v3type==='lesson' ? 'fa-book-open' : 'fa-lightbulb');
+          const label = it._v3type==='exam' ? 'Đề kiểm tra' : (it._v3type==='lesson' ? 'Bài học' : 'Học liệu');
+          const rotation = rotations[idx % rotations.length];
+          
+          wrapper.innerHTML = `
+            <article class="sticky-card ${typeClass} ${rotation}">
+              <div class="card-badge">
+                <i class="fa-solid ${iconClass}"></i>
+                ${label}
+              </div>
+              <h3>${it.title||''}</h3>
+              <p>${it.description || 'Nhấn để bắt đầu làm bài hoặc xem nội dung'}</p>
+              <div class="card-action">
+                ${it._v3type==='exam' ? 'Làm bài' : 'Mở'} <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </article>
+          `;
+          wrapper.addEventListener('click', ()=>{
+            const modeSel = document.getElementById('exam-mode-select');
+            const mode = modeSel? modeSel.value : 'static';
+            if(it._v3type==='exam' && it.path){ location.hash = `#/exam?path=${encodeURIComponent(it.path)}&mode=${encodeURIComponent(mode)}`; }
+            if(it._v3type==='tool' && it.url){ window.location.href = it.url; }
+          });
+          grid.appendChild(wrapper);
+        });
+      }
+
+      function buildTable(grade){
+        const listContainer = document.getElementById('exam-list-container');
+        if(!listContainer){ console.log('buildTable: list container not found'); return; }
+        listContainer.innerHTML='';
+        const gd = getGradeData(grade) || {exams:[], tools:[]};
+        const items = [
+          ...gd.exams.map(it=>({...it,_v3type:'exam'})),
+          ...gd.tools.map(it=>({...it,_v3type:'tool'}))
+        ];
+        console.log('buildTable: building', items.length, 'items for grade', grade);
+        
+        items.forEach(it=>{
+          const item = document.createElement('div');
+          const typeClass = it._v3type==='exam' ? 'exam' : (it._v3type==='lesson' ? 'lesson' : 'tool');
+          item.className = `modern-list-item ${typeClass} card-item`;
+          item.dataset.type = it._v3type; item.dataset.title = (it.title||'').toLowerCase();
+          try{
+            const id = it.id || ''; const title = it.title || '';
+            let cat = 'other';
+            if(/giữa.*hk1|gk1/i.test(title) || ['lop10_ontap_1','lop10_ontap_2','lop10_ontap_3'].includes(id)) cat = 'gk1';
+            else if(/cuối.*hk1|ck1/i.test(title)) cat = 'ck1';
+            else if(/giữa.*hk2|gk2/i.test(title)) cat = 'gk2';
+            else if(/cuối.*hk2|ck2/i.test(title)) cat = 'ck2';
+            else if(/chương/i.test(title)) cat = 'chuong';
+            item.dataset.cat = cat;
+          }catch(e){}
+          
+          const iconClass = it._v3type==='exam' ? 'fa-file-pen' : (it._v3type==='lesson' ? 'fa-book-open' : 'fa-lightbulb');
+          const label = it._v3type==='exam' ? 'Đề kiểm tra' : (it._v3type==='lesson' ? 'Bài học' : 'Học liệu');
+          
+          item.innerHTML = `
+            <div class="modern-list-icon ${typeClass}">
+              <i class="fa-solid ${iconClass}"></i>
+            </div>
+            <div class="modern-list-content">
+              <h4>${it.title||''}</h4>
+              <p>${it.description || 'Nhấn để bắt đầu'}</p>
+            </div>
+            <span class="modern-list-badge ${typeClass}">${label}</span>
+            <button class="modern-list-action">
+              ${it._v3type==='exam' ? 'Làm bài' : 'Mở'} <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+          `;
+          
+          item.addEventListener('click', ()=>{
+            const modeSel = document.getElementById('exam-mode-select');
+            const mode = modeSel? modeSel.value : 'static';
+            if(it._v3type==='exam' && it.path){ location.hash = `#/exam?path=${encodeURIComponent(it.path)}&mode=${encodeURIComponent(mode)}`; }
+            if(it._v3type==='tool' && it.url){ window.location.href = it.url; }
+          });
+          listContainer.appendChild(item);
+        });
+      }
+
+      // Embla carousel instance
+      let emblaInstance = null;
+      
+      function buildCarousel(grade){
+        console.log('=== BUILDING CAROUSEL ===');
+        const wrap = document.getElementById('exam-carousel');
+        const dotsContainer = document.getElementById('carousel-dots');
+        if(!wrap){ console.error('buildCarousel: wrap not found'); return; }
+        wrap.innerHTML='';
+        if(dotsContainer) dotsContainer.innerHTML='';
+        
+        // Destroy previous Embla instance
+        if(emblaInstance){ 
+          console.log('Destroying previous Embla instance');
+          emblaInstance.destroy(); 
+          emblaInstance = null; 
+        }
+        
+        const gd = getGradeData(grade) || {exams:[], tools:[]};
+        console.log('buildCarousel: gradeData=', gd);
+        const items = [
+          ...gd.exams.map(it=>({...it,_v3type:'exam'})),
+          ...gd.tools.map(it=>({...it,_v3type:'tool'}))
+        ];
+        console.log('buildCarousel: building', items.length, 'items for grade', grade);
+        
+        if(items.length === 0){
+          console.warn('No items found for carousel');
+          wrap.innerHTML = '<div class="text-center p-8 text-gray-500">Không có dữ liệu để hiển thị. Vui lòng chọn lớp học.</div>';
+          return;
+        }
+        
+        items.forEach((it, idx)=>{
+          const slide = document.createElement('div');
+          slide.className = 'embla__slide carousel-item';
+          slide.dataset.type = it._v3type; slide.dataset.title = (it.title||'').toLowerCase();
+          slide.dataset.index = idx;
+          try{
+            const id = it.id || ''; const title = it.title || '';
+            let cat = 'other';
+            if(/giữa.*hk1|gk1/i.test(title) || ['lop10_ontap_1','lop10_ontap_2','lop10_ontap_3'].includes(id)) cat = 'gk1';
+            else if(/cuối.*hk1|ck1/i.test(title)) cat = 'ck1';
+            else if(/giữa.*hk2|gk2/i.test(title)) cat = 'gk2';
+            else if(/cuối.*hk2|ck2/i.test(title)) cat = 'ck2';
+            else if(/chương/i.test(title)) cat = 'chuong';
+            slide.dataset.cat = cat;
+          }catch(e){}
+          
+          const headerClass = it._v3type==='exam' ? 'exam' : (it._v3type==='lesson' ? 'lesson' : 'tool');
+          const iconClass = it._v3type==='exam' ? 'fa-file-pen' : (it._v3type==='lesson' ? 'fa-book-open' : 'fa-lightbulb');
+          const label = it._v3type==='exam' ? 'Đề kiểm tra' : (it._v3type==='lesson' ? 'Bài học' : 'Học liệu');
+          const labelClass = it._v3type==='exam' ? 'bg-indigo-100 text-indigo-700' : (it._v3type==='lesson' ? 'bg-rose-100 text-rose-700' : 'bg-emerald-100 text-emerald-700');
+          
+          slide.innerHTML = `
+            <div class="embla__slide-inner">
+              <div class="embla__slide-header ${headerClass}">
+                <i class="fa-solid ${iconClass}"></i>
+              </div>
+              <div class="embla__slide-body">
+                <span class="px-3 py-1 rounded-full text-xs font-medium ${labelClass} inline-block mb-2">${label}</span>
+                <h3>${it.title||''}</h3>
+                <p>${it.description || 'Nhấn để bắt đầu'}</p>
+                <div class="action">
+                  ${it._v3type==='exam' ? 'Làm bài' : 'Mở'} <i class="fa-solid fa-arrow-right"></i>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          slide.addEventListener('click', ()=>{
+            const modeSel = document.getElementById('exam-mode-select');
+            const mode = modeSel? modeSel.value : 'static';
+            if(it._v3type==='exam' && it.path){ location.hash = `#/exam?path=${encodeURIComponent(it.path)}&mode=${encodeURIComponent(mode)}`; }
+            if(it._v3type==='tool' && it.url){ window.location.href = it.url; }
+          });
+          wrap.appendChild(slide);
+        });
+        
+        // Initialize Embla after adding slides
+        setTimeout(()=> initEmblaCarousel(items.length), 50);
+      }
+      
+      function initEmblaCarousel(slideCount){
+        console.log('initEmblaCarousel called with', slideCount, 'slides');
+        const emblaNode = document.getElementById('embla-carousel');
+        const viewportNode = emblaNode?.querySelector('.embla__viewport');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        const dotsContainer = document.getElementById('carousel-dots');
+        
+        console.log('Embla nodes:', { emblaNode: !!emblaNode, viewportNode: !!viewportNode, EmblaCarousel: !!window.EmblaCarousel });
+        
+        if(!viewportNode) {
+          console.error('Embla viewport not found');
+          return;
+        }
+        if(!window.EmblaCarousel) {
+          console.error('EmblaCarousel not loaded, retrying in 100ms...');
+          setTimeout(()=> initEmblaCarousel(slideCount), 100);
+          return;
+        }
+        
+        try {
+          // Initialize Embla
+          emblaInstance = EmblaCarousel(viewportNode, { loop: true, align: 'center' });
+          console.log('Embla initialized successfully, instance:', emblaInstance);
+          
+          // Prev/Next buttons - clone to remove old listeners
+          if(prevBtn && prevBtn.parentNode){
+            const newPrevBtn = prevBtn.cloneNode(true);
+            prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+            newPrevBtn.addEventListener('click', ()=> { console.log('Prev clicked'); emblaInstance.scrollPrev(); });
+          }
+          if(nextBtn && nextBtn.parentNode){
+            const newNextBtn = nextBtn.cloneNode(true);
+            nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+            newNextBtn.addEventListener('click', ()=> { console.log('Next clicked'); emblaInstance.scrollNext(); });
+          }
+          
+          // Create dots
+          if(dotsContainer && slideCount > 0){
+            dotsContainer.innerHTML = '';
+            for(let i = 0; i < slideCount; i++){
+              const dot = document.createElement('button');
+              dot.className = 'embla__dot';
+              dot.addEventListener('click', ()=> emblaInstance.scrollTo(i));
+              dotsContainer.appendChild(dot);
+            }
+          }
+          
+          // Update dots and scale effect
+          const updateSelection = ()=>{
+            const selected = emblaInstance.selectedScrollSnap();
+            const slides = document.querySelectorAll('#exam-carousel .embla__slide');
+            const dots = document.querySelectorAll('.embla__dot');
+            
+            slides.forEach((s, i)=>{
+              s.classList.toggle('is-selected', i === selected);
+            });
+            dots.forEach((d, i)=>{
+              d.classList.toggle('is-selected', i === selected);
+            });
+          };
+          
+          emblaInstance.on('select', updateSelection);
+          emblaInstance.on('init', updateSelection);
+          updateSelection(); // Call immediately
+        } catch(e) {
+          console.error('Embla init error:', e);
+        }
+      }
+
+      // Apply layout preference on exam selection
+      function getLayoutPref(){ try{ return localStorage.getItem('ui_layout') || 'dynamic'; }catch(e){ return 'dynamic'; } }
+      
+      function applyExamLayoutPreference(){
+        const grade = getSelectedGradeFromHash() || '10';
+        const pref = getLayoutPref();
+        console.log('applyExamLayoutPreference: grade=', grade, 'pref=', pref, 'manifest ready=', !!(window.examManifest && examManifest.grades));
+        
+        // Show only the selected layout variant
+        Object.entries(examVariants).forEach(([k,el])=>{ 
+          if(el){
+            const shouldShow = (k === pref);
+            el.classList.toggle('hidden', !shouldShow);
+            console.log('  variant', k, ':', shouldShow ? 'visible' : 'hidden');
+          }
+        });
+        
+        // Build all layouts so they're ready when switching (but only if manifest is available)
+        if(window.examManifest && examManifest.grades){
+          buildCards(grade);
+          buildTable(grade);
+          buildCarousel(grade);
+          
+          // If carousel is selected, ensure Embla is initialized after a delay
+          if(pref === 'carousel'){
+            setTimeout(()=> initCarouselIfNeeded(), 300);
+          }
+        } else {
+          console.log('applyExamLayoutPreference: manifest not ready, skipping builds');
+        }
+      }
+      
+      // Helper to ensure carousel is properly initialized
+      function initCarouselIfNeeded(){
+        const carouselVariant = document.getElementById('exam-variant-carousel');
+        if(!carouselVariant || carouselVariant.classList.contains('hidden')) return;
+        
+        const grade = getSelectedGradeFromHash() || '10';
+        const slideCount = document.querySelectorAll('#exam-carousel .embla__slide').length;
+        console.log('initCarouselIfNeeded: slides=', slideCount, 'emblaInstance=', !!emblaInstance, 'grade=', grade);
+        console.log('initCarouselIfNeeded: manifest ready=', !!(window.examManifest && examManifest.grades));
+        
+        // Check if manifest is ready
+        if(!window.examManifest || !examManifest.grades){
+          console.log('Manifest not ready, waiting for examManifestLoaded event...');
+          return;
+        }
+        
+        if(slideCount > 0 && !emblaInstance){
+          console.log('Manually initializing Embla with', slideCount, 'slides');
+          initEmblaCarousel(slideCount);
+        } else if(slideCount === 0){
+          // No slides, try rebuilding
+          console.log('No slides found, rebuilding carousel for grade', grade);
+          buildCarousel(grade);
+          // After building, init Embla
+          setTimeout(()=>{
+            const newSlideCount = document.querySelectorAll('#exam-carousel .embla__slide').length;
+            if(newSlideCount > 0 && !emblaInstance){
+              initEmblaCarousel(newSlideCount);
+            }
+          }, 100);
+        }
+      }
+
+      // Unified filters
+      let typeFilter = 'all';
+      let catFilter = 'all';
+      const examSubcategoryFilters = document.getElementById('exam-subcategory-filters');
+      
+      function applyExamFilters(){
+        const q = (document.getElementById('exam-search')?.value || '').toLowerCase();
+        const test = (el)=>{
+          // Normalize type: accept both singular (exam/tool) and plural (exams/tools/lessons)
+          let t = el.getAttribute('data-type') || el.getAttribute('data-item-type') || '';
+          if(t === 'exam') t = 'exams';
+          if(t === 'tool') t = 'tools';
+          if(t === 'lesson') t = 'lessons';
+          const title = el.getAttribute('data-title') || '';
+          const cat = el.getAttribute('data-cat') || 'other';
+          const passType = (typeFilter==='all') || (t===typeFilter);
+          // Only apply category filter when filtering exams
+          const passCat = (typeFilter !== 'exams') || (catFilter==='all') || (cat===catFilter);
+          const passQ = !q || title.includes(q);
+          el.style.display = (passType && passCat && passQ) ? '' : 'none';
+        };
+        // Apply to Cards (sticky cards)
+        document.querySelectorAll('#exam-cards-grid > .card-item').forEach(test);
+        document.querySelectorAll('#exam-cards-grid > .sticky-card-wrapper').forEach(test);
+        // Apply to List (modern list)
+        document.querySelectorAll('#exam-list-container > .modern-list-item').forEach(test);
+        // Apply to Carousel (Embla slides)
+        document.querySelectorAll('#exam-carousel > .embla__slide').forEach(test);
+        // Apply to Dynamic layout
+        document.querySelectorAll('#exam-menu .card-item').forEach(test);
+        
+        // Reinitialize Embla if carousel is visible to update slide count
+        const carouselVariant = document.getElementById('exam-variant-carousel');
+        if(carouselVariant && !carouselVariant.classList.contains('hidden')){
+          const visibleSlides = document.querySelectorAll('#exam-carousel > .embla__slide:not([style*="display: none"])');
+          if(emblaInstance){
+            // Embla needs to recalculate after DOM changes
+            setTimeout(()=> emblaInstance.reInit(), 50);
+          }
+        }
+      }
+      
+      function updateSubcategoryVisibility(){
+        // Show subcategory filters only when "Đề kiểm tra" is selected
+        if(examSubcategoryFilters){
+          if(typeFilter === 'exams'){
+            examSubcategoryFilters.classList.remove('hidden');
+          } else {
+            examSubcategoryFilters.classList.add('hidden');
+            // Reset category filter when hiding
+            catFilter = 'all';
+            document.querySelectorAll('[data-v3-cat]').forEach(b=> b.classList.remove('active'));
+            const allCatBtn = document.querySelector('[data-v3-cat="all"]');
+            if(allCatBtn) allCatBtn.classList.add('active');
+          }
+        }
+      }
+
+      const examSearch = document.getElementById('exam-search');
+      examSearch && examSearch.addEventListener('input', applyExamFilters);
+      
+      // Type filter pills
+      document.querySelectorAll('[data-v3-filter]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          document.querySelectorAll('[data-v3-filter]').forEach(b=> b.classList.remove('active'));
+          btn.classList.add('active');
+          typeFilter = btn.getAttribute('data-v3-filter');
+          updateSubcategoryVisibility();
+          applyExamFilters();
+        });
+      });
+
+      // Category filter chips
+      document.querySelectorAll('[data-v3-cat]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          document.querySelectorAll('[data-v3-cat]').forEach(b=> b.classList.remove('active'));
+          btn.classList.add('active');
+          catFilter = btn.getAttribute('data-v3-cat');
+          applyExamFilters();
+        });
+      });
+
+      // Re-apply when navigating to exams
+      function onHash(){
+        if((location.hash||'').startsWith('#/exams/')){
+          // Wait for manifest to be available
+          if(window.examManifest && examManifest.grades){
+            applyExamLayoutPreference();
+            applyExamFilters();
+          } else {
+            // Manifest not ready, wait for it
+            console.log('Manifest not ready, waiting...');
+          }
+        }
+        if(location.hash==='#/customize'){ initCustomizePage(); }
+      }
+      window.addEventListener('hashchange', onHash);
+      window.addEventListener('examManifestLoaded', ()=>{
+        console.log('examManifestLoaded event received, rebuilding layouts');
+        if((location.hash||'').startsWith('#/exams/')){
+          applyExamLayoutPreference();
+          applyExamFilters();
+        }
+      });
+      
+      // Listen for when populateExamMenu finishes (most reliable trigger)
+      window.addEventListener('examMenuPopulated', (e)=>{
+        const grade = e.detail?.grade || getSelectedGradeFromHash() || '10';
+        console.log('examMenuPopulated event received, grade:', grade);
+        buildCards(grade);
+        buildTable(grade);
+        buildCarousel(grade);
+        applyExamFilters();
+      });
+      
+      // Also listen for DOMContentLoaded in case manifest loads before this script
+      document.addEventListener('DOMContentLoaded', ()=>{
+        setTimeout(()=>{
+          if(window.examManifest && (location.hash||'').startsWith('#/exams/')){
+            applyExamLayoutPreference();
+            applyExamFilters();
+          }
+        }, 100);
+      });
+      onHash();
+
+      // Customize UI page handlers
+      function loadThemePref(){ try{ return localStorage.getItem('ui_theme') || 'light'; }catch(e){ return 'light'; } }
+      function applyTheme(t){ document.body.classList.toggle('dark-mode', t==='dark'); }
+      function initCustomizePage(){
+        const layout = getLayoutPref();
+        document.querySelectorAll('#pref-layout input[name="layout"]').forEach(r=>{ 
+          r.checked = (r.value===layout); 
+          r.onchange = ()=>{ 
+            try{ localStorage.setItem('ui_layout', r.value); }catch(e){} 
+            console.log('Layout changed to:', r.value);
+            // If switching to carousel, trigger init when navigating to exams
+            if(r.value === 'carousel'){
+              // Pre-initialize carousel if we're already on exams page
+              if((location.hash||'').startsWith('#/exams/')){
+                setTimeout(()=> initCarouselIfNeeded(), 100);
+              }
+            }
+            onHash(); 
+          }; 
+        });
+        const theme = loadThemePref();
+        document.querySelectorAll('input[name="theme"]').forEach(r=>{ r.checked = (r.value===theme); r.onchange = ()=>{ try{ localStorage.setItem('ui_theme', r.value); }catch(e){} applyTheme(r.value); }; });
+        const done = document.getElementById('customize-done');
+        if(done){ done.onclick = ()=>{ location.hash = '#/classes'; }; }
+      }
+      // Apply theme on load
+      applyTheme(loadThemePref());
+
+      // Theory tabs switcher
+      const tabPanels = document.getElementById('tab-panels');
+      const tabButtons = document.querySelectorAll('[data-tab]');
+      if(tabPanels && tabButtons.length){
+        tabButtons.forEach(btn=>{
+          btn.addEventListener('click', ()=>{
+            const key = btn.getAttribute('data-tab');
+            const idx = (key==='t1')?0: (key==='t2')?1:2;
+            tabPanels.style.transform = `translateX(-${idx*100}%)`;
+            tabButtons.forEach(b=>b.classList.remove('bg-white','shadow-sm','rounded-full'));
+            btn.classList.add('bg-white','shadow-sm','rounded-full');
+          });
+        });
+      }
+
+      // Demo start buttons redirect to dynamic variant or a default grade
+      document.body.addEventListener('click', (e)=>{
+        const btn = e.target.closest('[data-demo-start]');
+        if(btn){ location.hash = '#/exams/10'; }
+      });
+
+      // Carousel controls are now handled by Embla in initEmblaCarousel()
+
+      // Flashcards flip
+      document.querySelectorAll('[data-flip]').forEach(card=>{
+        card.addEventListener('click', ()=>{
+          card.classList.toggle('flipped');
+          if(window.gsap){ gsap.fromTo(card, {scale:0.98}, {scale:1, duration:0.2}); }
+        });
+      });
+
+      // Drag & Drop demo
+      let dragEl = null;
+      document.querySelectorAll('[draggable=true]').forEach(el=>{
+        el.addEventListener('dragstart', ()=>{ dragEl = el; el.classList.add('ring','ring-blue-300'); });
+        el.addEventListener('dragend', ()=>{ dragEl = null; el.classList.remove('ring','ring-blue-300'); });
+      });
+      document.querySelectorAll('[data-drop]').forEach(zone=>{
+        zone.addEventListener('dragover', (e)=>{ e.preventDefault(); zone.classList.add('bg-blue-50'); });
+        zone.addEventListener('dragleave', ()=> zone.classList.remove('bg-blue-50'));
+        zone.addEventListener('drop', (e)=>{
+          e.preventDefault(); zone.classList.remove('bg-blue-50');
+          if(dragEl){ zone.appendChild(dragEl); if(window.gsap){ gsap.fromTo(dragEl,{y:-8},{y:0, duration:0.2}); } }
+        });
+      });
+
+      // Mini quiz handlers
+      document.querySelectorAll('[data-tf]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const val = btn.getAttribute('data-tf')==='true';
+          const fb = btn.closest('div').parentElement.querySelector('[data-tf-feedback]');
+          fb.textContent = val? '✔ Đúng' : '✘ Sai';
+          fb.className = 'mt-1 text-xs ' + (val? 'text-emerald-600' : 'text-rose-600');
+        });
+      });
+      document.querySelectorAll('[data-mc]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const choice = btn.getAttribute('data-mc');
+          const fb = btn.closest('div').parentElement.querySelector('[data-mc-feedback]');
+          const correct = (choice==='C');
+          fb.textContent = correct? '✔ Chính xác' : '✘ Chưa đúng';
+          fb.className = 'mt-1 text-xs ' + (correct? 'text-emerald-600' : 'text-rose-600');
+          btn.classList.add(correct? 'bg-emerald-50' : 'bg-rose-50');
+        });
+      });
+
+      // Checklist progress
+      const chkWrap = document.getElementById('learn-checklist');
+      const chkBar = document.getElementById('learn-progress');
+      function updateLearnProgress(){
+        const all = chkWrap ? chkWrap.querySelectorAll('[data-chk]') : [];
+        const done = Array.from(all).filter(i=>i.checked).length;
+        const pct = all.length? Math.round(done*100/all.length) : 0;
+        if(chkBar){ chkBar.style.width = pct + '%'; }
+      }
+      if(chkWrap){ chkWrap.addEventListener('change', updateLearnProgress); updateLearnProgress(); }
+
+      // Exam progress based on palette counters
+      const qa = document.getElementById('qp-answered');
+      const qt = document.getElementById('qp-total');
+      const prog = document.getElementById('exam-progress');
+      function refreshProgress(){
+        const a = parseInt(qa?.textContent||'0',10);
+        const t = parseInt(qt?.textContent||'0',10);
+        const pct = (t>0)? Math.round(a*100/t) : 0;
+        if(prog){ prog.style.width = pct + '%'; }
+      }
+      if(qa && qt){
+        const mo = new MutationObserver(refreshProgress);
+        mo.observe(qa, {childList:true, subtree:true, characterData:true});
+        mo.observe(qt, {childList:true, subtree:true, characterData:true});
+      }
+
+      // Next/Prev buttons (best-effort)
+      const btnNext = document.getElementById('btn-next-q');
+      const btnPrev = document.getElementById('btn-prev-q');
+      function gotoIndex(idx){
+        if(typeof window.scrollToQuestion === 'function'){ window.scrollToQuestion(idx); }
+      }
+      btnNext && btnNext.addEventListener('click', ()=>{
+        const cur = (typeof window.currentQuestionIdx==='number')? window.currentQuestionIdx : 0;
+        gotoIndex(cur + 1);
+      });
+      btnPrev && btnPrev.addEventListener('click', ()=>{
+        const cur = (typeof window.currentQuestionIdx==='number')? window.currentQuestionIdx : 0;
+        gotoIndex(Math.max(0, cur - 1));
+      });
+
+      // Results charts demo (render when results screen becomes visible)
+      function initResultsCharts(){
+        const pieEl = document.getElementById('results-pie');
+        const lineEl = document.getElementById('results-line');
+        if(pieEl && !pieEl._done){
+          pieEl._done = true;
+          new Chart(pieEl, { type:'doughnut', data:{ labels:['Đúng','Sai'], datasets:[{ data:[8,2], backgroundColor:['#34d399','#fda4af'] }] }, options:{ plugins:{legend:{display:false}} } });
+        }
+        if(lineEl && !lineEl._done){
+          lineEl._done = true;
+          new Chart(lineEl, { type:'line', data:{ labels:['L1','L2','L3','L4','L5'], datasets:[{ data:[6,7,8,7,9], borderColor:'#60a5fa', fill:false }] }, options:{ plugins:{legend:{display:false}}, scales:{ y:{ suggestedMin:0, suggestedMax:10 }}} });
+        }
+      }
+      const resultsScreen = document.getElementById('results-screen');
+      if(resultsScreen){
+        const ro = new MutationObserver(()=>{ if(!resultsScreen.classList.contains('hidden')) initResultsCharts(); });
+        ro.observe(resultsScreen, { attributes:true, attributeFilter:['class'] });
+      }
+
+      // Results reveal animation for items
+      const resultsContainer = document.getElementById('results-container');
+      if(resultsContainer){
+        const mo2 = new MutationObserver((mutations)=>{
+          mutations.forEach(m=>{
+            m.addedNodes.forEach(node=>{
+              if(node && node.nodeType===1){ node.classList.add('animate-fade-up'); }
+            });
+          });
+        });
+        mo2.observe(resultsContainer, { childList:true });
+      }
+      
+      // Debug: Log carousel state
+      console.log('=== DEBUG: Carousel State ===');
+      console.log('EmblaCarousel loaded:', !!window.EmblaCarousel);
+      console.log('Current layout preference:', getLayoutPref());
+      console.log('exam-variant-carousel element:', document.getElementById('exam-variant-carousel'));
+      console.log('embla-carousel element:', document.getElementById('embla-carousel'));
+      console.log('exam-carousel element:', document.getElementById('exam-carousel'));
+      
+      // Test Embla manually after 2 seconds
+      setTimeout(()=>{
+        console.log('=== DEBUG: Testing Embla after 2s ===');
+        const carouselEl = document.getElementById('exam-variant-carousel');
+        if(carouselEl){
+          console.log('Carousel variant hidden:', carouselEl.classList.contains('hidden'));
+        }
+        const slidesCount = document.querySelectorAll('#exam-carousel .embla__slide').length;
+        console.log('Slides in carousel:', slidesCount);
+        console.log('emblaInstance:', emblaInstance);
+      }, 2000);
+    });
+  </script>
+  
+  <!-- Features & Dashboard Scripts -->
+  <script src="assets/js/features.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+  <script>
+    // Initialize dashboard when navigating to it
+    window.addEventListener('hashchange', () => {
+      if (location.hash === '#/dashboard') {
+        setTimeout(() => Dashboard.init('dashboard-content'), 100);
+      }
+    });
+    // Also init if already on dashboard
+    if (location.hash === '#/dashboard') {
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => Dashboard.init('dashboard-content'), 500);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,8 +1,5 @@
 /* Page-specific styles extracted from index.html */
-
-body {
-  background-color: #f0f4f8;
-}
+/* Note: body styles are in base.css */
 
 .option-letter {
   font-weight: 700 !important;

@@ -1,0 +1,230 @@
+{
+  "duration": 5400,
+  "questions": [
+    {
+      "q_id": "thsg_hk1_2025_tn_1",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số $y=f(x)$ có tập xác định $[-1;4]$ và đồ thị như hình bên dưới. Tập giá trị của hàm số này là: <div class=\"jxg-diagram\" data-jxg=\"preset=scene;axes=true;bbox=[-2,4,5,-2];points={A:[-1,0],B:[0,2],C:[1,2],D:[2,0],E:[4,-1]};segments=[[A,B],[B,C],[C,D],[D,E]];width=300;height=200\"></div>",
+      "options": [
+        "$[-1;2]$",
+        "$[-1;4]$",
+        "$[0;2]$",
+        "$[0;4]$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "thsg_hk1_2025_tn_2",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trục đối xứng của parabol $(P): y=-x^{2}-4x+1$ là đường thẳng:",
+      "options": [
+        "$x=-2$",
+        "$y=5$",
+        "$x=0$",
+        "$x=2$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "thsg_hk1_2025_tn_3",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hình thoi $ABCD$. Mệnh đề nào sau đây sai?",
+      "options": [
+        "$\\overrightarrow{AB}=\\overrightarrow{BC}$",
+        "$\\overrightarrow{BC}=\\overrightarrow{AD}$",
+        "$\\overrightarrow{CD}=-\\overrightarrow{AB}$",
+        "$|\\overrightarrow{AB}|=|\\overrightarrow{AD}|$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "thsg_hk1_2025_tn_4",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho tứ giác $ABCD$. Tính $\\vec{u}=\\overrightarrow{AB}-\\overrightarrow{AC}+\\overrightarrow{BD}$.",
+      "options": [
+        "$\\vec{0}$",
+        "$\\overrightarrow{CD}$",
+        "$\\overrightarrow{CB}$",
+        "$\\overrightarrow{AD}$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "thsg_hk1_2025_tn_5",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hình bình hành $ABCD$ có $O$ là giao điểm của hai đường chéo $AC$ và $BD$. Mệnh đề nào sau đây đúng?",
+      "options": [
+        "$\\overrightarrow{AB}+\\overrightarrow{AD}=\\overrightarrow{AO}$",
+        "$\\overrightarrow{AB}-\\overrightarrow{AD}=2\\overrightarrow{BO}$",
+        "$\\overrightarrow{AB}+\\overrightarrow{AD}=3\\overrightarrow{GA}$ (với $G$ là trọng tâm $\\triangle ABD$)",
+        "$\\overrightarrow{AB}-\\overrightarrow{BC}=\\overrightarrow{DB}$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "thsg_hk1_2025_tn_6",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hai vectơ $\\vec{a}$ và $\\vec{b}$ đều khác $\\vec{0}$. Khẳng định nào sau đây đúng?",
+      "options": [
+        "$\\vec{a} \\cdot \\vec{b}=|\\vec{a}| \\cdot |\\vec{b}| \\cdot \\cos(\\vec{a},\\vec{b})$",
+        "$\\vec{a} \\cdot \\vec{b}=|\\vec{a} \\cdot \\vec{b}| \\cdot \\cos(\\vec{a},\\vec{b})$",
+        "$\\vec{a} \\cdot \\vec{b}=|\\vec{a}| \\cdot |\\vec{b}| \\cdot \\sin(\\vec{a},\\vec{b})$",
+        "$\\vec{a} \\cdot \\vec{b}=|\\vec{a}| \\cdot |\\vec{b}|$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "thsg_hk1_2025_tn_7",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Số $e$ (còn gọi là hằng số Euler) có giá trị gần đúng là $2,718281828$. Kết quả quy tròn của $e$ đến hàng phần nghìn là:",
+      "options": [
+        "$2,7183$",
+        "$2,72$",
+        "$2,7$",
+        "$2,718$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "thsg_hk1_2025_tn_8",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Hãy tìm giá trị ngoại lệ của mẫu số liệu: $12; 3; 9; 10; 37; 9; 12; 3; 10$.",
+      "options": [
+        "$3$",
+        "$37$",
+        "$6$",
+        "$10$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "thsg_hk1_2025_tn_9",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Mẫu số liệu về chiều cao (đơn vị: cm) của một nhóm học sinh được sắp xếp theo thứ tự không giảm như sau: $161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171$. Khẳng định nào sau đây đúng?",
+      "options": [
+        "Tứ phân vị thứ ba của mẫu số liệu là $Q_{3}=167$.",
+        "Số trung vị của mẫu số liệu là $M_{e}=167$.",
+        "Số trung bình của mẫu số liệu là $\\bar{x}=166$.",
+        "Tứ phân vị thứ nhất của mẫu số liệu là $Q_{1}=162$."
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "thsg_hk1_2025_tn_10",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Một cửa hàng thống kê lại tất cả các cỡ giày của loại giày A đã bán được trong tháng như bảng sau. Mốt của mẫu số liệu là bao nhiêu? <div style='overflow-x:auto;margin:8px 0'><table style='border-collapse:collapse;width:100%;text-align:center'><tr><th style='border:1px solid #94a3b8;padding:6px'>Cỡ giày</th><td style='border:1px solid #94a3b8;padding:6px'>40</td><td style='border:1px solid #94a3b8;padding:6px'>41</td><td style='border:1px solid #94a3b8;padding:6px'>42</td><td style='border:1px solid #94a3b8;padding:6px'>43</td><td style='border:1px solid #94a3b8;padding:6px'>44</td><td style='border:1px solid #94a3b8;padding:6px'>45</td></tr><tr><th style='border:1px solid #94a3b8;padding:6px'>Số đôi bán được</th><td style='border:1px solid #94a3b8;padding:6px'>8</td><td style='border:1px solid #94a3b8;padding:6px'>45</td><td style='border:1px solid #94a3b8;padding:6px'>77</td><td style='border:1px solid #94a3b8;padding:6px'>5</td><td style='border:1px solid #94a3b8;padding:6px'>3</td><td style='border:1px solid #94a3b8;padding:6px'>1</td></tr></table></div>",
+      "options": [
+        "$77$",
+        "$42$",
+        "$6$",
+        "$139$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "thsg_hk1_2025_tn_11",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Mẫu số liệu sau cho biết số ghế trống tại một rạp chiếu phim trong 9 ngày: $7, 8, 22, 18, 15, 20, 19, 13, 11$. Khoảng tứ phân vị của mẫu số liệu trên là:",
+      "options": [
+        "$9,5$",
+        "$19,5$",
+        "$10$",
+        "$15$"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "thsg_hk1_2025_tn_12",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong một buổi tập luyện, kết quả 5 lần nhảy xa (đơn vị: m) của bạn Thắng như sau: $2,0; 2,5; 2,5; 2,4; 2,3$. Tính phương sai của mẫu số liệu trên.",
+      "options": [
+        "$2,34$",
+        "$2,4$",
+        "$0,185$",
+        "$0,0344$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "thsg_hk1_2025_ds_1",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Cho hàm số bậc hai $y=ax^{2}+bx+c$ có đồ thị $(P)$ như hình vẽ bên dưới: <div class=\"jxg-diagram\" data-jxg=\"preset=parabola;h=1;k=-2;a=1;axes=true;showVertex=true;vertexName=I;width=300;height=300;bbox=[-2,4,4,-3]\"></div>",
+      "statements": [
+        "Tọa độ đỉnh của $(P)$ là $(-2;1)$.",
+        "Hàm số đồng biến trên khoảng $(-\\infty;1)$.",
+        "Tập giá trị của hàm số là $[-2;+\\infty)$.",
+        "Giá trị của biểu thức $a+b+c$ bằng $-2$."
+      ],
+      "correct_values": [
+        false,
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "q_id": "thsg_hk1_2025_ds_2",
+      "section": "PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Cho tam giác $ABC$ vuông cân tại $B$ có $BI$ là đường trung tuyến và $AC=\\sqrt{2}$.",
+      "statements": [
+        "$AB = AC$.",
+        "$\\overrightarrow{IA} = -\\overrightarrow{IC}$.",
+        "$|\\overrightarrow{IA} - \\overrightarrow{CB}| = \\frac{\\sqrt{2}}{2}$.",
+        "$\\overrightarrow{AB} \\cdot \\overrightarrow{CA} = 1$."
+      ],
+      "correct_values": [
+        false,
+        true,
+        false,
+        true
+      ]
+    },
+    {
+      "q_id": "thsg_hk1_2025_tl_group",
+      "section": "PHẦN III. CÂU TỰ LUẬN",
+      "type": "short",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "thsg_hk1_2025_tl_1",
+          "question_text": "Tìm tập xác định của hàm số $f(x)=\\frac{|x|}{\\sqrt{25-5x}}$.",
+          "final_answer": "D=(-∞; 5)"
+        },
+        {
+          "q_id": "thsg_hk1_2025_tl_2",
+          "question_text": "Lập bảng biến thiên và vẽ đồ thị của hàm số $y=-x^{2}+2x+3$. <div class=\"jxg-diagram\" data-jxg=\"preset=parabola;a=-1;b=2;c=3;axes=true;showVertex=true;vertexName=I(1;4);bbox=[-3,5,6,-4]\"></div>",
+          "final_answer": "Vertex I(1;4)"
+        },
+        {
+          "q_id": "thsg_hk1_2025_tl_3",
+          "question_text": "Một cửa hàng mua mỗi cuốn sách từ nhà xuất bản với giá 50.000 đồng. Cửa hàng ước tính rằng nếu bán mỗi cuốn sách đó với giá $x$ (nghìn đồng) thì mỗi tháng bán được $150-x$ (cuốn sách). Hỏi giá bán mỗi cuốn sách là bao nhiêu nghìn đồng để lợi nhuận thu được trong một tháng của cửa hàng đạt lớn nhất?",
+          "final_answer": "100"
+        },
+        {
+          "q_id": "thsg_hk1_2025_tl_4",
+          "question_text": "Điểm kiểm tra môn Toán cuối Học kì I của các học sinh tổ A và tổ B được ghi lại trong bảng sau. <br> a) Tính độ lệch chuẩn của mẫu số liệu về điểm kiểm tra môn Toán của các học sinh tổ B (làm tròn kết quả đến hàng phần trăm). <br> b) Sử dụng số trung bình, hãy so sánh điểm kiểm tra của các học sinh tổ A và tổ B. Xác định các giá trị ngoại lệ (nếu có) và so sánh lại điểm kiểm tra của hai tổ sau khi bỏ đi các giá trị ngoại lệ. <div style='overflow-x:auto;margin:8px 0'><table style='border-collapse:collapse;width:100%;text-align:center'><tr><th style='border:1px solid #94a3b8;padding:6px'>Tổ A</th><td style='border:1px solid #94a3b8;padding:6px'>7,3</td><td style='border:1px solid #94a3b8;padding:6px'>8,3</td><td style='border:1px solid #94a3b8;padding:6px'>7,8</td><td style='border:1px solid #94a3b8;padding:6px'>8,0</td><td style='border:1px solid #94a3b8;padding:6px'>8,8</td><td style='border:1px solid #94a3b8;padding:6px'>8,0</td><td style='border:1px solid #94a3b8;padding:6px'>8,5</td><td style='border:1px solid #94a3b8;padding:6px'>9,0</td><td style='border:1px solid #94a3b8;padding:6px'>7,5</td><td style='border:1px solid #94a3b8;padding:6px'>8,3</td><td style='border:1px solid #94a3b8;padding:6px'>9,8</td></tr><tr><th style='border:1px solid #94a3b8;padding:6px'>Tổ B</th><td style='border:1px solid #94a3b8;padding:6px'>0,5</td><td style='border:1px solid #94a3b8;padding:6px'>7,0</td><td style='border:1px solid #94a3b8;padding:6px'>8,5</td><td style='border:1px solid #94a3b8;padding:6px'>9,0</td><td style='border:1px solid #94a3b8;padding:6px'>9,0</td><td style='border:1px solid #94a3b8;padding:6px'>9,0</td><td style='border:1px solid #94a3b8;padding:6px'>9,5</td><td style='border:1px solid #94a3b8;padding:6px'>9,5</td><td style='border:1px solid #94a3b8;padding:6px'>9,5</td><td style='border:1px solid #94a3b8;padding:6px'>9,8</td><td style='border:1px solid #94a3b8;padding:6px'>10,0</td></tr></table></div>",
+          "final_answer": "a) 2.56; b) Tổ B cao hơn"
+        },
+        {
+          "q_id": "thsg_hk1_2025_tl_5",
+          "question_text": "Cho tam giác đều $ABC$ có độ dài cạnh bằng $a$ (cm). Trên đoạn thẳng $AC$, lấy điểm $E$ sao cho $EA=2EC$. Trên đoạn thẳng $BC$, lấy điểm $F$ sao cho $FB=4FC$. <br> a) Tính $\\overrightarrow{AB} \\cdot \\overrightarrow{AC}$ (theo $a$). <br> b) Chứng minh rằng $BE \\perp AF$.",
+          "final_answer": "a) a²/2"
+        }
+      ]
+    }
+  ]
+}

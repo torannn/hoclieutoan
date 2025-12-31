@@ -1,0 +1,25 @@
+{
+  "d1_tn_1": "Đáp án đúng: D. $T=\\frac{1}{2}$.",
+  "d1_tn_2": "Đáp án đúng: B. Nhóm chứa mốt là $[40;60)$.<br><br>Bảng tần số:<br><table border='1' style='border-collapse: collapse; border: 1px solid #555; margin: 8px 0; text-align: center;'><tr><th style='padding:4px 8px; border:1px solid #555;'>Thời gian (phút)</th><th style='padding:4px 8px; border:1px solid #555;'>[0;20)</th><th style='padding:4px 8px; border:1px solid #555;'>[20;40)</th><th style='padding:4px 8px; border:1px solid #555;'>[40;60)</th><th style='padding:4px 8px; border:1px solid #555;'>[60;80)</th><th style='padding:4px 8px; border:1px solid #555;'>[80;100)</th></tr><tr><th style='padding:4px 8px; border:1px solid #555;'>Số học sinh</th><td style='padding:4px 8px; border:1px solid #555;'>9</td><td style='padding:4px 8px; border:1px solid #555;'>5</td><td style='padding:4px 8px; border:1px solid #555;'>12</td><td style='padding:4px 8px; border:1px solid #555;'>10</td><td style='padding:4px 8px; border:1px solid #555;'>6</td></tr></table>",
+  "d1_tn_3": "Đáp án đúng: B. Có 4 mặt phẳng phân biệt.",
+  "d1_tn_4": "Đáp án đúng: C. $\\lim_{x\\rightarrow x_{0}}[3f(x)-4g(x)] = -6$.",
+  "d1_tn_5": "Đáp án đúng: B. $a // b$.",
+  "d1_tn_6": "Đáp án đúng: A. $\\lim_{n\\rightarrow+\\infty}(2^{n}-4^{n}) = -\\infty$.",
+  "d1_tn_7": "Đáp án đúng: C. Công sai $d=3$.",
+  "d1_tn_8": "Đáp án đúng: A. $IJ // AC$.",
+  "d1_tn_9": "Đáp án đúng: C. Điểm ảnh là $B'$.",
+  "d1_tn_10": "Đáp án đúng: B. Hàm số chẵn là $y=\\cos x$.",
+  "d1_tn_11": "Đáp án đúng: D. Điều kiện $a \\cap (\\alpha) = \\emptyset$.",
+  "d1_tn_12": "Đáp án đúng: B. Miền liên tục là $(-\\infty;-1)\\cup(-1;+\\infty)$.",
+
+  "d1_ds_1": "a) Đúng.\\nb) Sai.\\nc) Sai.\\nd) Đúng.",
+  "d1_ds_2": "a) Đúng.\\nb) Đúng.\\nc) Đúng.\\nd) Sai.",
+  "d1_ds_3": "a) Đúng.\\nb) Đúng.\\nc) Sai.\\nd) Sai.",
+
+  "d1_tl_1": "Đáp số: 0,33.",
+  "d1_tl_2": "Đáp số: 3.",
+
+  "d1_tln_1": "Đáp số: $\\frac{19}{3}$.",
+  "d1_tln_2": "Xem lời giải.",
+  "d1_tln_3": "Đáp số: $1{,}25a^2$ (tức $\\tfrac{5}{4}a^2$)."
+}

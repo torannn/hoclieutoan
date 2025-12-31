@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Công cụ chuyển Asymptote → JSXGraph</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <script defer src="assets/js/diagrams.js"></script>
+</head>
+<body class="bg-slate-50 min-h-screen">
+  <div class="max-w-6xl mx-auto p-4 sm:p-6">
+    <div class="flex items-center justify-between gap-3 mb-4">
+      <button onclick="window.history.back()" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800">
+        <span>Quay lại</span>
+      </button>
+      <h1 class="text-xl sm:text-2xl font-semibold text-slate-900">Công cụ chuyển Asymptote → JSXGraph</h1>
+      <div class="w-[90px]"></div>
+    </div>
+
+    <div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-4 sm:p-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h2 class="font-semibold text-slate-900">1) Dán mã Asymptote (GeoGebra export)</h2>
+            <button id="btnLoadSample" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200">Nạp ví dụ</button>
+          </div>
+          <textarea id="asyInput" class="w-full h-[360px] font-mono text-sm p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-300" spellcheck="false" placeholder="Dán mã .asy vào đây..."></textarea>
+
+          <div class="flex flex-wrap gap-2 mt-3">
+            <button id="btnConvert" class="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">Chuyển đổi</button>
+            <button id="btnClear" class="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200">Xóa</button>
+          </div>
+
+          <div id="msg" class="mt-3 text-sm"></div>
+
+          <div class="mt-4">
+            <h3 class="font-semibold text-slate-900 mb-2">Hỗ trợ (phiên bản này)</h3>
+            <div class="text-sm text-slate-700 space-y-1">
+              <div>- real xmin/xmax/ymin/ymax</div>
+              <div>- pair A=(x,y)</div>
+              <div>- label("$A$", A)</div>
+              <div>- draw(A--B), draw(A--B--C--cycle)</div>
+              <div>- draw(circle(I, r))</div>
+              <div>- linewidth(n) trong lệnh draw</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="mb-3">
+            <div class="flex items-center justify-between mb-2">
+              <h2 class="font-semibold text-slate-900">2) JSXGraph spec (preset=scene)</h2>
+              <button id="btnCopyJson" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200">Copy JSON</button>
+            </div>
+            <textarea id="jsonOutput" class="w-full h-[170px] font-mono text-xs p-3 rounded-xl border border-slate-200" spellcheck="false" readonly></textarea>
+          </div>
+
+          <div class="mb-3">
+            <div class="flex items-center justify-between mb-2">
+              <h2 class="font-semibold text-slate-900">3) Snippet để dán vào đề/lời giải</h2>
+              <button id="btnCopyHtml" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200">Copy HTML</button>
+            </div>
+            <textarea id="htmlOutput" class="w-full h-[120px] font-mono text-xs p-3 rounded-xl border border-slate-200" spellcheck="false" readonly></textarea>
+            <div class="text-xs text-slate-600 mt-2">Gợi ý: dùng dấu nháy đơn <span class="font-mono">data-jxg='...'</span> để đỡ phải escape dấu nháy kép.</div>
+          </div>
+
+          <div>
+            <h2 class="font-semibold text-slate-900 mb-2">4) Xem trước</h2>
+            <div id="previewWrap" class="bg-white border border-slate-200 rounded-2xl p-3">
+              <div id="preview" class="jxg-diagram" data-jxg="preset=axes;bbox=-5,5,5,-5;height=260;grid=true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 border-t border-slate-200 pt-4 text-xs text-slate-600">
+        Công cụ này tạo output theo định dạng <span class="font-mono">preset=scene</span> trong <span class="font-mono">assets/js/diagrams.js</span>. Với Asymptote nâng cao (macro, transform, arc, fill, clip...), bạn sẽ cần chỉnh tay hoặc mở rộng parser.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SAMPLE_ASY = `// Sample: GeoGebra exported subset\nreal xmin = -5.385940684570651;\nreal xmax = 2.097627599726391;\nreal ymin = -0.2519486790794923;\nreal ymax = 4.520027102776071;\n\npair A = (-3.690879987433482, 3.9789094662579947);\npair B = (-4.6321946984844455, 0.47449686728513096);\npair C = (0.23315483212836718, 0.4291323028971327);\npair I = (-3.019309138179041, 1.6994216083269857);\npair D = (-4.216772079959054, 2.02107023022906);\n\nlabel(\"$A$\", A);\nlabel(\"$B$\", B);\nlabel(\"$C$\", C);\nlabel(\"$I$\", I);\nlabel(\"$D$\", D);\n\ndraw(A--B--C--cycle, linewidth(2.4));\ndraw(I--A, linewidth(2));\ndraw(D--I, linewidth(2));\ndraw(circle(I, 1.2399094051211748), linewidth(2));\n`;
+
+    const elInput = document.getElementById('asyInput');
+    const elJson = document.getElementById('jsonOutput');
+    const elHtml = document.getElementById('htmlOutput');
+    const elMsg = document.getElementById('msg');
+
+    function setMsg(type, text) {
+      const cls = type === 'error'
+        ? 'text-red-700 bg-red-50 border-red-200'
+        : (type === 'warn'
+          ? 'text-amber-800 bg-amber-50 border-amber-200'
+          : 'text-emerald-800 bg-emerald-50 border-emerald-200');
+      elMsg.className = `mt-3 text-sm border rounded-xl p-3 ${cls}`;
+      elMsg.textContent = text;
+    }
+
+    function clearMsg() {
+      elMsg.className = 'mt-3 text-sm';
+      elMsg.textContent = '';
+    }
+
+    function num(x) {
+      const v = Number(x);
+      return Number.isFinite(v) ? v : null;
+    }
+
+    function splitStatements(source) {
+      const s = String(source || '');
+      const out = [];
+      let cur = '';
+      let depthParen = 0;
+      let depthBrace = 0;
+      let depthBracket = 0;
+      let inStr = false;
+
+      for (let i = 0; i < s.length; i++) {
+        const ch = s[i];
+        const next = i + 1 < s.length ? s[i + 1] : '';
+
+        if (!inStr && ch === '/' && next === '/') {
+          while (i < s.length && s[i] !== '\n') i++;
+          continue;
+        }
+
+        if (ch === '"') {
+          const prev = i > 0 ? s[i - 1] : '';
+          if (prev !== '\\') inStr = !inStr;
+          cur += ch;
+          continue;
+        }
+
+        if (!inStr) {
+          if (ch === '(') depthParen++;
+          else if (ch === ')') depthParen = Math.max(0, depthParen - 1);
+          else if (ch === '{') depthBrace++;
+          else if (ch === '}') depthBrace = Math.max(0, depthBrace - 1);
+          else if (ch === '[') depthBracket++;
+          else if (ch === ']') depthBracket = Math.max(0, depthBracket - 1);
+        }
+
+        if (!inStr && depthParen === 0 && depthBrace === 0 && depthBracket === 0 && ch === ';') {
+          const stmt = cur.trim();
+          if (stmt) out.push(stmt);
+          cur = '';
+          continue;
+        }
+
+        cur += ch;
+      }
+
+      const tail = cur.trim();
+      if (tail) out.push(tail);
+      return out;
+    }
+
+    function normalizeLabelText(raw) {
+      return String(raw || '').replace(/^\$|\$$/g, '').trim();
+    }
+
+    function parseCoordToken(tok) {
+      const m = String(tok || '').match(/^\(\s*([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[-+]?\d+)?)\s*,\s*([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[-+]?\d+)?)\s*\)$/i);
+      if (!m) return null;
+      const x = num(m[1]);
+      const y = num(m[2]);
+      if (x === null || y === null) return null;
+      return [x, y];
+    }
+
+    function dist2(a, b) {
+      const dx = a[0] - b[0];
+      const dy = a[1] - b[1];
+      return dx * dx + dy * dy;
+    }
+
+    function toHexByte01(v01) {
+      const n = Math.max(0, Math.min(255, Math.round(Number(v01) * 255)));
+      return n.toString(16).padStart(2, '0');
+    }
+
+    function rgb01ToHex(r, g, b) {
+      return `#${toHexByte01(r)}${toHexByte01(g)}${toHexByte01(b)}`;
+    }
+
+    function namedColorToHex(name) {
+      const n = String(name || '').toLowerCase();
+      if (n === 'black') return '#000000';
+      if (n === 'white') return '#ffffff';
+      if (n === 'red') return '#ef4444';
+      if (n === 'blue') return '#3b82f6';
+      if (n === 'green') return '#22c55e';
+      if (n === 'gray' || n === 'grey') return '#64748b';
+      return null;
+    }
+
+    function compileExprVar(expr, varName) {
+      if (typeof expr !== 'string') return null;
+      const trimmed = expr.trim();
+      if (!trimmed) return null;
+      if (/["'`{}\[\];]/.test(trimmed)) return null;
+
+      const varRe = new RegExp(`\\b${String(varName || 't')}\\b`, 'g');
+      const sanitized = trimmed
+        .replace(varRe, 't')
+        .replace(/\^/g, '**')
+        .replace(/\bpi\b/gi, 'PI')
+        .replace(/\be\b/g, 'E');
+
+      try {
+        // eslint-disable-next-line no-new-func
+        const fn = new Function('t', 'with (Math) { return (' + sanitized + '); }');
+        void fn(0);
+        return (t) => {
+          const v = fn(t);
+          return (typeof v === 'number' && Number.isFinite(v)) ? v : NaN;
+        };
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function evalConstExpr(expr) {
+      const f = compileExprVar(expr, 't');
+      if (!f) return null;
+      const v = f(0);
+      return Number.isFinite(v) ? v : null;
+    }
+
+    function splitTopLevelMul(s) {
+      const parts = [];
+      let cur = '';
+      let depthParen = 0;
+      let depthBrace = 0;
+      let depthBracket = 0;
+      let inStr = false;
+      const str = String(s || '');
+
+      for (let i = 0; i < str.length; i++) {
+        const ch = str[i];
+        const prev = i > 0 ? str[i - 1] : '';
+
+        if (ch === '"' && prev !== '\\') {
+          inStr = !inStr;
+        }
+
+        if (!inStr) {
+          if (ch === '(') depthParen++;
+          else if (ch === ')') depthParen = Math.max(0, depthParen - 1);
+          else if (ch === '{') depthBrace++;
+          else if (ch === '}') depthBrace = Math.max(0, depthBrace - 1);
+          else if (ch === '[') depthBracket++;
+          else if (ch === ']') depthBracket = Math.max(0, depthBracket - 1);
+        }
+
+        if (!inStr && depthParen === 0 && depthBrace === 0 && depthBracket === 0 && ch === '*') {
+          const part = cur.trim();
+          if (part) parts.push(part);
+          cur = '';
+          continue;
+        }
+
+        cur += ch;
+      }
+
+      const tail = cur.trim();
+      if (tail) parts.push(tail);
+      return parts;
+    }
+
+    function parseTransformFactor(factor) {
+      const f = String(factor || '').trim();
+      const shiftM = f.match(/^shift\(\s*(\([^\)]*\))\s*\)$/i);
+      if (shiftM) {
+        const xy = parseCoordToken(shiftM[1]);
+        if (xy) return { type: 'shift', v: xy };
+      }
+
+      const rotM = f.match(/^rotate\(\s*([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[-+]?\d+)?)\s*\)$/i);
+      if (rotM) {
+        const angDeg = num(rotM[1]);
+        if (angDeg !== null) return { type: 'rotate', a: angDeg * Math.PI / 180 };
+      }
+
+      return null;
+    }
+
+    function applyTransforms(xy, transforms) {
+      let x = xy[0];
+      let y = xy[1];
+
+      for (let i = transforms.length - 1; i >= 0; i--) {
+        const tr = transforms[i];
+        if (!tr) continue;
+        if (tr.type === 'rotate') {
+          const c = Math.cos(tr.a);
+          const s = Math.sin(tr.a);
+          const nx = x * c - y * s;
+          const ny = x * s + y * c;
+          x = nx;
+          y = ny;
+        } else if (tr.type === 'shift') {
+          x += tr.v[0];
+          y += tr.v[1];
+        }
+      }
+
+      return [x, y];
+    }
+
+    function parseAsy(source) {
+      const out = {
+        bbox: null,
+        points: {},
+        segments: [],
+        polygons: [],
+        circles: [],
+        strokeWidth: null,
+        warnings: []
+      };
+
+      const lines = splitStatements(source);
+
+      const reBoundsAny = /\b(xmin|xmax|ymin|ymax)\b\s*=\s*([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[-+]?\d+)?)/gi;
+      const rePairAny = /\b([A-Za-z]\w*)\b\s*=\s*\(\s*([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[-+]?\d+)?)\s*,\s*([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[-+]?\d+)?)\s*\)/gi;
+      const rePenRgb = /\b([A-Za-z]\w*)\b\s*=\s*rgb\(\s*([0-9.]+)\s*,\s*([0-9.]+)\s*,\s*([0-9.]+)\s*\)/gi;
+      const rePenName = /\b([A-Za-z]\w*)\b\s*=\s*(black|white|red|blue|green|gray|grey)\b/gi;
+
+      const bounds = { xmin: null, xmax: null, ymin: null, ymax: null };
+      const pens = {};
+      const pairFuncs = {};
+      let anonCounter = 0;
+      const coordIndex = new Map();
+
+      function ensurePoint(id) {
+        if (!out.points[id]) out.points[id] = { xy: null, name: '', visible: false, fixed: true, size: 2, color: null };
+        return out.points[id];
+      }
+
+      function coordKey(x, y) {
+        return `${Number(x).toFixed(10)},${Number(y).toFixed(10)}`;
+      }
+
+      function getOrCreateCoordPoint(x, y, opts) {
+        const key = coordKey(x, y);
+        const existingId = coordIndex.get(key);
+        if (existingId && out.points[existingId] && Array.isArray(out.points[existingId].xy)) {
+          const p = out.points[existingId];
+          if (opts && typeof opts.visible === 'boolean') p.visible = opts.visible;
+          if (opts && typeof opts.size === 'number') p.size = opts.size;
+          if (opts && typeof opts.color === 'string') p.color = opts.color;
+          return existingId;
+        }
+
+        anonCounter += 1;
+        const id = `_P${anonCounter}`;
+        coordIndex.set(key, id);
+        out.points[id] = {
+          xy: [x, y],
+          name: '',
+          visible: opts && typeof opts.visible === 'boolean' ? opts.visible : false,
+          fixed: true,
+          size: opts && typeof opts.size === 'number' ? opts.size : 2,
+          color: opts && typeof opts.color === 'string' ? opts.color : null
+        };
+        return id;
+      }
+
+      function parseLineWidth(s) {
+        if (!s) return null;
+        const m = String(s).match(/linewidth\(\s*([-+]?\d+(?:\.\d+)?)\s*\)/);
+        return m ? num(m[1]) : null;
+      }
+
+      function splitTopLevelComma(s) {
+        const parts = [];
+        let cur = '';
+        let depth = 0;
+        for (let i = 0; i < s.length; i++) {
+          const ch = s[i];
+          if (ch === '(') depth++;
+          if (ch === ')') depth = Math.max(0, depth - 1);
+          if (ch === ',' && depth === 0) {
+            parts.push(cur.trim());
+            cur = '';
+            continue;
+          }
+          cur += ch;
+        }
+        if (cur.trim()) parts.push(cur.trim());
+        return parts;
+      }
+
+      function parsePathExpr(expr) {
+        const cleaned = expr.replace(/\s+/g, '');
+        const isCycle = /--cycle$/.test(cleaned);
+        const base = cleaned.replace(/--cycle$/, '');
+        const tokens = base.split('--').filter(Boolean);
+        return { tokens, isCycle };
+      }
+
+      function parseStyleColor(style) {
+        const s = String(style || '');
+        const rgbM = s.match(/rgb\(\s*([0-9.]+)\s*,\s*([0-9.]+)\s*,\s*([0-9.]+)\s*\)/i);
+        if (rgbM) return rgb01ToHex(rgbM[1], rgbM[2], rgbM[3]);
+
+        const toks = s.match(/[A-Za-z]\w*/g) || [];
+        for (let i = toks.length - 1; i >= 0; i--) {
+          const t = toks[i];
+          if (pens[t]) return pens[t];
+          const named = namedColorToHex(t);
+          if (named) return named;
+        }
+        return null;
+      }
+
+      function tokenToId(tok, opts) {
+        const t = String(tok || '').trim();
+        const xy = parseCoordToken(t);
+        if (xy) return getOrCreateCoordPoint(xy[0], xy[1], opts);
+        if (/^[A-Za-z]\w*$/.test(t)) {
+          ensurePoint(t);
+          return t;
+        }
+        return null;
+      }
+
+      function findNearestPointId(xy, maxDist2) {
+        let bestId = null;
+        let best = Infinity;
+        for (const id of Object.keys(out.points)) {
+          const p = out.points[id];
+          if (!p || !Array.isArray(p.xy)) continue;
+          const d = dist2(p.xy, xy);
+          if (d < best) {
+            best = d;
+            bestId = id;
+          }
+        }
+        if (bestId && best <= maxDist2) return bestId;
+        return null;
+      }
+
+      for (const stmtRaw of lines) {
+        const stmt = String(stmtRaw || '').trim();
+        if (!stmt) continue;
+
+        const pairFuncM = stmt.match(/^pair\s+([A-Za-z]\w*)\s*\(\s*real\s+([A-Za-z]\w*)\s*\)\s*\{([\s\S]*)\}\s*$/);
+        if (pairFuncM) {
+          const name = pairFuncM[1];
+          const varName = pairFuncM[2];
+          const body = pairFuncM[3] || '';
+          const retM = body.match(/\breturn\s*\(\s*([^,]+)\s*,\s*([^\)]+)\)\s*;/);
+          if (retM) {
+            const fx = compileExprVar(retM[1], varName);
+            const fy = compileExprVar(retM[2], varName);
+            if (fx && fy) {
+              pairFuncs[name] = { fx, fy };
+            } else {
+              out.warnings.push(`Không parse được pair function: ${name}(${varName})`);
+            }
+          } else {
+            out.warnings.push(`Không tìm thấy return(...) trong pair function: ${name}(${varName})`);
+          }
+          continue;
+        }
+
+        // Parse pen definitions: pen a=rgb(...), b=rgb(...); or pen ds=black;
+        rePenRgb.lastIndex = 0;
+        let penM;
+        while ((penM = rePenRgb.exec(stmt)) !== null) {
+          pens[penM[1]] = rgb01ToHex(penM[2], penM[3], penM[4]);
+        }
+        rePenName.lastIndex = 0;
+        while ((penM = rePenName.exec(stmt)) !== null) {
+          const hex = namedColorToHex(penM[2]);
+          if (hex) pens[penM[1]] = hex;
+        }
+
+        // bounds may appear as: real xmin=...,xmax=...,ymin=...,ymax=...;
+        reBoundsAny.lastIndex = 0;
+        let bm;
+        while ((bm = reBoundsAny.exec(stmt)) !== null) {
+          const key = bm[1];
+          const val = num(bm[2]);
+          if (val !== null) bounds[key] = val;
+        }
+
+        // points may appear as: pair A=(...), B=(...), ...;
+        if (stmt.includes('pair ')) {
+          rePairAny.lastIndex = 0;
+          let pm;
+          while ((pm = rePairAny.exec(stmt)) !== null) {
+            const id = pm[1];
+            const x = num(pm[2]);
+            const y = num(pm[3]);
+            if (x === null || y === null) continue;
+            const p = ensurePoint(id);
+            p.xy = [x, y];
+            coordIndex.set(coordKey(x, y), id);
+          }
+          continue;
+        }
+
+        // dot(A, ...) or dot((x,y), ...)
+        if (stmt.startsWith('dot(')) {
+          const inside = stmt.slice(4, stmt.lastIndexOf(')'));
+          const parts = splitTopLevelComma(inside);
+          const target = parts[0] || '';
+          const style = parts.slice(1).join(',');
+          const color = parseStyleColor(style);
+          const size = (() => {
+            const m = String(style).match(/linewidth\(\s*([0-9.]+)\s*\.?pt\s*\)/i);
+            const v = m ? num(m[1]) : null;
+            return v === null ? 3 : Math.max(2, Math.round(v / 2));
+          })();
+
+          const id = tokenToId(target, { visible: true, size, color });
+          if (id && out.points[id]) {
+            out.points[id].visible = true;
+            out.points[id].size = size;
+            if (color) out.points[id].color = color;
+          }
+          continue;
+        }
+
+        // label("$A$", A) or label("$A$", (x,y), ...)
+        if (stmt.startsWith('label(')) {
+          const inside = stmt.slice(6, stmt.lastIndexOf(')'));
+          const parts = splitTopLevelComma(inside);
+          const labelRaw = (parts[0] || '').trim();
+          const refRaw = (parts[1] || '').trim();
+
+          const lm = labelRaw.match(/^"([^"]*)"$/);
+          if (lm && refRaw) {
+            const name = normalizeLabelText(lm[1]);
+            const xy = parseCoordToken(refRaw);
+            if (xy) {
+              // GeoGebra label position is often offset from the exact point.
+              const near = findNearestPointId(xy, 1.0);
+              const id = near || getOrCreateCoordPoint(xy[0], xy[1], { visible: true, size: 3 });
+              ensurePoint(id).name = name;
+              ensurePoint(id).visible = true;
+            } else if (/^[A-Za-z]\w*$/.test(refRaw)) {
+              ensurePoint(refRaw).name = name;
+              ensurePoint(refRaw).visible = true;
+            }
+          }
+          continue;
+        }
+
+        // draw(...)
+        if (stmt.startsWith('draw(')) {
+          const inside = stmt.slice(5, stmt.lastIndexOf(')'));
+          const parts = splitTopLevelComma(inside);
+          const geom = (parts[0] || '').trim();
+          const style = parts.slice(1).join(',');
+          const lw = parseLineWidth(style);
+          const color = parseStyleColor(style);
+          if (lw !== null) out.strokeWidth = out.strokeWidth === null ? lw : Math.max(out.strokeWidth, lw);
+
+          if (/\bgraph\(/.test(geom)) {
+            const factors = splitTopLevelMul(geom);
+            const graphIdx = factors.findIndex(f => /^graph\(/i.test(String(f).trim()));
+            if (graphIdx >= 0) {
+              const graphExpr = String(factors[graphIdx]).trim();
+              const gm = graphExpr.match(/^graph\(\s*([A-Za-z]\w*)\s*,\s*([^,]+)\s*,\s*([^\)]+)\s*\)$/i);
+              const fnName = gm ? gm[1] : null;
+              const t0 = gm ? evalConstExpr(gm[2]) : null;
+              const t1 = gm ? evalConstExpr(gm[3]) : null;
+              const fn = fnName ? pairFuncs[fnName] : null;
+
+              if (fn && typeof t0 === 'number' && typeof t1 === 'number') {
+                const transforms = factors.slice(0, graphIdx).map(parseTransformFactor).filter(Boolean);
+                const n = 96;
+                let lastId = null;
+                for (let i = 0; i <= n; i++) {
+                  const t = t0 + (t1 - t0) * (i / n);
+                  const x = fn.fx(t);
+                  const y = fn.fy(t);
+                  if (!Number.isFinite(x) || !Number.isFinite(y)) {
+                    lastId = null;
+                    continue;
+                  }
+                  const xy = applyTransforms([x, y], transforms);
+                  const pid = getOrCreateCoordPoint(xy[0], xy[1], { visible: false });
+                  if (lastId) {
+                    out.segments.push({ p1: lastId, p2: pid, strokeWidth: lw !== null ? lw : undefined, color: color || undefined });
+                  }
+                  lastId = pid;
+                }
+                continue;
+              }
+            }
+          }
+
+          if (/\bshift\(|\brotate\(|\bclip\(|\bfill\(|\*/.test(geom)) {
+            out.warnings.push(`Bỏ qua draw nâng cao: ${geom.slice(0, 60)}...`);
+            continue;
+          }
+
+          const circleMatch = geom.match(/^circle\(\s*([^,]+)\s*,\s*([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[-+]?\d+)?)\s*\)$/i);
+          if (circleMatch) {
+            const centerTok = circleMatch[1].trim();
+            const r = num(circleMatch[2]);
+            const cxy = parseCoordToken(centerTok);
+            const center = cxy ? [cxy[0], cxy[1]] : centerTok;
+            if (!cxy) ensurePoint(centerTok);
+            if (r !== null) out.circles.push({ center, r, strokeWidth: lw !== null ? lw : undefined, color: color || undefined });
+            continue;
+          }
+
+          const path = parsePathExpr(geom);
+          if (path.tokens.length >= 2) {
+            const ids = [];
+            for (const tok of path.tokens) {
+              const id = tokenToId(tok, { visible: false });
+              if (id) ids.push(id);
+            }
+            if (ids.length < 2) continue;
+
+            if (path.isCycle && ids.length >= 3) {
+              out.polygons.push({ points: ids, strokeWidth: lw !== null ? lw : undefined, fillOpacity: 0, color: color || undefined });
+            } else {
+              for (let i = 0; i < ids.length - 1; i++) {
+                out.segments.push({ p1: ids[i], p2: ids[i + 1], strokeWidth: lw !== null ? lw : undefined, color: color || undefined });
+              }
+            }
+            continue;
+          }
+
+          out.warnings.push(`Chưa hỗ trợ draw: ${geom}`);
+          continue;
+        }
+      }
+
+      // Drop points without coordinates
+      for (const id of Object.keys(out.points)) {
+        if (!out.points[id] || !Array.isArray(out.points[id].xy)) delete out.points[id];
+      }
+
+      // bbox from explicit bounds, else infer from points
+      const hasAllBounds = [bounds.xmin, bounds.xmax, bounds.ymin, bounds.ymax].every(v => typeof v === 'number');
+      if (hasAllBounds) {
+        out.bbox = [bounds.xmin, bounds.ymax, bounds.xmax, bounds.ymin];
+      } else {
+        const pts = Object.values(out.points).filter(p => p && Array.isArray(p.xy));
+        if (pts.length) {
+          const xs = pts.map(p => p.xy[0]);
+          const ys = pts.map(p => p.xy[1]);
+          const xmin = Math.min(...xs);
+          const xmax = Math.max(...xs);
+          const ymin = Math.min(...ys);
+          const ymax = Math.max(...ys);
+          const padX = (xmax - xmin || 1) * 0.2;
+          const padY = (ymax - ymin || 1) * 0.2;
+          out.bbox = [xmin - padX, ymax + padY, xmax + padX, ymin - padY];
+        }
+      }
+
+      return out;
+    }
+
+    function buildSceneSpec(parsed) {
+      const spec = {
+        preset: 'scene',
+        axes: true,
+        grid: false,
+        bbox: parsed.bbox || [-5, 5, 5, -5],
+        strokeWidth: parsed.strokeWidth !== null ? parsed.strokeWidth : 2.4,
+        points: {},
+        polygons: parsed.polygons || [],
+        segments: parsed.segments || [],
+        circles: parsed.circles || []
+      };
+
+      for (const id of Object.keys(parsed.points || {})) {
+        const p = parsed.points[id];
+        spec.points[id] = {
+          xy: p.xy,
+          name: p.name || '',
+          visible: typeof p.visible === 'boolean' ? p.visible : true,
+          fixed: typeof p.fixed === 'boolean' ? p.fixed : true,
+          size: typeof p.size === 'number' ? p.size : 2,
+          color: p.color || undefined
+        };
+      }
+
+      return spec;
+    }
+
+    async function renderPreview(spec) {
+      const wrap = document.getElementById('previewWrap');
+      wrap.innerHTML = '<div id="preview" class="jxg-diagram"></div>';
+      const el = document.getElementById('preview');
+      el.setAttribute('data-jxg', JSON.stringify({ ...spec, height: 260 }));
+
+      if (window.Diagrams && typeof window.Diagrams.renderAll === 'function') {
+        await window.Diagrams.renderAll(wrap);
+      }
+    }
+
+    function toEmbedSnippet(spec) {
+      const json = JSON.stringify(spec);
+      return `<div class="jxg-diagram" data-jxg='${json}'></div>`;
+    }
+
+    async function convertAndRender() {
+      clearMsg();
+
+      const src = elInput.value;
+      if (!src.trim()) {
+        setMsg('warn', 'Bạn chưa dán mã Asymptote.');
+        return;
+      }
+
+      const parsed = parseAsy(src);
+      const spec = buildSceneSpec(parsed);
+
+      elJson.value = JSON.stringify(spec, null, 2);
+      elHtml.value = toEmbedSnippet(spec);
+
+      try {
+        await renderPreview(spec);
+      } catch (e) {
+        setMsg('error', 'Không render được preview. Kiểm tra đã load diagrams.js / JSXGraph offline chưa.');
+        return;
+      }
+
+      if (parsed.warnings.length) {
+        setMsg('warn', `Chuyển đổi xong, nhưng có cảnh báo (${parsed.warnings.length}): ` + parsed.warnings.join(' | '));
+      } else {
+        setMsg('ok', 'Chuyển đổi thành công. Bạn có thể copy HTML để dán vào đề/lời giải.');
+      }
+    }
+
+    async function copyText(el) {
+      const text = el.value || '';
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        el.focus();
+        el.select();
+        document.execCommand('copy');
+      }
+    }
+
+    document.getElementById('btnLoadSample').addEventListener('click', () => {
+      elInput.value = SAMPLE_ASY;
+      clearMsg();
+    });
+
+    document.getElementById('btnClear').addEventListener('click', () => {
+      elInput.value = '';
+      elJson.value = '';
+      elHtml.value = '';
+      clearMsg();
+    });
+
+    document.getElementById('btnConvert').addEventListener('click', () => {
+      convertAndRender();
+    });
+
+    document.getElementById('btnCopyJson').addEventListener('click', () => {
+      copyText(elJson);
+    });
+
+    document.getElementById('btnCopyHtml').addEventListener('click', () => {
+      copyText(elHtml);
+    });
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        if (window.Diagrams && typeof window.Diagrams.renderAll === 'function') {
+          await window.Diagrams.renderAll(document);
+        }
+      } catch (e) {
+      }
+    });
+  </script>
+</body>
+</html>

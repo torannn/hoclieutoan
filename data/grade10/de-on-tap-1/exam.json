@@ -215,7 +215,7 @@
       "q_id": "d1_tln_group",
       "is_group": true,
       "section": "PHẦN IV. Tự luận",
-      "type": "short",
+      "type": "essay",
       "sub_questions": [
         {
           "q_id": "d1_tln_1",

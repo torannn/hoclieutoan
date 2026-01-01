@@ -1718,7 +1718,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
             } else {
                 const initialName = u.displayName || u.email || u.phoneNumber || 'Bạn';
-                container.innerHTML = `<span class="text-gray-700">Xin chào, <strong class="auth-name">${initialName}</strong></span>
+                const safeInitialName = (() => {
+                    const div = document.createElement('div');
+                    div.textContent = String(initialName);
+                    return div.innerHTML;
+                })();
+                container.innerHTML = `<span class="text-gray-700">Xin chào, <strong class="auth-name">${safeInitialName}</strong></span>
                   <button type="button" class="btn-profile text-blue-600 hover:underline ml-3">Hồ sơ</button>
                   <button type="button" class="btn-logout text-red-600 hover:underline ml-3">Đăng xuất</button>`;
                 container.querySelectorAll('.btn-profile').forEach(btn=>{ btn.onclick = ()=> navigateTo('#/profile'); });

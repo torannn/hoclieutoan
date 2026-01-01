@@ -1664,18 +1664,13 @@ Quy tắc format:
       });
       
       // Protect inline math $...$ and \(...\) (but not $$ which we already handled)
-      formatted = formatted.replace(/\$([^\$\n]+?)\$|\\\(([^\)]+?)\\\)/g, (match) => {
+      formatted = formatted.replace(/\$([^\$\n]+?)\$|\\\(([\s\S]+?)\\\)/g, (match) => {
         mathBlocks.push(match);
         return `%%MATH_BLOCK_${idx++}%%`;
       });
       
       // Now escape HTML
       formatted = this.escapeHtml(formatted);
-      
-      // Restore math expressions (they should NOT be escaped)
-      mathBlocks.forEach((block, i) => {
-        formatted = formatted.replace(`%%MATH_BLOCK_${i}%%`, block);
-      });
       
       // Bold
       formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
@@ -1707,6 +1702,11 @@ Quy tắc format:
       formatted = formatted.replace(/<br>(<[ou]l>)/g, '$1');
       formatted = formatted.replace(/(<\/[ou]l>)<br>/g, '$1');
       formatted = formatted.replace(/<li([^>]*)>(.*?)<br><\/li>/g, '<li$1>$2</li>');
+
+      // Restore math expressions (they must be treated as text, not raw HTML)
+      mathBlocks.forEach((block, i) => {
+        formatted = formatted.replace(`%%MATH_BLOCK_${i}%%`, this.escapeHtml(block));
+      });
       
       return formatted;
     },

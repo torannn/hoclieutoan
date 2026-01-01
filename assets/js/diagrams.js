@@ -2888,17 +2888,43 @@ def derivative_expr(expr_s, var):
         }
     }
 
+    function isSafeMathExpr(exprStr, variable) {
+        if (typeof exprStr !== 'string') return false;
+        if (exprStr.length > 200) return false;
+        if (/[^0-9a-zA-Z+\-*/^().,\s]/.test(exprStr)) return false;
+        if (exprStr.includes('/*') || exprStr.includes('*/') || exprStr.includes('//')) return false;
+
+        const ids = exprStr.match(/[A-Za-z]+/g) || [];
+        const allowed = new Set([String(variable), 'sqrt', 'abs', 'exp', 'ln', 'log', 'pi', 'e', 'sin', 'cos', 'tan', 'asin', 'acos', 'atan']);
+        for (const id of ids) {
+            if (!allowed.has(id)) return false;
+        }
+        return true;
+    }
+
     function evaluateExpr(exprStr, variable, value) {
+        if (!isSafeMathExpr(exprStr, variable)) {
+            throw new Error('Unsafe expression');
+        }
         let expr = exprStr.replace(/\^/g, '**');
         expr = expr.replace(/(\d)([a-zA-Z(])/g, '$1*$2');
         expr = expr.replace(/([)])(\d|[a-zA-Z])/g, '$1*$2');
         expr = expr.replace(new RegExp(`\\b${variable}\\b`, 'g'), `(${value})`);
+        if (String(variable) !== 'pi') expr = expr.replace(/\bpi\b/g, 'Math.PI');
+        if (String(variable) !== 'e') expr = expr.replace(/\be\b/g, 'Math.E');
         expr = expr.replace(/sqrt\(([^)]+)\)/g, 'Math.sqrt($1)');
         expr = expr.replace(/abs\(([^)]+)\)/g, 'Math.abs($1)');
         expr = expr.replace(/exp\(([^)]+)\)/g, 'Math.exp($1)');
+        expr = expr.replace(/asin\(([^)]+)\)/g, 'Math.asin($1)');
+        expr = expr.replace(/acos\(([^)]+)\)/g, 'Math.acos($1)');
+        expr = expr.replace(/atan\(([^)]+)\)/g, 'Math.atan($1)');
+        expr = expr.replace(/sin\(([^)]+)\)/g, 'Math.sin($1)');
+        expr = expr.replace(/cos\(([^)]+)\)/g, 'Math.cos($1)');
+        expr = expr.replace(/tan\(([^)]+)\)/g, 'Math.tan($1)');
         expr = expr.replace(/ln\(([^)]+)\)/g, 'Math.log($1)');
         expr = expr.replace(/log\(([^)]+)\)/g, 'Math.log10($1)');
-        return eval(expr);
+        const fn = Function('Math', '"use strict"; return (' + expr + ');');
+        return fn(Math);
     }
 
     function evaluateSign(exprStr, variable, value) {

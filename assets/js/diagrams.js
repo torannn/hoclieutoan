@@ -509,30 +509,139 @@ def derivative_expr(expr_s, var):
     function presetFunction(board, spec) {
         const bb = getBBox(spec);
         const xMin = bb[0];
+        const yMax = bb[1];
         const xMax = bb[2];
-        const color = spec.color || '#2563eb';
-        const strokeWidth = typeof spec.strokeWidth === 'number' ? spec.strokeWidth : 2;
+        const yMin = bb[3];
 
-        let fn = null;
-        if (typeof spec.expr === 'string') {
-            fn = compileExpr(spec.expr);
+        const defaultColor = spec.color || '#2563eb';
+        const defaultStrokeWidth = typeof spec.strokeWidth === 'number' ? spec.strokeWidth : 2;
+
+        function getDomains() {
+            const d = Array.isArray(spec.domains) ? spec.domains : null;
+            if (!d || d.length === 0) return [[xMin, xMax]];
+            const out = [];
+            for (const it of d) {
+                if (!Array.isArray(it) || it.length < 2) continue;
+                const a = Number(it[0]);
+                const b = Number(it[1]);
+                if (!Number.isFinite(a) || !Number.isFinite(b)) continue;
+                out.push([a, b]);
+            }
+            return out.length ? out : [[xMin, xMax]];
         }
 
-        if (!fn && typeof spec.fn === 'function') {
-            fn = spec.fn;
+        function buildFn(expr) {
+            if (typeof expr === 'string') return compileExpr(expr);
+            return null;
         }
 
-        if (!fn) {
-            fn = (x) => NaN;
+        function getFnSpecs() {
+            if (Array.isArray(spec.exprs) && spec.exprs.length > 0) {
+                const out = [];
+                for (const it of spec.exprs) {
+                    if (typeof it === 'string') {
+                        out.push({ expr: it, color: defaultColor, strokeWidth: defaultStrokeWidth });
+                        continue;
+                    }
+                    if (it && typeof it === 'object' && typeof it.expr === 'string') {
+                        out.push({
+                            expr: it.expr,
+                            color: typeof it.color === 'string' ? it.color : defaultColor,
+                            strokeWidth: typeof it.strokeWidth === 'number' ? it.strokeWidth : defaultStrokeWidth
+                        });
+                    }
+                }
+                return out;
+            }
+
+            if (typeof spec.expr === 'string') {
+                return [{ expr: spec.expr, color: defaultColor, strokeWidth: defaultStrokeWidth }];
+            }
+
+            return [];
         }
 
-        const graph = board.create('functiongraph', [fn, xMin, xMax], {
-            strokeColor: color,
-            strokeWidth,
-            highlight: false
-        });
+        const domains = getDomains();
+        const fnSpecs = getFnSpecs();
+        const graphs = [];
 
-        return { graph };
+        // Support legacy: spec.fn can still be used for a single graph.
+        if (fnSpecs.length === 0 && typeof spec.fn === 'function') {
+            for (const dom of domains) {
+                graphs.push(board.create('functiongraph', [spec.fn, dom[0], dom[1]], {
+                    strokeColor: defaultColor,
+                    strokeWidth: defaultStrokeWidth,
+                    highlight: false
+                }));
+            }
+        } else {
+            for (const fSpec of fnSpecs) {
+                const fn = buildFn(fSpec.expr) || ((x) => NaN);
+                for (const dom of domains) {
+                    graphs.push(board.create('functiongraph', [fn, dom[0], dom[1]], {
+                        strokeColor: fSpec.color,
+                        strokeWidth: fSpec.strokeWidth,
+                        highlight: false
+                    }));
+                }
+            }
+        }
+
+        const guideColor = typeof spec.guideColor === 'string' ? spec.guideColor : '#94a3b8';
+        const guideWidth = typeof spec.guideWidth === 'number' ? spec.guideWidth : 2;
+        const guideDash = typeof spec.guideDash === 'number' ? spec.guideDash : 2;
+
+        function vLine(x) {
+            const A = board.create('point', [x, yMin], { visible: false, fixed: true, highlight: false });
+            const B = board.create('point', [x, yMax], { visible: false, fixed: true, highlight: false });
+            return board.create('segment', [A, B], { strokeColor: guideColor, strokeWidth: guideWidth, dash: guideDash, highlight: false, fixed: true });
+        }
+
+        function hLine(y) {
+            const A = board.create('point', [xMin, y], { visible: false, fixed: true, highlight: false });
+            const B = board.create('point', [xMax, y], { visible: false, fixed: true, highlight: false });
+            return board.create('segment', [A, B], { strokeColor: guideColor, strokeWidth: guideWidth, dash: guideDash, highlight: false, fixed: true });
+        }
+
+        const vLines = [];
+        const hLines = [];
+        if (Array.isArray(spec.vLines)) {
+            for (const x of spec.vLines) {
+                const xx = Number(x);
+                if (!Number.isFinite(xx)) continue;
+                vLines.push(vLine(xx));
+            }
+        }
+        if (Array.isArray(spec.hLines)) {
+            for (const y of spec.hLines) {
+                const yy = Number(y);
+                if (!Number.isFinite(yy)) continue;
+                hLines.push(hLine(yy));
+            }
+        }
+
+        const points = [];
+        if (Array.isArray(spec.points)) {
+            for (const p of spec.points) {
+                if (!p || typeof p !== 'object') continue;
+                const x = Number(p.x);
+                const y = Number(p.y);
+                if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+                const name = typeof p.name === 'string' ? p.name : '';
+                const size = typeof p.size === 'number' ? p.size : 3;
+                const color = typeof p.color === 'string' ? p.color : '#ef4444';
+                points.push(board.create('point', [x, y], {
+                    name,
+                    size,
+                    strokeColor: color,
+                    fillColor: color,
+                    fixed: true,
+                    highlight: false
+                }));
+            }
+        }
+
+        return { graph: graphs[0] || null, graphs, vLines, hLines, points };
     }
 
     function presetLine(board, spec) {
@@ -1189,14 +1298,16 @@ def derivative_expr(expr_s, var):
             const fixed = bool(p && typeof p === 'object' ? p.fixed : undefined, true);
             const size = (p && typeof p === 'object' && typeof p.size === 'number') ? p.size : 2;
             const color = (p && typeof p === 'object' && (p.color || p.pointColor)) ? (p.color || p.pointColor) : pointColorDefault;
+            const strokeColor = (p && typeof p === 'object' && typeof p.strokeColor === 'string') ? p.strokeColor : color;
+            const fillColor = (p && typeof p === 'object' && typeof p.fillColor === 'string') ? p.fillColor : color;
 
             points[id] = board.create('point', [xy[0], xy[1]], {
                 name: name || '',
                 visible,
                 fixed,
                 size,
-                strokeColor: color,
-                fillColor: color,
+                strokeColor,
+                fillColor,
                 highlight: false
             });
         }
@@ -1606,17 +1717,422 @@ def derivative_expr(expr_s, var):
         return { poly };
     }
 
+    function toPosFromSign(s) {
+        if (s === '+') return 'top';
+        if (s === '-') return 'bottom';
+        return 'mid';
+    }
+
+    function parseTkzTabVarList(input) {
+        if (typeof input !== 'string') return [];
+        return input
+            .split(',')
+            .map(s => String(s || '').trim())
+            .filter(s => s.length > 0);
+    }
+
+    function parseTkzTabLine(input, nIntervals) {
+        const out = { intervalSigns: [], pointMarks: {} };
+        if (typeof input !== 'string') return out;
+        const cleaned = input.replace(/[{}]/g, '').trim();
+        if (!cleaned) return out;
+
+        const raw = cleaned
+            .split(',')
+            .map(s => String(s || '').trim())
+            .filter(s => s.length > 0);
+
+        if (!raw.length) return out;
+
+        let start = 0;
+        if (raw[0] === 't' || raw[0] === 'T') start = 1;
+
+        const totalIntervals = (typeof nIntervals === 'number' && nIntervals > 0) ? nIntervals : Math.max(1, Math.floor((raw.length - start + 1) / 2));
+        for (let i = 0; i < totalIntervals; i++) {
+            const signTok = raw[start + i * 2] || '';
+            const sign = (signTok === '+' || signTok === '-' || signTok === '0') ? signTok : String(signTok || '');
+            out.intervalSigns[i] = sign;
+
+            if (i < totalIntervals - 1) {
+                const markTok = raw[start + i * 2 + 1] || '';
+                const m = String(markTok || '').trim();
+                if (m === 'z') out.pointMarks[i + 1] = '0';
+                else if (m === 'd' || m === 'D' || m === 'h' || m === 'H') out.pointMarks[i + 1] = '||';
+                else if (m) out.pointMarks[i + 1] = m;
+            }
+        }
+
+        return out;
+    }
+
+    function parseTkzVarElement(raw) {
+        const t = String(raw || '').trim();
+        if (!t) return { kind: 'empty' };
+        const compact = t.replace(/\s+/g, '');
+        if (compact === 'R') return { kind: 'skip' };
+        if (compact === '/' || compact === '//') return { kind: 'empty' };
+
+        const parts = t.split('/').map(s => String(s || '').trim());
+        const symRaw = String(parts[0] || '').trim();
+        const sym = symRaw.replace(/\s+/g, '');
+        const e1 = parts.length > 1 ? parts[1] : '';
+        const e2 = parts.length > 2 ? parts[2] : '';
+
+        const hasTwoExpr = parts.length >= 3;
+        const hasD = sym.includes('D');
+        const hasV = sym.includes('V');
+        const hasH = sym.includes('H');
+        const hasC = sym.includes('C');
+
+        const leftSign = (sym[0] === '+' || sym[0] === '-') ? sym[0] : '';
+        const rightSign = (sym.length > 1 && (sym[sym.length - 1] === '+' || sym[sym.length - 1] === '-')) ? sym[sym.length - 1] : '';
+        const overallSign = leftSign || rightSign;
+
+        // TKZ: V = discontinuity without double bar, D/H = discontinuity with double bar.
+        // C = continuity marker (no bar by itself), but may combine with H (CH) to indicate forbidden zone.
+        const bar = hasV ? 'single' : ((hasD || hasH) ? 'double' : null);
+
+        if (hasTwoExpr) {
+            return {
+                kind: 'forbidden',
+                left: e1,
+                right: e2,
+                leftPos: toPosFromSign(leftSign),
+                rightPos: toPosFromSign(rightSign),
+                bar
+            };
+        }
+
+        const pos = toPosFromSign(overallSign);
+
+        if (hasD) {
+            const side = leftSign && !rightSign ? 'left' : (!leftSign && rightSign ? 'right' : 'mid');
+            return {
+                kind: 'finite',
+                text: e1,
+                pos,
+                side,
+                bar
+            };
+        }
+
+        return {
+            kind: 'finite',
+            text: e1,
+            pos,
+            side: 'mid',
+            bar,
+            continuity: hasC && !bar
+        };
+    }
+
+    function buildVariationManualDataFromTkz(spec, variable) {
+        const xValues = Array.isArray(spec.xValues) ? spec.xValues : (Array.isArray(spec.labels) ? spec.labels : []);
+        if (!xValues.length) return null;
+
+        const derivative = (typeof spec.derivative === 'object' && spec.derivative) ? spec.derivative : null;
+        const variation = (typeof spec.variation === 'object' && spec.variation) ? spec.variation : null;
+        const tkzTabVar = typeof spec.tkzTabVar === 'string' ? spec.tkzTabVar : (variation && typeof variation.tkzTabVar === 'string' ? variation.tkzTabVar : '');
+        const tkzTabLine = typeof spec.tkzTabLine === 'string' ? spec.tkzTabLine : (derivative && typeof derivative.tkzTabLine === 'string' ? derivative.tkzTabLine : '');
+
+        const labels = xValues.map(v => String(v));
+        const nIntervals = Math.max(1, labels.length - 1);
+
+        const rows = [];
+
+        const parsedLine = tkzTabLine ? parseTkzTabLine(tkzTabLine, nIntervals) : null;
+
+        if (derivative || parsedLine) {
+            const intervalSigns = Array.isArray(derivative && derivative.intervalSigns)
+                ? derivative.intervalSigns.map(s => String(s || ''))
+                : (parsedLine ? parsedLine.intervalSigns : []);
+
+            const pointMarks = (typeof (derivative && derivative.pointMarks) === 'object' && (derivative && derivative.pointMarks))
+                ? derivative.pointMarks
+                : (parsedLine ? parsedLine.pointMarks : {});
+
+            rows.push({
+                type: 'sign',
+                label: derivative && typeof derivative.label === 'string' ? derivative.label : `f'(${variable})`,
+                intervalSigns,
+                pointMarks
+            });
+        }
+
+        if (tkzTabVar) {
+            const items = parseTkzTabVarList(tkzTabVar);
+            const els = labels.map((_, i) => parseTkzVarElement(items[i] || ''));
+
+            const posLeft = els.map(el => {
+                if (el.kind === 'forbidden') return el.leftPos || 'mid';
+                if (el.kind === 'finite') return el.pos || 'mid';
+                return 'mid';
+            });
+            const posRight = els.map(el => {
+                if (el.kind === 'forbidden') return el.rightPos || 'mid';
+                if (el.kind === 'finite') return el.pos || 'mid';
+                return 'mid';
+            });
+
+            const values = Array(labels.length).fill(null);
+            for (let i = 0; i < els.length; i++) {
+                const el = els[i];
+                if (el.kind === 'forbidden') {
+                    values[i] = {
+                        type: 'forbidden',
+                        left: el.left,
+                        right: el.right,
+                        leftPos: el.leftPos || 'mid',
+                        rightPos: el.rightPos || 'mid',
+                        bar: el.bar || null
+                    };
+                } else if (el.kind === 'finite' && el.text) {
+                    values[i] = { type: 'finite', text: el.text, pos: el.pos || 'mid', side: el.side || 'mid', bar: el.bar || null };
+                }
+            }
+
+            const arrows = [];
+            for (let i = 0; i < nIntervals; i++) {
+                arrows.push({ from: posRight[i] || 'mid', to: posLeft[i + 1] || 'mid' });
+            }
+
+            rows.push({
+                type: 'variation',
+                label: (variation && typeof variation.label === 'string') ? variation.label : `f(${variable})`,
+                arrows,
+                values
+            });
+
+            const forbiddenIdx = [];
+            const singleBarIdx = [];
+            for (let i = 1; i < els.length - 1; i++) {
+                if (els[i].bar === 'double') forbiddenIdx.push(i);
+                else if (els[i].bar === 'single') singleBarIdx.push(i);
+            }
+
+            return { breakpoints: labels.map(() => null), labels, rows, forbiddenIdx, singleBarIdx };
+        }
+
+        if (variation && Array.isArray(variation.values) && Array.isArray(variation.arrows)) {
+            const values = variation.values.map(v => {
+                if (v === null || v === undefined) return null;
+                if (typeof v === 'string') return { type: 'finite', text: v, pos: 'mid', side: 'mid' };
+                if (typeof v === 'object') return v;
+                return { type: 'finite', text: String(v), pos: 'mid', side: 'mid' };
+            });
+            const arrows = variation.arrows.slice();
+            rows.push({
+                type: 'variation',
+                label: typeof variation.label === 'string' ? variation.label : `f(${variable})`,
+                arrows,
+                values
+            });
+            return { breakpoints: labels.map(() => null), labels, rows, forbiddenIdx: [] };
+        }
+
+        return null;
+    }
+
+    function drawVariationTableFromData(board, spec, variable, data) {
+        const cellW = typeof spec.cellWidth === 'number' ? spec.cellWidth : 1.2;
+        const cellH = typeof spec.cellHeight === 'number' ? spec.cellHeight : 0.8;
+        const leftColW = typeof spec.leftColumnWidth === 'number' ? spec.leftColumnWidth : 1.8;
+        const headerH = typeof spec.headerHeight === 'number' ? spec.headerHeight : 0.9;
+
+        const borderColor = typeof spec.borderColor === 'string' ? spec.borderColor : '#000000';
+        const borderWidth = typeof spec.borderWidth === 'number' ? spec.borderWidth : 2;
+        const textSize = typeof spec.textSize === 'number' ? spec.textSize : 16;
+
+        const labels = data.labels || [];
+        const rows = data.rows || [];
+        const nIntervals = Math.max(1, labels.length - 1);
+
+        const tableW = leftColW + nIntervals * cellW;
+        const tableH = headerH + rows.length * cellH;
+
+        const x0 = 0;
+        const y0 = 0;
+
+        function line(x1, y1, x2, y2, w) {
+            const A = board.create('point', [x1, y1], { visible: false, fixed: true });
+            const B = board.create('point', [x2, y2], { visible: false, fixed: true });
+            board.create('segment', [A, B], { strokeColor: borderColor, strokeWidth: w || borderWidth, highlight: false, fixed: true });
+        }
+
+        function txt(x, y, content, opts) {
+            const size = (opts && opts.size) || textSize;
+            const anchor = (opts && opts.anchor) || 'middle';
+            board.create('text', [x, y, content], {
+                fontSize: size,
+                fixed: true,
+                highlight: false,
+                anchorX: anchor,
+                anchorY: 'middle',
+                strokeColor: '#000000'
+            });
+        }
+
+        function drawPointMark(x, y, mark) {
+            if (!mark) return;
+            if (mark === '0') {
+                txt(x, y, '0', { size: textSize });
+                return;
+            }
+            if (mark === '||') {
+                const dx = Math.min(0.08, cellW * 0.08);
+                line(x - dx, y - cellH * 0.3, x - dx, y + cellH * 0.3, 2);
+                line(x + dx, y - cellH * 0.3, x + dx, y + cellH * 0.3, 2);
+            }
+        }
+
+        line(x0, y0, x0 + tableW, y0, borderWidth);
+        line(x0, y0, x0, y0 - tableH, borderWidth);
+        line(x0 + tableW, y0, x0 + tableW, y0 - tableH, borderWidth);
+        line(x0, y0 - tableH, x0 + tableW, y0 - tableH, borderWidth);
+
+        line(x0 + leftColW, y0, x0 + leftColW, y0 - tableH, borderWidth);
+        line(x0, y0 - headerH, x0 + tableW, y0 - headerH, borderWidth);
+
+        for (let i = 0; i <= nIntervals; i++) {
+            const lx = x0 + leftColW + i * cellW;
+            line(lx, y0, lx, y0 - tableH, i === 0 || i === nIntervals ? borderWidth : 1);
+        }
+
+        for (let r = 0; r < rows.length; r++) {
+            const ly = y0 - headerH - (r + 1) * cellH;
+            line(x0, ly, x0 + tableW, ly, r === rows.length - 1 ? borderWidth : 1);
+        }
+
+        if (Array.isArray(data.forbiddenIdx)) {
+            for (const j of data.forbiddenIdx) {
+                const xB = x0 + leftColW + j * cellW;
+                const dx = Math.min(0.08, cellW * 0.08);
+                line(xB - dx, y0, xB - dx, y0 - tableH, 2);
+                line(xB + dx, y0, xB + dx, y0 - tableH, 2);
+            }
+        }
+
+        if (Array.isArray(data.singleBarIdx)) {
+            for (const j of data.singleBarIdx) {
+                const xB = x0 + leftColW + j * cellW;
+                line(xB, y0, xB, y0 - tableH, 2);
+            }
+        }
+
+        txt(x0 + leftColW / 2, y0 - headerH / 2, variable, { size: textSize + 2 });
+
+        for (let i = 0; i < labels.length; i++) {
+            const xB = x0 + leftColW + i * cellW;
+            const lab = labels[i];
+            if (i === 0) {
+                txt(xB + 0.12, y0 - headerH / 2, lab, { size: textSize, anchor: 'left' });
+            } else if (i === labels.length - 1) {
+                txt(xB - 0.12, y0 - headerH / 2, lab, { size: textSize, anchor: 'right' });
+            } else {
+                txt(xB, y0 - headerH / 2, lab, { size: textSize, anchor: 'middle' });
+            }
+        }
+
+        function yForPos(rowY, pos) {
+            if (pos === 'top') return rowY + cellH * 0.25;
+            if (pos === 'bottom') return rowY - cellH * 0.25;
+            return rowY;
+        }
+
+        for (let r = 0; r < rows.length; r++) {
+            const row = rows[r];
+            const rowY = y0 - headerH - (r + 0.5) * cellH;
+            txt(x0 + leftColW / 2, rowY, row.label || '', { size: textSize });
+
+            if (row.type === 'sign') {
+                for (let i = 0; i < nIntervals; i++) {
+                    const cx = x0 + leftColW + (i + 0.5) * cellW;
+                    txt(cx, rowY, (row.intervalSigns && row.intervalSigns[i]) || '', { size: textSize });
+                }
+                for (let i = 1; i < nIntervals; i++) {
+                    const xB = x0 + leftColW + i * cellW;
+                    drawPointMark(xB, rowY, (row.pointMarks && row.pointMarks[i]) || '');
+                }
+                continue;
+            }
+
+            if (row.type === 'variation') {
+                for (let i = 0; i < nIntervals; i++) {
+                    const dir = row.arrows ? row.arrows[i] : null;
+                    if (!dir) continue;
+                    const xL = x0 + leftColW + i * cellW;
+                    const xR = x0 + leftColW + (i + 1) * cellW;
+                    const margin = cellW * 0.18;
+                    const ax = xL + margin;
+                    const bx = xR - margin;
+
+                    let from = 'mid';
+                    let to = 'mid';
+                    if (typeof dir === 'string') {
+                        if (dir === 'up') { from = 'bottom'; to = 'top'; }
+                        else if (dir === 'down') { from = 'top'; to = 'bottom'; }
+                        else if (dir === 'flat') { from = 'mid'; to = 'mid'; }
+                        else continue;
+                    } else if (typeof dir === 'object') {
+                        from = dir.from || 'mid';
+                        to = dir.to || 'mid';
+                    }
+
+                    const ay = yForPos(rowY, from);
+                    const by = yForPos(rowY, to);
+
+                    const A = board.create('point', [ax, ay], { visible: false, fixed: true });
+                    const B = board.create('point', [bx, by], { visible: false, fixed: true });
+                    board.create('arrow', [A, B], { strokeColor: borderColor, strokeWidth: 2, highlight: false, fixed: true });
+                }
+
+                for (let j = 0; j < labels.length; j++) {
+                    const xB = x0 + leftColW + j * cellW;
+                    const v = row.values ? row.values[j] : null;
+                    if (!v) continue;
+
+                    if (v.type === 'forbidden') {
+                        const leftDy = v.leftPos === 'top' ? (cellH * 0.28) : (v.leftPos === 'bottom' ? (-cellH * 0.28) : 0);
+                        const rightDy = v.rightPos === 'top' ? (cellH * 0.28) : (v.rightPos === 'bottom' ? (-cellH * 0.28) : 0);
+                        if (v.left) txt(xB - 0.12, rowY + leftDy, v.left, { size: textSize - 2, anchor: 'right' });
+                        if (v.right) txt(xB + 0.12, rowY + rightDy, v.right, { size: textSize - 2, anchor: 'left' });
+                        continue;
+                    }
+
+                    const pos = v.pos || 'mid';
+                    const dy = pos === 'top' ? (cellH * 0.28) : (pos === 'bottom' ? (-cellH * 0.28) : 0);
+                    const side = v.side || 'mid';
+                    if (side === 'left') txt(xB - 0.12, rowY + dy, v.text, { size: textSize - 2, anchor: 'right' });
+                    else if (side === 'right') txt(xB + 0.12, rowY + dy, v.text, { size: textSize - 2, anchor: 'left' });
+                    else if (j === 0) txt(xB + 0.12, rowY + dy, v.text, { size: textSize - 2, anchor: 'left' });
+                    else if (j === labels.length - 1) txt(xB - 0.12, rowY + dy, v.text, { size: textSize - 2, anchor: 'right' });
+                    else txt(xB, rowY + dy, v.text, { size: textSize - 2, anchor: 'middle' });
+                }
+            }
+        }
+
+        return { tableW, tableH };
+    }
+
     async function presetSignTable(board, spec) {
         const variable = typeof spec.variable === 'string' ? spec.variable : 'x';
         const autoMode = bool(spec.auto, false);
+        const allowAutoVariation = bool(spec.allowAutoVariation, false);
         const expressions = Array.isArray(spec.expressions) ? spec.expressions : [];
         const intervalMin = typeof spec.intervalMin === 'number' ? spec.intervalMin : -Infinity;
         const intervalMax = typeof spec.intervalMax === 'number' ? spec.intervalMax : Infinity;
 
         const kind = typeof spec.kind === 'string' ? spec.kind : '';
 
-        if (autoMode && kind === 'variation') {
+        if (autoMode && kind === 'variation' && allowAutoVariation) {
             return await presetVariationTableAuto(board, spec, variable, intervalMin, intervalMax);
+        }
+
+        if (kind === 'variation') {
+            const manual = buildVariationManualDataFromTkz(spec, variable);
+            if (manual) {
+                return drawVariationTableFromData(board, spec, variable, manual);
+            }
         }
 
         if (autoMode && expressions.length > 0) {

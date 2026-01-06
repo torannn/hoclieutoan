@@ -174,7 +174,7 @@
       "q_id": "deontap5_variation_table_1",
       "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
       "type": "multiple_choice",
-      "stem": "Cho hàm số $f(x) = x^2 - 4x + 3$. Bảng biến thiên của hàm số cho biết hàm số đạt giá trị nhỏ nhất tại: <div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"auto\":true,\"kind\":\"variation\",\"engine\":\"sympy\",\"variable\":\"x\",\"f\":\"x^2-4*x+3\",\"derivativeFactors\":[\"2*x-4\"],\"bbox\":[-0.5,2,8,-3],\"height\":240}'></div>",
+      "stem": "Cho hàm số $f(x) = x^2 - 4x + 3$. Bảng biến thiên của hàm số cho biết hàm số đạt giá trị nhỏ nhất tại: <div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"kind\":\"variation\",\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"2\",\"+\\\\infty\"],\"derivative\":{\"label\":\"f\\u0027(x)\",\"intervalSigns\":[\"-\",\"+\"],\"pointMarks\":{\"1\":\"0\"}},\"tkzTabVar\":\"+/+\\\\infty, -/-1, +/+\\\\infty\",\"bbox\":[-0.5,2,8,-3],\"height\":240}'></div>",
       "options": [
         "$x = -1$",
         "$x = 0$",
@@ -187,12 +187,12 @@
       "q_id": "deontap5_variation_table_sympy_2",
       "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
       "type": "multiple_choice",
-      "stem": "Cho hàm số $f(x)=\\dfrac{x+1}{x-1}$. Bảng biến thiên của hàm số cho biết hàm số nghịch biến trên khoảng nào? <div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"auto\":true,\"kind\":\"variation\",\"engine\":\"sympy\",\"variable\":\"x\",\"f\":\"(x+1)/(x-1)\",\"derivativeFactors\":[\"-2/(x-1)^2\"],\"bbox\":[-0.5,2,9,-3.2],\"height\":260}'></div>",
+      "stem": "Cho hàm số $f(x)=\\dfrac{x+1}{x-1}$. Bảng biến thiên của hàm số cho biết hàm số nghịch biến trên khoảng nào? <div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"kind\":\"variation\",\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"1\",\"+\\\\infty\"],\"derivative\":{\"label\":\"f\\u0027(x)\",\"intervalSigns\":[\"-\",\"-\"],\"pointMarks\":{\"1\":\"||\"}},\"tkzTabVar\":\"+/1, -D+/-\\\\infty/+\\\\infty, -/1\",\"bbox\":[-0.5,2,9,-3.2],\"height\":260}'></div>",
       "options": [
         "$(-\\infty;1)$",
         "$(1; +\\infty)$",
         "$(-\\infty;1)\\cup(1;+\\infty)$",
-        "Hàm số không nghịch biến trên khoảng nào"
+        "$\\mathbb{R}$"
       ],
       "correct_index": 2
     }

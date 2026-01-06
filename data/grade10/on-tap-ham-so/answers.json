@@ -1,0 +1,12 @@
+{
+  "on_tap_ham_so_q1": "Đáp án đúng: C. Phương trình $f(x) = 0$ có 3 nghiệm phân biệt.\n\nLời giải: Vì $f(0)=2>0$ (cực đại) và $f(2)=-2<0$ (cực tiểu), đồ thị bậc ba đi lên sẽ cắt trục hoành 3 lần.",
+  "on_tap_ham_so_q2": "Đáp án đúng: A. $\\mathbb{R}\\setminus\\{1\\}$.\n\nLời giải: Tiệm cận đứng $x=1$ là giá trị làm mẫu số bằng 0 nên bị loại khỏi tập xác định.",
+  "on_tap_ham_so_q3": "Đáp án đúng: B. $f(x) > g(x)$ khi và chỉ khi $-1<x<3$ (mệnh đề SAI cần chọn).\n\nLời giải: Giải $x^2=2x+3$ được $x=-1,3$. Trên khoảng $(-1,3)$, parabol $y=x^2$ nằm dưới đường thẳng $y=2x+3$ nên $f(x)<g(x)$.",
+  "on_tap_ham_so_q4": "Đáp án đúng: A. Hàm số đồng biến trên khoảng $(-\\infty;5)$ (mệnh đề SAI cần chọn).\n\nLời giải: Khoảng đồng biến/nghịch biến nói theo biến $x$. Parabol úp có đỉnh tại $x=2$ nên đồng biến trên $(-\\infty,2)$ và nghịch biến trên $(2,+\\infty)$.",
+  "on_tap_ham_so_q5": "Đáp án đúng: C. Biểu thức $f(x)$ luôn dương với mọi $x\\in\\mathbb{R}$ (mệnh đề SAI cần chọn).\n\nLời giải: $f(x)=(x-1)(3-x)$ đổi dấu tại $x=1,3$. Chỉ dương trên $(1,3)$ và âm ở ngoài.",
+  "on_tap_ham_so_q6": "Đáp án đúng: A. $30^\\circ C$.\n\nLời giải: Trong các mốc đo, giá trị lớn nhất là 30 tại 12h.",
+  "on_tap_ham_so_q7": "Đáp án đúng: A. Hàm số xác định với mọi $x\\in\\mathbb{R}$ (mệnh đề SAI cần chọn).\n\nLời giải: Mẫu số $x-2=0$ tại $x=2$ nên $x=2$ bị loại khỏi tập xác định.",
+  "on_tap_ham_so_q8": "Đáp án đúng: B. Điều kiện xác định của $\\dfrac{1}{\\sqrt{5-x}}$ là $x\\le 5$ (mệnh đề SAI cần chọn).\n\nLời giải: Vì $\\sqrt{5-x}$ nằm ở mẫu nên cần $5-x>0\\iff x<5$ (không được bằng 5).",
+  "on_tap_ham_so_q9": "Đáp án đúng: B. $f(-x)=-f(x)$ (mệnh đề SAI cần chọn).\n\nLời giải: $f(-x)=(-x)^2+|-x|=x^2+|x|=f(x)$ nên hàm số chẵn, không phải hàm lẻ.",
+  "on_tap_ham_so_q10": "Đáp án đúng: B. Nếu đi 2 km, số tiền là 38.000đ (mệnh đề SAI cần chọn).\n\nLời giải: 0.5 km đầu: 10.000đ. Còn 1.5 km: $1.5\\times 14.000=21.000$đ. Tổng: 31.000đ."
+}

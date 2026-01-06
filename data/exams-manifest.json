@@ -58,6 +58,13 @@
           "type": "exam",
           "description": "Đề kiểm tra tổng hợp kiến thức Mệnh đề, Tập hợp và Lượng giác.",
           "path": "data/grade10/de-kiem-tra-chuong-1-5/"
+        },
+        {
+          "id": "lop10_on_tap_ham_so",
+          "title": "Ôn tập Hàm số (Đồ thị - Bảng - Công thức - Thực tế)",
+          "type": "exam",
+          "description": "Trắc nghiệm tổng hợp hàm số (10 câu) kèm minh họa đồ thị/biểu diễn bằng JSXGraph.",
+          "path": "data/grade10/on-tap-ham-so/"
         }
       ],
       "tools": [

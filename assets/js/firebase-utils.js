@@ -10,6 +10,24 @@
 
   // Track loaded scripts to prevent duplicate loading
   const loadedScripts = new Set();
+  const scriptPromises = new Map();
+  let ensurePromise = null;
+
+  function waitFor(testFn, timeoutMs) {
+    const limit = typeof timeoutMs === 'number' ? timeoutMs : 15000;
+    const start = Date.now();
+    return new Promise((resolve, reject) => {
+      const tick = () => {
+        try {
+          if (testFn()) return resolve();
+        } catch (e) {
+        }
+        if (Date.now() - start >= limit) return reject(new Error('Timed out'));
+        setTimeout(tick, 50);
+      };
+      tick();
+    });
+  }
 
   /**
    * Load an external script dynamically
@@ -20,22 +38,54 @@
     if (loadedScripts.has(src)) {
       return Promise.resolve();
     }
-    return new Promise((resolve, reject) => {
+    if (scriptPromises.has(src)) {
+      return scriptPromises.get(src);
+    }
+    const p = new Promise((resolve, reject) => {
       const existing = document.querySelector(`script[src="${src}"]`);
       if (existing) {
-        loadedScripts.add(src);
-        resolve();
+        if (existing.getAttribute('data-loaded') === '1') {
+          loadedScripts.add(src);
+          resolve();
+          return;
+        }
+        const onLoad = () => {
+          try { existing.setAttribute('data-loaded', '1'); } catch (e) {}
+          loadedScripts.add(src);
+          resolve();
+        };
+        const onError = () => {
+          scriptPromises.delete(src);
+          reject(new Error('Failed to load ' + src));
+        };
+        existing.addEventListener('load', onLoad, { once: true });
+        existing.addEventListener('error', onError, { once: true });
+        waitFor(() => existing.getAttribute('data-loaded') === '1', 15000).then(resolve).catch(() => {
+          scriptPromises.delete(src);
+          reject(new Error('Timed out loading ' + src));
+        });
         return;
       }
       const s = document.createElement('script');
       s.src = src;
+      s.async = true;
       s.onload = () => {
+        try { s.setAttribute('data-loaded', '1'); } catch (e) {}
         loadedScripts.add(src);
         resolve();
       };
-      s.onerror = () => reject(new Error('Failed to load ' + src));
+      s.onerror = () => {
+        scriptPromises.delete(src);
+        reject(new Error('Failed to load ' + src));
+      };
       document.head.appendChild(s);
+      waitFor(() => loadedScripts.has(src), 15000).then(resolve).catch(() => {
+        scriptPromises.delete(src);
+        reject(new Error('Timed out loading ' + src));
+      });
     });
+    scriptPromises.set(src, p);
+    return p;
   }
 
   /**
@@ -44,9 +94,21 @@
    */
   async function ensureFirebase() {
     if (window.firebase && firebase.apps) return;
-    await loadScript(`${FIREBASE_BASE_URL}/firebase-app-compat.js`);
-    await loadScript(`${FIREBASE_BASE_URL}/firebase-auth-compat.js`);
-    await loadScript(`${FIREBASE_BASE_URL}/firebase-firestore-compat.js`);
+    if (ensurePromise) return ensurePromise;
+    ensurePromise = (async () => {
+      await loadScript(`${FIREBASE_BASE_URL}/firebase-app-compat.js`);
+      await waitFor(() => window.firebase && firebase.apps, 15000);
+      await loadScript(`${FIREBASE_BASE_URL}/firebase-auth-compat.js`);
+      await waitFor(() => window.firebase && firebase.auth, 15000);
+      await loadScript(`${FIREBASE_BASE_URL}/firebase-firestore-compat.js`);
+      await waitFor(() => window.firebase && firebase.firestore, 15000);
+    })();
+    try {
+      await ensurePromise;
+    } catch (e) {
+      ensurePromise = null;
+      throw e;
+    }
   }
 
   /**

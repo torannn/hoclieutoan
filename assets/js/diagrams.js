@@ -1512,6 +1512,16 @@ def derivative_expr(expr_s, var):
             const strokeColor = (p && typeof p === 'object' && typeof p.strokeColor === 'string') ? p.strokeColor : color;
             const fillColor = (p && typeof p === 'object' && typeof p.fillColor === 'string') ? p.fillColor : color;
 
+            const labelSpec = (p && typeof p === 'object' && p.label && typeof p.label === 'object') ? p.label : {};
+            const labelOpts = {
+                fontSize: typeof labelSpec.fontSize === 'number' ? labelSpec.fontSize : 14,
+                strokeColor: typeof labelSpec.color === 'string' ? labelSpec.color : color
+            };
+            if (Array.isArray(labelSpec.offset)) labelOpts.offset = labelSpec.offset;
+            if (typeof labelSpec.position === 'string') labelOpts.position = labelSpec.position;
+            if (typeof labelSpec.anchorX === 'string') labelOpts.anchorX = labelSpec.anchorX;
+            if (typeof labelSpec.anchorY === 'string') labelOpts.anchorY = labelSpec.anchorY;
+
             points[id] = board.create('point', [xy[0], xy[1]], {
                 name: name || '',
                 visible,
@@ -1519,7 +1529,8 @@ def derivative_expr(expr_s, var):
                 size,
                 strokeColor,
                 fillColor,
-                highlight: false
+                highlight: false,
+                label: labelOpts
             });
         }
 
@@ -1552,6 +1563,8 @@ def derivative_expr(expr_s, var):
             let strokeWidth = null;
             let color = null;
 
+            let dash = 0;
+
             if (Array.isArray(seg) && seg.length >= 2) {
                 aRef = seg[0];
                 bRef = seg[1];
@@ -1561,6 +1574,7 @@ def derivative_expr(expr_s, var):
                 bRef = seg.p2 || seg.B;
                 strokeWidth = typeof seg.strokeWidth === 'number' ? seg.strokeWidth : null;
                 color = seg.color || null;
+                dash = typeof seg.dash === 'number' ? seg.dash : 0;
             }
 
             const A = resolvePointRef(aRef);
@@ -1570,6 +1584,7 @@ def derivative_expr(expr_s, var):
             board.create('segment', [A, B], {
                 strokeColor: color || spec.color || '#0f172a',
                 strokeWidth: strokeWidth !== null ? strokeWidth : (typeof spec.strokeWidth === 'number' ? spec.strokeWidth : 2),
+                dash: dash,
                 highlight: false
             });
         }
@@ -1598,6 +1613,275 @@ def derivative_expr(expr_s, var):
         }
 
         return { points };
+    }
+
+    function presetGeometry(board, spec) {
+        const constructions = Array.isArray(spec.constructions) ? spec.constructions : [];
+        const draws = Array.isArray(spec.draw) ? spec.draw : [];
+        const defaultColor = spec.color || '#0f172a';
+        const defaultStrokeWidth = typeof spec.strokeWidth === 'number' ? spec.strokeWidth : 2;
+        const defaultPointSize = typeof spec.pointSize === 'number' ? spec.pointSize : 2;
+        const defaultLabelFontSize = typeof spec.labelFontSize === 'number' ? spec.labelFontSize : 14;
+        const rightAngleSize = typeof spec.rightAngleSize === 'number' ? spec.rightAngleSize : 0.4;
+
+        const pts = {};
+        const circles = {};
+
+        function getXY(id) {
+            const p = pts[id];
+            if (!p) return null;
+            return [p.X(), p.Y()];
+        }
+
+        function makePt(xy, opts) {
+            return board.create('point', xy, Object.assign({
+                fixed: true, highlight: false, size: defaultPointSize,
+                strokeColor: defaultColor, fillColor: defaultColor
+            }, opts || {}));
+        }
+
+        function footOfPerpendicular(fromId, onIds) {
+            const P = getXY(fromId);
+            const A = getXY(onIds[0]);
+            const B = getXY(onIds[1]);
+            if (!P || !A || !B) return null;
+            const dx = B[0] - A[0], dy = B[1] - A[1];
+            const len2 = dx * dx + dy * dy;
+            if (len2 < 1e-14) return A;
+            const t = ((P[0] - A[0]) * dx + (P[1] - A[1]) * dy) / len2;
+            return [A[0] + t * dx, A[1] + t * dy];
+        }
+
+        function lineLineIntersection(l1, l2) {
+            const A = getXY(l1[0]), B = getXY(l1[1]);
+            const C = getXY(l2[0]), D = getXY(l2[1]);
+            if (!A || !B || !C || !D) return null;
+            const a1 = B[1] - A[1], b1 = A[0] - B[0], c1 = a1 * A[0] + b1 * A[1];
+            const a2 = D[1] - C[1], b2 = C[0] - D[0], c2 = a2 * C[0] + b2 * C[1];
+            const det = a1 * b2 - a2 * b1;
+            if (Math.abs(det) < 1e-14) return null;
+            return [(c1 * b2 - c2 * b1) / det, (a1 * c2 - a2 * c1) / det];
+        }
+
+        function circumcenter(ids) {
+            const A = getXY(ids[0]), B = getXY(ids[1]), C = getXY(ids[2]);
+            if (!A || !B || !C) return null;
+            const ax = A[0], ay = A[1], bx = B[0], by = B[1], cx = C[0], cy = C[1];
+            const D = 2 * (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by));
+            if (Math.abs(D) < 1e-14) return null;
+            const ux = ((ax * ax + ay * ay) * (by - cy) + (bx * bx + by * by) * (cy - ay) + (cx * cx + cy * cy) * (ay - by)) / D;
+            const uy = ((ax * ax + ay * ay) * (cx - bx) + (bx * bx + by * by) * (ax - cx) + (cx * cx + cy * cy) * (bx - ax)) / D;
+            return [ux, uy];
+        }
+
+        function secondIntersection(lineIds, circleId) {
+            const circ = circles[circleId];
+            if (!circ) return null;
+            const A = getXY(lineIds[0]), B = getXY(lineIds[1]);
+            if (!A || !B) return null;
+            const O = [circ.center.X(), circ.center.Y()];
+            const R = circ.Radius();
+            const Vx = B[0] - A[0], Vy = B[1] - A[1];
+            const Px = A[0] - O[0], Py = A[1] - O[1];
+            const a = Vx * Vx + Vy * Vy;
+            const b = 2 * (Px * Vx + Py * Vy);
+            const c = Px * Px + Py * Py - R * R;
+            const disc = b * b - 4 * a * c;
+            if (disc < 0) return null;
+            const sqrtDisc = Math.sqrt(disc);
+            const t1 = (-b + sqrtDisc) / (2 * a);
+            const t2 = (-b - sqrtDisc) / (2 * a);
+            const t = Math.abs(t1) > Math.abs(t2) ? t1 : t2;
+            return [A[0] + t * Vx, A[1] + t * Vy];
+        }
+
+        function midpointXY(ids) {
+            const A = getXY(ids[0]), B = getXY(ids[1]);
+            if (!A || !B) return null;
+            return [(A[0] + B[0]) / 2, (A[1] + B[1]) / 2];
+        }
+
+        function symmetricXY(ptId, centerId) {
+            const P = getXY(ptId), C = getXY(centerId);
+            if (!P || !C) return null;
+            return [2 * C[0] - P[0], 2 * C[1] - P[1]];
+        }
+
+        function reflectOverLine(ptId, lineIds) {
+            const P = getXY(ptId);
+            const A = getXY(lineIds[0]), B = getXY(lineIds[1]);
+            if (!P || !A || !B) return null;
+            const dx = B[0] - A[0], dy = B[1] - A[1];
+            const len2 = dx * dx + dy * dy;
+            if (len2 < 1e-14) return P;
+            const t = ((P[0] - A[0]) * dx + (P[1] - A[1]) * dy) / len2;
+            const Fx = A[0] + t * dx, Fy = A[1] + t * dy;
+            return [2 * Fx - P[0], 2 * Fy - P[1]];
+        }
+
+        function buildLabelOpts(c) {
+            const lo = {};
+            lo.fontSize = defaultLabelFontSize;
+            lo.strokeColor = defaultColor;
+            if (c.label && typeof c.label === 'object') {
+                if (Array.isArray(c.label.offset)) lo.offset = c.label.offset;
+                if (typeof c.label.position === 'string') lo.position = c.label.position;
+                if (typeof c.label.anchorX === 'string') lo.anchorX = c.label.anchorX;
+                if (typeof c.label.anchorY === 'string') lo.anchorY = c.label.anchorY;
+                if (typeof c.label.fontSize === 'number') lo.fontSize = c.label.fontSize;
+                if (typeof c.label.color === 'string') lo.strokeColor = c.label.color;
+            }
+            return lo;
+        }
+
+        for (const c of constructions) {
+            if (!c || !c.id || !c.type) continue;
+            const id = c.id;
+            const vis = c.visible !== false;
+            const name = typeof c.name === 'string' ? c.name : (vis ? id : '');
+            const labelOpts = buildLabelOpts(c);
+            const color = c.color || defaultColor;
+
+            let xy = null;
+
+            switch (c.type) {
+                case 'point':
+                    if (Array.isArray(c.xy) && c.xy.length >= 2) xy = c.xy;
+                    break;
+                case 'midpoint':
+                    if (Array.isArray(c.of) && c.of.length >= 2) xy = midpointXY(c.of);
+                    break;
+                case 'foot':
+                    if (c.from && Array.isArray(c.on) && c.on.length >= 2) xy = footOfPerpendicular(c.from, c.on);
+                    break;
+                case 'intersection':
+                    if (Array.isArray(c.line1) && Array.isArray(c.line2)) xy = lineLineIntersection(c.line1, c.line2);
+                    break;
+                case 'circumcenter':
+                    if (Array.isArray(c.of) && c.of.length >= 3) xy = circumcenter(c.of);
+                    break;
+                case 'second_intersection':
+                    if (Array.isArray(c.line) && c.circle) xy = secondIntersection(c.line, c.circle);
+                    break;
+                case 'symmetric':
+                    if (c.point && c.center) xy = symmetricXY(c.point, c.center);
+                    else if (c.point && Array.isArray(c.over)) xy = reflectOverLine(c.point, c.over);
+                    break;
+                case 'circle': {
+                    const centerPt = pts[c.center];
+                    if (!centerPt) break;
+                    let circ = null;
+                    if (typeof c.r === 'number') {
+                        const rPt = makePt([centerPt.X() + c.r, centerPt.Y()], { visible: false, name: '' });
+                        circ = board.create('circle', [centerPt, rPt], {
+                            strokeColor: color, strokeWidth: typeof c.strokeWidth === 'number' ? c.strokeWidth : defaultStrokeWidth,
+                            highlight: false, visible: vis
+                        });
+                    } else if (c.through && pts[c.through]) {
+                        circ = board.create('circle', [centerPt, pts[c.through]], {
+                            strokeColor: color, strokeWidth: typeof c.strokeWidth === 'number' ? c.strokeWidth : defaultStrokeWidth,
+                            highlight: false, visible: vis
+                        });
+                    }
+                    if (circ) circles[id] = circ;
+                    continue;
+                }
+                default:
+                    continue;
+            }
+
+            if (!xy) continue;
+            pts[id] = makePt(xy, {
+                name: name,
+                visible: vis,
+                size: typeof c.size === 'number' ? c.size : defaultPointSize,
+                strokeColor: color,
+                fillColor: color,
+                label: labelOpts
+            });
+        }
+
+        for (const d of draws) {
+            if (!d || !d.type) continue;
+            const color = d.color || defaultColor;
+            const sw = typeof d.strokeWidth === 'number' ? d.strokeWidth : defaultStrokeWidth;
+            const dash = typeof d.dash === 'number' ? d.dash : 0;
+
+            switch (d.type) {
+                case 'segment': {
+                    if (!Array.isArray(d.points) || d.points.length < 2) break;
+                    const A = pts[d.points[0]], B = pts[d.points[1]];
+                    if (A && B) {
+                        board.create('segment', [A, B], { strokeColor: color, strokeWidth: sw, dash, highlight: false });
+                    }
+                    break;
+                }
+                case 'line': {
+                    if (!Array.isArray(d.points) || d.points.length < 2) break;
+                    const A = pts[d.points[0]], B = pts[d.points[1]];
+                    if (A && B) {
+                        board.create('line', [A, B], {
+                            strokeColor: color, strokeWidth: sw, dash, highlight: false,
+                            straightFirst: true, straightLast: true
+                        });
+                    }
+                    break;
+                }
+                case 'polygon': {
+                    if (!Array.isArray(d.points) || d.points.length < 3) break;
+                    const polyPts = d.points.map(id => pts[id]).filter(Boolean);
+                    if (polyPts.length >= 3) {
+                        board.create('polygon', polyPts, {
+                            borders: { strokeColor: color, strokeWidth: sw, dash, highlight: false },
+                            withLines: true,
+                            fillOpacity: typeof d.fillOpacity === 'number' ? d.fillOpacity : 0,
+                            fillColor: d.fillColor || 'transparent',
+                            highlight: false
+                        });
+                    }
+                    break;
+                }
+                case 'circle': {
+                    const circ = circles[d.ref];
+                    if (circ) {
+                        circ.setAttribute({ strokeColor: color, strokeWidth: sw, dash });
+                    }
+                    break;
+                }
+                case 'rightangle': {
+                    const V = getXY(d.vertex);
+                    const P1 = getXY(d.arm1);
+                    const P2 = getXY(d.arm2);
+                    if (!V || !P1 || !P2) break;
+                    const s = typeof d.size === 'number' ? d.size : rightAngleSize;
+                    const d1x = P1[0] - V[0], d1y = P1[1] - V[1];
+                    const len1 = Math.sqrt(d1x * d1x + d1y * d1y) || 1;
+                    const u1x = d1x / len1 * s, u1y = d1y / len1 * s;
+                    const d2x = P2[0] - V[0], d2y = P2[1] - V[1];
+                    const len2 = Math.sqrt(d2x * d2x + d2y * d2y) || 1;
+                    const u2x = d2x / len2 * s, u2y = d2y / len2 * s;
+                    const rA = makePt([V[0] + u1x, V[1] + u1y], { visible: false, name: '' });
+                    const rB = makePt([V[0] + u1x + u2x, V[1] + u1y + u2y], { visible: false, name: '' });
+                    const rC = makePt([V[0] + u2x, V[1] + u2y], { visible: false, name: '' });
+                    board.create('segment', [rA, rB], { strokeColor: d.color || '#64748b', strokeWidth: 1.2, highlight: false });
+                    board.create('segment', [rB, rC], { strokeColor: d.color || '#64748b', strokeWidth: 1.2, highlight: false });
+                    break;
+                }
+                case 'arc': {
+                    const center = pts[d.center];
+                    const from = pts[d.from];
+                    const to = pts[d.to];
+                    if (center && from && to) {
+                        board.create('arc', [center, from, to], {
+                            strokeColor: color, strokeWidth: sw, dash, highlight: false
+                        });
+                    }
+                    break;
+                }
+            }
+        }
+
+        return { points: pts, circles };
     }
 
     function presetInequalityRegion(board, spec) {
@@ -3698,6 +3982,7 @@ def derivative_expr(expr_s, var):
         if (preset === 'inequalityRegion') return presetInequalityRegion(board, spec);
         if (preset === 'signTable') return await presetSignTable(board, spec);
         if (preset === 'scene') return presetScene(board, spec);
+        if (preset === 'geometry') return presetGeometry(board, spec);
     }
 
     async function waitForNonZeroSize(el) {

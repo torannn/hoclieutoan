@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test Geometry Preset</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 40px auto; }
+    .jxg-diagram { margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <h2>Test: Geometry Preset — Problem 6</h2>
+  <div class="jxg-diagram" data-jxg='{"preset":"geometry","axes":false,"bbox":[-7,8,8,-6.5],"height":420,"keepAspectRatio":true,"constructions":[{"id":"A","type":"point","xy":[0,6],"label":{"offset":[-5,10]}},{"id":"B","type":"point","xy":[-4,-2],"label":{"offset":[-15,-5]}},{"id":"C","type":"point","xy":[5,-2],"label":{"offset":[8,-5]}},{"id":"E","type":"foot","from":"B","on":["A","C"],"label":{"offset":[8,3]}},{"id":"F","type":"foot","from":"C","on":["A","B"],"label":{"offset":[-15,3]}},{"id":"H","type":"intersection","line1":["B","E"],"line2":["C","F"],"label":{"offset":[-15,-5]}},{"id":"D","type":"foot","from":"H","on":["B","C"],"label":{"offset":[-5,-15]}},{"id":"O","type":"circumcenter","of":["A","B","C"],"label":{"offset":[8,5]}},{"id":"circO","type":"circle","center":"O","through":"A","color":"#2563eb"},{"id":"K","type":"second_intersection","line":["A","H"],"circle":"circO","label":{"offset":[-5,-15]}},{"id":"Q","type":"midpoint","of":["A","H"],"label":{"offset":[-15,0]}},{"id":"M","type":"midpoint","of":["B","C"],"label":{"offset":[5,-15]}},{"id":"circM","type":"circle","center":"M","through":"B","color":"#16a34a","strokeWidth":1}],"draw":[{"type":"polygon","points":["A","B","C"]},{"type":"segment","points":["B","E"],"dash":2,"color":"#6366f1"},{"type":"segment","points":["C","F"],"dash":2,"color":"#6366f1"},{"type":"segment","points":["A","K"],"dash":2,"color":"#e11d48"},{"type":"circle","ref":"circO","color":"#2563eb"},{"type":"circle","ref":"circM","color":"#16a34a"},{"type":"rightangle","vertex":"E","arm1":"B","arm2":"A"},{"type":"rightangle","vertex":"F","arm1":"C","arm2":"A"},{"type":"rightangle","vertex":"D","arm1":"H","arm2":"B"}]}'></div>
+  <script src="assets/js/diagrams.js"></script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phương pháp hoàn thành bình phương - Lớp 9</title>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 50px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.7em;
+            margin-bottom: 0;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 3px solid #667eea;
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            background: #f5f5f5;
+            border: none;
+            font-family: 'Lora', serif;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -3px;
+        }
+
+        .tab-button:hover {
+            background: #e8e8e8;
+        }
+
+        .tab-button.active {
+            background: white;
+            border-bottom-color: #667eea;
+            font-weight: 600;
+        }
+
+        .step-indicators {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 4px 0 4px;
+        }
+
+        .step-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            border: 2px solid #ccc;
+            color: #666;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .step-indicator:hover {
+            background: #d0d0d0;
+            transform: scale(1.1);
+        }
+
+        .step-indicator.active {
+            background: #667eea;
+            border-color: #5e35b1;
+            color: white;
+            transform: scale(1.15);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .step-indicator.completed {
+            background: #90EE90;
+            border-color: #2d5016;
+            color: #1a3a0f;
+        }
+
+        .tab-content {
+            display: none;
+            height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .example-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 0;
+            height: 100%;
+        }
+
+        .steps-panel {
+            padding: 30px;
+            overflow-y: auto;
+            background: #fafafa;
+        }
+
+        .visualization-panel {
+            padding: 8px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            border-left: 2px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            height: calc(100vh - 200px);
+        }
+
+        .step {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 1.15em;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .step-content {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .formula-box {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            border: 2px solid #667eea;
+        }
+
+        .canvas-container {
+            width: 100%;
+            max-width: 440px;
+            aspect-ratio: 1;
+            margin: 0;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        button.nav-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-family: 'Lora', serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.28);
+        }
+
+        button.nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button.nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* current-formula removed per request */
+
+        @media (max-width: 968px) {
+            .example-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .visualization-panel {
+                position: relative;
+                height: auto;
+                border-left: none;
+                border-top: 2px solid #e0e0e0;
+            }
+        }
+
+        .rect {
+            transition: all 0.8s ease;
+        }
+
+        .label {
+            font-family: 'Lora', serif;
+            transition: all 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Phương pháp hoàn thành bình phương</h1>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab(0)">Ví dụ 1: \(x^2 + 4x = 5\)</button>
+            <button class="tab-button" onclick="switchTab(1)">Ví dụ 2: \(x^2 - 3x = 4\)</button>
+            <button class="tab-button" onclick="switchTab(2)">Ví dụ 3: \(3x^2 - 5x + 1 = 0\)</button>
+        </div>
+
+        <div id="tab0" class="tab-content active">
+            <div class="example-container">
+                <div class="steps-panel" id="steps0"></div>
+                <div class="visualization-panel">
+                    <div class="step-indicators" id="indicators0"></div>
+                    <div class="controls">
+                        <button class="nav-btn" id="prev0" onclick="prevStep(0)">← Trước</button>
+                        <button class="nav-btn" id="next0" onclick="nextStep(0)">Tiếp →</button>
+                        <button class="nav-btn" onclick="goToStep(0, 0)">↻ Lại</button>
+                    </div>
+                    <div class="canvas-container">
+                        <svg id="canvas0" viewBox="0 0 450 450">
+                            <defs>
+                                <pattern id="grid0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>
+                                </pattern>
+                            </defs>
+                            <rect width="450" height="450" fill="url(#grid0)"/>
+                        </svg>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div id="tab1" class="tab-content">
+            <div class="example-container">
+                <div class="steps-panel" id="steps1"></div>
+                <div class="visualization-panel">
+                    <div class="step-indicators" id="indicators1"></div>
+                    <div class="controls">
+                        <button class="nav-btn" id="prev1" onclick="prevStep(1)">← Trước</button>
+                        <button class="nav-btn" id="next1" onclick="nextStep(1)">Tiếp →</button>
+                        <button class="nav-btn" onclick="goToStep(1, 0)">↻ Lại</button>
+                    </div>
+                    <div class="canvas-container">
+                        <svg id="canvas1" viewBox="0 0 450 450">
+                            <defs>
+                                <pattern id="grid1" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>
+                                </pattern>
+                            </defs>
+                            <rect width="450" height="450" fill="url(#grid1)"/>
+                        </svg>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div id="tab2" class="tab-content">
+            <div class="example-container">
+                <div class="steps-panel" id="steps2"></div>
+                <div class="visualization-panel">
+                    <div class="step-indicators" id="indicators2"></div>
+                    <div class="controls">
+                        <button class="nav-btn" id="prev2" onclick="prevStep(2)">← Trước</button>
+                        <button class="nav-btn" id="next2" onclick="nextStep(2)">Tiếp →</button>
+                        <button class="nav-btn" onclick="goToStep(2, 0)">↻ Lại</button>
+                    </div>
+                    <div class="canvas-container">
+                        <svg id="canvas2" viewBox="0 0 450 450">
+                            <defs>
+                                <pattern id="grid2" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>
+                                </pattern>
+                            </defs>
+                            <rect width="450" height="450" fill="url(#grid2)"/>
+                        </svg>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="examples-data.js"></script>
+    <script src="visualization.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

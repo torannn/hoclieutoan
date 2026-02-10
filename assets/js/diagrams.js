@@ -1259,6 +1259,217 @@ def derivative_expr(expr_s, var):
     return { origin: O };
 }
 
+    function presetRiverCrossing(board, spec) {
+        const color = spec.color || '#0f172a';
+        const textColor = spec.textColor || '#0f172a';
+        const riverColor = spec.riverColor || '#60a5fa';
+        const bankColor = spec.bankColor || '#65a30d';
+
+        function pt(x, y) {
+            return board.create('point', [x, y], { visible: false, fixed: true, highlight: false, name: '' });
+        }
+
+        // Vertices: right angle at A
+        // A(0,6), B(5,6), C(0,0) => angle B = arctan(6/5) ≈ 50.2°
+        const A = board.create('point', [0, 6], {
+            name: 'A', size: 3, strokeColor: color, fillColor: color,
+            fixed: true, highlight: false,
+            label: { position: 'ulft', offset: [-8, 5], fontSize: 15, strokeColor: textColor }
+        });
+        const B = board.create('point', [5, 6], {
+            name: 'B', size: 3, strokeColor: color, fillColor: color,
+            fixed: true, highlight: false,
+            label: { position: 'urt', offset: [5, 5], fontSize: 15, strokeColor: textColor }
+        });
+        const C = board.create('point', [0, 0], {
+            name: 'C', size: 3, strokeColor: color, fillColor: color,
+            fixed: true, highlight: false,
+            label: { position: 'llft', offset: [-8, -5], fontSize: 15, strokeColor: textColor }
+        });
+
+        // Triangle sides
+        board.create('segment', [A, B], { strokeColor: color, strokeWidth: 2, highlight: false });
+        board.create('segment', [A, C], { strokeColor: color, strokeWidth: 2, highlight: false });
+        board.create('segment', [B, C], { strokeColor: color, strokeWidth: 2, highlight: false });
+
+        // Right angle marker at A
+        var sz = 0.4;
+        board.create('segment', [pt(sz, 6), pt(sz, 6 - sz)], { strokeColor: color, strokeWidth: 1.5, highlight: false });
+        board.create('segment', [pt(sz, 6 - sz), pt(0, 6 - sz)], { strokeColor: color, strokeWidth: 1.5, highlight: false });
+
+        // Angle arc at B (50°): from B→A to B→C counterclockwise ≈ 50°
+        board.create('angle', [A, B, C], {
+            radius: 0.8,
+            name: '50°',
+            strokeColor: '#ef4444',
+            fillColor: 'rgba(239,68,68,0.1)',
+            highlight: false,
+            label: { offset: [-15, -15], fontSize: 13, strokeColor: '#ef4444' }
+        });
+
+        // Label "50 m" on AB
+        board.create('text', [2.5, 6.6, '50 m'], {
+            fixed: true, highlight: false, anchorX: 'middle', anchorY: 'bottom',
+            fontSize: 14, strokeColor: textColor
+        });
+
+        // River banks (sinusoidal)
+        board.create('functiongraph', [
+            function (x) { return 4.2 + 0.35 * Math.sin(1.5 * x); }, -1.5, 7
+        ], { strokeColor: bankColor, strokeWidth: 2.5, highlight: false });
+        board.create('functiongraph', [
+            function (x) { return 1.8 + 0.35 * Math.sin(1.5 * x + 0.8); }, -1.5, 7
+        ], { strokeColor: bankColor, strokeWidth: 2.5, highlight: false });
+
+        // Water texture (wavy lines)
+        for (var i = 0; i < 3; i++) {
+            var y0 = 2.2 + i * 0.6;
+            var phase = i * 1.2;
+            (function (yy, ph) {
+                board.create('functiongraph', [
+                    function (x) { return yy + 0.2 * Math.sin(2.5 * x + ph); }, -1.5, 7
+                ], { strokeColor: riverColor, strokeWidth: 1, highlight: false, strokeOpacity: 0.5 });
+            })(y0, phase);
+        }
+
+        // Grass marks on upper bank
+        for (var gx = -1; gx <= 6.5; gx += 0.5) {
+            var gy = 4.2 + 0.35 * Math.sin(1.5 * gx);
+            board.create('segment', [pt(gx, gy), pt(gx - 0.1, gy + 0.3)], {
+                strokeColor: bankColor, strokeWidth: 1, highlight: false, strokeOpacity: 0.6
+            });
+        }
+        // Grass marks on lower bank
+        for (var gx2 = -1; gx2 <= 6.5; gx2 += 0.5) {
+            var gy2 = 1.8 + 0.35 * Math.sin(1.5 * gx2 + 0.8);
+            board.create('segment', [pt(gx2, gy2), pt(gx2 + 0.1, gy2 - 0.3)], {
+                strokeColor: bankColor, strokeWidth: 1, highlight: false, strokeOpacity: 0.6
+            });
+        }
+
+        return { A: A, B: B, C: C };
+    }
+
+    function presetIceCreamCone(board, spec) {
+        var color = spec.color || '#0f172a';
+        var textColor = spec.textColor || '#0f172a';
+        var coneColor = spec.coneColor || '#b45309';
+        var coneFill = spec.coneFill || '#fbbf24';
+        var scoopColor = spec.scoopColor || '#16a34a';
+        var scoopFill = spec.scoopFill || '#86efac';
+
+        var R = typeof spec.R === 'number' ? spec.R : 3;
+        var h = 2 * R;
+
+        function pt(x, y) {
+            return board.create('point', [x, y], { visible: false, fixed: true, highlight: false, name: '' });
+        }
+
+        // --- Cone (triangle: apex at bottom, base at y=0) ---
+        var apex = pt(0, -h);
+        var baseL = pt(-R, 0);
+        var baseR = pt(R, 0);
+
+        // Cone fill
+        board.create('polygon', [apex, baseL, baseR], {
+            borders: { strokeWidth: 0, strokeColor: 'transparent', highlight: false },
+            fillColor: coneFill,
+            fillOpacity: 0.6,
+            highlight: false
+        });
+        // Cone outline (two slanted sides)
+        board.create('segment', [apex, baseL], { strokeColor: coneColor, strokeWidth: 2.5, highlight: false });
+        board.create('segment', [apex, baseR], { strokeColor: coneColor, strokeWidth: 2.5, highlight: false });
+
+        // Waffle pattern on cone (cross-hatch lines)
+        var nLines = 5;
+        for (var ci = 1; ci < nLines; ci++) {
+            var t = ci / nLines;
+            var lx = -R * (1 - t), ly = -h * t;
+            var rx = R * (1 - t), ry = -h * t;
+            // horizontal-ish line
+            board.create('segment', [pt(lx, ly), pt(rx, ry)], {
+                strokeColor: coneColor, strokeWidth: 0.8, highlight: false, strokeOpacity: 0.4
+            });
+        }
+        // Diagonal lines for waffle
+        for (var di = 1; di < nLines; di++) {
+            var tl = di / nLines;
+            var tr = (di - 1) / nLines;
+            // Left side to base
+            board.create('segment', [
+                pt(-R * (1 - tl), -h * tl),
+                pt(R * (1 - tr), -h * tr)
+            ], {
+                strokeColor: coneColor, strokeWidth: 0.6, highlight: false, strokeOpacity: 0.3
+            });
+        }
+
+        // --- Half-sphere (semicircle on top) ---
+        var semiPts = [];
+        var N = 50;
+        for (var si = 0; si <= N; si++) {
+            var theta = Math.PI * si / N;
+            var sx = -R * Math.cos(theta);
+            var sy = R * Math.sin(theta);
+            semiPts.push(pt(sx, sy));
+        }
+
+        // Fill
+        board.create('polygon', semiPts, {
+            borders: { strokeWidth: 0, strokeColor: 'transparent', highlight: false },
+            fillColor: scoopFill,
+            fillOpacity: 0.6,
+            highlight: false
+        });
+
+        // Semicircle outline
+        board.create('functiongraph', [
+            function (x) { return Math.sqrt(Math.max(0, R * R - x * x)); }, -R, R
+        ], { strokeColor: scoopColor, strokeWidth: 2.5, highlight: false });
+
+        // Dashed diameter (base line)
+        board.create('segment', [baseL, baseR], {
+            strokeColor: '#94a3b8', strokeWidth: 1.5, dash: 2, highlight: false
+        });
+
+        // --- Dimension annotations ---
+        // R label (horizontal arrow from center to right edge)
+        board.create('arrow', [pt(0, -0.5), pt(R, -0.5)], {
+            strokeColor: '#64748b', strokeWidth: 1.5, highlight: false
+        });
+        board.create('text', [R / 2, -1.1, '<i>R</i>'], {
+            display: 'html', fixed: true, highlight: false,
+            anchorX: 'middle', anchorY: 'top',
+            fontSize: 15, strokeColor: textColor
+        });
+
+        // 2R label (vertical dimension on the left side)
+        var dimX = -R - 1.2;
+        board.create('segment', [pt(dimX, 0), pt(dimX, -h)], {
+            strokeColor: '#64748b', strokeWidth: 1, dash: 2, highlight: false
+        });
+        // Tick marks at top and bottom
+        board.create('segment', [pt(dimX - 0.3, 0), pt(dimX + 0.3, 0)], {
+            strokeColor: '#64748b', strokeWidth: 1, highlight: false
+        });
+        board.create('segment', [pt(dimX - 0.3, -h), pt(dimX + 0.3, -h)], {
+            strokeColor: '#64748b', strokeWidth: 1, highlight: false
+        });
+        board.create('text', [dimX - 0.5, -h / 2, '2<i>R</i>'], {
+            display: 'html', fixed: true, highlight: false,
+            anchorX: 'right', anchorY: 'middle',
+            fontSize: 15, strokeColor: textColor
+        });
+
+        // Center dashed vertical line (axis of symmetry)
+        board.create('segment', [pt(0, R + 0.3), pt(0, -h - 0.3)], {
+            strokeColor: '#94a3b8', strokeWidth: 1, dash: 3, highlight: false, strokeOpacity: 0.4
+        });
+
+        return { apex: apex };
+    }
+
     function presetScene(board, spec) {
         const pointsSpec = spec && spec.points && typeof spec.points === 'object' ? spec.points : {};
         const segmentsSpec = Array.isArray(spec.segments) ? spec.segments : [];
@@ -3482,6 +3693,8 @@ def derivative_expr(expr_s, var):
         if (preset === 'photoAnnotate') return presetPhotoAnnotate(board, spec);
         if (preset === 'cometTebbutt') return presetCometTebbutt(board, spec);
         if (preset === 'windVectors') return presetWindVectors(board, spec);
+        if (preset === 'riverCrossing') return presetRiverCrossing(board, spec);
+        if (preset === 'iceCreamCone') return presetIceCreamCone(board, spec);
         if (preset === 'inequalityRegion') return presetInequalityRegion(board, spec);
         if (preset === 'signTable') return await presetSignTable(board, spec);
         if (preset === 'scene') return presetScene(board, spec);

@@ -5,7 +5,15 @@
   },
   "grades": {
     "grade9": {
-      "exams": [],
+      "exams": [
+        {
+          "id": "lop9_kiemtra_lan1",
+          "title": "Đề kiểm tra lần 1",
+          "type": "exam",
+          "description": "Đề kiểm tra Toán 9: Phương trình, hệ phương trình, bất phương trình, biểu thức chứa căn, hình học đường tròn, lượng giác và hình không gian.",
+          "path": "data/grade9/de-kiem-tra-lan-1/"
+        }
+      ],
       "tools": []
     },
     "grade10": {

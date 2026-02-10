@@ -1,0 +1,84 @@
+{
+  "duration": 5400,
+  "questions": [
+    {
+      "q_id": "b1_group",
+      "section": "Bài 1. (2,0 điểm)",
+      "type": "essay",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "b1_1",
+          "question_text": "Giải phương trình: $x^{2} + 6 x - 7 = 0$."
+        },
+        {
+          "q_id": "b1_2",
+          "question_text": "Giải hệ phương trình: $\\begin{cases}x + 3 y = 7 \\\\ 2 x - 3 y = - 1\\end{cases}$"
+        },
+        {
+          "q_id": "b1_3",
+          "question_text": "Giải bất phương trình: $5 x - 20 \\geq 0$."
+        },
+        {
+          "q_id": "b1_4",
+          "question_text": "Giải phương trình $\\frac{2}{x + 1} - \\frac{2 x}{x^{2} - x + 1} = \\frac{3}{x^{3} + 1}$"
+        }
+      ]
+    },
+    {
+      "q_id": "b2",
+      "section": "Bài 2. (0,75 điểm)",
+      "type": "essay",
+      "stem": "Chứng minh phương trình $x^{2} - 6 x + 4 = 0$ luôn có hai nghiệm phân biệt $x_{1} , x_{2}$. Không giải phương trình, hãy tính giá trị của biểu thức:<br>$$M = \\left( x_{1} - 1 \\right) \\left( x_{2} - 1 \\right) + \\frac{1}{x_{1} - 1} + \\frac{1}{x_{2} - 1}$$"
+    },
+    {
+      "q_id": "b3",
+      "section": "Bài 3. (1,0 điểm)",
+      "type": "essay",
+      "stem": "Một đội xe theo kế hoạch phải vận chuyển 120 tấn hàng trong một thời gian quy định. Khi thực hiện, do mỗi giờ đội xe vận chuyển được nhiều hơn kế hoạch 2 tấn nên đội đã hoàn thành công việc sớm hơn quy định 3 giờ. Hỏi theo kế hoạch, mỗi giờ đội xe phải vận chuyển bao nhiêu tấn hàng?"
+    },
+    {
+      "q_id": "b4",
+      "section": "Bài 4. (1,25 điểm)",
+      "type": "essay",
+      "stem": "Với $x > 0$ và $x \\neq 4$, xét biểu thức:<br>$$P = \\left( \\frac{2}{\\sqrt{x} + 1} + \\frac{3 \\sqrt{x}}{\\sqrt{x} + 2} - \\frac{11 \\sqrt{x} + 4}{( \\sqrt{x} + 1 ) ( \\sqrt{x} + 2 )} \\right) : \\left( \\frac{\\sqrt{x} - 2}{\\sqrt{x}} + \\frac{- 2 \\sqrt{x} + 4}{x + 2 \\sqrt{x}} \\right)$$<br>a. Rút gọn biểu thức $P$<br>b. Chứng minh rằng $P < 3$ với mọi số thực $x > 0$ và $x \\neq 4$."
+    },
+    {
+      "q_id": "b5",
+      "section": "Bài 5. (2,0 điểm)",
+      "type": "essay",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "b5_a",
+          "question_text": "Hình vẽ bên mô tả ba vị trí A, B, C là ba đỉnh của một tam giác vuông có vị trí xung quanh một khúc sông. Biết $A B = 50 m$, $\\widehat{A B C} = 50 ^{\\circ}$. Tính khoảng cách BC theo đơn vị mét (làm tròn kết quả đến hàng phần chục).<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"riverCrossing\",\"axes\":false,\"bbox\":[-1.5,8,7,-1.5],\"height\":300,\"keepAspectRatio\":true}'></div>"
+        },
+        {
+          "q_id": "b5_b",
+          "question_text": "Một chiếc kem ốc quế gồm hai phần: Phần phía dưới dạng hình nón có chiều cao gấp đôi bán kính đáy, phần trên là nửa hình cầu có đường kính bằng đường kính đáy của hình nón phía dưới. Thể tích phần kem phía trên bằng $200 cm^{3}$. Tính thể tích của cả chiếc kem.<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"iceCreamCone\",\"axes\":false,\"bbox\":[-6,5,6,-8],\"height\":320,\"keepAspectRatio\":true}'></div>"
+        }
+      ]
+    },
+    {
+      "q_id": "b6",
+      "section": "Bài 6 (3,0 điểm)",
+      "type": "essay",
+      "stem": "Cho tam giác $A B C$ nội tiếp đường tròn $( O )$. Gọi $E$ là hình chiếu vuông góc của $B$ lên $A C$. Gọi $F$ là hình chiếu vuông góc của $C$ lên $A B$. Gọi $H$ là giao điểm của $B E$ và $C F$. Kẻ $A H$ cắt $B C$ tại $D$, cắt lại đường tròn $( O )$ tại $K$.",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "b6_a",
+          "question_text": "a) Chứng minh $B F E C$ là tứ giác nội tiếp. Xác định tâm $Q$ của đường tròn ngoại tiếp tam giác $A E F$."
+        },
+        {
+          "q_id": "b6_b",
+          "question_text": "b) Chứng minh $A F \\cdot A B = A H \\cdot A D = A E \\cdot A C$."
+        },
+        {
+          "q_id": "b6_c",
+          "question_text": "c) Chứng minh $\\widehat{B Q D} = \\widehat{B E K}$"
+        }
+      ]
+    }
+  ]
+}

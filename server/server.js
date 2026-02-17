@@ -9,6 +9,8 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const fetch = require('node-fetch');
 const dotenv = require('dotenv');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -44,6 +46,13 @@ const aiLimiter = rateLimit({
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_MODEL = 'llama-3.3-70b-versatile';
 
+const PROJECT_ROOT = path.resolve(__dirname, '..');
+const BANK_DIR = path.join(PROJECT_ROOT, 'BankOnTap');
+const BANK_EXAM_PATH = path.join(BANK_DIR, 'exam.json');
+const BANK_ANSWERS_PATH = path.join(BANK_DIR, 'answers.json');
+const BANK_SECTIONS_DIR = path.join(BANK_DIR, 'sections');
+const BANK_ERRORS_DIR = path.join(BANK_DIR, 'errors');
+
 if (!GROQ_API_KEY) {
   console.warn('Missing GROQ_API_KEY. AI endpoints will not work until you set it in environment variables (e.g. in a local .env file).');
 }
@@ -51,6 +60,561 @@ if (!GROQ_API_KEY) {
 // In-memory storage (replace with database in production)
 const leaderboardData = new Map();
 const userStats = new Map();
+
+function ensureDir(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+}
+
+function readJsonSafe(filePath) {
+  const raw = fs.readFileSync(filePath, 'utf8');
+  if (!raw || !raw.trim()) {
+    throw new Error(`File is empty: ${filePath}`);
+  }
+  return JSON.parse(raw);
+}
+
+function writeJsonPretty(filePath, data) {
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n', 'utf8');
+}
+
+function detectMainSection(question) {
+  const section = String(question.section || '');
+  if (/Chương II\.\s*Bất phương trình/i.test(section)) {
+    return {
+      key: 'section-1-bat-phuong-trinh',
+      title: 'Section 1 - Bất phương trình bậc hai',
+      subtitle: 'Đại số 10 - Tam thức bậc hai - BPT'
+    };
+  }
+  if (/Chương IV\.\s*Vectơ/i.test(section)) {
+    return {
+      key: 'section-2-vecto-toa-do',
+      title: 'Section 2 - Vectơ và tọa độ',
+      subtitle: 'Hình học 10 - Vectơ trong mặt phẳng tọa độ'
+    };
+  }
+  if (/Chương III\.\s*Phương trình/i.test(section)) {
+    return {
+      key: 'section-3-phuong-trinh',
+      title: 'Section 3 - Phương trình quy về bậc hai',
+      subtitle: 'Đại số 10 - Chương III'
+    };
+  }
+  return null;
+}
+
+function normalizeNumberString(s) {
+  return Number(String(s).replace(',', '.'));
+}
+
+function parseTruthValue(v) {
+  if (v === true || v === false) return v;
+  const s = String(v ?? '').trim().toLowerCase();
+  if (!s) return null;
+  if (/^(đúng|dung|true|1)$/.test(s)) return true;
+  if (/^(sai|false|0)$/.test(s)) return false;
+  if (/đáp án\s*đúng\s*:\s*đúng/i.test(s)) return true;
+  if (/đáp án\s*đúng\s*:\s*sai/i.test(s)) return false;
+  return null;
+}
+
+function isBinaryTrueFalseOptions(options) {
+  if (!Array.isArray(options)) return false;
+  const normalized = options.map((o) => String(o ?? '').trim().toLowerCase()).filter(Boolean);
+  return normalized.length === 2
+    && normalized.some((o) => o === 'đúng' || o === 'dung')
+    && normalized.some((o) => o === 'sai');
+}
+
+function tryExtractTruthValueFromCombinedAnswer(answerText, letter) {
+  if (!answerText) return null;
+  const re = new RegExp(`(?:^|\\n|\\r|[.;])\\s*${letter}\\)?\\s*[:\\-]?\\s*(đúng|sai)`, 'i');
+  const m = String(answerText).match(re);
+  return m ? parseTruthValue(m[1]) : null;
+}
+
+function extractCorrectIndexFromAnswerText(answerText, optionCount) {
+  if (!answerText) return null;
+
+  const letterMatch = answerText.match(/Đáp án\s*đúng\s*:\s*([A-D])/i);
+  if (letterMatch) {
+    const idx = letterMatch[1].toUpperCase().charCodeAt(0) - 65;
+    if (idx >= 0 && idx < optionCount) return idx;
+  }
+
+  if (/Đáp án\s*đúng\s*:\s*Đúng/i.test(answerText)) return 0;
+  if (/Đáp án\s*đúng\s*:\s*Sai/i.test(answerText)) return 1;
+  if (/^Đúng\b/i.test(answerText.trim())) return 0;
+  if (/^Sai\b/i.test(answerText.trim())) return 1;
+
+  return null;
+}
+
+function extractFinalAnswerFromText(answerText) {
+  if (!answerText) return null;
+
+  const trimmed = answerText.trim();
+  if (/^[+-]?\d+(?:[.,]\d+)?$/.test(trimmed)) {
+    const n = normalizeNumberString(trimmed);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  const strongPatterns = [
+    /Kết quả\s*:\s*([+-]?\d+(?:[.,]\d+)?)/i,
+    /Đáp án\s*:\s*([+-]?\d+(?:[.,]\d+)?)/i,
+    /Tính\s+[^.]*?\b=\s*([+-]?\d+(?:[.,]\d+)?)/i,
+    /(?:Tổng|Tích|Hiệu|Thương)\s+là\s*([+-]?\d+(?:[.,]\d+)?)/i,
+    /tìm\s+x\s*=\s*([+-]?\d+(?:[.,]\d+)?)/i,
+    /\bx\s*=\s*\$?\s*([+-]?\d+(?:[.,]\d+)?)/i
+  ];
+  for (const r of strongPatterns) {
+    const m = trimmed.match(r);
+    if (m) {
+      const n = normalizeNumberString(m[1]);
+      if (Number.isFinite(n)) return n;
+    }
+  }
+
+  const endingMatch = trimmed.match(/([+-]?\d+(?:[.,]\d+)?)(?=\s*(?:[a-zA-ZÀ-ỹ%]+)?\s*\.?\s*$)/);
+  if (endingMatch) {
+    const n = normalizeNumberString(endingMatch[1]);
+    if (Number.isFinite(n)) return n;
+  }
+
+  return null;
+}
+
+function extractJxgSpecs(stem) {
+  const specs = [];
+  if (!stem) return specs;
+  const re = /data-jxg=(['"])(.*?)\1/g;
+  let m;
+  while ((m = re.exec(stem)) !== null) {
+    specs.push(m[2]);
+  }
+  return specs;
+}
+
+function isLikelyValidJxgSpec(spec) {
+  if (!spec || !String(spec).trim()) return false;
+  const s = String(spec).trim();
+  if (s.startsWith('{') && s.endsWith('}')) return true;
+  if (s.includes('=')) return true;
+  return false;
+}
+
+function hasVisualCue(stem) {
+  if (!stem) return false;
+  return /(hình\s+bên|hình\s+sau|như\s+hình|hình\s+vẽ|đồ\s*thị|biểu\s*đồ)/i.test(String(stem));
+}
+
+function hasInlineFigure(stem) {
+  if (!stem) return false;
+  const s = String(stem);
+  return /<img\b/i.test(s) || /<table\b/i.test(s) || /!\[[^\]]*\]\([^\)]+\)/i.test(s);
+}
+
+function extractImageRefs(stem) {
+  const refs = [];
+  if (!stem) return refs;
+  const s = String(stem);
+
+  const mdRe = /!\[[^\]]*\]\(([^\)]+)\)/g;
+  let m;
+  while ((m = mdRe.exec(s)) !== null) {
+    if (m[1]) refs.push(m[1].trim());
+  }
+
+  const htmlRe = /<img[^>]*src=(['"])(.*?)\1/gi;
+  while ((m = htmlRe.exec(s)) !== null) {
+    if (m[2]) refs.push(m[2].trim());
+  }
+
+  return refs;
+}
+
+function canonicalTFOptionLabel(v) {
+  const t = String(v ?? '').trim();
+  if (/^đúng$/i.test(t) || /^dung$/i.test(t) || /^true$/i.test(t) || /^1$/.test(t)) return 'Đúng';
+  if (/^sai$/i.test(t) || /^false$/i.test(t) || /^0$/.test(t)) return 'Sai';
+  return t;
+}
+
+function buildIssueMarkdown(title, lines) {
+  return `# ${title}\n\n${lines.join('\n')}\n`;
+}
+
+function prepareBankOnTapData() {
+  ensureDir(BANK_SECTIONS_DIR);
+  ensureDir(BANK_ERRORS_DIR);
+
+  const exam = readJsonSafe(BANK_EXAM_PATH);
+  const answers = readJsonSafe(BANK_ANSWERS_PATH);
+
+  if (!Array.isArray(exam.questions)) {
+    throw new Error('BankOnTap/exam.json không có mảng questions hợp lệ.');
+  }
+
+  const sectionBuckets = new Map();
+  const unresolved = [];
+  const invalidDiagrams = [];
+  const missingDiagrams = [];
+  const tfFormatIssues = [];
+  const tfStats = {
+    total: 0,
+    binary: 0,
+    statement: 0,
+    convertedFromMultipleChoice: 0,
+    convertedFromOptions: 0,
+    missingStatements: 0,
+    missingAnswers: 0
+  };
+
+  exam.questions.forEach((q, idx) => {
+    const qid = String(q.q_id || `q_${idx + 1}`);
+    const answerText = answers[qid];
+    if (!Array.isArray(q.options)) q.options = [];
+    const stemText = String(q.stem || '');
+    const mainSection = detectMainSection(q);
+    q.main_section = mainSection ? mainSection.key : null;
+
+    if (!mainSection) {
+      return;
+    }
+
+    if (!sectionBuckets.has(mainSection.key)) {
+      sectionBuckets.set(mainSection.key, {
+        key: mainSection.key,
+        title: mainSection.title,
+        subtitle: mainSection.subtitle,
+        questions: []
+      });
+    }
+    sectionBuckets.get(mainSection.key).questions.push(q);
+
+    const specs = extractJxgSpecs(stemText);
+    const visualCue = hasVisualCue(stemText);
+    const hasFigure = hasInlineFigure(stemText);
+    const imageRefs = extractImageRefs(stemText);
+
+    imageRefs.forEach((imgRef) => {
+      if (/^https?:\/\//i.test(imgRef) || /^data:/i.test(imgRef)) return;
+      const cleanRef = imgRef.replace(/^\.\//, '').replace(/^\//, '');
+      const absPath = path.resolve(BANK_DIR, cleanRef);
+      if (!fs.existsSync(absPath)) {
+        missingDiagrams.push({
+          q_id: qid,
+          issue: `Tham chiếu ảnh không tồn tại: ${imgRef}`,
+          stemPreview: stemText.replace(/\s+/g, ' ').slice(0, 180)
+        });
+      }
+    });
+
+    if (visualCue && specs.length === 0 && !hasFigure) {
+      missingDiagrams.push({
+        q_id: qid,
+        issue: 'Có mô tả cần hình/đồ thị nhưng chưa có data-jxg hoặc ảnh minh họa.',
+        stemPreview: stemText.replace(/\s+/g, ' ').slice(0, 180)
+      });
+    }
+
+    for (const spec of specs) {
+      if (!isLikelyValidJxgSpec(spec)) {
+        invalidDiagrams.push({
+          q_id: qid,
+          issue: 'data-jxg không đúng định dạng parser hiện tại (cần JSON hoặc key=value;...)',
+          spec
+        });
+      }
+    }
+
+    const normalizedOptions = q.options.map((o) => String(o ?? '').trim()).filter(Boolean);
+    if (q.type === 'multiple_choice' && isBinaryTrueFalseOptions(normalizedOptions)) {
+      q.type = 'true_false';
+      q.options = normalizedOptions.map(canonicalTFOptionLabel);
+      q.tf_parts = [];
+      tfStats.convertedFromMultipleChoice += 1;
+      tfFormatIssues.push({
+        q_id: qid,
+        issue: 'multiple_choice có options Đúng/Sai; đã chuẩn hóa về type=true_false.'
+      });
+    }
+
+    if (q.type === 'multiple_choice') {
+      const hasIndex = Number.isInteger(q.correct_index);
+      if (!hasIndex) {
+        const optionCount = Array.isArray(q.options) ? q.options.length : 0;
+        const detectedIndex = extractCorrectIndexFromAnswerText(String(answerText || ''), optionCount);
+        if (Number.isInteger(detectedIndex)) {
+          q.correct_index = detectedIndex;
+        } else {
+          unresolved.push({
+            q_id: qid,
+            type: q.type,
+            reason: answerText ? 'Không suy ra được correct_index từ answers.json' : 'Thiếu lời giải tương ứng trong answers.json'
+          });
+        }
+      }
+      return;
+    }
+
+    if (q.type === 'true_false') {
+      tfStats.total += 1;
+
+      const originalHasTfParts = Array.isArray(q.tf_parts) && q.tf_parts.length > 0;
+      if (isBinaryTrueFalseOptions(normalizedOptions)) {
+        q.options = normalizedOptions.map(canonicalTFOptionLabel);
+        q.tf_parts = [];
+        tfStats.binary += 1;
+
+        if (originalHasTfParts) {
+          tfFormatIssues.push({
+            q_id: qid,
+            issue: 'true_false dạng nhị phân nhưng vẫn chứa tf_parts; đã chuẩn hóa về options Đúng/Sai.'
+          });
+        }
+
+        const hasIndex = Number.isInteger(q.correct_index);
+        if (!hasIndex) {
+          const detectedIndex = extractCorrectIndexFromAnswerText(String(answerText || ''), normalizedOptions.length);
+          if (Number.isInteger(detectedIndex)) {
+            q.correct_index = detectedIndex;
+          } else {
+            unresolved.push({
+              q_id: qid,
+              type: q.type,
+              reason: answerText ? 'Không suy ra được correct_index từ answers.json' : 'Thiếu lời giải tương ứng trong answers.json'
+            });
+          }
+        }
+        return;
+      }
+
+      if (!Array.isArray(q.tf_parts) || q.tf_parts.length === 0) {
+        if (normalizedOptions.length > 0) {
+          tfStats.convertedFromOptions += 1;
+          tfFormatIssues.push({
+            q_id: qid,
+            issue: 'true_false nhiều mệnh đề lưu ở options; đã chuyển sang tf_parts chuẩn.'
+          });
+        }
+        q.tf_parts = normalizedOptions.map((statement, partIdx) => ({
+          key: String.fromCharCode(97 + partIdx),
+          statement,
+          answer: null
+        }));
+      } else {
+        q.tf_parts = q.tf_parts
+          .map((part, partIdx) => {
+            if (typeof part === 'string') {
+              return {
+                key: String.fromCharCode(97 + partIdx),
+                statement: part,
+                answer: null
+              };
+            }
+            return {
+              key: part && part.key ? String(part.key) : String.fromCharCode(97 + partIdx),
+              statement: part && part.statement ? String(part.statement) : '',
+              answer: parseTruthValue(part ? part.answer : null)
+            };
+          })
+          .filter((part) => part.statement);
+      }
+
+      q.options = [];
+      q.correct_index = null;
+
+      if (!q.tf_parts.length) {
+        tfStats.missingStatements += 1;
+        tfFormatIssues.push({
+          q_id: qid,
+          issue: 'true_false không có mệnh đề hợp lệ sau chuẩn hóa.'
+        });
+        unresolved.push({
+          q_id: qid,
+          type: q.type,
+          reason: 'Không có mệnh đề Đ/S hợp lệ để chấm.'
+        });
+        return;
+      }
+
+      tfStats.statement += 1;
+
+      let missingTfAnswer = false;
+      q.tf_parts = q.tf_parts.map((part, partIdx) => {
+        const letter = String.fromCharCode(97 + partIdx);
+        let ans = parseTruthValue(part.answer);
+        if (ans === null) {
+          ans = parseTruthValue(answers[`${qid}_${letter}`]);
+        }
+        if (ans === null) {
+          ans = tryExtractTruthValueFromCombinedAnswer(String(answerText || ''), letter);
+        }
+        if (ans === null) missingTfAnswer = true;
+        return {
+          ...part,
+          key: part.key || letter,
+          answer: ans
+        };
+      });
+
+      if (missingTfAnswer) {
+        tfStats.missingAnswers += 1;
+        unresolved.push({
+          q_id: qid,
+          type: q.type,
+          reason: answerText ? 'Chưa suy ra đủ đáp án Đ/S cho từng mệnh đề (a,b,c,...)' : 'Thiếu lời giải tương ứng trong answers.json'
+        });
+      }
+      return;
+    }
+
+    if (q.type === 'short_answer') {
+      q.correct_index = null;
+      const current = q.final_answer;
+      const normalizedCurrent = (current === null || current === undefined) ? '' : String(current).trim();
+      const parsedCurrent = normalizedCurrent ? Number(normalizedCurrent.replace(',', '.')) : NaN;
+      const hasFinal = Number.isFinite(parsedCurrent);
+      if (!hasFinal) {
+        const detected = extractFinalAnswerFromText(String(answerText || ''));
+        if (Number.isFinite(detected)) {
+          q.final_answer = detected;
+        } else {
+          unresolved.push({
+            q_id: qid,
+            type: q.type,
+            reason: answerText ? 'Không trích xuất được final_answer số từ answers.json' : 'Thiếu lời giải tương ứng trong answers.json'
+          });
+        }
+      }
+    }
+  });
+
+  const totalQuestions = Array.from(sectionBuckets.values()).reduce((sum, bucket) => sum + bucket.questions.length, 0);
+  const baseDuration = Number(exam.duration) || 1800;
+
+  const sectionsManifest = {
+    version: 1,
+    title: 'Ngân hàng câu hỏi ôn tập (theo section)',
+    progressStorageKey: 'bankOnTapProgressV1',
+    generatedAt: new Date().toISOString(),
+    totalQuestions,
+    totalDuration: baseDuration,
+    sections: []
+  };
+
+  for (const bucket of sectionBuckets.values()) {
+    const ratio = totalQuestions > 0 ? bucket.questions.length / totalQuestions : 0;
+    const sectionDuration = Math.max(300, Math.round(baseDuration * ratio));
+    const fileName = `${bucket.key}.json`;
+    const outPath = path.join(BANK_SECTIONS_DIR, fileName);
+    writeJsonPretty(outPath, {
+      duration: sectionDuration,
+      section_key: bucket.key,
+      section_title: bucket.title,
+      section_subtitle: bucket.subtitle,
+      questions: bucket.questions
+    });
+
+    sectionsManifest.sections.push({
+      key: bucket.key,
+      title: bucket.title,
+      subtitle: bucket.subtitle,
+      path: `sections/${fileName}`,
+      questionCount: bucket.questions.length,
+      duration: sectionDuration
+    });
+  }
+
+  const activeSectionFileNames = new Set(sectionsManifest.sections.map((it) => path.basename(it.path)));
+  for (const name of fs.readdirSync(BANK_SECTIONS_DIR)) {
+    if (name === 'sections-manifest.json') continue;
+    if (!/^section-.*\.json$/i.test(name)) continue;
+    if (activeSectionFileNames.has(name)) continue;
+    fs.unlinkSync(path.join(BANK_SECTIONS_DIR, name));
+  }
+
+  writeJsonPretty(path.join(BANK_SECTIONS_DIR, 'sections-manifest.json'), sectionsManifest);
+  writeJsonPretty(BANK_EXAM_PATH, exam);
+
+  const unresolvedMdLines = [
+    `- Tổng số câu chưa điền được đáp án tự động: **${unresolved.length}**`,
+    ''
+  ];
+  unresolved.forEach((it) => {
+    unresolvedMdLines.push(`- [ ] \`${it.q_id}\` (${it.type}): ${it.reason}`);
+  });
+  fs.writeFileSync(
+    path.join(BANK_ERRORS_DIR, 'unresolved-answers.md'),
+    buildIssueMarkdown('Danh sách câu chưa fill đáp án', unresolvedMdLines),
+    'utf8'
+  );
+
+  const diagramMdLines = [
+    `- Tổng số câu có spec đồ thị nghi ngờ lỗi: **${invalidDiagrams.length}**`,
+    ''
+  ];
+  invalidDiagrams.forEach((it) => {
+    diagramMdLines.push(`- [ ] \`${it.q_id}\`: ${it.issue}`);
+    diagramMdLines.push(`  - Spec hiện tại: \`${it.spec}\``);
+  });
+  fs.writeFileSync(
+    path.join(BANK_ERRORS_DIR, 'invalid-diagrams.md'),
+    buildIssueMarkdown('Danh sách câu có data-jxg nghi ngờ lỗi', diagramMdLines),
+    'utf8'
+  );
+
+  const missingDiagramMdLines = [
+    `- Tổng số câu cần hình/đồ thị nhưng chưa có dữ liệu vẽ: **${missingDiagrams.length}**`,
+    ''
+  ];
+  missingDiagrams.forEach((it) => {
+    missingDiagramMdLines.push(`- [ ] \`${it.q_id}\`: ${it.issue}`);
+    missingDiagramMdLines.push(`  - Preview: ${it.stemPreview}`);
+  });
+  fs.writeFileSync(
+    path.join(BANK_ERRORS_DIR, 'missing-diagrams.md'),
+    buildIssueMarkdown('Danh sách câu thiếu hình vẽ/đồ thị', missingDiagramMdLines),
+    'utf8'
+  );
+
+  const tfFormatMdLines = [
+    `- Tổng số câu true_false: **${tfStats.total}**`,
+    `- Dạng nhị phân (Đúng/Sai): **${tfStats.binary}**`,
+    `- Dạng nhiều mệnh đề (tf_parts): **${tfStats.statement}**`,
+    `- Đã chuẩn hóa multiple_choice Đ/S -> true_false: **${tfStats.convertedFromMultipleChoice}**`,
+    `- Đã chuyển từ options -> tf_parts: **${tfStats.convertedFromOptions}**`,
+    `- Thiếu mệnh đề hợp lệ: **${tfStats.missingStatements}**`,
+    `- Thiếu đáp án Đ/S cho từng mệnh đề: **${tfStats.missingAnswers}**`,
+    `- Tổng cảnh báo format true_false: **${tfFormatIssues.length}**`,
+    ''
+  ];
+  tfFormatIssues.forEach((it) => {
+    tfFormatMdLines.push(`- [ ] \`${it.q_id}\`: ${it.issue}`);
+  });
+  fs.writeFileSync(
+    path.join(BANK_ERRORS_DIR, 'true-false-format.md'),
+    buildIssueMarkdown('Báo cáo chuẩn hóa true_false', tfFormatMdLines),
+    'utf8'
+  );
+
+  return {
+    totalQuestions,
+    sections: sectionsManifest.sections,
+    unresolvedCount: unresolved.length,
+    invalidDiagramCount: invalidDiagrams.length,
+    missingDiagramCount: missingDiagrams.length,
+    trueFalseFormatIssueCount: tfFormatIssues.length,
+    unresolved,
+    invalidDiagrams,
+    missingDiagrams,
+    tfStats,
+    tfFormatIssues
+  };
+}
 
 // ============================================
 // AI TUTOR ENDPOINT
@@ -346,6 +910,64 @@ app.post('/api/report', apiLimiter, (req, res) => {
   console.log('New report:', report);
   
   res.json({ success: true, reportId: report.id });
+});
+
+// ============================================
+// BANKONTAP AUTHORING ENDPOINTS
+// ============================================
+app.post('/api/bankontap/prepare', apiLimiter, (req, res) => {
+  try {
+    const result = prepareBankOnTapData();
+    res.json({ success: true, result });
+  } catch (error) {
+    console.error('BankOnTap prepare error:', error);
+    res.status(500).json({ success: false, error: error.message || 'Prepare failed' });
+  }
+});
+
+app.get('/api/bankontap/md-files', apiLimiter, (req, res) => {
+  try {
+    ensureDir(BANK_ERRORS_DIR);
+    const files = fs.readdirSync(BANK_ERRORS_DIR)
+      .filter((name) => name.toLowerCase().endsWith('.md'))
+      .sort();
+    res.json({ success: true, files });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message || 'Cannot list md files' });
+  }
+});
+
+app.get('/api/bankontap/md-file', apiLimiter, (req, res) => {
+  try {
+    const name = String(req.query.name || '');
+    if (!name || name.includes('/') || name.includes('\\') || !name.toLowerCase().endsWith('.md')) {
+      return res.status(400).json({ success: false, error: 'Tên file không hợp lệ.' });
+    }
+    const target = path.join(BANK_ERRORS_DIR, name);
+    if (!fs.existsSync(target)) {
+      return res.status(404).json({ success: false, error: 'Không tìm thấy file.' });
+    }
+    const content = fs.readFileSync(target, 'utf8');
+    res.json({ success: true, name, content });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message || 'Cannot read md file' });
+  }
+});
+
+app.post('/api/bankontap/md-file', apiLimiter, (req, res) => {
+  try {
+    const name = String(req.body.name || '');
+    const content = String(req.body.content || '');
+    if (!name || name.includes('/') || name.includes('\\') || !name.toLowerCase().endsWith('.md')) {
+      return res.status(400).json({ success: false, error: 'Tên file không hợp lệ.' });
+    }
+    ensureDir(BANK_ERRORS_DIR);
+    const target = path.join(BANK_ERRORS_DIR, name);
+    fs.writeFileSync(target, content, 'utf8');
+    res.json({ success: true, name });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message || 'Cannot save md file' });
+  }
 });
 
 // ============================================

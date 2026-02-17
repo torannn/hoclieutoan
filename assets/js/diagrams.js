@@ -327,6 +327,166 @@ def derivative_expr(expr_s, var):
         return out;
     }
 
+    function normalizeTableLabelValue(v) {
+        if (v === null || v === undefined) return '';
+        if (typeof v === 'string' || typeof v === 'number') return String(v);
+        if (typeof v === 'object') {
+            if (typeof v.label === 'string' || typeof v.label === 'number') return String(v.label);
+            if (typeof v.value === 'string' || typeof v.value === 'number') return String(v.value);
+            if (typeof v.text === 'string' || typeof v.text === 'number') return String(v.text);
+        }
+        return String(v);
+    }
+
+    function normalizeIntervalSignToken(token) {
+        const t = String(token || '').trim();
+        if (!t) return '';
+        if (t === '+' || t === '-' || t === '0') return t;
+        if (/^plus$/i.test(t)) return '+';
+        if (/^minus$/i.test(t)) return '-';
+        return t;
+    }
+
+    function normalizePointMarkToken(token) {
+        const t = String(token || '').trim();
+        if (!t) return '';
+        if (t === '0' || /^z$/i.test(t)) return '0';
+        if (t === '||' || /^d$/i.test(t) || /^h$/i.test(t)) return '||';
+        if (t === '|') return '|';
+        return t;
+    }
+
+    function getRowCellTokens(row) {
+        const cells = Array.isArray(row && row.cells) ? row.cells : (Array.isArray(row) ? row : []);
+        return cells.map((cell) => {
+            if (cell === null || cell === undefined) return '';
+            if (typeof cell === 'string' || typeof cell === 'number') return String(cell).trim();
+            if (typeof cell === 'object') return String(cell.value || cell.text || '').trim();
+            return String(cell).trim();
+        });
+    }
+
+    function buildSignTableManualData(spec, variable) {
+        const rawLabels = Array.isArray(spec.xValues)
+            ? spec.xValues
+            : (Array.isArray(spec.labels)
+                ? spec.labels
+                : (Array.isArray(spec.intervals) ? spec.intervals : []));
+
+        if (!rawLabels.length) return null;
+
+        const labels = rawLabels.map(normalizeTableLabelValue);
+        if (labels.length < 2) return null;
+
+        const nIntervals = labels.length - 1;
+        const normalizedLabelMap = new Map();
+        for (let i = 0; i < labels.length; i++) {
+            const key = String(labels[i] || '').trim();
+            if (key && !normalizedLabelMap.has(key)) normalizedLabelMap.set(key, i);
+        }
+
+        function boundaryIndexFromKey(key) {
+            const raw = String(key === null || key === undefined ? '' : key).trim();
+            if (!raw) return null;
+
+            const idx = Number(raw);
+            if (Number.isInteger(idx) && idx > 0 && idx < nIntervals) return idx;
+
+            if (normalizedLabelMap.has(raw)) {
+                const mapped = normalizedLabelMap.get(raw);
+                if (Number.isInteger(mapped) && mapped > 0 && mapped < nIntervals) return mapped;
+            }
+
+            const kNum = Number(raw);
+            if (Number.isFinite(kNum)) {
+                for (let i = 1; i < labels.length - 1; i++) {
+                    const lv = Number(labels[i]);
+                    if (Number.isFinite(lv) && Math.abs(lv - kNum) < 1e-9) return i;
+                }
+            }
+
+            return null;
+        }
+
+        const rawRows = Array.isArray(spec.signRows) ? spec.signRows : (Array.isArray(spec.rows) ? spec.rows : []);
+        if (!rawRows.length) return null;
+
+        const rows = [];
+        const forbiddenIdx = new Set();
+        const singleBarIdx = new Set();
+
+        for (const rawRow of rawRows) {
+            let leftLabel = (rawRow && typeof rawRow === 'object' && typeof rawRow.label === 'string')
+                ? rawRow.label
+                : (typeof rawRow === 'string' ? rawRow : '');
+
+            let intervalSigns = [];
+            let pointMarks = {};
+            let parsed = false;
+
+            if (rawRow && typeof rawRow === 'object' && Array.isArray(rawRow.intervalSigns)) {
+                intervalSigns = rawRow.intervalSigns.slice(0, nIntervals).map((s) => normalizeIntervalSignToken(s));
+                const pm = (rawRow.pointMarks && typeof rawRow.pointMarks === 'object') ? rawRow.pointMarks : {};
+                for (const [k, v] of Object.entries(pm)) {
+                    const idx = boundaryIndexFromKey(k);
+                    if (!Number.isInteger(idx)) continue;
+                    const mark = normalizePointMarkToken(v);
+                    if (mark) pointMarks[idx] = mark;
+                }
+                parsed = true;
+            } else {
+                const tokens = getRowCellTokens(rawRow);
+                const expectedTkzTokenCount = (2 * nIntervals) - 1;
+                let tkzTokens = tokens;
+
+                // Legacy format where first token repeats row label: [label, sign, mark, sign, ...]
+                if (tokens.length === expectedTkzTokenCount + 1) {
+                    if (!leftLabel) leftLabel = tokens[0] || '';
+                    tkzTokens = tokens.slice(1);
+                }
+
+                // BBT/TKZ-like interleaved syntax: sign, mark, sign, mark, sign...
+                if (tkzTokens.length === expectedTkzTokenCount && expectedTkzTokenCount > 0) {
+                    for (let i = 0; i < nIntervals; i++) {
+                        intervalSigns[i] = normalizeIntervalSignToken(tkzTokens[i * 2]);
+                        if (i < nIntervals - 1) {
+                            const mark = normalizePointMarkToken(tkzTokens[i * 2 + 1]);
+                            if (mark) pointMarks[i + 1] = mark;
+                        }
+                    }
+                    parsed = true;
+                }
+            }
+
+            if (!parsed) {
+                return null;
+            }
+
+            while (intervalSigns.length < nIntervals) intervalSigns.push('');
+
+            for (let j = 1; j < nIntervals; j++) {
+                const mk = pointMarks[j];
+                if (mk === '||') forbiddenIdx.add(j);
+                if (mk === '|') singleBarIdx.add(j);
+            }
+
+            rows.push({
+                type: 'sign',
+                label: leftLabel,
+                intervalSigns,
+                pointMarks
+            });
+        }
+
+        return {
+            breakpoints: labels.map(() => null),
+            labels,
+            rows,
+            forbiddenIdx: Array.from(forbiddenIdx).sort((a, b) => a - b),
+            singleBarIdx: Array.from(singleBarIdx).sort((a, b) => a - b)
+        };
+    }
+
     async function sympyLimitAt(exprStr, variable, x0, dir) {
         const fns = await ensureSympyFns();
         const out = toJsAndDestroy(fns.limitAt(exprStr, variable, x0, dir));
@@ -642,6 +802,83 @@ def derivative_expr(expr_s, var):
         }
 
         return { graph: graphs[0] || null, graphs, vLines, hLines, points };
+    }
+
+    function presetQuadraticCompareAB(board, spec) {
+        const bb = getBBox(spec);
+        const xMin = bb[0];
+        const xMax = bb[2];
+
+        const fExpr = (typeof spec.fExpr === 'string' && spec.fExpr.trim())
+            ? spec.fExpr
+            : '-0.5*x^2 + 3*x + 1';
+        const gExpr = (typeof spec.gExpr === 'string' && spec.gExpr.trim())
+            ? spec.gExpr
+            : '(5/12)*x^2 - (41/12)*x + 13/2';
+
+        const f = compileExpr(fExpr) || ((x) => NaN);
+        const g = compileExpr(gExpr) || ((x) => NaN);
+
+        const fColor = typeof spec.fColor === 'string' ? spec.fColor : '#2563eb';
+        const gColor = typeof spec.gColor === 'string' ? spec.gColor : '#dc2626';
+        const graphWidth = typeof spec.strokeWidth === 'number' ? spec.strokeWidth : 3;
+
+        const graphF = board.create('functiongraph', [f, xMin, xMax], {
+            strokeColor: fColor,
+            strokeWidth: graphWidth,
+            highlight: false
+        });
+
+        const graphG = board.create('functiongraph', [g, xMin, xMax], {
+            strokeColor: gColor,
+            strokeWidth: graphWidth,
+            highlight: false
+        });
+
+        const Axy = (Array.isArray(spec.A) && spec.A.length >= 2) ? [Number(spec.A[0]), Number(spec.A[1])] : [1, 3.5];
+        const Bxy = (Array.isArray(spec.B) && spec.B.length >= 2) ? [Number(spec.B[0]), Number(spec.B[1])] : [6, 1];
+        const pointColor = typeof spec.pointColor === 'string' ? spec.pointColor : '#111827';
+
+        const A = board.create('point', [Axy[0], Axy[1]], {
+            name: 'A',
+            size: 3,
+            fixed: true,
+            strokeColor: pointColor,
+            fillColor: pointColor,
+            highlight: false
+        });
+
+        const B = board.create('point', [Bxy[0], Bxy[1]], {
+            name: 'B',
+            size: 3,
+            fixed: true,
+            strokeColor: pointColor,
+            fillColor: pointColor,
+            highlight: false
+        });
+
+        const dropColor = typeof spec.dropColor === 'string' ? spec.dropColor : '#64748b';
+        const dropWidth = typeof spec.dropWidth === 'number' ? spec.dropWidth : 2;
+        const dropDash = typeof spec.dropDash === 'number' ? spec.dropDash : 2;
+
+        function dropToOx(pt) {
+            const x = pt.X();
+            const y = pt.Y();
+            const p1 = board.create('point', [x, 0], { visible: false, fixed: true, highlight: false });
+            const p2 = board.create('point', [x, y], { visible: false, fixed: true, highlight: false });
+            return board.create('segment', [p1, p2], {
+                strokeColor: dropColor,
+                strokeWidth: dropWidth,
+                dash: dropDash,
+                fixed: true,
+                highlight: false
+            });
+        }
+
+        const dropA = dropToOx(A);
+        const dropB = dropToOx(B);
+
+        return { graph: graphF, graphs: [graphF, graphG], points: [A, B], guides: [dropA, dropB] };
     }
 
     function presetLine(board, spec) {
@@ -1468,6 +1705,174 @@ def derivative_expr(expr_s, var):
         });
 
         return { apex: apex };
+    }
+
+    function presetRoadParabolaDrainage(board, spec) {
+        const bb = getBBox(spec);
+        const xMin = bb[0];
+        const yMax = bb[1];
+        const xMax = bb[2];
+        const yMin = bb[3];
+
+        const a = typeof spec.a === 'number' ? spec.a : -0.006;
+        const h = typeof spec.h === 'number' ? spec.h : 0;
+        const k = typeof spec.k === 'number' ? spec.k : 0;
+
+        const halfWidth = typeof spec.halfWidth === 'number' ? Math.abs(spec.halfWidth) : 12;
+        const xLeft = typeof spec.xLeft === 'number' ? spec.xLeft : (h - halfWidth);
+        const xRight = typeof spec.xRight === 'number' ? spec.xRight : (h + halfWidth);
+        const Lx = Math.min(xLeft, xRight);
+        const Rx = Math.max(xLeft, xRight);
+
+        const curveColor = spec.curveColor || '#6b7280';
+        const baseColor = spec.baseColor || '#111827';
+        const hatchColor = spec.hatchColor || '#111827';
+        const axisColor = spec.axisColor || '#111827';
+        const textColor = spec.textColor || '#111827';
+
+        const curveWidth = typeof spec.curveWidth === 'number' ? spec.curveWidth : 2.4;
+        const baseWidth = typeof spec.baseWidth === 'number' ? spec.baseWidth : 1.4;
+        const hatchWidth = typeof spec.hatchWidth === 'number' ? spec.hatchWidth : 1;
+        const hatchOpacity = typeof spec.hatchOpacity === 'number' ? spec.hatchOpacity : 0.35;
+        const hatchCount = typeof spec.hatchCount === 'number' ? Math.max(8, Math.floor(spec.hatchCount)) : 42;
+
+        function f(x) {
+            return a * (x - h) * (x - h) + k;
+        }
+
+        function p(x, y) {
+            return board.create('point', [x, y], {
+                visible: false,
+                fixed: true,
+                highlight: false,
+                name: ''
+            });
+        }
+
+        const graph = board.create('functiongraph', [f, Lx, Rx], {
+            strokeColor: curveColor,
+            strokeWidth: curveWidth,
+            highlight: false,
+            fixed: true
+        });
+
+        const yL = f(Lx);
+        const yR = f(Rx);
+
+        const leftShoulder = board.create('point', [Lx, yL], {
+            name: '',
+            size: 2.5,
+            strokeColor: baseColor,
+            fillColor: baseColor,
+            fixed: true,
+            highlight: false
+        });
+        const rightShoulder = board.create('point', [Rx, yR], {
+            name: '',
+            size: 2.5,
+            strokeColor: baseColor,
+            fillColor: baseColor,
+            fixed: true,
+            highlight: false
+        });
+
+        board.create('segment', [leftShoulder, rightShoulder], {
+            strokeColor: baseColor,
+            strokeWidth: baseWidth,
+            highlight: false,
+            fixed: true
+        });
+
+        // Dot-like hatching between the parabola and the shoulder line.
+        for (let i = 1; i < hatchCount; i++) {
+            const t = i / hatchCount;
+            const x = Lx + t * (Rx - Lx);
+            const yTop = f(x);
+            const yBottom = yL + t * (yR - yL);
+            if (!Number.isFinite(yTop) || !Number.isFinite(yBottom)) continue;
+            if (yTop <= yBottom + 1e-9) continue;
+
+            const A = p(x, yBottom);
+            const B = p(x, yTop);
+            board.create('segment', [A, B], {
+                strokeColor: hatchColor,
+                strokeWidth: hatchWidth,
+                dash: 2,
+                strokeOpacity: hatchOpacity,
+                highlight: false,
+                fixed: true
+            });
+        }
+
+        if (bool(spec.drawAxes, true)) {
+            const xAxisY = typeof spec.axisY === 'number' ? spec.axisY : 0;
+            const yAxisX = typeof spec.axisX === 'number' ? spec.axisX : 0;
+
+            board.create('arrow', [p(xMin, xAxisY), p(xMax, xAxisY)], {
+                strokeColor: axisColor,
+                strokeWidth: 1.4,
+                highlight: false,
+                fixed: true
+            });
+            board.create('arrow', [p(yAxisX, yMin), p(yAxisX, yMax)], {
+                strokeColor: axisColor,
+                strokeWidth: 1.4,
+                highlight: false,
+                fixed: true
+            });
+
+            if (bool(spec.showAxisLabels, true)) {
+                board.create('text', [xMax - 0.4, xAxisY - 0.18, 'x'], {
+                    fixed: true,
+                    highlight: false,
+                    fontSize: 16,
+                    strokeColor: textColor,
+                    anchorX: 'left',
+                    anchorY: 'top'
+                });
+                board.create('text', [yAxisX + 0.18, yMax - 0.25, 'y'], {
+                    fixed: true,
+                    highlight: false,
+                    fontSize: 16,
+                    strokeColor: textColor,
+                    anchorX: 'left',
+                    anchorY: 'bottom'
+                });
+                board.create('text', [yAxisX + 0.18, xAxisY + 0.2, spec.originLabel || 'O'], {
+                    fixed: true,
+                    highlight: false,
+                    fontSize: 16,
+                    strokeColor: textColor,
+                    anchorX: 'left',
+                    anchorY: 'bottom'
+                });
+            }
+        }
+
+        if (bool(spec.showShoulderLabels, true)) {
+            const leftLabel = typeof spec.leftLabel === 'string' ? spec.leftLabel : 'lề đường';
+            const rightLabel = typeof spec.rightLabel === 'string' ? spec.rightLabel : 'lề đường';
+            const labelYOffset = typeof spec.labelYOffset === 'number' ? spec.labelYOffset : -0.35;
+
+            board.create('text', [Lx, yL + labelYOffset, leftLabel], {
+                fixed: true,
+                highlight: false,
+                fontSize: 14,
+                strokeColor: textColor,
+                anchorX: 'right',
+                anchorY: 'top'
+            });
+            board.create('text', [Rx, yR + labelYOffset, rightLabel], {
+                fixed: true,
+                highlight: false,
+                fontSize: 14,
+                strokeColor: textColor,
+                anchorX: 'left',
+                anchorY: 'top'
+            });
+        }
+
+        return { graph, leftShoulder, rightShoulder };
     }
 
     function presetScene(board, spec) {
@@ -2428,22 +2833,62 @@ def derivative_expr(expr_s, var):
         return null;
     }
 
-    function drawVariationTableFromData(board, spec, variable, data) {
-        const cellW = typeof spec.cellWidth === 'number' ? spec.cellWidth : 1.2;
-        const cellH = typeof spec.cellHeight === 'number' ? spec.cellHeight : 0.8;
-        const leftColW = typeof spec.leftColumnWidth === 'number' ? spec.leftColumnWidth : 1.8;
-        const headerH = typeof spec.headerHeight === 'number' ? spec.headerHeight : 0.9;
-
-        const borderColor = typeof spec.borderColor === 'string' ? spec.borderColor : '#000000';
-        const borderWidth = typeof spec.borderWidth === 'number' ? spec.borderWidth : 2;
-        const textSize = typeof spec.textSize === 'number' ? spec.textSize : 16;
-
-        const labels = data.labels || [];
-        const rows = data.rows || [];
+    function computeSignTableLayout(spec, variable, data) {
+        const labels = Array.isArray(data && data.labels) ? data.labels : [];
+        const rows = Array.isArray(data && data.rows) ? data.rows : [];
         const nIntervals = Math.max(1, labels.length - 1);
+        const rowCount = Math.max(1, rows.length);
+
+        const maxLeftTextLen = Math.max(
+            String(variable || 'x').length,
+            ...rows.map((r) => String((r && r.label) || '').length)
+        );
+        const maxHeaderTextLen = Math.max(1, ...labels.map((v) => String(v || '').length));
+
+        const inferredLeftColW = Math.max(1.2, Math.min(2.6, 1.05 + maxLeftTextLen * 0.12));
+        const inferredCellW = Math.max(1.45, Math.min(2.7, 1.45 + maxHeaderTextLen * 0.05));
+        const inferredCellH = 0.9;
+        const inferredHeaderH = 0.95;
+
+        const cellW = typeof spec.cellWidth === 'number' ? spec.cellWidth : inferredCellW;
+        const cellH = typeof spec.cellHeight === 'number' ? spec.cellHeight : inferredCellH;
+        const leftColW = typeof spec.leftColumnWidth === 'number' ? spec.leftColumnWidth : inferredLeftColW;
+        const headerH = typeof spec.headerHeight === 'number' ? spec.headerHeight : inferredHeaderH;
 
         const tableW = leftColW + nIntervals * cellW;
-        const tableH = headerH + rows.length * cellH;
+        const tableH = headerH + rowCount * cellH;
+
+        return {
+            labels,
+            rows,
+            nIntervals,
+            cellW,
+            cellH,
+            leftColW,
+            headerH,
+            tableW,
+            tableH
+        };
+    }
+
+    function drawVariationTableFromData(board, spec, variable, data) {
+        const layout = computeSignTableLayout(spec, variable, data);
+        const cellW = layout.cellW;
+        const cellH = layout.cellH;
+        const leftColW = layout.leftColW;
+        const headerH = layout.headerH;
+
+        const borderColor = typeof spec.borderColor === 'string' ? spec.borderColor : '#000000';
+        const borderWidth = typeof spec.borderWidth === 'number' ? spec.borderWidth : 1.2;
+        const innerLineWidth = typeof spec.innerLineWidth === 'number' ? spec.innerLineWidth : 1;
+        const textSize = typeof spec.textSize === 'number' ? spec.textSize : 20;
+
+        const labels = layout.labels;
+        const rows = layout.rows;
+        const nIntervals = layout.nIntervals;
+
+        const tableW = layout.tableW;
+        const tableH = layout.tableH;
 
         const x0 = 0;
         const y0 = 0;
@@ -2457,13 +2902,26 @@ def derivative_expr(expr_s, var):
         function txt(x, y, content, opts) {
             const size = (opts && opts.size) || textSize;
             const anchor = (opts && opts.anchor) || 'middle';
-            board.create('text', [x, y, content], {
+            const raw = String(content === null || content === undefined ? '' : content).trim();
+
+            let display = raw;
+            const hasMathDelimiters = /\\\(|\\\[|\$/.test(raw);
+            const keepPlain = /^[A-Za-z]\.$/.test(raw) || (/\s/.test(raw) && !/[\\^_{}]/.test(raw));
+
+            if (!hasMathDelimiters && raw && !keepPlain) {
+                display = raw.replace(/∞/g, '\\infty');
+                display = `\\(${display}\\)`;
+            }
+
+            board.create('text', [x, y, display], {
                 fontSize: size,
                 fixed: true,
                 highlight: false,
                 anchorX: anchor,
                 anchorY: 'middle',
-                strokeColor: '#000000'
+                strokeColor: '#000000',
+                useMathJax: true,
+                cssStyle: 'font-family: Times New Roman; font-weight: normal;'
             });
         }
 
@@ -2488,14 +2946,16 @@ def derivative_expr(expr_s, var):
         line(x0 + leftColW, y0, x0 + leftColW, y0 - tableH, borderWidth);
         line(x0, y0 - headerH, x0 + tableW, y0 - headerH, borderWidth);
 
-        for (let i = 0; i <= nIntervals; i++) {
-            const lx = x0 + leftColW + i * cellW;
-            line(lx, y0, lx, y0 - tableH, i === 0 || i === nIntervals ? borderWidth : 1);
+        if (bool(spec.showColumnGuides, false)) {
+            for (let i = 1; i < nIntervals; i++) {
+                const lx = x0 + leftColW + i * cellW;
+                line(lx, y0, lx, y0 - tableH, innerLineWidth);
+            }
         }
 
         for (let r = 0; r < rows.length; r++) {
             const ly = y0 - headerH - (r + 1) * cellH;
-            line(x0, ly, x0 + tableW, ly, r === rows.length - 1 ? borderWidth : 1);
+            line(x0, ly, x0 + tableW, ly, r === rows.length - 1 ? borderWidth : innerLineWidth);
         }
 
         if (Array.isArray(data.forbiddenIdx)) {
@@ -2512,6 +2972,12 @@ def derivative_expr(expr_s, var):
                 const xB = x0 + leftColW + j * cellW;
                 line(xB, y0, xB, y0 - tableH, 2);
             }
+        }
+
+        if (bool(spec.autoFit, true) && typeof board.setBoundingBox === 'function') {
+            const padX = typeof spec.bboxPadX === 'number' ? spec.bboxPadX : Math.max(0.06, cellW * 0.1);
+            const padY = typeof spec.bboxPadY === 'number' ? spec.bboxPadY : Math.max(0.05, cellH * 0.1);
+            board.setBoundingBox([x0 - padX, y0 + padY, x0 + tableW + padX, y0 - tableH - padY], false);
         }
 
         txt(x0 + leftColW / 2, y0 - headerH / 2, variable, { size: textSize + 2 });
@@ -2612,11 +3078,10 @@ def derivative_expr(expr_s, var):
     async function presetSignTable(board, spec) {
         const variable = typeof spec.variable === 'string' ? spec.variable : 'x';
         const autoMode = bool(spec.auto, false);
-        const allowAutoVariation = bool(spec.allowAutoVariation, false);
-        const expressions = Array.isArray(spec.expressions) ? spec.expressions : [];
+        const allowAutoVariation = bool(spec.autoAllowVariation, false);
+        const expressions = Array.isArray(spec.expressions) ? Array.from(spec.expressions) : [];
         const intervalMin = typeof spec.intervalMin === 'number' ? spec.intervalMin : -Infinity;
         const intervalMax = typeof spec.intervalMax === 'number' ? spec.intervalMax : Infinity;
-
         const kind = typeof spec.kind === 'string' ? spec.kind : '';
 
         if (autoMode && kind === 'variation' && allowAutoVariation) {
@@ -2624,9 +3089,9 @@ def derivative_expr(expr_s, var):
         }
 
         if (kind === 'variation') {
-            const manual = buildVariationManualDataFromTkz(spec, variable);
-            if (manual) {
-                return drawVariationTableFromData(board, spec, variable, manual);
+            const manualVarData = buildVariationManualDataFromTkz(spec, variable);
+            if (manualVarData) {
+                return drawVariationTableFromData(board, spec, variable, manualVarData);
             }
         }
 
@@ -2634,150 +3099,12 @@ def derivative_expr(expr_s, var):
             return await presetSignTableAuto(board, spec, variable, expressions, intervalMin, intervalMax);
         }
 
-        let intervals = Array.isArray(spec.intervals) ? spec.intervals : [];
-        let rows = Array.isArray(spec.rows) ? spec.rows : [];
-
-        const cellW = typeof spec.cellWidth === 'number' ? spec.cellWidth : 1.2;
-        const cellH = typeof spec.cellHeight === 'number' ? spec.cellHeight : 0.8;
-        const leftColW = typeof spec.leftColumnWidth === 'number' ? spec.leftColumnWidth : 1.8;
-        const headerH = typeof spec.headerHeight === 'number' ? spec.headerHeight : 0.9;
-
-        const borderColor = typeof spec.borderColor === 'string' ? spec.borderColor : '#000000';
-        const borderWidth = typeof spec.borderWidth === 'number' ? spec.borderWidth : 2;
-        const textSize = typeof spec.textSize === 'number' ? spec.textSize : 16;
-
-        const numCols = intervals.length;
-        const numRows = rows.length;
-
-        const tableW = leftColW + numCols * cellW;
-        const tableH = headerH + numRows * cellH;
-
-        const x0 = 0;
-        const y0 = 0;
-
-        function line(x1, y1, x2, y2, w) {
-            const A = board.create('point', [x1, y1], { visible: false, fixed: true });
-            const B = board.create('point', [x2, y2], { visible: false, fixed: true });
-            board.create('segment', [A, B], { strokeColor: borderColor, strokeWidth: w || borderWidth, highlight: false, fixed: true });
+        const manualSignData = buildSignTableManualData(spec, variable);
+        if (manualSignData) {
+            return drawVariationTableFromData(board, spec, variable, manualSignData);
         }
 
-        function txt(x, y, content, opts) {
-            const size = (opts && opts.size) || textSize;
-            const anchor = (opts && opts.anchor) || 'middle';
-            board.create('text', [x, y, content], {
-                fontSize: size,
-                fixed: true,
-                highlight: false,
-                anchorX: anchor,
-                anchorY: 'middle',
-                strokeColor: '#000000'
-            });
-        }
-
-        line(x0, y0, x0 + tableW, y0, borderWidth);
-        line(x0, y0, x0, y0 - tableH, borderWidth);
-        line(x0 + tableW, y0, x0 + tableW, y0 - tableH, borderWidth);
-        line(x0, y0 - tableH, x0 + tableW, y0 - tableH, borderWidth);
-
-        line(x0 + leftColW, y0, x0 + leftColW, y0 - tableH, borderWidth);
-        line(x0, y0 - headerH, x0 + tableW, y0 - headerH, borderWidth);
-
-        txt(x0 + leftColW / 2, y0 - headerH / 2, variable, { size: textSize + 2 });
-
-        for (let i = 0; i < numCols; i++) {
-            const cx = x0 + leftColW + (i + 0.5) * cellW;
-            const cy = y0 - headerH / 2;
-            const int = intervals[i];
-            let label = '';
-            if (typeof int === 'string') {
-                label = int;
-            } else if (typeof int === 'object' && int.label) {
-                label = int.label;
-            }
-            txt(cx, cy, label, { size: textSize });
-
-            if (i < numCols - 1) {
-                const lx = x0 + leftColW + (i + 1) * cellW;
-                line(lx, y0, lx, y0 - tableH, 1);
-            }
-        }
-
-        for (let r = 0; r < numRows; r++) {
-            const row = rows[r];
-            const rowY = y0 - headerH - (r + 0.5) * cellH;
-            const leftLabel = typeof row.label === 'string' ? row.label : (typeof row === 'string' ? row : '');
-            txt(x0 + leftColW / 2, rowY, leftLabel, { size: textSize });
-
-            const cells = Array.isArray(row.cells) ? row.cells : (Array.isArray(row) ? row : []);
-
-            for (let c = 0; c < numCols && c < cells.length; c++) {
-                const cell = cells[c];
-                const cx = x0 + leftColW + (c + 0.5) * cellW;
-                const cy = rowY;
-
-                if (typeof cell === 'string') {
-                    if (cell === '||') {
-                        line(cx - 0.05, cy - cellH * 0.3, cx - 0.05, cy + cellH * 0.3, 2);
-                        line(cx + 0.05, cy - cellH * 0.3, cx + 0.05, cy + cellH * 0.3, 2);
-                    } else if (cell === '↗' || cell === 'up') {
-                        const ax = cx - cellW * 0.25;
-                        const ay = cy - cellH * 0.2;
-                        const bx = cx + cellW * 0.25;
-                        const by = cy + cellH * 0.2;
-                        const A = board.create('point', [ax, ay], { visible: false, fixed: true });
-                        const B = board.create('point', [bx, by], { visible: false, fixed: true });
-                        board.create('arrow', [A, B], { strokeColor: borderColor, strokeWidth: 2, highlight: false, fixed: true });
-                    } else if (cell === '↘' || cell === 'down') {
-                        const ax = cx - cellW * 0.25;
-                        const ay = cy + cellH * 0.2;
-                        const bx = cx + cellW * 0.25;
-                        const by = cy - cellH * 0.2;
-                        const A = board.create('point', [ax, ay], { visible: false, fixed: true });
-                        const B = board.create('point', [bx, by], { visible: false, fixed: true });
-                        board.create('arrow', [A, B], { strokeColor: borderColor, strokeWidth: 2, highlight: false, fixed: true });
-                    } else {
-                        txt(cx, cy, cell, { size: textSize });
-                    }
-                } else if (typeof cell === 'object') {
-                    const content = cell.value || cell.text || '';
-                    if (content === '||') {
-                        line(cx - 0.05, cy - cellH * 0.3, cx - 0.05, cy + cellH * 0.3, 2);
-                        line(cx + 0.05, cy - cellH * 0.3, cx + 0.05, cy + cellH * 0.3, 2);
-                    } else if (content === '↗' || content === 'up') {
-                        const ax = cx - cellW * 0.25;
-                        const ay = cy - cellH * 0.2;
-                        const bx = cx + cellW * 0.25;
-                        const by = cy + cellH * 0.2;
-                        const A = board.create('point', [ax, ay], { visible: false, fixed: true });
-                        const B = board.create('point', [bx, by], { visible: false, fixed: true });
-                        board.create('arrow', [A, B], { strokeColor: borderColor, strokeWidth: 2, highlight: false, fixed: true });
-                    } else if (content === '↘' || content === 'down') {
-                        const ax = cx - cellW * 0.25;
-                        const ay = cy + cellH * 0.2;
-                        const bx = cx + cellW * 0.25;
-                        const by = cy - cellH * 0.2;
-                        const A = board.create('point', [ax, ay], { visible: false, fixed: true });
-                        const B = board.create('point', [bx, by], { visible: false, fixed: true });
-                        board.create('arrow', [A, B], { strokeColor: borderColor, strokeWidth: 2, highlight: false, fixed: true });
-                    } else {
-                        txt(cx, cy, content, { size: textSize });
-                    }
-                    if (cell.topLabel) {
-                        txt(cx, cy + cellH * 0.35, cell.topLabel, { size: textSize - 3 });
-                    }
-                    if (cell.bottomLabel) {
-                        txt(cx, cy - cellH * 0.35, cell.bottomLabel, { size: textSize - 3 });
-                    }
-                }
-            }
-
-            if (r < numRows - 1) {
-                const ly = y0 - headerH - (r + 1) * cellH;
-                line(x0, ly, x0 + tableW, ly, 1);
-            }
-        }
-
-        return { tableW, tableH };
+        return null;
     }
 
     async function computeVariationTableAutoDataSympy(fExpr, derivativeFactors, variable, intervalMin, intervalMax, forbiddenValues, showDerivativeFactors, derivativeLabel, functionLabel) {
@@ -3959,7 +4286,9 @@ def derivative_expr(expr_s, var):
     async function applyPreset(board, spec, opts) {
         const preset = spec.preset || 'axes';
 
-        if (bool(spec.axes, true)) {
+        const shouldDefaultAxes = !(preset === 'roadParabolaDrainage' || preset === 'roadParabola');
+
+        if (bool(spec.axes, shouldDefaultAxes)) {
             presetAxes(board, spec);
         }
 
@@ -3970,6 +4299,7 @@ def derivative_expr(expr_s, var):
         if (preset === 'axes') return;
         if (preset === 'parabola') return presetParabola(board, spec);
         if (preset === 'function') return presetFunction(board, spec);
+        if (preset === 'quadraticCompareAB') return presetQuadraticCompareAB(board, spec);
         if (preset === 'line') return presetLine(board, spec);
         if (preset === 'triangle') return presetTriangle(board, spec);
         if (preset === 'circle') return presetCircle(board, spec);
@@ -3979,6 +4309,7 @@ def derivative_expr(expr_s, var):
         if (preset === 'windVectors') return presetWindVectors(board, spec);
         if (preset === 'riverCrossing') return presetRiverCrossing(board, spec);
         if (preset === 'iceCreamCone') return presetIceCreamCone(board, spec);
+        if (preset === 'roadParabolaDrainage' || preset === 'roadParabola') return presetRoadParabolaDrainage(board, spec);
         if (preset === 'inequalityRegion') return presetInequalityRegion(board, spec);
         if (preset === 'signTable') return await presetSignTable(board, spec);
         if (preset === 'scene') return presetScene(board, spec);
@@ -4014,6 +4345,10 @@ def derivative_expr(expr_s, var):
             mode = 'static';
         }
         const bb = getBBox(spec);
+        const variable = typeof spec.variable === 'string' ? spec.variable : 'x';
+        const isSignTable = spec.preset === 'signTable';
+        const signDataForSize = isSignTable ? buildSignTableManualData(spec, variable) : null;
+        const signLayoutForSize = signDataForSize ? computeSignTableLayout(spec, variable, signDataForSize) : null;
 
         await ensureJsxGraph();
 
@@ -4021,8 +4356,18 @@ def derivative_expr(expr_s, var):
         const id = el.id || `jxgbox_${state.counter}`;
         el.id = id;
 
-        el.style.width = typeof spec.width === 'number' ? `${spec.width}px` : (spec.width || '100%');
-        el.style.height = typeof spec.height === 'number' ? `${spec.height}px` : (spec.height || '260px');
+        if (isSignTable && bool(spec.autoSize, true) && signLayoutForSize) {
+            const pxPerUnit = typeof spec.pxPerUnit === 'number' ? spec.pxPerUnit : 76;
+            const padX = typeof spec.pixelPadX === 'number' ? spec.pixelPadX : 18;
+            const padY = typeof spec.pixelPadY === 'number' ? spec.pixelPadY : 14;
+            const autoW = Math.max(320, Math.round(signLayoutForSize.tableW * pxPerUnit + padX * 2));
+            const autoH = Math.max(120, Math.round(signLayoutForSize.tableH * pxPerUnit + padY * 2));
+            el.style.width = `${autoW}px`;
+            el.style.height = `${autoH}px`;
+        } else {
+            el.style.width = typeof spec.width === 'number' ? `${spec.width}px` : (spec.width || '100%');
+            el.style.height = typeof spec.height === 'number' ? `${spec.height}px` : (spec.height || '260px');
+        }
         el.style.maxWidth = el.style.maxWidth || '100%';
         el.style.margin = el.style.margin || '10px auto';
         el.style.border = el.style.border || '1px solid #e2e8f0';
@@ -4078,6 +4423,13 @@ def derivative_expr(expr_s, var):
             } catch (e) {
                 console.warn('[Diagrams] Failed to render diagram', e);
             }
+        }
+
+        if (window.MathJax && MathJax.typesetPromise) {
+            try {
+                const target = r === document ? document.body : r;
+                await MathJax.typesetPromise([target]);
+            } catch (_) { }
         }
     }
 

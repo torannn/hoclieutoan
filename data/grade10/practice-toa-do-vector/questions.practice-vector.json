@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "id": "g10_practice_toa_do_vector_v1",
+    "title": "On tap: Phuong phap toa do trong vector",
+    "grade": "10",
+    "topic": "Vector va phuong phap toa do",
+    "version": "1.0"
+  },
+  "settings": {
+    "shuffle": false,
+    "showProgress": true
+  },
+  "questions": [
+    {
+      "id": "pv_001",
+      "type": "mc",
+      "stem": "Trong mat phang Oxy, cho A(1,2), B(5,6). Toa do vectơ AB la:",
+      "options": [
+        "(4, 4)",
+        "(-4, -4)",
+        "(6, 8)",
+        "(4, -4)"
+      ],
+      "answer": 0,
+      "hint": "Dung cong thuc AB = (xB - xA, yB - yA).",
+      "solution": "AB = (5 - 1, 6 - 2) = (4, 4)."
+    },
+    {
+      "id": "pv_002",
+      "type": "tf",
+      "stem": "Cho u = (2, -1), v = (-3, 4). Xac dinh Dung (D) / Sai (S):",
+      "statements": [
+        "u + v = (-1, 3)",
+        "2u = (4, -2)",
+        "u . v = -10",
+        "|u| = sqrt(5)"
+      ],
+      "answer": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "hint": "Nho cong thuc tich vo huong: u.v = x1*x2 + y1*y2.",
+      "solution": "(1) D: (2 + -3, -1 + 4) = (-1, 3). (2) D. (3) D: 2*(-3) + (-1)*4 = -10. (4) D: |u| = sqrt(2^2 + (-1)^2)=sqrt(5)."
+    },
+    {
+      "id": "pv_003",
+      "type": "sa",
+      "stem": "Cho A(2,-1), B(8,5). Trung diem M cua AB co hoanh do bang bao nhieu?",
+      "answer": 5,
+      "tolerance": 0,
+      "hint": "Hoanh do trung diem: xM = (xA + xB)/2.",
+      "solution": "xM = (2 + 8)/2 = 5."
+    },
+    {
+      "id": "pv_004",
+      "type": "mc",
+      "stem": "Cho hai vectơ u = (1,2), v = (m,4). Dieu kien de u vuong goc v la:",
+      "options": [
+        "m = -8",
+        "m = 8",
+        "m = -2",
+        "m = 2"
+      ],
+      "answer": 0,
+      "hint": "Hai vectơ vuong goc khi tich vo huong bang 0.",
+      "solution": "u.v = 1*m + 2*4 = m + 8 = 0 => m = -8."
+    },
+    {
+      "id": "pv_005",
+      "type": "sa",
+      "stem": "Cho A(1,3), B(4,7). Do dai AB bang can bac hai cua so nao? (nhap so trong can)",
+      "answer": 25,
+      "tolerance": 0,
+      "hint": "AB = sqrt((xB-xA)^2 + (yB-yA)^2).",
+      "solution": "AB = sqrt((4-1)^2 + (7-3)^2) = sqrt(9 + 16) = sqrt(25)."
+    },
+    {
+      "id": "pv_006",
+      "type": "tf",
+      "stem": "Cho A(-2,1), B(3,-4). Danh gia cac menh de sau:",
+      "statements": [
+        "Vectơ AB = (5, -5)",
+        "Vectơ BA = (-5, 5)",
+        "AB va BA cung huong",
+        "AB = -BA"
+      ],
+      "answer": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "hint": "BA = -AB. Hai vectơ doi nhau thi nguoc huong.",
+      "solution": "(1) D. (2) D. (3) S vi AB va BA nguoc huong. (4) D."
+    },
+    {
+      "id": "pv_007",
+      "type": "essay",
+      "stem": "Trong mat phang Oxy, cho A(1,2), B(5,4), C(3,8). Viet phuong phap toa do de kiem tra tam giac ABC co vuong tai A hay khong.",
+      "hint": "Tinh AB, AC roi dung tich vo huong AB.AC.",
+      "reference_solution": "Ta co AB = (5-1, 4-2) = (4,2), AC = (3-1, 8-2) = (2,6).\nAB.AC = 4*2 + 2*6 = 20 != 0.\nVay tam giac ABC KHONG vuong tai A.\nNeu muon kiem tra vuong tai A, can AB.AC = 0.",
+      "solution": "Cach lam: lap vectơ AB, AC -> tinh tich vo huong -> ket luan."
+    },
+    {
+      "id": "pv_008",
+      "type": "mc",
+      "stem": "Cho u = (3, -2), v = (1, 4). Toa do vectơ 2u - v la:",
+      "options": [
+        "(5, -8)",
+        "(6, -4)",
+        "(7, 0)",
+        "(5, -4)"
+      ],
+      "answer": 0,
+      "hint": "Tinh 2u truoc, sau do tru v theo tung toa do.",
+      "solution": "2u = (6,-4). 2u-v = (6-1, -4-4) = (5,-8)."
+    }
+  ]
+}

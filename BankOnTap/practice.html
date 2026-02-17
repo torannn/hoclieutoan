@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bài tập Tết du xuân 🧧</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/tex-gyre-pagella" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="../assets/js/mathjax-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <script src="../assets/js/app-config.js"></script>
+  <script src="../assets/js/firebase-utils.js" defer></script>
+  <script src="../assets/js/auth.js" defer></script>
+  <script src="../assets/js/data.js" defer></script>
+  <script src="../assets/js/diagrams.js" defer></script>
+  <link rel="stylesheet" href="../assets/css/features.css" />
+  <script src="../assets/js/features.js" defer></script>
+  <style>
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(1000px 600px at 5% 10%, #dbeafe, #eef2ff 45%, #f8fafc 80%);
+      color: #0f172a;
+    }
+    .font-pagella { font-family: 'TeX Gyre Pagella', 'Palatino Linotype', 'Book Antiqua', Palatino, serif; }
+    .option-letter { font-weight: 700 !important; color: #15803d; margin-right: 2px; }
+    .question-container { contain: content; }
+    .student-answer {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+    }
+    .student-answer.correct { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-color: #86efac; }
+    .student-answer.wrong { background: linear-gradient(135deg, #fef2f2, #fee2e2); border-color: #fca5a5; }
+    .student-answer.neutral { background: #f8fafc; border-color: #cbd5e1; }
+    .progress-rail { background: #e2e8f0; border-radius: 999px; overflow: hidden; height: 8px; }
+    .progress-fill { background: linear-gradient(90deg, #2563eb, #7c3aed); height: 100%; transition: width .25s ease; }
+    .btn-disabled { opacity: .45; cursor: not-allowed; pointer-events: none; }
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scaleIn { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes bounceIn { 0% { transform: scale(.3); opacity: 0; } 50% { transform: scale(1.05); } 70% { transform: scale(.95); } 100% { transform: scale(1); opacity: 1; } }
+    .anim-fade-up { animation: fadeSlideUp .5s ease-out both; }
+    .anim-scale { animation: scaleIn .6s cubic-bezier(.34,1.56,.64,1) both; }
+    .anim-bounce { animation: bounceIn .7s cubic-bezier(.34,1.56,.64,1) both; }
+    .anim-delay-1 { animation-delay: .15s; }
+    .anim-delay-2 { animation-delay: .3s; }
+    .anim-delay-3 { animation-delay: .45s; }
+  </style>
+</head>
+<body class="p-4 md:p-7">
+  <main class="max-w-5xl mx-auto">
+    <header class="rounded-2xl border border-slate-200 bg-white/90 backdrop-blur p-5 shadow-sm">
+      <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div>
+          <h1 id="topicTitle" class="text-2xl md:text-3xl font-extrabold text-slate-900">Đang tải chủ đề...</h1>
+          <p id="topicSubtitle" class="mt-1 text-slate-600"></p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <a href="./index.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700">
+            <i class="fa-solid fa-layer-group"></i> Danh sách chủ đề
+          </a>
+          <a href="../index.html#/classes" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700">
+            <i class="fa-solid fa-house"></i> Trang chính
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <label class="block text-sm">
+          <span class="text-slate-600">Nguồn câu hỏi</span>
+          <select id="sourceSelect" class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2"></select>
+        </label>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+          <div class="text-xs text-slate-500">Đã ôn (toàn bộ lịch sử)</div>
+          <div id="historyProgress" class="font-bold text-slate-800">0/0 câu</div>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+          <div class="text-xs text-slate-500">Độ chính xác (toàn bộ lịch sử)</div>
+          <div id="historyAccuracy" class="font-bold text-slate-800">0%</div>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <div class="flex items-center justify-between text-sm mb-1">
+          <span class="font-medium text-slate-700">Tiến độ phiên hiện tại</span>
+          <span id="sessionProgressText" class="text-slate-500">0/0</span>
+        </div>
+        <div class="progress-rail"><div id="sessionProgressFill" class="progress-fill" style="width:0%"></div></div>
+      </div>
+    </header>
+
+    <section id="practiceCard" class="question-container mt-5 rounded-2xl border border-slate-200 bg-white p-5 md:p-6 shadow-sm hover:shadow-md transition">
+      <div class="flex items-center gap-2 mb-3">
+        <span id="questionNo" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-semibold">1</span>
+        <span id="questionType" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700">MC</span>
+      </div>
+
+      <div id="questionStem" class="font-pagella text-slate-800 text-base md:text-lg leading-relaxed"></div>
+      <div id="answerArea" class="mt-4 font-pagella"></div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <button id="prevBtn" class="px-4 py-2 rounded-lg bg-slate-600 text-white hover:bg-slate-700">Câu trước</button>
+        <button id="nextBtn" class="px-4 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700">Câu tiếp theo</button>
+        <button id="checkBtn" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Kiểm tra</button>
+        <button id="solutionBtn" class="px-4 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 hidden">Xem lời giải</button>
+        <button id="askAiBtn" class="px-4 py-2 rounded-lg bg-amber-500 text-white hover:bg-amber-600">Hỏi AI</button>
+      </div>
+
+      <div id="feedback" class="hidden student-answer"></div>
+      <div id="solutionPanel" class="hidden mt-3 rounded-lg border border-violet-200 bg-violet-50 p-4 text-slate-800"></div>
+    </section>
+
+    <section id="summaryCard" class="hidden mt-5 rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-lg">
+      <div id="summaryHeader" class="relative p-6 md:p-8 text-center text-white" style="background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 50%,#ec4899 100%)">
+        <div id="celebrationEmoji" class="text-5xl mb-2 anim-bounce">🎉</div>
+        <h2 id="summaryTitle" class="text-2xl md:text-3xl font-extrabold anim-fade-up anim-delay-1">Hoàn thành xuất sắc!</h2>
+        <p id="summarySubtitle" class="mt-1 text-white/80 text-sm anim-fade-up anim-delay-2">Bạn đã hoàn thành lượt ôn tập</p>
+      </div>
+      <div class="flex justify-center -mt-10 relative z-10">
+        <div class="relative w-24 h-24 rounded-full bg-white shadow-lg flex items-center justify-center border-4 border-white anim-scale anim-delay-2">
+          <svg class="absolute inset-0" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="none" stroke="#e2e8f0" stroke-width="8"/>
+            <circle id="scoreArc" cx="50" cy="50" r="42" fill="none" stroke="url(#scoreGrad)" stroke-width="8" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)" style="transition:stroke-dashoffset 1.2s ease-out"/>
+            <defs><linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs>
+          </svg>
+          <span id="scorePercent" class="text-2xl font-extrabold text-slate-800 z-10">0%</span>
+        </div>
+      </div>
+      <div class="p-5 md:p-6">
+        <div class="grid grid-cols-3 gap-3 mb-4 anim-fade-up anim-delay-3">
+          <div class="rounded-xl bg-emerald-50 border border-emerald-200 p-3 text-center">
+            <div class="text-2xl font-bold text-emerald-600" id="statCorrect">0</div>
+            <div class="text-xs text-emerald-700">Câu đúng</div>
+          </div>
+          <div class="rounded-xl bg-rose-50 border border-rose-200 p-3 text-center">
+            <div class="text-2xl font-bold text-rose-600" id="statWrong">0</div>
+            <div class="text-xs text-rose-700">Câu sai</div>
+          </div>
+          <div class="rounded-xl bg-blue-50 border border-blue-200 p-3 text-center">
+            <div class="text-2xl font-bold text-blue-600" id="statTotal">0</div>
+            <div class="text-xs text-blue-700">Tổng câu</div>
+          </div>
+        </div>
+        <div id="summaryWrong" class="hidden mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3">
+          <div class="flex items-center gap-2 text-amber-800 font-semibold text-sm mb-1"><i class="fa-solid fa-triangle-exclamation"></i> Câu cần ôn lại</div>
+          <p id="wrongList" class="text-amber-700 text-sm"></p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button id="restartBtn" class="flex-1 px-4 py-2.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-medium"><i class="fa-solid fa-rotate-right mr-1"></i> Làm lại</button>
+          <button id="reviewWrongBtn" class="hidden flex-1 px-4 py-2.5 rounded-lg bg-rose-600 text-white hover:bg-rose-700 font-medium"><i class="fa-solid fa-book-open mr-1"></i> Ôn câu sai</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const MANIFEST_URLS = ['./sections/sections-manifest.json', './topics-manifest.json'];
+
+    const state = {
+      manifest: null,
+      topic: null,
+      source: null,
+      items: [],
+      queue: [],
+      index: 0,
+      checked: false,
+      sessionChecked: 0,
+      sessionCorrect: 0,
+      wrongSet: new Set(),
+      mode: 'all',
+      progressKey: 'bankOnTapProgressV1',
+      progress: { version: 1, topics: {} },
+      answersMap: {},
+      sessionKey: '',
+      responses: {},
+      checkResults: {},
+      attemptStartedAt: 0,
+      attemptSaved: false
+    };
+
+    const els = {
+      topicTitle: document.getElementById('topicTitle'),
+      topicSubtitle: document.getElementById('topicSubtitle'),
+      sourceSelect: document.getElementById('sourceSelect'),
+      historyProgress: document.getElementById('historyProgress'),
+      historyAccuracy: document.getElementById('historyAccuracy'),
+      sessionProgressText: document.getElementById('sessionProgressText'),
+      sessionProgressFill: document.getElementById('sessionProgressFill'),
+      practiceCard: document.getElementById('practiceCard'),
+      summaryCard: document.getElementById('summaryCard'),
+      questionNo: document.getElementById('questionNo'),
+      questionType: document.getElementById('questionType'),
+      questionStem: document.getElementById('questionStem'),
+      answerArea: document.getElementById('answerArea'),
+      prevBtn: document.getElementById('prevBtn'),
+      checkBtn: document.getElementById('checkBtn'),
+      solutionBtn: document.getElementById('solutionBtn'),
+      nextBtn: document.getElementById('nextBtn'),
+      askAiBtn: document.getElementById('askAiBtn'),
+      feedback: document.getElementById('feedback'),
+      solutionPanel: document.getElementById('solutionPanel'),
+      summaryText: document.getElementById('summaryText'),
+      summaryWrong: document.getElementById('summaryWrong'),
+      restartBtn: document.getElementById('restartBtn'),
+      reviewWrongBtn: document.getElementById('reviewWrongBtn')
+    };
+
+    function parseLocaleNumber(value) {
+      const raw = String(value ?? '').trim();
+      if (!raw) return NaN;
+      const normalized = raw.replace(/\s+/g, '').replace(/,/g, '.');
+      if (!/^[+-]?(\d+(\.\d+)?|\.\d+)$/.test(normalized)) return NaN;
+      const n = Number(normalized);
+      return Number.isFinite(n) ? n : NaN;
+    }
+
+    function stripHtml(html) {
+      const div = document.createElement('div');
+      div.innerHTML = String(html || '');
+      return (div.textContent || div.innerText || '').trim();
+    }
+
+    function escapeHtml(s) {
+      return String(s || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function formatTextAsHtml(s) {
+      return escapeHtml(s)
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br/>');
+    }
+
+    function qp(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name) || '';
+    }
+
+    function readProgress() {
+      try {
+        const raw = localStorage.getItem(state.progressKey);
+        if (!raw) return { version: 1, topics: {} };
+        const parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed !== 'object') return { version: 1, topics: {} };
+        if (!parsed.topics || typeof parsed.topics !== 'object') parsed.topics = {};
+        return parsed;
+      } catch (_) {
+        return { version: 1, topics: {} };
+      }
+    }
+
+    function normalizeTopics(manifest) {
+      if (manifest && Array.isArray(manifest.topics)) {
+        return manifest.topics;
+      }
+      if (manifest && Array.isArray(manifest.sections)) {
+        return manifest.sections.map((sec, idx) => ({
+          id: sec.key || `section_${idx + 1}`,
+          title: sec.title || `Section ${idx + 1}`,
+          subtitle: sec.subtitle || 'Bộ câu hỏi ôn tập',
+          description: `Luyện theo nhóm câu hỏi: ${sec.questionCount || 0} câu.`,
+          questionCount: Number(sec.questionCount || 0),
+          icon: idx % 2 === 0 ? 'fa-solid fa-book-open-reader' : 'fa-solid fa-shapes',
+          theme: {
+            gradient: idx % 2 === 0
+              ? 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)'
+              : 'linear-gradient(135deg, #0f766e 0%, #22c55e 100%)',
+            chipClass: idx % 2 === 0 ? 'bg-indigo-100 text-indigo-700' : 'bg-emerald-100 text-emerald-700'
+          },
+          activeSource: 'main',
+          sources: [
+            {
+              id: 'main',
+              label: 'Nguồn đã chia section',
+              path: sec.path,
+              recommended: true,
+              note: 'Đã tách theo section chính cho ôn tập.'
+            }
+          ]
+        }));
+      }
+      return [];
+    }
+
+    async function loadFirstAvailableManifest() {
+      let lastErr = null;
+      for (const url of MANIFEST_URLS) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (!res.ok) continue;
+          const parsed = await res.json();
+          return { manifest: parsed, url };
+        } catch (err) {
+          lastErr = err;
+        }
+      }
+      if (lastErr) throw lastErr;
+      throw new Error('Không tìm thấy manifest khả dụng cho BankOnTap.');
+    }
+
+    function parseTruthValue(v) {
+      if (v === true || v === false) return v;
+      const s = String(v ?? '').trim().toLowerCase();
+      if (!s) return null;
+      if (/^(đúng|dung|true|1)$/.test(s)) return true;
+      if (/^(sai|false|0)$/.test(s)) return false;
+      return null;
+    }
+
+    function saveProgress() {
+      try { localStorage.setItem(state.progressKey, JSON.stringify(state.progress)); } catch (_) {}
+    }
+
+    function computeItemsSignature(items) {
+      const list = Array.isArray(items) ? items : [];
+      return list.map((q) => String(q && q.id || '')).join('|');
+    }
+
+    function getSessionStorageKey() {
+      if (!state.topic || !state.source) return '';
+      const sig = computeItemsSignature(state.items);
+      return `bankOnTapSessionV3:${state.topic.id}:${state.source.id}:${sig.length}:${sig.slice(0, 64)}`;
+    }
+
+    function saveSessionState() {
+      if (!state.sessionKey) return;
+      const itemsSig = computeItemsSignature(state.items);
+      const payload = {
+        version: 3,
+        itemsSig,
+        mode: state.mode,
+        queue: state.queue,
+        index: state.index,
+        sessionChecked: state.sessionChecked,
+        sessionCorrect: state.sessionCorrect,
+        wrong: Array.from(state.wrongSet),
+        responses: state.responses,
+        checkResults: state.checkResults,
+        savedAt: Date.now()
+      };
+      try {
+        localStorage.setItem(state.sessionKey, JSON.stringify(payload));
+      } catch (_) {}
+    }
+
+    function restoreSessionState() {
+      if (!state.sessionKey) return false;
+      try {
+        const raw = localStorage.getItem(state.sessionKey);
+        if (!raw) return false;
+        const parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed !== 'object') return false;
+
+        const currentSig = computeItemsSignature(state.items);
+        if (typeof parsed.itemsSig !== 'string' || parsed.itemsSig !== currentSig) return false;
+
+        const validQueue = Array.isArray(parsed.queue)
+          ? parsed.queue.filter((i) => Number.isInteger(i) && i >= 0 && i < state.items.length)
+          : [];
+        if (!validQueue.length) return false;
+
+        state.mode = parsed.mode === 'wrong' ? 'wrong' : 'all';
+        state.queue = validQueue;
+        state.index = Number.isInteger(parsed.index) ? Math.min(Math.max(parsed.index, 0), validQueue.length - 1) : 0;
+        state.sessionChecked = Number.isFinite(parsed.sessionChecked) ? Math.max(0, parsed.sessionChecked) : 0;
+        state.sessionCorrect = Number.isFinite(parsed.sessionCorrect) ? Math.max(0, parsed.sessionCorrect) : 0;
+        state.wrongSet = new Set(Array.isArray(parsed.wrong)
+          ? parsed.wrong.filter((i) => Number.isInteger(i) && i >= 0 && i < state.items.length)
+          : []);
+        state.responses = (parsed.responses && typeof parsed.responses === 'object') ? parsed.responses : {};
+        state.checkResults = (parsed.checkResults && typeof parsed.checkResults === 'object') ? parsed.checkResults : {};
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    function keyOf(idx) {
+      return String(idx);
+    }
+
+    function getStoredResponse(globalIdx) {
+      return state.responses[keyOf(globalIdx)] || null;
+    }
+
+    function getCheckResult(globalIdx) {
+      return state.checkResults[keyOf(globalIdx)] || null;
+    }
+
+    function setCheckResult(globalIdx, value) {
+      const k = keyOf(globalIdx);
+      if (!value) {
+        delete state.checkResults[k];
+        return;
+      }
+      state.checkResults[k] = value;
+    }
+
+    function ensureTopicProgress(topicId) {
+      if (!state.progress.topics[topicId]) {
+        state.progress.topics[topicId] = { qStats: {}, updatedAt: Date.now() };
+      }
+      if (!state.progress.topics[topicId].qStats || typeof state.progress.topics[topicId].qStats !== 'object') {
+        state.progress.topics[topicId].qStats = {};
+      }
+      return state.progress.topics[topicId];
+    }
+
+    function normalizeQuestion(raw, idx) {
+      const type = raw.type;
+      if (type === 'multiple_choice') {
+        return {
+          id: raw.q_id || `q_${idx + 1}`,
+          type: 'mc',
+          stem: raw.stem || '',
+          options: Array.isArray(raw.options) ? raw.options : [],
+          answer: (typeof raw.correct_index === 'number') ? raw.correct_index : null,
+          autoCheck: typeof raw.correct_index === 'number',
+          sourceType: 'multiple_choice'
+        };
+      }
+      if (type === 'true_false') {
+        const tfParts = Array.isArray(raw.tf_parts)
+          ? raw.tf_parts
+              .map((p, idx) => ({
+                statement: (typeof p === 'string') ? p : (p && p.statement) ? p.statement : '',
+                answer: parseTruthValue((p && typeof p === 'object') ? p.answer : null),
+                idx
+              }))
+              .filter((p) => p.statement)
+          : [];
+        if (tfParts.length) {
+          const answers = tfParts.map((p) => p.answer);
+          const autoCheck = answers.length > 0 && answers.every((v) => typeof v === 'boolean');
+          return {
+            id: raw.q_id || `q_${idx + 1}`,
+            type: 'tf',
+            stem: raw.stem || '',
+            statements: tfParts.map((p) => p.statement),
+            answers,
+            autoCheck,
+            sourceType: 'true_false_parts'
+          };
+        }
+
+        const options = Array.isArray(raw.options) ? raw.options : [];
+        const normalizedOptions = options.map((o) => String(o ?? '').trim()).filter(Boolean);
+        const isBinaryTrueFalse =
+          normalizedOptions.length === 2
+          && normalizedOptions.some((o) => /^đúng$/i.test(o))
+          && normalizedOptions.some((o) => /^sai$/i.test(o));
+
+        if (isBinaryTrueFalse) {
+          return {
+            id: raw.q_id || `q_${idx + 1}`,
+            type: 'mc',
+            stem: raw.stem || '',
+            options: normalizedOptions,
+            answer: (typeof raw.correct_index === 'number') ? raw.correct_index : null,
+            autoCheck: typeof raw.correct_index === 'number',
+            sourceType: 'true_false_choice'
+          };
+        }
+
+        if (normalizedOptions.length > 0) {
+          return {
+            id: raw.q_id || `q_${idx + 1}`,
+            type: 'tf',
+            stem: raw.stem || '',
+            statements: normalizedOptions,
+            answers: [],
+            autoCheck: false,
+            sourceType: 'true_false_statements_options'
+          };
+        }
+
+        return {
+          id: raw.q_id || `q_${idx + 1}`,
+          type: 'tf',
+          stem: raw.stem || '',
+          statements: Array.isArray(raw.tf_parts) ? raw.tf_parts.map(p => p.statement || '').filter(Boolean) : [],
+          answers: [],
+          autoCheck: false,
+          sourceType: 'true_false'
+        };
+      }
+      if (type === 'short_answer') {
+        const v = raw.final_answer;
+        const normalized = (v === null || v === undefined) ? '' : String(v).trim();
+        const parsed = (typeof v === 'number') ? v : (normalized ? parseLocaleNumber(normalized) : NaN);
+        const numeric = Number.isFinite(parsed) ? parsed : null;
+        return {
+          id: raw.q_id || `q_${idx + 1}`,
+          type: 'sa',
+          stem: raw.stem || '',
+          answer: numeric,
+          autoCheck: typeof numeric === 'number',
+          sourceType: 'short_answer'
+        };
+      }
+      return null;
+    }
+
+    function badgeText(type) {
+      if (type === 'mc') return 'MC';
+      if (type === 'tf') return 'Đ/S';
+      if (type === 'sa') return 'SA';
+      return 'KHÁC';
+    }
+
+    function currentItem() {
+      const idx = state.queue[state.index];
+      return Number.isInteger(idx) ? state.items[idx] : null;
+    }
+
+    function letterFromIndex(i) {
+      return String.fromCharCode(65 + Number(i || 0));
+    }
+
+    function tfLabel(v) {
+      return v ? 'Đ' : 'S';
+    }
+
+    function buildSolutionHtml(q) {
+      const blocks = [];
+      const direct = (state.answersMap && typeof state.answersMap[q.id] === 'string')
+        ? String(state.answersMap[q.id]).trim()
+        : '';
+      if (direct) {
+        blocks.push(`<div class="font-pagella leading-relaxed">${formatTextAsHtml(direct)}</div>`);
+      }
+
+      if (q.type === 'tf') {
+        const partText = [];
+        const total = Array.isArray(q.statements) ? q.statements.length : 0;
+        for (let i = 0; i < total; i += 1) {
+          const key = `${q.id}_${String.fromCharCode(97 + i)}`;
+          const txt = (state.answersMap && typeof state.answersMap[key] === 'string')
+            ? String(state.answersMap[key]).trim()
+            : '';
+          if (txt) {
+            partText.push(`<li><span class="font-semibold">${String.fromCharCode(97 + i)})</span> ${formatTextAsHtml(txt)}</li>`);
+          }
+        }
+        if (partText.length) {
+          blocks.push(`<div><div class="font-semibold mb-1">Giải thích theo từng mệnh đề:</div><ul class="list-disc pl-6 space-y-1">${partText.join('')}</ul></div>`);
+        }
+
+        if (!direct && !partText.length && q.autoCheck && Array.isArray(q.answers) && q.answers.length) {
+          const expected = q.answers.map((v) => tfLabel(v)).join('-');
+          blocks.push(`<div>Đáp án tham chiếu (a,b,c,...): <span class="font-semibold">${expected}</span>.</div>`);
+        }
+      }
+
+      if (!direct && blocks.length === 0 && q.type === 'mc' && typeof q.answer === 'number') {
+        blocks.push(`<div>Đáp án đúng: <span class="font-semibold">${letterFromIndex(q.answer)}</span>.</div>`);
+      }
+      if (!direct && blocks.length === 0 && q.type === 'sa' && typeof q.answer === 'number') {
+        blocks.push(`<div>Kết quả tham chiếu: <span class="font-semibold">${q.answer}</span>.</div>`);
+      }
+
+      if (!blocks.length) {
+        blocks.push('<div class="text-slate-600">Hiện chưa có lời giải chi tiết cho câu này trong <code>answers.json</code>.</div>');
+      }
+
+      return `<div class="text-sm uppercase tracking-wide text-violet-700 font-semibold mb-2">Lời giải tham khảo</div>${blocks.join('<div class="mt-2"></div>')}`;
+    }
+
+    function toggleSolutionPanel(forceShow = null) {
+      const q = currentItem();
+      if (!q || !state.checked) return;
+      const shouldShow = (forceShow === null)
+        ? els.solutionPanel.classList.contains('hidden')
+        : Boolean(forceShow);
+
+      if (shouldShow) {
+        els.solutionPanel.innerHTML = buildSolutionHtml(q);
+        els.solutionPanel.classList.remove('hidden');
+        els.solutionBtn.textContent = 'Ẩn lời giải';
+        if (window.MathJax && MathJax.typesetPromise) {
+          MathJax.typesetPromise([els.solutionPanel]).catch(() => {});
+        }
+        if (window.Diagrams && typeof window.Diagrams.renderAll === 'function') {
+          window.Diagrams.renderAll(els.solutionPanel, { mode: 'static' }).catch(() => {});
+        }
+      } else {
+        els.solutionPanel.classList.add('hidden');
+        els.solutionBtn.textContent = 'Xem lời giải';
+      }
+    }
+
+    function setFeedback(kind, text) {
+      els.feedback.classList.remove('hidden', 'correct', 'wrong', 'neutral');
+      els.feedback.classList.add(kind || 'neutral');
+      els.feedback.textContent = text;
+    }
+
+    function updateHeaderProgress() {
+      const total = state.queue.length;
+      const checkedInQueue = state.queue.reduce((acc, globalIdx) => {
+        const r = getCheckResult(globalIdx);
+        return acc + (r && r.checked ? 1 : 0);
+      }, 0);
+      els.sessionProgressText.textContent = `${checkedInQueue}/${total} đã kiểm tra`;
+      const pct = total ? Math.round((checkedInQueue / total) * 100) : 0;
+      els.sessionProgressFill.style.width = `${pct}%`;
+    }
+
+    function updateNavButtons() {
+      els.prevBtn.classList.toggle('btn-disabled', state.index <= 0);
+      const isLast = state.index >= state.queue.length - 1;
+      els.nextBtn.textContent = isLast ? 'Xem tổng kết' : 'Câu tiếp theo';
+    }
+
+    function collectResponseFromDom(q) {
+      if (!q) return null;
+      if (q.type === 'mc') {
+        const checked = document.querySelector('input[name="mc_answer"]:checked');
+        return { type: 'mc', selected: checked ? Number(checked.value) : null };
+      }
+      if (q.type === 'tf') {
+        const total = Array.isArray(q.statements) ? q.statements.length : 0;
+        const selected = [];
+        for (let i = 0; i < total; i += 1) {
+          const picked = document.querySelector(`input[name="tf_${i}"]:checked`);
+          selected.push(picked ? (picked.value === 'true') : null);
+        }
+        return { type: 'tf', selected };
+      }
+      if (q.type === 'sa') {
+        return { type: 'sa', raw: (document.getElementById('sa_input')?.value || '').trim() };
+      }
+      return null;
+    }
+
+    function saveCurrentDraft() {
+      const q = currentItem();
+      if (!q) return;
+      const globalIdx = state.queue[state.index];
+      if (!Number.isInteger(globalIdx)) return;
+
+      const checkedResult = getCheckResult(globalIdx);
+      if (checkedResult && checkedResult.checked) return;
+
+      const resp = collectResponseFromDom(q);
+      if (!resp) return;
+      state.responses[keyOf(globalIdx)] = resp;
+      saveSessionState();
+    }
+
+    function prefillResponse(q, globalIdx) {
+      const resp = getStoredResponse(globalIdx);
+      if (!resp || !q) return;
+      if (q.type === 'mc' && resp.type === 'mc' && Number.isInteger(resp.selected)) {
+        const input = document.querySelector(`input[name="mc_answer"][value="${resp.selected}"]`);
+        if (input) input.checked = true;
+      }
+      if (q.type === 'tf' && resp.type === 'tf' && Array.isArray(resp.selected)) {
+        resp.selected.forEach((v, i) => {
+          if (typeof v !== 'boolean') return;
+          const input = document.querySelector(`input[name="tf_${i}"][value="${v ? 'true' : 'false'}"]`);
+          if (input) input.checked = true;
+        });
+      }
+      if (q.type === 'sa' && resp.type === 'sa' && typeof resp.raw === 'string') {
+        const input = document.getElementById('sa_input');
+        if (input) input.value = resp.raw;
+      }
+    }
+
+    function setAnswerInputsDisabled(disabled) {
+      Array.from(els.answerArea.querySelectorAll('input, textarea, select, button')).forEach((el) => {
+        if (el && el.id !== 'checkBtn') el.disabled = Boolean(disabled);
+      });
+    }
+
+    function applyTFRowHighlight(q, selected) {
+      if (!q || q.type !== 'tf' || !Array.isArray(selected)) return;
+      const rows = Array.from(els.answerArea.querySelectorAll('[data-tf-row]'));
+      rows.forEach((row, i) => {
+        row.classList.remove('border-slate-200', 'border-emerald-300', 'bg-emerald-50', 'border-rose-300', 'bg-rose-50');
+        if (!(q.autoCheck && Array.isArray(q.answers) && typeof selected[i] === 'boolean')) {
+          row.classList.add('border-slate-200');
+          return;
+        }
+        const ok = selected[i] === q.answers[i];
+        row.classList.add(ok ? 'border-emerald-300' : 'border-rose-300');
+        row.classList.add(ok ? 'bg-emerald-50' : 'bg-rose-50');
+      });
+    }
+
+    function updateHistoryStats() {
+      const topicProg = ensureTopicProgress(state.topic.id);
+      const stats = Object.values(topicProg.qStats || {});
+      const studied = stats.length;
+      const total = state.items.length;
+      const attempts = stats.reduce((sum, it) => sum + (Number(it && it.attempts) || 0), 0);
+      const correct = stats.reduce((sum, it) => sum + (Number(it && it.correct) || 0), 0);
+      const acc = attempts > 0 ? Math.round((correct / attempts) * 100) : 0;
+      els.historyProgress.textContent = `${studied}/${total} câu`;
+      els.historyAccuracy.textContent = `${acc}%`;
+    }
+
+    async function renderQuestion() {
+      const q = currentItem();
+      if (!q) return;
+
+      els.feedback.classList.add('hidden');
+      els.solutionPanel.classList.add('hidden');
+      els.solutionPanel.innerHTML = '';
+      els.solutionBtn.classList.add('hidden');
+      els.solutionBtn.textContent = 'Xem lời giải';
+      state.checked = false;
+
+      const globalIdx = state.queue[state.index];
+      els.questionNo.textContent = String(globalIdx + 1);
+      els.questionType.textContent = badgeText(q.type);
+      els.questionStem.innerHTML = q.stem || '';
+
+      if (q.type === 'mc') {
+        els.answerArea.innerHTML = `
+          <div class="answer-input-container mt-2 space-y-2">
+            ${(q.options || []).map((opt, idx) => `
+              <label class="flex items-start gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer border border-slate-200" data-opt-row="${idx}">
+                <input type="radio" name="mc_answer" value="${idx}" class="w-4 h-4 mt-1 text-blue-600" />
+                <div class="leading-relaxed"><span class="option-letter">${letterFromIndex(idx)}. </span>${opt}</div>
+              </label>
+            `).join('')}
+          </div>`;
+      } else if (q.type === 'tf') {
+        els.answerArea.innerHTML = `
+          <div class="answer-input-container mt-2 space-y-2">
+            ${(q.statements || []).map((st, idx) => `
+              <div class="flex items-start justify-between gap-4 p-2 bg-gray-50 border border-slate-200 rounded" data-tf-row="${idx}">
+                <div class="flex-1"><span class="option-letter">${String.fromCharCode(97 + idx)})</span> ${st}</div>
+                <div class="flex items-center gap-4 flex-shrink-0">
+                  <label class="flex items-center gap-1 cursor-pointer">
+                    <input type="radio" name="tf_${idx}" value="true" class="w-4 h-4 text-green-600" />
+                    <span class="text-green-700">Đúng</span>
+                  </label>
+                  <label class="flex items-center gap-1 cursor-pointer">
+                    <input type="radio" name="tf_${idx}" value="false" class="w-4 h-4 text-red-600" />
+                    <span class="text-red-700">Sai</span>
+                  </label>
+                </div>
+              </div>
+            `).join('')}
+          </div>`;
+      } else if (q.type === 'sa') {
+        els.answerArea.innerHTML = `
+          <div class="answer-input-container mt-2">
+            <input id="sa_input" type="text" inputmode="decimal"
+              class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+              placeholder="Nhập đáp án ngắn" />
+          </div>`;
+      } else {
+        els.answerArea.innerHTML = '<div class="text-red-600">Loại câu hỏi chưa hỗ trợ.</div>';
+      }
+
+      // Render diagrams trước, sau đó typeset MathJax để text trong diagram được xử lý
+      if (window.Diagrams && typeof window.Diagrams.renderAll === 'function') {
+        await window.Diagrams.renderAll(els.questionStem, { mode: 'static' }).catch(() => {});
+        await window.Diagrams.renderAll(els.answerArea, { mode: 'static' }).catch(() => {});
+      }
+      if (window.MathJax && MathJax.typesetPromise) {
+        await MathJax.typesetPromise([els.questionStem, els.answerArea]).catch(() => {});
+      }
+
+      prefillResponse(q, globalIdx);
+
+      const storedCheck = getCheckResult(globalIdx);
+      if (storedCheck && storedCheck.checked) {
+        state.checked = true;
+        setFeedback(storedCheck.kind || 'neutral', storedCheck.text || 'Đã kiểm tra câu này.');
+        els.solutionBtn.classList.remove('hidden');
+        if (q.type === 'tf') {
+          const resp = getStoredResponse(globalIdx);
+          if (resp && Array.isArray(resp.selected)) {
+            applyTFRowHighlight(q, resp.selected);
+          }
+        }
+        setAnswerInputsDisabled(true);
+      } else {
+        const bindDraft = () => saveCurrentDraft();
+        Array.from(els.answerArea.querySelectorAll('input, textarea, select')).forEach((el) => {
+          el.addEventListener('change', bindDraft);
+          el.addEventListener('input', bindDraft);
+        });
+      }
+
+      updateHeaderProgress();
+      updateNavButtons();
+    }
+
+    function updateTopicProgressRecord(q, isCorrect) {
+      const topicProg = ensureTopicProgress(state.topic.id);
+      const key = String(q.id || `q_${state.queue[state.index] + 1}`);
+      if (!topicProg.qStats[key]) {
+        topicProg.qStats[key] = { attempts: 0, correct: 0, lastCorrect: null, lastSeenAt: 0 };
+      }
+
+      const rec = topicProg.qStats[key];
+      rec.attempts += 1;
+      if (isCorrect === true) rec.correct += 1;
+      rec.lastCorrect = isCorrect;
+      rec.lastSeenAt = Date.now();
+      topicProg.updatedAt = Date.now();
+
+      saveProgress();
+      updateHistoryStats();
+    }
+
+    function checkCurrent() {
+      const q = currentItem();
+      if (!q) return;
+      const globalIdx = state.queue[state.index];
+      const existing = getCheckResult(globalIdx);
+      if (existing && existing.checked) {
+        setFeedback(existing.kind || 'neutral', existing.text || 'Bạn đã kiểm tra câu này rồi.');
+        return;
+      }
+
+      const resp = collectResponseFromDom(q);
+      if (!resp) return;
+      state.responses[keyOf(globalIdx)] = resp;
+
+      let isCorrect = null;
+      let feedbackKind = 'neutral';
+      let feedbackText = '';
+
+      if (q.type === 'mc') {
+        if (!Number.isInteger(resp.selected)) {
+          setFeedback('neutral', 'Bạn cần chọn đáp án trước khi kiểm tra.');
+          return;
+        }
+        const selected = resp.selected;
+        if (q.autoCheck && typeof q.answer === 'number') {
+          isCorrect = selected === q.answer;
+          if (!isCorrect) state.wrongSet.add(globalIdx);
+          else state.wrongSet.delete(globalIdx);
+          feedbackKind = isCorrect ? 'correct' : 'wrong';
+          feedbackText = isCorrect ? 'Chính xác!' : `Chưa đúng. Đáp án: ${letterFromIndex(q.answer)}.`;
+        } else {
+          feedbackKind = 'neutral';
+          feedbackText = 'Nguồn dữ liệu chưa có đáp án chuẩn cho câu này. Hãy tự đối chiếu.';
+        }
+      } else if (q.type === 'tf') {
+        const total = (q.statements || []).length;
+        const selected = Array.isArray(resp.selected) ? resp.selected : [];
+        if (selected.length !== total || selected.some((v) => typeof v !== 'boolean')) {
+          setFeedback('neutral', 'Bạn cần đánh dấu đủ Đúng/Sai cho từng mệnh đề.');
+          return;
+        }
+
+        if (q.autoCheck && Array.isArray(q.answers) && q.answers.length === total) {
+          isCorrect = selected.every((v, i) => v === q.answers[i]);
+          if (!isCorrect) state.wrongSet.add(globalIdx);
+          else state.wrongSet.delete(globalIdx);
+
+          const expected = q.answers.map((v) => tfLabel(v)).join('-');
+          feedbackKind = isCorrect ? 'correct' : 'wrong';
+          feedbackText = isCorrect ? 'Chính xác!' : `Chưa đúng. Đáp án tham chiếu (a,b,c,...): ${expected}.`;
+          applyTFRowHighlight(q, selected);
+        } else {
+          feedbackKind = 'neutral';
+          feedbackText = 'Câu Đúng/Sai hiện chưa có đáp án chuẩn trong nguồn này.';
+        }
+      } else if (q.type === 'sa') {
+        const val = typeof resp.raw === 'string' ? resp.raw.trim() : '';
+        if (!val) {
+          setFeedback('neutral', 'Bạn cần nhập đáp án ngắn trước khi kiểm tra.');
+          return;
+        }
+        if (q.autoCheck && typeof q.answer === 'number') {
+          const n = parseLocaleNumber(val);
+          if (!Number.isFinite(n)) {
+            setFeedback('neutral', 'Đáp án phải là một giá trị số.');
+            return;
+          }
+          isCorrect = Math.abs(n - q.answer) <= 1e-9;
+          if (!isCorrect) state.wrongSet.add(globalIdx);
+          else state.wrongSet.delete(globalIdx);
+          feedbackKind = isCorrect ? 'correct' : 'wrong';
+          feedbackText = isCorrect ? 'Chính xác!' : `Chưa đúng. Đáp án: ${q.answer}`;
+        } else {
+          feedbackKind = 'neutral';
+          feedbackText = 'Nguồn dữ liệu chưa có đáp án chuẩn cho câu tự luận ngắn này.';
+        }
+      }
+
+      setFeedback(feedbackKind, feedbackText);
+
+      state.sessionChecked += 1;
+      if (isCorrect === true) state.sessionCorrect += 1;
+      updateTopicProgressRecord(q, isCorrect);
+
+      state.checked = true;
+      setCheckResult(globalIdx, {
+        checked: true,
+        kind: feedbackKind,
+        text: feedbackText,
+        isCorrect
+      });
+      els.solutionBtn.classList.remove('hidden');
+      setAnswerInputsDisabled(true);
+      saveSessionState();
+      updateHeaderProgress();
+    }
+
+    function showSummary() {
+      els.practiceCard.classList.add('hidden');
+      els.summaryCard.classList.remove('hidden');
+
+      const total = state.queue.length;
+      const acc = state.sessionChecked > 0 ? Math.round((state.sessionCorrect / state.sessionChecked) * 100) : 0;
+      const wrong = Array.from(state.wrongSet).sort((a, b) => a - b);
+
+      // Score ring animation
+      const circumference = 2 * Math.PI * 42;
+      const offset = circumference - (circumference * acc / 100);
+      document.getElementById('scorePercent').textContent = `${acc}%`;
+      setTimeout(() => { document.getElementById('scoreArc').style.strokeDashoffset = offset; }, 150);
+
+      // Stats
+      document.getElementById('statCorrect').textContent = state.sessionCorrect;
+      document.getElementById('statWrong').textContent = wrong.length;
+      document.getElementById('statTotal').textContent = total;
+
+      // Header mood
+      const hdr = document.getElementById('summaryHeader');
+      const emo = document.getElementById('celebrationEmoji');
+      const ttl = document.getElementById('summaryTitle');
+      const sub = document.getElementById('summarySubtitle');
+      if (acc >= 80) {
+        emo.textContent = '🎉'; ttl.textContent = 'Hoàn thành xuất sắc!';
+        sub.textContent = `Chính xác ${acc}% — Tuyệt vời!`;
+        hdr.style.background = 'linear-gradient(135deg,#4f46e5 0%,#7c3aed 50%,#ec4899 100%)';
+      } else if (acc >= 50) {
+        emo.textContent = '💪'; ttl.textContent = 'Khá tốt!';
+        sub.textContent = `Chính xác ${acc}% — Cố gắng thêm nhé!`;
+        hdr.style.background = 'linear-gradient(135deg,#0d9488 0%,#2563eb 100%)';
+      } else {
+        emo.textContent = '📚'; ttl.textContent = 'Cần ôn tập thêm';
+        sub.textContent = `Chính xác ${acc}% — Hãy thử lại!`;
+        hdr.style.background = 'linear-gradient(135deg,#ea580c 0%,#dc2626 100%)';
+      }
+
+      // Wrong questions
+      if (wrong.length) {
+        els.summaryWrong.classList.remove('hidden');
+        document.getElementById('wrongList').textContent = `Câu ${wrong.map(i => i + 1).join(', ')}`;
+        els.reviewWrongBtn.classList.remove('hidden');
+      } else {
+        els.summaryWrong.classList.add('hidden');
+        els.reviewWrongBtn.classList.add('hidden');
+      }
+
+      // Confetti celebration
+      if (typeof confetti === 'function' && acc >= 50) {
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        if (acc >= 80) {
+          setTimeout(() => confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } }), 250);
+          setTimeout(() => confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } }), 400);
+        }
+      }
+
+      if (!state.attemptSaved && window.DataStore && typeof window.DataStore.saveAttempt === 'function') {
+        state.attemptSaved = true;
+        const attempt = {
+          app: 'BankOnTap',
+          appTitle: 'Bài tập Tết du xuân',
+          topicId: state.topic ? state.topic.id : '',
+          topicTitle: state.topic ? (state.topic.title || '') : '',
+          sourceId: state.source ? state.source.id : '',
+          sourcePath: state.source ? state.source.path : '',
+          startedAt: Number(state.attemptStartedAt || Date.now()),
+          submittedAt: Date.now(),
+          totalQuestions: total,
+          checked: state.sessionChecked,
+          correct: state.sessionCorrect,
+          accuracy: acc,
+          wrongCount: wrong.length,
+          wrongQuestions: wrong.map((i) => i + 1),
+          device: { ua: navigator.userAgent }
+        };
+        Promise.resolve(window.Auth && typeof window.Auth.init === 'function' ? window.Auth.init() : null)
+          .catch(() => null)
+          .finally(() => {
+            window.DataStore.saveAttempt(attempt).catch(() => {});
+          });
+      }
+    }
+
+    function nextQuestion() {
+      saveCurrentDraft();
+      if (state.index >= state.queue.length - 1) {
+        showSummary();
+        saveSessionState();
+        return;
+      }
+      state.index += 1;
+      saveSessionState();
+      renderQuestion();
+    }
+
+    function previousQuestion() {
+      saveCurrentDraft();
+      if (state.index <= 0) return;
+      state.index -= 1;
+      saveSessionState();
+      renderQuestion();
+    }
+
+    function startMode(mode) {
+      const queue = mode === 'wrong'
+        ? Array.from(state.wrongSet).sort((a, b) => a - b)
+        : state.items.map((_, idx) => idx);
+      if (!queue.length) return false;
+
+      if (mode === 'wrong') {
+        for (const globalIdx of queue) {
+          setCheckResult(globalIdx, null);
+        }
+      }
+
+      state.mode = mode;
+      state.queue = queue;
+      state.index = 0;
+      state.checked = false;
+      state.sessionChecked = 0;
+      state.sessionCorrect = 0;
+      if (mode === 'all') {
+        state.attemptStartedAt = Date.now();
+        state.attemptSaved = false;
+      }
+
+      els.summaryCard.classList.add('hidden');
+      els.practiceCard.classList.remove('hidden');
+      saveSessionState();
+      renderQuestion();
+      return true;
+    }
+
+    function buildCurrentQuestionContext() {
+      const q = currentItem();
+      if (!q) return '';
+      const globalIdx = state.queue[state.index];
+      const parts = [];
+      parts.push(`Câu ${globalIdx + 1} (${badgeText(q.type)}): ${stripHtml(q.stem || '')}`);
+      if (q.type === 'mc' && Array.isArray(q.options) && q.options.length) {
+        parts.push('Các lựa chọn:');
+        q.options.forEach((opt, i) => parts.push(`${letterFromIndex(i)}. ${stripHtml(opt)}`));
+      }
+      if (q.type === 'tf' && Array.isArray(q.statements) && q.statements.length) {
+        parts.push('Các mệnh đề:');
+        q.statements.forEach((st, i) => parts.push(`${String.fromCharCode(97 + i)}) ${stripHtml(st)}`));
+      }
+      const resp = getStoredResponse(globalIdx);
+      if (resp) {
+        if (resp.type === 'mc' && Number.isInteger(resp.selected)) {
+          parts.push(`Học sinh đã chọn: ${letterFromIndex(resp.selected)}.`);
+        } else if (resp.type === 'tf' && Array.isArray(resp.selected)) {
+          parts.push(`Học sinh đã chọn Đ/S: ${resp.selected.map((v) => (typeof v === 'boolean' ? tfLabel(v) : '?')).join('-')}`);
+        } else if (resp.type === 'sa' && typeof resp.raw === 'string' && resp.raw.trim()) {
+          parts.push(`Học sinh đã nhập: ${resp.raw.trim()}`);
+        }
+      }
+      return parts.join('\n');
+    }
+
+    function buildAiQuestionPayload() {
+      const q = currentItem();
+      if (!q) return null;
+
+      const globalIdx = state.queue[state.index];
+      const resp = getStoredResponse(globalIdx);
+      const checked = getCheckResult(globalIdx);
+
+      let userAnswer = null;
+      if (resp) {
+        if (resp.type === 'mc' && Number.isInteger(resp.selected)) {
+          userAnswer = resp.selected;
+        } else if (resp.type === 'tf' && Array.isArray(resp.selected)) {
+          userAnswer = resp.selected.map((v) => (typeof v === 'boolean' ? tfLabel(v) : '?')).join('-');
+        } else if (resp.type === 'sa' && typeof resp.raw === 'string' && resp.raw.trim()) {
+          userAnswer = resp.raw.trim();
+        }
+      }
+
+      let options = [];
+      if (q.type === 'mc' && Array.isArray(q.options)) {
+        options = q.options.map((opt, i) => ({ label: letterFromIndex(i), text: stripHtml(opt) }));
+      } else if (q.type === 'tf' && Array.isArray(q.statements)) {
+        options = q.statements.map((st, i) => ({ label: String.fromCharCode(97 + i), text: stripHtml(st) }));
+      }
+
+      let correctAnswer = null;
+      if (q.type === 'mc' && typeof q.answer === 'number') {
+        correctAnswer = letterFromIndex(q.answer);
+      } else if (q.type === 'tf' && q.autoCheck && Array.isArray(q.answers)) {
+        correctAnswer = q.answers.map((v) => tfLabel(v)).join('-');
+      } else if (q.type === 'sa' && typeof q.answer === 'number') {
+        correctAnswer = String(q.answer);
+      }
+
+      return {
+        questionIndex: Number.isInteger(globalIdx) ? globalIdx : state.index,
+        questionText: stripHtml(q.stem || ''),
+        options,
+        correctAnswer,
+        userAnswer,
+        isCorrect: checked && checked.checked ? checked.isCorrect : null,
+        isSkipped: !resp,
+        modelAnswer: buildSolutionHtml(q)
+      };
+    }
+
+    function askAiWithExistingTutor() {
+      const ai = window.Features && window.Features.AI;
+      if (!ai || typeof ai.askAboutQuestion !== 'function') {
+        setFeedback('neutral', 'AI Tutor chưa sẵn sàng. Vui lòng tải lại trang và thử lại.');
+        return;
+      }
+      const payload = buildAiQuestionPayload();
+      if (!payload) return;
+      ai.askAboutQuestion(payload);
+    }
+
+    async function loadTopicData() {
+      const topicId = qp('topic');
+      const sourceId = qp('source');
+      if (!topicId) throw new Error('Thiếu tham số topic trên URL.');
+
+      const loaded = await loadFirstAvailableManifest();
+      state.manifest = loaded.manifest;
+      state.progressKey = state.manifest.progressStorageKey || state.progressKey;
+      state.progress = readProgress();
+
+      const topics = normalizeTopics(state.manifest);
+      state.topic = topics.find(t => t.id === topicId);
+      if (!state.topic) throw new Error(`Không tìm thấy topic: ${topicId}`);
+
+      const sources = Array.isArray(state.topic.sources) ? state.topic.sources : [];
+      state.source = sources.find(s => s.id === sourceId)
+        || sources.find(s => s.id === state.topic.activeSource)
+        || sources[0];
+      if (!state.source) throw new Error('Topic chưa có source.');
+
+      els.topicTitle.textContent = state.topic.title || 'Chủ đề ôn tập';
+      els.topicSubtitle.textContent = state.topic.subtitle || state.topic.description || '';
+
+      els.sourceSelect.innerHTML = sources.map(s => `<option value="${s.id}">${s.label}</option>`).join('');
+      els.sourceSelect.value = state.source.id;
+      els.sourceSelect.onchange = () => {
+        const u = new URL(window.location.href);
+        u.searchParams.set('topic', state.topic.id);
+        u.searchParams.set('source', els.sourceSelect.value);
+        window.location.href = u.toString();
+      };
+
+      const answersPromise = fetch('./answers.json', { cache: 'no-store' })
+        .then((res) => (res.ok ? res.json() : {}))
+        .catch(() => ({}));
+
+      const qRes = await fetch(`./${state.source.path}`, { cache: 'no-store' });
+      if (!qRes.ok) throw new Error(`Không tải được source: ${state.source.path}`);
+      const raw = await qRes.json();
+      const normalized = (Array.isArray(raw.questions) ? raw.questions : [])
+        .map((q, idx) => normalizeQuestion(q, idx))
+        .filter(Boolean);
+
+      if (!normalized.length) throw new Error('Source không có câu hỏi hợp lệ để luyện tập.');
+      state.items = normalized;
+      state.queue = normalized.map((_, idx) => idx);
+      state.wrongSet = new Set();
+      state.responses = {};
+      state.checkResults = {};
+      state.answersMap = await answersPromise;
+      state.sessionKey = getSessionStorageKey();
+
+      updateHistoryStats();
+    }
+
+    els.checkBtn.addEventListener('click', checkCurrent);
+    els.solutionBtn.addEventListener('click', () => toggleSolutionPanel());
+    els.prevBtn.addEventListener('click', previousQuestion);
+    els.nextBtn.addEventListener('click', nextQuestion);
+    els.askAiBtn.addEventListener('click', askAiWithExistingTutor);
+    els.restartBtn.addEventListener('click', () => {
+      state.wrongSet = new Set();
+      state.responses = {};
+      state.checkResults = {};
+      startMode('all');
+    });
+    els.reviewWrongBtn.addEventListener('click', () => {
+      if (!startMode('wrong')) {
+        els.summaryWrong.classList.remove('hidden');
+        els.summaryWrong.textContent = 'Không còn câu sai để ôn lại.';
+      }
+    });
+
+    loadTopicData()
+      .then(() => {
+        if (restoreSessionState()) {
+          return renderQuestion();
+        }
+        state.attemptStartedAt = Date.now();
+        state.attemptSaved = false;
+        return startMode('all');
+      })
+      .catch((err) => {
+        console.error(err);
+        els.topicTitle.textContent = 'Không thể mở bài ôn tập';
+        els.topicSubtitle.textContent = err.message || 'Unknown error';
+        els.practiceCard.innerHTML = `<div class="text-red-600">${err.message || 'Unknown error'}</div>`;
+      });
+  </script>
+</body>
+</html>

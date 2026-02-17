@@ -1,0 +1,100 @@
+{
+  "duration": 300,
+  "section_key": "section-4-tong-hop",
+  "section_title": "Section 4 - Tổng hợp và ứng dụng",
+  "section_subtitle": "Các câu tổng hợp còn lại",
+  "questions": [
+    {
+      "q_id": "g10_alg_ch1_logic_13_combined_p4",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương I. Mệnh đề và tập hợp - Bài 1. Mệnh đề",
+      "type": "true_false",
+      "stem": "Cho phương trình $\\sqrt{x^2 - 4x} = \\sqrt{x} + 1$. Xét tính đúng sai của khẳng định sau:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-4-tong-hop",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "Điều kiện xác định của phương trình là $x \\geq -1$.",
+          "answer": false
+        },
+        {
+          "key": "b",
+          "statement": "Phương trình có hai nghiệm phân biệt.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "Tổng các nghiệm của phương trình bằng $-5$.",
+          "answer": false
+        },
+        {
+          "key": "d",
+          "statement": "Tích các nghiệm của phương trình bằng $-1$.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "g10_alg_ch1_eq_15_p4",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương I. Mệnh đề và tập hợp - Bài 1. Mệnh đề",
+      "type": "short_answer",
+      "stem": "Tích hai nghiệm của phương trình $\\sqrt{2x^2 - x + 4} - \\sqrt{x^2 + 5x - 1} = 0$ bằng bao nhiêu?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-4-tong-hop",
+      "final_answer": 5
+    },
+    {
+      "q_id": "g10_alg_ch1_eq_16_p4",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương I. Mệnh đề và tập hợp - Bài 1. Mệnh đề",
+      "type": "short_answer",
+      "stem": "Tổng hai nghiệm của phương trình $\\sqrt{2x^2 + 5x - 2} + x - 6 = 0$ bằng bao nhiêu?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-4-tong-hop",
+      "final_answer": -17
+    },
+    {
+      "q_id": "g10_geo_ch3_metric_14_combined_p4",
+      "section": "Lớp 10 - Hình học - Chương III. Hệ thức lượng trong tam giác - Bài 6. Hệ thức lượng trong tam giác",
+      "type": "true_false",
+      "stem": "Một con tàu biển $M$ rời cảng $O$ và chuyển động thẳng theo phương tạo với bờ biển một góc $60^\\circ$. Trên bờ biển có hai đài quan sát $A$ và $B$ nằm về hai phía so với cảng $O$ và lần lượt cách cảng $O$ khoảng cách $1$ km và $2$ km. Đặt độ dài của $MO$ là $x$ (km). Khoảng cách từ tàu đến đài quan sát $A$ được tính theo $x$ là $x^2 + x + 1$.",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-4-tong-hop",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "Một con tàu biển $M$ rời cảng $O$ và chuyển động thẳng theo phương tạo với bờ biển một góc $60^\\circ$. Trên bờ biển có hai đài quan sát $A$ và $B$ nằm về hai phía so với cảng $O$ và lần lượt cách cảng $O$ khoảng cách $1$ km và $2$ km. Đặt độ dài của $MO$ là $x$ (km). Khoảng cách từ tàu đến đài quan sát $A$ được tính theo $x$ là $x^2 + x + 1$.",
+          "answer": false
+        },
+        {
+          "key": "b",
+          "statement": "Khoảng cách từ tàu đến đài quan sát $B$ được tính theo $x$ là $\\sqrt{x^2 - 2x + 4}$.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "Khoảng cách từ tàu đến $B$ bằng $\\frac{4}{5}$ khoảng cách từ tàu đến $A$ khi $x \\approx 1,64$ (km) hoặc $x \\approx 5,69$ (km).",
+          "answer": true
+        },
+        {
+          "key": "d",
+          "statement": "Khoảng cách từ tàu đến $B$ nhỏ hơn khoảng cách từ tàu đến $O$ đúng $500$ m khi $x = 3,75$ (km).",
+          "answer": true
+        }
+      ]
+    },
+    {
+      "q_id": "g10_geo_ch3_metric_17_p4",
+      "section": "Lớp 10 - Hình học - Chương III. Hệ thức lượng trong tam giác - Bài 6. Hệ thức lượng trong tam giác",
+      "type": "short_answer",
+      "stem": "Một ngọn hải đăng đặt tại vị trí $A$ cách bờ biển một khoảng cách $AB = 4$ km. Trên bờ biển có một cái kho ở vị trí $C$ cách $B$ một khoảng là $7$ km. Người canh hải đăng có thể chèo thuyền từ $A$ đến vị trí $M$ trên bờ biển với vận tốc $3$ km/h rồi đi bộ đến $C$ với vận tốc $5$ km/h như hình bên. Tính khoảng cách (đơn vị km) từ vị trí $B$ đến $M$, biết thời gian người đó đi từ $A$ đến $C$ là $148$ phút.\n<div class='jxg-diagram' data-jxg='{\"preset\":\"scene\",\"bbox\":[-1,5.5,8,-1],\"axes\":true,\"grid\":true,\"points\":{\"A\":{\"xy\":[0,4],\"name\":\"A\"},\"B\":{\"xy\":[0,0],\"name\":\"B\"},\"C\":{\"xy\":[7,0],\"name\":\"C\"},\"M\":{\"xy\":[3,0],\"name\":\"M\"}},\"segments\":[{\"p1\":\"A\",\"p2\":\"B\",\"color\":\"#0f172a\",\"strokeWidth\":2},{\"p1\":\"B\",\"p2\":\"C\",\"color\":\"#0f172a\",\"strokeWidth\":2},{\"p1\":\"A\",\"p2\":\"M\",\"color\":\"#dc2626\",\"strokeWidth\":2},{\"p1\":\"M\",\"p2\":\"C\",\"color\":\"#16a34a\",\"strokeWidth\":2}]}'></div>",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-4-tong-hop",
+      "final_answer": 3
+    }
+  ]
+}

@@ -1,0 +1,2063 @@
+{
+  "duration": 1800,
+  "questions": [
+    {
+      "q_id": "q1_tamthucbachai_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Biểu thức nào sau đây là một tam thức bậc hai đối với $x$?",
+      "options": [
+        "$f(x) = 2x^2 - \\sqrt{3}$",
+        "$f(x) = 2x - 1$",
+        "$f(x) = \\frac{x^2 - 1}{x}$",
+        "$f(x) = \\frac{x^2 - x + 1}{x + 2}$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q2_dau_tam_thuc_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hình vẽ bên, biết $f(x) = ax^2 + bx + c$ và $\\Delta = b^2 - 4ac$. Xác định dấu của $a$ và $\\Delta$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;expr=0.5*x^2+1;keepAspectRatio=true;bbox=-6,6,6,-6;width=340;height=340\"></div>",
+      "options": [
+        "$a > 0, \\Delta < 0$",
+        "$a < 0, \\Delta < 0$",
+        "$a > 0, \\Delta > 0$",
+        "$a > 0, \\Delta = 0$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q3_dau_tam_thuc_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hình vẽ bên, biết $f(x) = ax^2 + bx + c$ và $\\Delta = b^2 - 4ac$. Xác định dấu của $a$ và $\\Delta$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;expr=0.5*x^2-2;keepAspectRatio=true;bbox=-6,6,6,-6;width=340;height=340\"></div>",
+      "options": [
+        "$a > 0, \\Delta < 0$",
+        "$a < 0, \\Delta < 0$",
+        "$a > 0, \\Delta > 0$",
+        "$a > 0, \\Delta = 0$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q4_dau_tam_thuc_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hình vẽ bên, biết $f(x) = ax^2 + bx + c$ và $\\Delta = b^2 - 4ac$. Xác định dấu của $a$ và $\\Delta$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;expr=-0.5*(x-1)^2;keepAspectRatio=true;bbox=-6,6,6,-6;width=340;height=340\"></div>",
+      "options": [
+        "$a < 0, \\Delta = 0$",
+        "$a < 0, \\Delta < 0$",
+        "$a > 0, \\Delta > 0$",
+        "$a > 0, \\Delta = 0$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q5_bang_xet_dau_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Bảng xét dấu nào sau đây là bảng xét dấu của biểu thức $f(x) = -x^2 + 14x - 49$?",
+      "options": [
+        "<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"bbox\":[-0.2,0.3,5.2,-2.1],\"width\":260,\"height\":140,\"variable\":\"x\",\"xValues\":[\"-∞\",\"7\",\"+∞\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"+\",\"+\"],\"pointMarks\":{\"1\":\"0\"}}],\"leftColumnWidth\":1.2,\"cellWidth\":1.25,\"cellHeight\":0.8,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.5}'></div>",
+        "<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"bbox\":[-0.2,0.3,5.2,-2.1],\"width\":260,\"height\":140,\"variable\":\"x\",\"xValues\":[\"-∞\",\"7\",\"+∞\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"+\",\"-\"],\"pointMarks\":{\"1\":\"0\"}}],\"leftColumnWidth\":1.2,\"cellWidth\":1.25,\"cellHeight\":0.8,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.5}'></div>",
+        "<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"bbox\":[-0.2,0.3,5.2,-2.1],\"width\":260,\"height\":140,\"variable\":\"x\",\"xValues\":[\"-∞\",\"7\",\"+∞\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"-\",\"-\"],\"pointMarks\":{\"1\":\"0\"}}],\"leftColumnWidth\":1.2,\"cellWidth\":1.25,\"cellHeight\":0.8,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.5}'></div>",
+        "<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"bbox\":[-0.2,0.3,5.2,-2.1],\"width\":260,\"height\":140,\"variable\":\"x\",\"xValues\":[\"-∞\",\"7\",\"+∞\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"-\",\"+\"],\"pointMarks\":{\"1\":\"0\"}}],\"leftColumnWidth\":1.2,\"cellWidth\":1.25,\"cellHeight\":0.8,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.5}'></div>"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q6_bang_xet_dau_nguoc_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Bảng xét dấu sau là của biểu thức nào?<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"bbox\":[-0.2,0.3,7.3,-2.1],\"width\":560,\"height\":150,\"variable\":\"x\",\"xValues\":[\"-∞\",\"1\",\"2\",\"+∞\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"-\",\"+\",\"-\"],\"pointMarks\":{\"1\":\"0\",\"2\":\"0\"}}],\"leftColumnWidth\":1.25,\"cellWidth\":1.2,\"cellHeight\":0.8,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.5}'></div>",
+      "options": [
+        "$f(x) = x^2 + 3x + 2$",
+        "$f(x) = -(x-1)(x-2)$",
+        "$f(x) = -x^2 - 3x + 2$",
+        "$f(x) = x^2 - 3x + 2$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q7_bpt_bac_hai_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tìm tập nghiệm của bất phương trình $-5x^2 + 4x + 12 > 0$.",
+      "options": [
+        "$(-\\infty; -\\frac{6}{5}) \\cup (2; +\\infty)$",
+        "$(-2; \\frac{6}{5})$",
+        "$(-\\frac{6}{5}; 2)$",
+        "$(-\\infty; -2) \\cup (\\frac{6}{5}; +\\infty)$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q8_bpt_nghiem_r_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Bất phương trình nào dưới đây có tập nghiệm là $\\mathbb{R}$?",
+      "options": [
+        "$x^2 + 5x - 7 < 0$",
+        "$-x^2 + x - 5 < 0$",
+        "$x^2 - 4x + 4 > 0$",
+        "$-2x^2 + 9x - 13 > 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q9_tam_thuc_duong_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tam thức bậc hai $x^2 - 5x - 6$ luôn dương khi nào?",
+      "options": [
+        "$x < -1$ hoặc $x > 6$",
+        "$-1 < x < 6$",
+        "$x \\leq -1$ hoặc $x \\geq 6$",
+        "$-1 \\leq x \\leq 6$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q10_tam_thuc_khong_am_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tam thức bậc hai $-x^2 + 5x - 4$ không âm khi nào?",
+      "options": [
+        "$x < 1$ hoặc $x > 4$",
+        "$1 < x < 4$",
+        "$x \\leq 1$ hoặc $x \\geq 4$",
+        "$1 \\leq x \\leq 4$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q11_nghiem_nguyen_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Có bao nhiêu số nguyên $x$ để biểu thức $f(x) = (3x^2 + x - 2)^2 - (x^2 - x - 7)^2$ luôn âm?",
+      "options": [
+        "1",
+        "0",
+        "2",
+        "3"
+      ],
+      "correct_index": 3,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q12_tap_xac_dinh_can_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tập xác định của hàm số $y = \\sqrt{2x^2 - 5x + 2}$ là",
+      "options": [
+        "$(-\\infty; \\frac{1}{2}]$",
+        "$[2; +\\infty)$",
+        "$\\left( -\\infty; \\frac{1}{2} \\right] \\cup [2; +\\infty)$",
+        "$\\left[ \\frac{1}{2}; 2 \\right]$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q13_tap_xac_dinh_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tập xác định của hàm số $y = \\sqrt{-x^2 + 2x + 3}$ là",
+      "options": [
+        "$(1; 3)$",
+        "$(-\\infty; -1) \\cup (3; +\\infty)$",
+        "$(-\\infty; -1] \\cup [3; +\\infty)$",
+        "$[-1; 3]$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q14_bpt_do_thi_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số $f(x) = ax^2 + bx + c$ có đồ thị là parabol đi qua 2 điểm trên trục hoành có hoành độ 0 và 2, bề lõm quay lên. Tìm tập nghiệm của bất phương trình $ax^2 + bx + c \\leq 0$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;expr=x*(x-2);keepAspectRatio=true;bbox=-6,6,6,-6;width=340;height=340\"></div>",
+      "options": [
+        "$(-\\infty; 0) \\cup (2; +\\infty)$",
+        "$[0; 2]$",
+        "$(-\\infty; 0] \\cup [2; +\\infty)$",
+        "$(0; 2)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q15_bpt_do_thi_2_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số $f(x) = ax^2 + bx + c$ có đồ thị là parabol đi qua 2 điểm trên trục hoành có hoành độ -2 và 1. Tìm tập nghiệm của bất phương trình $ax^2 + bx + c \\geq 0$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;expr=(x+2)*(x-1);keepAspectRatio=true;bbox=-6,6,6,-6;width=340;height=340\"></div>",
+      "options": [
+        "$(-\\infty; -2) \\cup (1; +\\infty)$",
+        "$(-\\infty; -2] \\cup [1; +\\infty)$",
+        "$[-2; 1]$",
+        "$(0; 2)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q16_tham_so_m_am_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Có tất cả bao nhiêu giá trị nguyên của tham số $m$ để tam thức bậc hai $f(x) = -2x^2 - (m+2)x + m^2 - m - 1$ luôn âm trên $\\mathbb{R}$?",
+      "options": [
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "correct_index": 3,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q17_tham_so_m_r_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tìm tất cả giá trị thực của tham số $m$ để $-2x^2 + (m+2)x + m - 4 < 0$ với mọi $x \\in \\mathbb{R}$.",
+      "options": [
+        "$m < -14$ hoặc $m > 2$",
+        "$-14 \\leq m \\leq 2$",
+        "$-2 < m < 14$",
+        "$-14 < m < 2$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q18_ung_dung_lai_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Lợi nhuận thu được từ việc sản xuất và bán $x$ sản phẩm thủ công của một cửa hàng là $I(x) = -0.1x^2 + 235x - 70000$ (nghìn đồng). Hỏi số lượng sản phẩm bán ra tối thiểu là bao nhiêu thì cửa hàng có lãi?",
+      "options": [
+        "300",
+        "250",
+        "350",
+        "320"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q19_ung_dung_hinh_hoc_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Kim muốn trồng một vườn hoa trên mảnh đất hình chữ nhật và làm hàng rào bao quanh. Kim chỉ có đủ vật liệu để làm 30 m hàng rào nhưng muốn diện tích vườn hoa ít nhất là 50 m². Hỏi chiều rộng của vườn hoa nằm trong khoảng nào?",
+      "options": [
+        "$[8; 12]$",
+        "$[3; 7]$",
+        "$[5; 10]$",
+        "$[10; 15]$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q20_hinh_vuong_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Xét một hình vuông lớn có kích thước $20 \\times 20$. Từ hình vuông lớn, người ta cắt ra một hình vuông nhỏ (các đỉnh hình vuông nhỏ nằm trên cạnh hình vuông lớn như hình vẽ). Tìm tập hợp các giá trị của $x$ để diện tích hình vuông nhỏ không vượt quá 208.<br><img src=\"q20_hinh_vuong_p0.png\" alt=\"Hình vẽ\" style=\"max-width: 100%; height: auto; margin-top: 10px;\">",
+      "options": [
+        "$8 \\leq x \\leq 12$",
+        "$6 \\leq x \\leq 14$",
+        "$12 \\leq x \\leq 14$",
+        "$12 \\leq x \\leq 18$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q21_dung_sai_a_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số bậc hai $y = f(x)$ có bảng biến thiên như hình dưới. Khẳng định sau đúng hay sai: $f(-1) < 0$? <br> <table><tr><th>x</th><th>$-\\infty$</th><th>-2</th><th>4</th><th>$+\\infty$</th></tr><tr><th>f(x)</th><td>-</td><td>0</td><td>+</td><td>0</td><td>-</td></tr></table>",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q21_dung_sai_b_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số bậc hai $y = f(x)$ có bảng biến thiên như hình dưới. Khẳng định sau đúng hay sai: $f(5) > 0$? <br> <table><tr><th>x</th><th>$-\\infty$</th><th>-2</th><th>4</th><th>$+\\infty$</th></tr><tr><th>f(x)</th><td>-</td><td>0</td><td>+</td><td>0</td><td>-</td></tr></table>",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q21_dung_sai_c_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số bậc hai $y = f(x)$ có bảng biến thiên như hình dưới. Khẳng định sau đúng hay sai: Tập nghiệm của bất phương trình $f(x) \\leq 0$ là $[-2; 3]$? <br> <table><tr><th>x</th><th>$-\\infty$</th><th>-2</th><th>4</th><th>$+\\infty$</th></tr><tr><th>f(x)</th><td>-</td><td>0</td><td>+</td><td>0</td><td>-</td></tr></table>",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q21_dung_sai_d_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số bậc hai $y = f(x)$ có bảng biến thiên như hình dưới. Khẳng định sau đúng hay sai: Tập nghiệm của bất phương trình $f(x) < 0$ là $(-\\infty; -2)$? <br> <table><tr><th>x</th><th>$-\\infty$</th><th>-2</th><th>4</th><th>$+\\infty$</th></tr><tr><th>f(x)</th><td>-</td><td>0</td><td>+</td><td>0</td><td>-</td></tr></table>",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "grade10_alg_ineq_func_sign_table_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "true_false",
+      "stem": "Cho $f(x), g(x)$ là các hàm số xác định trên $\\mathbb{R}$, có bảng xét dấu như sau:<br/><table><tr><th>x</th><th>−∞</th><th>1</th><th>2</th><th>3</th><th>+∞</th></tr><tr><th>f(x)</th><td>+</td><td>0</td><td>−</td><td>−</td><td>0</td><td>+</td></tr><tr><th>g(x)</th><td>−</td><td>−</td><td>0</td><td>+</td><td>+</td><td>+</td></tr></table><br/>Xét tính đúng sai của các khẳng định sau:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "Tập nghiệm của bất phương trình $f(x) < 0$ là $(1; 2) \\cup (2; 3)$.",
+          "answer": false
+        },
+        {
+          "key": "b",
+          "statement": "Tập nghiệm của bất phương trình $g(x) \\geq 0$ là $[2; +\\infty)$.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "Tập nghiệm của bất phương trình $f(x) \\cdot g(x) \\leq 0$ là $(-\\infty; 1] \\cup [2; 3]$.",
+          "answer": true
+        },
+        {
+          "key": "d",
+          "statement": "Tập nghiệm của bất phương trình $\\frac{f(x)}{g(x)} \\geq 0$ là $[1; 2] \\cup [3; +\\infty)$.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "grade10_alg_quad_model_moon_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "true_false",
+      "stem": "Người ta thử nghiệm ném một quả bóng trên Mặt Trăng. Nếu quả bóng được ném lên từ độ cao $h_0$ (m) so với bề mặt của Mặt Trăng với vận tốc $v_0$ (m/s) thì độ cao của bóng sau $t$ giây được cho bởi hàm số $h(t) = -\\frac{1}{2}gt^2 + v_0t + h_0$ với $g = 1,625 \\text{ m/s}^2$ là gia tốc trọng trường của Mặt Trăng. Biết độ cao ban đầu của quả bóng vào các thời điểm 8 giây và 12 giây lần lượt là 30 m và 5 m.<br/>Xét tính đúng sai của các khẳng định sau:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "Vận tốc ném $v_0 = 10$ m/s.",
+          "answer": true
+        },
+        {
+          "key": "b",
+          "statement": "Độ cao ban đầu của quả bóng $h_0 = 2$ m.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "$h(t) = -0,8125t^2 + 10t + 2$.",
+          "answer": true
+        },
+        {
+          "key": "d",
+          "statement": "Quả bóng ở độ cao trên 29 m trong khoảng 3,15 giây.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "grade10_alg_ineq_short_25_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Tập nghiệm của bất phương trình $x^2 - x - 6 \\leqslant 0$ có bao nhiêu số nguyên?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 6
+    },
+    {
+      "q_id": "grade10_alg_eq_param_26_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Có bao nhiêu giá trị nguyên của tham số $m$ để phương trình $4x^2 + 2(m-2)x + m^2 = 0$ có nghiệm?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 3
+    },
+    {
+      "q_id": "grade10_alg_quad_model_27_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Một quả bóng được ném thẳng lên từ độ cao 1,6 m so với mặt đất với vận tốc 10 m/s. Độ cao của bóng so với mặt đất (tính bằng mét) sau $t$ giây được cho bởi hàm số $h(t) = -4,9t^2 + 10t + 1,6$. Hỏi bóng ở độ cao trên 5 m trong khoảng thời gian bao lâu? (Kết quả tính bằng giây và làm tròn đến hàng phần trăm).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 1.18
+    },
+    {
+      "q_id": "grade10_alg_quad_model_28_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Một vật được ném theo phương thẳng đứng xuống dưới từ độ cao 300 m với vận tốc ban đầu $v_0 = 10$ m/s. Giả thiết rằng sức cản của không khí là không đáng kể, hỏi sau ít nhất bao nhiêu giây, vật đó cách mặt đất không quá 120 m? (làm tròn kết quả đến hàng phần trăm).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 5.08
+    },
+    {
+      "q_id": "grade10_alg_quad_model_29_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Mặt cắt ngang của mặt đường thường có dạng hình parabol để nước mưa dễ dàng thoát sang hai bên. Mặt cắt ngang của một con đường được mô tả bằng hàm số $y = -0,006x^2$ với gốc toạ độ đặt tại tim đường và đơn vị đo là mét.<br/><div class=\"jxg-diagram\" data-jxg='{\"preset\":\"function\", \"expr\":\"-0.006*x^2\", \"window\":[-15, 15, -2, 2], \"axes\":true}'></div><br/>Để tìm đường cao hơn lề đường không quá 15 cm thì chiều rộng của đường không vượt quá bao nhiêu mét?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 10
+    },
+    {
+      "q_id": "grade10_alg_quad_model_30_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Một chiếc cổng có hình parabol với chiều cao 5 m và khoảng cách giữa hai chân cổng là 4 m. Người ta cần chuyển một thùng hàng hình hộp chữ nhật với chiều cao 3 m. Hỏi chiều rộng của thùng hàng tối đa là bao nhiêu để thùng có thể chuyển lọt qua được cổng? (Đáp số làm tròn đến hàng phần trăm).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 2.53
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_1_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $\\Delta: \\begin{cases} x = 1 + 2t \\\\ y = 3 - t \\end{cases}$. Điểm nào sau đây thuộc $\\Delta$?",
+      "options": [
+        "M(1; 3).",
+        "N(3; 2).",
+        "P(2; −1).",
+        "Q(2; 1)."
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_2_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $\\Delta: 3x - y + 6 = 0$. Điểm nào sau đây thuộc $\\Delta$?",
+      "options": [
+        "M(1; 3).",
+        "N(3; 2).",
+        "P(−1; 3).",
+        "Q(2; 1)."
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_3_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $\\Delta: \\begin{cases} x = 1 + 2t \\\\ x = 3 - t \\end{cases}$. Một véc tơ chỉ phương $\\vec{u}$ của $\\Delta$ là",
+      "options": [
+        "$\\vec{u} = (1; 3)$.",
+        "$\\vec{u} = (2; -1)$.",
+        "$\\vec{u} = (3; 1)$.",
+        "$\\vec{u} = (2; 1)$."
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_4_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $\\Delta: \\begin{cases} x = 5 - 2t \\\\ y = 3 + t \\end{cases}$. Một véc tơ chỉ phương $\\vec{u}$ của $\\Delta$ là",
+      "options": [
+        "$\\vec{u} = (5; 3)$.",
+        "$\\vec{u} = (-2; 3)$.",
+        "$\\vec{u} = (2; 1)$.",
+        "$\\vec{u} = (2; -1)$."
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_5_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $\\Delta: \\begin{cases} x = 1 - 2t \\\\ y = 4 + 8t \\end{cases}$. Một véc tơ chỉ phương $\\vec{u}$ của $\\Delta$ là",
+      "options": [
+        "$\\vec{u} = (1; 4)$.",
+        "$\\vec{u} = (-2; -8)$.",
+        "$\\vec{u} = (1; -4)$.",
+        "$\\vec{u} = (2; 8)$."
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_6_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho phương trình đường thẳng $\\Delta: 3x + 4y - 5 = 0$. Tìm một véc-tơ pháp tuyến của đường thẳng $\\Delta$.",
+      "options": [
+        "$\\vec{n} = (3; 4)$.",
+        "$\\vec{n} = (4; -3)$.",
+        "$\\vec{n} = (-4; 3)$.",
+        "$\\vec{n} = (4; 3)$."
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_7_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho phương trình đường thẳng $\\Delta: x - 2y + 3 = 0$. Tìm một véc-tơ pháp tuyến của đường thẳng $\\Delta$.",
+      "options": [
+        "$\\vec{n} = (1; -2)$.",
+        "$\\vec{n} = (2; 1)$.",
+        "$\\vec{n} = (-2; 3)$.",
+        "$\\vec{n} = (1; 3)$."
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_8_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $d : \\begin{cases} x = 3 + 5t \\\\ y = -4 - 3t \\end{cases}$. Tìm một véc-tơ pháp tuyến $\\vec{n}$ của $d$.",
+      "options": [
+        "$\\vec{n} = (3; -5)$.",
+        "$\\vec{n} = (3; 5)$.",
+        "$\\vec{n} = (5; -3)$.",
+        "$\\vec{n} = (5; 3)$."
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_9_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $d : \\begin{cases} x = -2 - t \\\\ y = 4 + 3t \\end{cases}$. Tìm một véc-tơ pháp tuyến $\\vec{n}$ của $d$.",
+      "options": [
+        "$\\vec{n} = (-2; 4)$.",
+        "$\\vec{n} = (3; 1)$.",
+        "$\\vec{n} = (4; 2)$.",
+        "$\\vec{n} = (-1; 3)$."
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_10_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $d: 3x - 7y + 1 = 0$. Tìm một vectơ chỉ phương $\\vec{u}$ của $d$.",
+      "options": [
+        "$\\vec{u} = (3; 7)$",
+        "$\\vec{u} = (3; -7)$",
+        "$\\vec{u} = (7; -3)$",
+        "$\\vec{u} = (7; 3)$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_11_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $d: 8x + 1 = 0$. Tìm một vectơ chỉ phương $\\vec{u}$ của $d$.",
+      "options": [
+        "$\\vec{u} = (8; 1)$",
+        "$\\vec{u} = (0; 1)$",
+        "$\\vec{u} = (1; 0)$",
+        "$\\vec{u} = (1; -8)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_12_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Đường thẳng $d$ đi qua điểm $M(1; -2)$ và có vectơ chỉ phương $\\vec{u} = (3; 5)$ có phương trình tham số là:",
+      "options": [
+        "$d: \\begin{cases} x = 3 + t \\\\ y = 5 - 2t \\end{cases}$",
+        "$d: \\begin{cases} x = 3 + 2t \\\\ y = 5 + t \\end{cases}$",
+        "$d: \\begin{cases} x = 1 + 5t \\\\ y = -2 - 3t \\end{cases}$",
+        "$d: \\begin{cases} x = 1 + 3t \\\\ y = -2 + 5t \\end{cases}$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_13_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Đường thẳng đi qua $A(-1; 2)$, nhận $\\vec{n} = (2; -4)$ làm vectơ pháp tuyến có phương trình là:",
+      "options": [
+        "$x + y + 4 = 0$",
+        "$x - 2y - 4 = 0$",
+        "$x - 2y + 5 = 0$",
+        "$-x + 2y - 4 = 0$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_14_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Đường thẳng đi qua điểm $C(3; -2)$ và có hệ số góc $k = \\frac{2}{3}$ có phương trình là:",
+      "options": [
+        "$2x + 3y = 0$",
+        "$2x - 3y - 12 = 0$",
+        "$2x - 3y - 9 = 0$",
+        "$3x - 2y - 13 = 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_15_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, viết phương trình tham số của đường thẳng đi qua hai điểm $A(2; -1)$ và $B(2; 5)$.",
+      "options": [
+        "$\\begin{cases} x = 2 \\\\ y = -1 + 6t \\end{cases}$",
+        "$\\begin{cases} x = 2t \\\\ y = -6t \\end{cases}$",
+        "$\\begin{cases} x = 1 \\\\ y = 2 + 6t \\end{cases}$",
+        "$\\begin{cases} x = 2 + t \\\\ y = 5 + 6t \\end{cases}$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_16_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, phương trình tổng quát của đường thẳng đi qua hai điểm $A(3; -1)$ và $B(1; 5)$ là:",
+      "options": [
+        "$-x + 3y + 6 = 0$",
+        "$3x - y + 6 = 0$",
+        "$3x - y + 10 = 0$",
+        "$3x + y - 8 = 0$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_17_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng với hệ trục toạ độ $Oxy$, cho đường thẳng $d$ cắt hai trục $Ox, Oy$ lần lượt tại hai điểm $A(a; 0), B(0; b)$ ($a \\neq 0, b \\neq 0$). Viết phương trình đường thẳng $d$.",
+      "options": [
+        "$d: \\frac{x}{a} - \\frac{y}{b} = 1$",
+        "$d: \\frac{x}{a} + \\frac{y}{b} = 0$",
+        "$d: \\frac{x}{a} + \\frac{y}{b} = 1$",
+        "$d: \\frac{x}{b} + \\frac{y}{a} = 1$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_18_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, đường thẳng cắt hai trục tọa độ tại $A(2; 0)$ và $B(0; 3)$ có phương trình là:",
+      "options": [
+        "$3x - 2y + 6 = 0$",
+        "$3x - 2y - 6 = 0$",
+        "$2x - 3y + 4 = 0$",
+        "$2x + 3y - 4 = 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_19_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, phương trình nào sau đây là phương trình tổng quát của đường thẳng $d: \\begin{cases} x = 15 \\\\ y = 6 + 7t \\end{cases}$?",
+      "options": [
+        "$6x - 15y = 0$",
+        "$x - y - 9 = 0$",
+        "$x - 15 = 0$",
+        "$x + 15 = 0$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_20_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho đường thẳng $d: \\begin{cases} x = 3 - 5t \\\\ y = 1 + 4t \\end{cases} (t \\in \\mathbb{R})$. Phương trình tổng quát của đường thẳng $d$ là:",
+      "options": [
+        "$4x - 5y - 7 = 0$",
+        "$4x + 5y + 17 = 0$",
+        "$4x + 5y - 17 = 0$",
+        "$4x - 5y - 17 = 0$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_21_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Đường thẳng $d$ có phương trình tổng quát $4x + 5y - 8 = 0$. Phương trình tham số của $d$ là:",
+      "options": [
+        "$\\begin{cases} x = 2 + 4t \\\\ y = 5t \\end{cases}$",
+        "$\\begin{cases} x = 2 + 5t \\\\ y = -4t \\end{cases}$",
+        "$\\begin{cases} x = 2 + 5t \\\\ y = 4t \\end{cases}$",
+        "$\\begin{cases} x = -5t \\\\ y = 4t \\end{cases}$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_22_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng với hệ tọa độ $Oxy$, cho ba điểm $A(2;0), B(0;3)$ và $C(-3;-1)$. Viết phương trình tham số của đường thẳng đi qua điểm $B$ và song song với $AC$.",
+      "options": [
+        "$\\begin{cases} x = 5t \\\\ y = 3 + t \\end{cases}$",
+        "$\\begin{cases} x = 3 + 5t \\\\ y = t \\end{cases}$",
+        "$\\begin{cases} x = t \\\\ y = 3 - 5t \\end{cases}$",
+        "$\\begin{cases} x = 5 \\\\ y = 1 + 3t \\end{cases}$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_23_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $A(1;-2), B(3;6)$. Phương trình tổng quát của đường trung trực của đoạn thẳng $AB$ là:",
+      "options": [
+        "$x + 4y + 10 = 0$",
+        "$4x - y - 6 = 0$",
+        "$x + 4y - 10 = 0$",
+        "$2x + 8y + 5 = 0$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_24_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ với đỉnh $A(1;2)$ và $H(3;-1)$ là chân đường cao kẻ từ $A$ của tam giác $ABC$. Khi đó đường thẳng $BC$ có phương trình là:",
+      "options": [
+        "$2x - 3y - 9 = 0$",
+        "$2x - 3y + 4 = 0$",
+        "$3x + 2y - 7 = 0$",
+        "$3x + 2y + 7 = 0$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_25_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có $A(1;2), B(3;1), C(5;4)$. Phương trình nào sau đây là phương trình đường cao kẻ từ $A$ của tam giác $ABC$?",
+      "options": [
+        "$2x + 3y + 8 = 0$",
+        "$2x + 3y - 8 = 0$",
+        "$3x - 2y + 1 = 0$",
+        "$2x + 3y - 2 = 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_26_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Cho ba điểm $A(1;-2), B(5;-4), C(-1;4)$. Đường cao kẻ từ $A$ của tam giác $ABC$ có phương trình tham số là:",
+      "options": [
+        "$\\begin{cases} x = -1 + 4t \\\\ y = 2 + 3t \\end{cases}$",
+        "$\\begin{cases} x = 4 + t \\\\ y = 3 - 2t \\end{cases}$",
+        "$\\begin{cases} x = 1 - 4t \\\\ y = -2 + 3t \\end{cases}$",
+        "$\\begin{cases} x = 1 + 4t \\\\ y = -2 + 3t \\end{cases}$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_27_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Cho tam giác $ABC$ với $A(1;1), B(0;-2)$ và $C(4;2)$. Phương trình tổng quát của đường trung tuyến kẻ từ $B$ của tam giác $ABC$.",
+      "options": [
+        "$3x + y - 2 = 0$",
+        "$5x - 3y + 1 = 0$",
+        "$x + y + 7 = 0$",
+        "$-7x + 5y + 10 = 0$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_28_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ với $A(2;4); B(2;1); C(5;0)$. Trung tuyến $CM$ đi qua điểm nào dưới đây?",
+      "options": [
+        "$(-7;-6)$",
+        "$(-1;5)$",
+        "$\\left(10; -\\frac{5}{2}\\right)$",
+        "$\\left(14; \\frac{9}{2}\\right)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_29_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Đường thẳng đi qua điểm $M(5;-3)$ và cắt hai trục tọa độ tại hai điểm $A$ và $B$ sao cho $M$ là trung điểm của $AB$ có phương trình là:",
+      "options": [
+        "$3x + 5y - 30 = 0$",
+        "$3x - 5y - 30 = 0$",
+        "$3x + 5y + 30 = 0$",
+        "$5x - 3y - 34 = 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_lines_30_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ có $A(0;0), B(1;-1), C(3;3)$. Véc-tơ nào dưới đây là véc-tơ chỉ phương của đường phân giác trong góc $A$?",
+      "options": [
+        "$\\vec{u}_4 = (0;1)$",
+        "$\\vec{u}_2 = (1;0)$",
+        "$\\vec{u}_3 = (1;-1)$",
+        "$\\vec{u}_1 = (-1;2)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_lines_31a_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $(Oxy)$, cho đường thẳng $d : -2x + 5y + 35 = 0$. Khẳng định sau đúng hay sai: Điểm $D(-10; -11)$ không thuộc đường thẳng $d$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_31b_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $(Oxy)$, cho đường thẳng $d : -2x + 5y + 35 = 0$. Khẳng định sau đúng hay sai: Điểm $Q(0; -7)$ thuộc đường thẳng $d$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_31c_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $(Oxy)$, cho đường thẳng $d : -2x + 5y + 35 = 0$. Khẳng định sau đúng hay sai: $d$ có một véc-tơ chỉ phương là $\\vec{u} = (4; -10)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_31d_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $(Oxy)$, cho đường thẳng $d : -2x + 5y + 35 = 0$. Khẳng định sau đúng hay sai: $d$ có một véc-tơ pháp tuyến là $\\vec{n} = (5; 2)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_32a_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong hệ tọa độ $Oxy$, cho đường thẳng $d : 3x - 7y + 15 = 0$. Khẳng định sau đúng hay sai: $\\vec{u} = (7; 3)$ là véc-tơ chỉ phương của $d$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_32b_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong hệ tọa độ $Oxy$, cho đường thẳng $d : 3x - 7y + 15 = 0$. Khẳng định sau đúng hay sai: $d$ không đi qua gốc toạ độ.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_32c_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong hệ tọa độ $Oxy$, cho đường thẳng $d : 3x - 7y + 15 = 0$. Khẳng định sau đúng hay sai: $d$ có hệ số góc $k = \\frac{3}{7}$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_32d_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong hệ tọa độ $Oxy$, cho đường thẳng $d : 3x - 7y + 15 = 0$. Khẳng định sau đúng hay sai: $d$ đi qua hai điểm $M \\left( -\\frac{1}{3}; 2 \\right)$ và $N(5;0)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_33a_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho điểm $A(1; -2), B(3;1)$. Khẳng định sau đúng hay sai: Đường thẳng đi qua hai điểm $A, B$ nhận $\\vec{u} = (2;3)$ làm vectơ chỉ phương.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_33b_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho điểm $A(1; -2), B(3;1)$. Khẳng định sau đúng hay sai: Phương trình tham số của đường thẳng đi qua $A, B$ là $\\begin{cases} x = -1 + 2t \\\\ y = -5 + 3t \\end{cases}$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_33c_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho điểm $A(1; -2), B(3;1)$. Khẳng định sau đúng hay sai: Phương trình tổng quát của đường thẳng đi qua $A, B$ là $3x - 2y - 7 = 0$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_33d_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho điểm $A(1; -2), B(3;1)$. Khẳng định sau đúng hay sai: Hệ số góc của đường thẳng đi qua $A, B$ là $k = -\\frac{3}{2}$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_34a_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ có $A(-4; -1)$, hai đường cao $BH$ và $CK$ có phương trình lần lượt là $2x - y + 3 = 0$ và $3x + 2y - 6 = 0$. Khẳng định sau đúng hay sai: Phương trình đường thẳng $AB$ là $2x - 3y + 5 = 0$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_34b_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ có $A(-4; -1)$, hai đường cao $BH$ và $CK$ có phương trình lần lượt là $2x - y + 3 = 0$ và $3x + 2y - 6 = 0$. Khẳng định sau đúng hay sai: Phương trình đường thẳng $AC$ là $x + 2y - 6 = 0$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_34c_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ có $A(-4; -1)$, hai đường cao $BH$ và $CK$ có phương trình lần lượt là $2x - y + 3 = 0$ và $3x + 2y - 6 = 0$. Khẳng định sau đúng hay sai: Tọa độ điểm $B$ của tam giác $ABC$ là $B(-1; 1)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_34d_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ có $A(-4; -1)$, hai đường cao $BH$ và $CK$ có phương trình lần lượt là $2x - y + 3 = 0$ và $3x + 2y - 6 = 0$. Khẳng định sau đúng hay sai: Phương trình đường thẳng $BC$ là $x + y - 1 = 0$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_35a_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho tam giác $ABC$ biết trực tâm $H(2; 1)$ và phương trình cạnh $AB: x - 2y - 4 = 0$, phương trình cạnh $AC: 3x + 4y - 2 = 0$. Khẳng định sau đúng hay sai: Tọa độ $A(2; -1)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_35b_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho tam giác $ABC$ biết trực tâm $H(2; 1)$ và phương trình cạnh $AB: x - 2y - 4 = 0$, phương trình cạnh $AC: 3x + 4y - 2 = 0$. Khẳng định sau đúng hay sai: Phương trình đường thẳng $BH: 3x - 3y + 2 = 0$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_35c_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho tam giác $ABC$ biết trực tâm $H(2; 1)$ và phương trình cạnh $AB: x - 2y - 4 = 0$, phương trình cạnh $AC: 3x + 4y - 2 = 0$. Khẳng định sau đúng hay sai: Tọa độ $B(3;5)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_35d_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho tam giác $ABC$ biết trực tâm $H(2; 1)$ và phương trình cạnh $AB: x - 2y - 4 = 0$, phương trình cạnh $AC: 3x + 4y - 2 = 0$. Khẳng định sau đúng hay sai: Phương trình đường thẳng $BC: 5y + 11 = 0$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "geo_lines_36_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Cho đường thẳng $\\Delta : \\begin{cases} x = 2 + 2t \\\\ y = -4t \\end{cases}$. Gọi $M$ là điểm thuộc $\\Delta$ và có hoành độ bằng 6. Tính độ dài đoạn $OM$.",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 10
+    },
+    {
+      "q_id": "geo_lines_37_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Cho đường thẳng $\\Delta$ có phương trình là $2x - 3y + 1 = 0$. Đường thẳng $d$ đi qua điểm $M(1; -2)$ và vuông góc với đường thẳng $\\Delta$ có phương trình $ax + by + 1 = 0$. Tính $P = a + b$.",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 5
+    },
+    {
+      "q_id": "geo_lines_38_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có phương trình đường cao $AH$ là $x + y - 1 = 0$; phương trình đường trung tuyến $AM$ là $2x + y - 3 = 0$ và tọa độ $B(0; -3)$. Khi đó điểm $C$ có tung độ bằng bao nhiêu?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 1
+    },
+    {
+      "q_id": "geo_lines_39_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Màn hình radar tại trạm điều khiển không lưu được thiết lập hệ tọa độ $Oxy$ có vị trí trạm có tọa độ $O(0;0)$ rada có bán kính hoạt động là 600 km. Một máy bay khởi hành từ sân bay lúc 8 giờ. Cho biết sau $t$ giờ máy bay có tọa độ $\\begin{cases} x = 1 + 180t \\\\ y = 1 - 180t \\end{cases}$. Hỏi sau mấy giờ máy bay vừa ra khỏi tầm hoạt động của rada? (làm tròn đến hàng phần chục)",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 2.4
+    },
+    {
+      "q_id": "geo_lines_40_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Đường thẳng $\\Delta$ ở hình bên biểu thị tổng chi phí lắp đặt và tiền cước sử dụng dịch vụ Internet (đơn vị: trăm nghìn đồng) theo thời gian của một gia đình (đơn vị: tháng). Tính tổng chi phí lắp đặt và sử dụng Internet trong 12 tháng đầu tiên. (tính bằng đơn vị triệu đồng và làm tròn đến hàng phần chục).<br>![Figure](./figure_1.png)",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "alg_eq_01_p3",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương III. Phương trình và hệ phương trình > Bài. Phương trình quy về phương trình bậc hai",
+      "type": "multiple_choice",
+      "stem": "Tập nghiệm của phương trình $\\sqrt{x^2 + 3x - 2} = \\sqrt{1 + x}$ là",
+      "options": [
+        "$\\emptyset$",
+        "{1}",
+        "{1; -3}",
+        "{−3}"
+      ],
+      "correct_index": 1,
+      "main_section": "section-3-phuong-trinh"
+    },
+    {
+      "q_id": "alg_eq_02_p3",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương III. Phương trình và hệ phương trình > Bài. Phương trình quy về phương trình bậc hai",
+      "type": "multiple_choice",
+      "stem": "Tập nghiệm của phương trình $\\sqrt{2x^2 - 3x - 2} = \\sqrt{x^2 + x + 3}$ là",
+      "options": [
+        "$\\emptyset$",
+        "{−1; 5}",
+        "{−1; 4}",
+        "{5}"
+      ],
+      "correct_index": 1,
+      "main_section": "section-3-phuong-trinh"
+    },
+    {
+      "q_id": "alg_eq_03_p3",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương III. Phương trình và hệ phương trình > Bài. Phương trình quy về phương trình bậc hai",
+      "type": "multiple_choice",
+      "stem": "Khẳng định nào đúng với phương trình $\\sqrt{2x^2 - 3x - 1} = \\sqrt{3x^2 - 2x - 13}$?",
+      "options": [
+        "Phương trình có hai nghiệm phân biệt cùng dấu.",
+        "Phương trình có hai nghiệm phân biệt trái dấu.",
+        "Phương trình có một nghiệm.",
+        "Phương trình vô nghiệm."
+      ],
+      "correct_index": 1,
+      "main_section": "section-3-phuong-trinh"
+    },
+    {
+      "q_id": "alg_eq_04_p3",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương III. Phương trình và hệ phương trình > Bài. Phương trình quy về phương trình bậc hai",
+      "type": "multiple_choice",
+      "stem": "Cho đồ thị của hai hàm số bậc hai $f(x) = ax^2 + bx + c$ và $g(x) = dx^2 + ex + h$ như hình bên. Khẳng định nào đúng với phương trình $\\sqrt{ax^2 + bx + c} = \\sqrt{dx^2 + ex + h}$?<div class='jxg-diagram' data-jxg='{\"preset\":\"quadraticCompareAB\",\"bbox\":[-1,8,7,-1],\"grid\":true,\"A\":[1,3.5],\"B\":[6,1],\"fExpr\":\"-0.5*x^2+3*x+1\",\"gExpr\":\"(5/12)*x^2-(41/12)*x+13/2\"}'></div>",
+      "options": [
+        "Phương trình có hai nghiệm phân biệt là $x = 1$ và $x = 6$.",
+        "Phương trình có 1 nghiệm là $x = 1$.",
+        "Phương trình có 1 nghiệm là $x = 6$.",
+        "Phương trình vô nghiệm."
+      ],
+      "correct_index": 0,
+      "main_section": "section-3-phuong-trinh"
+    },
+    {
+      "q_id": "alg_eq_05_p3",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương III. Phương trình và hệ phương trình > Bài. Phương trình quy về phương trình bậc hai",
+      "type": "multiple_choice",
+      "stem": "Tích các nghiệm của phương trình $\\sqrt{2x^2 - 3x - 1} = \\sqrt{x^2 - 4x + 5}$ bằng",
+      "options": [
+        "-5",
+        "-6",
+        "6",
+        "5"
+      ],
+      "correct_index": 1,
+      "main_section": "section-3-phuong-trinh"
+    },
+    {
+      "q_id": "alg_eq_06_p3",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương III. Phương trình và hệ phương trình > Bài. Phương trình quy về phương trình bậc hai",
+      "type": "multiple_choice",
+      "stem": "Số nghiệm của phương trình $\\sqrt{4x^2 - 3x + 2} = \\sqrt{x^2 + 2x - 7}$.",
+      "options": [
+        "1",
+        "0",
+        "3",
+        "2"
+      ],
+      "correct_index": 1,
+      "main_section": "section-3-phuong-trinh"
+    },
+    {
+      "q_id": "alg_eq_07_p3",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương III. Phương trình và hệ phương trình > Bài. Phương trình quy về phương trình bậc hai",
+      "type": "multiple_choice",
+      "stem": "Khẳng định nào đúng với phương trình $\\sqrt{5x^2 + 27x + 36} = 2x + 5$?",
+      "options": [
+        "Phương trình có một nghiệm.",
+        "Phương trình vô nghiệm.",
+        "Tổng các nghiệm của phương trình là -7.",
+        "Các nghiệm của phương trình đều không bé hơn $-\\frac{5}{2}$."
+      ],
+      "correct_index": 0,
+      "main_section": "section-3-phuong-trinh"
+    },
+    {
+      "q_id": "alg_eq_08_p3",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương III. Phương trình và hệ phương trình > Bài. Phương trình quy về phương trình bậc hai",
+      "type": "multiple_choice",
+      "stem": "Phương trình $\\sqrt{x^2 + 2x - 3} = 5 - x$ có nghiệm là $x = \\frac{a}{b}$. Khi đó $a + 2b$ bằng",
+      "options": [
+        "10",
+        "13",
+        "8",
+        "15"
+      ],
+      "correct_index": 1,
+      "main_section": "section-3-phuong-trinh"
+    },
+    {
+      "q_id": "alg_eq_09_p3",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương III. Phương trình và hệ phương trình > Bài. Phương trình quy về phương trình bậc hai",
+      "type": "multiple_choice",
+      "stem": "Tập nghiệm của phương trình $\\sqrt{6x^2 + 4x - 1} = x + 2$ là",
+      "options": [
+        "$\\varnothing$",
+        "{-1; 1}",
+        "{-1; 3}",
+        "{1}"
+      ],
+      "correct_index": 1,
+      "main_section": "section-3-phuong-trinh"
+    },
+    {
+      "q_id": "alg_eq_10_p3",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương III. Phương trình và hệ phương trình > Bài. Phương trình quy về phương trình bậc hai",
+      "type": "multiple_choice",
+      "stem": "Số nghiệm của phương trình $\\sqrt{2x^2 - x + 8} = 3x + 3$.",
+      "options": [
+        "2",
+        "1",
+        "3",
+        "0"
+      ],
+      "correct_index": 1,
+      "main_section": "section-3-phuong-trinh"
+    },
+    {
+      "q_id": "alg_eq_11_p3",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương III. Phương trình và hệ phương trình > Bài. Phương trình quy về phương trình bậc hai",
+      "type": "multiple_choice",
+      "stem": "Tổng các nghiệm của phương trình $\\sqrt{5x^2 + 8x - 4} = 4 - x$ bằng",
+      "options": [
+        "4",
+        "-4",
+        "6",
+        "-6"
+      ],
+      "correct_index": 1,
+      "main_section": "section-3-phuong-trinh"
+    },
+    {
+      "q_id": "g10_alg_ch1_logic_13a_p4",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương I. Mệnh đề và tập hợp - Bài 1. Mệnh đề",
+      "type": "true_false",
+      "stem": "Cho phương trình $\\sqrt{x^2 - 4x} = \\sqrt{x} + 1$. Xét tính đúng sai của khẳng định sau:\n\na) Điều kiện xác định của phương trình là $x \\geq -1$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-4-tong-hop",
+      "tf_parts": []
+    },
+    {
+      "q_id": "g10_alg_ch1_logic_13b_p4",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương I. Mệnh đề và tập hợp - Bài 1. Mệnh đề",
+      "type": "true_false",
+      "stem": "Cho phương trình $\\sqrt{x^2 - 4x} = \\sqrt{x} + 1$. Xét tính đúng sai của khẳng định sau:\n\nb) Phương trình có hai nghiệm phân biệt.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-4-tong-hop",
+      "tf_parts": []
+    },
+    {
+      "q_id": "g10_alg_ch1_logic_13c_p4",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương I. Mệnh đề và tập hợp - Bài 1. Mệnh đề",
+      "type": "true_false",
+      "stem": "Cho phương trình $\\sqrt{x^2 - 4x} = \\sqrt{x} + 1$. Xét tính đúng sai của khẳng định sau:\n\nc) Tổng các nghiệm của phương trình bằng $-5$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-4-tong-hop",
+      "tf_parts": []
+    },
+    {
+      "q_id": "g10_alg_ch1_logic_13d_p4",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương I. Mệnh đề và tập hợp - Bài 1. Mệnh đề",
+      "type": "true_false",
+      "stem": "Cho phương trình $\\sqrt{x^2 - 4x} = \\sqrt{x} + 1$. Xét tính đúng sai của khẳng định sau:\n\nd) Tích các nghiệm của phương trình bằng $-1$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-4-tong-hop",
+      "tf_parts": []
+    },
+    {
+      "q_id": "g10_geo_ch3_metric_14a_p4",
+      "section": "Lớp 10 - Hình học - Chương III. Hệ thức lượng trong tam giác - Bài 6. Hệ thức lượng trong tam giác",
+      "type": "true_false",
+      "stem": "Một con tàu biển $M$ rời cảng $O$ và chuyển động thẳng theo phương tạo với bờ biển một góc $60^\\circ$. Trên bờ biển có hai đài quan sát $A$ và $B$ nằm về hai phía so với cảng $O$ và lần lượt cách cảng $O$ khoảng cách $1$ km và $2$ km. Đặt độ dài của $MO$ là $x$ (km). Khoảng cách từ tàu đến đài quan sát $A$ được tính theo $x$ là $x^2 + x + 1$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-4-tong-hop",
+      "tf_parts": []
+    },
+    {
+      "q_id": "g10_geo_ch3_metric_14b_p4",
+      "section": "Lớp 10 - Hình học - Chương III. Hệ thức lượng trong tam giác - Bài 6. Hệ thức lượng trong tam giác",
+      "type": "true_false",
+      "stem": "Một con tàu biển $M$ rời cảng $O$ và chuyển động thẳng theo phương tạo với bờ biển một góc $60^\\circ$. Trên bờ biển có hai đài quan sát $A$ và $B$ nằm về hai phía so với cảng $O$ và lần lượt cách cảng $O$ khoảng cách $1$ km và $2$ km. Đặt độ dài của $MO$ là $x$ (km).\n\nb) Khoảng cách từ tàu đến đài quan sát $B$ được tính theo $x$ là $\\sqrt{x^2 - 2x + 4}$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-4-tong-hop",
+      "tf_parts": []
+    },
+    {
+      "q_id": "g10_geo_ch3_metric_14c_p4",
+      "section": "Lớp 10 - Hình học - Chương III. Hệ thức lượng trong tam giác - Bài 6. Hệ thức lượng trong tam giác",
+      "type": "true_false",
+      "stem": "Một con tàu biển $M$ rời cảng $O$ và chuyển động thẳng theo phương tạo với bờ biển một góc $60^\\circ$. Trên bờ biển có hai đài quan sát $A$ và $B$ nằm về hai phía so với cảng $O$ và lần lượt cách cảng $O$ khoảng cách $1$ km và $2$ km. Đặt độ dài của $MO$ là $x$ (km).\n\nc) Khoảng cách từ tàu đến $B$ bằng $\\frac{4}{5}$ khoảng cách từ tàu đến $A$ khi $x \\approx 1,64$ (km) hoặc $x \\approx 5,69$ (km).",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-4-tong-hop",
+      "tf_parts": []
+    },
+    {
+      "q_id": "g10_geo_ch3_metric_14d_p4",
+      "section": "Lớp 10 - Hình học - Chương III. Hệ thức lượng trong tam giác - Bài 6. Hệ thức lượng trong tam giác",
+      "type": "true_false",
+      "stem": "Một con tàu biển $M$ rời cảng $O$ và chuyển động thẳng theo phương tạo với bờ biển một góc $60^\\circ$. Trên bờ biển có hai đài quan sát $A$ và $B$ nằm về hai phía so với cảng $O$ và lần lượt cách cảng $O$ khoảng cách $1$ km và $2$ km. Đặt độ dài của $MO$ là $x$ (km).\n\nd) Khoảng cách từ tàu đến $B$ nhỏ hơn khoảng cách từ tàu đến $O$ đúng $500$ m khi $x = 3,75$ (km).",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-4-tong-hop",
+      "tf_parts": []
+    },
+    {
+      "q_id": "g10_alg_ch1_eq_15_p4",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương I. Mệnh đề và tập hợp - Bài 1. Mệnh đề",
+      "type": "short_answer",
+      "stem": "Tích hai nghiệm của phương trình $\\sqrt{2x^2 - x + 4} - \\sqrt{x^2 + 5x - 1} = 0$ bằng bao nhiêu?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-4-tong-hop",
+      "final_answer": 5
+    },
+    {
+      "q_id": "g10_alg_ch1_eq_16_p4",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương I. Mệnh đề và tập hợp - Bài 1. Mệnh đề",
+      "type": "short_answer",
+      "stem": "Tổng hai nghiệm của phương trình $\\sqrt{2x^2 + 5x - 2} + x - 6 = 0$ bằng bao nhiêu?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-4-tong-hop",
+      "final_answer": -17
+    },
+    {
+      "q_id": "g10_geo_ch3_metric_17_p4",
+      "section": "Lớp 10 - Hình học - Chương III. Hệ thức lượng trong tam giác - Bài 6. Hệ thức lượng trong tam giác",
+      "type": "short_answer",
+      "stem": "Một ngọn hải đăng đặt tại vị trí $A$ cách bờ biển một khoảng cách $AB = 4$ km. Trên bờ biển có một cái kho ở vị trí $C$ cách $B$ một khoảng là $7$ km. Người canh hải đăng có thể chèo thuyền từ $A$ đến vị trí $M$ trên bờ biển với vận tốc $3$ km/h rồi đi bộ đến $C$ với vận tốc $5$ km/h như hình bên. Tính khoảng cách (đơn vị km) từ vị trí $B$ đến $M$, biết thời gian người đó đi từ $A$ đến $C$ là $148$ phút.\n<div class='jxg-diagram' data-jxg='{\"preset\":\"scene\",\"bbox\":[-1,5.5,8,-1],\"axes\":true,\"grid\":true,\"points\":{\"A\":{\"xy\":[0,4],\"name\":\"A\"},\"B\":{\"xy\":[0,0],\"name\":\"B\"},\"C\":{\"xy\":[7,0],\"name\":\"C\"},\"M\":{\"xy\":[3,0],\"name\":\"M\"}},\"segments\":[{\"p1\":\"A\",\"p2\":\"B\",\"color\":\"#0f172a\",\"strokeWidth\":2},{\"p1\":\"B\",\"p2\":\"C\",\"color\":\"#0f172a\",\"strokeWidth\":2},{\"p1\":\"A\",\"p2\":\"M\",\"color\":\"#dc2626\",\"strokeWidth\":2},{\"p1\":\"M\",\"p2\":\"C\",\"color\":\"#16a34a\",\"strokeWidth\":2}]}'></div>",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-4-tong-hop",
+      "final_answer": 3
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_1_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $A(-8; -8)$ và $H(-6; -1)$. Tìm tọa độ vectơ $\\overrightarrow{AH}$.",
+      "options": [
+        "$\\overrightarrow{AH} = (-7; -\\frac{9}{2})$",
+        "$\\overrightarrow{AH} = (-2; -7)$",
+        "$\\overrightarrow{AH} = (-14; -9)$",
+        "$\\overrightarrow{AH} = (2; 7)$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_2_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{u} = (6; 1)$ và $\\vec{c} = (-7; -9)$. Tìm tọa độ vectơ $\\vec{u} + \\vec{c}$.",
+      "options": [
+        "$\\vec{u} + \\vec{c} = (7; -16)$",
+        "$\\vec{u} + \\vec{c} = (-13; -10)$",
+        "$\\vec{u} + \\vec{c} = (-1; -8)$",
+        "$\\vec{u} + \\vec{c} = (-42; -9)$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_3_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho vectơ $\\vec{a} = (-9; -5)$. Tính độ dài của vectơ $\\vec{a}$.",
+      "options": [
+        "$|\\vec{a}| = \\sqrt{106}$",
+        "$|\\vec{a}| = 2$",
+        "$|\\vec{a}| = 106$",
+        "$|\\vec{a}| = \\sqrt{14}$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_4_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{d} = (-4; 6m)$ và $\\vec{b} = (-10; 10 - m)$. Tìm các giá trị của $m$ để vectơ $\\vec{d}$ và vectơ $\\vec{b}$ cùng phương.",
+      "options": [
+        "$m = \\frac{29}{8}$",
+        "$m = \\frac{5}{8}$",
+        "$m = \\frac{4}{7}$",
+        "$m = 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_5_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $N(-1; -3)$ và $H(-2; -3)$. Tìm độ dài đoạn thẳng $NH$.",
+      "options": [
+        "$NH = 1$",
+        "$NH = 1$",
+        "$NH = 9$",
+        "$NH = 1$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_6_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $E(-2; -8)$ và $C(-4; -4)$. Tìm tọa độ trung điểm của đoạn thẳng $EC$.",
+      "options": [
+        "$(1; -2)$",
+        "$(-3; -6)$",
+        "$(-6; -12)$",
+        "$(-5; -4)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_7_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $DBC$ có $D(-3; -3), B(0; 1)$ và $C(-7; -5)$. Tìm tọa độ trọng tâm của tam giác $DBC$.",
+      "options": [
+        "$\\left( -\\frac{5}{2}; -\\frac{7}{4} \\right)$",
+        "$(-10; -7)$",
+        "$\\left( -\\frac{10}{3}; -\\frac{7}{3} \\right)$",
+        "$\\left( -5; -\\frac{7}{2} \\right)$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_8_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $A(3; 1)$ và $H(-6; -2)$. Tìm tọa độ điểm $P$ sao cho $A$ và $P$ đối xứng nhau qua $H$.",
+      "options": [
+        "$P(-11; -10)$",
+        "$P(15; 5)$",
+        "$P(-22; 3)$",
+        "$P(-15; -5)$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_9_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho ba điểm $A(3; 1), N(4; 10)$ và $H(6; -9)$. Tìm tọa độ điểm $K$ sao cho tam giác $ANK$ nhận $H(6; -9)$ làm trọng tâm.",
+      "options": [
+        "$K(11; -38)$",
+        "$K(-11; 38)$",
+        "$K(2; -30)$",
+        "$K(14; -43)$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_10_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 11. Tích vô hướng của hai vectơ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{m} = (-6; 5)$ và $\\vec{b} = (-1; 0)$. Tính tích vô hướng $\\vec{m} \\cdot \\vec{b}$.",
+      "options": [
+        "$\\vec{m} \\cdot \\vec{b} = -35$",
+        "$\\vec{m} \\cdot \\vec{b} = -30$",
+        "$\\vec{m} \\cdot \\vec{b} = 6$",
+        "$\\vec{m} \\cdot \\vec{b} = -5$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_11_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 11. Tích vô hướng của hai vectơ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{a} = (-1; 1)$ và $\\vec{b} = (2; 0)$. Tính cosin của góc giữa hai vectơ $\\vec{a}$ và $\\vec{b}$.",
+      "options": [
+        "$\\cos(\\vec{a}, \\vec{b}) = \\frac{1}{\\sqrt{2}}$",
+        "$\\cos(\\vec{a}, \\vec{b}) = \\frac{1}{2}$",
+        "$\\cos(\\vec{a}, \\vec{b}) = -\\frac{\\sqrt{2}}{2}$",
+        "$\\cos(\\vec{a}, \\vec{b}) = -\\frac{1}{2\\sqrt{2}}$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_12_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 11. Tích vô hướng của hai vectơ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{a} = (5; 2)$ và $\\vec{w} = (-3m; -4m - 5)$. Tìm các giá trị của $m$ để vectơ $\\vec{a}$ và vectơ $\\vec{w}$ vuông góc.",
+      "options": [
+        "$m = \\frac{82}{23}$",
+        "$m = 0$",
+        "$m = -\\frac{10}{23}$",
+        "$m = -8$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_13_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 11. Tích vô hướng của hai vectơ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $A(2; 2), B(5; -2)$. Tìm điểm $M$ thuộc trục hoành sao cho $\\widehat{AMB} = 90^\\circ$.",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "c14_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, tìm điểm $M$ thuộc trục hoành để khoảng cách từ đó đến điểm $N(-1; 4)$ bằng $2\\sqrt{5}$.<div class=\"jxg-diagram\" data-jxg=\"preset=scene;points=[[-1,4]];labels=['N']\"></div>",
+      "options": [
+        "$M(1; 0), M(-3; 0)$",
+        "$M(1; 0)$",
+        "$M(3; 0)$",
+        "$M(1; 0), M(3; 0)$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "c15_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có $A(6; 0), B(3; 1), C(-1; -1)$. Tính số đo góc $B$ của tam giác đã cho.<div class=\"jxg-diagram\" data-jxg=\"preset=triangle;points=[[6,0],[3,1],[-1,-1]];labels=['A','B','C']\"></div>",
+      "options": [
+        "$\\widehat{B} = 15^\\circ$",
+        "$\\widehat{B} = 60^\\circ$",
+        "$\\widehat{B} = 120^\\circ$",
+        "$\\widehat{B} = 135^\\circ$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "c16_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có $A(-4; 1), B(2; 4), C(2; -2)$. Tìm tọa độ tâm $I$ của đường tròn ngoại tiếp tam giác đã cho.<div class=\"jxg-diagram\" data-jxg=\"preset=triangle;points=[[-4,1],[2,4],[2,-2]];labels=['A','B','C']\"></div>",
+      "options": [
+        "$I \\left( \\frac{1}{4}; 1 \\right)$",
+        "$I \\left( 1; \\frac{1}{4} \\right)$",
+        "$I \\left( -\\frac{1}{4}; 1 \\right)$",
+        "$I \\left( 1; -\\frac{1}{4} \\right)$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "c17_a_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$ cho bốn điểm $A(3; -2), B(7; 1), C(0; 1), D(-8; -5)$.\nKhẳng định sau đúng hay sai: Hai vectơ $\\overrightarrow{AB}$ và $\\overrightarrow{CD}$ ngược hướng.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c17_b_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$ cho bốn điểm $A(3; -2), B(7; 1), C(0; 1), D(-8; -5)$.\nKhẳng định sau đúng hay sai: Bốn điểm $A, B, C, D$ thẳng hàng.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c17_c_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$ cho bốn điểm $A(3; -2), B(7; 1), C(0; 1), D(-8; -5)$.\nKhẳng định sau đúng hay sai: Hai vectơ $\\overrightarrow{AB}$ và $\\overrightarrow{CD}$ cùng hướng.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c17_d_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$ cho bốn điểm $A(3; -2), B(7; 1), C(0; 1), D(-8; -5)$.\nKhẳng định sau đúng hay sai: $\\overrightarrow{AB}$ và $\\overrightarrow{CD}$ là hai vectơ đối.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c18_a_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho hai vectơ $\\vec{d} = 4\\vec{i} + 3\\vec{j}$ và $\\vec{b} = \\vec{i} + 7\\vec{j}$.\nKhẳng định sau đúng hay sai: $|\\vec{d}| = 7$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c18_b_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho hai vectơ $\\vec{d} = 4\\vec{i} + 3\\vec{j}$ và $\\vec{b} = \\vec{i} + 7\\vec{j}$.\nKhẳng định sau đúng hay sai: $|\\vec{b}| = 5\\sqrt{2}$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c18_c_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho hai vectơ $\\vec{d} = 4\\vec{i} + 3\\vec{j}$ và $\\vec{b} = \\vec{i} + 7\\vec{j}$.\nKhẳng định sau đúng hay sai: $\\vec{d} \\cdot \\vec{b} = 14$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c18_d_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho hai vectơ $\\vec{d} = 4\\vec{i} + 3\\vec{j}$ và $\\vec{b} = \\vec{i} + 7\\vec{j}$.\nKhẳng định sau đúng hay sai: $(\\vec{d}, \\vec{b}) = 45^\\circ$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c19_a_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{n} = (-5; -3)$, $\\vec{d} = (8; -4)$.\nKhẳng định sau đúng hay sai: $\\vec{n} - \\vec{d} = (-13; 3)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c19_b_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{n} = (-5; -3)$, $\\vec{d} = (8; -4)$.\nKhẳng định sau đúng hay sai: $2\\vec{n} - 4\\vec{d} = (-42; 10)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c19_c_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{n} = (-5; -3)$, $\\vec{d} = (8; -4)$.\nKhẳng định sau đúng hay sai: $|\\vec{d}| = 4\\sqrt{5}$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c19_d_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{n} = (-5; -3)$, $\\vec{d} = (8; -4)$.\nKhẳng định sau đúng hay sai: $\\cos(\\vec{n}; \\vec{d}) = -\\frac{7\\sqrt{170}}{170}$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c20_a_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ với $A(2; -1), B(1; 4), C(7; 0)$.\nKhẳng định sau đúng hay sai: $AB = \\sqrt{26}$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c20_b_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ với $A(2; -1), B(1; 4), C(7; 0)$.\nKhẳng định sau đúng hay sai: Chu vi tam giác $ABC$ bằng $17,4$ (làm tròn đến hàng phần chục).",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c20_c_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ với $A(2; -1), B(1; 4), C(7; 0)$.\nKhẳng định sau đúng hay sai: Tam giác $ABC$ là tam giác đều.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c20_d_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ với $A(2; -1), B(1; 4), C(7; 0)$.\nKhẳng định sau đúng hay sai: Diện tích tam giác $ABC$ bằng $26$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c21_a_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ với $A(5; -2), B(0; 0), C(-3; 3)$.\nKhẳng định sau đúng hay sai: $\\overrightarrow{AB} = (-5; 2)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c21_b_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ với $A(5; -2), B(0; 0), C(-3; 3)$.\nKhẳng định sau đúng hay sai: Toạ độ trọng tâm tam giác $ABC$ là $\\left( \\frac{2}{3}; \\frac{1}{3} \\right)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c21_c_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ với $A(5; -2), B(0; 0), C(-3; 3)$.\nKhẳng định sau đúng hay sai: $\\widehat{A}$ là góc nhọn.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c21_d_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ với $A(5; -2), B(0; 0), C(-3; 3)$.\nKhẳng định sau đúng hay sai: Toạ độ trực tâm tam giác là $H \\left( -\\frac{32}{3}, -\\frac{53}{3} \\right)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c22_a_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho tam giác $ABC$ với $A(-4; 4), B(2; -3), C(5; 3)$.\nKhẳng định sau đúng hay sai: $\\overrightarrow{BA} = (6; -7)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c22_b_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho tam giác $ABC$ với $A(-4; 4), B(2; -3), C(5; 3)$.\nKhẳng định sau đúng hay sai: Toạ độ trọng tâm tam giác $ABC$ là $\\left( 1; \\frac{4}{3} \\right)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c22_c_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho tam giác $ABC$ với $A(-4; 4), B(2; -3), C(5; 3)$.\nKhẳng định sau đúng hay sai: $\\widehat{A}$ là góc tù.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c22_d_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho tam giác $ABC$ với $A(-4; 4), B(2; -3), C(5; 3)$.\nKhẳng định sau đúng hay sai: Toạ độ trực tâm tam giác là $H \\left( \\frac{94}{19}, -\\frac{9}{19} \\right)$.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": []
+    },
+    {
+      "q_id": "c23_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có $A(1;4), B(3;2), C(5;4)$. Tính chu vi $P$ của tam giác đã cho (làm tròn kết quả đến hàng phần trăm).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 9.66
+    },
+    {
+      "q_id": "c24_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có $A(-3;0), B(3;0)$ và $C(2;6)$. Gọi $H(a;b)$ là toạ độ trực tâm của tam giác đã cho. Tính $a + 6b$.<div class=\"jxg-diagram\" data-jxg=\"preset=triangle;points=[[-3,0],[3,0],[2,6]];labels=['A','B','C']\"></div>",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 7
+    },
+    {
+      "q_id": "c25_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{u} = (8;3), \\vec{m} = (-6;3)$. Biết vectơ $\\vec{x} = (a;b)$ thỏa mãn $2\\vec{u} - \\vec{x} = \\vec{m}$. Tính $a + b$.",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 25
+    },
+    {
+      "q_id": "c26_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho ba điểm $N(3; -2), M(-4; -4), E(4; -1)$. Điểm $C(a; b)$ thỏa mãn $3\\overrightarrow{NC} - 2\\overrightarrow{NM} = -2\\overrightarrow{NE}$. Tính $a + b$ (kết quả làm tròn đến hàng phân mươi).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": -6.3
+    },
+    {
+      "q_id": "c27_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $F(-6; -1), N(6; -6)$. Điểm $C(a; b)$ thuộc trục hoành thỏa mãn cách đều hai điểm $F$ và $N$. Tính $3a + 2b$ (kết quả làm tròn đến hàng phân mươi).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 4.4
+    },
+    {
+      "q_id": "c28_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trên màn hình ra đa của đài kiểm soát (được coi như mặt phẳng tọa độ $Oxy$) với đơn vị trên các trục (tính theo ki-lô-mét), một xe thiết giáp chuyển động thẳng đều từ mục tiêu $A$ có tọa độ $(60; 20)$ đến mục tiêu $B$ có tọa độ $(20; 50)$ và thời gian đi quãng đường $AB$ là 3 giờ. Gọi $M(x_M; y_M)$ là tọa độ của xe thiết giáp tại thời điểm sau khi xuất phát 1 giờ. Hỏi $y_M$ bằng bao nhiêu?<div class=\"jxg-diagram\" data-jxg=\"preset=scene;points=[[60,20],[20,50]];labels=['A','B']\"></div>",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 30
+    }
+  ]
+}

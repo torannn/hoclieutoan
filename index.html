@@ -436,15 +436,15 @@
             </button>
             <div class="user-menu-divider"></div>
             <!-- Profile & Settings -->
-            <a href="#/profile" class="user-menu-item">
+            <a href="#/profile" class="user-menu-item" id="menu-profile-link">
               <i class="fa-solid fa-user"></i>
-              <span>Hồ sơ</span>
+              <span id="menu-profile-label">Hồ sơ</span>
             </a>
-            <a href="#/dashboard" class="user-menu-item">
+            <a href="#/dashboard" class="user-menu-item" id="menu-dashboard-link">
               <i class="fa-solid fa-chart-line"></i>
-              <span>Thống kê</span>
+              <span id="menu-dashboard-label">Thống kê</span>
             </a>
-            <a href="#/customize" class="user-menu-item">
+            <a href="#/customize" class="user-menu-item" id="menu-customize-link">
               <i class="fa-solid fa-sliders"></i>
               <span>Tuỳ chỉnh cá nhân</span>
             </a>
@@ -471,77 +471,48 @@
 
   <main id="app-container" class="max-w-7xl mx-auto px-4 py-8">
 
-    <!-- Chọn lớp học - Modern Design -->
+    <!-- Chọn hướng học - Track Selection -->
     <section id="class-selection-screen">
       <div class="text-center mb-8">
         <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-          Chọn lớp học của bạn
+          Chọn hướng học của bạn
         </h1>
         <p class="text-slate-500 mt-2 text-lg">Bắt đầu hành trình chinh phục Toán học</p>
       </div>
-      
-      <!-- Modern Grade Cards Grid -->
-      <div id="class-menu" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-        <!-- Grade 9 -->
-        <button type="button" data-grade="9" class="grade-card group">
-          <div class="grade-card-inner grade-9">
+
+      <!-- Two Track Cards -->
+      <div id="track-menu" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <!-- Toán cơ bản -->
+        <button type="button" data-track="coban" class="grade-card group">
+          <div class="grade-card-inner" style="background: linear-gradient(145deg, #3b82f6, #6366f1); box-shadow: 0 10px 30px rgba(99,102,241,0.3);">
             <div class="grade-icon">
-              <i class="fa-solid fa-square-root-variable"></i>
+              <i class="fa-solid fa-book"></i>
             </div>
-            <div class="grade-number">9</div>
-            <div class="grade-label">Lớp 9</div>
+            <div class="grade-number" style="font-size:36px;">📘</div>
+            <div class="grade-label">Toán cơ bản</div>
+            <div class="grade-desc">Chương trình Toán phổ thông lớp 9–12</div>
             <div class="grade-arrow">
               <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
         </button>
-        
-        <!-- Grade 10 -->
-        <button type="button" data-grade="10" class="grade-card group">
-          <div class="grade-card-inner grade-10">
+
+        <!-- Toán chuyên -->
+        <button type="button" data-track="chuyen" class="grade-card group">
+          <div class="grade-card-inner" style="background: linear-gradient(145deg, #f59e0b, #ef4444); box-shadow: 0 10px 30px rgba(245,158,11,0.3);">
             <div class="grade-icon">
-              <i class="fa-solid fa-chart-line"></i>
+              <i class="fa-solid fa-trophy"></i>
             </div>
-            <div class="grade-number">10</div>
-            <div class="grade-label">Lớp 10</div>
-            
-            <div class="grade-arrow">
-              <i class="fa-solid fa-arrow-right"></i>
-            </div>
-          </div>
-        </button>
-        
-        <!-- Grade 11 -->
-        <button type="button" data-grade="11" class="grade-card group">
-          <div class="grade-card-inner grade-11">
-            <div class="grade-icon">
-              <i class="fa-solid fa-wave-square"></i>
-            </div>
-            <div class="grade-number">11</div>
-            <div class="grade-label">Lớp 11</div>
-        
-            <div class="grade-arrow">
-              <i class="fa-solid fa-arrow-right"></i>
-            </div>
-          </div>
-        </button>
-        
-        <!-- Grade 12 -->
-        <button type="button" data-grade="12" class="grade-card group">
-          <div class="grade-card-inner grade-12">
-            <div class="grade-icon">
-              <i class="fa-solid fa-infinity"></i>
-            </div>
-            <div class="grade-number">12</div>
-            <div class="grade-label">Lớp 12</div>
-            
+            <div class="grade-number" style="font-size:36px;">🏆</div>
+            <div class="grade-label">Toán chuyên</div>
+            <div class="grade-desc">Toán chuyên THCS & THPT</div>
             <div class="grade-arrow">
               <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
         </button>
       </div>
-      
+
       <!-- Quick Stats -->
       <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="glass rounded-2xl p-4 text-center">
@@ -563,12 +534,118 @@
       </div>
     </section>
 
+    <!-- Chọn lớp (Toán cơ bản) -->
+    <section id="coban-grade-screen" class="hidden">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          Toán cơ bản
+        </h1>
+        <p class="text-slate-500 mt-2 text-lg">Chọn lớp học của bạn</p>
+      </div>
+      <div id="class-menu" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <button type="button" data-grade="9" class="grade-card group">
+          <div class="grade-card-inner grade-9">
+            <div class="grade-icon"><i class="fa-solid fa-square-root-variable"></i></div>
+            <div class="grade-number">9</div>
+            <div class="grade-label">Lớp 9</div>
+            <div class="grade-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+        </button>
+        <button type="button" data-grade="10" class="grade-card group">
+          <div class="grade-card-inner grade-10">
+            <div class="grade-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="grade-number">10</div>
+            <div class="grade-label">Lớp 10</div>
+            <div class="grade-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+        </button>
+        <button type="button" data-grade="11" class="grade-card group">
+          <div class="grade-card-inner grade-11">
+            <div class="grade-icon"><i class="fa-solid fa-wave-square"></i></div>
+            <div class="grade-number">11</div>
+            <div class="grade-label">Lớp 11</div>
+            <div class="grade-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+        </button>
+        <button type="button" data-grade="12" class="grade-card group">
+          <div class="grade-card-inner grade-12">
+            <div class="grade-icon"><i class="fa-solid fa-infinity"></i></div>
+            <div class="grade-number">12</div>
+            <div class="grade-label">Lớp 12</div>
+            <div class="grade-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+        </button>
+      </div>
+      <div class="mt-6 text-center">
+        <button id="back-to-tracks-from-coban" class="text-blue-600 hover:underline flex items-center gap-2 mx-auto">
+          <i class="fa-solid fa-arrow-left"></i> Quay lại chọn hướng
+        </button>
+      </div>
+    </section>
+
+    <!-- Chọn cấp & chuyên đề (Toán chuyên) -->
+    <section id="chuyen-level-screen" class="hidden">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text text-transparent">
+          Toán chuyên
+        </h1>
+        <p class="text-slate-500 mt-2 text-lg">Chọn cấp học</p>
+      </div>
+
+      <!-- THCS / THPT level cards -->
+      <div id="chuyen-level-menu" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <button type="button" data-chuyen-level="thcs" class="grade-card group">
+          <div class="grade-card-inner" style="background: linear-gradient(145deg, #f59e0b, #d97706); box-shadow: 0 10px 30px rgba(245,158,11,0.3);">
+            <div class="grade-icon"><i class="fa-solid fa-school"></i></div>
+            <div class="grade-number" style="font-size:28px;">THCS</div>
+            <div class="grade-label">Toán chuyên THCS</div>
+            <div class="grade-desc">Đại số · Số học · Hình học · Tổ hợp</div>
+            <div class="grade-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+        </button>
+        <button type="button" data-chuyen-level="thpt" class="grade-card group">
+          <div class="grade-card-inner" style="background: linear-gradient(145deg, #ef4444, #dc2626); box-shadow: 0 10px 30px rgba(239,68,68,0.3);">
+            <div class="grade-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="grade-number" style="font-size:28px;">THPT</div>
+            <div class="grade-label">Toán chuyên THPT</div>
+            <div class="grade-desc">Đại số–Giải tích · Số học · Hình học · Tổ hợp</div>
+            <div class="grade-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+        </button>
+      </div>
+      <div class="mt-6 text-center">
+        <button id="back-to-tracks-from-chuyen" class="text-blue-600 hover:underline flex items-center gap-2 mx-auto">
+          <i class="fa-solid fa-arrow-left"></i> Quay lại chọn hướng
+        </button>
+      </div>
+    </section>
+
+    <!-- Chọn chuyên đề (THCS hoặc THPT) -->
+    <section id="chuyen-topic-screen" class="hidden">
+      <div class="text-center mb-6">
+        <h1 id="chuyen-topic-title" class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-amber-500 to-red-500 bg-clip-text text-transparent">
+          Toán chuyên THCS
+        </h1>
+        <p class="text-slate-500 mt-2">Chọn chuyên đề</p>
+      </div>
+      <div id="chuyen-topic-menu" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto">
+        <!-- Populated dynamically -->
+      </div>
+      <div class="mt-6 text-center">
+        <button id="back-to-chuyen-levels" class="text-blue-600 hover:underline flex items-center gap-2 mx-auto">
+          <i class="fa-solid fa-arrow-left"></i> Quay lại chọn cấp
+        </button>
+      </div>
+    </section>
+
     <!-- Tuỳ chỉnh giao diện -->
     <section id="customize-screen" class="hidden">
-      <div class="rounded-3xl glass shadow-xl p-6 md:p-8">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Tuỳ chỉnh giao diện</h2>
-        <p class="text-slate-600 mt-1">Chọn cách hiển thị và chế độ màu cho trang của bạn.</p>
+      <div class="rounded-3xl glass shadow-xl p-6 md:p-8 max-w-3xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Tuỳ chỉnh cá nhân</h2>
+        <p class="text-slate-600 mt-1">Giao diện, chế độ màu và tuỳ chọn mặc định.</p>
+
         <div class="mt-6 grid md:grid-cols-2 gap-6">
+          <!-- Layout -->
           <div class="rounded-2xl border border-slate-200 bg-white p-5">
             <div class="font-semibold mb-3">Kiểu hiển thị Đề & Học liệu</div>
             <div id="pref-layout" class="grid grid-cols-2 gap-3 text-sm">
@@ -578,6 +655,8 @@
               <label class="flex items-center gap-2 p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50"><input type="radio" name="layout" value="carousel"> Carousel</label>
             </div>
           </div>
+
+          <!-- Theme -->
           <div class="rounded-2xl border border-slate-200 bg-white p-5">
             <div class="font-semibold mb-3">Chế độ giao diện</div>
             <div class="flex items-center gap-4">
@@ -586,9 +665,35 @@
             </div>
             <div class="text-xs text-slate-500 mt-2">Tuỳ chọn sẽ được áp dụng ngay và lưu lại cho lần sau.</div>
           </div>
+
+          <!-- Default Track -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <div class="font-semibold mb-3">Hướng mặc định khi đăng nhập</div>
+            <select id="pref-defaultTrack" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-300 text-sm">
+              <option value="">Không (chọn mỗi lần)</option>
+              <option value="coban">Toán cơ bản</option>
+              <option value="chuyen">Toán chuyên</option>
+            </select>
+            <div class="text-xs text-slate-500 mt-2">Tự động chuyển đến hướng này khi đăng nhập.</div>
+          </div>
+
+          <!-- Default Grade -->
+          <div class="rounded-2xl border border-slate-200 bg-white p-5">
+            <div class="font-semibold mb-3">Lớp mặc định (Toán cơ bản)</div>
+            <select id="pref-defaultGrade" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-300 text-sm">
+              <option value="">Không</option>
+              <option value="9">Lớp 9</option>
+              <option value="10">Lớp 10</option>
+              <option value="11">Lớp 11</option>
+              <option value="12">Lớp 12</option>
+            </select>
+            <div class="text-xs text-slate-500 mt-2">Kết hợp với hướng "Toán cơ bản" để vào thẳng danh sách đề.</div>
+          </div>
         </div>
-        <div class="mt-6 text-right">
-          <button id="customize-done" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Xong</button>
+
+        <div class="mt-6 flex items-center justify-between">
+          <button id="customize-done" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium hover:shadow-lg transition-all">Xong</button>
+          <button onclick="location.hash='#/classes'" class="text-slate-500 hover:text-slate-700 text-sm">← Quay lại</button>
         </div>
       </div>
     </section>
@@ -675,7 +780,7 @@
           </div>
         </div>
 
-        <!-- Dynamic variant (dùng từ script.js) -->
+        <!-- Bài tập Tết du xuân -->
         <div id="exam-variant-dynamic" class="mt-6">
           <div id="exam-menu" class="flex flex-col items-center space-y-4"></div>
           <div class="mt-6 text-center">
@@ -1003,38 +1108,82 @@
     </section>
 
     <section id="profile-screen" class="hidden">
-      <div class="rounded-3xl glass shadow-xl p-6">
-        <h2 class="text-2xl font-semibold mb-4">Hồ sơ học viên</h2>
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-slate-700">Họ và tên</label>
-            <input id="profile-fullName" type="text" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nguyễn Văn A" />
+      <div class="rounded-3xl glass shadow-xl p-6 md:p-8 max-w-3xl mx-auto">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl">
+            <i class="fa-solid fa-user"></i>
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-700">Số điện thoại/Zalo</label>
-            <div class="mt-1 flex gap-2">
-              <input id="profile-phone" type="tel" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="+84..." />
-              <button id="profile-link-phone" class="px-3 py-2 border border-blue-300 rounded-lg text-blue-700 hover:bg-blue-50"><i class="fa fa-link mr-1"></i>Liên kết SĐT</button>
-            </div>
-            <div class="text-xs text-slate-500 mt-1">Liên kết SĐT để dùng cùng tài khoản khi đăng nhập bằng số điện thoại</div>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-slate-700">Khối lớp</label>
-            <select id="profile-grade" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <option value="9">Lớp 9</option>
-              <option value="10">Lớp 10</option>
-              <option value="11">Lớp 11</option>
-              <option value="12">Lớp 12</option>
-              <option value="lt">Luyện thi</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-slate-700">Trường học</label>
-            <input id="profile-school" type="text" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="THPT..." />
+            <h2 id="profile-title" class="text-2xl font-bold text-slate-800">Hồ sơ học viên</h2>
+            <p id="profile-subtitle" class="text-slate-500 text-sm">Thông tin cá nhân và tuỳ chọn mặc định</p>
           </div>
         </div>
-        <div class="mt-4">
-          <button id="profile-save" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"><i class="fa fa-save mr-2"></i>Lưu thay đổi</button>
+
+        <!-- Personal Info -->
+        <div id="profile-personal-card" class="rounded-2xl border border-slate-200 bg-white p-5 mb-5">
+          <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Thông tin cá nhân</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Họ và tên</label>
+              <input id="profile-fullName" type="text" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition" placeholder="Nguyễn Văn A" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Số điện thoại / Zalo</label>
+              <div class="flex gap-2">
+                <input id="profile-phone" type="tel" class="flex-1 border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition" placeholder="+84..." />
+                <button id="profile-link-phone" class="px-3 py-2 border border-blue-300 rounded-xl text-blue-700 hover:bg-blue-50 text-sm whitespace-nowrap transition"><i class="fa fa-link mr-1"></i>Liên kết</button>
+              </div>
+              <div class="text-xs text-slate-400 mt-1">Liên kết SĐT để dùng cùng tài khoản khi đăng nhập bằng số điện thoại</div>
+            </div>
+            <div id="profile-grade-wrap">
+              <label class="block text-sm font-medium text-slate-700 mb-1">Khối lớp</label>
+              <select id="profile-grade" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition">
+                <option value="9">Lớp 9</option>
+                <option value="10">Lớp 10</option>
+                <option value="11">Lớp 11</option>
+                <option value="12">Lớp 12</option>
+                <option value="lt">Luyện thi</option>
+              </select>
+            </div>
+            <div id="profile-school-wrap">
+              <label class="block text-sm font-medium text-slate-700 mb-1">Trường học</label>
+              <input id="profile-school" type="text" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition" placeholder="THPT..." />
+            </div>
+          </div>
+        </div>
+
+        <!-- Preferences -->
+        <div id="profile-preferences-card" class="rounded-2xl border border-slate-200 bg-white p-5 mb-5">
+          <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Tuỳ chọn mặc định</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Hướng mặc định khi đăng nhập</label>
+              <select id="profile-defaultTrack" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition">
+                <option value="">Không (chọn mỗi lần)</option>
+                <option value="coban">Toán cơ bản</option>
+                <option value="chuyen">Toán chuyên</option>
+              </select>
+              <div class="text-xs text-slate-400 mt-1">Nếu chọn, bạn sẽ được chuyển thẳng đến hướng này khi đăng nhập</div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Lớp mặc định (Toán cơ bản)</label>
+              <select id="profile-defaultGrade" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition">
+                <option value="">Không</option>
+                <option value="9">Lớp 9</option>
+                <option value="10">Lớp 10</option>
+                <option value="11">Lớp 11</option>
+                <option value="12">Lớp 12</option>
+              </select>
+              <div class="text-xs text-slate-400 mt-1">Kết hợp với hướng "Toán cơ bản" để vào thẳng danh sách đề</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button id="profile-save" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium hover:shadow-lg transition-all">
+            <i class="fa fa-save mr-2"></i>Lưu thay đổi
+          </button>
+          <button onclick="location.hash='#/classes'" class="text-slate-500 hover:text-slate-700 text-sm">← Quay lại</button>
         </div>
       </div>
     </section>
@@ -1241,7 +1390,7 @@
       function getGradeData(grade){
         try{
           const gkey = `grade${grade}`;
-          const data = (window.examManifest && examManifest.grades)? examManifest.grades[gkey] : null;
+          const data = (window.examManifest && examManifest.grades)? (examManifest.grades[gkey] || examManifest.grades[grade]) : null;
           console.log('getGradeData:', grade, 'found:', data ? 'yes' : 'no', 'exams:', data?.exams?.length || 0, 'tools:', data?.tools?.length || 0);
           return data;
         }catch(e){ console.error('getGradeData error:', e); return null; }
@@ -1667,14 +1816,20 @@
       });
 
       // Re-apply when navigating to exams
+      function isExamRoute(){
+        const h = location.hash||'';
+        // #/exams/10 or #/chuyen/thcs/dai-so (3 segments under chuyen = topic exam list)
+        if(h.startsWith('#/exams/')) return true;
+        const segs = h.slice(2).split('/').filter(Boolean);
+        if(segs[0]==='chuyen' && segs.length >= 3) return true;
+        return false;
+      }
       function onHash(){
-        if((location.hash||'').startsWith('#/exams/')){
-          // Wait for manifest to be available
+        if(isExamRoute()){
           if(window.examManifest && examManifest.grades){
             applyExamLayoutPreference();
             applyExamFilters();
           } else {
-            // Manifest not ready, wait for it
             console.log('Manifest not ready, waiting...');
           }
         }
@@ -1683,7 +1838,7 @@
       window.addEventListener('hashchange', onHash);
       window.addEventListener('examManifestLoaded', ()=>{
         console.log('examManifestLoaded event received, rebuilding layouts');
-        if((location.hash||'').startsWith('#/exams/')){
+        if(isExamRoute()){
           applyExamLayoutPreference();
           applyExamFilters();
         }
@@ -1702,7 +1857,7 @@
       // Also listen for DOMContentLoaded in case manifest loads before this script
       document.addEventListener('DOMContentLoaded', ()=>{
         setTimeout(()=>{
-          if(window.examManifest && (location.hash||'').startsWith('#/exams/')){
+          if(window.examManifest && isExamRoute()){
             applyExamLayoutPreference();
             applyExamFilters();
           }
@@ -1713,16 +1868,14 @@
       // Customize UI page handlers
       function loadThemePref(){ try{ return localStorage.getItem('ui_theme') || 'light'; }catch(e){ return 'light'; } }
       function applyTheme(t){ document.body.classList.toggle('dark-mode', t==='dark'); }
-      function initCustomizePage(){
+      async function initCustomizePage(){
         const layout = getLayoutPref();
         document.querySelectorAll('#pref-layout input[name="layout"]').forEach(r=>{ 
           r.checked = (r.value===layout); 
           r.onchange = ()=>{ 
             try{ localStorage.setItem('ui_layout', r.value); }catch(e){} 
             console.log('Layout changed to:', r.value);
-            // If switching to carousel, trigger init when navigating to exams
             if(r.value === 'carousel'){
-              // Pre-initialize carousel if we're already on exams page
               if((location.hash||'').startsWith('#/exams/')){
                 setTimeout(()=> initCarouselIfNeeded(), 100);
               }
@@ -1732,6 +1885,32 @@
         });
         const theme = loadThemePref();
         document.querySelectorAll('input[name="theme"]').forEach(r=>{ r.checked = (r.value===theme); r.onchange = ()=>{ try{ localStorage.setItem('ui_theme', r.value); }catch(e){} applyTheme(r.value); }; });
+
+        // Load user preferences for defaultTrack / defaultGrade
+        const prefTrackEl = document.getElementById('pref-defaultTrack');
+        const prefGradeEl = document.getElementById('pref-defaultGrade');
+        try {
+          const u = (window.Auth && Auth.getUser) ? Auth.getUser() : null;
+          if(u && window.DataStore && DataStore.getUserProfile){
+            const prof = await DataStore.getUserProfile(u.uid);
+            if(prefTrackEl) prefTrackEl.value = (prof && prof.defaultTrack) || '';
+            if(prefGradeEl) prefGradeEl.value = (prof && prof.defaultGrade) || '';
+          }
+        } catch(e){ console.warn('initCustomizePage: load prefs failed', e); }
+
+        // Save on change
+        const savePrefToProfile = async (key, value) => {
+          try {
+            const u = (window.Auth && Auth.getUser) ? Auth.getUser() : null;
+            if(u && window.DataStore && DataStore.upsertUserProfile){
+              const update = {}; update[key] = value;
+              await DataStore.upsertUserProfile(u.uid, update);
+            }
+          } catch(e){ console.warn('savePrefToProfile failed', e); }
+        };
+        if(prefTrackEl) prefTrackEl.onchange = ()=> savePrefToProfile('defaultTrack', prefTrackEl.value);
+        if(prefGradeEl) prefGradeEl.onchange = ()=> savePrefToProfile('defaultGrade', prefGradeEl.value);
+
         const done = document.getElementById('customize-done');
         if(done){ done.onclick = ()=>{ location.hash = '#/classes'; }; }
       }

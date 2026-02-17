@@ -997,6 +997,12 @@
             <span>AI Tutor</span>
           </div>
           <div class="ai-tutor-actions">
+            <button class="ai-tutor-btn" id="ai-bookmarks-btn" title="Bookmarks">
+              <i class="fa-solid fa-bookmark"></i>
+            </button>
+            <button class="ai-tutor-btn" id="ai-presets-btn" title="Prompting">
+              <i class="fa-solid fa-sliders"></i>
+            </button>
             <button class="ai-tutor-btn" id="ai-features" title="Tính năng">
               <i class="fa-solid fa-wand-magic-sparkles"></i>
             </button>
@@ -1008,40 +1014,43 @@
             </button>
           </div>
         </div>
-        <div class="ai-tutor-messages" id="ai-messages">
-          <div class="ai-message ai-message-bot">
-            <div class="ai-message-avatar"><i class="fa-solid fa-robot"></i></div>
-            <div class="ai-message-content">
-              Xin chào! Tôi là AI Tutor. Tôi có thể giúp bạn:
-              <ul>
-                <li>📖 Giải thích câu hỏi đã bookmark</li>
-                <li>✏️ Hướng dẫn giải bài tập từng bước</li>
-                <li>📐 Tra cứu công thức Toán học</li>
-                <li>📊 Phân tích kết quả học tập</li>
-                <li>🎯 Tạo bài tập tương tự để luyện tập</li>
-              </ul>
-              Nhấn <strong>✨</strong> để xem tất cả tính năng!
+        <div class="ai-tutor-body">
+          <div id="ai-side-panel" class="ai-tutor-side hidden">
+            <div class="ai-side-header">
+              <div class="ai-side-title" id="ai-side-title">Bookmarks</div>
+              <button id="ai-side-close" class="ai-side-close" title="Đóng">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div id="ai-bookmarks" class="ai-tutor-bookmarks hidden">
+              <div class="ai-bookmarks-list" id="ai-bookmarks-list"></div>
+            </div>
+            <div id="ai-preset-buttons" class="ai-preset-container hidden"></div>
+          </div>
+          <div class="ai-tutor-main">
+            <div class="ai-tutor-messages" id="ai-messages">
+              <div class="ai-message ai-message-bot">
+                <div class="ai-message-avatar"><i class="fa-solid fa-robot"></i></div>
+                <div class="ai-message-content">
+                  Xin chào! Tôi là AI Tutor. Tôi có thể giúp bạn:
+                  <ul>
+                    <li>📖 Giải thích câu hỏi đã bookmark</li>
+                    <li>✏️ Hướng dẫn giải bài tập từng bước</li>
+                    <li>📐 Tra cứu công thức Toán học</li>
+                    <li>📊 Phân tích kết quả học tập</li>
+                    <li>🎯 Tạo bài tập tương tự để luyện tập</li>
+                  </ul>
+                  Nhấn <strong>✨</strong> để xem tất cả tính năng!
+                </div>
+              </div>
+            </div>
+            <div class="ai-tutor-input">
+              <textarea id="ai-input" placeholder="Nhập câu hỏi của bạn..." rows="1"></textarea>
+              <button id="ai-send" class="ai-send-btn">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
             </div>
           </div>
-        </div>
-        <div class="ai-tutor-bookmarks" id="ai-bookmarks">
-          <div class="ai-bookmarks-header">
-            <div class="ai-bookmarks-title">
-              <i class="fa-solid fa-bookmark"></i>
-              <span>Câu hỏi đã bookmark</span>
-            </div>
-            <button id="ai-bookmarks-toggle" class="ai-bookmarks-toggle" title="Thu gọn">
-              <i class="fa-solid fa-chevron-up"></i>
-            </button>
-          </div>
-          <div class="ai-bookmarks-list" id="ai-bookmarks-list"></div>
-        </div>
-        <div id="ai-preset-buttons" class="ai-preset-container hidden"></div>
-        <div class="ai-tutor-input">
-          <textarea id="ai-input" placeholder="Nhập câu hỏi của bạn..." rows="1"></textarea>
-          <button id="ai-send" class="ai-send-btn">
-            <i class="fa-solid fa-paper-plane"></i>
-          </button>
         </div>
       `;
       document.body.appendChild(panel);
@@ -1052,7 +1061,45 @@
       document.getElementById('ai-clear-chat').addEventListener('click', () => this.clearChat());
       document.getElementById('ai-features').addEventListener('click', () => this.showQuickActions());
       document.getElementById('ai-send').addEventListener('click', () => this.sendMessage());
-      document.getElementById('ai-bookmarks-toggle').addEventListener('click', () => this.toggleBookmarks());
+
+      const sidePanel = document.getElementById('ai-side-panel');
+      const sideTitle = document.getElementById('ai-side-title');
+      const sideClose = document.getElementById('ai-side-close');
+
+      const bookmarksBtn = document.getElementById('ai-bookmarks-btn');
+      const presetsBtn = document.getElementById('ai-presets-btn');
+      const bookmarksPanel = document.getElementById('ai-bookmarks');
+      const presetsPanel = document.getElementById('ai-preset-buttons');
+      if (bookmarksBtn && bookmarksPanel) {
+        bookmarksBtn.addEventListener('click', () => {
+          if (sidePanel) sidePanel.classList.remove('hidden');
+          if (sideTitle) sideTitle.textContent = 'Bookmarks';
+          bookmarksPanel.classList.remove('hidden');
+          if (presetsPanel) presetsPanel.classList.add('hidden');
+          this.loadBookmarks();
+        });
+      }
+      if (presetsBtn && presetsPanel) {
+        presetsBtn.addEventListener('click', () => {
+          if (sidePanel) sidePanel.classList.remove('hidden');
+          if (sideTitle) sideTitle.textContent = 'Prompting';
+          presetsPanel.classList.remove('hidden');
+          if (bookmarksPanel) bookmarksPanel.classList.add('hidden');
+          if (typeof this.lastQuestionContext === 'string' && this.lastQuestionContext) {
+            this.showPresetButtons(this.lastQuestionContext);
+          } else {
+            this.showPresetButtons('');
+          }
+        });
+      }
+
+      if (sideClose && sidePanel) {
+        sideClose.addEventListener('click', () => {
+          sidePanel.classList.add('hidden');
+          if (bookmarksPanel) bookmarksPanel.classList.add('hidden');
+          if (presetsPanel) presetsPanel.classList.add('hidden');
+        });
+      }
       
       const input = document.getElementById('ai-input');
       input.addEventListener('keydown', (e) => {
@@ -1295,6 +1342,7 @@
         input.focus();
         input.style.height = 'auto';
         input.style.height = Math.min(input.scrollHeight, 200) + 'px';
+        this.lastQuestionContext = formattedQuestion;
         this.showPresetButtons(formattedQuestion);
       }, 300);
     },
@@ -1448,6 +1496,7 @@ Hãy tạo 2-3 bài tập tương tự với độ khó tăng dần để tôi l
         // Auto-resize textarea
         input.style.height = 'auto';
         input.style.height = Math.min(input.scrollHeight, 200) + 'px';
+        this.lastQuestionContext = formattedQuestion;
         // Show preset buttons
         this.showPresetButtons(formattedQuestion);
       }, 300);

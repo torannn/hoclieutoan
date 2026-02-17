@@ -503,7 +503,7 @@ async function startRandomExamForGrade(grade) {
     const examTitleHeader = document.getElementById('exam-title-header');
     const examQuestionsContainer = document.getElementById('exam-questions-container');
     const examScreen = document.getElementById('exam-screen');
-    examTitleHeader.textContent = 'Đang tạo: Luyện đề ngẫu nhiên...';
+    examTitleHeader.textContent = 'Đang tạo: Bài tập Tết du xuân...';
     const urls = [
         'bank/g10/sets/import/chuyen-de-menh-de-va-tap-hop-toan-10.items.jsonl',
         'bank/g10/sets/import/phan-dang-va-bai-tap-menh-de-va-tap-hop.items.jsonl'
@@ -523,7 +523,7 @@ async function startRandomExamForGrade(grade) {
         'Phần 3. Tự luận trả lời ngắn': 3,
     };
     questions.sort((a, b) => (sectionOrder[a.section] || 99) - (sectionOrder[b.section] || 99));
-    const examContent = { title: `Luyện đề ngẫu nhiên Lớp ${grade}`, questions };
+    const examContent = { title: `Bài tập Tết du xuân Lớp ${grade}`, questions };
     const answersContent = {};
     for (const q of questions) {
         if (q && q.q_id) answersContent[q.q_id] = q.model_answer || '';
@@ -534,9 +534,9 @@ async function startRandomExamForGrade(grade) {
     window.answersMap = answersMap; // Sync to window for features.js
     const modeSel = document.getElementById('exam-mode-select');
     examMode = modeSel ? modeSel.value : 'static';
-    const finalTitle = examContent.title || 'Luyện đề ngẫu nhiên';
+    const finalTitle = examContent.title || 'Bài tập Tết du xuân';
     examTitleHeader.textContent = finalTitle;
-    currentExamMeta = { title: finalTitle, path: `random:grade:${grade}`, type: 'random', grade: String(grade), mode: examMode };
+    currentExamMeta = { title: finalTitle, path: `tet-du-xuan:grade:${grade}`, type: 'random', grade: String(grade), mode: examMode };
     attemptStartAtMs = Date.now();
     let examHTML = '';
     const sections = partitionIntoSections(currentExamData);
@@ -633,6 +633,9 @@ function navigateTo(hash) {
 async function renderRoute() {
     const { segments, params } = parseHash();
     const classSelectionScreen = document.getElementById('class-selection-screen');
+    const cobanGradeScreen = document.getElementById('coban-grade-screen');
+    const chuyenLevelScreen = document.getElementById('chuyen-level-screen');
+    const chuyenTopicScreen = document.getElementById('chuyen-topic-screen');
     const examSelectionScreen = document.getElementById('exam-selection-screen');
     const examScreen = document.getElementById('exam-screen');
     const resultsScreen = document.getElementById('results-screen');
@@ -644,20 +647,85 @@ async function renderRoute() {
     const dashboardScreen = document.getElementById('dashboard-screen');
     const siteHeader = document.getElementById('site-header');
 
-    [classSelectionScreen, examSelectionScreen, examScreen, resultsScreen, historyScreen, adminSummaryScreen, authScreen, profileScreen, customizeScreen, dashboardScreen].forEach(el => el && el.classList.add('hidden'));
+    [classSelectionScreen, cobanGradeScreen, chuyenLevelScreen, chuyenTopicScreen, examSelectionScreen, examScreen, resultsScreen, historyScreen, adminSummaryScreen, authScreen, profileScreen, customizeScreen, dashboardScreen].forEach(el => el && el.classList.add('hidden'));
     if(siteHeader) siteHeader.classList.remove('hidden');
 
     const getUser = ()=> (window.Auth && Auth.getUser ? Auth.getUser() : null);
     const isLoggedIn = ()=> !!getUser();
     const isGuest = ()=> guestMode === true;
     // Redirect to auth if not logged in and not guest
-    if ((!segments.length || segments[0] === 'classes' || segments[0] === 'exams' || segments[0] === 'exam') && !isLoggedIn() && !isGuest()){
+    const protectedRoutes = ['classes', 'coban', 'chuyen', 'exams', 'exam'];
+    if ((!segments.length || protectedRoutes.includes(segments[0])) && !isLoggedIn() && !isGuest()){
         navigateTo('#/auth');
         return;
     }
 
     if (segments.length === 0 || segments[0] === 'classes') {
         classSelectionScreen && classSelectionScreen.classList.remove('hidden');
+        return;
+    }
+
+    // #/coban → grade selection for Toán cơ bản
+    if (segments[0] === 'coban' && !segments[1]) {
+        cobanGradeScreen && cobanGradeScreen.classList.remove('hidden');
+        return;
+    }
+
+    // #/chuyen → level selection (THCS / THPT)
+    if (segments[0] === 'chuyen' && !segments[1]) {
+        chuyenLevelScreen && chuyenLevelScreen.classList.remove('hidden');
+        return;
+    }
+
+    // #/chuyen/thcs or #/chuyen/thpt → topic selection
+    if (segments[0] === 'chuyen' && (segments[1] === 'thcs' || segments[1] === 'thpt') && !segments[2]) {
+        const level = segments[1];
+        const titleEl = document.getElementById('chuyen-topic-title');
+        const menuEl = document.getElementById('chuyen-topic-menu');
+        if (titleEl) titleEl.textContent = level === 'thcs' ? 'Toán chuyên THCS' : 'Toán chuyên THPT';
+        if (menuEl) {
+            menuEl.innerHTML = '';
+            const levelData = examManifest && examManifest.tracks && examManifest.tracks.chuyen && examManifest.tracks.chuyen.levels && examManifest.tracks.chuyen.levels[level];
+            const topics = (levelData && levelData.topics) ? levelData.topics : {};
+            const topicColors = ['#3b82f6', '#10b981', '#a855f7', '#f59e0b'];
+            let idx = 0;
+            for (const [topicKey, topicData] of Object.entries(topics)) {
+                const color = topicColors[idx % topicColors.length];
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'grade-card group';
+                btn.innerHTML = `
+                    <div class="grade-card-inner" style="background: linear-gradient(145deg, ${color}, ${color}cc); box-shadow: 0 10px 30px ${color}4d;">
+                        <div class="grade-icon"><i class="${topicData.icon || 'fa-solid fa-book'}"></i></div>
+                        <div class="grade-label" style="font-size:1.1rem;">${topicData.label || topicKey}</div>
+                        <div class="grade-desc">${(topicData.exams||[]).length} đề · ${(topicData.tools||[]).length} học liệu</div>
+                        <div class="grade-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>`;
+                btn.addEventListener('click', () => navigateTo(`#/chuyen/${level}/${topicKey}`));
+                menuEl.appendChild(btn);
+                idx++;
+            }
+        }
+        chuyenTopicScreen && chuyenTopicScreen.classList.remove('hidden');
+        return;
+    }
+
+    // #/chuyen/thcs/dai-so → exam selection for a chuyen topic
+    if (segments[0] === 'chuyen' && segments[1] && segments[2]) {
+        const level = segments[1];
+        const topicKey = segments[2];
+        const levelData = examManifest && examManifest.tracks && examManifest.tracks.chuyen && examManifest.tracks.chuyen.levels && examManifest.tracks.chuyen.levels[level];
+        const topicData = (levelData && levelData.topics) ? levelData.topics[topicKey] : null;
+        if (topicData) {
+            // Temporarily inject topic data as a "grade" so populateExamMenu works
+            const tempKey = `chuyen_${level}_${topicKey}`;
+            examManifest.grades[tempKey] = topicData;
+            try { populateExamMenu(tempKey); } catch(e) { console.warn('populateExamMenu for chuyen failed:', e); }
+            // Update title
+            const titleEl = document.querySelector('#exam-selection-screen h2');
+            if (titleEl) titleEl.textContent = `${topicData.label || topicKey} — Toán chuyên ${level.toUpperCase()}`;
+        }
+        examSelectionScreen && examSelectionScreen.classList.remove('hidden');
         return;
     }
 
@@ -1290,7 +1358,7 @@ function populateExamMenu(grade) {
     if (!examMenu) { console.error('exam-menu element not found!'); return; }
 
     const gradeKey = `grade${grade}`;
-    const gradeData = (examManifest && examManifest.grades) ? examManifest.grades[gradeKey] : null;
+    const gradeData = (examManifest && examManifest.grades) ? (examManifest.grades[gradeKey] || examManifest.grades[grade]) : null;
     const exams = (gradeData && Array.isArray(gradeData.exams)) ? gradeData.exams : [];
     const tools = (gradeData && Array.isArray(gradeData.tools)) ? gradeData.tools : [];
 
@@ -1304,10 +1372,10 @@ function populateExamMenu(grade) {
           <div id="rand-card" data-ripple class="group relative overflow-hidden rounded-2xl border border-indigo-200 bg-white p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition transform active:scale-95 cursor-pointer">
             <div class="absolute inset-0 bg-gradient-to-r from-indigo-50 to-blue-50 opacity-0 group-hover:opacity-100 transition"></div>
             <div class="relative z-10 flex items-center gap-4">
-              <div class="w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center"><i class="fa-solid fa-shuffle fa-random"></i></div>
+              <div class="w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center"><i class="fa-solid fa-gift"></i></div>
               <div class="flex-1">
-                <div class="font-semibold text-slate-800">Luyện đề ngẫu nhiên</div>
-                <div class="text-sm text-slate-600">Hệ thống chọn một đề bất kỳ phù hợp lớp của bạn</div>
+                <div class="font-semibold text-slate-800">Bài tập Tết du xuân</div>
+                <div class="text-sm text-slate-600">Luyện tập các dạng bài tập tổng hợp theo chủ đề</div>
               </div>
               <div class="text-indigo-600 transition-transform group-hover:translate-x-1"><i class="fa-solid fa-arrow-right"></i></div>
             </div>
@@ -1333,9 +1401,8 @@ function populateExamMenu(grade) {
     const randCard = examMenu.querySelector('#rand-card');
     if (randCard) {
       randCard.addEventListener('click', ()=>{
-        const modeSel = document.getElementById('exam-mode-select');
-        const mode = modeSel ? modeSel.value : 'static';
-        navigateTo(`#/exam?random=1&grade=${encodeURIComponent(grade)}&mode=${encodeURIComponent(mode)}`);
+        // Navigate to BankOnTap (Bài tập Tết du xuân) instead of random exam
+        window.location.href = './BankOnTap/index.html';
       });
     }
 
@@ -1650,6 +1717,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             throw new Error('Invalid JSON in response');
         }
 
+        // Build backward-compatible grades from tracks.coban.grades (v4 manifest)
+        if (examManifest.tracks && examManifest.tracks.coban && examManifest.tracks.coban.grades) {
+            examManifest.grades = examManifest.tracks.coban.grades;
+        }
         if (!examManifest || !examManifest.grades) {
             throw new Error('Manifest is missing required grades data');
         }
@@ -1675,31 +1746,83 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // === Gán sự kiện ===
-    if (!classMenu) {
-        console.error('classMenu element not found!');
-        return;
+
+    // Track selection (Toán cơ bản / Toán chuyên)
+    const trackMenu = document.getElementById('track-menu');
+    if (trackMenu) {
+        trackMenu.addEventListener('click', (e) => {
+            const target = e.target.closest('button[data-track]');
+            if (target) {
+                const track = target.dataset.track;
+                if (track === 'coban') navigateTo('#/coban');
+                else if (track === 'chuyen') navigateTo('#/chuyen');
+            }
+        });
     }
 
-    classMenu.addEventListener('click', (e) => {
-        const target = e.target.closest('button[data-grade]');
-        if (target) {
-            const selectedGrade = target.dataset.grade;
-            navigateTo(`#/exams/${selectedGrade}`);
-        }
-    });
+    // Grade selection within Toán cơ bản
+    if (classMenu) {
+        classMenu.addEventListener('click', (e) => {
+            const target = e.target.closest('button[data-grade]');
+            if (target) {
+                const selectedGrade = target.dataset.grade;
+                navigateTo(`#/exams/${selectedGrade}`);
+            }
+        });
+    }
 
-    if (!backToClassSelectionBtn) {
-        console.error('backToClassSelectionBtn not found!');
-    } else {
-        backToClassSelectionBtn.addEventListener('click', () => navigateTo('#/classes'));
+    // Chuyen level selection (THCS / THPT)
+    const chuyenLevelMenu = document.getElementById('chuyen-level-menu');
+    if (chuyenLevelMenu) {
+        chuyenLevelMenu.addEventListener('click', (e) => {
+            const target = e.target.closest('button[data-chuyen-level]');
+            if (target) {
+                const level = target.dataset.chuyenLevel;
+                navigateTo(`#/chuyen/${level}`);
+            }
+        });
+    }
+
+    // Back buttons
+    const backToTracksFromCoban = document.getElementById('back-to-tracks-from-coban');
+    if (backToTracksFromCoban) backToTracksFromCoban.addEventListener('click', () => navigateTo('#/classes'));
+
+    const backToTracksFromChuyen = document.getElementById('back-to-tracks-from-chuyen');
+    if (backToTracksFromChuyen) backToTracksFromChuyen.addEventListener('click', () => navigateTo('#/classes'));
+
+    const backToChuyenLevels = document.getElementById('back-to-chuyen-levels');
+    if (backToChuyenLevels) backToChuyenLevels.addEventListener('click', () => navigateTo('#/chuyen'));
+
+    if (backToClassSelectionBtn) {
+        backToClassSelectionBtn.addEventListener('click', () => navigateTo('#/coban'));
     }
 
     // NOTE: initExamModeToggle is defined globally via window.initExamModeToggle (lines 25-64)
 
     function renderAuthUI(){
-        if(!authAreas || !authAreas.length) return;
         const u = (window.Auth && Auth.getUser) ? Auth.getUser() : null;
         const isGuest = (guestMode === true);
+        const isAdminUser = () => !!(window.DataStore && DataStore.isAdmin && DataStore.isAdmin());
+
+        const adminMenuItem = document.getElementById('admin-menu-item');
+        const menuProfileLabel = document.getElementById('menu-profile-label');
+        const menuDashboardLink = document.getElementById('menu-dashboard-link');
+        const menuDashboardLabel = document.getElementById('menu-dashboard-label');
+
+        const applyAdminMenuUi = () => {
+            const admin = !!(u && isAdminUser());
+            if(adminMenuItem) adminMenuItem.style.display = admin ? '' : 'none';
+            if(menuProfileLabel) menuProfileLabel.textContent = admin ? 'Tài khoản Admin' : 'Hồ sơ';
+            if(menuDashboardLabel) menuDashboardLabel.textContent = admin ? 'Tổng hợp học sinh' : 'Thống kê';
+            if(menuDashboardLink) {
+                menuDashboardLink.setAttribute('href', admin ? '#/admin' : '#/dashboard');
+                menuDashboardLink.style.display = admin ? '' : 'none'; // Strictly hide dashboard for normal users per request
+            }
+        };
+        applyAdminMenuUi();
+
+        if(!authAreas || !authAreas.length) return;
+
         authAreas.forEach((container)=>{
             if(!container) return;
             if(!u){
@@ -1723,8 +1846,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                     div.textContent = String(initialName);
                     return div.innerHTML;
                 })();
-                container.innerHTML = `<span class="text-gray-700">Xin chào, <strong class="auth-name">${safeInitialName}</strong></span>
-                  <button type="button" class="btn-profile text-blue-600 hover:underline ml-3">Hồ sơ</button>
+                const adminPill = isAdminUser()
+                  ? `<span class="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">ADMIN</span>`
+                  : '';
+                container.innerHTML = `<span class="text-gray-700">Xin chào, <strong class="auth-name">${safeInitialName}</strong>${adminPill}</span>
+                  <button type="button" class="btn-profile text-blue-600 hover:underline ml-3">${isAdminUser() ? 'Tài khoản' : 'Hồ sơ'}</button>
                   <button type="button" class="btn-logout text-red-600 hover:underline ml-3">Đăng xuất</button>`;
                 container.querySelectorAll('.btn-profile').forEach(btn=>{ btn.onclick = ()=> navigateTo('#/profile'); });
                 container.querySelectorAll('.btn-logout').forEach(btn=>{
@@ -1744,7 +1870,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Guest mode load
     try{ guestMode = localStorage.getItem('guest_mode') === '1'; }catch(e){}
     if(window.Auth && Auth.init){
-        try { Auth.init(); } catch(e){}
+        try { await Auth.init(); } catch(e){ console.warn('Auth.init failed', e); }
         if(window.Auth && Auth.onChange){
             Auth.onChange(async (u)=>{
                 renderAuthUI();
@@ -1765,6 +1891,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(on){ authSpinner.classList.remove('d-none'); } else { authSpinner.classList.add('d-none'); }
     }
 
+    function getAuthErrorMessage(err){
+        const code = (err && err.code) ? String(err.code) : '';
+        if(code === 'auth/popup-closed-by-user') return 'Bạn đã đóng cửa sổ đăng nhập trước khi hoàn tất.';
+        if(code === 'auth/popup-blocked') return 'Trình duyệt đã chặn cửa sổ đăng nhập. Hãy cho phép popup rồi thử lại.';
+        if(code === 'auth/unauthorized-domain') return 'Tên miền hiện tại chưa được cấu hình trong Firebase Auth (Authorized domains).';
+        if(code === 'auth/operation-not-allowed') return 'Google sign-in chưa được bật trong Firebase Console.';
+        if(code === 'auth/network-request-failed') return 'Lỗi mạng khi đăng nhập. Vui lòng kiểm tra kết nối và thử lại.';
+        return 'Không đăng nhập được bằng Google.';
+    }
+
     if(btnAuthGoogle){
         btnAuthGoogle.addEventListener('click', async ()=>{
             try{
@@ -1772,7 +1908,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 await Auth.signInWithGoogle();
             }catch(e){
                 console.warn('Google sign-in failed', e);
-                if(window.Swal) Swal.fire('Lỗi', 'Không đăng nhập được bằng Google', 'error');
+                if(window.Swal) Swal.fire('Lỗi đăng nhập Google', getAuthErrorMessage(e), 'error');
             }finally{
                 setAuthLoading(false);
             }
@@ -1836,7 +1972,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             if(!need){
                 const nm = (profile && profile.fullName) ? profile.fullName : (u.displayName || u.email || u.phoneNumber || 'bạn');
                 if(typeof toastSuccess === 'function') toastSuccess(`Chào mừng, ${nm}!`);
-                navigateTo('#/classes');
+                // Auto-redirect based on saved preferences
+                navigateByPreference(profile.defaultTrack || '', profile.defaultGrade || '');
                 return;
             }
             await showOnboardingModal(u, profile||{});
@@ -1848,63 +1985,112 @@ document.addEventListener('DOMContentLoaded', async () => {
         const phone = current.phone || u.phoneNumber || '';
         const grade = current.grade || '';
         const school = current.school || '';
+        const defaultTrack = current.defaultTrack || '';
+        const defaultGrade = current.defaultGrade || '';
         const html = `
-          <div class="text-start">
-            <div class="mb-2">
-              <label class="form-label">Họ và tên</label>
-              <input id="sw-fullName" class="form-control" type="text" placeholder="Nguyễn Văn A" value="${fullName}">
+          <div style="text-align:left;">
+            <p style="color:#94a3b8; font-size:13px; margin-bottom:16px; text-align:center;">Hoàn tất hồ sơ để bắt đầu học</p>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+              <div style="grid-column:span 2;">
+                <label style="display:block; font-size:13px; font-weight:500; color:#cbd5e1; margin-bottom:4px;">Họ và tên <span style="color:#ef4444;">*</span></label>
+                <input id="sw-fullName" type="text" placeholder="Nguyễn Văn A" value="${fullName}"
+                  style="width:100%; padding:10px 14px; border-radius:10px; border:1px solid #374151; background:rgba(17,24,39,0.8); color:#f3f4f6; font-size:14px; outline:none; transition:border-color 0.2s;"
+                  onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#374151'">
+              </div>
+
+              <div>
+                <label style="display:block; font-size:13px; font-weight:500; color:#cbd5e1; margin-bottom:4px;">SĐT / Zalo <span style="color:#ef4444;">*</span></label>
+                <input id="sw-phone" type="tel" placeholder="+84..." value="${phone}"
+                  style="width:100%; padding:10px 14px; border-radius:10px; border:1px solid #374151; background:rgba(17,24,39,0.8); color:#f3f4f6; font-size:14px; outline:none; transition:border-color 0.2s;"
+                  onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#374151'">
+              </div>
+
+              <div>
+                <label style="display:block; font-size:13px; font-weight:500; color:#cbd5e1; margin-bottom:4px;">Trường học <span style="color:#ef4444;">*</span></label>
+                <input id="sw-school" type="text" placeholder="THPT..." value="${school}"
+                  style="width:100%; padding:10px 14px; border-radius:10px; border:1px solid #374151; background:rgba(17,24,39,0.8); color:#f3f4f6; font-size:14px; outline:none; transition:border-color 0.2s;"
+                  onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#374151'">
+              </div>
+
+              <div>
+                <label style="display:block; font-size:13px; font-weight:500; color:#cbd5e1; margin-bottom:4px;">Khối lớp <span style="color:#ef4444;">*</span></label>
+                <select id="sw-grade"
+                  style="width:100%; padding:10px 14px; border-radius:10px; border:1px solid #374151; background:rgba(17,24,39,0.8); color:#f3f4f6; font-size:14px; outline:none;">
+                  <option value="" ${!grade?'selected':''}>-- Chọn --</option>
+                  <option value="9" ${grade==='9'?'selected':''}>Lớp 9</option>
+                  <option value="10" ${grade==='10'?'selected':''}>Lớp 10</option>
+                  <option value="11" ${grade==='11'?'selected':''}>Lớp 11</option>
+                  <option value="12" ${grade==='12'?'selected':''}>Lớp 12</option>
+                  <option value="lt" ${grade==='lt'?'selected':''}>Luyện thi</option>
+                </select>
+              </div>
+
+              <div>
+                <label style="display:block; font-size:13px; font-weight:500; color:#cbd5e1; margin-bottom:4px;">Hướng mặc định khi đăng nhập</label>
+                <select id="sw-defaultTrack"
+                  style="width:100%; padding:10px 14px; border-radius:10px; border:1px solid #374151; background:rgba(17,24,39,0.8); color:#f3f4f6; font-size:14px; outline:none;">
+                  <option value="" ${!defaultTrack?'selected':''}>Không (chọn mỗi lần)</option>
+                  <option value="coban" ${defaultTrack==='coban'?'selected':''}>Toán cơ bản</option>
+                  <option value="chuyen" ${defaultTrack==='chuyen'?'selected':''}>Toán chuyên</option>
+                </select>
+              </div>
+
+              <div>
+                <label style="display:block; font-size:13px; font-weight:500; color:#cbd5e1; margin-bottom:4px;">Lớp mặc định (cơ bản)</label>
+                <select id="sw-defaultGrade"
+                  style="width:100%; padding:10px 14px; border-radius:10px; border:1px solid #374151; background:rgba(17,24,39,0.8); color:#f3f4f6; font-size:14px; outline:none;">
+                  <option value="" ${!defaultGrade?'selected':''}>Không</option>
+                  <option value="9" ${defaultGrade==='9'?'selected':''}>Lớp 9</option>
+                  <option value="10" ${defaultGrade==='10'?'selected':''}>Lớp 10</option>
+                  <option value="11" ${defaultGrade==='11'?'selected':''}>Lớp 11</option>
+                  <option value="12" ${defaultGrade==='12'?'selected':''}>Lớp 12</option>
+                </select>
+              </div>
             </div>
-            <div class="mb-2">
-              <label class="form-label">Số điện thoại/Zalo</label>
-              <input id="sw-phone" class="form-control" type="tel" placeholder="+84..." value="${phone}">
-              <div class="form-text">Có thể liên kết vào tài khoản hiện tại</div>
-            </div>
-            <div class="mb-2">
-              <label class="form-label">Khối lớp</label>
-              <select id="sw-grade" class="form-select">
-                <option value="" ${!grade?'selected':''}>-- Chọn khối --</option>
-                <option value="9" ${grade==='9'?'selected':''}>Lớp 9</option>
-                <option value="10" ${grade==='10'?'selected':''}>Lớp 10</option>
-                <option value="11" ${grade==='11'?'selected':''}>Lớp 11</option>
-                <option value="12" ${grade==='12'?'selected':''}>Lớp 12</option>
-                <option value="lt" ${grade==='lt'?'selected':''}>Luyện thi</option>
-              </select>
-            </div>
-            <div class="mb-2">
-              <label class="form-label">Trường học</label>
-              <input id="sw-school" class="form-control" type="text" placeholder="THPT..." value="${school}">
-            </div>
+
+            <p style="color:#6b7280; font-size:11px; margin-top:12px; text-align:center;">
+              <i class="fa-solid fa-info-circle" style="margin-right:4px;"></i>
+              Bạn có thể thay đổi các tuỳ chọn này trong Hồ sơ hoặc Tuỳ chỉnh cá nhân.
+            </p>
           </div>`;
         const res = await Swal.fire({
-            title: 'Cập nhật thông tin học viên',
+            title: '👋 Chào mừng bạn!',
             html,
+            width: 520,
             focusConfirm: false,
             allowOutsideClick: false,
             allowEscapeKey: false,
-            confirmButtonText: 'Hoàn tất',
+            confirmButtonText: '<i class="fa-solid fa-check mr-2"></i>Hoàn tất',
             showCancelButton: false,
+            customClass: { popup: 'auth-container', confirmButton: 'auth-btn' },
+            background: 'linear-gradient(145deg, rgba(17,24,39,0.97), rgba(17,24,39,0.99))',
+            color: '#f3f4f6',
             preConfirm: ()=>{
                 const fn = document.getElementById('sw-fullName').value.trim();
                 const ph = document.getElementById('sw-phone').value.trim();
                 const gr = document.getElementById('sw-grade').value;
                 const sc = document.getElementById('sw-school').value.trim();
+                const dt = document.getElementById('sw-defaultTrack').value;
+                const dg = document.getElementById('sw-defaultGrade').value;
                 if(!fn || !ph || !gr || !sc){
-                    Swal.showValidationMessage('Vui lòng điền đầy đủ thông tin bắt buộc');
+                    Swal.showValidationMessage('Vui lòng điền đầy đủ các trường có dấu *');
                     return false;
                 }
-                return { fullName: fn, phone: ph, grade: gr, school: sc };
+                return { fullName: fn, phone: ph, grade: gr, school: sc, defaultTrack: dt, defaultGrade: dg };
             }
         });
         if(res && res.value){
             try{
-                const { fullName: fn, phone: ph, grade: gr, school: sc } = res.value;
+                const { fullName: fn, phone: ph, grade: gr, school: sc, defaultTrack: dt, defaultGrade: dg } = res.value;
                 // Link phone to current account if possible and not already linked
                 if(ph && (!u.phoneNumber || u.phoneNumber !== ph) && window.Auth && Auth.linkPhoneNumber){
                     try { await Auth.linkPhoneNumber(ph); } catch(e) { console.warn('linkPhoneNumber failed', e); }
                 }
-                await DataStore.upsertUserProfile(u.uid, { fullName: fn, phone: ph, grade: gr, school: sc, email: u.email||'', displayName: u.displayName||'' });
+                await DataStore.upsertUserProfile(u.uid, { fullName: fn, phone: ph, grade: gr, school: sc, defaultTrack: dt, defaultGrade: dg, email: u.email||'', displayName: u.displayName||'' });
                 if (typeof toastSuccess === 'function') toastSuccess(`Chào mừng, ${fn}!`);
-                navigateTo('#/classes');
+                // Auto-redirect based on preference
+                navigateByPreference(dt, dg);
             }catch(e){
                 console.warn('Saving profile failed', e);
                 Swal.fire('Lỗi', 'Không lưu được thông tin. Vui lòng thử lại.', 'error');
@@ -1912,25 +2098,50 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    if(window.Auth && Auth.onChange){
-        Auth.onChange(async (u)=>{
-            renderAuthUI();
-            if(u){
-                // After login, perform onboarding check
-                await checkAndOnboardUser();
-            }
-        });
+    // Navigate based on user preferences
+    function navigateByPreference(defaultTrack, defaultGrade) {
+        if (defaultTrack === 'coban' && defaultGrade) {
+            navigateTo(`#/exams/${defaultGrade}`);
+        } else if (defaultTrack === 'coban') {
+            navigateTo('#/coban');
+        } else if (defaultTrack === 'chuyen') {
+            navigateTo('#/chuyen');
+        } else {
+            navigateTo('#/classes');
+        }
     }
 
     window.renderProfilePage = async function(){
         try{
             const u = (window.Auth && Auth.getUser) ? Auth.getUser() : null;
             if(!u){ navigateTo('#/auth'); return; }
+
+            const isAdminUser = () => !!(window.DataStore && DataStore.isAdmin && DataStore.isAdmin());
+            const profileTitle = document.getElementById('profile-title');
+            const profileSubtitle = document.getElementById('profile-subtitle');
+            const profileGradeWrap = document.getElementById('profile-grade-wrap');
+            const profileSchoolWrap = document.getElementById('profile-school-wrap');
+            const profilePreferencesCard = document.getElementById('profile-preferences-card');
+            const profilePersonalCard = document.getElementById('profile-personal-card');
+            const admin = isAdminUser();
+            if(profileTitle) profileTitle.textContent = admin ? 'Tài khoản Admin' : 'Hồ sơ học viên';
+            if(profileSubtitle) profileSubtitle.textContent = admin
+              ? 'Quản trị hệ thống và theo dõi kết quả tổng hợp của học sinh'
+              : 'Thông tin cá nhân và tuỳ chọn mặc định';
+            if(profileGradeWrap) profileGradeWrap.style.display = admin ? 'none' : '';
+            if(profileSchoolWrap) profileSchoolWrap.style.display = admin ? 'none' : '';
+            if(profilePreferencesCard) profilePreferencesCard.style.display = admin ? 'none' : '';
+            if(profilePersonalCard) profilePersonalCard.querySelector('h3') && (profilePersonalCard.querySelector('h3').textContent = admin ? 'Thông tin tài khoản' : 'Thông tin cá nhân');
+
             const prof = (window.DataStore && DataStore.getUserProfile) ? await DataStore.getUserProfile(u.uid) : null;
             if(profileFullName) profileFullName.value = (prof && prof.fullName) || u.displayName || '';
             if(profilePhone) profilePhone.value = (prof && prof.phone) || u.phoneNumber || '';
-            if(profileGrade) profileGrade.value = (prof && prof.grade) || '';
-            if(profileSchool) profileSchool.value = (prof && prof.school) || '';
+            if(profileGrade && !admin) profileGrade.value = (prof && prof.grade) || '';
+            if(profileSchool && !admin) profileSchool.value = (prof && prof.school) || '';
+            const profileDefaultTrack = document.getElementById('profile-defaultTrack');
+            const profileDefaultGrade = document.getElementById('profile-defaultGrade');
+            if(profileDefaultTrack && !admin) profileDefaultTrack.value = (prof && prof.defaultTrack) || '';
+            if(profileDefaultGrade && !admin) profileDefaultGrade.value = (prof && prof.defaultGrade) || '';
         }catch(e){ console.warn('renderProfilePage failed', e); }
     };
 
@@ -1939,17 +2150,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             try{
                 const u = (window.Auth && Auth.getUser) ? Auth.getUser() : null;
                 if(!u){ navigateTo('#/auth'); return; }
+
+                const isAdminUser = () => !!(window.DataStore && DataStore.isAdmin && DataStore.isAdmin());
+                const admin = isAdminUser();
+                const profileDefaultTrack = document.getElementById('profile-defaultTrack');
+                const profileDefaultGrade = document.getElementById('profile-defaultGrade');
                 const data = {
                     fullName: (profileFullName && profileFullName.value.trim()) || '',
                     phone: (profilePhone && profilePhone.value.trim()) || '',
                     grade: (profileGrade && profileGrade.value) || '',
-                    school: (profileSchool && profileSchool.value.trim()) || ''
+                    school: (profileSchool && profileSchool.value.trim()) || '',
+                    defaultTrack: (profileDefaultTrack && profileDefaultTrack.value) || '',
+                    defaultGrade: (profileDefaultGrade && profileDefaultGrade.value) || ''
                 };
-                if(!data.fullName || !data.phone || !data.grade || !data.school){
+                if(!admin && (!data.fullName || !data.phone || !data.grade || !data.school)){
                     if(window.Swal) Swal.fire('Thiếu thông tin', 'Vui lòng điền đầy đủ các trường bắt buộc.', 'warning');
                     return;
                 }
-                await DataStore.upsertUserProfile(u.uid, Object.assign(data, { email: u.email||'', displayName: u.displayName||'' }));
+                const payload = admin
+                  ? { fullName: data.fullName, phone: data.phone, email: u.email||'', displayName: u.displayName||'' }
+                  : Object.assign(data, { email: u.email||'', displayName: u.displayName||'' });
+                await DataStore.upsertUserProfile(u.uid, payload);
                 toastSuccess('Đã lưu hồ sơ');
                 setTimeout(()=>{ navigateTo('#/classes'); }, 400);
             }catch(e){ if(window.Swal) Swal.fire('Lỗi', 'Không lưu được hồ sơ', 'error'); }
@@ -2009,11 +2230,58 @@ document.addEventListener('DOMContentLoaded', async () => {
         adminSummaryContainer.innerHTML = '<div class="text-gray-500">Đang tải tổng hợp...</div>';
         try {
             const arr = (window.DataStore && DataStore.listAllAttempts) ? await DataStore.listAllAttempts(1000) : [];
-            let filtered = arr.slice();
+            const normalizedAll = (arr || []).map((a) => {
+                const isBankOnTap = a && (a.app === 'BankOnTap' || a.appTitle === 'Bài tập Tết du xuân' || a.topicId || a.topicTitle);
+                const percent = isBankOnTap
+                    ? (typeof a.accuracy === 'number' ? a.accuracy : 0)
+                    : (a.autoScore && typeof a.autoScore.percent === 'number' ? a.autoScore.percent : 0);
+                const points = isBankOnTap
+                    ? (typeof a.correct === 'number' ? a.correct : 0)
+                    : (a.autoScore && typeof a.autoScore.points === 'number' ? a.autoScore.points : 0);
+                const max = isBankOnTap
+                    ? (typeof a.checked === 'number' ? a.checked : (typeof a.totalQuestions === 'number' ? a.totalQuestions : 0))
+                    : (a.autoScore && typeof a.autoScore.max === 'number' ? a.autoScore.max : 0);
+                const title = isBankOnTap
+                    ? (a.topicTitle || a.topicId || a.appTitle || 'BankOnTap')
+                    : ((a.exam && a.exam.title) || '(Không rõ)');
+                const path = isBankOnTap
+                    ? (a.sourcePath || '')
+                    : ((a.exam && a.exam.path) || '');
+                return {
+                    raw: a,
+                    kind: isBankOnTap ? 'bankontap' : 'exam',
+                    submittedAt: a.submittedAt || a.startedAt || Date.now(),
+                    startedAt: a.startedAt || a.submittedAt || Date.now(),
+                    userFullName: a.userFullName || a.userName || '',
+                    userEmail: a.userEmail || '',
+                    uid: a.uid || '',
+                    userGrade: a.userGrade || '',
+                    userSchool: a.userSchool || '',
+                    title,
+                    path,
+                    percent,
+                    points,
+                    max,
+                    timeSpentSec: (typeof a.timeSpentSec === 'number') ? a.timeSpentSec : null,
+                    correct: isBankOnTap ? (typeof a.correct === 'number' ? a.correct : null) : null,
+                    checked: isBankOnTap ? (typeof a.checked === 'number' ? a.checked : null) : null,
+                    wrongQuestions: Array.isArray(a.wrongQuestions) ? a.wrongQuestions : []
+                };
+            });
 
-            const uniqueSchools = Array.from(new Set(arr.map(a=>a.userSchool).filter(Boolean))).sort();
+            let filtered = normalizedAll.slice();
+
+            const uniqueSchools = Array.from(new Set(normalizedAll.map(a=>a.userSchool).filter(Boolean))).sort();
 
             const filters = `<div class="flex flex-wrap items-center gap-3 mb-4">
+                <div class="flex items-center gap-2">
+                    <label for="adm-filter-kind" class="text-sm text-gray-700">Nguồn:</label>
+                    <select id="adm-filter-kind" class="border border-gray-300 rounded px-2 py-1 text-sm">
+                        <option value="">Tất cả</option>
+                        <option value="exam">Bài thi</option>
+                        <option value="bankontap">BankOnTap</option>
+                    </select>
+                </div>
                 <div class="flex items-center gap-2">
                     <label for="adm-filter-grade" class="text-sm text-gray-700">Khối:</label>
                     <select id="adm-filter-grade" class="border border-gray-300 rounded px-2 py-1 text-sm">
@@ -2041,11 +2309,20 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const byExam = new Map();
                 for(const a of list){
                     const key = a.userEmail || a.uid || 'unknown';
-                    if(!byUser.has(key)) byUser.set(key, { email: a.userEmail||'', uid: a.uid||'', name: a.userFullName||a.userName||'', count:0, sum:0, n:0 });
-                    const u = byUser.get(key); u.count++; if(a.autoScore && typeof a.autoScore.percent==='number'){ u.sum += a.autoScore.percent; u.n++; }
-                    const ex = (a.exam && (a.exam.path||a.exam.title)) || 'unknown';
-                    if(!byExam.has(ex)) byExam.set(ex, { id: ex, title: (a.exam && a.exam.title) || ex, count:0, sum:0, n:0 });
-                    const e = byExam.get(ex); e.count++; if(a.autoScore && typeof a.autoScore.percent==='number'){ e.sum += a.autoScore.percent; e.n++; }
+                    if(!byUser.has(key)) byUser.set(key, { email: a.userEmail||'', uid: a.uid||'', name: a.userFullName||'', count:0, sum:0, n:0, bankontap:0, exam:0 });
+                    const u = byUser.get(key);
+                    u.count++;
+                    if (a.kind === 'bankontap') u.bankontap++;
+                    if (a.kind === 'exam') u.exam++;
+                    if(typeof a.percent === 'number') { u.sum += a.percent; u.n++; }
+
+                    const ex = a.path || a.title || 'unknown';
+                    if(!byExam.has(ex)) byExam.set(ex, { id: ex, title: a.title || ex, count:0, sum:0, n:0, bankontap:0, exam:0 });
+                    const e = byExam.get(ex);
+                    e.count++;
+                    if (a.kind === 'bankontap') e.bankontap++;
+                    if (a.kind === 'exam') e.exam++;
+                    if(typeof a.percent === 'number') { e.sum += a.percent; e.n++; }
                 }
                 const uniqueUsers = byUser.size;
                 const topExams = Array.from(byExam.values()).sort((x,y)=>y.count-x.count).slice(0,10);
@@ -2060,31 +2337,39 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </div>`;
                 const examList = `<div>
-                    <div class="font-semibold mb-2">Top đề được làm nhiều nhất</div>
+                    <div class="font-semibold mb-2">Top nội dung được làm nhiều nhất</div>
                     <div class="space-y-2">${topExams.map(e=>{
                         const avg = e.n? Math.round(e.sum/e.n):0;
-                        return `<div class="p-3 border rounded flex justify-between"><div>${e.title}</div><div class="text-sm text-gray-600">Số lần: ${e.count} • Điểm TB: ${avg}%</div></div>`;
+                        const badge = e.bankontap > 0 && e.exam === 0
+                          ? '<span class="ml-2 text-xs px-2 py-0.5 rounded bg-violet-100 text-violet-700">BankOnTap</span>'
+                          : (e.exam > 0 && e.bankontap === 0
+                            ? '<span class="ml-2 text-xs px-2 py-0.5 rounded bg-sky-100 text-sky-700">Bài thi</span>'
+                            : '<span class="ml-2 text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-700">Mixed</span>');
+                        return `<div class="p-3 border rounded flex justify-between gap-3"><div class="min-w-0"><div class="truncate">${e.title}${badge}</div></div><div class="text-sm text-gray-600 whitespace-nowrap">Số lần: ${e.count} • TB: ${avg}%</div></div>`;
                     }).join('')}</div>
                 </div>`;
 
                 const tableRows = list.slice(0,500).map(a=>{
                     const t = new Date(a.submittedAt || a.startedAt || Date.now());
                     const time = t.toLocaleString();
-                    const name = a.userFullName || a.userName || '';
+                    const name = a.userFullName || '';
                     const email = a.userEmail || '';
                     const grade = a.userGrade || '';
                     const school = a.userSchool || '';
-                    const title = (a.exam && a.exam.title) || '';
-                    const percent = (a.autoScore && typeof a.autoScore.percent==='number') ? a.autoScore.percent : 0;
+                    const title = a.title || '';
+                    const percent = (typeof a.percent==='number') ? a.percent : 0;
                     const spent = (typeof a.timeSpentSec === 'number') ? a.timeSpentSec : 0;
                     const mm = Math.floor(spent/60); const ss = String(spent%60).padStart(2,'0');
+                    const kindBadge = a.kind === 'bankontap'
+                      ? '<span class="text-xs px-2 py-0.5 rounded bg-violet-100 text-violet-700">BankOnTap</span>'
+                      : '<span class="text-xs px-2 py-0.5 rounded bg-sky-100 text-sky-700">Bài thi</span>';
                     return `<tr>
                         <td class="px-3 py-2 whitespace-nowrap">${time}</td>
                         <td class="px-3 py-2">${name}</td>
                         <td class="px-3 py-2 text-gray-600">${email}</td>
                         <td class="px-3 py-2">${grade}</td>
                         <td class="px-3 py-2">${school}</td>
-                        <td class="px-3 py-2">${title}</td>
+                        <td class="px-3 py-2">${title} ${kindBadge}</td>
                         <td class="px-3 py-2 text-right">${percent}%</td>
                         <td class="px-3 py-2 text-right">${mm}:${ss}</td>
                     </tr>`;
@@ -2149,15 +2434,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 const gSel = document.getElementById('adm-filter-grade');
                 const sSel = document.getElementById('adm-filter-school');
+                const kSel = document.getElementById('adm-filter-kind');
                 const resetBtn = document.getElementById('adm-filter-reset');
                 if(gSel) gSel.onchange = ()=>{ applyFilters(); };
                 if(sSel) sSel.onchange = ()=>{ applyFilters(); };
+                if(kSel) kSel.onchange = ()=>{ applyFilters(); };
                 if(resetBtn) resetBtn.onclick = ()=>{ if(gSel) gSel.value=''; if(sSel) sSel.value=''; applyFilters(); };
 
                 function applyFilters(){
                     const g = (document.getElementById('adm-filter-grade')||{}).value || '';
                     const s = (document.getElementById('adm-filter-school')||{}).value || '';
-                    filtered = arr.filter(a=> (!g || (a.userGrade||'')===g) && (!s || (a.userSchool||'')===s));
+                    const k = (document.getElementById('adm-filter-kind')||{}).value || '';
+                    filtered = normalizedAll.filter(a=> (!k || a.kind===k) && (!g || (a.userGrade||'')===g) && (!s || (a.userSchool||'')===s));
                     draw(filtered);
                 }
             };

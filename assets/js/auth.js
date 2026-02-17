@@ -11,9 +11,17 @@
     listeners.forEach(cb=>{ try { cb(currentUser); } catch(e){} });
   }
 
+  async function getFirebaseAuth(){
+    if(!isFirebaseConfigured()) throw new Error('Firebase not configured');
+    await ensureFirebase();
+    if(!(window.firebase && firebase.auth)) throw new Error('Firebase Auth SDK not loaded');
+    if(!firebase.apps.length){ firebase.initializeApp(cfg.firebase); }
+    return firebase.auth();
+  }
+
   async function linkGoogle(){
-    if(!(isFirebaseConfigured() && window.firebase && firebase.auth)) throw new Error('Firebase not configured');
-    const user = firebase.auth().currentUser;
+    const auth = await getFirebaseAuth();
+    const user = auth.currentUser;
     if(!user) throw new Error('No authenticated user');
     const provider = new firebase.auth.GoogleAuthProvider();
     await user.linkWithPopup(provider);
@@ -29,9 +37,7 @@
 
   async function init(){
     if(isFirebaseConfigured()){
-      await ensureFirebase();
-      if(!firebase.apps.length){ firebase.initializeApp(cfg.firebase); }
-      const auth = firebase.auth();
+      const auth = await getFirebaseAuth();
       auth.onAuthStateChanged(u=>{
         currentUser = u ? { uid: u.uid, displayName: u.displayName || '', email: u.email || '', phoneNumber: u.phoneNumber || '' } : null;
         emit();
@@ -46,9 +52,20 @@
   function getUser(){ return currentUser; }
 
   async function signInWithGoogle(){
-    if(isFirebaseConfigured() && window.firebase && firebase.auth){
+    if(isFirebaseConfigured()){
+      const auth = await getFirebaseAuth();
       const provider = new firebase.auth.GoogleAuthProvider();
-      await firebase.auth().signInWithPopup(provider);
+      provider.setCustomParameters({ prompt: 'select_account' });
+      try {
+        await auth.signInWithPopup(provider);
+      } catch (e) {
+        const code = (e && e.code) ? String(e.code) : '';
+        if (code === 'auth/popup-blocked' || code === 'auth/cancelled-popup-request') {
+          await auth.signInWithRedirect(provider);
+          return;
+        }
+        throw e;
+      }
       return;
     }
     const name = prompt('Nhập tên của bạn để lưu kết quả trên thiết bị này:');
@@ -60,9 +77,10 @@
   }
 
   async function signInWithFacebook(){
-    if(isFirebaseConfigured() && window.firebase && firebase.auth){
+    if(isFirebaseConfigured()){
+      const auth = await getFirebaseAuth();
       const provider = new firebase.auth.FacebookAuthProvider();
-      await firebase.auth().signInWithPopup(provider);
+      await auth.signInWithPopup(provider);
       return;
     }
     return signInWithGoogle();
@@ -91,11 +109,12 @@
   }
 
   async function signInWithPhone(inputPhone){
-    if(isFirebaseConfigured() && window.firebase && firebase.auth){
+    if(isFirebaseConfigured()){
+      const auth = await getFirebaseAuth();
       const phone = inputPhone || (typeof window.swalPromptPhone === 'function' ? await window.swalPromptPhone() : prompt('Nhập số điện thoại (định dạng +84...):'));
       if(!phone) return;
       ensureRecaptcha('recaptcha-container');
-      const confirmation = await firebase.auth().signInWithPhoneNumber(phone, recaptchaVerifier);
+      const confirmation = await auth.signInWithPhoneNumber(phone, recaptchaVerifier);
       const code = typeof window.swalPromptCode === 'function' ? await window.swalPromptCode() : prompt('Nhập mã xác minh (SMS) đã gửi tới số của bạn:');
       if(!code) return;
       await confirmation.confirm(code);
@@ -109,8 +128,9 @@
   }
 
   async function signOut(){
-    if(isFirebaseConfigured() && window.firebase && firebase.auth){
-      await firebase.auth().signOut();
+    if(isFirebaseConfigured()){
+      const auth = await getFirebaseAuth();
+      await auth.signOut();
       return;
     }
     currentUser = null;
@@ -120,8 +140,8 @@
   function onChange(cb){ if(typeof cb === 'function') listeners.push(cb); }
 
   async function linkPhoneNumber(phone){
-    if(!(isFirebaseConfigured() && window.firebase && firebase.auth)) throw new Error('Firebase not configured');
-    const user = firebase.auth().currentUser;
+    const auth = await getFirebaseAuth();
+    const user = auth.currentUser;
     if(!user) throw new Error('No authenticated user');
     ensureRecaptcha('recaptcha-container');
     const confirmation = await user.linkWithPhoneNumber(phone, recaptchaVerifier);

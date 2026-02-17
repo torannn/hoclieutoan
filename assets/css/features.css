@@ -221,6 +221,68 @@
   gap: 8px;
 }
 
+.ai-tutor-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.ai-tutor-side {
+  width: 260px;
+  border-right: 1px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.ai-tutor-side.hidden {
+  display: none;
+}
+
+.ai-side-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 12px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.ai-side-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ai-side-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-side-close:hover {
+  background: #f1f5f9;
+}
+
+.ai-tutor-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
 .ai-tutor-btn {
   width: 32px;
   height: 32px;
@@ -438,8 +500,8 @@ mjx-container[display="true"] {
 
 /* Bookmarks section */
 .ai-tutor-bookmarks {
-  border-top: 1px solid #e2e8f0;
-  max-height: 180px;
+  border-top: none;
+  max-height: none;
   overflow: hidden;
   transition: max-height 0.3s ease;
 }
@@ -533,9 +595,11 @@ mjx-container[display="true"] {
 
 /* Preset prompt buttons - Collapsible groups */
 .ai-preset-container {
-  padding: 8px 12px;
-  border-top: 1px solid #e2e8f0;
-  background: #f8fafc;
+  padding: 10px 10px;
+  border-top: none;
+  background: transparent;
+  overflow: auto;
+  flex: 1;
 }
 
 .ai-preset-container.hidden {

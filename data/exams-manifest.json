@@ -1,134 +1,225 @@
 {
   "metadata": {
-    "version": "3.0",
-    "description": "Mục lục các bài kiểm tra và công cụ học tập"
+    "version": "4.0",
+    "description": "Mục lục các bài kiểm tra và công cụ học tập — Toán cơ bản & Toán chuyên"
   },
-  "grades": {
-    "grade9": {
-      "exams": [
-        {
-          "id": "lop9_kiemtra_lan1",
-          "title": "Đề kiểm tra lần 1",
-          "type": "exam",
-          "description": "Đề kiểm tra Toán 9: Phương trình, hệ phương trình, bất phương trình, biểu thức chứa căn, hình học đường tròn, lượng giác và hình không gian.",
-          "path": "data/grade9/de-kiem-tra-lan-1/"
+  "tracks": {
+    "coban": {
+      "label": "Toán cơ bản",
+      "icon": "fa-solid fa-book",
+      "description": "Chương trình Toán phổ thông lớp 9–12",
+      "grades": {
+        "grade9": {
+          "label": "Lớp 9",
+          "exams": [
+            {
+              "id": "lop9_kiemtra_lan1",
+              "title": "Đề kiểm tra lần 1",
+              "type": "exam",
+              "description": "Đề kiểm tra Toán 9: Phương trình, hệ phương trình, bất phương trình, biểu thức chứa căn, hình học đường tròn, lượng giác và hình không gian.",
+              "path": "data/grade9/de-kiem-tra-lan-1/"
+            }
+          ],
+          "tools": []
+        },
+        "grade10": {
+          "label": "Lớp 10",
+          "exams": [
+            {
+              "id": "lop10_ontap_1",
+              "title": "Đề ôn tập số 1",
+              "type": "exam",
+              "description": "Đề ôn tập tổng hợp kiến thức Toán 10, bao gồm Mệnh đề, Tập hợp, Lượng giác và Hình học.",
+              "path": "data/grade10/de-on-tap-1/"
+            },
+            {
+              "id": "lop10_ontap_2",
+              "title": "Đề ôn tập số 2",
+              "type": "exam",
+              "description": "Đề ôn tập tổng hợp kiến thức Toán 10, bao gồm Mệnh đề, Tập hợp, Lượng giác và Hình học.",
+              "path": "data/grade10/de-on-tap-2/"
+            },
+            {
+              "id": "lop10_ontap_3",
+              "title": "Đề ôn tập số 3",
+              "type": "exam",
+              "description": "Đề ôn tập tổng hợp kiến thức Toán 10, bao gồm Mệnh đề, Tập hợp, Lượng giác và Hình học.",
+              "path": "data/grade10/de-on-tap-3/"
+            },
+            {
+              "id": "lop10_ontap_4",
+              "title": "Đề ôn tập số 4",
+              "type": "exam",
+              "description": "Đề ôn tập tổng hợp kiến thức Toán 10.",
+              "path": "data/grade10/de-on-tap-4/"
+            },
+            {
+              "id": "lop10_ontap_5",
+              "title": "Đề ôn tập số 5 (Test JSXGraph)",
+              "type": "exam",
+              "description": "Đề test để kiểm tra render JSXGraph diagrams trong đề và lời giải.",
+              "path": "data/grade10/de-on-tap-5/"
+            },
+            {
+              "id": "lop10_ontap_6",
+              "title": "Đề ôn tập số 6",
+              "type": "exam",
+              "description": "Đề ôn tập tổng hợp kiến thức Toán 10 (THSG HK1 2025).",
+              "path": "data/grade10/de-on-tap-6/"
+            },
+            {
+              "id": "lop10_tonghop_chuong1_5_goc",
+              "title": "Đề kiểm tra Chương 1 & 5",
+              "type": "exam",
+              "description": "Đề kiểm tra tổng hợp kiến thức Mệnh đề, Tập hợp và Lượng giác.",
+              "path": "data/grade10/de-kiem-tra-chuong-1-5/"
+            },
+            {
+              "id": "lop10_on_tap_ham_so",
+              "title": "Ôn tập Hàm số (Đồ thị - Bảng - Công thức - Thực tế)",
+              "type": "exam",
+              "description": "Trắc nghiệm tổng hợp hàm số (10 câu) kèm minh họa đồ thị/biểu diễn bằng JSXGraph.",
+              "path": "data/grade10/on-tap-ham-so/"
+            }
+          ],
+          "tools": [
+            {
+              "id": "cong-cu-venn",
+              "title": "Công cụ Sơ đồ Venn 📊",
+              "type": "tool",
+              "description": "Minh họa và giải các bài toán logic bằng sơ đồ Venn tương tác",
+              "url": "cong-cu-venn.html"
+            },
+            {
+              "id": "cong-cu-chuyen-asy-sang-jsxgraph",
+              "title": "Công cụ chuyển Asymptote → JSXGraph",
+              "type": "tool",
+              "description": "Dán mã Asymptote (GeoGebra export) và chuyển thành preset=scene để nhúng JSXGraph + xem trước.",
+              "url": "cong-cu-chuyen-asy-sang-jsxgraph.html"
+            },
+            {
+              "id": "cong-cu-bieu-dien-tap-hop",
+              "title": "Công cụ Biểu diễn tập hợp ↔️",
+              "type": "tool",
+              "description": "Công cụ tương tác để biểu diễn và so sánh các tập hợp số thực trên trục số.",
+              "url": "cong-cu-bieu-dien-tap-hop.html"
+            },
+            {
+              "id": "hoc-lieu-mien-nghiem",
+              "title": "📐 Học liệu: Miền nghiệm hệ BPT",
+              "type": "tool",
+              "description": "Tổng hợp các học liệu và công cụ về miền nghiệm hệ bất phương trình bậc nhất: từ lý thuyết, hướng dẫn vẽ, mô hình hóa đến công cụ vẽ tương tác.",
+              "url": "hoc-lieu-mien-nghiem-hub.html"
+            },
+            {
+              "id": "on-tap-toa-do-vector",
+              "title": "Ôn tập Toạ độ Vector (từng câu + hint)",
+              "type": "tool",
+              "description": "Luyện từng câu theo phương pháp toạ độ trong vector lớp 10: kiểm tra ngay, có gợi ý và lời giải tham khảo.",
+              "url": "on-tap-toa-do-vector.html"
+            },
+            {
+              "id": "bank-on-tap",
+              "title": "BankOnTap - Ngân hàng ôn tập theo chủ đề",
+              "type": "tool",
+              "description": "Mở panel carousel các chủ đề ôn tập, luyện từng câu và theo dõi tiến độ học theo từng chủ đề.",
+              "url": "BankOnTap/index.html"
+            }
+          ]
+        },
+        "grade11": {
+          "label": "Lớp 11",
+          "exams": [
+            {
+              "id": "lop11_ontap_ck1",
+              "title": "Đề ôn tập cuối HK1",
+              "type": "exam",
+              "description": "Đề ôn tập tổng hợp kiến thức Toán 11 cuối học kì 1.",
+              "path": "data/grade11/de-on-tap-1/"
+            }
+          ],
+          "tools": [
+            {
+              "id": "hoc-lieu-11-tu-phan-vi",
+              "title": "📘 Học liệu số 11: Tứ phân vị (mẫu ghép nhóm)",
+              "type": "tool",
+              "description": "Học liệu tính các tứ phân vị của mẫu số liệu ghép nhóm.",
+              "url": "data/grade11/tu-phan-vi.html"
+            }
+          ]
+        },
+        "grade12": {
+          "label": "Lớp 12",
+          "exams": [],
+          "tools": []
         }
-      ],
-      "tools": []
+      }
     },
-    "grade10": {
-      "exams": [
-        {
-          "id": "lop10_ontap_1",
-          "title": "Đề ôn tập số 1",
-          "type": "exam",
-          "description": "Đề ôn tập tổng hợp kiến thức Toán 10, bao gồm Mệnh đề, Tập hợp, Lượng giác và Hình học.",
-          "path": "data/grade10/de-on-tap-1/"
-        },
-        {
-          "id": "lop10_ontap_2",
-          "title": "Đề ôn tập số 2",
-          "type": "exam",
-          "description": "Đề ôn tập tổng hợp kiến thức Toán 10, bao gồm Mệnh đề, Tập hợp, Lượng giác và Hình học.",
-          "path": "data/grade10/de-on-tap-2/"
-        },
-        {
-          "id": "lop10_ontap_3",
-          "title": "Đề ôn tập số 3",
-          "type": "exam",
-          "description": "Đề ôn tập tổng hợp kiến thức Toán 10, bao gồm Mệnh đề, Tập hợp, Lượng giác và Hình học.",
-          "path": "data/grade10/de-on-tap-3/"
-        },
-        {
-          "id": "lop10_ontap_4",
-          "title": "Đề ôn tập số 4",
-          "type": "exam",
-          "description": "Đề ôn tập tổng hợp kiến thức Toán 10.",
-          "path": "data/grade10/de-on-tap-4/"
-        },
-        {
-          "id": "lop10_ontap_5",
-          "title": "Đề ôn tập số 5 (Test JSXGraph)",
-          "type": "exam",
-          "description": "Đề test để kiểm tra render JSXGraph diagrams trong đề và lời giải.",
-          "path": "data/grade10/de-on-tap-5/"
-        },
-        {
-          "id": "lop10_ontap_6",
-          "title": "Đề ôn tập số 6",
-          "type": "exam",
-          "description": "Đề ôn tập tổng hợp kiến thức Toán 10 (THSG HK1 2025).",
-          "path": "data/grade10/de-on-tap-6/"
-        },
-        {
-          "id": "lop10_tonghop_chuong1_5_goc",
-          "title": "Đề kiểm tra Chương 1 & 5",
-          "type": "exam",
-          "description": "Đề kiểm tra tổng hợp kiến thức Mệnh đề, Tập hợp và Lượng giác.",
-          "path": "data/grade10/de-kiem-tra-chuong-1-5/"
-        },
-        {
-          "id": "lop10_on_tap_ham_so",
-          "title": "Ôn tập Hàm số (Đồ thị - Bảng - Công thức - Thực tế)",
-          "type": "exam",
-          "description": "Trắc nghiệm tổng hợp hàm số (10 câu) kèm minh họa đồ thị/biểu diễn bằng JSXGraph.",
-          "path": "data/grade10/on-tap-ham-so/"
-        }
-      ],
-      "tools": [
-        {
-          "id": "cong-cu-venn",
-          "title": "Công cụ Sơ đồ Venn 📊",
-          "type": "tool",
-          "description": "Minh họa và giải các bài toán logic bằng sơ đồ Venn tương tác",
-          "url": "cong-cu-venn.html"
-        },
-        {
-          "id": "cong-cu-chuyen-asy-sang-jsxgraph",
-          "title": "Công cụ chuyển Asymptote → JSXGraph",
-          "type": "tool",
-          "description": "Dán mã Asymptote (GeoGebra export) và chuyển thành preset=scene để nhúng JSXGraph + xem trước.",
-          "url": "cong-cu-chuyen-asy-sang-jsxgraph.html"
-        },
-        {
-          "id": "cong-cu-bieu-dien-tap-hop",
-          "title": "Công cụ Biểu diễn tập hợp ↔️",
-          "type": "tool",
-          "description": "Công cụ tương tác để biểu diễn và so sánh các tập hợp số thực trên trục số.",
-          "url": "cong-cu-bieu-dien-tap-hop.html"
-        },
-        {
-          "id": "hoc-lieu-mien-nghiem",
-          "title": "📐 Học liệu: Miền nghiệm hệ BPT",
-          "type": "tool",
-          "description": "Tổng hợp các học liệu và công cụ về miền nghiệm hệ bất phương trình bậc nhất: từ lý thuyết, hướng dẫn vẽ, mô hình hóa đến công cụ vẽ tương tác.",
-          "url": "hoc-lieu-mien-nghiem-hub.html"
-        }
-      ]
-    },
-    "grade11": {
-        "exams": [
-          {
-            "id": "lop11_ontap_ck1",
-            "title": "Đề ôn tập cuối HK1",
-            "type": "exam",
-            "description": "Đề ôn tập tổng hợp kiến thức Toán 11 cuối học kì 1.",
-            "path": "data/grade11/de-on-tap-1/"
+    "chuyen": {
+      "label": "Toán chuyên",
+      "icon": "fa-solid fa-trophy",
+      "description": "Toán chuyên THCS & THPT — Đại số, Số học, Hình học, Tổ hợp",
+      "levels": {
+        "thcs": {
+          "label": "Toán chuyên THCS",
+          "topics": {
+            "dai-so": {
+              "label": "Đại số",
+              "icon": "fa-solid fa-superscript",
+              "exams": [],
+              "tools": []
+            },
+            "so-hoc": {
+              "label": "Số học",
+              "icon": "fa-solid fa-hashtag",
+              "exams": [],
+              "tools": []
+            },
+            "hinh-hoc": {
+              "label": "Hình học",
+              "icon": "fa-solid fa-shapes",
+              "exams": [],
+              "tools": []
+            },
+            "to-hop": {
+              "label": "Tổ hợp",
+              "icon": "fa-solid fa-diagram-project",
+              "exams": [],
+              "tools": []
+            }
           }
-        ],
-        "tools": [
-          {
-            "id": "hoc-lieu-11-tu-phan-vi",
-            "title": "📘 Học liệu số 11: Tứ phân vị (mẫu ghép nhóm)",
-            "type": "tool",
-            "description": "Học liệu tính các tứ phân vị của mẫu số liệu ghép nhóm.",
-            "url": "data/grade11/tu-phan-vi.html"
+        },
+        "thpt": {
+          "label": "Toán chuyên THPT",
+          "topics": {
+            "dai-so-giai-tich": {
+              "label": "Đại số – Giải tích",
+              "icon": "fa-solid fa-square-root-variable",
+              "exams": [],
+              "tools": []
+            },
+            "so-hoc": {
+              "label": "Số học",
+              "icon": "fa-solid fa-hashtag",
+              "exams": [],
+              "tools": []
+            },
+            "hinh-hoc": {
+              "label": "Hình học",
+              "icon": "fa-solid fa-shapes",
+              "exams": [],
+              "tools": []
+            },
+            "to-hop": {
+              "label": "Tổ hợp",
+              "icon": "fa-solid fa-diagram-project",
+              "exams": [],
+              "tools": []
+            }
           }
-        ]
-    },
-    "grade12": {
-        "exams": [],
-        "tools": []
+        }
+      }
     }
-  }
+  },
+  "grades": {}
 }

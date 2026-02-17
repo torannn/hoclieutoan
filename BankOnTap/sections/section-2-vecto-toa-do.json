@@ -1,0 +1,1098 @@
+{
+  "duration": 1173,
+  "section_key": "section-2-vecto-toa-do",
+  "section_title": "Vectơ và tọa độ - Phương trình đường thẳng",
+  "section_subtitle": "Hình học 10 - Vectơ trong mặt phẳng tọa độ",
+  "questions": [
+        {
+      "q_id": "g10_geo_ch4_vec_1_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $A(-8; -8)$ và $H(-6; -1)$. Tìm tọa độ vectơ $\\overrightarrow{AH}$.",
+      "options": [
+        "$\\overrightarrow{AH} = (-7; -\\frac{9}{2})$",
+        "$\\overrightarrow{AH} = (-2; -7)$",
+        "$\\overrightarrow{AH} = (-14; -9)$",
+        "$\\overrightarrow{AH} = (2; 7)$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_2_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{u} = (6; 1)$ và $\\vec{c} = (-7; -9)$. Tìm tọa độ vectơ $\\vec{u} + \\vec{c}$.",
+      "options": [
+        "$\\vec{u} + \\vec{c} = (7; -16)$",
+        "$\\vec{u} + \\vec{c} = (-13; -10)$",
+        "$\\vec{u} + \\vec{c} = (-1; -8)$",
+        "$\\vec{u} + \\vec{c} = (-42; -9)$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_3_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho vectơ $\\vec{a} = (-9; -5)$. Tính độ dài của vectơ $\\vec{a}$.",
+      "options": [
+        "$|\\vec{a}| = \\sqrt{106}$",
+        "$|\\vec{a}| = 2$",
+        "$|\\vec{a}| = 106$",
+        "$|\\vec{a}| = \\sqrt{14}$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_4_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{d} = (-4; 6m)$ và $\\vec{b} = (-10; 10 - m)$. Tìm các giá trị của $m$ để vectơ $\\vec{d}$ và vectơ $\\vec{b}$ cùng phương.",
+      "options": [
+        "$m = \\frac{29}{8}$",
+        "$m = \\frac{5}{8}$",
+        "$m = \\frac{4}{7}$",
+        "$m = 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_5_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $N(-1; -3)$ và $H(-2; -3)$. Tìm độ dài đoạn thẳng $NH$.",
+      "options": [
+        "$NH = 1$",
+        "$NH = 1$",
+        "$NH = 9$",
+        "$NH = 1$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_6_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $E(-2; -8)$ và $C(-4; -4)$. Tìm tọa độ trung điểm của đoạn thẳng $EC$.",
+      "options": [
+        "$(1; -2)$",
+        "$(-3; -6)$",
+        "$(-6; -12)$",
+        "$(-5; -4)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_7_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $DBC$ có $D(-3; -3), B(0; 1)$ và $C(-7; -5)$. Tìm tọa độ trọng tâm của tam giác $DBC$.",
+      "options": [
+        "$\\left( -\\frac{5}{2}; -\\frac{7}{4} \\right)$",
+        "$(-10; -7)$",
+        "$\\left( -\\frac{10}{3}; -\\frac{7}{3} \\right)$",
+        "$\\left( -5; -\\frac{7}{2} \\right)$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_8_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $A(3; 1)$ và $H(-6; -2)$. Tìm tọa độ điểm $P$ sao cho $A$ và $P$ đối xứng nhau qua $H$.",
+      "options": [
+        "$P(-11; -10)$",
+        "$P(15; 5)$",
+        "$P(-22; 3)$",
+        "$P(-15; -5)$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_9_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho ba điểm $A(3; 1), N(4; 10)$ và $H(6; -9)$. Tìm tọa độ điểm $K$ sao cho tam giác $ANK$ nhận $H(6; -9)$ làm trọng tâm.",
+      "options": [
+        "$K(11; -38)$",
+        "$K(-11; 38)$",
+        "$K(2; -30)$",
+        "$K(14; -43)$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_10_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 11. Tích vô hướng của hai vectơ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{m} = (-6; 5)$ và $\\vec{b} = (-1; 0)$. Tính tích vô hướng $\\vec{m} \\cdot \\vec{b}$.",
+      "options": [
+        "$\\vec{m} \\cdot \\vec{b} = -35$",
+        "$\\vec{m} \\cdot \\vec{b} = -30$",
+        "$\\vec{m} \\cdot \\vec{b} = 6$",
+        "$\\vec{m} \\cdot \\vec{b} = -5$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_11_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 11. Tích vô hướng của hai vectơ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{a} = (-1; 1)$ và $\\vec{b} = (2; 0)$. Tính cosin của góc giữa hai vectơ $\\vec{a}$ và $\\vec{b}$.",
+      "options": [
+        "$\\cos(\\vec{a}, \\vec{b}) = \\frac{1}{\\sqrt{2}}$",
+        "$\\cos(\\vec{a}, \\vec{b}) = \\frac{1}{2}$",
+        "$\\cos(\\vec{a}, \\vec{b}) = -\\frac{\\sqrt{2}}{2}$",
+        "$\\cos(\\vec{a}, \\vec{b}) = -\\frac{1}{2\\sqrt{2}}$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_12_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 11. Tích vô hướng của hai vectơ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{a} = (5; 2)$ và $\\vec{w} = (-3m; -4m - 5)$. Tìm các giá trị của $m$ để vectơ $\\vec{a}$ và vectơ $\\vec{w}$ vuông góc.",
+      "options": [
+        "$m = \\frac{82}{23}$",
+        "$m = 0$",
+        "$m = -\\frac{10}{23}$",
+        "$m = -8$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "g10_geo_ch4_vec_13_p4",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 11. Tích vô hướng của hai vectơ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $A(2; 2), B(5; -2)$. Tìm điểm $M$ thuộc trục hoành sao cho $\\widehat{AMB} = 90^\\circ$.",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "c14_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, tìm điểm $M$ thuộc trục hoành để khoảng cách từ đó đến điểm $N(-1; 4)$ bằng $2\\sqrt{5}$.",
+      "options": [
+        "$M(1; 0), M(-3; 0)$",
+        "$M(1; 0)$",
+        "$M(3; 0)$",
+        "$M(1; 0), M(3; 0)$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "c15_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có $A(6; 0), B(3; 1), C(-1; -1)$. Tính số đo góc $B$ của tam giác đã cho.",
+      "options": [
+        "$\\widehat{B} = 15^\\circ$",
+        "$\\widehat{B} = 60^\\circ$",
+        "$\\widehat{B} = 120^\\circ$",
+        "$\\widehat{B} = 135^\\circ$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "c16_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có $A(-4; 1), B(2; 4), C(2; -2)$. Tìm tọa độ tâm $I$ của đường tròn ngoại tiếp tam giác đã cho.",
+      "options": [
+        "$I \\left( \\frac{1}{4}; 1 \\right)$",
+        "$I \\left( 1; \\frac{1}{4} \\right)$",
+        "$I \\left( -\\frac{1}{4}; 1 \\right)$",
+        "$I \\left( 1; -\\frac{1}{4} \\right)$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "c23_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có $A(1;4), B(3;2), C(5;4)$. Tính chu vi $P$ của tam giác đã cho (làm tròn kết quả đến hàng phần trăm).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 9.66
+    },
+    {
+      "q_id": "c24_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có $A(-3;0), B(3;0)$ và $C(2;6)$. Gọi $H(a;b)$ là toạ độ trực tâm của tam giác đã cho. Tính $a + 6b$.",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 7
+    },
+    {
+      "q_id": "c25_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{u} = (8;3), \\vec{m} = (-6;3)$. Biết vectơ $\\vec{x} = (a;b)$ thỏa mãn $2\\vec{u} - \\vec{x} = \\vec{m}$. Tính $a + b$.",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 25
+    },
+    {
+      "q_id": "c26_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho ba điểm $N(3; -2), M(-4; -4), E(4; -1)$. Điểm $C(a; b)$ thỏa mãn $3\\overrightarrow{NC} - 2\\overrightarrow{NM} = -2\\overrightarrow{NE}$. Tính $a + b$ (kết quả làm tròn đến hàng phân mươi).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": -6.3
+    },
+    {
+      "q_id": "c17_combined_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$ cho bốn điểm $A(3; -2), B(7; 1), C(0; 1), D(-8; -5)$.\nKhẳng định sau đúng hay sai:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "Hai vectơ $\\overrightarrow{AB}$ và $\\overrightarrow{CD}$ ngược hướng.",
+          "answer": true
+        },
+        {
+          "key": "b",
+          "statement": "Bốn điểm $A, B, C, D$ thẳng hàng.",
+          "answer": false
+        },
+        {
+          "key": "c",
+          "statement": "Hai vectơ $\\overrightarrow{AB}$ và $\\overrightarrow{CD}$ cùng hướng.",
+          "answer": false
+        },
+        {
+          "key": "d",
+          "statement": "$\\overrightarrow{AB}$ và $\\overrightarrow{CD}$ là hai vectơ đối.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "c27_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $F(-6; -1), N(6; -6)$. Điểm $C(a; b)$ thuộc trục hoành thỏa mãn cách đều hai điểm $F$ và $N$. Tính $3a + 2b$ (kết quả làm tròn đến hàng phân mươi).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 4.4
+    },
+    {
+      "q_id": "c28_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trên màn hình ra đa của đài kiểm soát (được coi như mặt phẳng tọa độ $Oxy$) với đơn vị trên các trục (tính theo ki-lô-mét), một xe thiết giáp chuyển động thẳng đều từ mục tiêu $A$ có tọa độ $(60; 20)$ đến mục tiêu $B$ có tọa độ $(20; 50)$ và thời gian đi quãng đường $AB$ là 3 giờ. Gọi $M(x_M; y_M)$ là tọa độ của xe thiết giáp tại thời điểm sau khi xuất phát 1 giờ. Hỏi $y_M$ bằng bao nhiêu?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 30
+    },
+    {
+      "q_id": "c18_combined_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho hai vectơ $\\vec{d} = 4\\vec{i} + 3\\vec{j}$ và $\\vec{b} = \\vec{i} + 7\\vec{j}$.\nKhẳng định sau đúng hay sai:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "$|\\vec{d}| = 7$.",
+          "answer": false
+        },
+        {
+          "key": "b",
+          "statement": "$|\\vec{b}| = 5\\sqrt{2}$.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "$\\vec{d} \\cdot \\vec{b} = 14$.",
+          "answer": false
+        },
+        {
+          "key": "d",
+          "statement": "$(\\vec{d}, \\vec{b}) = 45^\\circ$.",
+          "answer": true
+        }
+      ]
+    },
+    {
+      "q_id": "c19_combined_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai vectơ $\\vec{n} = (-5; -3)$, $\\vec{d} = (8; -4)$.\nKhẳng định sau đúng hay sai:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "$\\vec{n} - \\vec{d} = (-13; 3)$.",
+          "answer": false
+        },
+        {
+          "key": "b",
+          "statement": "$2\\vec{n} - 4\\vec{d} = (-42; 10)$.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "$|\\vec{d}| = 4\\sqrt{5}$.",
+          "answer": true
+        },
+        {
+          "key": "d",
+          "statement": "$\\cos(\\vec{n}; \\vec{d}) = -\\frac{7\\sqrt{170}}{170}$.",
+          "answer": true
+        }
+      ]
+    },
+    {
+      "q_id": "c20_combined_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ với $A(2; -1), B(1; 4), C(7; 0)$.\nKhẳng định sau đúng hay sai:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "$AB = \\sqrt{26}$.",
+          "answer": true
+        },
+        {
+          "key": "b",
+          "statement": "Chu vi tam giác $ABC$ bằng $17,4$ (làm tròn đến hàng phần chục).",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "Tam giác $ABC$ là tam giác đều.",
+          "answer": false
+        },
+        {
+          "key": "d",
+          "statement": "Diện tích tam giác $ABC$ bằng $26$.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "c21_combined_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ với $A(5; -2), B(0; 0), C(-3; 3)$.\nKhẳng định sau đúng hay sai:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "$\\overrightarrow{AB} = (-5; 2)$.",
+          "answer": true
+        },
+        {
+          "key": "b",
+          "statement": "Toạ độ trọng tâm tam giác $ABC$ là $\\left( \\frac{2}{3}; \\frac{1}{3} \\right)$.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "$\\widehat{A}$ là góc nhọn.",
+          "answer": true
+        },
+        {
+          "key": "d",
+          "statement": "Toạ độ trực tâm tam giác là $H \\left( -\\frac{32}{3}, -\\frac{53}{3} \\right)$.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "c22_combined_p5",
+      "section": "Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho tam giác $ABC$ với $A(-4; 4), B(2; -3), C(5; 3)$.\nKhẳng định sau đúng hay sai:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "$\\overrightarrow{BA} = (6; -7)$.",
+          "answer": false
+        },
+        {
+          "key": "b",
+          "statement": "Toạ độ trọng tâm tam giác $ABC$ là $\\left( 1; \\frac{4}{3} \\right)$.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "$\\widehat{A}$ là góc tù.",
+          "answer": false
+        },
+        {
+          "key": "d",
+          "statement": "Toạ độ trực tâm tam giác là $H \\left( \\frac{94}{19}, -\\frac{9}{19} \\right)$.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_1_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $\\Delta: \\begin{cases} x = 1 + 2t \\\\ y = 3 - t \\end{cases}$. Điểm nào sau đây thuộc $\\Delta$?",
+      "options": [
+        "M(1; 3).",
+        "N(3; 2).",
+        "P(2; −1).",
+        "Q(2; 1)."
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_2_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $\\Delta: 3x - y + 6 = 0$. Điểm nào sau đây thuộc $\\Delta$?",
+      "options": [
+        "M(1; 3).",
+        "N(3; 2).",
+        "P(−1; 3).",
+        "Q(2; 1)."
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_3_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $\\Delta: \\begin{cases} x = 1 + 2t \\\\ x = 3 - t \\end{cases}$. Một véc tơ chỉ phương $\\vec{u}$ của $\\Delta$ là",
+      "options": [
+        "$\\vec{u} = (1; 3)$.",
+        "$\\vec{u} = (2; -1)$.",
+        "$\\vec{u} = (3; 1)$.",
+        "$\\vec{u} = (2; 1)$."
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_4_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $\\Delta: \\begin{cases} x = 5 - 2t \\\\ y = 3 + t \\end{cases}$. Một véc tơ chỉ phương $\\vec{u}$ của $\\Delta$ là",
+      "options": [
+        "$\\vec{u} = (5; 3)$.",
+        "$\\vec{u} = (-2; 3)$.",
+        "$\\vec{u} = (2; 1)$.",
+        "$\\vec{u} = (2; -1)$."
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_5_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $\\Delta: \\begin{cases} x = 1 - 2t \\\\ y = 4 + 8t \\end{cases}$. Một véc tơ chỉ phương $\\vec{u}$ của $\\Delta$ là",
+      "options": [
+        "$\\vec{u} = (1; 4)$.",
+        "$\\vec{u} = (-2; -8)$.",
+        "$\\vec{u} = (1; -4)$.",
+        "$\\vec{u} = (2; 8)$."
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_6_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho phương trình đường thẳng $\\Delta: 3x + 4y - 5 = 0$. Tìm một véc-tơ pháp tuyến của đường thẳng $\\Delta$.",
+      "options": [
+        "$\\vec{n} = (3; 4)$.",
+        "$\\vec{n} = (4; -3)$.",
+        "$\\vec{n} = (-4; 3)$.",
+        "$\\vec{n} = (4; 3)$."
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_7_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho phương trình đường thẳng $\\Delta: x - 2y + 3 = 0$. Tìm một véc-tơ pháp tuyến của đường thẳng $\\Delta$.",
+      "options": [
+        "$\\vec{n} = (1; -2)$.",
+        "$\\vec{n} = (2; 1)$.",
+        "$\\vec{n} = (-2; 3)$.",
+        "$\\vec{n} = (1; 3)$."
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_8_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $d : \\begin{cases} x = 3 + 5t \\\\ y = -4 - 3t \\end{cases}$. Tìm một véc-tơ pháp tuyến $\\vec{n}$ của $d$.",
+      "options": [
+        "$\\vec{n} = (3; -5)$.",
+        "$\\vec{n} = (3; 5)$.",
+        "$\\vec{n} = (5; -3)$.",
+        "$\\vec{n} = (5; 3)$."
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "grade10_geo_lines_mcq_9_p1",
+      "section": "Lớp 10 - Hình học - Chương IV. Vectơ - Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $d : \\begin{cases} x = -2 - t \\\\ y = 4 + 3t \\end{cases}$. Tìm một véc-tơ pháp tuyến $\\vec{n}$ của $d$.",
+      "options": [
+        "$\\vec{n} = (-2; 4)$.",
+        "$\\vec{n} = (3; 1)$.",
+        "$\\vec{n} = (4; 2)$.",
+        "$\\vec{n} = (-1; 3)$."
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_10_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $d: 3x - 7y + 1 = 0$. Tìm một vectơ chỉ phương $\\vec{u}$ của $d$.",
+      "options": [
+        "$\\vec{u} = (3; 7)$",
+        "$\\vec{u} = (3; -7)$",
+        "$\\vec{u} = (7; -3)$",
+        "$\\vec{u} = (7; 3)$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_11_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $d: 8x + 1 = 0$. Tìm một vectơ chỉ phương $\\vec{u}$ của $d$.",
+      "options": [
+        "$\\vec{u} = (8; 1)$",
+        "$\\vec{u} = (0; 1)$",
+        "$\\vec{u} = (1; 0)$",
+        "$\\vec{u} = (1; -8)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_12_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Đường thẳng $d$ đi qua điểm $M(1; -2)$ và có vectơ chỉ phương $\\vec{u} = (3; 5)$ có phương trình tham số là:",
+      "options": [
+        "$d: \\begin{cases} x = 3 + t \\\\ y = 5 - 2t \\end{cases}$",
+        "$d: \\begin{cases} x = 3 + 2t \\\\ y = 5 + t \\end{cases}$",
+        "$d: \\begin{cases} x = 1 + 5t \\\\ y = -2 - 3t \\end{cases}$",
+        "$d: \\begin{cases} x = 1 + 3t \\\\ y = -2 + 5t \\end{cases}$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_13_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Đường thẳng đi qua $A(-1; 2)$, nhận $\\vec{n} = (2; -4)$ làm vectơ pháp tuyến có phương trình là:",
+      "options": [
+        "$x + y + 4 = 0$",
+        "$x - 2y - 4 = 0$",
+        "$x - 2y + 5 = 0$",
+        "$-x + 2y - 4 = 0$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_14_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Đường thẳng đi qua điểm $C(3; -2)$ và có hệ số góc $k = \\frac{2}{3}$ có phương trình là:",
+      "options": [
+        "$2x + 3y = 0$",
+        "$2x - 3y - 12 = 0$",
+        "$2x - 3y - 9 = 0$",
+        "$3x - 2y - 13 = 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_15_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, viết phương trình tham số của đường thẳng đi qua hai điểm $A(2; -1)$ và $B(2; 5)$.",
+      "options": [
+        "$\\begin{cases} x = 2 \\\\ y = -1 + 6t \\end{cases}$",
+        "$\\begin{cases} x = 2t \\\\ y = -6t \\end{cases}$",
+        "$\\begin{cases} x = 1 \\\\ y = 2 + 6t \\end{cases}$",
+        "$\\begin{cases} x = 2 + t \\\\ y = 5 + 6t \\end{cases}$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_16_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, phương trình tổng quát của đường thẳng đi qua hai điểm $A(3; -1)$ và $B(1; 5)$ là:",
+      "options": [
+        "$-x + 3y + 6 = 0$",
+        "$3x - y + 6 = 0$",
+        "$3x - y + 10 = 0$",
+        "$3x + y - 8 = 0$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_17_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng với hệ trục toạ độ $Oxy$, cho đường thẳng $d$ cắt hai trục $Ox, Oy$ lần lượt tại hai điểm $A(a; 0), B(0; b)$ ($a \\neq 0, b \\neq 0$). Viết phương trình đường thẳng $d$.",
+      "options": [
+        "$d: \\frac{x}{a} - \\frac{y}{b} = 1$",
+        "$d: \\frac{x}{a} + \\frac{y}{b} = 0$",
+        "$d: \\frac{x}{a} + \\frac{y}{b} = 1$",
+        "$d: \\frac{x}{b} + \\frac{y}{a} = 1$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_18_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, đường thẳng cắt hai trục tọa độ tại $A(2; 0)$ và $B(0; 3)$ có phương trình là:",
+      "options": [
+        "$3x - 2y + 6 = 0$",
+        "$3x - 2y - 6 = 0$",
+        "$2x - 3y + 4 = 0$",
+        "$2x + 3y - 4 = 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_19_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, phương trình nào sau đây là phương trình tổng quát của đường thẳng $d: \\begin{cases} x = 15 \\\\ y = 6 + 7t \\end{cases}$?",
+      "options": [
+        "$6x - 15y = 0$",
+        "$x - y - 9 = 0$",
+        "$x - 15 = 0$",
+        "$x + 15 = 0$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_20_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho đường thẳng $d: \\begin{cases} x = 3 - 5t \\\\ y = 1 + 4t \\end{cases} (t \\in \\mathbb{R})$. Phương trình tổng quát của đường thẳng $d$ là:",
+      "options": [
+        "$4x - 5y - 7 = 0$",
+        "$4x + 5y + 17 = 0$",
+        "$4x + 5y - 17 = 0$",
+        "$4x - 5y - 17 = 0$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_21_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Đường thẳng $d$ có phương trình tổng quát $4x + 5y - 8 = 0$. Phương trình tham số của $d$ là:",
+      "options": [
+        "$\\begin{cases} x = 2 + 4t \\\\ y = 5t \\end{cases}$",
+        "$\\begin{cases} x = 2 + 5t \\\\ y = -4t \\end{cases}$",
+        "$\\begin{cases} x = 2 + 5t \\\\ y = 4t \\end{cases}$",
+        "$\\begin{cases} x = -5t \\\\ y = 4t \\end{cases}$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_22_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng với hệ tọa độ $Oxy$, cho ba điểm $A(2;0), B(0;3)$ và $C(-3;-1)$. Viết phương trình tham số của đường thẳng đi qua điểm $B$ và song song với $AC$.",
+      "options": [
+        "$\\begin{cases} x = 5t \\\\ y = 3 + t \\end{cases}$",
+        "$\\begin{cases} x = 3 + 5t \\\\ y = t \\end{cases}$",
+        "$\\begin{cases} x = t \\\\ y = 3 - 5t \\end{cases}$",
+        "$\\begin{cases} x = 5 \\\\ y = 1 + 3t \\end{cases}$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_23_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hai điểm $A(1;-2), B(3;6)$. Phương trình tổng quát của đường trung trực của đoạn thẳng $AB$ là:",
+      "options": [
+        "$x + 4y + 10 = 0$",
+        "$4x - y - 6 = 0$",
+        "$x + 4y - 10 = 0$",
+        "$2x + 8y + 5 = 0$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_24_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ với đỉnh $A(1;2)$ và $H(3;-1)$ là chân đường cao kẻ từ $A$ của tam giác $ABC$. Khi đó đường thẳng $BC$ có phương trình là:",
+      "options": [
+        "$2x - 3y - 9 = 0$",
+        "$2x - 3y + 4 = 0$",
+        "$3x + 2y - 7 = 0$",
+        "$3x + 2y + 7 = 0$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_25_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có $A(1;2), B(3;1), C(5;4)$. Phương trình nào sau đây là phương trình đường cao kẻ từ $A$ của tam giác $ABC$?",
+      "options": [
+        "$2x + 3y + 8 = 0$",
+        "$2x + 3y - 8 = 0$",
+        "$3x - 2y + 1 = 0$",
+        "$2x + 3y - 2 = 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_26_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Cho ba điểm $A(1;-2), B(5;-4), C(-1;4)$. Đường cao kẻ từ $A$ của tam giác $ABC$ có phương trình tham số là:",
+      "options": [
+        "$\\begin{cases} x = -1 + 4t \\\\ y = 2 + 3t \\end{cases}$",
+        "$\\begin{cases} x = 4 + t \\\\ y = 3 - 2t \\end{cases}$",
+        "$\\begin{cases} x = 1 - 4t \\\\ y = -2 + 3t \\end{cases}$",
+        "$\\begin{cases} x = 1 + 4t \\\\ y = -2 + 3t \\end{cases}$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_27_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Cho tam giác $ABC$ với $A(1;1), B(0;-2)$ và $C(4;2)$. Phương trình tổng quát của đường trung tuyến kẻ từ $B$ của tam giác $ABC$.",
+      "options": [
+        "$3x + y - 2 = 0$",
+        "$5x - 3y + 1 = 0$",
+        "$x + y + 7 = 0$",
+        "$-7x + 5y + 10 = 0$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_28_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ với $A(2;4); B(2;1); C(5;0)$. Trung tuyến $CM$ đi qua điểm nào dưới đây?",
+      "options": [
+        "$(-7;-6)$",
+        "$(-1;5)$",
+        "$\\left(10; -\\frac{5}{2}\\right)$",
+        "$\\left(14; \\frac{9}{2}\\right)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_vec_line_29_p2",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Đường thẳng đi qua điểm $M(5;-3)$ và cắt hai trục tọa độ tại hai điểm $A$ và $B$ sao cho $M$ là trung điểm của $AB$ có phương trình là:",
+      "options": [
+        "$3x + 5y - 30 = 0$",
+        "$3x - 5y - 30 = 0$",
+        "$3x + 5y + 30 = 0$",
+        "$5x - 3y - 34 = 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_lines_30_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ có $A(0;0), B(1;-1), C(3;3)$. Véc-tơ nào dưới đây là véc-tơ chỉ phương của đường phân giác trong góc $A$?",
+      "options": [
+        "$\\vec{u}_4 = (0;1)$",
+        "$\\vec{u}_2 = (1;0)$",
+        "$\\vec{u}_3 = (1;-1)$",
+        "$\\vec{u}_1 = (-1;2)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-2-vecto-toa-do"
+    },
+    {
+      "q_id": "geo_lines_31_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $(Oxy)$, cho đường thẳng $d : -2x + 5y + 35 = 0$. Xét tính đúng sai của các khẳng định sau:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "Điểm $D(-10; -11)$ không thuộc đường thẳng $d$.",
+          "answer": false
+        },
+        {
+          "key": "b",
+          "statement": "Điểm $Q(0; -7)$ thuộc đường thẳng $d$.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "$d$ có một véc-tơ chỉ phương là $\\vec{u} = (4; -10)$.",
+          "answer": false
+        },
+        {
+          "key": "d",
+          "statement": "$d$ có một véc-tơ pháp tuyến là $\\vec{n} = (5; 2)$.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "geo_lines_32_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong hệ tọa độ $Oxy$, cho đường thẳng $d : 3x - 7y + 15 = 0$. Xét tính đúng sai của các khẳng định sau:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "$\\vec{u} = (7; 3)$ là véc-tơ chỉ phương của $d$.",
+          "answer": true
+        },
+        {
+          "key": "b",
+          "statement": "$d$ không đi qua gốc toạ độ.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "$d$ có hệ số góc $k = \\frac{3}{7}$.",
+          "answer": true
+        },
+        {
+          "key": "d",
+          "statement": "$d$ đi qua hai điểm $M \\left( -\\frac{1}{3}; 2 \\right)$ và $N(5;0)$.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "geo_lines_33_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho điểm $A(1; -2), B(3;1)$. Xét tính đúng sai của các khẳng định sau:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "Đường thẳng đi qua hai điểm $A, B$ nhận $\\vec{u} = (2;3)$ làm vectơ chỉ phương.",
+          "answer": true
+        },
+        {
+          "key": "b",
+          "statement": "Phương trình tham số của đường thẳng đi qua $A, B$ là $\\begin{cases} x = -1 + 2t \\\\ y = -5 + 3t \\end{cases}$.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "Phương trình tổng quát của đường thẳng đi qua $A, B$ là $3x - 2y - 7 = 0$.",
+          "answer": true
+        },
+        {
+          "key": "d",
+          "statement": "Hệ số góc của đường thẳng đi qua $A, B$ là $k = -\\frac{3}{2}$.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "geo_lines_34_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ có $A(-4; -1)$, hai đường cao $BH$ và $CK$ có phương trình lần lượt là $2x - y + 3 = 0$ và $3x + 2y - 6 = 0$. Xét tính đúng sai của các khẳng định sau:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "Phương trình đường thẳng $AB$ là $2x - 3y + 5 = 0$.",
+          "answer": true
+        },
+        {
+          "key": "b",
+          "statement": "Phương trình đường thẳng $AC$ là $x + 2y - 6 = 0$.",
+          "answer": false
+        },
+        {
+          "key": "c",
+          "statement": "Tọa độ điểm $B$ của tam giác $ABC$ là $B(-1; 1)$.",
+          "answer": true
+        },
+        {
+          "key": "d",
+          "statement": "Phương trình đường thẳng $BC$ là $x + y - 1 = 0$.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "geo_lines_35_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "true_false",
+      "stem": "Cho tam giác $ABC$ biết trực tâm $H(2; 1)$ và phương trình cạnh $AB: x - 2y - 4 = 0$, phương trình cạnh $AC: 3x + 4y - 2 = 0$. Xét tính đúng sai của các khẳng định sau:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "Tọa độ điểm $A$ là $A(2; -1)$.",
+          "answer": true
+        },
+        {
+          "key": "b",
+          "statement": "Phương trình đường thẳng $BH$ là $3x - 3y + 2 = 0$.",
+          "answer": false
+        },
+        {
+          "key": "c",
+          "statement": "Tọa độ điểm $B$ là $B(3;5)$.",
+          "answer": false
+        },
+        {
+          "key": "d",
+          "statement": "Phương trình đường thẳng $BC$ là $5y + 11 = 0$.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "geo_lines_36_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Cho đường thẳng $\\Delta : \\begin{cases} x = 2 + 2t \\\\ y = -4t \\end{cases}$. Gọi $M$ là điểm thuộc $\\Delta$ và có hoành độ bằng 6. Tính độ dài đoạn $OM$.",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 10
+    },
+    {
+      "q_id": "geo_lines_37_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Cho đường thẳng $\\Delta$ có phương trình là $2x - 3y + 1 = 0$. Đường thẳng $d$ đi qua điểm $M(1; -2)$ và vuông góc với đường thẳng $\\Delta$ có phương trình $ax + by + 1 = 0$. Tính $P = a + b$.",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 5
+    },
+    {
+      "q_id": "geo_lines_38_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho tam giác $ABC$ có phương trình đường cao $AH$ là $x + y - 1 = 0$; phương trình đường trung tuyến $AM$ là $2x + y - 3 = 0$ và tọa độ $B(0; -3)$. Khi đó điểm $C$ có tung độ bằng bao nhiêu?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 1
+    },
+    {
+      "q_id": "geo_lines_39_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Màn hình radar tại trạm điều khiển không lưu được thiết lập hệ tọa độ $Oxy$ có vị trí trạm có tọa độ $O(0;0)$ rada có bán kính hoạt động là 600 km. Một máy bay khởi hành từ sân bay lúc 8 giờ. Cho biết sau $t$ giờ máy bay có tọa độ $\\begin{cases} x = 1 + 180t \\\\ y = 1 - 180t \\end{cases}$. Hỏi sau mấy giờ máy bay vừa ra khỏi tầm hoạt động của rada? (làm tròn đến hàng phần chục)",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 2.4
+    },
+    {
+      "q_id": "geo_lines_40_p3",
+      "section": "Lớp 10 > Hình học > Chương IV. Vectơ > Bài 10. Vectơ trong mặt phẳng tọa độ",
+      "type": "short_answer",
+      "stem": "Đường thẳng $\\Delta$ ở hình bên biểu thị tổng chi phí lắp đặt và tiền cước sử dụng dịch vụ Internet (đơn vị: trăm nghìn đồng) theo thời gian của một gia đình (đơn vị: tháng). Tính tổng chi phí lắp đặt và sử dụng Internet trong 12 tháng đầu tiên. (tính bằng đơn vị triệu đồng và làm tròn đến hàng phần chục).<br/><div class=\"jxg-diagram\" data-jxg='{\"preset\":\"function\",\"expr\":\"3*x+5\",\"bbox\":[-1,42,16,-8],\"axes\":true,\"keepAspectRatio\":false,\"color\":\"#111827\",\"strokeWidth\":2,\"vLines\":[5],\"hLines\":[20],\"guideColor\":\"#6b7280\",\"guideDash\":2,\"points\":[{\"x\":0,\"y\":5,\"name\":\"\"},{\"x\":5,\"y\":20,\"name\":\"\"}],\"width\":460,\"height\":300}'></div>",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-2-vecto-toa-do",
+      "final_answer": 4.1
+    }
+  ]
+}

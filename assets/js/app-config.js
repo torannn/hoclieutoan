@@ -9,5 +9,8 @@ window.APP_CONFIG = {
   },
   adminEmails: [
      "dauvanhuyhoang2001@gmail.com"
+  ],
+  adminLocalNames: [
+    "dauvanhuyhoang2001"
   ]
 }; 

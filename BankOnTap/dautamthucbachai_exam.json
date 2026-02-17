@@ -1,0 +1,576 @@
+{
+  "duration": 5400,
+  "questions": [
+    {
+      "q_id": "dautamthucbachai_q1",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Biểu thức nào sau đây là một tam thức bậc hai đối với \\( x \\)?",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "tam_thuc_bac_hai"
+      ],
+      "options": [
+        "\\( f(x) = 2x^2 - \\sqrt{3} \\).",
+        "\\( f(x) = 2x - 1 \\).",
+        "\\( f(x) = \frac{x^2 - 1}{x} \\).",
+        "\\( f(x) = \frac{x^2 - x + 1}{x + 2} \\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q2",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hình vẽ bên, biết \\( f(x) = ax^2 + bx + c \\) và \\( \\Delta = b^2 - 4ac \\). Xác định dấu của \\( a \\) và \\( \\Delta \\).",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "hinh_hoc",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "delta"
+      ],
+      "options": [
+        "\\( a > 0, \\Delta < 0 \\).",
+        "\\( a < 0, \\Delta < 0 \\).",
+        "\\( a > 0, \\Delta > 0 \\).",
+        "\\( a > 0, \\Delta = 0 \\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q3",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hình vẽ bên, biết \\( f(x) = ax^2 + bx + c \\) và \\( \\Delta = b^2 - 4ac \\). Xác định dấu của \\( a \\) và \\( \\Delta \\).",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "hinh_hoc",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "delta"
+      ],
+      "options": [
+        "\\( a > 0, \\Delta < 0 \\).",
+        "\\( a < 0, \\Delta < 0 \\).",
+        "\\( a > 0, \\Delta > 0 \\).",
+        "\\( a > 0, \\Delta = 0 \\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q4",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hình vẽ bên, biết \\( f(x) = ax^2 + bx + c \\) và \\( \\Delta = b^2 - 4ac \\). Xác định dấu của \\( a \\) và \\( \\Delta \\).",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "hinh_hoc",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "delta"
+      ],
+      "options": [
+        "\\( a < 0, \\Delta = 0 \\).",
+        "\\( a < 0, \\Delta < 0 \\).",
+        "\\( a > 0, \\Delta > 0 \\).",
+        "\\( a > 0, \\Delta = 0 \\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q5",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Bảng xét dấu nào sau đây là bảng xét dấu của biểu thức \\( f(x) = -x^2 + 14x - 49 \\)?\n<table>\n <tr>\n <th>x</th><th>−∞</th><th>7</th><th>+∞</th>\n </tr>\n <tr>\n <th>A.</th><td>f(x)</td><td>+</td><td>0</td><td>+</td>\n </tr>\n <tr>\n <th>B.</th><td>f(x)</td><td>+</td><td>0</td><td>−</td>\n </tr>\n <tr>\n <th>C.</th><td>f(x)</td><td>−</td><td>0</td><td>−</td>\n </tr>\n <tr>\n <th>D.</th><td>f(x)</td><td>−</td><td>0</td><td>+</td>\n </tr>\n</table>\n<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"7\",\"+\\\\infty\"],\"signRows\":[{\"label\":\"A.\",\"intervalSigns\":[\"+\",\"+\"],\"pointMarks\":{\"7\":\"0\"}},{\"label\":\"B.\",\"intervalSigns\":[\"+\",\"-\"],\"pointMarks\":{\"7\":\"0\"}},{\"label\":\"C.\",\"intervalSigns\":[\"-\",\"-\"],\"pointMarks\":{\"7\":\"0\"}},{\"label\":\"D.\",\"intervalSigns\":[\"-\",\"+\"],\"pointMarks\":{\"7\":\"0\"}}]}'></div>",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "bang_xet_dau"
+      ],
+      "options": []
+    },
+    {
+      "q_id": "dautamthucbachai_q6",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Bảng xét dấu sau là của biểu thức nào?\n<table>\n <tr>\n <th>x</th><th>−∞</th><th>1</th><th>2</th><th>+∞</th>\n </tr>\n <tr>\n <th>f(x)</th><td>−</td><td>0</td><td>+</td><td>0</td><td>−</td>\n </tr>\n</table>\n<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"1\",\"2\",\"+\\\\infty\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"-\",\"+\",\"-\"],\"pointMarks\":{\"1\":\"0\",\"2\":\"0\"}}]}'></div>",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "bang_xet_dau",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon"
+      ],
+      "options": [
+        "\\( f(x) = x^2 + 3x + 2 \\).",
+        "\\( f(x) = -(x-1)(x-2) \\).",
+        "\\( f(x) = -x^2 - 3x + 2 \\).",
+        "\\( f(x) = x^2 - 3x + 2 \\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q7",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Tìm tập nghiệm của bất phương trình \\( -5x^2 + 4x + 12 > 0 \\).",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "bat_phuong_trinh",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon"
+      ],
+      "options": [
+        "\\( (-\\infty; -\\frac{6}{5}) \\cup (2; +\\infty) \\).",
+        "\\( (-2; \\frac{6}{5}) \\).",
+        "\\( (-\\frac{6}{5}; 2) \\).",
+        "\\( (-\\infty; -2) \\cup (\\frac{6}{5}; +\\infty) \\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q8",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Bất phương trình nào dưới đây có tập nghiệm là \\( \\mathbb{R} \\)?",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "bat_phuong_trinh",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon"
+      ],
+      "options": [
+        "\\( x^2 + 5x - 7 < 0 \\).",
+        "\\( -x^2 + x - 5 < 0 \\).",
+        "\\( x^2 - 4x + 4 > 0 \\).",
+        "\\( -2x^2 + 9x - 13 > 0 \\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q9",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Tam thức bậc hai \\( x^2 - 5x - 6 \\) luôn dương khi",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "bat_phuong_trinh",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "tam_thuc_bac_hai"
+      ],
+      "options": [
+        "\\( x < -1 \\) hoặc \\( x > 6 \\).",
+        "\\( -1 < x < 6 \\).",
+        "\\( x \\leq -1 \\) hoặc \\( x \\geq 6 \\).",
+        "\\( -1 \\leq x \\leq 6 \\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q10",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Tam thức bậc hai \\( -x^2 + 5x - 4 \\) không âm khi",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "bat_phuong_trinh",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "tam_thuc_bac_hai"
+      ],
+      "options": [
+        "\\( x < 1 \\) hoặc \\( x > 4 \\).",
+        "\\( 1 < x < 4 \\).",
+        "\\( x \\leq 1 \\) hoặc \\( x \\geq 4 \\).",
+        "\\( 1 \\leq x \\leq 4 \\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q11",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Có bao nhiêu số nguyên x để biểu thức \\( f(x) = (3x^2 + x - 2)^2 - (x^2 - x - 7)^2 \\) luôn âm?",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "bieu_thuc"
+      ],
+      "options": [
+        "1.",
+        "0.",
+        "2.",
+        "3."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q12",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Tập xác định của hàm số \\( y = \\sqrt{2x^2 - 5x - 2} \\) là",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "ham_so",
+        "bat_phuong_trinh",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "tap_xac_dinh"
+      ],
+      "options": [
+        "\\( (-\\infty; \\frac{1}{2}] \\).",
+        "\\( [2; +\\infty) \\).",
+        "\\( \\left( -\\infty; \\frac{1}{2} \\right] \\cup [2; +\\infty) \\).",
+        "\\( \\left[ \\frac{1}{2}; 2 \\right] \\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q13",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Tập xác định của hàm số \\( y = \\sqrt{-x^2 + 2x + 3} \\) là",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "ham_so",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "tap_xac_dinh"
+      ],
+      "options": [
+        "(1;3).",
+        "\\((-\\infty; -1) \\cup (3; +\\infty) \\).",
+        "\\((-\\infty; -1] \\cup [3; +\\infty) \\).",
+        "[-1;3]."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q14",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số \\( f(x) = ax^2 + bx + c \\) có đồ thị như hình bên. Tìm tập nghiệm của bất phương trình \\( ax^2 + bx + c \\leq 0 \\).",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "ham_so",
+        "bat_phuong_trinh",
+        "hinh_hoc",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon"
+      ],
+      "options": [
+        "\\((-\\infty; 0) \\cup (2; +\\infty) \\).",
+        "[0; 2].",
+        "\\((-\\infty; 0] \\cup [2; +\\infty) \\).",
+        "(0;2)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q15",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số \\( f(x) = ax^2 + bx + c \\) có đồ thị như hình bên. Tìm tập nghiệm của bất phương trình \\( ax^2 + bx + c \\geq 0 \\).",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "ham_so",
+        "bat_phuong_trinh",
+        "hinh_hoc",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon"
+      ],
+      "options": [
+        "\\((-\\infty; -2) \\cup (1; +\\infty) \\).",
+        "\\((-\\infty; -2] \\cup [1; +\\infty) \\).",
+        "[-2; 1].",
+        "(0;2)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q16",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Có tất cả bao nhiêu giá trị nguyên của tham số m để tam thức bậc hai \\( f(x) = -2x^2 - (m+2)x + m^2 - m - 1 \\) luôn âm trên \\( \\mathbb{R} \\)?",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "tam_thuc_bac_hai",
+        "tham_so"
+      ],
+      "options": [
+        "4.",
+        "3.",
+        "2.",
+        "1."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q17",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Tìm tất cả giá trị thực của tham số m để \\( -2x^2 + (m+2)x + m - 4 < 0 \\) với mọi \\( x \\in \\mathbb{R} \\).",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "bat_phuong_trinh",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon"
+      ],
+      "options": [
+        "\\( m < -14 \\) hoặc \\( m > 2 \\).",
+        "\\( -14 \\leq m \\leq 2 \\).",
+        "\\( -2 < m < 14 \\).",
+        "\\( -14 < m < 2 \\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q18",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Lợi nhuận thu được từ việc sản xuất và bán x sản phẩm thủ công của một cửa hàng là \\( I(x) = -0.1x^2 + 235x - 70000 \\) với I được tính bằng nghìn đồng. Hỏi số lượng sản phẩm bán ra tối thiểu là bao nhiêu thì cửa hàng có lãi?",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "ung_dung_ham_so"
+      ],
+      "options": [
+        "300.",
+        "250.",
+        "350.",
+        "320."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q19",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Kim muốn trồng một vườn hoa trên mảnh đất hình chữ nhật và làm hàng rào bao quanh. Kim chỉ có đủ vật liệu để làm 30 m hàng rào nhưng muốn diện tích vườn hoa ít nhất là 50 m². Hỏi chiều rộng của vườn hoa nằm trong khoảng nào?",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "hinh_hoc",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "chu_nhat"
+      ],
+      "options": [
+        "[8;12].",
+        "[3;7].",
+        "[5;10].",
+        "[10;15]."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q20",
+      "section": "PHẦN I. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Xét một hình vuông lớn có kích thước 20 × 20.\nTừ hình vuông lớn, người ta cắt ra một hình vuông nhỏ như hình bên (các đỉnh hình vuông nhỏ nằm trên cạnh hình vuông lớn). Tìm tập hợp các giá trị của x để diện tích hình vuông nhỏ không vượt quá 208.",
+      "tags": [
+        "multiple_choice",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_l",
+        "bat_phuong_trinh",
+        "hinh_hoc",
+        "phan_i_cau_trac_nghiem_nhieu_phuong_an_lua_chon",
+        "hinh_vuong"
+      ],
+      "options": [
+        "\\(8 \\leq x \\leq 12\\).",
+        "\\(6 \\leq x \\leq 14\\).",
+        "\\(12 \\leq x \\leq 14\\).",
+        "\\(12 \\leq x \\leq 18\\)."
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q21",
+      "section": "PHẦN II. Câu trắc nghiệm đúng sai. Học sinh trả lời từ câu 21 đến câu 24. Trong mỗi ý a), b), c), d) ở mỗi câu, học sinh chọn đúng hoặc sai.",
+      "type": "true_false",
+      "stem": "Cho hàm số bậc hai \\(y = f(x)\\) có bảng biến thiên như hình bên dưới:\n<table>\n <tr>\n <th>x</th>\n <th>−∞</th>\n <th>−2</th>\n <th>4</th>\n <th>+∞</th>\n </tr>\n <tr>\n <th>f(x)</th>\n <td>−</td>\n <td>0</td>\n <td>+</td>\n <td>0</td>\n <td>−</td>\n </tr>\n</table>\n<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"-2\",\"4\",\"+\\\\infty\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"-\",\"+\",\"-\"],\"pointMarks\":{\"-2\":\"0\",\"4\":\"0\"}}]}'></div>\nXét tính đúng sai của các khẳng định sau:",
+      "tags": [
+        "true_false",
+        "phan_ii_cau_trac_nghiem_ung_sai_hoc_sinh",
+        "bang_xet_dau",
+        "ham_so",
+        "bat_phuong_trinh",
+        "hinh_hoc",
+        "bang_bien_thien",
+        "ham_so_bac_hai"
+      ],
+      "tf_parts": [
+        {
+          "label": "a",
+          "statement": "\\(f(-1) < 0\\)."
+        },
+        {
+          "label": "b",
+          "statement": "\\(f(5) > 0\\)."
+        },
+        {
+          "label": "c",
+          "statement": "Tập nghiệm của bất phương trình \\(f(x) \\leq 0\\) là \\([−2; 3]\\)."
+        },
+        {
+          "label": "d",
+          "statement": "Tập nghiệm của bất phương trình \\(f(x) < 0\\) là \\((−∞; −2)\\)."
+        }
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q22",
+      "section": "PHẦN II. Câu trắc nghiệm đúng sai. Học sinh trả lời từ câu 21 đến câu 24. Trong mỗi ý a), b), c), d) ở mỗi câu, học sinh chọn đúng hoặc sai.",
+      "type": "true_false",
+      "stem": "Cho hàm số \\(f(x) = ax^2 + bx + c\\) có đồ thị như hình bên.\nXét tính đúng sai của các khẳng định sau:",
+      "tags": [
+        "true_false",
+        "phan_ii_cau_trac_nghiem_ung_sai_hoc_sinh",
+        "ham_so",
+        "bat_phuong_trinh",
+        "hinh_hoc"
+      ],
+      "tf_parts": [
+        {
+          "label": "a",
+          "statement": "Hệ số \\(a < 0\\)."
+        },
+        {
+          "label": "b",
+          "statement": "Tập nghiệm của bất phương trình \\(f(x) \\geq 0\\) là \\([0; 4]\\)."
+        },
+        {
+          "label": "c",
+          "statement": "Tập nghiệm của bất phương trình \\(f(x) \\geq 4\\) là \\(\\varnothing\\)."
+        },
+        {
+          "label": "d",
+          "statement": "Tập nghiệm của bất phương trình \\(f(x) \\geq 3\\) là \\([1; 3]\\)."
+        }
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q23",
+      "section": "PHẦN II. Câu trắc nghiệm đúng sai. Học sinh trả lời từ câu 21 đến câu 24. Trong mỗi ý a), b), c), d) ở mỗi câu, học sinh chọn đúng hoặc sai.",
+      "type": "true_false",
+      "stem": "Cho \\(f(x), g(x)\\) là các hàm số xác định trên \\(\\mathbb{R}\\), có bảng xét dấu như sau\n<table>\n <tr>\n <th>x</th>\n <th>−∞</th>\n <th>1</th>\n <th>2</th>\n <th>3</th>\n <th>+∞</th>\n </tr>\n <tr>\n <th>f(x)</th>\n <td>+</td>\n <td>0</td>\n <td>−</td>\n <td>−</td>\n <td>0</td>\n <td>+</td>\n </tr>\n <tr>\n <th>g(x)</th>\n <td>−</td>\n <td>−</td>\n <td>0</td>\n <td>+</td>\n <td>+</td>\n <td>+</td>\n </tr>\n</table>\n<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"1\",\"2\",\"3\",\"+\\\\infty\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"+\",\"-\",\"-\",\"+\"],\"pointMarks\":{\"1\":\"0\",\"3\":\"0\"}},{\"label\":\"g(x)\",\"intervalSigns\":[\"-\",\"-\",\"+\",\"+\"],\"pointMarks\":{\"2\":\"0\"}}]}'></div>\nXét tính đúng sai của các khẳng định sau:",
+      "tags": [
+        "true_false",
+        "phan_ii_cau_trac_nghiem_ung_sai_hoc_sinh",
+        "bang_xet_dau",
+        "ham_so",
+        "bat_phuong_trinh"
+      ],
+      "tf_parts": [
+        {
+          "label": "a",
+          "statement": "Tập nghiệm của bất phương trình \\(f(x) < 0\\) là \\((1; 2) \\cup (2; 3)\\)."
+        },
+        {
+          "label": "b",
+          "statement": "Tập nghiệm của bất phương trình \\(g(x) \\geq 0\\) là \\([2; +∞)\\)."
+        },
+        {
+          "label": "c",
+          "statement": "Tập nghiệm của bất phương trình \\(f(x) \\cdot g(x) \\leq 0\\) là \\((−∞; 1] \\cup [2; 3]\\)."
+        },
+        {
+          "label": "d",
+          "statement": "Tập nghiệm của bất phương trình \\(\\frac{f(x)}{g(x)} \\geq 0\\) là \\([1; 2] \\cup [3; +∞)\\)."
+        }
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q24",
+      "section": "PHẦN II. Câu trắc nghiệm đúng sai. Học sinh trả lời từ câu 21 đến câu 24. Trong mỗi ý a), b), c), d) ở mỗi câu, học sinh chọn đúng hoặc sai.",
+      "type": "true_false",
+      "stem": "Người ta thử nghiệm ném một quả bóng trên Mặt Trăng. Nếu quả bóng được ném lên từ độ cao \\(h_0\\) (m) so với bề mặt của Mặt Trăng với vận tốc \\(v_0\\) (m/s) thì độ cao của bóng sau \\(t\\) giây được cho bởi hàm số \\(h(t) = -\\frac{1}{2}gt^2 + v_0t + h_0\\) với \\(g = 1,625\\) (m/s\\(^2\\)) là gia tốc trọng trường của Mặt Trăng. Biết độ cao ban đầu của quả bóng vào các thời điểm 8 giây và 12 giây lần lượt là 30 m và 5 m. Xét tính đúng sai của các khẳng định sau:",
+      "tags": [
+        "true_false",
+        "phan_ii_cau_trac_nghiem_ung_sai_hoc_sinh",
+        "ham_so",
+        "ung_dung_ham_so"
+      ],
+      "tf_parts": [
+        {
+          "label": "a",
+          "statement": "Vận tốc ném \\( v_0 = 10 \\) m/s."
+        },
+        {
+          "label": "b",
+          "statement": "Độ cao ban đầu của quả bóng \\( h_0 = 2 \\) m."
+        },
+        {
+          "label": "c",
+          "statement": "\\( h(t) = -0,8125t^2 + 10t + 2 \\)."
+        },
+        {
+          "label": "d",
+          "statement": "Quả bóng ở độ cao trên 29 m trong khoảng 3,15 giây."
+        }
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q25",
+      "section": "PHẦN III. Câu trắc nghiệm trả lời ngắn. Học sinh trả lời từ câu 25 đến câu 30 vào ô kết quả.",
+      "type": "short_answer",
+      "stem": "Tập nghiệm của bất phương trình \\( x^2 - x - 6 \\leqslant 0 \\) có bao nhiêu số nguyên?",
+      "tags": [
+        "short_answer",
+        "phan_iii_cau_trac_nghiem_tra_loi_ngan_ho",
+        "bat_phuong_trinh",
+        "tap_nghiem"
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q26",
+      "section": "PHẦN III. Câu trắc nghiệm trả lời ngắn. Học sinh trả lời từ câu 25 đến câu 30 vào ô kết quả.",
+      "type": "short_answer",
+      "stem": "Có bao nhiêu giá trị nguyên của tham số \\( m \\) để phương trình \\( 4x^2 + 2(m-2)x + m^2 = 0 \\) có nghiệm?",
+      "tags": [
+        "short_answer",
+        "phan_iii_cau_trac_nghiem_tra_loi_ngan_ho",
+        "phuong_trinh",
+        "tham_so"
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q27",
+      "section": "PHẦN III. Câu trắc nghiệm trả lời ngắn. Học sinh trả lời từ câu 25 đến câu 30 vào ô kết quả.",
+      "type": "short_answer",
+      "stem": "Một quả bóng được ném thẳng lên từ độ cao 1,6 m so với mặt đất với vận tốc 10 m/s. Độ cao của bóng so với mặt đất (tính bằng mét) sau \\( t \\) giây được cho bởi hàm số \\( h(t) = -4,9t^2 + 10t + 1,6 \\). Hỏi bóng ở độ cao trên 5 m trong khoảng thời gian bao lâu? (Kết quả tính bằng giây và làm tròn đến hàng phần trăm).",
+      "tags": [
+        "short_answer",
+        "phan_iii_cau_trac_nghiem_tra_loi_ngan_ho",
+        "ham_so",
+        "chuyen_dong"
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q28",
+      "section": "PHẦN III. Câu trắc nghiệm trả lời ngắn. Học sinh trả lời từ câu 25 đến câu 30 vào ô kết quả.",
+      "type": "short_answer",
+      "stem": "Một vật được ném theo phương thẳng đứng xuống dưới từ độ cao 300 m với vận tốc ban đầu \\( v_0 = 10 \\) m/s. Giả thiết rằng sức cản của không khí là không đáng kể, hỏi sau ít nhất bao nhiêu giây, vật đó cách mặt đất không quá 120 m? (làm tròn kết quả đến hàng phân trăm).",
+      "tags": [
+        "short_answer",
+        "phan_iii_cau_trac_nghiem_tra_loi_ngan_ho",
+        "chuyen_dong",
+        "vat_ly"
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q29",
+      "section": "PHẦN III. Câu trắc nghiệm trả lời ngắn. Học sinh trả lời từ câu 25 đến câu 30 vào ô kết quả.",
+      "type": "short_answer",
+      "stem": "Mặt cắt ngang của mặt đường thường có dạng hình parabol để nước mưa dễ dàng thoát sang hai bên. Mặt cắt ngang của một con đường được mô tả bằng hàm số \\( y = -0,006x^2 \\) với gốc toạ độ đặt tại tim đường và đơn vị đo là mét như hình bên dưới.\nĐể tìm đường cao hơn lề đường không quá 15 cm thì chiều rộng của đường không vượt quá bao nhiêu mét?",
+      "tags": [
+        "short_answer",
+        "phan_iii_cau_trac_nghiem_tra_loi_ngan_ho",
+        "ham_so",
+        "hinh_hoc",
+        "mat_cat_ngang",
+        "duong_cheo"
+      ]
+    },
+    {
+      "q_id": "dautamthucbachai_q30",
+      "section": "PHẦN III. Câu trắc nghiệm trả lời ngắn. Học sinh trả lời từ câu 25 đến câu 30 vào ô kết quả.",
+      "type": "short_answer",
+      "stem": "Một chiếc cổng có hình parabol với chiều cao 5 m và khoảng cách giữa hai chân cổng là 4 m. Người ta cần chuyển một thùng hàng hình hộp chữ nhật với chiều cao 3 m. Hỏi chiều rộng của thùng hàng tối đa là bao nhiêu để thùng có thể chuyển lọt qua được cổng? (Đáp số làm tròn đến hàng phân trăm)",
+      "tags": [
+        "short_answer",
+        "phan_iii_cau_trac_nghiem_tra_loi_ngan_ho",
+        "hinh_hoc",
+        "ching_cua_cong",
+        "thung_hang"
+      ]
+    }
+  ]
+}

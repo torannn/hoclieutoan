@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "updatedAt": "2026-02-16",
+  "title": "Ngân hàng câu hỏi ôn tập",
+  "progressStorageKey": "bankOnTapProgressV1",
+  "topics": [
+    {
+      "id": "dau-tam-thuc-bac-hai",
+      "title": "Dấu tam thức bậc hai",
+      "subtitle": "Đại số 10 • Bất phương trình bậc hai",
+      "description": "Luyện theo từng câu với công thức, khoảng nghiệm, mô hình hóa và câu có minh họa đồ thị.",
+      "icon": "fa-solid fa-square-root-variable",
+      "theme": {
+        "gradient": "linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)",
+        "chipClass": "bg-indigo-100 text-indigo-700"
+      },
+      "activeSource": "gemini",
+      "sources": [
+        {
+          "id": "gemini",
+          "label": "Bản sạch (khuyến nghị)",
+          "path": "dautamthucbachai_exam_gemini.json",
+          "recommended": true,
+          "note": "Đủ trường correct_index cho trắc nghiệm; tương thích tốt với luồng ôn tập tự chấm."
+        },
+        {
+          "id": "legacy",
+          "label": "Bản đầy đủ (thô)",
+          "path": "dautamthucbachai_exam.json",
+          "recommended": false,
+          "note": "Nhiều câu thiếu đáp án chuẩn và thiếu options ở một số mục; phù hợp làm nguồn thô để chuẩn hóa thêm."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ôn tập Toạ độ Vector - Lớp 10</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/tex-gyre-pagella" rel="stylesheet">
+  <script src="assets/js/app-config.js"></script>
+  <script src="assets/js/mathjax-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    :root {
+      --brand: #2563eb;
+      --brand-2: #7c3aed;
+      --ok: #059669;
+      --bad: #dc2626;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background-image: radial-gradient(1200px 800px at 10% 10%, #dbeafe, #eef2ff 45%, #f8fafc 75%);
+      color: #1f2937;
+    }
+
+    .font-inter {
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .font-pagella {
+      font-family: 'TeX Gyre Pagella', 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    }
+
+    .question-container {
+      contain: content;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .option-letter {
+      font-weight: 700 !important;
+      color: #15803d;
+      display: inline-block;
+      margin-right: 2px;
+    }
+
+    .question-text,
+    .answer-text {
+      font-family: 'TeX Gyre Pagella', 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    }
+
+    .student-answer {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .student-answer .answer-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .student-answer .answer-label-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .student-answer .answer-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1e293b;
+      padding: 6px 12px;
+      background: white;
+      border-radius: 8px;
+      border: 2px solid #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .student-answer.correct {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border-color: #86efac;
+    }
+
+    .student-answer.correct .answer-label-tag {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+    }
+
+    .student-answer.correct .answer-value {
+      border-color: #22c55e;
+      color: #15803d;
+    }
+
+    .student-answer.wrong {
+      background: linear-gradient(135deg, #fef2f2, #fee2e2);
+      border-color: #fca5a5;
+    }
+
+    .student-answer.wrong .answer-label-tag {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+
+    .student-answer.wrong .answer-value {
+      border-color: #ef4444;
+      color: #b91c1c;
+    }
+
+    .student-answer.skipped {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .student-answer.skipped .answer-label-tag {
+      background: linear-gradient(135deg, #94a3b8, #64748b);
+    }
+
+    .answer-section {
+      margin-top: 20px;
+      padding: 20px 24px;
+      border-radius: 16px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      position: relative;
+    }
+
+    .answer-section::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #22c55e, #16a34a);
+      border-radius: 16px 0 0 16px;
+    }
+
+    .answer-section .answer-label {
+      font-weight: 600;
+      color: #15803d;
+      font-size: 14px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .answer-section .answer-label::before {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .answer-section .answer-text {
+      color: #1e293b;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .answer-ok { border-color: #10b981 !important; background: #ecfdf5 !important; }
+    .answer-wrong { border-color: #ef4444 !important; background: #fef2f2 !important; }
+
+    .ai-tutor-fab {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 60;
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .ai-tutor-fab:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 16px 32px rgba(37, 99, 235, 0.4);
+    }
+
+    .ai-tutor-panel {
+      position: fixed;
+      right: 20px;
+      bottom: 88px;
+      z-index: 70;
+      width: min(520px, calc(100vw - 24px));
+      height: min(650px, calc(100vh - 120px));
+      border-radius: 20px;
+      border: 1px solid #dbe1ef;
+      background: #fff;
+      box-shadow: 0 20px 55px rgba(15, 23, 42, 0.28);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(14px) scale(0.97);
+      transition: all 0.24s ease;
+    }
+
+    .ai-tutor-panel.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .ai-head {
+      padding: 12px 14px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .ai-head-title {
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .ai-head-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .ai-head-btn {
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 12px;
+      padding: 6px 8px;
+      cursor: pointer;
+    }
+
+    .ai-messages {
+      flex: 1;
+      overflow: auto;
+      padding: 12px;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ai-msg {
+      max-width: 88%;
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      border: 1px solid transparent;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .ai-msg.user {
+      align-self: flex-end;
+      color: #fff;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    }
+
+    .ai-msg.bot {
+      align-self: flex-start;
+      color: #1e293b;
+      background: #fff;
+      border-color: #dbe2f0;
+    }
+
+    .ai-msg.error {
+      border-color: #fecaca;
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
+    .ai-typing {
+      align-self: flex-start;
+      color: #64748b;
+      background: #fff;
+      border-color: #dbe2f0;
+      font-style: italic;
+    }
+
+    .ai-quick {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 12px;
+      border-top: 1px solid #e2e8f0;
+      background: #f8fafc;
+    }
+
+    .ai-quick button {
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      background: #fff;
+      font-size: 12px;
+      color: #334155;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .ai-input-wrap {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      border-top: 1px solid #e2e8f0;
+      background: #fff;
+    }
+
+    .ai-input-wrap textarea {
+      flex: 1;
+      resize: none;
+      min-height: 44px;
+      max-height: 120px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 10px 12px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .ai-input-wrap textarea:focus {
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.45);
+    }
+
+    .ai-send {
+      flex-shrink: 0;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+      color: #fff;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .ai-tutor-panel {
+        right: 8px;
+        bottom: 76px;
+        width: calc(100vw - 16px);
+        height: calc(100vh - 92px);
+      }
+
+      .ai-tutor-fab {
+        right: 12px;
+        bottom: 12px;
+      }
+    }
+  </style>
+</head>
+<body class="p-4 md:p-8 text-slate-800">
+  <main class="max-w-4xl mx-auto">
+    <header class="mb-6">
+      <div class="card p-5 md:p-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div>
+            <h1 class="text-2xl md:text-3xl font-bold">Ôn tập: Phương pháp toạ độ trong vector</h1>
+            <p class="text-slate-600 mt-1">Chế độ luyện tập từng câu, kiểm tra ngay, có gợi ý và lời giải.</p>
+          </div>
+          <div class="text-sm text-slate-600">
+            <div id="progressText" class="font-medium">Câu 0 / 0</div>
+            <div id="scoreText">Đúng: 0 | Đã chấm: 0</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="practiceCard" class="question-container rounded-2xl border border-slate-200 bg-white p-5 md:p-6 shadow-sm hover:shadow-md transition">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span id="questionNoBadge" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-semibold">1</span>
+        <div id="questionTypeBadge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700">MC</div>
+      </div>
+      <h2 id="questionStem" class="question-text font-pagella text-slate-800 text-base md:text-lg font-medium leading-relaxed"></h2>
+      <div id="retryNotice" class="hidden mt-3 p-3 rounded-lg border border-rose-200 bg-rose-50 text-rose-700 text-sm"></div>
+
+      <div id="answerArea" class="mt-5 font-pagella"></div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <button id="hintBtn" class="px-4 py-2 rounded-lg border border-amber-300 text-amber-700 bg-amber-50 hover:bg-amber-100">Gợi ý</button>
+        <button id="checkBtn" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Kiểm tra</button>
+        <button id="askAiBtn" class="px-4 py-2 rounded-lg border border-violet-300 text-violet-700 bg-violet-50 hover:bg-violet-100">Hỏi AI về câu này</button>
+        <button id="nextBtn" class="px-4 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 hidden">Câu tiếp theo</button>
+      </div>
+
+      <div id="hintBox" class="hidden mt-4 p-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-900"></div>
+      <div id="feedbackBox" class="hidden mt-4 student-answer"></div>
+      <div id="solutionBox" class="hidden mt-4 answer-section"></div>
+    </section>
+
+    <section id="summaryCard" class="card p-6 hidden">
+      <h3 class="text-2xl font-bold mb-2">Hoàn thành bài ôn tập</h3>
+      <p id="summaryText" class="text-slate-700 mb-4"></p>
+      <div id="summaryWrongList" class="hidden mb-4 p-3 rounded-lg border border-rose-200 bg-rose-50 text-rose-700"></div>
+      <div class="flex flex-wrap gap-2">
+        <button id="restartBtn" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Làm lại</button>
+        <button id="reviewWrongBtn" class="hidden px-4 py-2 rounded-lg bg-rose-600 text-white hover:bg-rose-700">Ôn lại câu sai</button>
+        <button id="aiReviewBtn" class="px-4 py-2 rounded-lg border border-violet-300 text-violet-700 bg-violet-50 hover:bg-violet-100">Hỏi AI để gợi ý ôn tập</button>
+        <a href="index.html#/classes" class="px-4 py-2 rounded-lg border border-slate-300 hover:bg-slate-50">Quay về trang chính</a>
+      </div>
+    </section>
+  </main>
+
+  <button id="aiTutorFab" class="ai-tutor-fab" title="Hỏi AI Tutor">🤖</button>
+
+  <section id="aiTutorPanel" class="ai-tutor-panel" aria-label="AI Tutor">
+    <div class="ai-head">
+      <div class="ai-head-title">AI Tutor - Đồng hành cùng bạn</div>
+      <div class="ai-head-actions">
+        <button id="aiClearBtn" class="ai-head-btn" type="button">Xoá</button>
+        <button id="aiCloseBtn" class="ai-head-btn" type="button">Đóng</button>
+      </div>
+    </div>
+
+    <div id="aiMessages" class="ai-messages">
+      <div class="ai-msg bot">Xin chào! Bạn có thể hỏi về câu hiện tại, câu sai, hoặc xin gợi ý cách học tiếp.</div>
+    </div>
+
+    <div class="ai-quick">
+      <button id="aiAskCurrentBtn" type="button">Tạo prompt từ câu hiện tại</button>
+      <button id="aiAskWrongBtn" type="button">Tạo prompt từ các câu sai</button>
+    </div>
+
+    <div class="ai-input-wrap">
+      <textarea id="aiInput" rows="1" placeholder="Nhập câu hỏi cho AI... (Enter để gửi, Shift+Enter để xuống dòng)"></textarea>
+      <button id="aiSendBtn" class="ai-send" type="button">Gửi</button>
+    </div>
+  </section>
+
+  <script>
+    const DATA_URL = 'data/grade10/practice-toa-do-vector/questions.practice-vector.json';
+
+    const state = {
+      items: [],
+      queue: [],
+      index: 0,
+      mode: 'all',
+      checked: false,
+      checkedCount: 0,
+      correctCount: 0,
+      wrongSet: new Set(),
+      results: {}
+    };
+
+    const aiState = {
+      open: false,
+      history: []
+    };
+
+    const els = {
+      progressText: document.getElementById('progressText'),
+      scoreText: document.getElementById('scoreText'),
+      questionNoBadge: document.getElementById('questionNoBadge'),
+      questionTypeBadge: document.getElementById('questionTypeBadge'),
+      questionStem: document.getElementById('questionStem'),
+      retryNotice: document.getElementById('retryNotice'),
+      answerArea: document.getElementById('answerArea'),
+      hintBtn: document.getElementById('hintBtn'),
+      checkBtn: document.getElementById('checkBtn'),
+      askAiBtn: document.getElementById('askAiBtn'),
+      nextBtn: document.getElementById('nextBtn'),
+      hintBox: document.getElementById('hintBox'),
+      feedbackBox: document.getElementById('feedbackBox'),
+      solutionBox: document.getElementById('solutionBox'),
+      practiceCard: document.getElementById('practiceCard'),
+      summaryCard: document.getElementById('summaryCard'),
+      summaryText: document.getElementById('summaryText'),
+      summaryWrongList: document.getElementById('summaryWrongList'),
+      restartBtn: document.getElementById('restartBtn'),
+      reviewWrongBtn: document.getElementById('reviewWrongBtn'),
+      aiReviewBtn: document.getElementById('aiReviewBtn'),
+      aiFab: document.getElementById('aiTutorFab'),
+      aiPanel: document.getElementById('aiTutorPanel'),
+      aiCloseBtn: document.getElementById('aiCloseBtn'),
+      aiClearBtn: document.getElementById('aiClearBtn'),
+      aiMessages: document.getElementById('aiMessages'),
+      aiAskCurrentBtn: document.getElementById('aiAskCurrentBtn'),
+      aiAskWrongBtn: document.getElementById('aiAskWrongBtn'),
+      aiInput: document.getElementById('aiInput'),
+      aiSendBtn: document.getElementById('aiSendBtn')
+    };
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function normalizeNumber(v) {
+      const s = String(v || '').trim().replace(',', '.');
+      const n = Number(s);
+      return Number.isFinite(n) ? n : NaN;
+    }
+
+    function letterFromIndex(i) {
+      return String.fromCharCode(65 + Number(i || 0));
+    }
+
+    function currentGlobalIndex() {
+      return state.queue[state.index];
+    }
+
+    function currentItem() {
+      const idx = currentGlobalIndex();
+      return Number.isInteger(idx) ? state.items[idx] : null;
+    }
+
+    function updateHeader() {
+      const total = state.queue.length;
+      const modeLabel = state.mode === 'wrong' ? 'Ôn lại câu sai' : 'Luyện tổng';
+      els.progressText.textContent = `Câu ${Math.min(state.index + 1, total)} / ${total} - ${modeLabel}`;
+      els.scoreText.textContent = `Đúng: ${state.correctCount} | Đã chấm: ${state.checkedCount}`;
+    }
+
+    function badgeText(type) {
+      if (type === 'mc') return 'MC';
+      if (type === 'tf') return 'TF';
+      if (type === 'sa') return 'SA';
+      if (type === 'essay') return 'ESSAY';
+      return (type || '').toUpperCase();
+    }
+
+    function renderQuestion() {
+      const q = currentItem();
+      if (!q) return;
+
+      const globalIdx = currentGlobalIndex();
+
+      state.checked = false;
+      els.hintBox.classList.add('hidden');
+      els.feedbackBox.classList.add('hidden');
+      els.solutionBox.classList.add('hidden');
+      els.nextBtn.classList.add('hidden');
+      els.retryNotice.classList.add('hidden');
+
+      els.questionNoBadge.textContent = String((globalIdx || 0) + 1);
+      els.questionTypeBadge.textContent = badgeText(q.type);
+      els.questionStem.textContent = q.stem || '';
+      els.hintBox.textContent = q.hint || 'Chưa có gợi ý cho câu này.';
+
+      const previous = state.results[globalIdx];
+      if (state.mode === 'wrong' && previous && previous.checked && previous.isCorrect === false) {
+        const oldAns = previous.userAnswerText ? `Lần trước bạn trả lời: ${previous.userAnswerText}. ` : '';
+        els.retryNotice.textContent = `${oldAns}Hãy thử lại câu này với cách làm khác.`;
+        els.retryNotice.classList.remove('hidden');
+      }
+
+      if (q.type === 'mc') {
+        els.answerArea.innerHTML = `
+          <div class="answer-input-container mt-3 space-y-2">
+            ${(q.options || []).map((opt, idx) => `
+              <label class="flex items-start gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer border border-slate-200" data-opt-row="${idx}">
+                <input type="radio" name="mc_answer" value="${idx}" class="w-4 h-4 mt-1 text-blue-600" />
+                <div class="leading-relaxed"><span class="option-letter">${letterFromIndex(idx)}. </span>${escapeHtml(opt)}</div>
+              </label>
+            `).join('')}
+          </div>`;
+      } else if (q.type === 'tf') {
+        els.answerArea.innerHTML = `
+          <div class="answer-input-container mt-3 space-y-2">
+            ${(q.statements || []).map((st, idx) => `
+              <div class="flex items-start justify-between gap-4 p-2 bg-gray-50 rounded" data-tf-row="${idx}">
+                <div class="flex-1"><span class="option-letter">${String.fromCharCode(97 + idx)})</span> ${escapeHtml(st)}</div>
+                <div class="flex items-center gap-4 flex-shrink-0">
+                  <label class="flex items-center gap-1 cursor-pointer">
+                    <input type="radio" name="tf_${idx}" value="true" class="w-4 h-4 text-green-600" />
+                    <span class="text-green-700">Đúng</span>
+                  </label>
+                  <label class="flex items-center gap-1 cursor-pointer">
+                    <input type="radio" name="tf_${idx}" value="false" class="w-4 h-4 text-red-600" />
+                    <span class="text-red-700">Sai</span>
+                  </label>
+                </div>
+              </div>
+            `).join('')}
+          </div>`;
+      } else if (q.type === 'sa') {
+        els.answerArea.innerHTML = `
+          <div class="answer-input-container mt-3">
+            <input id="sa_input" type="text" inputmode="decimal"
+              class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+              placeholder="Nhập đáp án (chỉ số, dùng dấu phẩy hoặc chấm)" />
+          </div>
+        `;
+      } else if (q.type === 'essay') {
+        els.answerArea.innerHTML = `
+          <div class="answer-input-container mt-3">
+            <textarea id="essay_input" rows="6"
+              class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all resize-y"
+              placeholder="Trình bày bài làm của bạn...&#10;(Câu này không chấm tự động)"></textarea>
+          </div>
+        `;
+      } else {
+        els.answerArea.innerHTML = '<div class="text-red-600">Loại câu hỏi không được hỗ trợ.</div>';
+      }
+
+      if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([els.questionStem, els.answerArea]).catch(() => {});
+      }
+
+      updateHeader();
+    }
+
+    function showFeedback(ok, text, mode) {
+      const status = mode === 'neutral' ? 'skipped' : (ok ? 'correct' : 'wrong');
+      const label = mode === 'neutral' ? 'Ghi chú' : 'Kết quả';
+      els.feedbackBox.className = `mt-4 student-answer ${status}`;
+      els.feedbackBox.innerHTML = `
+        <div class="answer-row">
+          <span class="answer-label-tag">${label}</span>
+          <span class="answer-value">${escapeHtml(text)}</span>
+        </div>`;
+    }
+
+    function showSolution(text) {
+      els.solutionBox.classList.remove('hidden');
+      els.solutionBox.innerHTML = `
+        <div class="answer-label">Lời giải tham khảo</div>
+        <div class="answer-text whitespace-pre-line">${escapeHtml(text || 'Đang cập nhật')}</div>`;
+      if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([els.solutionBox]).catch(() => {});
+      }
+    }
+
+    function markRow(selector, isOk) {
+      const row = document.querySelector(selector);
+      if (!row) return;
+      row.classList.remove('answer-ok', 'answer-wrong');
+      row.classList.add(isOk ? 'answer-ok' : 'answer-wrong');
+    }
+
+    function userAnswerText(q, answerValue) {
+      if (q.type === 'mc') {
+        if (typeof answerValue !== 'number' || Number.isNaN(answerValue)) return '';
+        return letterFromIndex(answerValue);
+      }
+      if (q.type === 'tf') {
+        if (!Array.isArray(answerValue)) return '';
+        return answerValue.map(v => (v ? 'D' : 'S')).join(', ');
+      }
+      if (q.type === 'sa') {
+        return String(answerValue ?? '');
+      }
+      if (q.type === 'essay') {
+        return String(answerValue || '').trim() ? 'Đã nhập bài làm' : 'Chưa nhập bài làm';
+      }
+      return '';
+    }
+
+    function recordResult(globalIdx, q, isCorrect, answerValue) {
+      const readable = userAnswerText(q, answerValue);
+      state.results[globalIdx] = {
+        checked: true,
+        type: q.type,
+        isCorrect,
+        userAnswer: answerValue,
+        userAnswerText: readable
+      };
+
+      if (q.type !== 'essay') {
+        if (isCorrect === false) state.wrongSet.add(globalIdx);
+        if (isCorrect === true) state.wrongSet.delete(globalIdx);
+      }
+    }
+
+    function checkCurrent() {
+      if (state.checked) return;
+      const q = currentItem();
+      if (!q) return;
+
+      const globalIdx = currentGlobalIndex();
+
+      if (q.type === 'mc') {
+        const checked = document.querySelector('input[name="mc_answer"]:checked');
+        if (!checked) {
+          showFeedback(false, 'Bạn cần chọn đáp án trước khi kiểm tra.');
+          return;
+        }
+        const selected = Number(checked.value);
+        const ok = selected === Number(q.answer);
+        state.checkedCount += 1;
+        if (ok) state.correctCount += 1;
+        recordResult(globalIdx, q, ok, selected);
+        showFeedback(ok, ok ? 'Chính xác!' : 'Chưa đúng. Xem lời giải bên dưới.');
+        markRow(`[data-opt-row="${selected}"]`, ok);
+        if (!ok) markRow(`[data-opt-row="${Number(q.answer)}"]`, true);
+        showSolution(q.solution || 'Đang cập nhật.');
+      } else if (q.type === 'tf') {
+        const expected = Array.isArray(q.answer) ? q.answer : [];
+        const selected = [];
+        for (let i = 0; i < expected.length; i++) {
+          const picked = document.querySelector(`input[name="tf_${i}"]:checked`);
+          if (!picked) {
+            showFeedback(false, 'Bạn cần đánh dấu đầy đủ Đúng/Sai cho mỗi mệnh đề.');
+            return;
+          }
+          selected.push(picked.value === 'true');
+        }
+        const ok = selected.length === expected.length && selected.every((v, i) => v === expected[i]);
+        state.checkedCount += 1;
+        if (ok) state.correctCount += 1;
+        recordResult(globalIdx, q, ok, selected);
+        showFeedback(ok, ok ? 'Chính xác!' : 'Chưa đúng. Xem lời giải bên dưới.');
+        selected.forEach((v, i) => markRow(`[data-tf-row="${i}"]`, v === expected[i]));
+        showSolution(q.solution || 'Đang cập nhật.');
+      } else if (q.type === 'sa') {
+        const raw = document.getElementById('sa_input')?.value || '';
+        const val = normalizeNumber(raw);
+        if (Number.isNaN(val)) {
+          showFeedback(false, 'Bạn cần nhập một giá trị số hợp lệ.');
+          return;
+        }
+        const ans = Number(q.answer);
+        const tol = Number(q.tolerance || 0);
+        const ok = Math.abs(val - ans) <= tol;
+        state.checkedCount += 1;
+        if (ok) state.correctCount += 1;
+        recordResult(globalIdx, q, ok, raw);
+        showFeedback(ok, ok ? 'Chính xác!' : `Chưa đúng. Đáp án đúng: ${ans}`);
+        showSolution(q.solution || 'Đang cập nhật.');
+      } else if (q.type === 'essay') {
+        const essayText = document.getElementById('essay_input')?.value || '';
+        state.checkedCount += 1;
+        recordResult(globalIdx, q, null, essayText);
+        showFeedback(true, 'Câu tự luận không chấm tự động. Bạn xem lời giải tham khảo để đối chiếu.', 'neutral');
+        showSolution(q.reference_solution || q.solution || 'Đang cập nhật.');
+      }
+
+      state.checked = true;
+      updateHeader();
+      els.nextBtn.classList.remove('hidden');
+      if (state.index === state.queue.length - 1) {
+        els.nextBtn.textContent = 'Xem tổng kết';
+      } else {
+        els.nextBtn.textContent = 'Câu tiếp theo';
+      }
+    }
+
+    function showSummary() {
+      els.practiceCard.classList.add('hidden');
+      els.summaryCard.classList.remove('hidden');
+      const nonEssayTotal = state.queue.filter(idx => (state.items[idx] || {}).type !== 'essay').length;
+      const ratio = nonEssayTotal > 0 ? `${state.correctCount}/${nonEssayTotal}` : '0/0';
+      const wrongList = Array.from(state.wrongSet).sort((a, b) => a - b);
+
+      if (state.mode === 'wrong') {
+        els.summaryText.textContent = `Bạn vừa ôn lại ${state.checkedCount} câu. Số câu đúng (không tính essay): ${ratio}.`;
+      } else {
+        els.summaryText.textContent = `Bạn đã kiểm tra ${state.checkedCount} câu. Số câu đúng (không tính essay): ${ratio}.`;
+      }
+
+      if (wrongList.length) {
+        const asHuman = wrongList.map(i => i + 1).join(', ');
+        els.summaryWrongList.classList.remove('hidden');
+        els.summaryWrongList.textContent = `Các câu cần ôn lại: ${asHuman}`;
+        els.reviewWrongBtn.classList.remove('hidden');
+        els.reviewWrongBtn.textContent = state.mode === 'wrong' ? 'Ôn lại các câu còn sai' : 'Ôn lại câu sai';
+      } else {
+        els.summaryWrongList.classList.add('hidden');
+        els.summaryWrongList.textContent = '';
+        els.reviewWrongBtn.classList.add('hidden');
+      }
+    }
+
+    function nextQuestion() {
+      if (!state.checked) return;
+      if (state.index >= state.queue.length - 1) {
+        showSummary();
+        return;
+      }
+      state.index += 1;
+      renderQuestion();
+    }
+
+    function startMode(mode) {
+      const queue = mode === 'wrong'
+        ? Array.from(state.wrongSet).sort((a, b) => a - b)
+        : state.items.map((_, idx) => idx);
+
+      if (!queue.length) {
+        return false;
+      }
+
+      state.mode = mode;
+      state.queue = queue;
+      state.index = 0;
+      state.checked = false;
+      state.checkedCount = 0;
+      state.correctCount = 0;
+
+      els.summaryCard.classList.add('hidden');
+      els.practiceCard.classList.remove('hidden');
+      renderQuestion();
+      return true;
+    }
+
+    async function loadData() {
+      const res = await fetch(DATA_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`Khong tai duoc du lieu: ${res.status}`);
+      const data = await res.json();
+      const qs = Array.isArray(data.questions) ? data.questions : [];
+      state.items = qs;
+      state.queue = qs.map((_, idx) => idx);
+      state.index = 0;
+      state.mode = 'all';
+      state.checked = false;
+      state.checkedCount = 0;
+      state.correctCount = 0;
+      state.wrongSet = new Set();
+      state.results = {};
+    }
+
+    function buildQuestionContext(idx) {
+      const q = state.items[idx];
+      if (!q) return '';
+      const result = state.results[idx] || null;
+
+      let txt = `Chủ đề: Phương pháp toạ độ trong vector (Lớp 10).\n`;
+      txt += `Câu ${idx + 1} (${badgeText(q.type)}): ${q.stem || ''}\n`;
+
+      if (q.type === 'mc' && Array.isArray(q.options)) {
+        txt += 'Lựa chọn:\n';
+        q.options.forEach((opt, i) => { txt += `${letterFromIndex(i)}. ${opt}\n`; });
+      }
+
+      if (q.type === 'tf' && Array.isArray(q.statements)) {
+        txt += 'Mệnh đề:\n';
+        q.statements.forEach((st, i) => { txt += `${i + 1}) ${st}\n`; });
+      }
+
+      if (result && result.checked) {
+        txt += `Học sinh đã trả lời: ${result.userAnswerText || '(trống)'}.\n`;
+        if (q.type !== 'essay') {
+          txt += `Kết quả vừa chấm: ${result.isCorrect ? 'Đúng' : 'Sai'}.\n`;
+        }
+      }
+
+      if (q.hint) txt += `Gợi ý có sẵn: ${q.hint}\n`;
+      if (q.reference_solution) txt += `Lời giải tham khảo: ${q.reference_solution}\n`;
+      else if (q.solution) txt += `Lời giải tham khảo: ${q.solution}\n`;
+
+      return txt.trim();
+    }
+
+    function buildWrongPackContext() {
+      const wrongArr = Array.from(state.wrongSet).sort((a, b) => a - b);
+      if (!wrongArr.length) return '';
+      return wrongArr.map(idx => buildQuestionContext(idx)).join('\n\n---\n\n');
+    }
+
+    function openAI(prefillText) {
+      aiState.open = true;
+      els.aiPanel.classList.add('open');
+      if (prefillText) {
+        els.aiInput.value = prefillText;
+        els.aiInput.focus();
+        autoResizeAIInput();
+      }
+    }
+
+    function closeAI() {
+      aiState.open = false;
+      els.aiPanel.classList.remove('open');
+    }
+
+    function toggleAI() {
+      if (aiState.open) closeAI();
+      else openAI('');
+    }
+
+    function aiFormatMessage(content) {
+      const escaped = escapeHtml(content || '');
+      return escaped
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>');
+    }
+
+    function aiAddMessage(content, role, isError) {
+      const node = document.createElement('div');
+      node.className = `ai-msg ${role}${isError ? ' error' : ''}`;
+      node.innerHTML = role === 'bot' ? aiFormatMessage(content) : escapeHtml(content);
+      els.aiMessages.appendChild(node);
+      els.aiMessages.scrollTop = els.aiMessages.scrollHeight;
+      if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([node]).catch(() => {});
+      }
+      return node;
+    }
+
+    function autoResizeAIInput() {
+      els.aiInput.style.height = 'auto';
+      els.aiInput.style.height = `${Math.min(els.aiInput.scrollHeight, 120)}px`;
+    }
+
+    async function aiSendMessage() {
+      const message = els.aiInput.value.trim();
+      if (!message) return;
+
+      aiAddMessage(message, 'user', false);
+      aiState.history.push({ role: 'user', content: message });
+      els.aiInput.value = '';
+      autoResizeAIInput();
+
+      const typingNode = document.createElement('div');
+      typingNode.className = 'ai-msg ai-typing';
+      typingNode.textContent = 'AI đang trả lời...';
+      els.aiMessages.appendChild(typingNode);
+      els.aiMessages.scrollTop = els.aiMessages.scrollHeight;
+
+      try {
+        const cfg = window.APP_CONFIG || {};
+        const base = typeof cfg.apiBaseUrl === 'string' ? cfg.apiBaseUrl.replace(/\/+$/, '') : '';
+        const url = `${base}/api/ai/chat`;
+
+        const contextPrompt = [
+          'Bạn là gia sư Toán học thân thiện cho học sinh THPT.',
+          'Hãy giải thích rõ từng bước, ưu tiên hướng dẫn theo dữ liệu câu hỏi người dùng đang ôn.',
+          'Nếu có công thức, sử dụng LaTeX ngắn gọn.'
+        ].join(' ');
+
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: aiState.history.slice(-10),
+            context: contextPrompt
+          })
+        });
+
+        if (!res.ok) {
+          let detail = '';
+          try { detail = await res.text(); } catch (_) {}
+          throw new Error(`AI API ${res.status}${detail ? ` - ${detail}` : ''}`);
+        }
+
+        const payload = await res.json();
+        const aiReply = (payload && (payload.message || payload.choices?.[0]?.message?.content)) || 'AI chưa trả về nội dung.';
+        aiState.history.push({ role: 'assistant', content: aiReply });
+        typingNode.remove();
+        aiAddMessage(aiReply, 'bot', false);
+      } catch (err) {
+        typingNode.remove();
+        aiAddMessage(`Không thể kết nối AI lúc này. ${err && err.message ? err.message : ''}`, 'bot', true);
+      }
+    }
+
+    function bindEvents() {
+      els.hintBtn.addEventListener('click', () => {
+        els.hintBox.classList.toggle('hidden');
+      });
+      els.checkBtn.addEventListener('click', checkCurrent);
+      els.nextBtn.addEventListener('click', nextQuestion);
+      els.askAiBtn.addEventListener('click', () => {
+        const idx = currentGlobalIndex();
+        const context = buildQuestionContext(idx);
+        const prompt = `Hãy hướng dẫn tôi giải câu này theo cách đơn giản, ngắn gọn:\n\n${context}`;
+        openAI(prompt);
+      });
+
+      els.restartBtn.addEventListener('click', () => {
+        state.wrongSet = new Set();
+        state.results = {};
+        startMode('all');
+      });
+
+      els.reviewWrongBtn.addEventListener('click', () => {
+        if (!startMode('wrong')) {
+          els.summaryWrongList.classList.remove('hidden');
+          els.summaryWrongList.textContent = 'Không còn câu sai để ôn lại.';
+        }
+      });
+
+      els.aiReviewBtn.addEventListener('click', () => {
+        const wrongPack = buildWrongPackContext();
+        const prompt = wrongPack
+          ? `Tôi muốn ôn lại các câu sai sau. Hãy tổng hợp điểm yếu, cách khắc phục và kế hoạch luyện tập 15 phút:\n\n${wrongPack}`
+          : 'Hãy đề xuất một kế hoạch ôn tập nhanh 15 phút cho chủ đề phương pháp toạ độ trong vector lớp 10.';
+        openAI(prompt);
+      });
+
+      els.aiFab.addEventListener('click', toggleAI);
+      els.aiCloseBtn.addEventListener('click', closeAI);
+      els.aiClearBtn.addEventListener('click', () => {
+        aiState.history = [];
+        els.aiMessages.innerHTML = '<div class="ai-msg bot">Đã xoá hội thoại. Bạn có thể hỏi tiếp bất kỳ lúc nào.</div>';
+      });
+      els.aiAskCurrentBtn.addEventListener('click', () => {
+        const idx = currentGlobalIndex();
+        if (!Number.isInteger(idx)) return;
+        const prompt = `Giải thích cho tôi câu này theo 3 mức: ý tưởng - cách làm - kiểm tra kết quả.\n\n${buildQuestionContext(idx)}`;
+        openAI(prompt);
+      });
+      els.aiAskWrongBtn.addEventListener('click', () => {
+        const wrongPack = buildWrongPackContext();
+        const prompt = wrongPack
+          ? `Đây là các câu tôi làm sai. Hãy chỉ ra mẫu sai chung và cách tránh:\n\n${wrongPack}`
+          : 'Hiện tại tôi chưa có câu sai. Hãy cho tôi 5 mẹo tránh sai với chủ đề toạ độ vector lớp 10.';
+        openAI(prompt);
+      });
+      els.aiSendBtn.addEventListener('click', aiSendMessage);
+      els.aiInput.addEventListener('input', autoResizeAIInput);
+      els.aiInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          aiSendMessage();
+        }
+      });
+    }
+
+    (async function bootstrap() {
+      bindEvents();
+      try {
+        await loadData();
+        if (!state.items.length) {
+          els.questionStem.textContent = 'Chưa có câu hỏi trong bộ dữ liệu.';
+          els.answerArea.innerHTML = '';
+          return;
+        }
+        startMode('all');
+      } catch (err) {
+        console.error(err);
+        els.questionStem.textContent = 'Có lỗi khi tải bộ câu hỏi.';
+        els.answerArea.innerHTML = `<div class="text-red-600">${escapeHtml(err.message || 'Unknown error')}</div>`;
+      }
+    })();
+  </script>
+</body>
+</html>

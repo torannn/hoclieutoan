@@ -1,0 +1,265 @@
+{
+  "duration": 1800,
+  "questions": [
+    {
+      "q_id": "alg_ineq_01_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 1. Biểu thức nào sau đây là một tam thức bậc hai đối với $x$?",
+      "options": [
+        "$f(x) = 2x^2 - \\sqrt{3}$",
+        "$f(x) = 2x - 1$",
+        "$f(x) = \\frac{x^2 - 1}{x}$",
+        "$f(x) = \\frac{x^2 - x + 1}{x + 2}$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "alg_func_02_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 2. Cho hình vẽ bên, biết $f(x) = ax^2 + bx + c$ và $\\Delta = b^2 - 4ac$. Xác định dấu của $a$ và $\\Delta$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;bbox=-5,5,5,-5;func=x^2+1\"></div>",
+      "options": [
+        "$a > 0, \\Delta < 0$",
+        "$a < 0, \\Delta < 0$",
+        "$a > 0, \\Delta > 0$",
+        "$a > 0, \\Delta = 0$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "alg_func_03_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 3. Cho hình vẽ bên, biết $f(x) = ax^2 + bx + c$ và $\\Delta = b^2 - 4ac$. Xác định dấu của $a$ và $\\Delta$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;bbox=-5,5,5,-5;func=x^2-2\"></div>",
+      "options": [
+        "$a > 0, \\Delta < 0$",
+        "$a < 0, \\Delta < 0$",
+        "$a > 0, \\Delta > 0$",
+        "$a > 0, \\Delta = 0$"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "alg_func_04_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 4. Cho hình vẽ bên, biết $f(x) = ax^2 + bx + c$ và $\\Delta = b^2 - 4ac$. Xác định dấu của $a$ và $\\Delta$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;bbox=-5,5,5,-5;func=-x^2-1\"></div>",
+      "options": [
+        "$a < 0, \\Delta = 0$",
+        "$a < 0, \\Delta < 0$",
+        "$a > 0, \\Delta > 0$",
+        "$a > 0, \\Delta = 0$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "alg_ineq_05_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 5. Bảng xét dấu nào sau đây là bảng xét dấu của biểu thức $f(x) = -x^2 + 14x - 49$?",
+      "options": [
+        "Dương, 0, Dương",
+        "Dương, 0, Âm",
+        "Âm, 0, Âm",
+        "Âm, 0, Dương"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "alg_ineq_06_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 6. Bảng xét dấu sau là của biểu thức nào (biết $f(x)$ âm khi $x<1$, dương khi $1<x<2$, âm khi $x>2$)?",
+      "options": [
+        "$f(x) = x^2 + 3x + 2$",
+        "$f(x) = -(x-1)(x-2)$",
+        "$f(x) = -x^2 - 3x + 2$",
+        "$f(x) = x^2 - 3x + 2$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "alg_ineq_07_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 7. Tìm tập nghiệm của bất phương trình $-5x^2 + 4x + 12 > 0$.",
+      "options": [
+        "$(-\\infty; -\\frac{6}{5}) \\cup (2; +\\infty)$",
+        "$(-2; \\frac{6}{5})$",
+        "$(-\\frac{6}{5}; 2)$",
+        "$(-\\infty; -2) \\cup (\\frac{6}{5}; +\\infty)$"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "alg_ineq_08_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 8. Bất phương trình nào dưới đây có tập nghiệm là $\\mathbb{R}$?",
+      "options": [
+        "$x^2 + 5x - 7 < 0$",
+        "$-x^2 + x - 5 < 0$",
+        "$x^2 - 4x + 4 > 0$",
+        "$-2x^2 + 9x - 13 > 0$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "alg_ineq_09_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 9. Tam thức bậc hai $x^2 - 5x - 6$ luôn dương khi nào?",
+      "options": [
+        "$x < -1$ hoặc $x > 6$",
+        "$-1 < x < 6$",
+        "$x \\leq -1$ hoặc $x \\geq 6$",
+        "$-1 \\leq x \\leq 6$"
+      ],
+      "correct_index": 0
+    },
+    {
+      "q_id": "alg_ineq_10_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 10. Tam thức bậc hai $-x^2 + 5x - 4$ không âm khi nào?",
+      "options": [
+        "$x < 1$ hoặc $x > 4$",
+        "$1 < x < 4$",
+        "$x \\leq 1$ hoặc $x \\geq 4$",
+        "$1 \\leq x \\leq 4$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "alg_ineq_11_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 11. Có bao nhiêu số nguyên $x$ để biểu thức $f(x) = (3x^2 + x - 2)^2 - (x^2 - x - 7)^2$ luôn âm?",
+      "options": [
+        "1",
+        "0",
+        "2",
+        "3"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "alg_ineq_12_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 12. Tập xác định của hàm số $y = \\sqrt{2x^2 - 5x - 2}$ (Sửa đề: $2x^2 - 5x + 2$) là:",
+      "options": [
+        "$(-\\infty; \\frac{1}{2}]$",
+        "$[2; +\\infty)$",
+        "$\\left( -\\infty; \\frac{1}{2} \\right] \\cup [2; +\\infty)$",
+        "$\\left[ \\frac{1}{2}; 2 \\right]$"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "alg_ineq_13_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 13. Tập xác định của hàm số $y = \\sqrt{-x^2 + 2x + 3}$ là:",
+      "options": [
+        "$(1; 3)$",
+        "$(-\\infty; -1) \\cup (3; +\\infty)$",
+        "$(-\\infty; -1] \\cup [3; +\\infty)$",
+        "$[-1; 3]$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "alg_ineq_14_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 14. Cho hàm số $f(x) = ax^2 + bx + c$ có đồ thị như hình bên (Parabol cắt trục hoành tại 0 và 2, quay bề lõm lên trên). Tìm tập nghiệm của bất phương trình $ax^2 + bx + c \\leq 0$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;bbox=-2,4,4,-2;func=x*(x-2)\"></div>",
+      "options": [
+        "$(-\\infty; 0) \\cup (2; +\\infty)$",
+        "$[0; 2]$",
+        "$(-\\infty; 0] \\cup [2; +\\infty)$",
+        "$(0; 2)$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "alg_ineq_15_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 15. Cho hàm số $f(x) = ax^2 + bx + c$ có đồ thị như hình bên (Parabol cắt trục hoành tại -2 và 1, quay bề lõm lên trên). Tìm tập nghiệm của bất phương trình $ax^2 + bx + c \\geq 0$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;bbox=-4,3,3,-4;func=(x+2)*(x-1)\"></div>",
+      "options": [
+        "$(-\\infty; -2) \\cup (1; +\\infty)$",
+        "$(-\\infty; -2] \\cup [1; +\\infty)$",
+        "$[-2; 1]$",
+        "$(0; 2)$"
+      ],
+      "correct_index": 1
+    },
+    {
+      "q_id": "alg_ineq_16_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 16. Có tất cả bao nhiêu giá trị nguyên của tham số $m$ để tam thức bậc hai $f(x) = -2x^2 - (m+2)x + m^2 - m - 1$ luôn âm trên $\\mathbb{R}$?",
+      "options": [
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "alg_ineq_17_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 17. Tìm tất cả giá trị thực của tham số $m$ để $-2x^2 + (m+2)x + m - 4 < 0$ với mọi $x \\in \\mathbb{R}$.",
+      "options": [
+        "$m < -14$ hoặc $m > 2$",
+        "$-14 \\leq m \\leq 2$",
+        "$-2 < m < 14$",
+        "$-14 < m < 2$"
+      ],
+      "correct_index": 3
+    },
+    {
+      "q_id": "alg_ineq_18_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 18. Lợi nhuận thu được từ việc sản xuất và bán $x$ sản phẩm thủ công của một cửa hàng là $I(x) = -0.1x^2 + 235x - 70000$ (nghìn đồng). Hỏi số lượng sản phẩm bán ra tối thiểu là bao nhiêu thì cửa hàng có lãi?",
+      "options": [
+        "300",
+        "250",
+        "350",
+        "320"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "alg_ineq_19_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 19. Kim muốn trồng một vườn hoa trên mảnh đất hình chữ nhật và làm hàng rào bao quanh. Kim chỉ có đủ vật liệu để làm 30 m hàng rào nhưng muốn diện tích vườn hoa ít nhất là 50 m². Hỏi chiều rộng của vườn hoa nằm trong khoảng nào?",
+      "options": [
+        "$[8; 12]$",
+        "$[3; 7]$",
+        "$[5; 10]$",
+        "$[10; 15]$"
+      ],
+      "correct_index": 2
+    },
+    {
+      "q_id": "alg_ineq_20_part0",
+      "section": "Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Câu 20. Xét một hình vuông lớn có kích thước $20 \\times 20$. Từ hình vuông lớn, người ta cắt ra một hình vuông nhỏ như hình bên. Tìm tập hợp các giá trị của $x$ để diện tích hình vuông nhỏ không vượt quá 208.",
+      "options": [
+        "$8 \\leq x \\leq 12$",
+        "$6 \\leq x \\leq 14$",
+        "$12 \\leq x \\leq 14$",
+        "$12 \\leq x \\leq 18$"
+      ],
+      "correct_index": 0
+    }
+  ]
+}

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bài tập Tết du xuân 🧧</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
+  <script src="../assets/js/app-config.js" defer></script>
+  <script src="../assets/js/firebase-utils.js" defer></script>
+  <script src="../assets/js/auth.js" defer></script>
+  <script src="../assets/js/data.js" defer></script>
+  <style>
+    :root { color-scheme: light; }
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(1200px 700px at 10% 10%, #dbeafe, #eef2ff 45%, #f8fafc 80%);
+      color: #0f172a;
+    }
+    .embla { overflow: hidden; position: relative; }
+    .embla__viewport { overflow: hidden; width: 100%; }
+    .embla__container { display: flex; user-select: none; -webkit-tap-highlight-color: transparent; }
+    .embla__slide { position: relative; flex: 0 0 92%; min-width: 0; padding: 0 10px; transition: transform .28s ease, opacity .28s ease; }
+    @media (min-width: 768px) { .embla__slide { flex: 0 0 62%; } }
+    .embla__slide:not(.is-selected) { transform: scale(.93); opacity: .6; }
+    .embla__slide.is-selected { transform: scale(1); opacity: 1; }
+    .topic-card {
+      height: 420px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 12px 34px rgba(15, 23, 42, .12);
+      display: flex;
+      flex-direction: column;
+    }
+    .topic-head {
+      height: 128px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+    .topic-body { padding: 20px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .progress-rail { background: #e2e8f0; border-radius: 999px; overflow: hidden; height: 8px; }
+    .progress-fill { background: linear-gradient(90deg, #2563eb, #7c3aed); height: 100%; transition: width .25s ease; }
+    .embla__button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid #dbe2ef;
+      background: rgba(255, 255, 255, .9);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, .16);
+      color: #1e293b;
+    }
+    .embla__button--prev { left: 6px; }
+    .embla__button--next { right: 6px; }
+    .embla__dots { display: flex; justify-content: center; gap: 8px; padding: 14px 0 4px; }
+    .embla__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: none;
+      background: #cbd5e1;
+    }
+    .embla__dot.is-selected { background: linear-gradient(135deg, #4f46e5, #7c3aed); transform: scale(1.15); }
+  </style>
+</head>
+<body class="px-4 py-6 md:p-8">
+  <main class="max-w-6xl mx-auto">
+    <header class="rounded-2xl border border-slate-200 bg-white/85 backdrop-blur p-5 md:p-7 shadow-sm">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900">🧧 Bài tập Tết du xuân</h1>
+          <p class="mt-2 text-slate-600">Chọn chủ đề, luyện từng câu và theo dõi tiến độ học của bạn theo thời gian.</p>
+        </div>
+        <a href="../index.html#/classes" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700">
+          <i class="fa-solid fa-arrow-left"></i>
+          Về trang chủ
+        </a>
+      </div>
+    </header>
+
+    <section class="mt-6 rounded-2xl border border-slate-200 bg-white p-4 md:p-5 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg md:text-xl font-bold text-slate-800">Chủ đề ôn tập</h2>
+        <span id="topicCount" class="text-sm text-slate-500">0 chủ đề</span>
+      </div>
+
+      <div id="topic-carousel" class="embla">
+        <div class="embla__viewport">
+          <div id="topicSlides" class="embla__container"></div>
+        </div>
+        <button id="carouselPrev" class="embla__button embla__button--prev" type="button"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="carouselNext" class="embla__button embla__button--next" type="button"><i class="fa-solid fa-chevron-right"></i></button>
+        <div id="carouselDots" class="embla__dots"></div>
+      </div>
+
+      <div id="emptyState" class="hidden text-center py-10 text-slate-500">Chưa có chủ đề nào trong ngân hàng.</div>
+    </section>
+
+    <section id="adminPanel" class="hidden mt-6 rounded-2xl border border-slate-200 bg-white p-4 md:p-5 shadow-sm">
+      <div class="flex items-center justify-between gap-3 mb-4">
+        <div>
+          <h2 class="text-lg md:text-xl font-bold text-slate-800">Báo cáo admin</h2>
+          <p class="text-sm text-slate-500">Tổng hợp kết quả học sinh (Bài tập Tết du xuân).</p>
+        </div>
+        <div class="flex gap-2">
+          <button id="adminRefresh" class="px-3 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-sm">
+            <i class="fa-solid fa-rotate"></i> Tải lại
+          </button>
+          <button id="adminLogin" class="px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm">
+            <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
+          </button>
+          <button id="adminLogout" class="hidden px-3 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-sm">
+            <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4">
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+          <div class="text-xs text-slate-500">Số lượt làm (gần đây)</div>
+          <div id="adminStatAttempts" class="text-2xl font-extrabold text-slate-800">0</div>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+          <div class="text-xs text-slate-500">Số học sinh</div>
+          <div id="adminStatStudents" class="text-2xl font-extrabold text-slate-800">0</div>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+          <div class="text-xs text-slate-500">Độ chính xác TB</div>
+          <div id="adminStatAvgAcc" class="text-2xl font-extrabold text-slate-800">0%</div>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+          <div class="text-xs text-slate-500">Lượt &ge; 80%</div>
+          <div id="adminStatExcellent" class="text-2xl font-extrabold text-slate-800">0</div>
+        </div>
+      </div>
+
+      <div id="adminHint" class="text-sm text-slate-600 mb-3"></div>
+      <div class="overflow-auto rounded-xl border border-slate-200">
+        <table class="min-w-[900px] w-full text-sm">
+          <thead class="bg-slate-50 text-slate-600">
+            <tr>
+              <th class="text-left p-3">Thời gian</th>
+              <th class="text-left p-3">Học sinh</th>
+              <th class="text-left p-3">Chủ đề</th>
+              <th class="text-left p-3">Kết quả</th>
+              <th class="text-left p-3">Độ chính xác</th>
+              <th class="text-left p-3">Sai</th>
+            </tr>
+          </thead>
+          <tbody id="adminAttempts" class="divide-y divide-slate-100"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const MANIFEST_URLS = ['./sections/sections-manifest.json', './topics-manifest.json'];
+
+    const state = {
+      manifest: null,
+      topics: [],
+      progressKey: 'bankOnTapProgressV1',
+      progress: { version: 1, topics: {} },
+      embla: null
+    };
+
+    function readProgress() {
+      try {
+        const raw = localStorage.getItem(state.progressKey);
+        if (!raw) return { version: 1, topics: {} };
+        const parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed !== 'object') return { version: 1, topics: {} };
+        if (!parsed.topics || typeof parsed.topics !== 'object') parsed.topics = {};
+        return parsed;
+      } catch (_) {
+        return { version: 1, topics: {} };
+      }
+    }
+
+    function computeTopicStats(topicId, totalQuestions) {
+      const t = (state.progress.topics && state.progress.topics[topicId]) ? state.progress.topics[topicId] : null;
+      const qStats = (t && t.qStats && typeof t.qStats === 'object') ? t.qStats : {};
+      const entries = Object.values(qStats);
+      const studied = entries.length;
+      const mastered = entries.filter(it => it && it.lastCorrect === true).length;
+      const needReview = entries.filter(it => it && it.lastCorrect === false).length;
+      const totalAttempts = entries.reduce((sum, it) => sum + (Number(it && it.attempts) || 0), 0);
+      const totalCorrect = entries.reduce((sum, it) => sum + (Number(it && it.correct) || 0), 0);
+      const accuracy = totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
+      const completion = totalQuestions > 0 ? Math.round((studied / totalQuestions) * 100) : 0;
+      return { studied, mastered, needReview, accuracy, completion };
+    }
+
+    function normalizeTopics(manifest) {
+      if (manifest && Array.isArray(manifest.topics)) {
+        return manifest.topics;
+      }
+      if (manifest && Array.isArray(manifest.sections)) {
+        return manifest.sections.map((sec, idx) => ({
+          id: sec.key || `section_${idx + 1}`,
+          title: sec.title || `Section ${idx + 1}`,
+          subtitle: sec.subtitle || 'Bộ câu hỏi ôn tập',
+          description: `Luyện theo nhóm câu hỏi: ${sec.questionCount || 0} câu.`,
+          questionCount: Number(sec.questionCount || 0),
+          icon: idx % 2 === 0 ? 'fa-solid fa-book-open-reader' : 'fa-solid fa-shapes',
+          theme: {
+            gradient: idx % 2 === 0
+              ? 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)'
+              : 'linear-gradient(135deg, #0f766e 0%, #22c55e 100%)',
+            chipClass: idx % 2 === 0 ? 'bg-indigo-100 text-indigo-700' : 'bg-emerald-100 text-emerald-700'
+          },
+          activeSource: 'main',
+          sources: [
+            {
+              id: 'main',
+              label: 'Nguồn đã chia section',
+              path: sec.path,
+              recommended: true,
+              note: 'Đã tách theo section chính cho ôn tập.'
+            }
+          ]
+        }));
+      }
+      return [];
+    }
+
+    async function loadFirstAvailableManifest() {
+      let lastErr = null;
+      for (const url of MANIFEST_URLS) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (!res.ok) continue;
+          const parsed = await res.json();
+          return { manifest: parsed, url };
+        } catch (err) {
+          lastErr = err;
+        }
+      }
+      if (lastErr) throw lastErr;
+      throw new Error('Không tìm thấy manifest khả dụng cho BankOnTap.');
+    }
+
+    function fmtDate(ts) {
+      try {
+        const d = new Date(Number(ts) || 0);
+        if (Number.isNaN(d.getTime())) return '';
+        return d.toLocaleString('vi-VN');
+      } catch (_) {
+        return '';
+      }
+    }
+
+    function fmtPct(x) {
+      const n = Number(x);
+      if (!Number.isFinite(n)) return '0%';
+      return `${Math.round(n)}%`;
+    }
+
+    function renderAdminAttempts(attempts) {
+      const tbody = document.getElementById('adminAttempts');
+      if (!tbody) return;
+      const list = Array.isArray(attempts) ? attempts : [];
+      tbody.innerHTML = list.map((a) => {
+        const name = (a.userFullName || a.userName || a.userEmail || a.uid || '').toString();
+        const topic = (a.topicTitle || a.topicId || '').toString();
+        const acc = Number(a.accuracy || 0);
+        const badge = acc >= 80
+          ? '<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold">Xuất sắc</span>'
+          : acc >= 50
+            ? '<span class="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold">Khá</span>'
+            : '<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold">Cần ôn</span>';
+        const wrong = Array.isArray(a.wrongQuestions) ? a.wrongQuestions.join(', ') : '';
+        return `
+          <tr class="hover:bg-slate-50">
+            <td class="p-3 whitespace-nowrap">${fmtDate(a.submittedAt || a.startedAt)}</td>
+            <td class="p-3">${name}</td>
+            <td class="p-3">${topic}</td>
+            <td class="p-3 whitespace-nowrap">${(a.correct ?? 0)}/${(a.checked ?? 0)} ${badge}</td>
+            <td class="p-3 whitespace-nowrap font-semibold">${fmtPct(acc)}</td>
+            <td class="p-3">${wrong}</td>
+          </tr>
+        `;
+      }).join('');
+
+      const statAttempts = document.getElementById('adminStatAttempts');
+      const statStudents = document.getElementById('adminStatStudents');
+      const statAvgAcc = document.getElementById('adminStatAvgAcc');
+      const statExcellent = document.getElementById('adminStatExcellent');
+
+      const uids = new Set(list.map(a => String(a.uid || '')));
+      const avg = list.length ? (list.reduce((s, a) => s + (Number(a.accuracy) || 0), 0) / list.length) : 0;
+      const excellent = list.filter(a => (Number(a.accuracy) || 0) >= 80).length;
+      if (statAttempts) statAttempts.textContent = String(list.length);
+      if (statStudents) statStudents.textContent = String(Array.from(uids).filter(Boolean).length);
+      if (statAvgAcc) statAvgAcc.textContent = fmtPct(avg);
+      if (statExcellent) statExcellent.textContent = String(excellent);
+    }
+
+    async function loadAdminDashboard() {
+      const panel = document.getElementById('adminPanel');
+      const hint = document.getElementById('adminHint');
+      if (!panel) return;
+      if (!(window.DataStore && window.Auth)) {
+        if (hint) hint.textContent = 'Thiếu module Auth/DataStore.';
+        return;
+      }
+
+      await window.Auth.init().catch(() => null);
+      const isAdmin = window.DataStore.isAdmin && window.DataStore.isAdmin();
+      if (!isAdmin) {
+        // panel.classList.remove('hidden'); // Strictly hide for non-admins per request
+        return;
+      }
+
+      panel.classList.remove('hidden'); // Show only if admin
+
+      if (hint) hint.textContent = 'Đang kiểm tra quyền admin trên Firebase...';
+      if (window.DataStore.addSelfAsAdmin) {
+        try {
+          const r = await window.DataStore.addSelfAsAdmin();
+          if (r && r.ok === false) {
+            if (hint) hint.textContent = `Không thể đăng ký admin trên Firebase: ${r.error || 'Unknown error'}`;
+            return;
+          }
+        } catch (e) {
+          if (hint) hint.textContent = `Không thể đăng ký admin trên Firebase: ${e && e.message ? e.message : String(e)}`;
+          return;
+        }
+      }
+
+      if (hint) hint.textContent = 'Đang tải dữ liệu...';
+      const all = await window.DataStore.listAllAttempts(500);
+      const filtered = (all || []).filter(a => (a && a.appTitle) ? String(a.appTitle) === 'Bài tập Tết du xuân' : true);
+      renderAdminAttempts(filtered);
+      if (hint) hint.textContent = `Đã tải ${filtered.length} lượt làm gần đây.`;
+
+      const loginBtn = document.getElementById('adminLogin');
+      const logoutBtn = document.getElementById('adminLogout');
+      if (loginBtn) loginBtn.classList.add('hidden');
+      if (logoutBtn) logoutBtn.classList.remove('hidden');
+    }
+
+    function wireAdminButtons() {
+      const panel = document.getElementById('adminPanel');
+      const loginBtn = document.getElementById('adminLogin');
+      const logoutBtn = document.getElementById('adminLogout');
+      const refreshBtn = document.getElementById('adminRefresh');
+      if (!panel) return;
+      if (loginBtn) {
+        loginBtn.onclick = async () => {
+          if (window.Auth && typeof window.Auth.signIn === 'function') {
+            await window.Auth.signIn();
+            await loadAdminDashboard();
+          }
+        };
+      }
+      if (logoutBtn) {
+        logoutBtn.onclick = async () => {
+          if (window.Auth && typeof window.Auth.signOut === 'function') {
+            await window.Auth.signOut();
+          }
+          logoutBtn.classList.add('hidden');
+          if (loginBtn) loginBtn.classList.remove('hidden');
+          const hint = document.getElementById('adminHint');
+          if (hint) hint.textContent = 'Bạn đã đăng xuất.';
+          const tbody = document.getElementById('adminAttempts');
+          if (tbody) tbody.innerHTML = '';
+        };
+      }
+      if (refreshBtn) refreshBtn.onclick = () => loadAdminDashboard();
+    }
+
+    function buildSlide(topic) {
+      const source = (topic.sources || []).find(s => s.id === topic.activeSource) || (topic.sources || [])[0] || null;
+      const totalQuestions = Number(topic.questionCount || 20);
+      const stats = computeTopicStats(topic.id, totalQuestions);
+
+      const slide = document.createElement('div');
+      slide.className = 'embla__slide';
+
+      const gradient = topic.theme && topic.theme.gradient
+        ? topic.theme.gradient
+        : 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)';
+      const chipClass = topic.theme && topic.theme.chipClass
+        ? topic.theme.chipClass
+        : 'bg-indigo-100 text-indigo-700';
+
+      slide.innerHTML = `
+        <article class="topic-card">
+          <div class="topic-head" style="background:${gradient}">
+            <i class="${topic.icon || 'fa-solid fa-book-open'}"></i>
+          </div>
+          <div class="topic-body">
+            <div>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${chipClass}">Chủ đề ôn tập</span>
+              <h3 class="mt-2 text-xl font-bold text-slate-900">${topic.title || ''}</h3>
+              <p class="text-sm text-slate-500 mt-1">${topic.subtitle || ''}</p>
+            </div>
+
+            <p class="text-sm text-slate-600 leading-relaxed">${topic.description || ''}</p>
+
+            <div class="text-xs text-slate-500">
+              Nguồn: <span class="font-semibold text-slate-700">${source ? source.label : 'N/A'}</span>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between text-sm mb-1">
+                <span class="font-medium text-slate-700">Tiến độ ôn tập</span>
+                <span class="text-slate-500">${stats.studied}/${totalQuestions} câu</span>
+              </div>
+              <div class="progress-rail"><div class="progress-fill" style="width:${stats.completion}%"></div></div>
+              <div class="grid grid-cols-3 gap-2 mt-2 text-xs">
+                <div class="rounded-lg bg-emerald-50 text-emerald-700 px-2 py-1 text-center">Thông thạo: ${stats.mastered}</div>
+                <div class="rounded-lg bg-rose-50 text-rose-700 px-2 py-1 text-center">Xem lại: ${stats.needReview}</div>
+                <div class="rounded-lg bg-indigo-50 text-indigo-700 px-2 py-1 text-center">Tỉ lệ đúng: ${stats.accuracy}%</div>
+              </div>
+            </div>
+
+            <div class="mt-auto flex gap-2">
+              <a class="flex-1 inline-flex justify-center items-center gap-2 px-3 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 text-sm font-medium"
+                href="./practice.html?topic=${encodeURIComponent(topic.id)}${source ? `&source=${encodeURIComponent(source.id)}` : ''}">
+                <i class="fa-solid fa-play"></i> Bắt đầu luyện
+              </a>
+            </div>
+          </div>
+        </article>`;
+
+      return slide;
+    }
+
+    function setupEmbla(slideCount) {
+      const viewport = document.querySelector('#topic-carousel .embla__viewport');
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+      const dotsWrap = document.getElementById('carouselDots');
+
+      if (!viewport || !window.EmblaCarousel || slideCount === 0) return;
+      if (state.embla) {
+        try { state.embla.destroy(); } catch (_) {}
+      }
+
+      state.embla = window.EmblaCarousel(viewport, { loop: true, align: 'center' });
+
+      prevBtn.onclick = () => state.embla && state.embla.scrollPrev();
+      nextBtn.onclick = () => state.embla && state.embla.scrollNext();
+
+      dotsWrap.innerHTML = '';
+      for (let i = 0; i < slideCount; i += 1) {
+        const dot = document.createElement('button');
+        dot.className = 'embla__dot';
+        dot.type = 'button';
+        dot.addEventListener('click', () => state.embla && state.embla.scrollTo(i));
+        dotsWrap.appendChild(dot);
+      }
+
+      const update = () => {
+        const idx = state.embla.selectedScrollSnap();
+        document.querySelectorAll('#topicSlides .embla__slide').forEach((slide, i) => {
+          slide.classList.toggle('is-selected', i === idx);
+        });
+        document.querySelectorAll('#carouselDots .embla__dot').forEach((dot, i) => {
+          dot.classList.toggle('is-selected', i === idx);
+        });
+      };
+      state.embla.on('select', update);
+      state.embla.on('init', update);
+      update();
+    }
+
+    async function bootstrap() {
+      const loaded = await loadFirstAvailableManifest()
+      .then((res) => {
+        state.manifest = res.manifest;
+        state.progressKey = state.manifest.progressStorageKey || state.progressKey;
+        state.progress = readProgress();
+        state.topics = normalizeTopics(state.manifest);
+        document.getElementById('topicCount').textContent = `${state.topics.length} chủ đề`;
+
+        const slidesWrap = document.getElementById('topicSlides');
+        const empty = document.getElementById('emptyState');
+        slidesWrap.innerHTML = '';
+
+        if (!state.topics.length) {
+          empty.classList.remove('hidden');
+          return;
+        }
+
+        empty.classList.add('hidden');
+        state.topics.forEach(topic => slidesWrap.appendChild(buildSlide(topic)));
+        setupEmbla(state.topics.length);
+        // setupCarousel(); // Removed as it is undefined and replaced by setupEmbla
+        wireAdminButtons();
+        loadAdminDashboard();
+      })
+      .catch((err) => {
+        console.error(err);
+        document.getElementById('emptyState').classList.remove('hidden');
+        document.getElementById('emptyState').textContent = `Có lỗi khi tải BankOnTap: ${err.message || 'Unknown error'}`;
+        wireAdminButtons();
+        loadAdminDashboard();
+      });
+    }
+
+    bootstrap();
+  </script>
+</body>
+</html>

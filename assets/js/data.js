@@ -84,7 +84,10 @@
     try{
       const u = window.Auth && Auth.getUser ? Auth.getUser() : null;
       const emails = (cfg && Array.isArray(cfg.adminEmails)) ? cfg.adminEmails : [];
-      return !!(u && u.email && emails.includes(u.email));
+      const localNames = (cfg && Array.isArray(cfg.adminLocalNames)) ? cfg.adminLocalNames : [];
+      const isEmailAdmin = !!(u && u.email && emails.includes(u.email));
+      const isLocalAdmin = !!(u && u.isLocal && u.displayName && localNames.includes(u.displayName));
+      return isEmailAdmin || isLocalAdmin;
     }catch(e){ return false; }
   }
 

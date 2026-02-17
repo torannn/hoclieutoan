@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "title": "Bài tập Tết du xuân",
+  "progressStorageKey": "bankOnTapProgressV1",
+  "generatedAt": "2026-02-17T15:36:33.681",
+  "totalQuestions": 108,
+  "totalDuration": 1800,
+  "sections": [
+    {
+      "key": "section-1-bat-phuong-trinh",
+      "title": "Tam thức bậc hai - Bất phương trình bậc hai",
+      "subtitle": "Đại số 10 - Tam thức bậc hai - BPT",
+      "path": "sections/section-1-bat-phuong-trinh.json",
+      "questionCount": 29,
+      "duration": 372
+    },
+    {
+      "key": "section-2-vecto-toa-do",
+      "title": "Vectơ và tọa độ - Phương trình đường thẳng",
+      "subtitle": "Hình học 10 - Vectơ trong mặt phẳng tọa độ",
+      "path": "sections/section-2-vecto-toa-do.json",
+      "questionCount": 68,
+      "duration": 1173
+    },
+    {
+      "key": "section-3-phuong-trinh",
+      "title": "Phương trình quy về bậc hai",
+      "subtitle": "Đại số 10 - Chương III",
+      "path": "sections/section-3-phuong-trinh.json",
+      "questionCount": 11,
+      "duration": 300
+    }
+  ]
+}

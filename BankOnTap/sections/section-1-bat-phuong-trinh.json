@@ -1,0 +1,441 @@
+{
+  "duration": 372,
+  "section_key": "section-1-bat-phuong-trinh",
+  "section_title": "Tam thức bậc hai - Bất phương trình bậc hai",
+  "section_subtitle": "Đại số 10 - Tam thức bậc hai - BPT",
+  "questions": [
+    {
+      "q_id": "q1_tamthucbachai_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Biểu thức nào sau đây là một tam thức bậc hai đối với $x$?",
+      "options": [
+        "$f(x) = 2x^2 - \\sqrt{3}$",
+        "$f(x) = 2x - 1$",
+        "$f(x) = \\frac{x^2 - 1}{x}$",
+        "$f(x) = \\frac{x^2 - x + 1}{x + 2}$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q2_dau_tam_thuc_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hình vẽ bên, biết $f(x) = ax^2 + bx + c$ và $\\Delta = b^2 - 4ac$. Xác định dấu của $a$ và $\\Delta$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;expr=0.5*x^2+1;keepAspectRatio=true;bbox=-6,6,6,-6;width=340;height=340\"></div>",
+      "options": [
+        "$a > 0, \\Delta < 0$",
+        "$a < 0, \\Delta < 0$",
+        "$a > 0, \\Delta > 0$",
+        "$a > 0, \\Delta = 0$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q3_dau_tam_thuc_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hình vẽ bên, biết $f(x) = ax^2 + bx + c$ và $\\Delta = b^2 - 4ac$. Xác định dấu của $a$ và $\\Delta$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;expr=0.5*x^2-2;keepAspectRatio=true;bbox=-6,6,6,-6;width=340;height=340\"></div>",
+      "options": [
+        "$a > 0, \\Delta < 0$",
+        "$a < 0, \\Delta < 0$",
+        "$a > 0, \\Delta > 0$",
+        "$a > 0, \\Delta = 0$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q4_dau_tam_thuc_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hình vẽ bên, biết $f(x) = ax^2 + bx + c$ và $\\Delta = b^2 - 4ac$. Xác định dấu của $a$ và $\\Delta$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;expr=-0.5*(x-1)^2;keepAspectRatio=true;bbox=-6,6,6,-6;width=340;height=340\"></div>",
+      "options": [
+        "$a < 0, \\Delta = 0$",
+        "$a < 0, \\Delta < 0$",
+        "$a > 0, \\Delta > 0$",
+        "$a > 0, \\Delta = 0$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q5_bang_xet_dau_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Bảng xét dấu nào sau đây là bảng xét dấu của biểu thức $f(x) = -x^2 + 14x - 49$?",
+      "options": [
+        "<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"bbox\":[-0.5,1.5,5.5,-2],\"width\":260,\"height\":140,\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"7\",\"+\\\\infty\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"+\",\"+\"],\"pointMarks\":{\"7\":\"0\"}}],\"leftColumnWidth\":1.2,\"cellWidth\":1.5,\"cellHeight\":0.9,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.2}'></div>",
+        "<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"bbox\":[-0.5,1.5,5.5,-2],\"width\":260,\"height\":140,\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"7\",\"+\\\\infty\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"+\",\"-\"],\"pointMarks\":{\"7\":\"0\"}}],\"leftColumnWidth\":1.2,\"cellWidth\":1.5,\"cellHeight\":0.9,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.2}'></div>",
+        "<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"bbox\":[-0.5,1.5,5.5,-2],\"width\":260,\"height\":140,\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"7\",\"+\\\\infty\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"-\",\"-\"],\"pointMarks\":{\"7\":\"0\"}}],\"leftColumnWidth\":1.2,\"cellWidth\":1.5,\"cellHeight\":0.9,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.2}'></div>",
+        "<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"bbox\":[-0.5,1.5,5.5,-2],\"width\":260,\"height\":140,\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"7\",\"+\\\\infty\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"-\",\"+\"],\"pointMarks\":{\"7\":\"0\"}}],\"leftColumnWidth\":1.2,\"cellWidth\":1.5,\"cellHeight\":0.9,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.2}'></div>"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q6_bang_xet_dau_nguoc_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Bảng xét dấu sau là của biểu thức nào?<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"bbox\":[-0.5,1.5,5.5,-2],\"width\":260,\"height\":140,\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"1\",\"2\",\"+\\\\infty\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"-\",\"+\",\"-\"],\"pointMarks\":{\"1\":\"0\",\"2\":\"0\"}}],\"leftColumnWidth\":1.2,\"cellWidth\":1.5,\"cellHeight\":0.9,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.2}'></div>",
+      "options": [
+        "$f(x) = x^2 + 3x + 2$",
+        "$f(x) = -(x-1)(x-2)$",
+        "$f(x) = -x^2 - 3x + 2$",
+        "$f(x) = x^2 - 3x + 2$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q7_bpt_bac_hai_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tìm tập nghiệm của bất phương trình $-5x^2 + 4x + 12 > 0$.",
+      "options": [
+        "$(-\\infty; -\\frac{6}{5}) \\cup (2; +\\infty)$",
+        "$(-2; \\frac{6}{5})$",
+        "$(-\\frac{6}{5}; 2)$",
+        "$(-\\infty; -2) \\cup (\\frac{6}{5}; +\\infty)$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q8_bpt_nghiem_r_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Bất phương trình nào dưới đây có tập nghiệm là $\\mathbb{R}$?",
+      "options": [
+        "$x^2 + 5x - 7 < 0$",
+        "$-x^2 + x - 5 < 0$",
+        "$x^2 - 4x + 4 > 0$",
+        "$-2x^2 + 9x - 13 > 0$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q9_tam_thuc_duong_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tam thức bậc hai $x^2 - 5x - 6$ luôn dương khi nào?",
+      "options": [
+        "$x < -1$ hoặc $x > 6$",
+        "$-1 < x < 6$",
+        "$x \\leq -1$ hoặc $x \\geq 6$",
+        "$-1 \\leq x \\leq 6$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q10_tam_thuc_khong_am_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tam thức bậc hai $-x^2 + 5x - 4$ không âm khi nào?",
+      "options": [
+        "$x < 1$ hoặc $x > 4$",
+        "$1 < x < 4$",
+        "$x \\leq 1$ hoặc $x \\geq 4$",
+        "$1 \\leq x \\leq 4$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q11_nghiem_nguyen_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Có bao nhiêu số nguyên $x$ để biểu thức $f(x) = (3x^2 + x - 2)^2 - (x^2 - x - 7)^2$ luôn âm?",
+      "options": [
+        "1",
+        "0",
+        "2",
+        "3"
+      ],
+      "correct_index": 3,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q12_tap_xac_dinh_can_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tập xác định của hàm số $y = \\sqrt{2x^2 - 5x + 2}$ là",
+      "options": [
+        "$(-\\infty; \\frac{1}{2}]$",
+        "$[2; +\\infty)$",
+        "$\\left( -\\infty; \\frac{1}{2} \\right] \\cup [2; +\\infty)$",
+        "$\\left[ \\frac{1}{2}; 2 \\right]$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q13_tap_xac_dinh_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tập xác định của hàm số $y = \\sqrt{-x^2 + 2x + 3}$ là",
+      "options": [
+        "$(1; 3)$",
+        "$(-\\infty; -1) \\cup (3; +\\infty)$",
+        "$(-\\infty; -1] \\cup [3; +\\infty)$",
+        "$[-1; 3]$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q14_bpt_do_thi_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số $f(x) = ax^2 + bx + c$ có đồ thị là parabol đi qua 2 điểm trên trục hoành có hoành độ 0 và 2, bề lõm quay lên. Tìm tập nghiệm của bất phương trình $ax^2 + bx + c \\leq 0$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;expr=x*(x-2);keepAspectRatio=true;bbox=-6,6,6,-6;width=340;height=340\"></div>",
+      "options": [
+        "$(-\\infty; 0) \\cup (2; +\\infty)$",
+        "$[0; 2]$",
+        "$(-\\infty; 0] \\cup [2; +\\infty)$",
+        "$(0; 2)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q15_bpt_do_thi_2_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số $f(x) = ax^2 + bx + c$ có đồ thị là parabol đi qua 2 điểm trên trục hoành có hoành độ -2 và 1. Tìm tập nghiệm của bất phương trình $ax^2 + bx + c \\geq 0$. <div class=\"jxg-diagram\" data-jxg=\"preset=function;expr=(x+2)*(x-1);keepAspectRatio=true;bbox=-6,6,6,-6;width=340;height=340\"></div>",
+      "options": [
+        "$(-\\infty; -2) \\cup (1; +\\infty)$",
+        "$(-\\infty; -2] \\cup [1; +\\infty)$",
+        "$[-2; 1]$",
+        "$(0; 2)$"
+      ],
+      "correct_index": 1,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q16_tham_so_m_am_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Có tất cả bao nhiêu giá trị nguyên của tham số $m$ để tam thức bậc hai $f(x) = -2x^2 - (m+2)x + m^2 - m - 1$ luôn âm trên $\\mathbb{R}$?",
+      "options": [
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "correct_index": 3,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q17_tham_so_m_r_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Tìm tất cả giá trị thực của tham số $m$ để $-2x^2 + (m+2)x + m - 4 < 0$ với mọi $x \\in \\mathbb{R}$.",
+      "options": [
+        "$m < -14$ hoặc $m > 2$",
+        "$-14 \\leq m \\leq 2$",
+        "$-2 < m < 14$",
+        "$-14 < m < 2$"
+      ],
+      "correct_index": 3,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q18_ung_dung_lai_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Lợi nhuận thu được từ việc sản xuất và bán $x$ sản phẩm thủ công của một cửa hàng là $I(x) = -0.1x^2 + 235x - 70000$ (nghìn đồng). Hỏi số lượng sản phẩm bán ra tối thiểu là bao nhiêu thì cửa hàng có lãi?",
+      "options": [
+        "300",
+        "250",
+        "350",
+        "320"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q19_ung_dung_hinh_hoc_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Kim muốn trồng một vườn hoa trên mảnh đất hình chữ nhật và làm hàng rào bao quanh. Kim chỉ có đủ vật liệu để làm 30 m hàng rào nhưng muốn diện tích vườn hoa ít nhất là 50 m². Hỏi chiều rộng của vườn hoa nằm trong khoảng nào?",
+      "options": [
+        "$[8; 12]$",
+        "$[3; 7]$",
+        "$[5; 10]$",
+        "$[10; 15]$"
+      ],
+      "correct_index": 2,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q20_hinh_vuong_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "multiple_choice",
+      "stem": "Xét một hình vuông lớn có kích thước $20 \\times 20$. Từ hình vuông lớn, người ta cắt ra một hình vuông nhỏ (các đỉnh hình vuông nhỏ nằm trên cạnh hình vuông lớn như hình vẽ). Tìm tập hợp các giá trị của $x$ để diện tích hình vuông nhỏ không vượt quá 208.<br><img src=\"q20_hinh_vuong_p0.png\" alt=\"Hình vẽ\" style=\"max-width: 100%; height: auto; margin-top: 10px;\">",
+      "options": [
+        "$8 \\leq x \\leq 12$",
+        "$6 \\leq x \\leq 14$",
+        "$12 \\leq x \\leq 14$",
+        "$12 \\leq x \\leq 18$"
+      ],
+      "correct_index": 0,
+      "main_section": "section-1-bat-phuong-trinh"
+    },
+    {
+      "q_id": "q21_combined_p0",
+      "section": "Lớp 10 > Đại số - Giải tích > Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn > Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "true_false",
+      "stem": "Cho hàm số bậc hai $y = f(x)$ có bảng biến thiên như hình dưới. Xét tính đúng sai của các khẳng định sau: <br> <div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"-2\",\"4\",\"+\\\\infty\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"-\",\"+\",\"-\"],\"pointMarks\":{\"4\":\"0\",\"-2\":\"0\"}}],\"bbox\":[-0.5,1.5,5.5,-2],\"width\":260,\"height\":140,\"leftColumnWidth\":1.2,\"cellWidth\":1.5,\"cellHeight\":0.9,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.2}'></div>",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "$f(-1) < 0$",
+          "answer": false
+        },
+        {
+          "key": "b",
+          "statement": "$f(5) > 0$",
+          "answer": false
+        },
+        {
+          "key": "c",
+          "statement": "Tập nghiệm của bất phương trình $f(x) \\leq 0$ là $[-2; 3]$",
+          "answer": false
+        },
+        {
+          "key": "d",
+          "statement": "Tập nghiệm của bất phương trình $f(x) < 0$ là $(-\\infty; -2)$",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "grade10_alg_ineq_func_sign_table_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "true_false",
+      "stem": "Cho $f(x), g(x)$ là các hàm số xác định trên $\\mathbb{R}$, có bảng xét dấu như sau:<br/><div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"axes\":false,\"grid\":false,\"bbox\":[-0.5,3.2,6.5,-3],\"width\":500,\"height\":200,\"variable\":\"x\",\"xValues\":[\"-\\\\infty\",\"1\",\"2\",\"3\",\"+\\\\infty\"],\"signRows\":[{\"label\":\"f(x)\",\"intervalSigns\":[\"+\",\"-\",\"-\",\"+\"],\"pointMarks\":{\"1\":\"0\",\"3\":\"0\"}},{\"label\":\"g(x)\",\"intervalSigns\":[\"-\",\"-\",\"+\",\"+\"],\"pointMarks\":{\"2\":\"0\"}}],\"leftColumnWidth\":1.2,\"cellWidth\":1.2,\"cellHeight\":0.8,\"headerHeight\":0.9,\"textSize\":16,\"borderWidth\":1.2}'></div><br/>Xét tính đúng sai của các khẳng định sau:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "Tập nghiệm của bất phương trình $f(x) < 0$ là $(1; 2) \\cup (2; 3)$.",
+          "answer": false
+        },
+        {
+          "key": "b",
+          "statement": "Tập nghiệm của bất phương trình $g(x) \\geq 0$ là $[2; +\\infty)$.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "Tập nghiệm của bất phương trình $f(x) \\cdot g(x) \\leq 0$ là $(-\\infty; 1] \\cup [2; 3]$.",
+          "answer": true
+        },
+        {
+          "key": "d",
+          "statement": "Tập nghiệm của bất phương trình $\\frac{f(x)}{g(x)} \\geq 0$ là $[1; 2] \\cup [3; +\\infty)$.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "grade10_alg_quad_model_moon_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "true_false",
+      "stem": "Người ta thử nghiệm ném một quả bóng trên Mặt Trăng. Nếu quả bóng được ném lên từ độ cao $h_0$ (m) so với bề mặt của Mặt Trăng với vận tốc $v_0$ (m/s) thì độ cao của bóng sau $t$ giây được cho bởi hàm số $h(t) = -\\frac{1}{2}gt^2 + v_0t + h_0$ với $g = 1,625 \\text{ m/s}^2$ là gia tốc trọng trường của Mặt Trăng. Biết độ cao ban đầu của quả bóng vào các thời điểm 8 giây và 12 giây lần lượt là 30 m và 5 m.<br/>Xét tính đúng sai của các khẳng định sau:",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "tf_parts": [
+        {
+          "key": "a",
+          "statement": "Vận tốc ném $v_0 = 10$ m/s.",
+          "answer": true
+        },
+        {
+          "key": "b",
+          "statement": "Độ cao ban đầu của quả bóng $h_0 = 2$ m.",
+          "answer": true
+        },
+        {
+          "key": "c",
+          "statement": "$h(t) = -0,8125t^2 + 10t + 2$.",
+          "answer": true
+        },
+        {
+          "key": "d",
+          "statement": "Quả bóng ở độ cao trên 29 m trong khoảng 3,15 giây.",
+          "answer": false
+        }
+      ]
+    },
+    {
+      "q_id": "grade10_alg_ineq_short_25_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Tập nghiệm của bất phương trình $x^2 - x - 6 \\leqslant 0$ có bao nhiêu số nguyên?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 6
+    },
+    {
+      "q_id": "grade10_alg_eq_param_26_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Có bao nhiêu giá trị nguyên của tham số $m$ để phương trình $4x^2 + 2(m-2)x + m^2 = 0$ có nghiệm?",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 3
+    },
+    {
+      "q_id": "grade10_alg_quad_model_27_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Một quả bóng được ném thẳng lên từ độ cao 1,6 m so với mặt đất với vận tốc 10 m/s. Độ cao của bóng so với mặt đất (tính bằng mét) sau $t$ giây được cho bởi hàm số $h(t) = -4,9t^2 + 10t + 1,6$. Hỏi bóng ở độ cao trên 5 m trong khoảng thời gian bao lâu? (Kết quả tính bằng giây và làm tròn đến hàng phần trăm).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 1.18
+    },
+    {
+      "q_id": "grade10_alg_quad_model_28_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Một vật được ném theo phương thẳng đứng xuống từ độ cao 300 m với vận tốc ban đầu $v_0 = 10$ m/s. Độ cao của vật so với mặt đất (tính bằng mét) sau $t$ giây được cho bởi hàm số $h(t) = -5t^2 + v_0 t + h_0$. Giả thiết rằng sức cản của không khí là không đáng kể, hỏi sau ít nhất bao nhiêu giây, vật đó cách mặt đất không quá 120 m? (làm tròn kết quả đến hàng phần trăm).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 5.08
+    },
+    {
+      "q_id": "grade10_alg_quad_model_29_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Mặt cắt ngang của mặt đường thường có dạng hình parabol để nước mưa dễ dàng thoát sang hai bên. Mặt cắt ngang của một con đường được mô tả bằng hàm số $y = -0,006x^2$ với gốc toạ độ đặt tại tim đường và đơn vị đo là mét.<br/><div class=\"jxg-diagram\" data-jxg='{\"preset\":\"function\",\"expr\":\"-0.006*x^2\",\"bbox\":[-15,2,15,-2],\"axes\":true,\"width\":460,\"height\":260,\"keepAspectRatio\":false}'></div><br/>Để tìm đường cao hơn lề đường không quá 15 cm thì chiều rộng của đường không vượt quá bao nhiêu mét?<br/><div class=\"jxg-diagram\" data-jxg='{\"preset\":\"roadParabolaDrainage\",\"bbox\":[-12,1.1,12,-1.1],\"a\":-0.006,\"xLeft\":-10,\"xRight\":10,\"drawAxes\":true,\"showAxisLabels\":true,\"showShoulderLabels\":false,\"curveColor\":\"#111827\",\"hatchColor\":\"#111827\",\"baseColor\":\"#111827\",\"axisColor\":\"#111827\",\"hatchCount\":30,\"width\":460,\"height\":240,\"keepAspectRatio\":false}'></div>",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 10
+    },
+    {
+      "q_id": "grade10_alg_quad_model_30_p1",
+      "section": "Lớp 10 - Đại số - Giải tích - Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn - Bài 3. Bất phương trình bậc nhất hai ẩn",
+      "type": "short_answer",
+      "stem": "Một chiếc cổng có hình parabol với chiều cao 5 m và khoảng cách giữa hai chân cổng là 4 m. Người ta cần chuyển một thùng hàng hình hộp chữ nhật với chiều cao 3 m. Hỏi chiều rộng của thùng hàng tối đa là bao nhiêu để thùng có thể chuyển lọt qua được cổng? (Đáp số làm tròn đến hàng phần trăm).",
+      "options": [],
+      "correct_index": null,
+      "main_section": "section-1-bat-phuong-trinh",
+      "final_answer": 2.53
+    }
+  ]
+}

@@ -42,7 +42,7 @@
         "$a < 0, \\Delta < 0$",
         "$a > 0, \\Delta > 0$",
         "$a > 0, \\Delta = 0$"
-      ],
+      ], 
       "correct_index": 2,
       "main_section": "section-1-bat-phuong-trinh"
     },

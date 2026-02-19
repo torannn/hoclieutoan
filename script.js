@@ -536,6 +536,7 @@ async function startRandomExamForGrade(grade) {
     examMode = modeSel ? modeSel.value : 'static';
     const finalTitle = examContent.title || 'Bài tập Tết du xuân';
     examTitleHeader.textContent = finalTitle;
+    currentExamKey = `tet-du-xuan:grade:${grade}`;
     currentExamMeta = { title: finalTitle, path: `tet-du-xuan:grade:${grade}`, type: 'random', grade: String(grade), mode: examMode };
     attemptStartAtMs = Date.now();
     let examHTML = '';
@@ -1568,9 +1569,12 @@ async function startExam(examInfo) {
         currentExamMeta = { title: finalTitle, path: examInfo.path || basePath, type: 'exam', mode: examMode };
         attemptStartAtMs = Date.now();
         
-        // Load saved answers for this exam
+        // Load saved answers for this exam (local first, then try Firebase draft)
         studentAnswers = loadAnswersFromStorage();
         window.studentAnswers = studentAnswers;
+        try {
+            if (window._tryRestoreExamDraft) await window._tryRestoreExamDraft(currentExamKey);
+        } catch (e) { console.warn('Exam draft restore failed', e); }
 
         let examHTML = '';
         const sections = partitionIntoSections(currentExamData);
@@ -2455,6 +2459,137 @@ document.addEventListener('DOMContentLoaded', async () => {
             adminSummaryContainer.innerHTML = '<div class="text-red-600">Không tải được tổng hợp.</div>';
         }
     };
+
+    // === Exam Draft Save/Restore ===
+    const saveExamDraftBtn = document.getElementById('save-exam-draft-btn');
+    const examDraftStatus = document.getElementById('exam-draft-status');
+
+    function getExamDraftId() {
+        return currentExamKey ? ('exam:' + currentExamKey) : '';
+    }
+
+    async function saveExamDraftToCloud() {
+        if (!saveExamDraftBtn) return;
+        if (!window.DataStore || typeof window.DataStore.saveSessionDraft !== 'function') {
+            if (examDraftStatus) { examDraftStatus.className = 'mt-2 text-sm rounded-lg p-2 text-center bg-rose-50 text-rose-700'; examDraftStatus.textContent = 'DataStore chưa sẵn sàng.'; examDraftStatus.classList.remove('hidden'); }
+            return;
+        }
+        const draftId = getExamDraftId();
+        if (!draftId) { alert('Chưa có đề để lưu.'); return; }
+        saveExamDraftBtn.disabled = true;
+        saveExamDraftBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Đang lưu...';
+        if (examDraftStatus) examDraftStatus.classList.add('hidden');
+        try {
+            if (window.Auth && typeof window.Auth.init === 'function') await window.Auth.init().catch(() => null);
+            saveAnswersToStorage();
+            const payload = {
+                app: 'Exam',
+                examKey: currentExamKey,
+                examMeta: currentExamMeta,
+                examMode: examMode,
+                studentAnswers: JSON.parse(JSON.stringify(studentAnswers)),
+                attemptStartAtMs: attemptStartAtMs
+            };
+            const result = await window.DataStore.saveSessionDraft(draftId, payload);
+            if (examDraftStatus) {
+                examDraftStatus.className = 'mt-2 text-sm rounded-lg p-2 text-center bg-emerald-50 text-emerald-700';
+                examDraftStatus.textContent = (result && result.firebase) ? 'Đã lưu lên Firebase!' : 'Đã lưu local (chưa đăng nhập Firebase).';
+                examDraftStatus.classList.remove('hidden');
+            }
+            saveExamDraftBtn.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Đã lưu';
+            setTimeout(() => {
+                saveExamDraftBtn.disabled = false;
+                saveExamDraftBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-1"></i> Lưu bài làm';
+                if (examDraftStatus) examDraftStatus.classList.add('hidden');
+            }, 3000);
+        } catch (e) {
+            if (examDraftStatus) { examDraftStatus.className = 'mt-2 text-sm rounded-lg p-2 text-center bg-rose-50 text-rose-700'; examDraftStatus.textContent = 'Lỗi: ' + (e && e.message ? e.message : 'Không thể lưu.'); examDraftStatus.classList.remove('hidden'); }
+            saveExamDraftBtn.disabled = false;
+            saveExamDraftBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-1"></i> Thử lại';
+        }
+    }
+
+    // Restore exam answers from Firebase draft if newer than local
+    window._tryRestoreExamDraft = async function(examKey) {
+        const draftId = 'exam:' + examKey;
+        if (!window.DataStore || typeof window.DataStore.loadSessionDraft !== 'function') return false;
+        try {
+            if (window.Auth && typeof window.Auth.init === 'function') await window.Auth.init().catch(() => null);
+            const result = await window.DataStore.loadSessionDraft(draftId);
+            if (!result || !result.data) return false;
+            const draft = result.data;
+            if (draft.examKey !== examKey) return false;
+            const fbTs = draft.savedAt || 0;
+            // Compare with local answers timestamp (use a simple heuristic: if draft has answers and local is empty, use draft)
+            const localAnswers = loadAnswersFromStorage();
+            const localHasAnswers = Object.keys(localAnswers).length > 0;
+            const draftHasAnswers = draft.studentAnswers && Object.keys(draft.studentAnswers).length > 0;
+            if (!draftHasAnswers) return false;
+            if (localHasAnswers && fbTs <= 0) return false; // local exists and draft has no timestamp
+            // Merge: draft answers fill in where local is empty
+            if (localHasAnswers) {
+                const merged = Object.assign({}, draft.studentAnswers, localAnswers);
+                studentAnswers = merged;
+            } else {
+                studentAnswers = draft.studentAnswers;
+            }
+            window.studentAnswers = studentAnswers;
+            saveAnswersToStorage();
+            if (draft.attemptStartAtMs) attemptStartAtMs = draft.attemptStartAtMs;
+            console.log('[Exam] Restored draft from ' + result.source);
+            return true;
+        } catch (e) {
+            console.warn('_tryRestoreExamDraft failed', e);
+            return false;
+        }
+    };
+
+    if (saveExamDraftBtn) {
+        saveExamDraftBtn.addEventListener('click', saveExamDraftToCloud);
+    }
+
+    // === Auto-save exam on tab close / switch ===
+    let _examAutoSaving = false;
+    function autoSaveExamOnLeave() {
+        if (_examAutoSaving) return;
+        if (!currentExamData || !currentExamKey) return;
+        const hasAnswers = studentAnswers && Object.keys(studentAnswers).length > 0;
+        if (!hasAnswers) return;
+        // Only trigger if exam screen is visible
+        if (examScreen && examScreen.classList.contains('hidden')) return;
+        _examAutoSaving = true;
+        try { saveAnswersToStorage(); } catch (e) { console.warn('autoSaveExam localStorage failed', e); }
+        // Fire-and-forget Firebase draft save
+        const draftId = getExamDraftId();
+        if (draftId && window.DataStore && typeof window.DataStore.saveSessionDraft === 'function') {
+            try {
+                const payload = {
+                    app: 'Exam',
+                    examKey: currentExamKey,
+                    examMeta: currentExamMeta,
+                    examMode: examMode,
+                    studentAnswers: JSON.parse(JSON.stringify(studentAnswers)),
+                    attemptStartAtMs: attemptStartAtMs
+                };
+                window.DataStore.saveSessionDraft(draftId, payload);
+            } catch (e) {}
+        }
+        _examAutoSaving = false;
+    }
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') autoSaveExamOnLeave();
+    });
+
+    window.addEventListener('beforeunload', (e) => {
+        if (!currentExamData || !currentExamKey) return;
+        if (examScreen && examScreen.classList.contains('hidden')) return;
+        const hasAnswers = studentAnswers && Object.keys(studentAnswers).length > 0;
+        if (!hasAnswers) return;
+        autoSaveExamOnLeave();
+        e.preventDefault();
+        e.returnValue = '';
+    });
 
     submitExamBtn.addEventListener('click', () => {
         if (!currentExamData) {

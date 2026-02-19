@@ -170,5 +170,82 @@
     return await getUserProfile(uid);
   }
 
-  window.DataStore = { saveAttempt, listAttempts, listAllAttempts, isAdmin, addSelfAsAdmin, getUserProfile, upsertUserProfile, ensureUserDoc };
+  // === Session draft backup (Firebase + localStorage) ===
+  function getLocalDraftKey(uid, draftId){
+    return 'draft:' + uid + ':' + draftId;
+  }
+
+  async function saveSessionDraft(draftId, payload){
+    const user = window.Auth && Auth.getUser ? Auth.getUser() : null;
+    const uid = user ? user.uid : 'guest';
+    const data = Object.assign({}, payload, { uid, draftId, savedAt: Date.now() });
+    // Always save locally first (fast)
+    try{
+      localStorage.setItem(getLocalDraftKey(uid, draftId), JSON.stringify(data));
+    }catch(e){ console.warn('saveSessionDraft local failed', e); }
+    // Then try Firebase
+    if(cfg.authProvider === 'firebase' && cfg.firebase && cfg.firebase.apiKey && user && !user.isLocal){
+      try{
+        await ensureFirebase();
+        if(!firebase.apps.length){ firebase.initializeApp(cfg.firebase); }
+        const db = firebase.firestore();
+        const docId = uid + ':draft:' + draftId;
+        await db.collection('drafts').doc(docId).set(data);
+        return { ok: true, firebase: true };
+      }catch(e){ console.warn('saveSessionDraft firebase failed', e); }
+    }
+    return { ok: true, local: true };
+  }
+
+  async function loadSessionDraft(draftId){
+    const user = window.Auth && Auth.getUser ? Auth.getUser() : null;
+    const uid = user ? user.uid : 'guest';
+    let localDraft = null;
+    let fbDraft = null;
+    // Load local
+    try{
+      const raw = localStorage.getItem(getLocalDraftKey(uid, draftId));
+      if(raw) localDraft = JSON.parse(raw);
+    }catch(e){}
+    // Load Firebase
+    if(cfg.authProvider === 'firebase' && cfg.firebase && cfg.firebase.apiKey && user && !user.isLocal){
+      try{
+        await ensureFirebase();
+        if(!firebase.apps.length){ firebase.initializeApp(cfg.firebase); }
+        const db = firebase.firestore();
+        const docId = uid + ':draft:' + draftId;
+        const doc = await db.collection('drafts').doc(docId).get();
+        if(doc.exists) fbDraft = doc.data();
+      }catch(e){ console.warn('loadSessionDraft firebase failed', e); }
+    }
+    // Pick the latest
+    const localTs = (localDraft && localDraft.savedAt) ? localDraft.savedAt : 0;
+    const fbTs = (fbDraft && fbDraft.savedAt) ? fbDraft.savedAt : 0;
+    if(fbTs > localTs){
+      // Sync Firebase version back to local
+      try{ localStorage.setItem(getLocalDraftKey(uid, draftId), JSON.stringify(fbDraft)); }catch(e){}
+      return { source: 'firebase', data: fbDraft };
+    }
+    if(localDraft){
+      return { source: 'local', data: localDraft };
+    }
+    return null;
+  }
+
+  async function deleteSessionDraft(draftId){
+    const user = window.Auth && Auth.getUser ? Auth.getUser() : null;
+    const uid = user ? user.uid : 'guest';
+    try{ localStorage.removeItem(getLocalDraftKey(uid, draftId)); }catch(e){}
+    if(cfg.authProvider === 'firebase' && cfg.firebase && cfg.firebase.apiKey && user && !user.isLocal){
+      try{
+        await ensureFirebase();
+        if(!firebase.apps.length){ firebase.initializeApp(cfg.firebase); }
+        const db = firebase.firestore();
+        const docId = uid + ':draft:' + draftId;
+        await db.collection('drafts').doc(docId).delete();
+      }catch(e){ console.warn('deleteSessionDraft firebase failed', e); }
+    }
+  }
+
+  window.DataStore = { saveAttempt, listAttempts, listAllAttempts, isAdmin, addSelfAsAdmin, getUserProfile, upsertUserProfile, ensureUserDoc, saveSessionDraft, loadSessionDraft, deleteSessionDraft };
 })();

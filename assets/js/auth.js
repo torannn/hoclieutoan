@@ -35,13 +35,28 @@
     return cfg.authProvider === 'firebase' && ok && !hasPlaceholder;
   }
 
+  let _initPromise = null;
+  let _authListenerRegistered = false;
+
   async function init(){
+    if(_initPromise) return _initPromise;
+    _initPromise = _doInit();
+    return _initPromise;
+  }
+
+  async function _doInit(){
     if(isFirebaseConfigured()){
       const auth = await getFirebaseAuth();
-      auth.onAuthStateChanged(u=>{
-        currentUser = u ? { uid: u.uid, displayName: u.displayName || '', email: u.email || '', phoneNumber: u.phoneNumber || '' } : null;
-        emit();
-      });
+      if(!_authListenerRegistered){
+        _authListenerRegistered = true;
+        return new Promise(resolve => {
+          auth.onAuthStateChanged(u=>{
+            currentUser = u ? { uid: u.uid, displayName: u.displayName || '', email: u.email || '', phoneNumber: u.phoneNumber || '' } : null;
+            emit();
+            resolve();
+          });
+        });
+      }
       return;
     }
     const savedName = localStorage.getItem('local_user_name');

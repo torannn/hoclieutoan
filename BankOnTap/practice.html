@@ -111,7 +111,9 @@
         <button id="checkBtn" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Kiểm tra</button>
         <button id="solutionBtn" class="px-4 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 hidden">Xem lời giải</button>
         <button id="askAiBtn" class="px-4 py-2 rounded-lg bg-amber-500 text-white hover:bg-amber-600">Hỏi AI</button>
+        <button id="saveDraftBtn" class="px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700" title="Lưu tiến độ lên cloud"><i class="fa-solid fa-cloud-arrow-up mr-1"></i> Lưu bài làm</button>
       </div>
+      <div id="draftStatus" class="hidden mt-2 text-sm rounded-lg p-2 text-center"></div>
 
       <div id="feedback" class="hidden student-answer"></div>
       <div id="solutionPanel" class="hidden mt-3 rounded-lg border border-violet-200 bg-violet-50 p-4 text-slate-800"></div>
@@ -805,9 +807,11 @@
       updateNavButtons();
     }
 
-    function updateTopicProgressRecord(q, isCorrect) {
+    function updateTopicProgressRecord(q, isCorrect, globalIdx) {
       const topicProg = ensureTopicProgress(state.topic.id);
-      const key = String(q.id || `q_${state.queue[state.index] + 1}`);
+      // Use provided globalIdx if available, otherwise use current state.index
+      const idx = typeof globalIdx === 'number' ? globalIdx : state.queue[state.index];
+      const key = String(q.id || `q_${idx + 1}`);
       if (!topicProg.qStats[key]) {
         topicProg.qStats[key] = { attempts: 0, correct: 0, lastCorrect: null, lastSeenAt: 0 };
       }
@@ -821,6 +825,55 @@
 
       saveProgress();
       updateHistoryStats();
+    }
+
+    function evaluateQuestion(q, resp) {
+      if (!resp) return null;
+      let isCorrect = null;
+      let feedbackKind = 'neutral';
+      let feedbackText = '';
+
+      if (q.type === 'mc') {
+        if (!Number.isInteger(resp.selected)) return { error: 'Bạn cần chọn đáp án trước khi kiểm tra.' };
+        const selected = resp.selected;
+        if (q.autoCheck && typeof q.answer === 'number') {
+          isCorrect = selected === q.answer;
+          feedbackKind = isCorrect ? 'correct' : 'wrong';
+          feedbackText = isCorrect ? 'Chính xác!' : `Chưa đúng. Đáp án: ${letterFromIndex(q.answer)}.`;
+        } else {
+          feedbackKind = 'neutral';
+          feedbackText = 'Nguồn dữ liệu chưa có đáp án chuẩn cho câu này. Hãy tự đối chiếu.';
+        }
+      } else if (q.type === 'tf') {
+        const total = (q.statements || []).length;
+        const selected = Array.isArray(resp.selected) ? resp.selected : [];
+        if (selected.length !== total || selected.some((v) => typeof v !== 'boolean')) {
+          return { error: 'Bạn cần đánh dấu đủ Đúng/Sai cho từng mệnh đề.' };
+        }
+        if (q.autoCheck && Array.isArray(q.answers) && q.answers.length === total) {
+          isCorrect = selected.every((v, i) => v === q.answers[i]);
+          feedbackKind = isCorrect ? 'correct' : 'wrong';
+          const expected = q.answers.map((v) => tfLabel(v)).join('-');
+          feedbackText = isCorrect ? 'Chính xác!' : `Chưa đúng. Đáp án tham chiếu (a,b,c,...): ${expected}.`;
+        } else {
+          feedbackKind = 'neutral';
+          feedbackText = 'Câu Đúng/Sai hiện chưa có đáp án chuẩn trong nguồn này.';
+        }
+      } else if (q.type === 'sa') {
+        const val = typeof resp.raw === 'string' ? resp.raw.trim() : '';
+        if (!val) return { error: 'Bạn cần nhập đáp án ngắn trước khi kiểm tra.' };
+        if (q.autoCheck && typeof q.answer === 'number') {
+          const n = parseLocaleNumber(val);
+          if (!Number.isFinite(n)) return { error: 'Đáp án phải là một giá trị số.' };
+          isCorrect = Math.abs(n - q.answer) <= 1e-9;
+          feedbackKind = isCorrect ? 'correct' : 'wrong';
+          feedbackText = isCorrect ? 'Chính xác!' : `Chưa đúng. Đáp án: ${q.answer}`;
+        } else {
+          feedbackKind = 'neutral';
+          feedbackText = 'Nguồn dữ liệu chưa có đáp án chuẩn cho câu tự luận ngắn này.';
+        }
+      }
+      return { isCorrect, kind: feedbackKind, text: feedbackText };
     }
 
     function checkCurrent() {
@@ -837,87 +890,71 @@
       if (!resp) return;
       state.responses[keyOf(globalIdx)] = resp;
 
-      let isCorrect = null;
-      let feedbackKind = 'neutral';
-      let feedbackText = '';
-
-      if (q.type === 'mc') {
-        if (!Number.isInteger(resp.selected)) {
-          setFeedback('neutral', 'Bạn cần chọn đáp án trước khi kiểm tra.');
-          return;
-        }
-        const selected = resp.selected;
-        if (q.autoCheck && typeof q.answer === 'number') {
-          isCorrect = selected === q.answer;
-          if (!isCorrect) state.wrongSet.add(globalIdx);
-          else state.wrongSet.delete(globalIdx);
-          feedbackKind = isCorrect ? 'correct' : 'wrong';
-          feedbackText = isCorrect ? 'Chính xác!' : `Chưa đúng. Đáp án: ${letterFromIndex(q.answer)}.`;
-        } else {
-          feedbackKind = 'neutral';
-          feedbackText = 'Nguồn dữ liệu chưa có đáp án chuẩn cho câu này. Hãy tự đối chiếu.';
-        }
-      } else if (q.type === 'tf') {
-        const total = (q.statements || []).length;
-        const selected = Array.isArray(resp.selected) ? resp.selected : [];
-        if (selected.length !== total || selected.some((v) => typeof v !== 'boolean')) {
-          setFeedback('neutral', 'Bạn cần đánh dấu đủ Đúng/Sai cho từng mệnh đề.');
-          return;
-        }
-
-        if (q.autoCheck && Array.isArray(q.answers) && q.answers.length === total) {
-          isCorrect = selected.every((v, i) => v === q.answers[i]);
-          if (!isCorrect) state.wrongSet.add(globalIdx);
-          else state.wrongSet.delete(globalIdx);
-
-          const expected = q.answers.map((v) => tfLabel(v)).join('-');
-          feedbackKind = isCorrect ? 'correct' : 'wrong';
-          feedbackText = isCorrect ? 'Chính xác!' : `Chưa đúng. Đáp án tham chiếu (a,b,c,...): ${expected}.`;
-          applyTFRowHighlight(q, selected);
-        } else {
-          feedbackKind = 'neutral';
-          feedbackText = 'Câu Đúng/Sai hiện chưa có đáp án chuẩn trong nguồn này.';
-        }
-      } else if (q.type === 'sa') {
-        const val = typeof resp.raw === 'string' ? resp.raw.trim() : '';
-        if (!val) {
-          setFeedback('neutral', 'Bạn cần nhập đáp án ngắn trước khi kiểm tra.');
-          return;
-        }
-        if (q.autoCheck && typeof q.answer === 'number') {
-          const n = parseLocaleNumber(val);
-          if (!Number.isFinite(n)) {
-            setFeedback('neutral', 'Đáp án phải là một giá trị số.');
-            return;
-          }
-          isCorrect = Math.abs(n - q.answer) <= 1e-9;
-          if (!isCorrect) state.wrongSet.add(globalIdx);
-          else state.wrongSet.delete(globalIdx);
-          feedbackKind = isCorrect ? 'correct' : 'wrong';
-          feedbackText = isCorrect ? 'Chính xác!' : `Chưa đúng. Đáp án: ${q.answer}`;
-        } else {
-          feedbackKind = 'neutral';
-          feedbackText = 'Nguồn dữ liệu chưa có đáp án chuẩn cho câu tự luận ngắn này.';
-        }
+      const evalResult = evaluateQuestion(q, resp);
+      if (!evalResult) return;
+      if (evalResult.error) {
+        setFeedback('neutral', evalResult.error);
+        return;
       }
 
-      setFeedback(feedbackKind, feedbackText);
+      if (evalResult.isCorrect === false) state.wrongSet.add(globalIdx);
+      else if (evalResult.isCorrect === true) state.wrongSet.delete(globalIdx);
+
+      if (q.type === 'tf' && evalResult.isCorrect === false && Array.isArray(q.answers)) {
+         applyTFRowHighlight(q, resp.selected);
+      }
+
+      setFeedback(evalResult.kind, evalResult.text);
 
       state.sessionChecked += 1;
-      if (isCorrect === true) state.sessionCorrect += 1;
-      updateTopicProgressRecord(q, isCorrect);
+      if (evalResult.isCorrect === true) state.sessionCorrect += 1;
+      updateTopicProgressRecord(q, evalResult.isCorrect, globalIdx);
 
       state.checked = true;
       setCheckResult(globalIdx, {
         checked: true,
-        kind: feedbackKind,
-        text: feedbackText,
-        isCorrect
+        kind: evalResult.kind,
+        text: evalResult.text,
+        isCorrect: evalResult.isCorrect
       });
       els.solutionBtn.classList.remove('hidden');
       setAnswerInputsDisabled(true);
       saveSessionState();
       updateHeaderProgress();
+    }
+
+    function batchCheckAll() {
+      // Auto-check any questions that have a response but no check result
+      for (const globalIdx of state.queue) {
+        const key = keyOf(globalIdx);
+        if (state.checkResults[key] && state.checkResults[key].checked) continue; // already checked
+
+        const resp = state.responses[key];
+        if (!resp) continue; // no response recorded
+
+        // Look up question object
+        const q = state.items[globalIdx];
+        if (!q) continue;
+
+        const evalResult = evaluateQuestion(q, resp);
+        if (!evalResult || evalResult.error) continue; // skip incomplete answers
+
+        // Update state silently
+        if (evalResult.isCorrect === false) state.wrongSet.add(globalIdx);
+        else if (evalResult.isCorrect === true) state.wrongSet.delete(globalIdx);
+
+        state.sessionChecked += 1;
+        if (evalResult.isCorrect === true) state.sessionCorrect += 1;
+        updateTopicProgressRecord(q, evalResult.isCorrect, globalIdx);
+
+        state.checkResults[key] = {
+          checked: true,
+          kind: evalResult.kind,
+          text: evalResult.text,
+          isCorrect: evalResult.isCorrect
+        };
+      }
+      saveSessionState();
     }
 
     function computeSummaryStats() {
@@ -942,6 +979,9 @@
     }
 
     function showSummary() {
+      // Auto-check any pending answers before showing summary
+      batchCheckAll();
+
       els.practiceCard.classList.add('hidden');
       els.summaryCard.classList.remove('hidden');
 
@@ -1277,11 +1317,106 @@
       updateHistoryStats();
     }
 
+    function getDraftId() {
+      if (!state.topic || !state.source) return '';
+      return 'bankontap:' + state.topic.id + ':' + state.source.id;
+    }
+
+    function buildDraftPayload() {
+      return {
+        app: 'BankOnTap',
+        topicId: state.topic ? state.topic.id : '',
+        topicTitle: state.topic ? (state.topic.title || '') : '',
+        sourceId: state.source ? state.source.id : '',
+        mode: state.mode,
+        queue: state.queue,
+        index: state.index,
+        sessionChecked: state.sessionChecked,
+        sessionCorrect: state.sessionCorrect,
+        wrong: Array.from(state.wrongSet),
+        responses: state.responses,
+        checkResults: state.checkResults,
+        itemsSig: computeItemsSignature(state.items),
+        attemptStartedAt: state.attemptStartedAt
+      };
+    }
+
+    async function saveDraftToCloud() {
+      const btn = document.getElementById('saveDraftBtn');
+      const statusEl = document.getElementById('draftStatus');
+      if (!btn) return;
+      if (!window.DataStore || typeof window.DataStore.saveSessionDraft !== 'function') {
+        if (statusEl) { statusEl.className = 'mt-2 text-sm rounded-lg p-2 text-center bg-rose-50 text-rose-700'; statusEl.textContent = 'DataStore ch\u01b0a s\u1eb5n s\u00e0ng.'; statusEl.classList.remove('hidden'); }
+        return;
+      }
+      saveCurrentDraft();
+      saveSessionState();
+      const draftId = getDraftId();
+      if (!draftId) return;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> \u0110ang l\u01b0u...';
+      if (statusEl) statusEl.classList.add('hidden');
+      try {
+        if (window.Auth && typeof window.Auth.init === 'function') await window.Auth.init().catch(() => null);
+        const result = await window.DataStore.saveSessionDraft(draftId, buildDraftPayload());
+        if (statusEl) {
+          statusEl.className = 'mt-2 text-sm rounded-lg p-2 text-center bg-emerald-50 text-emerald-700';
+          statusEl.textContent = result && result.firebase ? '\u0110\u00e3 l\u01b0u l\u00ean Firebase!' : '\u0110\u00e3 l\u01b0u local (ch\u01b0a \u0111\u0103ng nh\u1eadp Firebase).';
+          statusEl.classList.remove('hidden');
+        }
+        btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i> \u0110\u00e3 l\u01b0u';
+        setTimeout(() => { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-1"></i> L\u01b0u b\u00e0i l\u00e0m'; if (statusEl) statusEl.classList.add('hidden'); }, 3000);
+      } catch (e) {
+        if (statusEl) { statusEl.className = 'mt-2 text-sm rounded-lg p-2 text-center bg-rose-50 text-rose-700'; statusEl.textContent = 'L\u1ed7i: ' + (e && e.message ? e.message : 'Kh\u00f4ng th\u1ec3 l\u01b0u.'); statusEl.classList.remove('hidden'); }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-1"></i> Th\u1eed l\u1ea1i';
+      }
+    }
+
+    async function tryRestoreFromFirebaseDraft() {
+      const draftId = getDraftId();
+      if (!draftId || !window.DataStore || typeof window.DataStore.loadSessionDraft !== 'function') return false;
+      try {
+        if (window.Auth && typeof window.Auth.init === 'function') await window.Auth.init().catch(() => null);
+        const result = await window.DataStore.loadSessionDraft(draftId);
+        if (!result || !result.data) return false;
+        const parsed = result.data;
+        const currentSig = computeItemsSignature(state.items);
+        if (typeof parsed.itemsSig !== 'string' || parsed.itemsSig !== currentSig) return false;
+        const fbTs = parsed.savedAt || 0;
+        // Compare with local session savedAt
+        let localTs = 0;
+        try {
+          const localRaw = state.sessionKey ? localStorage.getItem(state.sessionKey) : null;
+          if (localRaw) { const lp = JSON.parse(localRaw); localTs = lp.savedAt || 0; }
+        } catch (_) {}
+        if (fbTs <= localTs) return false; // local is newer, use normal restore
+        // Apply firebase draft
+        const validQueue = Array.isArray(parsed.queue) ? parsed.queue.filter((i) => Number.isInteger(i) && i >= 0 && i < state.items.length) : [];
+        if (!validQueue.length) return false;
+        state.mode = parsed.mode === 'wrong' ? 'wrong' : 'all';
+        state.queue = validQueue;
+        state.index = Number.isInteger(parsed.index) ? Math.min(Math.max(parsed.index, 0), validQueue.length - 1) : 0;
+        state.sessionChecked = Number.isFinite(parsed.sessionChecked) ? Math.max(0, parsed.sessionChecked) : 0;
+        state.sessionCorrect = Number.isFinite(parsed.sessionCorrect) ? Math.max(0, parsed.sessionCorrect) : 0;
+        state.wrongSet = new Set(Array.isArray(parsed.wrong) ? parsed.wrong.filter((i) => Number.isInteger(i) && i >= 0 && i < state.items.length) : []);
+        state.responses = (parsed.responses && typeof parsed.responses === 'object') ? parsed.responses : {};
+        state.checkResults = (parsed.checkResults && typeof parsed.checkResults === 'object') ? parsed.checkResults : {};
+        state.attemptStartedAt = parsed.attemptStartedAt || Date.now();
+        console.log('[BankOnTap] Restored session from Firebase draft (source: ' + result.source + ')');
+        return true;
+      } catch (e) {
+        console.warn('tryRestoreFromFirebaseDraft failed', e);
+        return false;
+      }
+    }
+
     els.checkBtn.addEventListener('click', checkCurrent);
     els.solutionBtn.addEventListener('click', () => toggleSolutionPanel());
     els.prevBtn.addEventListener('click', previousQuestion);
     els.nextBtn.addEventListener('click', nextQuestion);
     els.askAiBtn.addEventListener('click', askAiWithExistingTutor);
+    document.getElementById('saveDraftBtn').addEventListener('click', saveDraftToCloud);
     document.getElementById('syncFirebaseBtn').addEventListener('click', syncToFirebase);
     els.restartBtn.addEventListener('click', () => {
       state.wrongSet = new Set();
@@ -1296,8 +1431,47 @@
       }
     });
 
+    // === Auto-save on tab close / switch ===
+    let _autoSaving = false;
+    function autoSaveOnLeave() {
+      if (_autoSaving) return;
+      if (!state.items || !state.items.length) return;
+      // Only save if user has made any progress
+      const hasProgress = Object.keys(state.responses).length > 0 || Object.keys(state.checkResults).length > 0;
+      if (!hasProgress) return;
+      _autoSaving = true;
+      try {
+        saveCurrentDraft();
+        saveSessionState();
+      } catch (e) { console.warn('autoSaveOnLeave localStorage failed', e); }
+      // Fire-and-forget Firebase save
+      const draftId = getDraftId();
+      if (draftId && window.DataStore && typeof window.DataStore.saveSessionDraft === 'function') {
+        try { window.DataStore.saveSessionDraft(draftId, buildDraftPayload()); } catch (e) {}
+      }
+      _autoSaving = false;
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') autoSaveOnLeave();
+    });
+
+    window.addEventListener('beforeunload', (e) => {
+      if (!state.items || !state.items.length) return;
+      const hasProgress = Object.keys(state.responses).length > 0 || Object.keys(state.checkResults).length > 0;
+      if (!hasProgress) return;
+      autoSaveOnLeave();
+      e.preventDefault();
+      e.returnValue = '';
+    });
+
     loadTopicData()
-      .then(() => {
+      .then(async () => {
+        // Try Firebase draft first (may be newer than local)
+        const fbRestored = await tryRestoreFromFirebaseDraft();
+        if (fbRestored) {
+          return renderQuestion();
+        }
         if (restoreSessionState()) {
           return renderQuestion();
         }

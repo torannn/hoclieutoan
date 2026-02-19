@@ -924,20 +924,27 @@
     }
 
     function batchCheckAll() {
-      // Auto-check any questions that have a response but no check result
+      // Auto-check ALL unchecked questions
       for (const globalIdx of state.queue) {
         const key = keyOf(globalIdx);
         if (state.checkResults[key] && state.checkResults[key].checked) continue; // already checked
-
-        const resp = state.responses[key];
-        if (!resp) continue; // no response recorded
 
         // Look up question object
         const q = state.items[globalIdx];
         if (!q) continue;
 
-        const evalResult = evaluateQuestion(q, resp);
-        if (!evalResult || evalResult.error) continue; // skip incomplete answers
+        const resp = state.responses[key];
+        let evalResult = evaluateQuestion(q, resp);
+
+        // If no response or error (incomplete), force it to be wrong
+        if (!evalResult || evalResult.error) {
+          evalResult = {
+            isCorrect: false,
+            kind: 'wrong',
+            text: evalResult && evalResult.error ? evalResult.error : 'Chưa trả lời hoặc chưa hoàn thành.',
+            error: null
+          };
+        }
 
         // Update state silently
         if (evalResult.isCorrect === false) state.wrongSet.add(globalIdx);

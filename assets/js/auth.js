@@ -47,6 +47,14 @@
   async function _doInit(){
     if(isFirebaseConfigured()){
       const auth = await getFirebaseAuth();
+      
+      // Handle redirect result (useful if returning from signInWithRedirect)
+      try {
+        await auth.getRedirectResult();
+      } catch (e) {
+        console.warn('Redirect sign-in error:', e);
+      }
+
       if(!_authListenerRegistered){
         _authListenerRegistered = true;
         return new Promise(resolve => {
@@ -71,6 +79,17 @@
       const auth = await getFirebaseAuth();
       const provider = new firebase.auth.GoogleAuthProvider();
       provider.setCustomParameters({ prompt: 'select_account' });
+
+      // Detect in-app browsers (Messenger, Zalo, Facebook, Instagram)
+      const ua = navigator.userAgent || '';
+      const isInApp = /FBAN|FBAV|Zalo|Instagram/i.test(ua);
+      
+      // In-app browsers often block popups or show white screens -> Force redirect
+      if (isInApp) {
+        await auth.signInWithRedirect(provider);
+        return;
+      }
+
       try {
         await auth.signInWithPopup(provider);
       } catch (e) {
@@ -95,7 +114,25 @@
     if(isFirebaseConfigured()){
       const auth = await getFirebaseAuth();
       const provider = new firebase.auth.FacebookAuthProvider();
-      await auth.signInWithPopup(provider);
+      
+      const ua = navigator.userAgent || '';
+      const isInApp = /FBAN|FBAV|Zalo|Instagram/i.test(ua);
+      
+      if (isInApp) {
+        await auth.signInWithRedirect(provider);
+        return;
+      }
+      
+      try {
+        await auth.signInWithPopup(provider);
+      } catch (e) {
+        const code = (e && e.code) ? String(e.code) : '';
+        if (code === 'auth/popup-blocked' || code === 'auth/cancelled-popup-request') {
+          await auth.signInWithRedirect(provider);
+          return;
+        }
+        throw e;
+      }
       return;
     }
     return signInWithGoogle();

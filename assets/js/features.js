@@ -64,6 +64,7 @@
         correctAnswer: questionData.correctAnswer,
         userAnswer: questionData.userAnswer,
         isCorrect: questionData.isCorrect,
+        modelAnswer: questionData.modelAnswer || '', // Persist model answer
         note: questionData.note || '',
         tags: questionData.tags || [],
         createdAt: new Date().toISOString(),
@@ -531,7 +532,7 @@
       }
       
       // Get user's answer from studentAnswers
-      const qId = q.q_id || `q${questionIndex}`;
+      const qId = q.id || q.q_id || `q${questionIndex}`;
       let userAnswer = null;
       if (window.studentAnswers) {
         userAnswer = window.studentAnswers[qId] || window.studentAnswers[questionIndex] || null;
@@ -542,12 +543,16 @@
       
       // Get model answer/solution from answersMap or question's model_answer
       let modelAnswer = '';
-      if (window.answersMap && window.answersMap[qId]) {
-        modelAnswer = window.answersMap[qId];
+      if (window.answersMap && (window.answersMap[qId] || window.answersMap[q.q_id])) {
+        modelAnswer = window.answersMap[qId] || window.answersMap[q.q_id];
       } else if (q.model_answer) {
         modelAnswer = q.model_answer;
+      } else if (q.explanation) { // Thêm trường explanation nếu có
+        modelAnswer = q.explanation;
       }
       
+      console.log(`[Features] Extracted data for Q${questionIndex}:`, { qId, hasModelAnswer: !!modelAnswer });
+
       // Determine if answer is correct
       let isCorrect = false;
       if (q.type === 'multiple_choice' && q.correct_index !== undefined) {

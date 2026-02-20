@@ -1246,6 +1246,16 @@
         correctAnswer = String(q.answer);
       }
 
+      // Get raw model answer for AI (cleaner than HTML)
+      let rawModelAnswer = '';
+      if (state.answersMap && state.answersMap[q.id]) {
+        rawModelAnswer = state.answersMap[q.id];
+      } else if (q.model_answer) {
+        rawModelAnswer = q.model_answer;
+      } else if (q.explanation) {
+        rawModelAnswer = q.explanation;
+      }
+
       return {
         questionIndex: Number.isInteger(globalIdx) ? globalIdx : state.index,
         questionText: stripHtml(q.stem || ''),
@@ -1254,7 +1264,7 @@
         userAnswer,
         isCorrect: checked && checked.checked ? checked.isCorrect : null,
         isSkipped: !resp,
-        modelAnswer: buildSolutionHtml(q)
+        modelAnswer: rawModelAnswer || buildSolutionHtml(q)
       };
     }
 
@@ -1314,11 +1324,19 @@
 
       if (!normalized.length) throw new Error('Source không có câu hỏi hợp lệ để luyện tập.');
       state.items = normalized;
+      
+      // Set global data for Features compatibility
+      window.currentExamData = { questions: normalized };
+      window.currentExamPath = state.source.path;
+
       state.queue = normalized.map((_, idx) => idx);
       state.wrongSet = new Set();
       state.responses = {};
       state.checkResults = {};
       state.answersMap = await answersPromise;
+      // Expose to window for features.js compatibility
+      window.answersMap = state.answersMap;
+      
       state.sessionKey = getSessionStorageKey();
 
       updateHistoryStats();

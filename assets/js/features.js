@@ -1646,6 +1646,8 @@ Quy tắc format:
       const baseUrl = (typeof cfg.apiBaseUrl === 'string') ? cfg.apiBaseUrl.replace(/\/+$/, '') : '';
       const url = `${baseUrl}/api/ai/chat`;
 
+      console.log('AI Request URL:', url); // Debug log
+
       const response = await fetch(url, {
         method: 'POST',
         headers: {

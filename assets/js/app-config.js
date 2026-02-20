@@ -1,6 +1,9 @@
 window.APP_CONFIG = {
   authProvider: "firebase",
-  apiBaseUrl: (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:') ? 'http://localhost:3001' : '',
+  // Luôn trỏ về backend local port 3001 trừ khi đã deploy lên domain thật
+  apiBaseUrl: (location.hostname.includes('firebaseapp.com') || location.hostname.includes('vercel.app')) 
+    ? '' 
+    : 'http://localhost:3001',
   firebase: {
     apiKey: "AIzaSyApy7eUYpOc_iz9UREFdVG_aJ1NiCk2PNg",
     authDomain: "hoclieutoan-4dbc6.firebaseapp.com",
@@ -13,4 +16,6 @@ window.APP_CONFIG = {
   adminLocalNames: [
     "dauvanhuyhoang2001"
   ]
-}; 
+};
+
+console.log('✅ APP_CONFIG loaded. API Base URL:', window.APP_CONFIG.apiBaseUrl); 

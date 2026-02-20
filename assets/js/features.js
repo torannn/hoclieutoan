@@ -1611,7 +1611,8 @@ Hãy tạo 2-3 bài tập tương tự với độ khó tăng dần để tôi l
         });
       } catch (error) {
         this.removeTyping(typingId);
-        this.addMessage('Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.', 'bot', true);
+        const errorMsg = error.message || 'Lỗi không xác định';
+        this.addMessage(`Xin lỗi, đã có lỗi xảy ra (${errorMsg}). Vui lòng thử lại sau.`, 'bot', true);
         console.error('AI Error:', error);
       }
     },

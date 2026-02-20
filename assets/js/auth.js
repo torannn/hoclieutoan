@@ -53,6 +53,7 @@
         await auth.getRedirectResult();
       } catch (e) {
         console.warn('Redirect sign-in error:', e);
+        if(window.Swal) window.Swal.fire('Lỗi đăng nhập (Redirect)', e.message || 'Không thể hoàn tất đăng nhập.', 'error');
       }
 
       if(!_authListenerRegistered){
@@ -93,8 +94,10 @@
       try {
         await auth.signInWithPopup(provider);
       } catch (e) {
+        console.warn('Google signInWithPopup error:', e);
         const code = (e && e.code) ? String(e.code) : '';
-        if (code === 'auth/popup-blocked' || code === 'auth/cancelled-popup-request') {
+        if (code === 'auth/popup-blocked' || code === 'auth/cancelled-popup-request' || code === 'auth/popup-closed-by-user') {
+          console.log('Popup blocked or closed, falling back to redirect...');
           await auth.signInWithRedirect(provider);
           return;
         }

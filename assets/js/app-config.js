@@ -1,6 +1,6 @@
 window.APP_CONFIG = {
   authProvider: "firebase",
-  apiBaseUrl: (location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://localhost:3001' : '',
+  apiBaseUrl: (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:') ? 'http://localhost:3001' : '',
   firebase: {
     apiKey: "AIzaSyApy7eUYpOc_iz9UREFdVG_aJ1NiCk2PNg",
     authDomain: "hoclieutoan-4dbc6.firebaseapp.com",

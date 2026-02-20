@@ -1902,7 +1902,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(code === 'auth/unauthorized-domain') return 'Tên miền hiện tại chưa được cấu hình trong Firebase Auth (Authorized domains).';
         if(code === 'auth/operation-not-allowed') return 'Google sign-in chưa được bật trong Firebase Console.';
         if(code === 'auth/network-request-failed') return 'Lỗi mạng khi đăng nhập. Vui lòng kiểm tra kết nối và thử lại.';
-        return 'Không đăng nhập được bằng Google.';
+        return 'Lỗi: ' + (err.message || 'Không đăng nhập được bằng Google.');
     }
 
     if(btnAuthGoogle){

@@ -24,13 +24,14 @@
     }
     .embla { overflow: hidden; position: relative; }
     .embla__viewport { overflow: hidden; width: 100%; }
-    .embla__container { display: flex; user-select: none; -webkit-tap-highlight-color: transparent; }
-    .embla__slide { position: relative; flex: 0 0 92%; min-width: 0; padding: 0 10px; transition: transform .28s ease, opacity .28s ease; }
+    .embla__container { display: flex; align-items: stretch; user-select: none; -webkit-tap-highlight-color: transparent; }
+    .embla__slide { position: relative; flex: 0 0 92%; min-width: 0; padding: 0 10px; transition: transform .28s ease, opacity .28s ease; display: flex; flex-direction: column; }
     @media (min-width: 768px) { .embla__slide { flex: 0 0 62%; } }
     .embla__slide:not(.is-selected) { transform: scale(.93); opacity: .6; }
     .embla__slide.is-selected { transform: scale(1); opacity: 1; }
     .topic-card {
-      height: 420px;
+      flex: 1;
+      min-height: 440px;
       border-radius: 18px;
       overflow: hidden;
       background: #fff;

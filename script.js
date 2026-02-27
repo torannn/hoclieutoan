@@ -651,6 +651,10 @@ async function renderRoute() {
     [classSelectionScreen, cobanGradeScreen, chuyenLevelScreen, chuyenTopicScreen, examSelectionScreen, examScreen, resultsScreen, historyScreen, adminSummaryScreen, authScreen, profileScreen, customizeScreen, dashboardScreen].forEach(el => el && el.classList.add('hidden'));
     if(siteHeader) siteHeader.classList.remove('hidden');
 
+    if(window.Auth && Auth.init) {
+        try { await Auth.init(); } catch(e) { console.warn('Auth.init in renderRoute failed', e); }
+    }
+
     const getUser = ()=> (window.Auth && Auth.getUser ? Auth.getUser() : null);
     const isLoggedIn = ()=> !!getUser();
     const isGuest = ()=> guestMode === true;
@@ -1888,6 +1892,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         }
         renderAuthUI();
+        const u = Auth.getUser();
+        if(u){
+             guestMode = false; try{ localStorage.setItem('guest_mode','0'); }catch(e){}
+             await checkAndOnboardUser();
+        }
     }
 
     function setAuthLoading(on){
@@ -1976,8 +1985,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             if(!need){
                 const nm = (profile && profile.fullName) ? profile.fullName : (u.displayName || u.email || u.phoneNumber || 'bạn');
                 if(typeof toastSuccess === 'function') toastSuccess(`Chào mừng, ${nm}!`);
-                // Auto-redirect based on saved preferences
-                navigateByPreference(profile.defaultTrack || '', profile.defaultGrade || '');
+                
+                // Auto-redirect based on saved preferences ONLY if not deep-linked
+                const h = location.hash;
+                if(!h || h === '#/' || h.startsWith('#/auth')){
+                    navigateByPreference(profile.defaultTrack || '', profile.defaultGrade || '');
+                }
                 return;
             }
             await showOnboardingModal(u, profile||{});

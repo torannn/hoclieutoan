@@ -431,7 +431,8 @@
           options: Array.isArray(raw.options) ? raw.options : [],
           answer: (typeof raw.correct_index === 'number') ? raw.correct_index : null,
           autoCheck: typeof raw.correct_index === 'number',
-          sourceType: 'multiple_choice'
+          sourceType: 'multiple_choice',
+          detailed_explanation: raw.detailed_explanation || ''
         };
       }
       if (type === 'true_false') {
@@ -454,7 +455,8 @@
             statements: tfParts.map((p) => p.statement),
             answers,
             autoCheck,
-            sourceType: 'true_false_parts'
+            sourceType: 'true_false_parts',
+            detailed_explanation: raw.detailed_explanation || ''
           };
         }
 
@@ -473,7 +475,8 @@
             options: normalizedOptions,
             answer: (typeof raw.correct_index === 'number') ? raw.correct_index : null,
             autoCheck: typeof raw.correct_index === 'number',
-            sourceType: 'true_false_choice'
+            sourceType: 'true_false_choice',
+            detailed_explanation: raw.detailed_explanation || ''
           };
         }
 
@@ -485,7 +488,8 @@
             statements: normalizedOptions,
             answers: [],
             autoCheck: false,
-            sourceType: 'true_false_statements_options'
+            sourceType: 'true_false_statements_options',
+            detailed_explanation: raw.detailed_explanation || ''
           };
         }
 
@@ -496,7 +500,8 @@
           statements: Array.isArray(raw.tf_parts) ? raw.tf_parts.map(p => p.statement || '').filter(Boolean) : [],
           answers: [],
           autoCheck: false,
-          sourceType: 'true_false'
+          sourceType: 'true_false',
+          detailed_explanation: raw.detailed_explanation || ''
         };
       }
       if (type === 'short_answer') {
@@ -510,7 +515,8 @@
           stem: raw.stem || '',
           answer: numeric,
           autoCheck: typeof numeric === 'number',
-          sourceType: 'short_answer'
+          sourceType: 'short_answer',
+          detailed_explanation: raw.detailed_explanation || ''
         };
       }
       return null;
@@ -538,9 +544,8 @@
 
     function buildSolutionHtml(q) {
       const blocks = [];
-      const direct = (state.answersMap && typeof state.answersMap[q.id] === 'string')
-        ? String(state.answersMap[q.id]).trim()
-        : '';
+      // Use detailed_explanation from normalized question if available
+      const direct = q.detailed_explanation || '';
       if (direct) {
         blocks.push(`<div class="font-pagella leading-relaxed">${formatTextAsHtml(direct)}</div>`);
       }
@@ -575,7 +580,7 @@
       }
 
       if (!blocks.length) {
-        blocks.push('<div class="text-slate-600">Hiện chưa có lời giải chi tiết cho câu này trong <code>answers.json</code>.</div>');
+        blocks.push('<div class="text-slate-600">Hiện chưa có lời giải chi tiết cho câu này.</div>');
       }
 
       return `<div class="text-sm uppercase tracking-wide text-violet-700 font-semibold mb-2">Lời giải tham khảo</div>${blocks.join('<div class="mt-2"></div>')}`;

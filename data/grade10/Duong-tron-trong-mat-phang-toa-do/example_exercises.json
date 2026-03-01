@@ -1,0 +1,261 @@
+{
+  "title": "Bài tập ví dụ - Phương trình đường tròn (Lê Bá Bảo)",
+  "description": "Các bài tập tự luận được chuyển đổi từ dạng trắc nghiệm OCR",
+  "type": "example_exercises",
+  "questions": [
+    {
+      "q_id": "g10_geo_circle_1_p1",
+      "type": "group",
+      "stem": "Trong mặt phẳng Oxy, xác định tâm $I$, bán kính $R$ của các đường tròn có phương trình sau:",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "g10_geo_circle_1_p1_sub1",
+          "type": "short_answer",
+          "stem": "a) $(C_1): (x-1)^2 + (y+2)^2 = 9.$",
+          "correct_index": null,
+          "detailed_explanation": "a) Đường tròn $(C_1)$ có tâm $I_1(1;-2)$, bán kính $R_1 = 3$.\r b) Đường tròn $(C_2)$ có tâm $I_2(0;2)$, bán kính $R_2 = \\sqrt{5"
+        },
+        {
+          "q_id": "g10_geo_circle_1_p1_sub2",
+          "type": "short_answer",
+          "stem": "b) $(C_2): x^2 + (y-2)^2 = 5.$",
+          "correct_index": null,
+          "detailed_explanation": "a) Đường tròn $(C_1)$ có tâm $I_1(1;-2)$, bán kính $R_1 = 3$.\r b) Đường tròn $(C_2)$ có tâm $I_2(0;2)$, bán kính $R_2 = \\sqrt{5"
+        }
+      ],
+      "main_section": "duong-tron",
+      "detailed_explanation": "a) Đường tròn $(C_1)$ có tâm $I_1(1;-2)$, bán kính $R_1 = 3$.\r b) Đường tròn $(C_2)$ có tâm $I_2(0;2)$, bán kính $R_2 = \\sqrt{5"
+    },
+    {
+      "q_id": "g10_geo_circle_2_p1",
+      "type": "group",
+      "stem": "Trong mặt phẳng Oxy, xác định tâm $I$, bán kính $R$ của các đường tròn có phương trình sau:",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "g10_geo_circle_2_p1_sub1",
+          "type": "short_answer",
+          "stem": "a) $(C_1): x^2 + y^2 - 4x + 6y - 1 = 0.$",
+          "correct_index": null,
+          "detailed_explanation": "a) Đường tròn $(C_1)$ có tâm $I_1(2;-3)$, bán kính $R_1 = \\sqrt{14"
+        },
+        {
+          "q_id": "g10_geo_circle_2_p1_sub2",
+          "type": "short_answer",
+          "stem": "b) $(C_2): x^2 + y^2 - 6y - 7 = 0.$",
+          "correct_index": null,
+          "detailed_explanation": "a) Đường tròn $(C_1)$ có tâm $I_1(2;-3)$, bán kính $R_1 = \\sqrt{14"
+        }
+      ],
+      "main_section": "duong-tron",
+      "detailed_explanation": "a) Đường tròn $(C_1)$ có tâm $I_1(2;-3)$, bán kính $R_1 = \\sqrt{14"
+    },
+    {
+      "q_id": "g10_geo_circle_5_p1",
+      "type": "group",
+      "stem": "Trong mặt phẳng Oxy, xác định tâm $I$, bán kính $R$ của các đường tròn có phương trình sau:",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "g10_geo_circle_5_p1_sub1",
+          "type": "short_answer",
+          "stem": "a) $(C_1): (x-1)^2 + (y+1)^2 = 4.$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        },
+        {
+          "q_id": "g10_geo_circle_5_p1_sub2",
+          "type": "short_answer",
+          "stem": "b) $(C_2): (x+3)^2 + y^2 = 3.$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        }
+      ],
+      "main_section": "duong-tron",
+      "detailed_explanation": "Chưa có lời giải."
+    },
+    {
+      "q_id": "g10_geo_circle_6_p1",
+      "type": "group",
+      "stem": "Trong mặt phẳng Oxy, xác định tâm $I$, bán kính $R$ của các đường tròn có phương trình sau:",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "g10_geo_circle_6_p1_sub1",
+          "type": "short_answer",
+          "stem": "a) $(C_1): x^2 + y^2 - 4x + 4y - 3 = 0.$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        },
+        {
+          "q_id": "g10_geo_circle_6_p1_sub2",
+          "type": "short_answer",
+          "stem": "b) $(C_2): x^2 + y^2 + 6x - 7 = 0.$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        }
+      ],
+      "main_section": "duong-tron",
+      "detailed_explanation": "Chưa có lời giải."
+    },
+    {
+      "q_id": "g10_geo_circle_21_p1",
+      "type": "group",
+      "stem": "Trong mặt phẳng $Oxy$, viết phương trình đường tròn $(C)$ trong các trường hợp sau:",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "g10_geo_circle_21_p1_sub1",
+          "type": "short_answer",
+          "stem": "a) $(C)$ có tâm $I(-1;2)$ và tiếp xúc với đường thẳng $\\Delta : x-2y+7=0$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        },
+        {
+          "q_id": "g10_geo_circle_21_p1_sub2",
+          "type": "short_answer",
+          "stem": "b) $(C)$ có đường kính là $AB$ với $A(1;1), B(7;5)$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        }
+      ],
+      "main_section": "duong-tron",
+      "detailed_explanation": "Chưa có lời giải."
+    },
+    {
+      "q_id": "g10_geo_circle_23_p1",
+      "type": "group",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho 3 điểm $A(1;2), B(5;2), C(1;-3)$.",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "g10_geo_circle_23_p1_sub1",
+          "type": "short_answer",
+          "stem": "a) Lập phương trình đường tròn $(C)$ ngoại tiếp tam giác ABC",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        },
+        {
+          "q_id": "g10_geo_circle_23_p1_sub2",
+          "type": "short_answer",
+          "stem": "b) Xác định tâm và bán kinh của $(C)$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        }
+      ],
+      "main_section": "duong-tron",
+      "detailed_explanation": "Chưa có lời giải."
+    },
+    {
+      "q_id": "g10_geo_circle_25_p1",
+      "type": "group",
+      "stem": "Trong mặt phẳng $Oxy$, viết phương trình đường tròn $(C)$, có tâm $I(2;3)$ trong các trường hợp sau:",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "g10_geo_circle_25_p1_sub1",
+          "type": "short_answer",
+          "stem": "a) $(C)$ có bán kính là 5",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        },
+        {
+          "q_id": "g10_geo_circle_25_p1_sub2",
+          "type": "short_answer",
+          "stem": "b) $(C)$ qua điểm $A(1;5)$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        }
+      ],
+      "main_section": "duong-tron",
+      "detailed_explanation": "Chưa có lời giải."
+    },
+    {
+      "q_id": "g10_geo_circle_48_p1",
+      "type": "group",
+      "stem": "Trong mặt phẳng Oxy, viết phương trình tiếp tuyến chung của hai đường tròn:",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "g10_geo_circle_48_p1_sub1",
+          "type": "short_answer",
+          "stem": "a) $(C_1): x^2 + y^2 - 6x + 5 = 0$ và $(C_2): x^2 + y^2 - 12x - 6y + 44 = 0$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        },
+        {
+          "q_id": "g10_geo_circle_48_p1_sub2",
+          "type": "short_answer",
+          "stem": "b) $(C_1): x^2 + y^2 - 2x - 3 = 0$ và $(C_2): x^2 + y^2 - 8x - 8y + 28 = 0$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        }
+      ],
+      "main_section": "duong-tron",
+      "detailed_explanation": "Chưa có lời giải."
+    },
+    {
+      "q_id": "g10_geo_circle_84_p1",
+      "type": "group",
+      "stem": "Trong mặt phẳng Oxy, đường tròn $(C)$ đi qua hai điểm A(1;3), B(3;1) và có tâm nằm trên đường thẳng d : 2x - y + 7 = 0 có phương trình là",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "g10_geo_circle_84_p1_sub1",
+          "type": "short_answer",
+          "stem": "a) $(x-7)^2 + (y-7)^2 = 102$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        },
+        {
+          "q_id": "g10_geo_circle_84_p1_sub2",
+          "type": "short_answer",
+          "stem": "b) $(x+7)^2 + (y+7)^2 = 164$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        },
+        {
+          "q_id": "g10_geo_circle_84_p1_sub3",
+          "type": "short_answer",
+          "stem": "c) $(x+3)^2 + (y+5)^2 = 25$",
+          "correct_index": null,
+          "detailed_explanation": "Chưa có lời giải."
+        }
+      ],
+      "main_section": "duong-tron",
+      "detailed_explanation": "Chưa có lời giải."
+    },
+    {
+      "q_id": "g10_geo_circle_140_p1",
+      "type": "group",
+      "stem": "Trong mặt phẳng $Oxy$, đường tròn $(C)$ đi qua hai điểm $A(1;3),\\ B(3;1)$ và có tâm nằm trên đường thẳng $d : 2x - y + 7 = 0$ có phương trình là",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "g10_geo_circle_140_p1_sub1",
+          "type": "short_answer",
+          "stem": "a) $(x-7)^2 + (y-7)^2 = 102$",
+          "correct_index": null,
+          "detailed_explanation": "$I(a;b)$ là tâm của đường tròn $(C)$, do đó:\r $AI^2 = BI^2 \\Rightarrow (a-1)^2 + (b-3)^2 = (a-3)^2 + (b-1)^2$\r Hay: $a = b$ (1). Mà $I(a;b) \\in d : 2x - y + 7 = 0$ nên $2a - b + 7 = 0$ (2).\r Thay (1) vào (2) ta có: $a = -7 \\Rightarrow b = -7 \\Rightarrow R^2 = AI^2 = 164$.\r Vậy $(C) : (x+7)^2 + (y+7)^2 = 164$."
+        },
+        {
+          "q_id": "g10_geo_circle_140_p1_sub2",
+          "type": "short_answer",
+          "stem": "b) $(x+7)^2 + (y+7)^2 = 164$",
+          "correct_index": null,
+          "detailed_explanation": "$I(a;b)$ là tâm của đường tròn $(C)$, do đó:\r $AI^2 = BI^2 \\Rightarrow (a-1)^2 + (b-3)^2 = (a-3)^2 + (b-1)^2$\r Hay: $a = b$ (1). Mà $I(a;b) \\in d : 2x - y + 7 = 0$ nên $2a - b + 7 = 0$ (2).\r Thay (1) vào (2) ta có: $a = -7 \\Rightarrow b = -7 \\Rightarrow R^2 = AI^2 = 164$.\r Vậy $(C) : (x+7)^2 + (y+7)^2 = 164$."
+        },
+        {
+          "q_id": "g10_geo_circle_140_p1_sub3",
+          "type": "short_answer",
+          "stem": "c) $(x+3)^2 + (y+5)^2 = 25$",
+          "correct_index": null,
+          "detailed_explanation": "$I(a;b)$ là tâm của đường tròn $(C)$, do đó:\r $AI^2 = BI^2 \\Rightarrow (a-1)^2 + (b-3)^2 = (a-3)^2 + (b-1)^2$\r Hay: $a = b$ (1). Mà $I(a;b) \\in d : 2x - y + 7 = 0$ nên $2a - b + 7 = 0$ (2).\r Thay (1) vào (2) ta có: $a = -7 \\Rightarrow b = -7 \\Rightarrow R^2 = AI^2 = 164$.\r Vậy $(C) : (x+7)^2 + (y+7)^2 = 164$."
+        }
+      ],
+      "main_section": "duong-tron",
+      "detailed_explanation": "$I(a;b)$ là tâm của đường tròn $(C)$, do đó:\r $AI^2 = BI^2 \\Rightarrow (a-1)^2 + (b-3)^2 = (a-3)^2 + (b-1)^2$\r Hay: $a = b$ (1). Mà $I(a;b) \\in d : 2x - y + 7 = 0$ nên $2a - b + 7 = 0$ (2).\r Thay (1) vào (2) ta có: $a = -7 \\Rightarrow b = -7 \\Rightarrow R^2 = AI^2 = 164$.\r Vậy $(C) : (x+7)^2 + (y+7)^2 = 164$."
+    }
+  ]
+}

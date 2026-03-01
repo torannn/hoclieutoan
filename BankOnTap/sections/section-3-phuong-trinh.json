@@ -16,7 +16,8 @@
         "{−3}"
       ],
       "correct_index": 1,
-      "main_section": "section-3-phuong-trinh"
+      "main_section": "section-3-phuong-trinh",
+      "detailed_explanation": "Đáp án B. Đk $x \\ge -1$. Bình phương: $x^2+2x-3=0 \\Rightarrow x=1$ (nhận), $x=-3$ (loại)."
     },
     {
       "q_id": "alg_eq_02_p3",
@@ -30,7 +31,8 @@
         "{5}"
       ],
       "correct_index": 1,
-      "main_section": "section-3-phuong-trinh"
+      "main_section": "section-3-phuong-trinh",
+      "detailed_explanation": "Đáp án B. Bình phương: $x^2-4x-5=0 \\Rightarrow x=-1, x=5$. Cả 2 thỏa mãn."
     },
     {
       "q_id": "alg_eq_03_p3",
@@ -44,7 +46,8 @@
         "Phương trình vô nghiệm."
       ],
       "correct_index": 1,
-      "main_section": "section-3-phuong-trinh"
+      "main_section": "section-3-phuong-trinh",
+      "detailed_explanation": "Đáp án B. Hai nghiệm $3$ (dương) và $-4$ (âm)."
     },
     {
       "q_id": "alg_eq_04_p3",
@@ -58,7 +61,8 @@
         "Phương trình vô nghiệm."
       ],
       "correct_index": 0,
-      "main_section": "section-3-phuong-trinh"
+      "main_section": "section-3-phuong-trinh",
+      "detailed_explanation": "Đáp án A. Dựa vào giao điểm đồ thị."
     },
     {
       "q_id": "alg_eq_05_p3",
@@ -72,7 +76,8 @@
         "5"
       ],
       "correct_index": 1,
-      "main_section": "section-3-phuong-trinh"
+      "main_section": "section-3-phuong-trinh",
+      "detailed_explanation": "Đáp án B. $x^2+x-6=0 \\Rightarrow 2, -3$. Tích -6."
     },
     {
       "q_id": "alg_eq_06_p3",
@@ -86,7 +91,8 @@
         "2"
       ],
       "correct_index": 1,
-      "main_section": "section-3-phuong-trinh"
+      "main_section": "section-3-phuong-trinh",
+      "detailed_explanation": "Đáp án B. Vô nghiệm."
     },
     {
       "q_id": "alg_eq_07_p3",
@@ -100,7 +106,8 @@
         "Các nghiệm của phương trình đều không bé hơn $-\\frac{5}{2}$."
       ],
       "correct_index": 0,
-      "main_section": "section-3-phuong-trinh"
+      "main_section": "section-3-phuong-trinh",
+      "detailed_explanation": "Đáp án A. Nghiệm duy nhất $x \\approx -2.4$."
     },
     {
       "q_id": "alg_eq_08_p3",
@@ -114,7 +121,8 @@
         "15"
       ],
       "correct_index": 1,
-      "main_section": "section-3-phuong-trinh"
+      "main_section": "section-3-phuong-trinh",
+      "detailed_explanation": "Đáp án B. $x=7/3$. $a=7, b=3$. $a+2b=13$."
     },
     {
       "q_id": "alg_eq_09_p3",
@@ -128,7 +136,8 @@
         "{1}"
       ],
       "correct_index": 1,
-      "main_section": "section-3-phuong-trinh"
+      "main_section": "section-3-phuong-trinh",
+      "detailed_explanation": "Đáp án B. Nghiệm $\\pm 1$."
     },
     {
       "q_id": "alg_eq_10_p3",
@@ -142,7 +151,8 @@
         "0"
       ],
       "correct_index": 1,
-      "main_section": "section-3-phuong-trinh"
+      "main_section": "section-3-phuong-trinh",
+      "detailed_explanation": "Đáp án B. Nghiệm $-1/20$ (xấp xỉ). Chỉ 1 nghiệm thỏa mãn."
     },
     {
       "q_id": "alg_eq_11_p3",
@@ -156,7 +166,8 @@
         "-6"
       ],
       "correct_index": 1,
-      "main_section": "section-3-phuong-trinh"
+      "main_section": "section-3-phuong-trinh",
+      "detailed_explanation": "Đáp án B. Nghiệm $1, -5$. Tổng $-4$."
     }
   ]
 }

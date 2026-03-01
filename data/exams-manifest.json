@@ -80,6 +80,13 @@
               "type": "exam",
               "description": "Trắc nghiệm tổng hợp hàm số (10 câu) kèm minh họa đồ thị/biểu diễn bằng JSXGraph.",
               "path": "data/grade10/on-tap-ham-so/"
+            },
+            {
+              "id": "lop10_duong_tron_le_ba_bao",
+              "title": "Phương trình đường tròn - Lê Bá Bảo",
+              "type": "exam",
+              "description": "Chuyên đề phương trình đường tròn Toán 10: nhận dạng, viết phương trình, tiếp tuyến (161 câu).",
+              "path": "data/grade10/Duong-tron-trong-mat-phang-toa-do/"
             }
           ],
           "tools": [

@@ -1540,12 +1540,13 @@ async function startExam(examInfo) {
         const answersContent = await answersRes.json();
 
         examContent.questions.forEach(q => {
+            // Use detailed_explanation from exam.json if available, otherwise fallback to answers.json
             if (q.is_group && q.sub_questions) {
                 q.sub_questions.forEach(sub_q => {
-                    sub_q.model_answer = answersContent[sub_q.q_id] || "Chưa có đáp án.";
+                    sub_q.model_answer = sub_q.detailed_explanation || answersContent[sub_q.q_id] || "Chưa có đáp án.";
                 });
             } else {
-                q.model_answer = answersContent[q.q_id] || "Chưa có đáp án.";
+                q.model_answer = q.detailed_explanation || answersContent[q.q_id] || "Chưa có đáp án.";
             }
         });
 

@@ -13,7 +13,8 @@
         "Đây Thôn Vĩ Dạ có phải là do Hàn Mạc Tử sáng tác không?"
       ],
       "correct_index": 0,
-      "question_text": "Trong các phát biểu sau, đâu là một mệnh đề?<br>A. Hàn Mạc Tử là một nhà thơ.<br>B. Áo em trắng quá nhìn không ra !<br>C. Hàn Mạc Tử có phải là nhà thơ trữ tình không?<br>D. Đây Thôn Vĩ Dạ có phải là do Hàn Mạc Tử sáng tác không?"
+      "question_text": "Trong các phát biểu sau, đâu là một mệnh đề?<br>A. Hàn Mạc Tử là một nhà thơ.<br>B. Áo em trắng quá nhìn không ra !<br>C. Hàn Mạc Tử có phải là nhà thơ trữ tình không?<br>D. Đây Thôn Vĩ Dạ có phải là do Hàn Mạc Tử sáng tác không?",
+      "detailed_explanation": "Đáp án đúng: A. Hàn Mạc Tử là một nhà thơ.\n\nPhân tích: Mệnh đề là một câu khẳng định có tính đúng hoặc sai.\n- Câu A là một khẳng định (đúng).\n- Câu B là câu cảm thán.\n- Câu C và D là câu hỏi.\nDo đó, chỉ có A là mệnh đề."
     },
     {
       "q_id": "l10c15_tn2",
@@ -27,7 +28,8 @@
         "\\(P(5)\\)"
       ],
       "correct_index": 3,
-      "question_text": "Cho mệnh đề chứa biến \\(P(x): \"x+15 \\le x^2\"\\) với x là số thực. Mệnh đề nào sau đây là đúng?<br>A. \\(P(0)\\)<br>B. \\(P(3)\\)<br>C. \\(P(4)\\)<br>D. \\(P(5)\\)"
+      "question_text": "Cho mệnh đề chứa biến \\(P(x): \"x+15 \\le x^2\"\\) với x là số thực. Mệnh đề nào sau đây là đúng?<br>A. \\(P(0)\\)<br>B. \\(P(3)\\)<br>C. \\(P(4)\\)<br>D. \\(P(5)\\)",
+      "detailed_explanation": "Đáp án đúng: D. \\(P(5)\\)\n\nPhân tích: Ta thay các giá trị của x vào bất phương trình \\(x+15 \\le x^2\\):\n- A: Với \\(x=0\\), ta có \\(0+15 \\le 0^2 \\Rightarrow 15 \\le 0\\) (Sai).\n- B: Với \\(x=3\\), ta có \\(3+15 \\le 3^2 \\Rightarrow 18 \\le 9\\) (Sai).\n- C: Với \\(x=4\\), ta có \\(4+15 \\le 4^2 \\Rightarrow 19 \\le 16\\) (Sai).\n- D: Với \\(x=5\\), ta có \\(5+15 \\le 5^2 \\Rightarrow 20 \\le 25\\) (Đúng)."
     },
     {
       "q_id": "l10c15_tn3",
@@ -41,7 +43,8 @@
         "\\(\\exists x \\in \\mathbb{N}, x^2+2x+5\\) là số thực."
       ],
       "correct_index": 0,
-      "question_text": "Mệnh đề phủ định của mệnh đề \\(P: “ \\exists x \\in \\mathbb{N}, x^2+2x+5\\) là số nguyên tố” là:<br>A. \\(\\forall x \\in \\mathbb{N}, x^2+2x+5\\) không là số nguyên tố.<br>B. \\(\\exists x \\in \\mathbb{N}, x^2+2x+5\\) là hợp số.<br>C. \\(\\forall x \\in \\mathbb{N}, x^2+2x+5\\) không phải là hợp số.<br>D. \\(\\exists x \\in \\mathbb{N}, x^2+2x+5\\) là số thực."
+      "question_text": "Mệnh đề phủ định của mệnh đề \\(P: “ \\exists x \\in \\mathbb{N}, x^2+2x+5\\) là số nguyên tố” là:<br>A. \\(\\forall x \\in \\mathbb{N}, x^2+2x+5\\) không là số nguyên tố.<br>B. \\(\\exists x \\in \\mathbb{N}, x^2+2x+5\\) là hợp số.<br>C. \\(\\forall x \\in \\mathbb{N}, x^2+2x+5\\) không phải là hợp số.<br>D. \\(\\exists x \\in \\mathbb{N}, x^2+2x+5\\) là số thực.",
+      "detailed_explanation": "Đáp án đúng: A. \\(\\forall x \\in \\mathbb{N}, x^2+2x+5\\) không là số nguyên tố.\n\nPhân tích: Phủ định của mệnh đề \"\\(\\exists x, P(x)\\)\" là \"\\(\\forall x, \\overline{P(x)}\\)\".\n- Phủ định của \"\\(\\exists\\)\" (tồn tại) là \"\\(\\forall\\)\" (với mọi).\n- Phủ định của \"là số nguyên tố\" là \"không là số nguyên tố\"."
     },
     {
       "q_id": "l10c15_tn4",
@@ -55,7 +58,8 @@
         "\\(A=\\{1; -2\\}\\)"
       ],
       "correct_index": 0,
-      "question_text": "Cho tập hợp \\(A=\\{x \\in \\mathbb{R} | x^2-x-2=0\\}\\). Viết lại tập A bằng cách liệt kê các phần tử?<br>A. \\(A=\\{-1; 2\\}\\)<br>B. \\(A=\\{-1\\}\\)<br>C. \\(A=\\{2\\}\\)<br>D. \\(A=\\{1; -2\\}\\)"
+      "question_text": "Cho tập hợp \\(A=\\{x \\in \\mathbb{R} | x^2-x-2=0\\}\\). Viết lại tập A bằng cách liệt kê các phần tử?<br>A. \\(A=\\{-1; 2\\}\\)<br>B. \\(A=\\{-1\\}\\)<br>C. \\(A=\\{2\\}\\)<br>D. \\(A=\\{1; -2\\}\\)",
+      "detailed_explanation": "Đáp án đúng: A. \\(A=\\{-1; 2\\}\\)\n\nPhân tích: Ta giải phương trình bậc hai \\(x^2-x-2=0\\).\nPhương trình có dạng \\(a - b + c = 1 - (-1) - 2 = 0\\), nên có hai nghiệm là \\(x_1 = -1\\) và \\(x_2 = -\\frac{c}{a} = 2\\).\nCả hai nghiệm đều là số thực nên tập hợp A gồm hai phần tử là -1 và 2."
     },
     {
       "q_id": "l10c15_tn5",
@@ -69,7 +73,8 @@
         "\\(A \\cap B = (-\\infty; +\\infty)\\)"
       ],
       "correct_index": 1,
-      "question_text": "Cho hai tập hợp \\(A=(-\\infty; 2]\\) và \\(B=(-6; +\\infty)\\). Tìm \\(A \\cap B\\).<br>A. \\(A \\cap B = \\{-6; 2\\}\\)<br>B. \\(A \\cap B = (-6; 2]\\)<br>C. \\(A \\cap B = (-6; 2)\\)<br>D. \\(A \\cap B = (-\\infty; +\\infty)\\)"
+      "question_text": "Cho hai tập hợp \\(A=(-\\infty; 2]\\) và \\(B=(-6; +\\infty)\\). Tìm \\(A \\cap B\\).<br>A. \\(A \\cap B = \\{-6; 2\\}\\)<br>B. \\(A \\cap B = (-6; 2]\\)<br>C. \\(A \\cap B = (-6; 2)\\)<br>D. \\(A \\cap B = (-\\infty; +\\infty)\\)",
+      "detailed_explanation": "Đáp án đúng: B. \\(A \\cap B = (-6; 2]\\)\n\nPhân tích: Phép giao (\\(\\cap\\)) là tìm những phần tử chung của cả hai tập hợp.\nTa cần tìm các số x thỏa mãn đồng thời \\(x \\le 2\\) và \\(x > -6\\).\nKết hợp lại ta được \\(-6 < x \\le 2\\), tương ứng với nửa khoảng \\((-6; 2]\\)."
     },
     {
       "q_id": "l10c15_tn6",
@@ -83,7 +88,8 @@
         "12"
       ],
       "correct_index": 0,
-      "question_text": "Cho tập hợp \\(X=\\{1; 2; 3; 4\\}\\). Số tập con có 3 phần tử của X là:<br>A. 4<br>B. 6<br>C. 8<br>D. 12"
+      "question_text": "Cho tập hợp \\(X=\\{1; 2; 3; 4\\}\\). Số tập con có 3 phần tử của X là:<br>A. 4<br>B. 6<br>C. 8<br>D. 12",
+      "detailed_explanation": "Đáp án đúng: A. 4\n\nPhân tích: Ta liệt kê tất cả các tập con của X có đúng 3 phần tử:\n- \\(\\{1, 2, 3\\}\\)\n- \\(\\{1, 2, 4\\}\\)\n- \\(\\{1, 3, 4\\}\\)\n- \\(\\{2, 3, 4\\}\\)\nĐếm lại, ta có tất cả 4 tập con."
     },
     {
       "q_id": "l10c15_tn7",
@@ -97,7 +103,8 @@
         "\\(\\cot{\\alpha} > 0\\)"
       ],
       "correct_index": 2,
-      "question_text": "Cho góc \\(\\alpha\\) tù (\\(90^\\circ < \\alpha < 180^\\circ\\)). Điều khẳng định nào sau đây là đúng?<br>A. \\(\\sin{\\alpha} < 0\\)<br>B. \\(\\cos{\\alpha} > 0\\)<br>C. \\(\\tan{\\alpha} < 0\\)<br>D. \\(\\cot{\\alpha} > 0\\)"
+      "question_text": "Cho góc \\(\\alpha\\) tù (\\(90^\\circ < \\alpha < 180^\\circ\\)). Điều khẳng định nào sau đây là đúng?<br>A. \\(\\sin{\\alpha} < 0\\)<br>B. \\(\\cos{\\alpha} > 0\\)<br>C. \\(\\tan{\\alpha} < 0\\)<br>D. \\(\\cot{\\alpha} > 0\\)",
+      "detailed_explanation": "Đáp án đúng: C. \\(\\tan{\\alpha} < 0\\)\n\nPhân tích: Khi góc \\(\\alpha\\) tù (thuộc góc phần tư thứ II):\n- \\(\\sin{\\alpha} > 0\\) (tung độ dương).\n- \\(\\cos{\\alpha} < 0\\) (hoành độ âm).\n- \\(\\tan{\\alpha} = \\frac{\\sin{\\alpha}}{\\cos{\\alpha}}\\) (dương chia âm) nên \\(\\tan{\\alpha} < 0\\).\n- \\(\\cot{\\alpha} = \\frac{\\cos{\\alpha}}{\\sin{\\alpha}}\\) (âm chia dương) nên \\(\\cot{\\alpha} < 0\\).\nVậy, khẳng định C là đúng."
     },
     {
       "q_id": "l10c15_tn8",
@@ -111,7 +118,8 @@
         "\\(5\\)"
       ],
       "correct_index": 1,
-      "question_text": "Cho \\(\\triangle ABC\\) có \\(BC=3, AC=4, \\hat{C}=60^\\circ\\). Khi đó độ dài cạnh AB bằng:<br>A. \\(25\\)<br>B. \\(\\sqrt{13}\\)<br>C. \\(13\\)<br>D. \\(5\\)"
+      "question_text": "Cho \\(\\triangle ABC\\) có \\(BC=3, AC=4, \\hat{C}=60^\\circ\\). Khi đó độ dài cạnh AB bằng:<br>A. \\(25\\)<br>B. \\(\\sqrt{13}\\)<br>C. \\(13\\)<br>D. \\(5\\)",
+      "detailed_explanation": "Đáp án đúng: B. \\(\\sqrt{13}\\)\n\nPhân tích: Áp dụng định lý cosin cho tam giác ABC:\n$$AB^2 = AC^2 + BC^2 - 2 \\cdot AC \\cdot BC \\cdot \\cos{C}$$\n$$AB^2 = 4^2 + 3^2 - 2 \\cdot 4 \\cdot 3 \\cdot \\cos{60^\\circ}$$\n$$AB^2 = 16 + 9 - 24 \\cdot \\frac{1}{2}$$\n$$AB^2 = 25 - 12 = 13$$\n$$AB = \\sqrt{13}$$"
     },
     {
       "q_id": "l10c15_tn9",
@@ -125,7 +133,8 @@
         "\\(45^\\circ\\)"
       ],
       "correct_index": 0,
-      "question_text": "Cho tam giác ABC có độ dài ba cạnh lần lượt là \\(a=8, b=7, c=3\\). Số đo góc B là:<br>A. \\(60^\\circ\\)<br>B. \\(30^\\circ\\)<br>C. \\(120^\\circ\\)<br>D. \\(45^\\circ\\)"
+      "question_text": "Cho tam giác ABC có độ dài ba cạnh lần lượt là \\(a=8, b=7, c=3\\). Số đo góc B là:<br>A. \\(60^\\circ\\)<br>B. \\(30^\\circ\\)<br>C. \\(120^\\circ\\)<br>D. \\(45^\\circ\\)",
+      "detailed_explanation": "Đáp án đúng: A. \\(60^\\circ\\)\n\nPhân tích: Áp dụng hệ quả của định lý cosin để tính góc B:\n$$\\cos{B} = \\frac{a^2 + c^2 - b^2}{2ac}$$\n$$\\cos{B} = \\frac{8^2 + 3^2 - 7^2}{2 \\cdot 8 \\cdot 3}$$\n$$\\cos{B} = \\frac{64 + 9 - 49}{48} = \\frac{24}{48} = \\frac{1}{2}$$\nVì \\(\\cos{B} = \\frac{1}{2}\\) nên \\(\\hat{B} = 60^\\circ\\)."
     },
     {
       "q_id": "l10c15_tn10",
@@ -139,7 +148,8 @@
         "\\(\\frac{2}{5}\\)"
       ],
       "correct_index": 1,
-      "question_text": "Cho \\(\\tan{x}=3\\). Tính \\(P=\\frac{2\\sin{x}-\\cos{x}}{\\sin{x}+\\cos{x}}\\).<br>A. \\(\\frac{3}{2}\\)<br>B. \\(\\frac{5}{4}\\)<br>C. 3<br>D. \\(\\frac{2}{5}\\)"
+      "question_text": "Cho \\(\\tan{x}=3\\). Tính \\(P=\\frac{2\\sin{x}-\\cos{x}}{\\sin{x}+\\cos{x}}\\).<br>A. \\(\\frac{3}{2}\\)<br>B. \\(\\frac{5}{4}\\)<br>C. 3<br>D. \\(\\frac{2}{5}\\)",
+      "detailed_explanation": "Đáp án đúng: B. \\(\\frac{5}{4}\\)\n\nPhân tích: Vì \\(\\tan{x}=3\\), nên \\(\\cos{x} \\neq 0\\). Ta có thể chia cả tử và mẫu của P cho \\(\\cos{x}\\):\n$$P = \\frac{\\frac{2\\sin{x}}{\\cos{x}} - \\frac{\\cos{x}}{\\cos{x}}}{\\frac{\\sin{x}}{\\cos{x}} + \\frac{\\cos{x}}{\\cos{x}}}$$\n$$P = \\frac{2\\tan{x} - 1}{\\tan{x} + 1}$$\nThay \\(\\tan{x}=3\\) vào biểu thức:\n$$P = \\frac{2(3) - 1}{3 + 1} = \\frac{5}{4}$$"
     },
     {
       "q_id": "l10c15_ds1",
@@ -152,8 +162,14 @@
         "\\(\\forall x \\in \\mathbb{N}, P(x)\\) là mệnh đề đúng.",
         "\\(\\exists x \\in \\mathbb{Q}, P(x)\\) là mệnh đề đúng."
       ],
-      "correct_values": [false, true, false, true],
-      "question_text": "Cho mệnh đề chứa biến \\(P(x): \"x > x^3\"\\).<br>a) \\(P(1)\\) là mệnh đề đúng.<br>b) \\(P(\\frac{1}{3})\\) là mệnh đề đúng.<br>c) \\(\\forall x \\in \\mathbb{N}, P(x)\\) là mệnh đề đúng.<br>d) \\(\\exists x \\in \\mathbb{Q}, P(x)\\) là mệnh đề đúng."
+      "correct_values": [
+        false,
+        true,
+        false,
+        true
+      ],
+      "question_text": "Cho mệnh đề chứa biến \\(P(x): \"x > x^3\"\\).<br>a) \\(P(1)\\) là mệnh đề đúng.<br>b) \\(P(\\frac{1}{3})\\) là mệnh đề đúng.<br>c) \\(\\forall x \\in \\mathbb{N}, P(x)\\) là mệnh đề đúng.<br>d) \\(\\exists x \\in \\mathbb{Q}, P(x)\\) là mệnh đề đúng.",
+      "detailed_explanation": "Đáp án:\na) Sai. (Vì \\(1 > 1^3 \\Leftrightarrow 1 > 1\\) là sai)\nb) Đúng. (Vì \\(\\frac{1}{3} > (\\frac{1}{3})^3 \\Leftrightarrow \\frac{1}{3} > \\frac{1}{27}\\) là đúng)\nc) Sai. (Ví dụ \\(x=0 \\in \\mathbb{N}\\), \\(0>0^3\\) là sai; \\(x=2 \\in \\mathbb{N}\\), \\(2>2^3\\) là sai)\nd) Đúng. (Ví dụ \\(x=\\frac{1}{3} \\in \\mathbb{Q}\\) đã chứng minh ở câu b)"
     },
     {
       "q_id": "l10c15_ds2",
@@ -166,8 +182,14 @@
         "\\(M \\cup N = \\{-1; 0; 1; 2\\}\\).",
         "\\(M \\setminus N = \\{1\\}\\)."
       ],
-      "correct_values": [true, true, true, true],
-      "question_text": "Cho hai tập hợp \\(M=\\{x \\in \\mathbb{N} | -1 \\le x \\le 2\\}\\), \\(N=\\{-1; 0; 2\\}\\).<br>a) Viết lại tập M bằng cách liệt kê các phần tử, ta có \\(M=\\{0; 1; 2\\}\\).<br>b) \\(M \\cap N = \\{0; 2\\}\\).<br>c) \\(M \\cup N = \\{-1; 0; 1; 2\\}\\).<br>d) \\(M \\setminus N = \\{1\\}\\)."
+      "correct_values": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "question_text": "Cho hai tập hợp \\(M=\\{x \\in \\mathbb{N} | -1 \\le x \\le 2\\}\\), \\(N=\\{-1; 0; 2\\}\\).<br>a) Viết lại tập M bằng cách liệt kê các phần tử, ta có \\(M=\\{0; 1; 2\\}\\).<br>b) \\(M \\cap N = \\{0; 2\\}\\).<br>c) \\(M \\cup N = \\{-1; 0; 1; 2\\}\\).<br>d) \\(M \\setminus N = \\{1\\}\\).",
+      "detailed_explanation": "Đáp án:\na) Đúng. (Các số tự nhiên x thỏa mãn \\(-1 \\le x \\le 2\\) là 0, 1, 2)\nb) Đúng. (Các phần tử chung của M và N là 0 và 2)\nc) Đúng. (Hợp của M và N là tất cả các phần tử của cả hai tập hợp)\nd) Đúng. (Hiệu M cho N là các phần tử thuộc M nhưng không thuộc N)"
     },
     {
       "q_id": "l10c15_ds3",
@@ -180,8 +202,14 @@
         "\\(\\tan{\\alpha} = -\\frac{5}{12}\\).",
         "\\(\\cot{\\alpha} = \\frac{12}{5}\\)."
       ],
-      "correct_values": [true, true, true, false],
-      "question_text": "Cho \\(\\sin{\\alpha} = \\frac{5}{13}\\) và \\(90^\\circ < \\alpha < 180^\\circ\\).<br>a) \\(\\cos{\\alpha} < 0\\).<br>b) \\(\\cos{\\alpha} = -\\frac{12}{13}\\).<br>c) \\(\\tan{\\alpha} = -\\frac{5}{12}\\).<br>d) \\(\\cot{\\alpha} = \\frac{12}{5}\\)."
+      "correct_values": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "question_text": "Cho \\(\\sin{\\alpha} = \\frac{5}{13}\\) và \\(90^\\circ < \\alpha < 180^\\circ\\).<br>a) \\(\\cos{\\alpha} < 0\\).<br>b) \\(\\cos{\\alpha} = -\\frac{12}{13}\\).<br>c) \\(\\tan{\\alpha} = -\\frac{5}{12}\\).<br>d) \\(\\cot{\\alpha} = \\frac{12}{5}\\).",
+      "detailed_explanation": "Đáp án:\na) Đúng. (Góc \\(\\alpha\\) tù thuộc góc phần tư thứ II nên có cos âm)\nb) Đúng. (Từ \\(\\sin^2{\\alpha} + \\cos^2{\\alpha} = 1 \\Rightarrow \\cos^2{\\alpha} = 1 - (\\frac{5}{13})^2 = \\frac{144}{169}\\). Vì \\(\\cos{\\alpha} < 0\\) nên \\(\\cos{\\alpha} = -\\frac{12}{13}\\))\nc) Đúng. (\\(\\tan{\\alpha} = \\frac{\\sin{\\alpha}}{\\cos{\\alpha}} = \\frac{5/13}{-12/13} = -\\frac{5}{12}\\))\nd) Sai. (\\(\\cot{\\alpha} = \\frac{1}{\\tan{\\alpha}} = -\\frac{12}{5}\\))"
     },
     {
       "q_id": "l10c15_ds4",
@@ -194,8 +222,14 @@
         "Tam giác MNP cân tại M.",
         "\\(\\sin{P} = \\frac{12}{13}\\)."
       ],
-      "correct_values": [true, true, false, true],
-      "question_text": "Cho tam giác MNP có \\(MN=13\\), \\(MP=10\\), \\(\\cos{M}=\\frac{5}{13}\\).<br>a) \\(NP^2 = MN^2+MP^2 - 2 \\cdot MN \\cdot MP \\cdot \\cos{M}\\).<br>b) Độ dài cạnh NP là 13.<br>c) Tam giác MNP cân tại M.<br>d) \\(\\sin{P} = \\frac{12}{13}\\)."
+      "correct_values": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "question_text": "Cho tam giác MNP có \\(MN=13\\), \\(MP=10\\), \\(\\cos{M}=\\frac{5}{13}\\).<br>a) \\(NP^2 = MN^2+MP^2 - 2 \\cdot MN \\cdot MP \\cdot \\cos{M}\\).<br>b) Độ dài cạnh NP là 13.<br>c) Tam giác MNP cân tại M.<br>d) \\(\\sin{P} = \\frac{12}{13}\\).",
+      "detailed_explanation": "Đáp án:\na) Đúng. (Đây là công thức của định lý cosin)\nb) Đúng. (\\(NP^2 = 13^2 + 10^2 - 2 \\cdot 13 \\cdot 10 \\cdot \\frac{5}{13} = 169 + 100 - 100 = 169 \\Rightarrow NP=13\\))\nc) Sai. (Vì \\(MN = NP = 13\\), tam giác MNP cân tại N)\nd) Đúng. (Dùng định lý cosin cho góc P: \\(\\cos P = \\frac{MP^2+NP^2-MN^2}{2 \\cdot MP \\cdot NP} = \\frac{10^2+13^2-13^2}{2 \\cdot 10 \\cdot 13} = \\frac{100}{260} = \\frac{5}{13}\\). Suy ra \\(\\sin P = \\sqrt{1-\\cos^2 P} = \\sqrt{1-(\\frac{5}{13})^2} = \\frac{12}{13}\\))"
     },
     {
       "q_id": "l10c15_tl1",
@@ -206,34 +240,41 @@
         {
           "q_id": "l10c15_tl1a",
           "final_answer": "247",
-          "question_text": "Thầy Đạt giao cho lớp 10A2 dự án điều tra về tình hình sử dụng nước uống trong sinh hoạt hằng ngày của các học sinh trong trường. Sau một tuần tiến hành phỏng vấn thu thập thông tin, nhóm điều tra thu được số liệu sau đây:<br>- Có 184 bạn trả lời phỏng vấn là có uống nước đun sôi hằng ngày;<br>- Có 150 bạn trả lời phỏng vấn là có uống nước đóng chai hằng ngày;<br>Trong số những bạn trả lời phỏng vấn, 87 bạn trả lời là có sử dụng cả nước đun sôi và nước đóng chai hằng ngày.<br>Hãy giúp nhóm điều tra xác định số lượng học sinh đã tham gia phỏng vấn, biết rằng tất cả các bạn được phỏng vấn đều chỉ uống nước đun sôi hoặc uống nước đóng chai."
+          "question_text": "Thầy Đạt giao cho lớp 10A2 dự án điều tra về tình hình sử dụng nước uống trong sinh hoạt hằng ngày của các học sinh trong trường. Sau một tuần tiến hành phỏng vấn thu thập thông tin, nhóm điều tra thu được số liệu sau đây:<br>- Có 184 bạn trả lời phỏng vấn là có uống nước đun sôi hằng ngày;<br>- Có 150 bạn trả lời phỏng vấn là có uống nước đóng chai hằng ngày;<br>Trong số những bạn trả lời phỏng vấn, 87 bạn trả lời là có sử dụng cả nước đun sôi và nước đóng chai hằng ngày.<br>Hãy giúp nhóm điều tra xác định số lượng học sinh đã tham gia phỏng vấn, biết rằng tất cả các bạn được phỏng vấn đều chỉ uống nước đun sôi hoặc uống nước đóng chai.",
+          "detailed_explanation": "Gọi \\(S\\) là tập hợp học sinh uống nước đun sôi, \\(C\\) là tập hợp học sinh uống nước đóng chai.\nTa có: \\(|S| = 184\\), \\(|C| = 150\\), \\(|S \\cap C| = 87\\).\nSố học sinh đã được khảo sát là \\(|S \\cup C|\\).\nÁp dụng công thức bao hàm - loại trừ: \\(|S \\cup C| = |S| + |C| - |S \\cap C|\\).\n\\(|S \\cup C| = 184 + 150 - 87 = 247\\).\nVậy, nhóm đã khảo sát 247 học sinh."
         },
         {
           "q_id": "l10c15_tl1b",
           "final_answer": "2",
-          "question_text": "Cho tập hợp \\(A=(-\\infty; 3)\\) và \\(B=[-2; 5)\\). Số phần tử nguyên dương của tập \\(C=A \\cap B\\) là bao nhiêu?"
+          "question_text": "Cho tập hợp \\(A=(-\\infty; 3)\\) và \\(B=[-2; 5)\\). Số phần tử nguyên dương của tập \\(C=A \\cap B\\) là bao nhiêu?",
+          "detailed_explanation": "Giao của A và B là: $$A \\cap B = [-2; 3)$$.\nCác số nguyên thuộc tập này là: \\(\\{-2, -1, 0, 1, 2\\}\\).\nCác số nguyên dương trong đó là: \\(\\{1, 2\\}\\).\nVậy có 2 số nguyên dương."
         },
         {
           "q_id": "l10c15_tl1c",
           "final_answer": "8",
-          "question_text": "Cho tập \\(A=\\{3;4;5;6;7\\}\\) và \\(B=\\{3;5;7\\}\\). Tìm số tập X sao cho \\(X \\cup B = A\\)?"
+          "question_text": "Cho tập \\(A=\\{3;4;5;6;7\\}\\) và \\(B=\\{3;5;7\\}\\). Tìm số tập X sao cho \\(X \\cup B = A\\)?",
+          "detailed_explanation": "Để \\(X \\cup B = A\\), tập X phải thỏa mãn 2 điều kiện:\n1. X phải chứa tất cả các phần tử của A mà không có trong B. Tức là X phải chứa \\(\\{4, 6\\}\\).\n2. X có thể chứa hoặc không chứa các phần tử của B.\nTập B có 3 phần tử, nên số tập con của B là \\(2^3 = 8\\). Mỗi tập con này kết hợp với \\(\\{4, 6\\}\\) sẽ tạo ra một tập X thỏa mãn.\nVậy, có 8 tập hợp X."
         },
         {
           "q_id": "l10c15_tl1d",
           "final_answer": "8.5",
-          "question_text": "Tính giá trị của biểu thức \\(S = \\cos^2{5^\\circ} + \\cos^2{10^\\circ} + ... + \\cos^2{85^\\circ}\\)."
+          "question_text": "Tính giá trị của biểu thức \\(S = \\cos^2{5^\\circ} + \\cos^2{10^\\circ} + ... + \\cos^2{85^\\circ}\\).",
+          "detailed_explanation": "Áp dụng công thức \\(\\cos^2{\\alpha} + \\sin^2{\\alpha} = 1\\) và \\(\\sin{\\alpha} = \\cos{(90^\\circ - \\alpha)}\\).\nTa có: \\(S = (\\cos^2{5^\\circ} + \\cos^2{85^\\circ}) + (\\cos^2{10^\\circ} + \\cos^2{80^\\circ}) + \\cdots + (\\cos^2{40^\\circ} + \\cos^2{50^\\circ}) + \\cos^2{45^\\circ}\\).\nMỗi cặp \\((\\cos^2{\\alpha} + \\cos^2{(90^\\circ-\\alpha)}) = 1\\). Có 8 cặp như vậy.\n$$S = 8 \\times 1 + (\\frac{\\sqrt{2}}{2})^2 = 8 + \\frac{1}{2} = 8.5$$.\nVậy, \\(S = 8.5\\)."
         },
         {
           "q_id": "l10c15_tl1e",
           "final_answer": "18",
-          "question_text": "Ở lớp 10A, mỗi học sinh đều có thể chơi được ít nhất 1 trong 3 môn thể thao là cầu lông, bóng đá và bóng chuyền. Có 11 em chơi được bóng đá, 10 em chơi được cầu lông và 8 em chơi được bóng chuyền. Có 2 em chơi được cả 3 môn, có 5 em chơi được bóng đá và bóng chuyền, có 4 em chơi được bóng đá và cầu lông, có 4 em chơi được bóng chuyền và cầu lông. Hỏi lớp học có bao nhiêu học sinh?"
+          "question_text": "Ở lớp 10A, mỗi học sinh đều có thể chơi được ít nhất 1 trong 3 môn thể thao là cầu lông, bóng đá và bóng chuyền. Có 11 em chơi được bóng đá, 10 em chơi được cầu lông và 8 em chơi được bóng chuyền. Có 2 em chơi được cả 3 môn, có 5 em chơi được bóng đá và bóng chuyền, có 4 em chơi được bóng đá và cầu lông, có 4 em chơi được bóng chuyền và cầu lông. Hỏi lớp học có bao nhiêu học sinh?",
+          "detailed_explanation": "Gọi số học sinh chơi bóng đá, cầu lông, bóng chuyền lần lượt là \\(|BĐ|\\), \\(|CL|\\), \\(|BC|\\).\nSĩ số lớp = \\(|BĐ \\cup CL \\cup BC|\\)\n= \\(|BĐ| + |CL| + |BC| - (|BĐ \\cap CL| + |BĐ \\cap BC| + |CL \\cap BC|) + |BĐ \\cap CL \\cap BC|\\)\n= \\(11 + 10 + 8 - (4 + 5 + 4) + 2\\)\n= \\(29 - 13 + 2 = 18\\).\nVậy, sĩ số lớp là 18 học sinh.\n\nCách khác: Sử dụng <a href=\"cong-cu-venn.html\"  target=\"_blank\">công cụ sơ đồ Venn </a> để giải bài toán này một cách trực quan."
         },
         {
           "q_id": "l10c15_tl1f",
           "final_answer": "304.14",
-          "question_text": "Một ô tô muốn đi từ A đến C nhưng giữa A và C là một ngọn núi cao nên ô tô phải đi thành hai đoạn từ A đến B rồi từ B đến C. Các đoạn đường tạo thành tam giác ABC có \\(AB=150km\\), \\(BC=200km\\) và \\(\\hat{ABC}=120^\\circ\\). Nếu người ta làm một đoạn đường hầm xuyên núi chạy thẳng từ A đến C thì chiều dài của đường hầm là bao nhiêu km? (làm tròn đến hàng phần trăm)"
+          "question_text": "Một ô tô muốn đi từ A đến C nhưng giữa A và C là một ngọn núi cao nên ô tô phải đi thành hai đoạn từ A đến B rồi từ B đến C. Các đoạn đường tạo thành tam giác ABC có \\(AB=150km\\), \\(BC=200km\\) và \\(\\hat{ABC}=120^\\circ\\). Nếu người ta làm một đoạn đường hầm xuyên núi chạy thẳng từ A đến C thì chiều dài của đường hầm là bao nhiêu km? (làm tròn đến hàng phần trăm)",
+          "detailed_explanation": "Áp dụng định lý cosin cho \\(\\triangle ABC\\):\n$$AC^2 = AB^2 + BC^2 - 2 \\cdot AB \\cdot BC \\cdot \\cos{\\hat{B}}$$\n$$AC^2 = 150^2 + 200^2 - 2 \\cdot 150 \\cdot 200 \\cdot \\cos{120^\\circ}$$\n$$AC^2 = 22500 + 40000 - 60000 \\cdot (-\\frac{1}{2})$$\n$$AC^2 = 62500 + 30000 = 92500$$\n$$AC = \\sqrt{92500} \\approx 304.14$$ km.\nVậy, đường hầm dài khoảng 304.14 km."
         }
-      ]
+      ],
+      "detailed_explanation": "Chưa có đáp án."
     }
   ]
 }

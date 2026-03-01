@@ -1,0 +1,1670 @@
+\documentclass[12pt,a4paper]{book}
+
+% ===================================================
+% PACKAGES
+% ===================================================
+\usepackage[utf8]{vietnam}
+\usepackage[book]{ex_test}
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage[top=2cm,bottom=2.2cm,left=2cm,right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% Suppress badness warnings for OCR text
+\tolerance=2000
+\emergencystretch=3em
+\hbadness=10000
+\setlength{\headheight}{14pt}
+
+% OCR text may have minor math-mode issues; pdflatex -interaction=nonstopmode
+% will keep compiling past errors (up to the 100-error TeX limit)
+
+% ===================================================
+% COLOR PALETTE (Nguyen Thanh Nhan style-inspired)
+% ===================================================
+\definecolor{mainblue}{RGB}{0,112,192}
+\definecolor{mainorange}{RGB}{237,125,49}
+\definecolor{lightgray}{RGB}{245,245,245}
+
+% ===================================================
+% HEADER / FOOTER
+% ===================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\bfseries\color{mainblue} TOAN 10 - KET NOI TRI THUC}
+\fancyhead[R]{\small\bfseries\color{mainblue} CHUYEN DE VA BAI TAP}
+\fancyfoot[R]{\small Trang \thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================
+% SECTION LOOK
+% ===================================================
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+\makeatletter
+\renewcommand{\chaptername}{Chuong}
+\makeatother
+
+\newcommand{\booksection}[1]{%
+  \par\bigskip\noindent\textbf{\Large\color{mainblue}#1}\par\smallskip
+}
+
+% ===================================================
+% CONTENT BOXES
+% ===================================================
+\newtcolorbox{kienthuc}{
+  enhanced,
+  breakable,
+  colback=mainblue!4,
+  colframe=mainblue!70!black,
+  boxrule=0.6pt,
+  arc=1.5mm,
+  left=1.5mm,right=1.5mm,top=1mm,bottom=1mm,
+  title={\textbf{Kien thuc can nho}},
+  fonttitle=\bfseries
+}
+
+\newtcolorbox{vidu}[1][]{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=mainorange!85!black,
+  boxrule=0.55pt,
+  arc=1.2mm,
+  left=1.5mm,right=1.5mm,top=1mm,bottom=1mm,
+  title={\textbf{Vi du}},
+  fonttitle=\bfseries,
+  #1
+}
+
+% ===================================================
+% EXERCISE / FIGURE STYLING (ex_test)
+% ===================================================
+\renewcommand{\nameex}{Cau}
+\def\loigiaiEX{Huong dan giai.}
+
+\newcommand{\examfigure}[2][0.60\textwidth]{%
+  \begin{center}
+    \includegraphics[width=#1]{#2}
+  \end{center}
+}
+
+\title{Chu De Phuong Trinh Duong Tron Toan 10 Knttvcs Le Ba Bao}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\Opensolutionfile{ansbook}[ans/loigiai]
+\Opensolutionfile{ans}[ans/dapan]
+
+\examfigure{images/p1_img1.png}
+
+CHUYÊN ĐỀ TOÁN 10
+
+ĐƯỜNG TRÒN
+
+Tác giả: LÊ BÁ BẢO
+Trường THPT Đặng Huy Trứ, Huế
+Admin CLB Giáo viên trẻ TP Huế
+
+
+
+Chủ đề:
+
+PHƯƠNG TRÌNH ĐƯỜNG TRÒN
+
+I. TÓM TẮT LÝ THUYẾT
+1. Phương trình đường tròn
+\subsection{Dạng 1. Phương trình đường tròn $(C)$ có tâm I(a,b), bán kính R > 0:}
+
+\[
+(x-a)^2 + (y-b)^2 = R^2
+\]
+\subsection{Dạng 2. Phương trình tổng quát: $x^2 + y^2 - 2ax - 2by + c = 0$ (*) có tâm I(a;b), bán kính $R = \sqrt{a^2 + b^2 - c}$}
+
+Lưu ý: Điều kiện để (*) là phương trình của một đường tròn là: $a^2 + b^2 - c > 0$
+
+2. Tiếp tuyến của đường tròn: $x^2 + y^2 - 2ax - 2by + c = 0$
+
+\examfigure{images/p2_fig1.png}
+
+a) Tiếp tuyến của $(C)$ tại $M_0(x_0; y_0)$ ($M_0$: tiếp điểm)
+Tiếp tuyến của $(C)$ tại $M_0(x_0; y_0)$ có phương trình:
+\[
+xx_0 + yy_0 - a(x + x_0) - b(y + y_0) + c = 0
+\]
+(Công thức phán đôi toạ độ)
+
+Nhận xét:
+Rõ ràng tiếp tuyến $\Delta$ đi qua $M_0(x_0; y_0)$ và có 1 vectơ pháp $\overrightarrow{IM_0} = (x_0 - a; y_0 - b)$
+\[
+\Delta: \quad (a - x_0)(x - x_0) + (b - y_0)(y - y_0) = 0
+\]
+
+b) Điều kiện tiếp xúc:
+Đường thẳng $\Delta: ax + by + c = 0$ là tiếp tuyến của $(C)$ $\Leftrightarrow d(I; \Delta) = R$
+
+Lưu ý: Để tiện trong việc tìm phương trình tiếp tuyến của $(C)$, chúng ta không nên xét phương trình đường thẳng dạng $y = kx + m$ (tồn tại hệ số góc k). Vì như thế dẫn đến sót trường hợp tiếp tuyến thẳng đứng $x = C$ (không có hệ số góc).
+
+Nhắc:
+* Đường thẳng $y = kx + m$ có hệ số góc k.
+* Đường thẳng $x = C$ (vuông góc Ox) không có hệ số góc.
+
+Do đó, trong quá trình viết pt tiếp tuyến với $(C)$ từ 1 điểm $M_0(x_0; y_0)$ (ngoài $(C)$) ta có thể thực hiện bằng 2 p.pháp:
+* Phương pháp 1: Gọi đường thẳng bất kì qua $M_0(x_0; y_0)$ và có hệ số góc k :
+\[
+y - y_0 = k(x - x_0)
+\]
+
+
+
+áp dụng điều kiện tiếp xúc, giải được k.
+* Nếu kết quả 2 hệ số góc k (tương ứng 2 tiếp tuyến), bài toán giải quyết xong.
+* Nếu giải được 1 hệ số góc k, thì xét đường thẳng $x = x_0$ (dây là tiếp tuyến thứ hai).
+* Phương pháp 2: Gọi $n(a;b) \left( a^2 + b^2 > 0 \right)$ là 1 v.t pháp của đ.thẳng $\Delta$ đi qua $M_0(x_0; y_0)$
+
+\[
+a(x - x_0) + b(y - y_0) = 0
+\]
+
+áp dụng điều kiện tiếp xúc, ta được 1 phương trình đẳng cấp bậc hai theo $a, b$.
+
+Nhận xét: Phương pháp 2 tỏ ra hiệu quả và khoa học hơn.
+
+Lưu ý: Vị trí tương đối của hai đường tròn - Số tiếp tuyến chung
+Cho hai đường tròn ($C_1$) có tâm $I_1$, bán kính $R_1$ và ($C_2$) có tâm $I_2$, bán kính $R_2$.
+
+\begin{tabular}{|c|c|c|}
+\hline
+Trường hợp & Kết luận & Số tiếp tuyến chung \\
+\hline
+$R_1 + R_2 < I_1I_2$ & ($C_1$) không cắt ($C_2$) (ngoài nhau) & 4 \\
+\hline
+$R_1 + R_2 = I_1I_2$ & ($C_1$) tiếp xúc ngoài với ($C_2$) & 3 \\
+\hline
+$R_1 + R_2 > I_1I_2 > |R_1 - R_2|$ & ($C_1$) cắt ($C_2$) tại hai điểm phân biệt & 2 \\
+\hline
+$|R_1 - R_2| = I_1I_2$ & ($C_1$) tiếp xúc trong với ($C_2$) & 1 \\
+\hline
+\end{tabular}
+
+
+
+II. BÀI TẬP TỰ LUẬN
+
+\subsection{Dạng 1. NHẬN DẠNG PHƯƠNG TRÌNH ĐƯỜNG TRÒN}
+
+Phương pháp:
+
+\subsection{Dạng 1. Đường tròn $(C): (x-a)^2 + (y-b)^2 = R^2$ có tâm $I(a;b)$, bán kính $R$.}
+
+
+\subsection{Dạng 2. Đường tròn $(C): x^2 + y^2 - 2ax - 2by + x = 0$ với $a^2 + b^2 - c > 0$, có tâm $I(a;b)$, bán kính $R = \sqrt{a^2 + b^2 - c}$.}
+
+
+\begin{ex}
+Trong mặt phẳng Oxy, xác định tâm $I$, bán kính $R$ của các đường tròn có phương trình sau:
+\choiceTF{$(C_1): (x-1)^2 + (y+2)^2 = 9.$}{$(C_2): x^2 + (y-2)^2 = 5.$}{}{}
+\loigiai{
+a) Đường tròn $(C_1)$ có tâm $I_1(1;-2)$, bán kính $R_1 = 3$.
+b) Đường tròn $(C_2)$ có tâm $I_2(0;2)$, bán kính $R_2 = \sqrt{5}$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, xác định tâm $I$, bán kính $R$ của các đường tròn có phương trình sau:
+\choiceTF{$(C_1): x^2 + y^2 - 4x + 6y - 1 = 0.$}{$(C_2): x^2 + y^2 - 6y - 7 = 0.$}{}{}
+\loigiai{
+a) Đường tròn $(C_1)$ có tâm $I_1(2;-3)$, bán kính $R_1 = \sqrt{14}$.
+b) Đường tròn $(C_2)$ có tâm $I_2(0;3)$, bán kính $R_2 = 4$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, tìm tất cả các giá trị của tham số $m$ để biểu thức $x^2 + y^2 - 4x + 2my - 5m = 0$ là một phương trình đường tròn?
+\loigiai{
+Yêu cầu bài toán $\Leftrightarrow 4 + m^2 - (-5m) > 0 \Leftrightarrow m^2 + 5m + 4 > 0 \Leftrightarrow m \in (-\infty; -4) \cup (-1; +\infty)$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, tìm tất cả các giá trị của tham số $m$ để $x^2 + y^2 + 4mx - 2my + 2m + 3 = 0$ là phương trình đường tròn?
+\loigiai{
+$(C_m)$ là phương trình đường tròn $\Leftrightarrow a^2 + b^2 - c > 0 \Leftrightarrow (-2m)^2 + m^2 - (2m+3) > 0$
+$\Leftrightarrow 5m^2 - 2m - 3 > 0 \Leftrightarrow m < -\dfrac{5}{3} \lor m > 1.$
+Bài tập tương tự:
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, xác định tâm $I$, bán kính $R$ của các đường tròn có phương trình sau:
+\choiceTF{$(C_1): (x-1)^2 + (y+1)^2 = 4.$}{$(C_2): (x+3)^2 + y^2 = 3.$}{}{}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, xác định tâm $I$, bán kính $R$ của các đường tròn có phương trình sau:
+\choiceTF{$(C_1): x^2 + y^2 - 4x + 4y - 3 = 0.$}{$(C_2): x^2 + y^2 + 6x - 7 = 0.$}{}{}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, tìm tất cả các giá trị của tham số $ m $ để biểu thức $x^2 + y^2 - 4x + 2my + 5m = 0$ là một phương trình đường tròn?
+\loigiai{}
+\end{ex}
+
+\subsection{Dạng 2. VIẾT PHƯƠNG TRÌNH ĐƯỜNG TRÒN}
+
+
+Phương pháp:
+
+Cách 1: Tìm tâm $I(a;b)$, bán kính $R > 0$. Suy ra $(C):(x-a)^2 + (y-b)^2 = R^2$
+
+Cách 2: Gọi phương trình đường tròn: $x^2 + y^2 - 2ax - 2by + c = 0$ $(a^2 + b^2 - c > 0)$
+- Từ điều kiện của đề bài đưa đến hệ phương trình với 3 ẩn số $a, b, c$.
+- Giải hệ phương trình tìm $a, b, c$.
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho hai điểm $A(1;1)$ và $B(7;5)$. Viết phương trình đường tròn đường kính $AB$.
+\loigiai{
+Gọi $I$ là trung điểm của $AB$ suy ra $I(4;3)$
+\[AI = \sqrt{(4-1)^2 + (3-1)^2} = \sqrt{13}\]
+Đường tròn cần tìm có đường kính $AB$ suy ra nó nhận $I(4;3)$ làm tâm và bán kính
+\[R = AI = \sqrt{13}\] có dạng $(x-4)^2 + (y-3)^2 = 13 \Leftrightarrow x^2 + y^2 - 8x - 6y + 12 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho hai điểm $A(-2;1), B(3;5)$ và điểm $M$ là điểm bất kì thỏa mãn $AMB = 90^\circ$. Khi đó điểm $M$ nằm trên đường tròn có phương trình nào sau đây?
+\choice{$x^2 + y^2 - x - 6y - 1 = 0.$}{$x^2 + y^2 + x + 6y - 1 = 0.$}{$x^2 + y^2 + 5x - 4y + 11 = 0.$}{$x^2 + y^2 - 5x + 4y - 11 = 0.$}
+\loigiai{
+$M$ nằm trên đường tròn đường kính $AB$, có tâm $I\left(\dfrac{1}{2}; 3\right)$ là trung điểm của $AB$ và bán kính
+\[R = \dfrac{1}{2} AB = \dfrac{1}{2} \sqrt{25+16} = \dfrac{1}{2} \sqrt{41}\] nên có phương trình
+\[\left(x-\dfrac{1}{2}\right)^2 + (y-3)^2 = \dfrac{41}{4} \Leftrightarrow x^2 + y^2 - x - 6y - 1 = 0.\]
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn tâm $I(1; 4)$ và đi qua điểm $B(2; 6)$.
+\loigiai{
+Đường tròn có tâm $I(1; 4)$ và đi qua $B(2; 6)$ thì có bán kính là:
+\[R = IB = \sqrt{(2-1)^2 + (6-4)^2} = \sqrt{5}\]
+Khi đó đường tròn có phương trình là: $(x-1)^2 + (y-4)^2 = 5$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, tính bán kính đường tròn tâm $C(-2;-2)$ tiếp xúc với đường thẳng $\Delta: 5x + 12y - 10 = 0$.
+\loigiai{
+Ta có bán kính $R$ của đường tròn tâm $C$ tiếp xúc với đường thẳng $\Delta$ là:
+R = d(C, \Delta) = \dfrac{|5.(-2)+12.(-2)-10|}{\sqrt{$5^2$+$12^2$}} = \dfrac{|-44|}{13} = \dfrac{44}{13}.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn $(C)$ tâm I(-4;3) và tiếp xúc với trục tung.
+\loigiai{
+$(C)$ tiếp xúc với Oy và có tâm I(-4;3) nên: $a = -4, b = 3, R = |a| = 4$.
+Do đó, $(C)$ có phương trình $(x+4)^2 + (y-3)^2 = 16$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn $(C)$ có tâm I(6;2) và tiếp xúc ngoài với đường tròn $(C') : x^2 + y^2 - 4x + 2y + 1 = 0$.
+\loigiai{
+Đường tròn $(C') : x^2 + y^2 - 4x + 2y + 1 = 0$ có tâm $I'(2;-1)$ bán kính $R' = 2$.
+Đường tròn $(C)$ tâm I(6;2) tiếp xúc ngoài với $(C')$ khi
+$II' = R + R' \Rightarrow R = II' - R' = 3$ $II' = R + R' \Rightarrow II' - R = 3$.
+Phương trình đường tròn cần tìm $(x-6)^2 + (x-2)^2 = 9$ hay $x^2 + y^2 - 12x - 4y + 31 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, tìm tọa độ tâm đường tròn đi qua 3 điểm A(0;4), B(2;4), C(4;0).
+\loigiai{
+Gọi $(C) : x^2 + y^2 - 2ax - 2by + c = 0$. $A,B,C \in (C)$ nên
+\[
+\begin{cases}
+16 - 8b + c = 0 \\
+20 - 4a - 8b + c = 0 \\
+16 - 8a + c = 0
+\end{cases}
+\]
+\[
+\begin{cases}
+a = 1 \\
+b = 1 \\
+c = -8
+\end{cases}
+\]
+Vậy tâm I(1;1).
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình phương trình đường tròn đi qua 3 điểm A(1;0), B(0;2), C(3;1).
+\loigiai{
+Gọi $(C) : x^2 + y^2 + 2ax + 2by + c = 0$ là đường tròn đi qua ba điểm A(1;0), B(0;2), C(3;1)
+Ta có hệ
+\[
+\begin{cases}
+2a + 0b + c = -1 \\
+0a + 4b + 2 = -4 \\
+6a + 2b + c = -10
+\end{cases}
+\]
+\[
+\begin{cases}
+a = b = \dfrac{-3}{2} \\
+c = 2
+\end{cases}
+\]
+Vậy phương trình đường tròn $(C) : x^2 + y^2 - 3x - 3y + 2 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho hai điểm A(3;0), B(0;4). Viết phương trình đường tròn nội tiếp tam giác OAB.
+\loigiai{
+Phương trình đường thẳng $AB : \dfrac{x}{3} + \dfrac{y}{4} = 1 \Leftrightarrow 4x + 3y - 12 = 0$.
+Gọi $I(x; y)$ là tâm đường tròn nội tiếp tam giác OAB.
+Nhận xét: $x > 0,\ y > 0$.
+Ta có: \[
+\begin{cases}
+d(I, OA) = d(I, OB) \\
+d(I, OA) = d(I, BA)
+\end{cases}
+\Leftrightarrow
+\begin{cases}
+|x| = |y| \\
+|x| = \dfrac{|3x + 4y - 12|}{5}
+\end{cases}
+\Rightarrow
+\begin{cases}
+x = y \\
+x = \dfrac{|7x - 12|}{5}
+\end{cases}
+\Rightarrow
+\begin{cases}
+x = 1 \\
+y = 1
+\end{cases}
+\]
+Bán kính $R = d(I, OA) = 1$.
+Vậy phương trình đường tròn là: $x^2 + y^2 - 2x - 2y + 1 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn $(C)$ đi qua hai điểm A(1;3), B(3;1) và có tâm nằm trên đường thẳng $d : 2x - y + 7 = 0$.
+\loigiai{
+$I(a; b)$ là tâm của đường tròn $(C)$, do đó:
+\[ AI^2 = BI^2 \Rightarrow (a-1)^2 + (b-3)^2 = (a-3)^2 + (b-1)^2 \]
+Hay: $a = b$ (1). Mà $I(a; b) \in d : 2x - y + 7 = 0$ nên $2a - b + 7 = 0$ (2).
+Thay (1) vào (2) ta có: $a = -7 \Rightarrow b = -7 \Rightarrow R^2 = AI^2 = 164$.
+Vậy $(C): (x+7)^2 + (y+7)^2 = 164$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn $(C)$ tiếp xúc với trục tung tại điểm A(0;-2) và đi qua điểm B(4;-2).
+\loigiai{
+Vì $y_A = y_B = -2$ nên $AB \perp Oy$ và $AB$ là đường kính của $(C)$. Suy ra $I(2; -2)$ và bán kính $R = IA = 2$. Vậy $(C): (x-2)^2 + (y+2)^2 = 4$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C): (x+1)^2 + (y-3)^2 = 4$ và đường thẳng $d : 3x - 4y + 5 = 0$. Viết phương trình của đường thẳng $d'$ song song với đường thẳng $ d $ và chắn trên $(C)$ một dây cung có độ dài lớn nhất.
+\loigiai{
+$(C)$ có tâm $I(-1; 3)$ và $R = 2$. $d' / / d \Rightarrow d': 3x - 4y + c = 0$.
+Yêu cầu bài toán có nghĩa là $d'$ qua tâm $I(-1; 3)$ của $(C)$, tức là: $-3 - 12 + c = 0 \Leftrightarrow c = 1$
+Vậy $d': 3x - 4y + 15 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C): x^2 + y^2 + 4x - 6y + 5 = 0$. Viết phương trình đường thẳng $ d $ đi qua $A(3;2)$ và cắt $(C)$ theo một dây cung ngắn nhất.
+\loigiai{
+!\href{https://i.imgur.com/3Q5z5QG.png}{Hình vẽ đường tròn và đường thẳng}
+\[
+f(x; y) = x^2 + y^2 - 4x - 6y + 5.
+\]
+\[
+f(3; 2) = 9 + 4 - 12 - 12 + 5 = -6 < 0.
+\]
+Vậy $A(3;2)$ ở trong $(C)$.
+Dây cung $MN$ ngắn nhất $\Leftrightarrow IH$ lớn nhất $\Leftrightarrow H \equiv A \Leftrightarrow MN$ có vecto pháp tuyến là $\vec{IA} = (1;-1)$. Vậy $ d $ có phương trình: $l(x-3)-l(y-2)=0 \Leftrightarrow x-y-1=0$.
+Bài tập tự luyện:
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn $(C)$ trong các trường hợp sau:
+\choiceTF{$(C)$ có tâm $I(-1;2)$ và tiếp xúc với đường thẳng $\Delta : x-2y+7=0$}{$(C)$ có đường kính là $AB$ với $A(1;1), B(7;5)$}{}{}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn đi qua ba điểm với $A(1;4), B(-7;4), C(2;-5)$.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng tọa độ $Oxy$, cho 3 điểm $A(1;2), B(5;2), C(1;-3)$.
+\choiceTF{Lập phương trình đường tròn $(C)$ ngoại tiếp tam giác ABC}{Xác định tâm và bán kinh của $(C)$}{}{}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn ngoại tiếp tam giác $ABC$ với $A(1;5), B(4;-1), C(-4;-5)$.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn $(C)$, có tâm $I(2;3)$ trong các trường hợp sau:
+\choiceTF{$(C)$ có bán kính là 5}{$(C)$ qua điểm $A(1;5)$}{$(C)$ tiếp xúc với trục Ox}{$(C)$ tiếp xúc với trục Oy. e) $(C)$ tiếp xúc với đường thẳng $\Delta : 4x+3y-12=0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn $(C)$ đi qua hai điểm $A(-1;2), B(-2;3)$ và có tâm ở trên đường thẳng $\Delta : 3x-y+10=0$
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình của đường tròn $(C)$ đi qua 2 điểm $A(1;2), B(3;4)$ và tiếp xúc với đường thẳng $\Delta : 3x+y-3=0$
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn $(C)$ đi qua điểm $M(4;2)$ và tiếp xúc với các trục toạ độ.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn $(C)$ tiếp xúc ngoài với $(C') : (x-6)^2+(y-2)^2=4$ và đồng thời tiếp xúc với các trục toạ độ.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho 3 đường thẳng: $\Delta_1 : 3x+4y-1=0, \Delta_2 : 4x+3y-8=0, d : 2x+y-1=0$. Trong mặt phẳng tọa độ $Oxy$, viết phương trình đường tròn $(C)$ có tâm $I$ nằm trên đường thẳng $ d $ và $(C)$ tiếp xúc với $\Delta_1, \Delta_2$.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn đi qua hai điểm $A(0;1), B(2;-3)$ và có bán kính $R=5$.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn $(C)$ có tâm $I(1;1)$, biết đường thẳng $\Delta : 3x-4y+3=0$ cắt $(C)$ theo dây cung $AB$ với $AB=2$.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn đi qua điểm $A(1;1)$ và có bán kính $R=\sqrt{10}$, tâm $(C)$ nằm trên Ox.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn đi qua điểm M(2;3) và tiếp xúc đồng thời với hai đường thẳng $\Delta_1$ : 3x - 4y + 1 = 0, $\Delta_2$ : 4x + 3y - 7 = 0.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn đi qua gốc toạ độ, bán kính R = $\sqrt{5}$ và tiếp xúc với đường thẳng $\Delta$ : 2x - y + 5 = 0
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường thẳng d : x - y - 3 = 0 và đường tròn $(C)$: $x^2$ + $y^2$ - 7x - y = 0. Chứng minh rằng d cắt $(C)$. Hãy viết phương trình đường tròn $(C')$ đi qua M(-3;0) và các giao điểm của d và $(C)$.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường thẳng d : x - y - 3 = 0 và đường tròn $(C)$: $x^2$ + $y^2$ - x - 7y = 0. Chứng minh rằng d cắt $(C)$ tại hai điểm phân biệt A, B. Hãy viết phương trình đường tròn $(C')$ đi qua A, B và có bán kính R = 3 .
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn đi qua hai điểm P(1;-1), Q(3;1) và tiếp xúc với đường tròn $(C')$: $x^2$ + $y^2 = 4$.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn có bán kính R = 2 , đi qua M(2;0) và tiếp xúc với đường tròn $(C')$: $x^2$ + $y^2 = 1$.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn có bán kính R = 2 , và tiếp xúc với đường tròn $(C')$: $x^2$ + $y^2 = 1$ và đường thẳng y = 0.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn tiếp xúc với đường thẳng d: y - 2 = 0 tại điểm M(4;2) và tiếp xúc với đường tròn $(C')$: $x^2$ + $(y + 2)^2$ = 4.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C')$: $x^2$ + $y^2 = 8$ . Viết phương trình đường tròn $(C)$ tiếp xúc với đường thẳng $\Delta$: x - 3 = 0 và đường tròn $(C')$ tại điểm M(2;2).
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường thẳng d : x - 7y + 10 = 0 . Viết phương trình đường tròn có tâm thuộc đường thẳng $\Delta$:2x + y = 0 và tiếp xúc với đường thẳng d tại điểm A(4;2).
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2$ + $y^2$ - 4x + 6y - 12 = 0 . Lập phương trình đường thẳng d qua M(1;1) và cắt đường tròn $(C)$ tạ hai điểm A, B sao cho MA = 2MB.
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho 2 đường tròn $(C_1)$: $x^2$ + $y^2$ - 2x - 2y + 1 = 0; $(C_2)$: $x^2$ + $y^2$ + 4x - 5 = 0 . Trong mặt phẳng tọa độ Oxy, viết phương trình đường thẳng d qua M(1;0) và cắt hai đường tròn $(C)$ tại hai điểm A, B sao cho MA = 2MB.
+\loigiai{}
+\end{ex}
+
+\subsection{Dạng 3. VIẾT PHƯƠNG TRÌNH TIẾP TUYẾN CỦA ĐƯỜNG TRÒN}
+
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2$ + $y^2$ - 2x + 8y - 23 = 0 và điểm M (8;-3). Tính độ dài đoạn tiếp tuyến của $(C)$ xuất phát từ M.
+\loigiai{
+Đường tròn $(C)$: $x^2$ + $y^2$ - 2x + 8y - 23 = 0 có tâm I (1;-4) bán kính R = $\sqrt{40}$ .
+Độ dài tiếp tuyến là $\sqrt{IM^2 - R^2} = \sqrt{10}$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, tìm m để đường thẳng $\Delta$: 4x + 3y + m = 0 tiếp xúc với đường tròn $(C)$: $x^2$ + $y^2 = 1$.
+\loigiai{
+Đường tròn $(C): x^2 + y^2 = 1$ có tâm $O(0; 0)$ và bán kính $R = 1$.
+Đường thẳng $\Delta$ tiếp xúc với đường tròn $(C)$
+\[
+\Leftrightarrow d(O, d) = R \Leftrightarrow \dfrac{|m|}{\sqrt{3^2 + 4^2}} = 1 \Leftrightarrow |m| = 5 \Leftrightarrow m = \pm 5.
+\]
+\textbf{Câu 48:} Trong mặt phẳng $Oxy$, cho đường tròn $(C): x^2 + y^2 - 3x - y = 0$. Viết phương trình tiếp tuyến của $(C)$ tại $M(1;-1)$.
+\textit{Lời giải:}
+Đường tròn $(C): x^2 + y^2 - 3x - y = 0$ có tâm $I\left(\dfrac{3}{2}; \dfrac{1}{2}\right)$.
+Điểm $M(1;-1)$ thuộc đường tròn $(C)$.
+Phương trình tiếp tuyến của đường tròn $(C)$ tại điểm $M(1;-1)$ là đường thẳng đi qua $M$ và nhận vecto $\overrightarrow{IM} = \left(-\dfrac{1}{2}; -\dfrac{3}{2}\right) = -\dfrac{1}{2}(1;3)$ nên có phương trình $x + 3y + 2 = 0$.
+\textbf{Câu 49:} Trong mặt phẳng $Oxy$, cho đường tròn $(C): x^2 + y^2 + 2x - 6y + 5 = 0$. Viết phương trình tiếp tuyến của $(C)$ song song với đường thẳng $d : x + 2y - 15 = 0$.
+\textit{Lời giải:}
+$(C)$ có tâm $I(-1; 3)$ và bán kính $R = \sqrt{1+9-5} = \sqrt{5}$, $d : x + 2y - m = 0$.
+$d$ là tiếp tuyến của $(C)$ khi và chỉ khi:
+\[
+d(I, d) = R \Leftrightarrow \dfrac{|-1+6-m|}{\sqrt{1+4}} = \sqrt{5} \Leftrightarrow |m-5|=5 \Leftrightarrow \begin{cases} m-5=-5 \\ m-5=5 \end{cases} \Leftrightarrow \begin{cases} m=0 \Rightarrow d : x + 2y = 0 \\ m=10 \Rightarrow d : x + 2y - 10 = 0 \end{cases}.
+\]
+\textit{Bài tập tự luyện:}
+\textbf{Câu 50:} Trong mặt phẳng $Oxy$, cho đường tròn $(C): (x-2)^2 + (y-1)^2 = 25$. Viết phương trình tiếp tuyến của $(C)$ trong các trường hợp sau:
+a) Tại điểm $M(5;-3)$.
+b) Biết tiếp tuyến song song $\Delta : 5x - 12y + 2 = 0$.
+c) Biết tiếp tuyến vuông góc $\Delta : 3x + 4y + 2 = 0$.
+d) Biết tiếp tuyến đi qua $A(3;6)$.
+\textbf{Câu 51:} Trong mặt phẳng $Oxy$, viết phương trình tiếp tuyến với $(C): x^2 + y^2 - 4x - 2y = 0$ tại giao điểm của $(C)$ và đường thẳng $\Delta : x + y = 0$.
+\textbf{Câu 52:} Trong mặt phẳng $Oxy$, viết phương trình tiếp tuyến của $(C): x^2 + y^2 - 4x - 2y = 0$ xuất phát từ $A(3;-2)$.
+\textbf{Câu 53:} Trong mặt phẳng $Oxy$, cho đường tròn $(C): x^2 + y^2 - 6x + 2y + 6 = 0$ và điểm $A(1;3)$.
+a) Chứng tỏ $A$ nằm ngoài đường tròn $(C)$.
+b) Lập phương trình tiếp tuyến với $(C)$ xuất phát từ $A$.
+\textbf{Câu 54:} Trong mặt phẳng $Oxy$, cho đường tròn $(C): (x+1)^2 + (y-2)^2 = 9$ và điểm $M(2;-1)$.
+a) Chúng tò qua M ta vẽ được hai tiếp tuyến $\Delta_1$ và $\Delta_2$ với $(C)$. Hãy viết phương trình của $\Delta_1$ và $\Delta_2$.
+b) Gọi $M_1$ và $M_2$ lần lượt là hai tiếp điểm của $\Delta_1$ và $\Delta_2$ với $(C)$, hãy viết phương trình $M_1M_2$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình tiếp tuyến chung của hai đường tròn:
+\choiceTF{$(C_1): x^2 + y^2 - 6x + 5 = 0$ và $(C_2): x^2 + y^2 - 12x - 6y + 44 = 0$}{$(C_1): x^2 + y^2 - 2x - 3 = 0$ và $(C_2): x^2 + y^2 - 8x - 8y + 28 = 0$}{$(C_1): x^2 + y^2 + 2x - 2y - 3 = 0$ và $(C_2): 4x^2 + 4y^2 - 16x - 20y + 21 = 0$}{$(C_1): x^2 + y^2 = 1$ và $(C_2): x^2 + y^2 - 4y - 5 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình tiếp tuyến của đường tròn $(C)$: $x^2 + y^2 = 25$, biết rằng tiếp tuyến đó hợp với đường thẳng $\Delta: x + 2y - 1 = 0$ một góc $\alpha$ mà $\cos \alpha = \dfrac{2}{\sqrt{5}}$.
+III. BÀI TẬP TRẮC NGHIỆM
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, phương trình nào sau đây là phương trình của đường tròn?
+\choice{$x^2 + 2y^2 - 4x - 8y + 1 = 0$}{$x^2 + y^2 - 4x + 6y - 12 = 0$}{$x^2 + y^2 - 2x - 8y + 20 = 0$}{$4x^2 + y^2 - 10x - 6y - 2 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, phương trình nào sau đây là phương trình của một đường tròn?
+\choice{$x^2 + y^2 - 4xy + 2x + 8y - 3 = 0$}{$x^2 + 2y^2 - 4x + 5y - 1 = 0$}{$x^2 + y^2 - 14x + 2y + 2018 = 0$}{$x^2 + y^2 - 4x + 5y + 2 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn nào dưới đây đi qua điểm A(4;-2)?
+\choice{$x^2 + y^2 - 2x + 6y = 0$}{$x^2 + y^2 - 4x + 7y - 8 = 0$}{$x^2 + y^2 - 6x - 2y + 9 = 0$}{$x^2 + y^2 + 2x - 20 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn $x^2 + y^2 - 2x + 10y + 1 = 0$ đi qua điểm nào trong các điểm dưới đây?
+\choice{Q(2;1)}{M(3;-2)}{N(-1;3)}{P(4;-1)}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, xác định tâm và bán kính của đường tròn $(C): (x+1)^2 + (y-2)^2 = 9$.
+\choice{Tâm I(-1;2), bán kính R = 3}{Tâm I(-1;2), bán kính R = 9}{Tâm I(1;-2), bán kính R = 3}{Tâm I(1;-2), bán kính R = 9}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn $(C)$: $x^2 + y^2 + 4x + 6y - 12 = 0$ có tâm là
+\choice{I(-2;-3)}{I(2;3)}{I(4;6)}{I(-4;-6)}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn $x^2 + y^2 - 10y - 24 = 0$ có bán kính bằng
+\choice{49}{7}{1}{$\sqrt{29}$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, tìm tất cả các giá trị của tham số m để phương trình $x^2 + y^2 - 2(m+2)x + 4my + 19m - 6 = 0$ là phương trình đường tròn.
+\choice{$1 < m < 2$}{$m < -2$ hoặc $m > 1$}{$m < 0$ hoặc $m > 1$}{$m < 1$ hoặc $m > 2$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, tìm m để $(C_m): x^2 + y^2 + 4mx - 2my + 2m + 3 = 0$ là phương trình đường tròn?
+\choice{$m < -\dfrac{5}{3}$ hoặc $m > 1$}{$m < -\dfrac{5}{3}$}{$m > 1$}{$-\dfrac{3}{5} < m < 1$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, với giá trị nào của $m$ thì phương trình sau đây là phương trình sau đây là phương trình của đường tròn $x^2 + y^2 - 2(m+2)x + 4my + 19m - 6 = 0$ ?
+\choice{$1 < m < 2$}{$-2 \leq m \leq 1$}{$m < 1$ hoặc $m > 2$}{$m < -2$ hoặc $m > 1$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường cong $(C_m): x^2 + y^2 - 8x + 10y + m = 0$. Với giá trị nào của $ m $ thì $(C_m)$ là đường tròn có bán kính bằng 7?
+\choice{$m = 4$}{$m = 8$}{$m = -8$}{$m = -4$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn có tâm $I(3;4)$ tiếp xúc với đường thẳng $\Delta: 3x + 4y - 10 = 0$. Hỏi bán kính đường tròn bằng bao nhiêu?
+\choice{$\dfrac{5}{3}$}{5}{3}{$\dfrac{3}{5}$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, với những giá trị nào của $m$ thì đường thẳng $\Delta: 4x + 3y + m = 0$ tiếp xúc với đường tròn $(C): x^2 + y^2 - 9 = 0$?
+\choice{$m = -3$}{$m = 3$ và $m = -3$}{$m = 3$}{$m = 15$ và $m = -15$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, phương trình nào sau đây là phương trình của đường tròn tâm $I(-1;2)$, bán kính bằng 3?
+\choice{$(x-1)^2 + (y+2)^2 = 9$}{$(x+1)^2 + (y+2)^2 = 9$}{$(x-1)^2 + (y-2)^2 = 9$}{$(x+1)^2 + (y-2)^2 = 9$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, phương trình đường tròn có tâm $I(1;2)$ và bán kính $R = 5$ là
+\choice{$x^2 + y^2 - 2x - 4y - 20 = 0$}{$x^2 + y^2 + 2x + 4y + 20 = 0$}{$x^2 + y^2 + 2x + 4y - 20 = 0$}{$x^2 + y^2 - 2x - 4y + 20 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho hai điểm $A(-2;1)$, $B(3;5)$ và điểm $M$ là điểm bất kì thỏa mãn $AMB = 90^\circ$. Khi đó điểm $M$ nằm trên đường tròn có phương trình nào sau đây?
+\choice{$x^2 + y^2 - x - 6y - 1 = 0$}{$x^2 + y^2 + x + 6y - 1 = 0$}{$x^2 + y^2 + 5x - 4y + 11 = 0$}{$x^2 + y^2 - 5x + 4y - 11 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn nào sau đây tiếp xúc với trục Ox?
+\choice{$x^2 + y^2 - 10x = 0$}{$x^2 + y^2 - 5 = 0$}{$x^2 + y^2 - 10x - 2y + 1 = 0$}{$x^2 + y^2 + 6x + 5y + 9 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn nào sau đây tiếp xúc với trục Oy?
+\choice{$x^2 + y^2 - 10y + 1 = 0$}{$x^2 + y^2 + 6x + 5y - 1 = 0$}{$x^2 + y^2 - 2x = 0$}{$x^2 + y^2 - 5 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, tìm tọa độ giao điểm của đường thẳng $\Delta : x - 2y + 3 = 0$ và đường tròn $(C): x^2 + y^2 - 2x - 4y = 0$
+\choice{(3;3) và (-1;1)}{(-1;1) và (3;-3)}{(3;3) và (1;1)}{(2;1) và (2;-1)}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho hai đường tròn $(C_1),(C_2)$ có phương trình lần lượt là $(x+1)^2 + (y+2)^2 = 9$ và $(x-2)^2 + (y-2)^2 = 4$. Khẳng định nào dưới đây sai?
+\choice{Đường tròn $(C_1)$ có tâm $I_1(-1;-2)$ và bán kính $R_1 = 3$}{Đường tròn $(C_2)$ có tâm $I_2(2;2)$ và bán kính $R_2 = 2$}{Hai đường tròn $(C_1),(C_2)$ không có điểm chung}{Hai đường tròn $(C_1),(C_2)$ tiếp xúc với nhau}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho hai đường tròn $(C):(x-1)^2 + y^2 = 4$ và $(C'):(x-4)^2 + (y-3)^2 = 16$ cắt nhau tại hai điểm phân biệt A và B. Lập phương trình đường thẳng AB.
+\choice{$x + y - 2 = 0$}{$x - y + 2 = 0$}{$x + y + 2 = 0$}{$x - y - 2 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn $(C)$ có đường kính AB với A(1;1), B(7;5)
+\choice{$(x+4)^2 + (y+2)^2 = 13$}{$(x-4)^2 + (y-3)^2 = 13$}{$(x+4)^2 + (y-3)^2 = 13$}{$(x-4)^2 + (y+3)^2 = 13$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho hai điểm A(1;1) và B(7;5). Phương trình đường tròn đường kính AB là
+\choice{$x^2 + y^2 + 8x + 6y + 12 = 0$}{$x^2 + y^2 - 8x + 6y + 12 = 0$}{$x^2 + y^2 - 8x - 6y - 12 = 0$}{$x^2 + y^2 + 8x + 6y - 12 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, phương trình đường tròn $(C)$ có tâm I(1; 3) và đi qua M (3; 1) là
+\choice{$(x-1)^2 + (y-3)^2 = 8$}{$(x-1)^2 + (y-3)^2 = 10$}{$(x-3)^2 + (y-1)^2 = 10$}{$(x-3)^2 + (y-1)^2 = 8$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, phương trình đường tròn $(C)$ có tâm I(6; 2) và tiếp xúc ngoài với đường tròn $(C'): x^2 + y^2 - 4x + 2y + 1 = 0$ là
+\choice{$x^2 + y^2 - 12x - 4y - 9 = 0$}{$x^2 + y^2 - 6x - 12y + 31 = 0$}{$x^2 + y^2 + 12x + 4y + 31 = 0$}{$x^2 + y^2 - 12x - 4y + 31 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho hai điểm A(-2;1), B(3;5) và điểm M thỏa mãn $AMB = 90^\circ$. Khi đó điểm M nằm trên đường tròn nào sau đây?
+\choice{$x^2 + y^2 - x - 6y - 1 = 0$}{$x^2 + y^2 + x + 6y - 1 = 0$}{$x^2 + y^2 + 5x - 4y + 11 = 0$}{$x^2 + y^2 - 5x + 4y - 11 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, tìm tọa độ tâm I của đường tròn đi qua ba điểm A(0;4), B(2;4), C(2;0).
+\choice{I(1;1)}{I(0;0)}{I(1;2)}{I(1;0)}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho điểm I(1;1) và đường thẳng $(d)$:3x + 4y - 2 = 0. Đường tròn tâm I và tiếp xúc với đường thẳng $(d)$ có phương trình
+\choice{$(x-1)^2 + (y-1)^2 = 5$}{$(x-1)^2 + (y-1)^2 = 25$}{$(x-1)^2 + (y-1)^2 = 1$}{$(x-1)^2 + (y-1)^2 = \dfrac{1}{5}$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, biết đường tròn $(C)$ có tâm I(-3;2) có một tiếp tuyến là đường thẳng $\Delta$: 3x + 4y - 9 = 0. Viết phương trình của đường tròn $(C)$.
+\choice{$(x+3)^2 + (y-2)^2 = 2$}{$(x-3)^2 + (y+2)^2 = 2$}{$(x-3)^2 + (y-2)^2 = 4$}{$(x+3)^2 + (y-2)^2 = 4$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, tìm tọa độ tâm I của đường tròn đi qua ba điểm A(0;4), B(2;4), C(2;0).
+\choice{I(1;1)}{I(0;0)}{I(1;2)}{I(1;0)}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho tam giác ABC có A(1;-1), B(3;2), C(5;-5). Toạ độ tâm đường tròn ngoại tiếp tam giác ABC là
+\choice{$\left(\dfrac{47}{10}, -\dfrac{13}{10}\right)$}{$\left(\dfrac{47}{10}, \dfrac{13}{10}\right)$}{$\left(-\dfrac{47}{10}, -\dfrac{13}{10}\right)$}{$\left(-\dfrac{47}{10}, \dfrac{13}{10}\right)$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho các điểm A(3;0) và B(0;4). Đường tròn nội tiếp tam giác OAB có phương trình
+\choice{$x^2 + y^2 = 1$}{$x^2 + y^2 - 4x + 4 = 0$}{$x^2 + y^2 = 2$}{$(x-1)^2 + (y-1)^2 = 1$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho hai điểm A(3;0), B(0;4). Đường tròn nội tiếp tam giác OAB có phương trình là
+\choice{$x^2 + y^2 = 1$}{$x^2 + y^2 - 2x - 2y + 1 = 0$}{$x^2 + y^2 - 6x - 8y + 25 = 0$}{$x^2 + y^2 = 2$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, viết phương trình đường tròn đi qua hai điểm A(3;0), B(0;2) và có tâm thuộc đường thẳng d: x + y = 0.
+\choice{$\left(x-\dfrac{1}{2}\right)^2 + \left(y+\dfrac{1}{2}\right)^2 = \dfrac{13}{2}$}{$\left(x+\dfrac{1}{2}\right)^2 + \left(y+\dfrac{1}{2}\right)^2 = \dfrac{13}{2}$}{$\left(x-\dfrac{1}{2}\right)^2 + \left(y-\dfrac{1}{2}\right)^2 = \dfrac{13}{2}$}{$\left(x+\dfrac{1}{2}\right)^2 + \left(y-\dfrac{1}{2}\right)^2 = \dfrac{13}{2}$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn $(C)$ đi qua hai điểm A(1;3), B(3;1) và có tâm nằm trên đường thẳng d : 2x - y + 7 = 0 có phương trình là
+\choice{$(x-7)^2 + (y-7)^2 = 102$}{$(x+7)^2 + (y+7)^2 = 164$}{$(x+3)^2 + (y+5)^2 = 25$}{}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn $(C)$ tiếp xúc với trục tung tại điểm A(0;-2) và đi qua điểm B(4;-2) có phương trình là
+\choice{$(x-2)^2 + (y+2)^2 = 4$}{$(x+2)^2 + (y-2)^2 = 4$}{$(x-3)^2 + (y-2)^2 = 4$}{$(x-3)^2 + (y+2)^2 = 4$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường thẳng $\Delta : 3x - 4y - 19 = 0$ và đường tròn $(C): (x-1)^2 + (y-1)^2 = 25$. Biết đường thẳng $\Delta$ cắt $(C)$ tại hai điểm phân biệt $A$ và $B$, khi đó độ dài đoạn thẳng $AB$ là
+\choice{6}{3}{4}{8}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường tròn $(C)$ có tâm $I(1;-1)$ bán kính $R = 5$. Biết rằng đường thẳng $(d): 3x - 4y + 8 = 0$ cắt đường tròn $(C)$ tại hai điểm phân biệt $A, B$. Tính độ dài đoạn thẳng $AB$.
+\choice{$AB = 8$}{$AB = 4$}{$AB = 3$}{$AB = 6$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho điểm $A(3;1)$, đường tròn $(C): x^2 + y^2 - 2x - 4y + 3 = 0$. Viết phương trình đường thẳng $ d $ đi qua $A$ và cắt đường tròn $(C)$ tại hai điểm $B, C$ sao cho $BC = 2\sqrt{2}$.
+\choice{$d : x + 2y - 5 = 0$}{$d : x - 2y - 5 = 0$}{$d : x + 2y + 5 = 0$}{$d : x - 2y + 5 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường tròn $(C): (x-1)^2 + (y-4)^2 = 4$. Phương trình tiếp tuyến với đường tròn $(C)$ song song với đường thẳng $\Delta : 4x - 3y + 2 = 0$ là
+\choice{$4x - 3y + 18 = 0$}{$4x - 3y + 18 = 0$}{$4x - 3y + 18 = 0; 4x - 3y - 2 = 0$}{$4x - 3y - 18 = 0; 4x - 3y + 2 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, số tiếp tuyến chung của 2 đường tròn $(C): x^2 + y^2 - 2x + 4y + 1 = 0$ và $(C'): x^2 + y^2 + 6x - 8y + 20 = 0$ là
+\choice{1}{2}{4}{3}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình tiếp tuyến của đường tròn $(C): (x-2)^2 + (y+4)^2 = 25$, biết tiếp tuyến vuông góc với đường thẳng $d : 3x - 4y + 5 = 0$.
+\choice{$4x + 3y + 29 = 0$}{$4x + 3y + 29 = 0$ hoặc $4x + 3y - 21 = 0$}{$4x - 3y + 5 = 0$ hoặc $4x - 3y - 45 = 0$}{$4x + 3y + 5 = 0$ hoặc $4x + 3y + 3 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường tròn $(C)$ có phương trình $x^2 + y^2 - 2x + 2y - 3 = 0$. Từ điểm $A(1;1)$ kẻ được bao nhiêu tiếp tuyến đến đường tròn $(C)$?
+\choice{1}{2}{Vô số}{0}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường tròn $(C): x^2 + y^2 - 2x - 4y + 3 = 0$. Viết phương trình tiếp tuyến $ d $ của đường tròn $(C)$ biết tiếp tuyến đó song song với đường thẳng $\Delta : 3x + 4y + 1 = 0$.
+\choice{$3x + 4y + 5\sqrt{2} - 11 = 0 ; 3x + 4y - 5\sqrt{2} + 11 = 0$}{$3x + 4y + 5\sqrt{2} - 11 = 0 , 3x + 4y - 5\sqrt{2} - 11 = 0$}{$3x + 4y + 5\sqrt{2} - 11 = 0 , 3x + 4y + 5\sqrt{2} + 11 = 0$}{$3x + 4y - 5\sqrt{2} + 11 = 0 , 3x + 4y - 5\sqrt{2} - 11 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường tròn $(C): x^2 + y^2 - 2x - 4y - 4 = 0$ và điểm $A(1;5)$. Đường thẳng nào trong các đường thẳng dưới đây là tiếp tuyến của đường tròn $(C)$ tại điểm $A$?
+\choice{$y - 5 = 0$}{$y + 5 = 0$}{$x + y - 5 = 0$}{$x - y - 5 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2 + y^2 - 4 = 0$ và điểm $A(-1;2)$. Đường thẳng nào trong các đường thẳng dưới đây đi qua $A$ và là tiếp tuyến của đường tròn $(C)$?
+\choice{$4x - 3y + 10 = 0$}{$6x + y + 4 = 0$}{$3x + 4y + 10 = 0$}{$3x - 4y + 11 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho điểm $P(-3;-2)$ và đường tròn $(C)$: $(x-3)^2 + (y-4)^2 = 36$. Từ điểm $P$ kẻ các tiếp tuyến $PM$ và $PN$ tới đường tròn $(C)$, với $M, N$ là các tiếp điểm. Phương trình đường thẳng $MN$ là
+\choice{$x + y + 1 = 0$}{$x - y - 1 = 0$}{$x - y + 1 = 0$}{$x + y - 1 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho điểm $M(-3;1)$ và đường tròn $(C)$: $x^2 + y^2 - 2x - 6y + 6 = 0$. Gọi $T_1, T_2$ là các tiếp điểm của các tiếp tuyến kẻ từ $M$ đến $(C)$. Tính khoảng cách từ $O$ đến đường thẳng $T_1T_2$.
+\choice{5}{$\sqrt{5}$}{$\dfrac{3}{\sqrt{5}}$}{$2\sqrt{2}$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2 + y^2 - 2x - 4y - 4 = 0$ và điểm $M(2;1)$. Dây cung của $(C)$ đi qua điểm $M$ có độ dài ngắn nhất là
+\choice{6}{$\sqrt{7}$}{$3\sqrt{7}$}{$2\sqrt{7}$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho tam giác $ABC$ biết $H(3;2), G\left(\dfrac{5}{3};\dfrac{8}{3}\right)$ lần lượt là trực tâm và trọng tâm của tam giác, đường thẳng $BC$ có phương trình $x + 2y - 2 = 0$. Viết phương trình đường tròn ngoại tiếp tam giác $ABC$.
+\choice{$(x+1)^2 + (y+1)^2 = 20$}{$(x-2)^2 + (y+4)^2 = 20$}{$(x-1)^2 + (y+3)^2 = 1$}{$(x-1)^2 + (y-3)^2 = 25$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho điểm $I(1;2)$ và đường thẳng $(d): 2x + y - 5 = 0$. Biết rằng có hai điểm $M_1, M_2$ thuộc $(d)$ sao cho $IM_1 = IM_2 = \sqrt{10}$. Tổng các hoành độ của $M_1$ và $M_2$ là
+\choice{$\dfrac{7}{5}$}{$\dfrac{14}{5}$}{2}{5}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C)$: $(x+1)^2 + (y-3)^2 = 4$ và đường thẳng $d: 3x - 4y + 5 = 0$. Phương trình của đường thẳng $d'$ song song với đường thẳng $ d $ và chắn trên $(C)$ một dây cung có độ dài lớn nhất là
+\choice{$4x + 3y + 13 = 0$}{$3x - 4y + 25 = 0$}{$3x - 4y + 15 = 0$}{$4x + 3y + 20 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, gọi $I$ là tâm của đường tròn $(C)$: $(x-1)^2 + (y-1)^2 = 4$. Số các giá trị nguyên của $ m $ để đường thẳng $x + y - m = 0$ cắt đường tròn $(C)$ tại hai điểm phân biệt $A, B$ sao cho tam giác $IAB$ có diện tích lớn nhất là
+\choice{1}{3}{2}{0}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, điểm nằm trên đường tròn $(C)$: $x^2 + y^2 - 2x + 4y + 1 = 0$ có khoảng cách ngắn nhất đến đường thẳng $d: x - y + 3 = 0$ có tọa độ $M(a;b)$. Khẳng định nào sau đây đúng?
+\choice{$\sqrt{2}a = -b$}{$a = -b$}{$\sqrt{2}a = b$}{$a = b$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2 + y^2 - 4x + 2y - 15 = 0$ có tâm I. Đường thẳng d đi qua M(1;-3) cắt $(C)$tại A,B. Biết tam giác IAB có diện tích là 8. Phương trình đường thẳng d là $x + by + c = 0$. Tính b + c.
+\choice{8}{2}{6}{1}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho tam giác ABC có trung điểm của BC là M(3;2), trọng tâm và tâm đường tròn ngoại tiếp tam giác lần lượt là $G\left(\dfrac{2}{3}; \dfrac{2}{3}\right), I(1;-2)$. Tìm tọa độ đỉnh C, biết C có hoành độ lớn hơn 2 .
+\choice{C(9;1)}{C(5;1)}{C(4;2)}{C(3;-2).  LỜI GIẢI CHI TIẾT}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, phương trình nào sau đây là phương trình của đường tròn?
+\choice{$x^2 + 2y^2 - 4x - 8y + 1 = 0$}{$x^2 + y^2 - 4x + 6y - 12 = 0$}{$x^2 + y^2 - 2x - 8y + 20 = 0$}{$4x^2 + y^2 - 10x - 6y - 2 = 0$}
+\loigiai{
+Để là phương trình đường tròn thì điều kiện cần là hệ số của $x^2$ và $y^2$ phải bằng nhau nên loại được đáp án A và D.
+Ta có: $x^2 + y^2 - 2x - 8y + 20 = 0 \Leftrightarrow (x-1)^2 + (y-4)^2 + 3 = 0$ vô lý.
+Ta có: $x^2 + y^2 - 4x + 6y - 12 = 0 \Leftrightarrow (x-2)^2 + (y+3)^2 = 25$ là phương trình đường tròn tâm $I(2;-3)$, bán kính $R = 5$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, phương trình nào sau đây là phương trình của một đường tròn?
+\choice{$x^2 + y^2 - 4xy + 2x + 8y - 3 = 0$}{$x^2 + 2y^2 - 4x + 5y - 1 = 0$}{$x^2 + y^2 - 14x + 2y + 2018 = 0$}{$x^2 + y^2 - 4x + 5y + 2 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn nào dưới đây đi qua điểm A(4;-2)?
+\choice{$x^2 + y^2 - 2x + 6y = 0$}{$x^2 + y^2 - 4x + 7y - 8 = 0$}{$x^2 + y^2 - 6x - 2y + 9 = 0$}{$x^2 + y^2 + 2x - 20 = 0$}
+\loigiai{
+Thế tọa độ của điểm A(4;-2) vào phương trình đường tròn $x^2 + y^2 - 2x + 6y = 0$ ta có:
+$4^2 + (-2)^2 - 2.4 + 6(-2) = 16 + 4 - 8 - 12 = 0$ nên A(4;-2) thuộc đường tròn.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn $x^2 + y^2 - 2x + 10y + 1 = 0$ đi qua điểm nào trong các điểm dưới đây ?
+\choice{Q(2;1)}{M (3;-2)}{N(-1;3)}{P(4;-1)}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, xác định tâm và bán kính của đường tròn $(C)$:$(x+1)^2$+$(y-2)^2$=9.
+\choice{Tâm I(-1;2), bán kính R = 3}{Tâm I(-1;2), bán kính R = 9}{Tâm I(1;-2), bán kính R = 3}{Tâm I(1;-2), bán kính R = 9}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn $(C)$:$x^2 + y^2 + 4x + 6y - 12 = 0$ có tâm là
+\choice{I(-2;-3)}{I(2;3)}{I(4;6)}{I(-4;-6)}
+\loigiai{
+Ta có phương trình đường tròn là: $(x + 2)^2 + (y + 3)^2 = 25$.
+Vậy tâm đường tròn là : $I(-2; -3)$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, đường tròn $x^2 + y^2 - 10y - 24 = 0$ có bán kính bằng
+\choice{49}{7}{1}{$\sqrt{29}$}
+\loigiai{
+Đường tròn $x^2 + y^2 - 10y - 24 = 0$ có tâm $I(0; 5)$, bán kính $R = \sqrt{0^2 + 5^2 - (-24)} = 7$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, tìm tất cả các giá trị của tham số $ m $ để phương trình $x^2 + y^2 - 2(m + 2)x + 4my + 19m - 6 = 0$ là phương trình đường tròn.
+\choice{$1 < m < 2$}{$m < -2$ hoặc $m > 1$}{$m < 0$ hoặc $m > 1$}{$m < 1$ hoặc $m > 2$}
+\loigiai{
+Phương trình (1) là phương trình đường tròn $\Leftrightarrow 5m^2 - 15m + 10 > 0 \Leftrightarrow m < 1$ hoặc $m > 2$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, tìm $ m $ để $(C_m)$: $x^2 + y^2 + 4mx - 2my + 2m + 3 = 0$ là phương trình đường tròn ?
+\choice{$m < -\dfrac{5}{3}$ hoặc $m > 1$}{$m < -\dfrac{5}{3}$}{$m > 1$}{$-\dfrac{3}{5} < m < 1$}
+\loigiai{
+$(C_m)$ là phương trình đường tròn $\Leftrightarrow (-2m)^2 + m^2 - (2m + 3) > 0$
+\[
+\Leftrightarrow 5m^2 - 2m - 3 > 0 \Leftrightarrow m < -\dfrac{5}{3} \lor m > 1.
+\]
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, với giá trị nào của $ m $ thì phương trình sau đây là phương trình sau đây là phương trình của đường tròn $x^2 + y^2 - 2(m + 2)x + 4my + 19m - 6 = 0$ ?
+\choice{$1 < m < 2$}{$-2 \leq m \leq 1$}{$m < 1$ hoặc $m > 2$}{$m < -2$ hoặc $m > 1$}
+\loigiai{
+Xét phương trình $x^2 + y^2 - 2(m + 2)x + 4my + 19m - 6 = 0 (*)$. Đề (*) là phương trình đường tròn thì $5m^2 - 15m + 10 > 0 \Leftrightarrow m < 1$ hoặc $m > 2$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường cong $(C_m)$: $x^2 + y^2 - 8x + 10y + m = 0$. Với giá trị nào của $ m $ thì $(C_m)$ là đường tròn có bán kính bằng 7 ?
+\choice{$m = 4$}{$m = 8$}{$m = -8$}{$m = -4$}
+\loigiai{
+Ta có $R = \sqrt{4^2 + 5^2 - m} = 7 \Leftrightarrow m = -8$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường tròn có tâm $I(3; 4)$ tiếp xúc với đường thẳng $\Delta: 3x + 4y - 10 = 0$. Hỏi bán kính đường tròn bằng bao nhiêu?
+\choice{$\dfrac{5}{3}$}{5}{3}{$\dfrac{3}{5}$}
+\loigiai{
+Đường tròn tâm $I(3;4)$ tiếp xúc với đường thẳng $\Delta : 3x + 4y - 10 = 0$ nên bán kính đường tròn chính là khoảng cách từ tâm $I(3;4)$ tới đường thẳng $\Delta : 3x + 4y - 10 = 0$.
+Ta có: $R = d(I,\Delta) = \dfrac{|3.3 + 4.4 - 10|}{\sqrt{3^2 + 4^2}} = \dfrac{15}{5} = 3$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, với những giá trị nào của $m$ thì đường thẳng $\Delta : 4x + 3y + m = 0$ tiếp xúc với đường tròn $(C): x^2 + y^2 - 9 = 0$?
+\choice{$m = -3$}{$m = 3$ và $m = -3$}{$m = 3$}{$m = 15$ và $m = -15$}
+\loigiai{
+Đường tròn $(C)$ có tâm và bán kính là $I \equiv (0;0), R = 3$.
+$\Delta$ tiếp xúc $(C) \Leftrightarrow d(I,\Delta) = R \Leftrightarrow \dfrac{|m|}{5} = 3 \Leftrightarrow \begin{cases} m = 15 \\ m = -15 \end{cases}$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, phương trình nào sau đây là phương trình của đường tròn tâm $I(-1;2)$, bán kính bằng 3 ?
+\choice{$(x-1)^2 + (y+2)^2 = 9$}{$(x+1)^2 + (y+2)^2 = 9$}{$(x-1)^2 + (y-2)^2 = 9$}{$(x+1)^2 + (y-2)^2 = 9$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, phương trình đường tròn có tâm $I(1;2)$ và bán kính $R = 5$ là
+\choice{$x^2 + y^2 - 2x - 4y - 20 = 0$}{$x^2 + y^2 + 2x + 4y + 20 = 0$}{$x^2 + y^2 + 2x + 4y - 20 = 0$}{$x^2 + y^2 - 2x - 4y + 20 = 0$}
+\loigiai{
+Phương trình đường tròn có tâm $I(1;2)$ và bán kính $R = 5$ là $(x-1)^2 + (y-2)^2 = 5^2$
+$\Leftrightarrow x^2 - 2x + 1 + y^2 - 4y + 4 = 25 \Leftrightarrow x^2 + y^2 - 2x - 4y - 20 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho hai điểm $A(-2;1), B(3;5)$ và điểm $M$ là điểm bất kì thỏa mãn $AMB = 90^\circ$. Khi đó điểm $M$ nằm trên đường tròn có phương trình nào sau đây?
+\choice{$x^2 + y^2 - x - 6y - 1 = 0$}{$x^2 + y^2 + x + 6y - 1 = 0$}{$x^2 + y^2 + 5x - 4y + 11 = 0$}{$x^2 + y^2 - 5x + 4y - 11 = 0$}
+\loigiai{
+$M$ nằm trên đường tròn đường kính $AB$, có tâm $I\left(\dfrac{1}{2}; 3\right)$ là trung điểm của $AB$ và bán kính
+\[ R = \dfrac{1}{2} AB = \dfrac{1}{2} \sqrt{25 + 16} = \dfrac{1}{2} \sqrt{41} \] nên có phương trình
+\[ \left(x - \dfrac{1}{2}\right)^2 + (y - 3)^2 = \dfrac{41}{4} \Leftrightarrow x^2 + y^2 - x - 6y - 1 = 0 \].
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn nào sau đây tiếp xúc với trục Ox?
+\choice{$x^2 + y^2 - 10x = 0$}{$x^2 + y^2 - 5 = 0$}{$x^2 + y^2 - 10x - 2y + 1 = 0$}{$x^2 + y^2 + 6x + 5y + 9 = 0$}
+\loigiai{
+Xét phương trình đường tròn : $x^2 + y^2 + 6x + 5y + 9 = 0$ có $I\left(-3; -\dfrac{5}{2}\right)$ và $R = \dfrac{5}{2}, d(I, Ox) = \dfrac{5}{2}$.
+Suy ra: $d(I, Ox) = R$. Vậy $(C)$ tiếp xúc với trục Ox.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, đường tròn nào sau đây tiếp xúc với trục Oy ?
+\choice{$x^2 + y^2 - 10y + 1 = 0$}{$x^2 + y^2 + 6x + 5y - 1 = 0$}{$x^2 + y^2 - 2x = 0$}{$x^2 + y^2 - 5 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, tìm tọa độ giao điểm của đường thẳng $\Delta : x - 2y + 3 = 0$ và đường tròn $(C)$: $x^2 + y^2 - 2x - 4y = 0$
+\choice{(3;3) và (-1;1)}{(-1;1) và (3;-3)}{(3;3) và (1;1)}{(2;1) và (2;-1)}
+\loigiai{
+Tọa độ giao điểm là nghiệm của hệ phương trình sau
+\[
+\begin{cases}
+x - 2y + 3 = 0 \\
+x^2 + y^2 - 2x - 4y = 0
+\end{cases}
+\]
+\Leftrightarrow
+\[
+\begin{cases}
+x = 2y - 3 \\
+(2y-3)^2 + y^2 - 2(2y-3) - 4y = 0
+\end{cases}
+\]
+\Leftrightarrow
+\[
+\begin{cases}
+y^2 - 4y + 3 = 0 \\
+x = 2y - 3
+\end{cases}
+\]
+\Leftrightarrow
+\[
+\begin{cases}
+y = 1 & hoặc & y = 3 \\
+x = -1 & hoặc & x = 3
+\end{cases}
+\]
+Vậy tọa độ giao điểm là (3;3) và (-1;1).
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho hai đường tròn $(C_1)$,$(C_2)$ có phương trình lần lượt là $(x+1)^2 + (y+2)^2 = 9$ và $(x-2)^2 + (y-2)^2 = 4$. Khẳng định nào dưới đây sai?
+\choice{Đường tròn $(C_1)$ có tâm $I_1(-1;-2)$ và bán kính $R_1 = 3$}{Đường tròn $(C_2)$ có tâm $I_2(2;2)$ và bán kính $R_2 = 2$}{Hai đường tròn $(C_1)$,$(C_2)$ không có điểm chung}{Hai đường tròn $(C_1)$,$(C_2)$ tiếp xúc với nhau}
+\loigiai{
+Ta thấy đường tròn $(C_1)$ có tâm I(-1;-2) và bán kính $R_1 = 3$ . Đường tròn $(C_2)$ có tâm $I_2(2;2)$ và bán kính $R_2 = 2$ .
+Khi đó: $5 = R_1 + R_2 = I_1I_2 = \sqrt{(2+1)^2 + (2+2)^2} = 5 \Rightarrow (C_1)$ và $(C_2)$ tiếp xúc nhau.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho hai đường tròn $(C)$:$(x-1)^2$ + $y^2$ = 4 và $(C')$:$(x-4)^2$ + $(y-3)^2$ = 16 cắt nhau tại hai điểm phân biệt A và B . Lập phương trình đường thẳng AB.
+\choice{$x + y - 2 = 0$}{$x - y + 2 = 0$}{$x + y + 2 = 0$}{$x - y - 2 = 0$}
+\loigiai{
+Giả sử hai đường tròn $(C):(x-1)^2 + y^2 = 4$ và $(C'):(x-4)^2 + (y-3)^2 = 16$ cắt nhau tại hai điểm phân biệt $A$ và $B$ khi đó tọa độ của $A$ và thỏa mãn hệ phương trình:
+\[
+\begin{cases}
+(x-1)^2 + y^2 = 4 \\
+(x-4)^2 + (y-3)^2 = 16
+\end{cases}
+\]
+\Leftrightarrow
+\[
+\begin{cases}
+x^2 + y^2 - 2x - 3 = 0 & \text{(1)} \\
+x^2 + y^2 - 8x - 6y + 9 = 0 & \text{(2)}
+\end{cases}
+\]
+Lấy (1) trừ (2) ta được: $6x + 6y - 12 = 0 \Leftrightarrow x + y - 2 = 0$ là phương trình đường thẳng đi qua 2 điểm $A$ và $B$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn $(C)$ có đường kính $AB$ với $A(1;1), B(7;5)$
+\choice{$(x+4)^2 + (y+2)^2 = 13$}{$(x-4)^2 + (y-3)^2 = 13$}{$(x+4)^2 + (y-3)^2 = 13$}{$(x-4)^2 + (y+3)^2 = 13$}
+\loigiai{
+Gọi $I$ là trung điểm của $AB$ thì $I(4;3)$ là tâm đường tròn $(C)$ có đường kính $AB$.
+$\overrightarrow{AB} = (6;4) \Rightarrow AB = 2\sqrt{13}$.
+Phương trình đường tròn $(C):(x-4)^2 + (y-3)^2 = 13$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho hai điểm $A(1;1)$ và $B(7;5)$. Phương trình đường tròn đường kính $AB$ là
+\choice{$x^2 + y^2 + 8x + 6y + 12 = 0$}{$x^2 + y^2 - 8x + 6y + 12 = 0$}{$x^2 + y^2 - 8x - 6y - 12 = 0$}{$x^2 + y^2 + 8x + 6y - 12 = 0$}
+\loigiai{
+Gọi $I$ là trung điểm của $AB$ suy ra $I(4;3) \Rightarrow AI = \sqrt{13}$
+Đường tròn cần tìm có đường kính $AB$ suy ra nó nhận $I(4;3)$ làm tâm và bán kính
+$R = AI = \sqrt{13}$ có dạng: $(x-4)^2 + (y-3)^2 = 13 \Leftrightarrow x^2 + y^2 - 8x - 6y + 12 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, phương trình đường tròn $(C)$ có tâm $I(1;3)$ và đi qua $M(3;1)$ là
+\choice{$(x-1)^2 + (y-3)^2 = 8$}{$(x-1)^2 + (y-3)^2 = 10$}{$(x-3)^2 + (y-1)^2 = 10$}{$(x-3)^2 + (y-1)^2 = 8$}
+\loigiai{
+Điểm $M(3;1)$ thuộc đường tròn $(C)$ nên $R = IM = \sqrt{(3-1)^2 + (1-3)^2} = 2\sqrt{2}$.
+Đường tròn $(C)$ có tâm $I(1;3)$ và bán kính $R = 2\sqrt{2}$ có phương trình tổng quát là:
+$(C):(x-1)^2 + (y-3)^2 = 8$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, phương trình đường tròn $(C)$ có tâm I(6; 2) và tiếp xúc ngoài với đường tròn $(C')$: $x^2 + y^2 - 4x + 2y + 1 = 0$ là
+\choice{$x^2 + y^2 - 12x - 4y - 9 = 0$}{$x^2 + y^2 - 6x - 12y + 31 = 0$}{$x^2 + y^2 + 12x + 4y + 31 = 0$}{$x^2 + y^2 - 12x - 4y + 31 = 0$}
+\loigiai{
+Đường tròn $(C')$: $x^2 + y^2 - 4x + 2y + 1 = 0$ có tâm $I'(2; -1)$ bán kính $R' = 2$.
+Đường tròn $(C)$ tâm I(6; 2) tiếp xúc ngoài với $(C')$ khi
+$II' = R + R' \Rightarrow R = II' - R' = 3 \ II' = R + R' \Rightarrow II' - R = 3$.
+Phương trình đường tròn cần tìm $(x-6)^2 + (x-2)^2 = 9$ hay $x^2 + y^2 - 12x - 4y + 31 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho hai điểm A(-2;1), B(3;5) và điểm M thỏa mãn AMB = 90°. Khi đó điểm M nằm trên đường tròn nào sau đây?
+\choice{$x^2 + y^2 - x - 6y - 1 = 0$}{$x^2 + y^2 + x + 6y - 1 = 0$}{$x^2 + y^2 + 5x - 4y + 11 = 0$}{$x^2 + y^2 - 5x + 4y - 11 = 0$}
+\loigiai{
+M nằm trên đường tròn đường kính AB.
+Tâm của $(C)$ là $I\left(\dfrac{1}{2}; 3\right)$ là trung điểm của AB và bán kính $R = \dfrac{1}{2} AB = \dfrac{1}{2} \sqrt{25+16} = \dfrac{1}{2} \sqrt{41}$ nên có phương trình: $\left(x - \dfrac{1}{2}\right)^2 + (y-3)^2 = \dfrac{41}{4} \Leftrightarrow x^2 + y^2 - x - 6y - 1 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, tìm tọa độ tâm I của đường tròn đi qua ba điểm A(0;4), B(2;4), C(2;0).
+\choice{I(1;1)}{I(0;0)}{I(1;2)}{I(1;0)}
+\loigiai{
+Giả sử phương trình đường tròn đi qua 3 điểm A,B,C có dạng $(C)$: $x^2 + y^2 + 2ax + 2by + c = 0$
+Thay tọa độ 3 điểm A(0;4), B(2;4), C(2;0) ta được:
+\[
+\begin{cases}
+8b + c = -16 \\
+4a + 8b + c = -20 \\
+4a + c = -4
+\end{cases}
+\]
+\[
+\begin{cases}
+a = -1 \\
+b = -2 \Rightarrow (C): x^2 + y^2 - 2x - 4y = 0 .
+\end{cases}
+\]
+c = 0
+Vậy $(C)$ có tâm I(1;2) và bán kính $R = \sqrt{5}$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho điểm I(1;1) và đường thẳng $(d)$: $3x + 4y - 2 = 0$. Đường tròn tâm I và tiếp xúc với đường thẳng $(d)$ có phương trình
+\choice{$(x-1)^2 + (y-1)^2 = 5$}{$(x-1)^2 + (y-1)^2 = 25$}{$(x-1)^2 + (y-1)^2 = 1$}{$(x-1)^2 + (y-1)^2 = \dfrac{1}{5}$}
+\loigiai{
+Đường tròn tâm I và tiếp xúc với đường thẳng $(d)$ có bán kính $R = d(I,d) = \dfrac{|3.1 + 4.1 - 2|}{\sqrt{3^2 + 4^2}} = 1$
+Vậy đường tròn có phương trình là: $(x-1)^2 + (y-1)^2 = 1$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, biết đường tròn $(C)$ có tâm $I(-3;2)$ có một tiếp tuyến là đường thẳng $\Delta : 3x + 4y - 9 = 0$. Viết phương trình của đường tròn $(C)$.
+\choice{$(x+3)^2 + (y-2)^2 = 2.$}{$(x-3)^2 + (y+2)^2 = 2.$}{$(x-3)^2 + (y-2)^2 = 4$}{$(x+3)^2 + (y-2)^2 = 4.$}
+\loigiai{
+Vì đường tròn $(C)$ có tâm $I(-3;2)$ và một tiếp tuyến của nó là đường thẳng $\Delta$ có phương trình là $3x + 4y - 9 = 0$ nên bán kính của đường tròn là $R = d(I,\Delta) = \dfrac{|3(-3) + 4.2 - 9|}{\sqrt{3^2 + 4^2}} = 2$
+Vậy phương trình đường tròn là: $(x+3)^2 + (y-2)^2 = 4$
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, tìm tọa độ tâm $I$ của đường tròn đi qua ba điểm $A(0;4), B(2;4), C(2;0)$.
+\choice{$I(1;1)$}{$I(0;0)$}{$I(1;2)$}{$I(1;0)$}
+\loigiai{
+Giả sử phương trình đường tròn đi qua 3 điểm $A,B,C$ có dạng $(C): x^2 + y^2 + 2ax + 2by + c = 0$
+Thay tọa độ 3 điểm $A(0;4), B(2;4), C(2;0)$ ta được:
+\[
+\begin{cases}
+8b + c = -16 \\
+4a + 8b + c = -20 \\
+4a + c = -4
+\end{cases}
+\]
+\[
+\begin{cases}
+a = -1 \\
+b = -2 \Rightarrow (C): x^2 + y^2 - 2x - 4y = 0 . \\
+c = 0
+\end{cases}
+\]
+Vậy $(C)$ có tâm $I(1;2)$ và bán kính $R = \sqrt{5}$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho tam giác $ABC$ có $A(1;-1), B(3;2), C(5;-5)$. Toạ độ tâm đường tròn ngoại tiếp tam giác $ABC$ là
+\choice{$\left(\dfrac{47}{10}; \dfrac{13}{10}\right)$}{$\left(\dfrac{47}{10}; \dfrac{13}{10}\right)$}{$\left(-\dfrac{47}{10}; -\dfrac{13}{10}\right)$}{$\left(-\dfrac{47}{10}; \dfrac{13}{10}\right)$}
+\loigiai{
+Gọi $I(x; y)$ là tâm đường tròn ngoại tiếp tam giác $ABC$.
+Ta có: \[
+\begin{cases}
+AI^2 = BI^2 \Leftrightarrow (x-1)^2 + (y+1)^2 = (x-3)^2 + (y-2)^2 \\
+AI^2 = CI^2 \Leftrightarrow (x-1)^2 + (y+1)^2 = (x-5)^2 + (y+5)^2
+\end{cases}
+\]
+\Leftrightarrow \[
+\begin{cases}
+4x + 6y = 11 \\
+8x - 8y = 48
+\end{cases}
+\]
+\Leftrightarrow \[
+\begin{cases}
+x = \dfrac{47}{10} \\
+y = -\dfrac{13}{10}
+\end{cases}
+\]
+\Leftrightarrow $I\left(\dfrac{47}{10}; -\dfrac{13}{10}\right)$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho các điểm $A(3;0)$ và $B(0;4)$. Đường tròn nội tiếp tam giác $OAB$ có phương trình
+\choice{$x^2 + y^2 = 1$}{$x^2 + y^2 - 4x + 4 = 0$}{$x^2 + y^2 = 2$}{$(x-1)^2 + (y-1)^2 = 1$}
+\loigiai{
+Vì các điểm $A(3;0)$ và $B(0;4)$ nằm trong góc phần tư thứ nhất nên tam giác $OAB$ cũng nằm trong góc phần tư thứ nhất. Do vậy gọi tâm đường tròn nội tiếp là $I(a,b)$ thì $a > 0, b > 0$.
+Theo đề, ta có: $d(I;Ox) = d(I;Oy) = d(I;AB)$.
+Phương trình theo đoạn chắn của $AB$ là: $\dfrac{x}{3} + \dfrac{y}{4} = 1$ hay $4x + 3y - 12 = 0$.
+Do vậy ta có: $\begin{cases} |a| = |b| \\ |4a + 3b - 12| = 5|a| \end{cases}$ $\Leftrightarrow$ $\begin{cases} |a| = |b| \\ 7a - 12 = 5a \\ 7a - 12 = -5a \end{cases}$ $\Leftrightarrow \begin{cases} a = b > 0 \\ a = 6\ (l). \\ a = 1 \end{cases}$
+Vậy phương trình đường tròn cần tìm là: $(x-1)^2 + (y-1)^2 = 1$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho hai điểm $A(3;0),\ B(0;4)$. Đường tròn nội tiếp tam giác $OAB$ có phương trình là
+\choice{$x^2 + y^2 = 1$}{$x^2 + y^2 - 2x - 2y + 1 = 0$}{$x^2 + y^2 - 6x - 8y + 25 = 0$}{$x^2 + y^2 = 2$}
+\loigiai{
+Ta có $OA = 3,\ OB = 4,\ AB = 5$.
+Gọi $I(x_I; y_I)$ là tâm đường tròn nội tiếp tam giác $OAB$.
+Từ hệ thức $AB.\overrightarrow{IO} + OB.\overrightarrow{IA} + OA.\overrightarrow{IB} = \vec{0}$ (Chứng minh) ta được:
+\[
+\begin{cases}
+x_I = \dfrac{AB.x_O + OB.x_A + OA.x_B}{AB + OB + OA} = \dfrac{4.3}{5+4+3} = 1 \\
+y_I = \dfrac{AB.y_O + OB.y_A + OA.y_B}{AB + OB + OA} = \dfrac{3.4}{5+4+3} = 1
+\end{cases}
+\]
+$\Rightarrow I(1;1)$
+Mặt khác tam giác $OAB$ vuông tại O với $ r $ là bán kính đường tròn nội tiếp tam giác thì
+\[
+r = \dfrac{S}{p} = \dfrac{\dfrac{1}{2}OA.OB}{OA + OB + AB} = \dfrac{3.4}{3+4+5} = 1\ (\ S,\ p\ lần\ lượt\ là\ diện\ tích\ và\ nửa\ chu\ vi\ tam\ giác).
+\]
+Vậy phương trình đường tròn nội tiếp tam giác $OAB$ là $(x-1)^2 + (y-1)^2 = 1$
+hay $x^2 + y^2 - 2x - 2y + 1 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình đường tròn đi qua hai điểm $A(3;0), B(0;2)$ và có tâm thuộc đường thẳng $d: x + y = 0$.
+\choice{$\left(x-\dfrac{1}{2}\right)^2 + \left(y+\dfrac{1}{2}\right)^2 = \dfrac{13}{2}$}{$\left(x+\dfrac{1}{2}\right)^2 + \left(y+\dfrac{1}{2}\right)^2 = \dfrac{13}{2}$}{$\left(x-\dfrac{1}{2}\right)^2 + \left(y-\dfrac{1}{2}\right)^2 = \dfrac{13}{2}$}{$\left(x+\dfrac{1}{2}\right)^2 + \left(y-\dfrac{1}{2}\right)^2 = \dfrac{13}{2}$}
+\loigiai{
+$A(3;0),\ B(0;2),\ d : x + y = 0$.
+Gọi $I$ là tâm đường tròn vậy $I(x;-x)$ vì $I \in d$.
+$IA^2 = IB^2 \iff (3-x)^2 + x^2 = x^2 + (2+x)^2 \iff -6x + 9 = 4x + 4 \iff x = \dfrac{1}{2}$. Vậy $I\left(\dfrac{1}{2}; -\dfrac{1}{2}\right)$.
+$IA = \sqrt{\left(3-\dfrac{1}{2}\right)^2 + \left(\dfrac{1}{2}\right)^2} = \dfrac{\sqrt{26}}{2}$ là bán kính đường tròn.
+Phương trình đường tròn cần lập là: $\left(x-\dfrac{1}{2}\right)^2 + \left(y+\dfrac{1}{2}\right)^2 = \dfrac{13}{2}$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, đường tròn $(C)$ đi qua hai điểm $A(1;3),\ B(3;1)$ và có tâm nằm trên đường thẳng $d : 2x - y + 7 = 0$ có phương trình là
+\choice{$(x-7)^2 + (y-7)^2 = 102$}{$(x+7)^2 + (y+7)^2 = 164$}{$(x+3)^2 + (y+5)^2 = 25$}{}
+\loigiai{
+$I(a;b)$ là tâm của đường tròn $(C)$, do đó:
+$AI^2 = BI^2 \Rightarrow (a-1)^2 + (b-3)^2 = (a-3)^2 + (b-1)^2$
+Hay: $a = b$ (1). Mà $I(a;b) \in d : 2x - y + 7 = 0$ nên $2a - b + 7 = 0$ (2).
+Thay (1) vào (2) ta có: $a = -7 \Rightarrow b = -7 \Rightarrow R^2 = AI^2 = 164$.
+Vậy $(C) : (x+7)^2 + (y+7)^2 = 164$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, đường tròn $(C)$ tiếp xúc với trục tung tại điểm $A(0;-2)$ và đi qua điểm $B(4;-2)$ có phương trình là
+\choice{$(x-2)^2 + (y+2)^2 = 4$}{$(x+2)^2 + (y-2)^2 = 4$}{$(x-3)^2 + (y-2)^2 = 4$}{$(x-3)^2 + (y+2)^2 = 4$}
+\loigiai{
+Vì $y_A = y_B = -2$ nên $AB \perp y'Oy$ và $AB$ là đường kính của $(C)$. Suy ra $I(2;-2)$ và bán kính $R = IA = 2$. Vậy $(C) : (x-2)^2 + (y+2)^2 = 4$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường thẳng $\Delta : 3x - 4y - 19 = 0$ và đường tròn $(C) : (x-1)^2 + (y-1)^2 = 25$. Biết đường thẳng $\Delta$ cắt $(C)$ tại hai điểm phân biệt $A$ và $B$, khi đó độ dài đoạn thẳng $AB$ là
+\choice{6}{3}{4}{8}
+\loigiai{
+Từ $\Delta : 3x - 4y - 19 = 0 \Rightarrow y = \dfrac{3}{4}x - \dfrac{19}{4}$ (1).
+Thế (1) vào $(C)$ ta được
+\[
+(x-1)^2 + \left( \dfrac{3}{4}x - \dfrac{23}{4} \right)^2 = 25 \Leftrightarrow \dfrac{25}{16}x^2 - \dfrac{85}{8}x + \dfrac{145}{16} = 0 \Leftrightarrow \begin{cases} x = 1 \\ x = \dfrac{29}{5} . \end{cases}
+\]
++) $x_A = 1 \Rightarrow y_A = -4 \Rightarrow A(1; -4)$.
++) $x_B = \dfrac{29}{5} \Rightarrow y_B = -\dfrac{2}{5} \Rightarrow B\left( \dfrac{29}{5}; -\dfrac{2}{5} \right)$.
+Độ dài đoạn thẳng $AB = \sqrt{\left( \dfrac{29}{5} - 1 \right)^2 + \left( -\dfrac{2}{5} + 4 \right)^2 } = 6$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C)$ có tâm I(1; -1) bán kính R = 5. Biết rằng đường thẳng $(d): 3x - 4y + 8 = 0$ cắt đường tròn $(C)$ tại hai điểm phân biệt A, B. Tính độ dài đoạn thẳng AB.
+\choice{$AB = 8$}{$AB = 4$}{$AB = 3$}{$AB = 6$}
+\loigiai{
+!\href{$FIGURE_1$}{Hình vẽ tam giác vuông AHI}
+Gọi H là trung điểm của đoạn thẳng AB. Ta có $IH \perp AB$ và
+\[
+IH = d(I; AB) = \dfrac{|3.1 - 4.(-1) + 8|}{\sqrt{3^2 + (-4)^2}} = 3 .
+\]
+Xét tam giác vuông AHI ta có: $HA^2 = IA^2 - IH^2 = 5^2 - 3^2 = 16 \Rightarrow HA = 4 \Rightarrow AB = 2HA = 8$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho điểm A(3;1), đường tròn $(C)$: $x^2 + y^2 - 2x - 4y + 3 = 0$. Viết phương trình đường thẳng d đi qua A và cắt đường tròn $(C)$ tại hai điểm B, C sao cho $BC = 2\sqrt{2}$.
+\choice{$d : x + 2y - 5 = 0$}{$d : x - 2y - 5 = 0$}{$d : x + 2y + 5 = 0$}{$d : x - 2y + 5 = 0$}
+\loigiai{
+Đường tròn $(C)$có tâm I(1;2) và bán kính $R = \sqrt{1^2 + 2^2 - 3} = \sqrt{2}$.
+Theo giả thiết đường thẳng d đi qua A và cắt đường tròn $(C)$ tại hai điểm B, C sao cho $BC = 2\sqrt{2}$.
+Vì $BC = 2\sqrt{2} = 2R$ nên $BC$ là đường kính của đường tròn $(C)$ suy ra đường thẳng $ d $ đi qua tâm $I(1;2)$
+Ta chọn: $\vec{u}_d = \overrightarrow{IA} = (2;-1) \Rightarrow \vec{n}_d = (1;2)$.
+Vậy đường thẳng $d$ đi qua $A(3;1)$ và có VTPT $\vec{n}_d = (1;2)$ nên phương trình tổng quát của đường thẳng $ d $ là: $1(x-3) + 2(y-1) = 0 \Leftrightarrow x + 2y - 5 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường tròn $(C): (x-1)^2 + (y-4)^2 = 4$. Phương trình tiếp tuyến với đường tròn $(C)$ song song với đường thẳng $\Delta : 4x - 3y + 2 = 0$ là
+\choice{$4x - 3y + 18 = 0$}{$4x - 3y + 18 = 0$}{$4x - 3y + 18 = 0; 4x - 3y - 2 = 0$}{$4x - 3y - 18 = 0; 4x - 3y + 2 = 0$}
+\loigiai{
+Đường tròn $(C): (x-1)^2 + (y-4)^2 = 4$ có tâm $I(1;4)$ và bán kính $R = 2$.
+Gọi $d$ là tiếp tuyến của $(C)$.
+Vì $d // \Delta$ nên đường thẳng $d : 4x - 3y + m = 0 (m \neq 2)$.
+$d$ là tiếp tuyến của $(C) \Leftrightarrow d(I;(d)) = R \Leftrightarrow \dfrac{|4.1 - 3.4 + m|}{\sqrt{4^2 + (-3)^2}} = 2$
+\Leftrightarrow |m - 8| = 10 \Leftrightarrow \begin{cases} m = 18 \\ m = -2 \end{cases} (thỏa mãn điều kiện)
+Vậy có 2 tiếp tuyến cần tìm: $4x - 3y + 18 = 0; 4x - 3y - 2 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, số tiếp tuyến chung của 2 đường tròn $(C): x^2 + y^2 - 2x + 4y + 1 = 0$ và $(C'): x^2 + y^2 + 6x - 8y + 20 = 0$ là
+\choice{1}{2}{4}{3}
+\loigiai{
+Đường tròn $(C): x^2 + y^2 - 2x + 4y + 1 = 0$ có tâm $I(1;-2)$ bán kính $R = 2$.
+Đường tròn $(C'): x^2 + y^2 + 6x - 8y + 20 = 0$ có tâm $I'(-3;4)$ bán kính $R' = \sqrt{5}$.
+$II' = 2\sqrt{13}$.
+Vậy $II' > R + R'$ nên 2 đường tròn không có điểm chung suy ra 2 đường tròn có 4 tiếp tuyến chung.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, viết phương trình tiếp tuyến của đường tròn $(C): (x-2)^2 + (y+4)^2 = 25$, biết tiếp tuyến vuông góc với đường thẳng $d : 3x - 4y + 5 = 0$.
+\choice{$4x + 3y + 29 = 0$}{$4x + 3y + 29 = 0$ hoặc $4x + 3y - 21 = 0$}{$4x - 3y + 5 = 0$ hoặc $4x - 3y - 45 = 0$}{$4x + 3y + 5 = 0$ hoặc $4x + 3y + 3 = 0$}
+\loigiai{
+Đường tròn $(C): (x-2)^2 + (y+4)^2 = 25$ có tâm $I(2;-4)$, bán kính $R = 5$.
+Đường thẳng $\Delta$ vuông góc với đường thẳng $d : 3x - 4y + 5 = 0$ có phương trình dạng: $4x + 3y + c = 0$
+$\Delta$ là tiếp tuyến của đường tròn $(C)$ khi và chỉ khi:
+$d(I;\Delta) = R \Leftrightarrow \dfrac{|4.2+3.(-4)+c|}{\sqrt{4^2+3^2}} = 5 \Leftrightarrow |c-4|=25 \Leftrightarrow \begin{cases} c-4=25 \\ c-4=-25 \end{cases} \Leftrightarrow \begin{cases} c=29 \\ c=-21 \end{cases}$. Vậy có hai tiếp tuyến cần tìm là: $4x+3y+29=0$ và $4x+3y-21=0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C)$ có phương trình $x^2 + y^2 - 2x + 2y - 3 = 0$. Từ điểm $A(1;1)$ kẻ được bao nhiêu tiếp tuyến đến đường tròn $(C)$?
+\choice{1}{2}{Vô số}{0}
+\loigiai{
+$(C)$ có tâm $I(1;-1)$ bán kính $R = \sqrt{1^2 + (-1)^2 - (-3)} = \sqrt{5}$
+Vì $IA = 2 < R$ nên A nằm bên trong $(C)$. Vì vậy không kẻ được tiếp tuyến nào tới đường tròn $(C)$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2 + y^2 - 2x - 4y + 3 = 0$. Viết phương trình tiếp tuyến $ d $ của đường tròn $(C)$ biết tiếp tuyến đó song song với đường thẳng $\Delta : 3x + 4y + 1 = 0$.
+\choice{$3x + 4y + 5\sqrt{2} - 11 = 0 ; 3x + 4y - 5\sqrt{2} + 11 = 0$}{$3x + 4y + 5\sqrt{2} - 11 = 0 , 3x + 4y - 5\sqrt{2} - 11 = 0$}{$3x + 4y + 5\sqrt{2} - 11 = 0 , 3x + 4y + 5\sqrt{2} + 11 = 0$}{$3x + 4y - 5\sqrt{2} + 11 = 0 , 3x + 4y - 5\sqrt{2} - 11 = 0$}
+\loigiai{
+$(C)$: $x^2 + y^2 - 2x - 4y + 3 = 0 \Leftrightarrow (x-1)^2 + (y-2)^2 = 2$.
+Do đó đường tròn có tâm $I = (1;2)$ và bán kính $R = \sqrt{2}$.
+Do $d$ song song với đường thẳng $\Delta$ nên $ d $ có phương trình là $3x + 4y + k = 0 , (k \neq 1)$.
+Ta có $d(I;d) = R \Leftrightarrow \dfrac{|11+k|}{\sqrt{3^2+4^2}} = \sqrt{2} \Leftrightarrow |11+k| = 5\sqrt{2} \Leftrightarrow \begin{cases} 11+k = 5\sqrt{2} \\ 11+k = -5\sqrt{2} \end{cases} \Leftrightarrow \begin{cases} k = 5\sqrt{2}-11 \\ k = -5\sqrt{2}-11 \end{cases}$.
+Vậy có hai phương trình tiếp tuyến cần tìm là $3x + 4y + 5\sqrt{2} - 11 = 0 , 3x + 4y - 5\sqrt{2} - 11 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2 + y^2 - 2x - 4y - 4 = 0$ và điểm $A(1;5)$. Đường thẳng nào trong các đường thẳng dưới đây là tiếp tuyến của đường tròn $(C)$ tại điểm $A$?
+\choice{$y - 5 = 0$}{$y + 5 = 0$}{$x + y - 5 = 0$}{$x - y - 5 = 0$}
+\loigiai{
+Đường tròn $(C)$ có tâm $I(1;2) \Rightarrow \overrightarrow{IA} = (0;3)$.
+Gọi $d$ là tiếp tuyến của $(C)$ tại điểm $A$, khi đó $ d $ đi qua $A$ và nhận vectơ $\overrightarrow{IA}$ là một VTPT.
+Chọn một VTPT của $d$ là $\vec{n}_d = (0;1)$.
+Vậy phương trình đường thẳng $d$ là $y - 5 = 0$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2 + y^2 - 4 = 0$ và điểm $A(-1;2)$. Đường thẳng nào trong các đường thẳng dưới đây đi qua $A$ và là tiếp tuyến của đường tròn $(C)$?
+\choice{$4x - 3y + 10 = 0$}{$6x + y + 4 = 0$}{$3x + 4y + 10 = 0$}{$3x - 4y + 11 = 0$}
+\loigiai{
+Đường tròn $(C)$ có tâm là gốc tọa độ O(0;0) và có bán kính R = 2.
+Họ đường thẳng $\Delta$ qua A(-1;2): a(x+1)+b(y-2)=0, với $a^2 + b^2 \neq 0$.
+Điều kiện tiếp xúc d(O;$\Delta$) = R hay
+\[
+\dfrac{|a-2b|}{\sqrt{a^2+b^2}} = 2 \Leftrightarrow (a-2b)^2 = 4(a^2+b^2) \Leftrightarrow 3a^2 + 4ab = 0 \Leftrightarrow \begin{cases} a=0 \\ 3a = -4b \end{cases}.
+\]
+Với a = 0, chọn b = 1 ta có $\Delta_1$: y - 2 = 0.
+Với 3a = -4b, chọn a = 4 và b = -3 ta có $\Delta_2$: 4(x+1)-3(y-2)=0 \Leftrightarrow 4x-3y+10=0.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho điểm P(-3;-2) và đường tròn $(C)$:$(x-3)^2$+$(y-4)^2$=36. Từ điểm P kẻ các tiếp tuyến PM và PN tới đường tròn $(C)$, với M , N là các tiếp điểm.
+Phương trình đường thẳng MN là
+\choice{x + y +1 = 0}{x - y -1 = 0}{x - y +1 = 0}{x + y -1 = 0}
+\loigiai{
+!\href{./$figure_1$.png}{Hình vẽ đường tròn và điểm M, N}
+Gọi I là tâm của đường tròn, ta có tọa độ tâm I(3;4).
+Theo đề ra ta có tứ giác IMPN là hình vuông, nên đường thẳng MN nhận IP=(-6;-6) làm VTPT, đồng thời đường thẳng MN đi qua trung điểm K(0;1) của IP. Vậy phương trình đường thẳng MN: 1.(x-0)+1.(y-1)=0 hay x + y -1 = 0 .
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho điểm M(-3;1) và đường tròn $(C)$: $x^2$ + $y^2$ - 2x - 6y + 6 = 0 . Gọi $T_1$, $T_2$ là các tiếp điểm của các tiếp tuyến kẻ từ M đến $(C)$. Tính khoảng cách từ O đến đường thẳng $T_1T_2$.
+\choice{5}{$\sqrt{5}$}{$\dfrac{3}{\sqrt{5}}$}{$2\sqrt{2}$}
+\loigiai{
++$(C)$: $x^2$ + $y^2$ - 2x - 6y + 6 = 0 \Leftrightarrow $(x-1)^2$ + $(y-3)^2$ = 4 suy ra (C ) có tâm I(1;3) và R=2
++ Phương trình đường thẳng d đi qua M(-3;1) có phương trình: A(x+3)+B(y-1)=0 .
+d là tiếp tuyến với đường tròn khi và chỉ khi d(I;d)=R .
+$\Rightarrow$ ta có phương trình: $\dfrac{|A+3B+3A-B|}{\sqrt{A^2+B^2}} = 2 \Leftrightarrow 3A^2 + 4AB = 0 \Leftrightarrow \begin{cases} A = 0 \\ 3A = -4B \end{cases}$
++ Với $A = 0$, chọn $B = 1$, phương trình tiếp tuyến thứ nhất là $(d_1): y = 1$.
+Thế $y = 1$ vào $(C): x^2 + y^2 - 2x - 6y + 6 = 0$, ta được tiếp điểm là $T_1(1;1)$.
++ Với $3A = -4B$, chọn $A = -4; B = 3$, phương trình tiếp tuyến thứ hai là $(d_2): -4x + 3y - 15 = 0$
+Tiếp điểm $T_2\left(x; \dfrac{4x}{3} + 5\right) \in (C)$ nên $(x-1)^2 + \left(\dfrac{4x}{3} + 5 - 3\right)^2 = 4 \Leftrightarrow x = -\dfrac{3}{5} \Rightarrow T_2\left(-\dfrac{3}{5}; \dfrac{21}{5}\right)$.
++ Phương trình đường thẳng $TT_2 : 2(x-1) + 1(y-1) = 0 \Leftrightarrow 2x + y - 3 = 0$.
++ Khoảng cách từ $O$ đến đường thẳng $TT_2$ là: $d\left(O; TT_2\right) = \dfrac{|-3|}{\sqrt{2^2 + 1^2}} = \dfrac{3}{\sqrt{5}}$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường tròn $(C): x^2 + y^2 - 2x - 4y - 4 = 0$ và điểm $M(2;1)$. Dây cung của $(C)$ đi qua điểm $M$ có độ dài ngắn nhất là
+\choice{6}{$\sqrt{7}$}{$3\sqrt{7}$}{$2\sqrt{7}$}
+\loigiai{
+!\href{$figure_1$.png}{Đồ thị đường tròn và dây cung}
+Ta có $(C): x^2 + y^2 - 2x - 4y - 4 = 0 \Leftrightarrow (C): (x-1)^2 + (y-2)^2 = 9$ nên có tâm $I(1;2), R = 3$
+Vì $IM = \sqrt{2} < 3 = R$.
+Gọi $d$ là đường thẳng đi qua $M$ cắt đường tròn $(C)$ tại các điểm $A, B$. Gọi $J$ là trung điểm của $AB$. Ta có:
+Ta có: $AB = 2AJ = 2\sqrt{R^2 - IJ^2} \geq 2\sqrt{R^2 - IM^2} = 2\sqrt{9-2} = 2\sqrt{7}$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho tam giác $ABC$ biết $H(3;2), G\left(\dfrac{5}{3}; \dfrac{8}{3}\right)$ lần lượt là trực tâm và trọng tâm của tam giác, đường thẳng $BC$ có phương trình $x + 2y - 2 = 0$. Viết phương trình đường tròn ngoại tiếp tam giác $ABC$.
+\choice{$(x+1)^2 + (y+1)^2 = 20$}{$(x-2)^2 + (y+4)^2 = 20$}{$(x-1)^2 + (y+3)^2 = 1$}{$(x-1)^2 + (y-3)^2 = 25$}
+\loigiai{
+*) Gọi $I$ là tâm đường tròn ngoại tiếp tam giác $ABC$.
+\[
+\Rightarrow \overline{HI} = \dfrac{3}{2} \overline{HG} \Rightarrow \begin{cases}
+x_I - 3 = \dfrac{3}{2} \left( \dfrac{5}{3} - 3 \right) \\
+y_I - 2 = \dfrac{3}{2} \left( \dfrac{8}{3} - 2 \right)
+\end{cases} \Rightarrow \begin{cases}
+x_I = 1 \\
+y_I = 3
+\end{cases}
+\]
+(Do đó ta có thể chọn đáp án D luôn mà không cần tính bán kính).
+*) Gọi $M$ là trung điểm của $BC \Rightarrow IM \perp BC \Rightarrow IM : 2x - y + 1 = 0$.
+$M = IM \cap BC \Rightarrow \begin{cases}
+2x - y = -1 \\
+x + 2y = 2
+\end{cases} \Rightarrow \begin{cases}
+x = 0 \\
+y = 1
+\end{cases} \Rightarrow M (0;1)$.
+Lại có: $\overline{MA} = 3 \overline{MG} \Rightarrow \begin{cases}
+x_A = 3 \cdot \dfrac{5}{3} \\
+y_A - 1 = 3 \cdot \left( \dfrac{8}{3} - 1 \right)
+\end{cases} \Rightarrow \begin{cases}
+x_A = 5 \\
+y_A = 6
+\end{cases}$.
+Suy ra: bán kính đường tròn ngoại tiếp tam giác $ABC$ là $R = IA = 5$.
+Vậy phương trình đường tròn ngoại tiếp tam giác $ABC$ là $(x-1)^2 + (y-3)^2 = 25$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho điểm $I(1;2)$ và đường thẳng $(d): 2x + y - 5 = 0$. Biết rằng có hai điểm $M_1, M_2$ thuộc $(d)$ sao cho $IM_1 = IM_2 = \sqrt{10}$. Tổng các hoành độ của $M_1$ và $M_2$ là
+\choice{$\dfrac{7}{5}$}{$\dfrac{14}{5}$}{2}{5}
+\loigiai{
+\[
+\begin{cases}
+IM_1 = IM_2 = \sqrt{10} \\
+I(1;2)
+\end{cases} \Rightarrow M_1, M_2 \in (C): (x-1)^2 + (y-2)^2 = 10.
+\]
+Mặt khác, $M_1, M_2$ thuộc $(d): 2x + y - 5 = 0$ nên ta có tọa độ $M_1, M_2$ là nghiệm của hệ
+\[
+\begin{cases}
+(x-1)^2 + (y-2)^2 = 10 & (1) \\
+2x + y - 5 = 0 & (2)
+\end{cases}
+\]
+(2) $\Leftrightarrow y = -2x + 5$, thay vào (1) ta có $5x^2 - 14x = 0$ $\Leftrightarrow \begin{cases} x = 0 \\ x = \dfrac{14}{5} \end{cases}$.
+Gọi $x_1, x_2$ lần lượt là hoành độ của $M_1$ và $M_2 \Rightarrow x_1 + x_2 = 0 + \dfrac{14}{5} = \dfrac{14}{5}$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường tròn $(C): (x+1)^2 + (y-3)^2 = 4$ và đường thẳng $d : 3x - 4y + 5 = 0$. Phương trình của đường thẳng $d'$ song song với đường thẳng $ d $ và chắn trên $(C)$ một dây cung có độ dài lớn nhất là
+\choice{$4x + 3y + 13 = 0$}{$3x - 4y + 25 = 0$}{$3x - 4y + 15 = 0$. \textbf{(Đáp án)}}{$4x + 3y + 20 = 0$.  \textbf{Lời giải:}  $(C)$ có tâm $I(-1;3)$ và $R = 2. d' // d \Rightarrow d': 3x - 4y + c = 0$.  Yêu cầu bài toán có nghĩa là $d'$ qua tâm $I(-1;3)$ của $(C)$, tức là: $-3 - 12 + c = 0 \Leftrightarrow c = 1$  Vậy $d': 3x - 4y + 15 = 0$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, gọi $I$ là tâm của đường tròn $(C): (x-1)^2 + (y-1)^2 = 4$. Số các giá trị nguyên của $ m $ để đường thẳng $x + y - m = 0$ cắt đường tròn $(C)$ tại hai điểm phân biệt $A, B$ sao cho tam giác $IAB$ có diện tích lớn nhất là
+\choice{1}{3}{2. \textbf{(Đáp án)}}{0.  \textbf{Lời giải:}  !\href{./$figure_1$.png}{Hình vẽ tam giác IAB với đường thẳng x+y-m=0 cắt đường tròn}  Gọi: $d : x + y - m = 0$; tâm của $(C)$ là $I(1;1)$, để $d \cap (C)$ tại 2 phân biệt khi đó:  $\displaystyle 0 \leq d(I;d) < 2 \Leftrightarrow 0 \leq \dfrac{|2-m|}{\sqrt{2}} < 2 \Leftrightarrow 2 - 2\sqrt{2} < m < 2 + 2\sqrt{2} (*)$  Xét $\Delta IAB$ có: $S_{\triangle IAB} = \dfrac{1}{2}.IA.IB.\sin AIB = \dfrac{1}{2}.R^2.\sin AIB \leq \dfrac{1}{2}.R^2$  Dấu "=" xảy ra khi:  $\displaystyle \sin AIB = 1 \Leftrightarrow AIB = 90^\circ \Rightarrow AB = 2\sqrt{2} \Rightarrow d(I;d) = \sqrt{2} \Leftrightarrow \dfrac{|2-m|}{\sqrt{2}} = \sqrt{2} \Leftrightarrow \begin{cases} m = 0 & (TM) \\ m = 4 & (TM) \end{cases}$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, điểm nằm trên đường tròn $(C): x^2 + y^2 - 2x + 4y + 1 = 0$ có khoảng cách ngắn nhất đến đường thẳng $d : x - y + 3 = 0$ có toạ độ $M(a;b)$. Khẳng định nào sau đây đúng?
+\choice{$\sqrt{2}a = -b$}{$a = -b$}{$\sqrt{2}a = b$. \textbf{(Đáp án)}}{$a = b$.  \textbf{Lời giải:}  Đường tròn $(C)$ có tâm $I(1;-2)$, bán kính $R = 2$.  Gọi $\Delta$ là đường thẳng qua $I$ và vuông góc với $ d $. Khi đó, điểm $M$ cần tìm là một trong hai giao điểm của $\Delta$ và $(C)$.  Ta có phương trình $\Delta : x + y + 1 = 0$.  Xét hệ: $\begin{cases} x + y + 1 = 0 \\ x^2 + y^2 - 2x + 4y + 1 = 0 \end{cases}$ $\Leftrightarrow$ $\begin{cases} y = -x - 1 \\ (x-1)^2 + (y+2)^2 = 4 \end{cases}$  $\Leftrightarrow \begin{cases} y = -x - 1 \\ 2(x-1)^2 = 4 \end{cases}$ $\Leftrightarrow \begin{cases} y = -x - 1 \\ x = 1 \pm \sqrt{2} \end{cases}$ $\Leftrightarrow \begin{cases} x = 1+\sqrt{2} \\ y = -2-\sqrt{2} \\ x = 1-\sqrt{2} \\ y = -2+\sqrt{2} \end{cases}$  Với $B\left(1+\sqrt{2}; -2-\sqrt{2}\right) \Rightarrow d(B,d) = 2+3\sqrt{2}$  Với $C\left(1-\sqrt{2}; -2+\sqrt{2}\right) \Rightarrow d(C,d) = -2+3\sqrt{2} < d(B,d)$  Suy ra $M\left(1-\sqrt{2}; -2+\sqrt{2}\right) \Rightarrow a = 1-\sqrt{2}; b = -2+\sqrt{2} = \sqrt{2}\left(1-\sqrt{2}\right) = \sqrt{2}a$}
+\loigiai{}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng $Oxy$, cho đường tròn $(C): x^2 + y^2 - 4x + 2y - 15 = 0$ có tâm $I$. Đường thẳng $ d $ đi qua $M(1;-3)$ cắt $(C)$ tại $A, B$. Biết tam giác $IAB$ có diện tích là 8. Phương trình đường thẳng $ d $ là $x + by + c = 0$. Tính $b + c$.
+\choice{8}{2}{6}{1}
+\loigiai{
+$(C)$ có tâm $I(2;-1)$, bán kính $R = 2\sqrt{5}$.
+Đặt $h = d(I, AB)$. Ta có: $S_{IAB} = \dfrac{1}{2} h . AB = 8 \Rightarrow h . AB = 16$.
+Mặt khác: $R^2 = h^2 + \dfrac{AB^2}{4} = 20$. Suy ra: $\begin{cases} h = 4 \\ AB = 4 \end{cases} ; \begin{cases} h = 2 \\ AB = 8 \end{cases}$
+Vì $d$ đi qua $M(1;-3)$ nên $1 - 3b + c = 0 \Rightarrow 3b - c = 1 \Rightarrow c = 3b - 1$
+Với $h = 4 = \dfrac{|2-b+c|}{\sqrt{1+b^2}} = \dfrac{|2-b+3b-1|}{\sqrt{1+b^2}} = \dfrac{|1+2b|}{\sqrt{1+b^2}} \Rightarrow b \in \varnothing$.
+Với $h = 2 = \dfrac{|2-b+c|}{\sqrt{1+b^2}} = \dfrac{|2-b+3b-1|}{\sqrt{1+b^2}} = \dfrac{|1+2b|}{\sqrt{1+b^2}} \Rightarrow b = \dfrac{3}{4} \Rightarrow c = \dfrac{5}{4} \Rightarrow b+c = 2$.
+}
+\end{ex}
+
+\begin{ex}
+Trong mặt phẳng Oxy, cho tam giác $ABC$ có trung điểm của $BC$ là $M(3;2)$, trọng tâm và tâm đường tròn ngoại tiếp tam giác lần lượt là $G\left(\dfrac{2}{3};\dfrac{2}{3}\right), I(1;-2)$. Tìm tọa độ đỉnh $C$, biết $C$ có hoành độ lớn hơn 2 .
+\choice{$C(9;1)$}{$C(5;1)$}{$C(4;2)$}{$C(3;-2)$}
+\loigiai{
+!\href{$FIGURE_1$}{Hình vẽ đường tròn ngoại tiếp tam giác ABC}
+Vì $GA = -2GM$ nên $A$ là ảnh của điểm $M$ qua phép vị tự tâm $G$, tỉ số $-2$, suy ra $A(-4;-2)$.
+Đường tròn ngoại tiếp $ABC$ có tâm $I$, bán kính $R = IA = 5$ có phương trình $(x-3)^2 + (y-2)^2 = 25$.
+Ta có: $\overrightarrow{IM} = (2;4)$.
+Đường thẳng $BC$ đi qua $M$ và nhận vecto $\overrightarrow{IM}$ làm vectơ pháp tuyến, phương trình $BC$ là: $1(x-3)+2(y-2)=0 \Leftrightarrow x+2y-7=0$.
+Điểm $C$ là giao điểm của đường thẳng $BC$ và đường tròn $(I;R)$ nên tọa độ điểm $C$ là nghiệm của hệ phương trình: $\begin{cases} (x-3)^2 + (y-2)^2 = 25 \\ x+2y-7=0 \end{cases} \Leftrightarrow \begin{cases} x=1, y=3 \\ x=5, y=1 \end{cases}$
+Đối chiếu điều kiện đề bài ta có tọa độ điểm $C(5;1)$.
+}
+\end{ex}
+
+\Closesolutionfile{ans}
+\Closesolutionfile{ansbook}
+
+\newpage
+\begin{center}\textbf{\Large BẢNG ĐÁP ÁN}\end{center}
+\IfFileExists{ans/dapan.tex}{\inputansbox{10}{ans/dapan}}{\textit{Chưa phát hiện dữ liệu đáp án tự động.}}
+
+\end{document}

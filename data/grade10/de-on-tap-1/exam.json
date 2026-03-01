@@ -12,7 +12,8 @@
         "Các bạn có chăm học không?",
         "Các bạn hãy làm bài đi!"
       ],
-      "correct_index": 0
+      "correct_index": 0,
+      "detailed_explanation": "Đáp án đúng: A. $12$ là số tự nhiên lẻ.\n\nPhân tích: Mệnh đề là một câu khẳng định có tính đúng hoặc sai rõ ràng.\n- Câu A là một khẳng định và nó sai (vì $12$ là số chẵn).\n- Câu B và C là câu hỏi.\n- Câu D là câu mệnh lệnh.\nDo đó, chỉ có A là mệnh đề."
     },
     {
       "q_id": "d1_tn_2",
@@ -25,7 +26,8 @@
         "$C=\\{x\\in\\mathbb{R}|x^{2}-5=0\\}$",
         "$D=\\{x\\in\\mathbb{Q}|x^{2}+x-12=0\\}$"
       ],
-      "correct_index": 1
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. $B=\\{x\\in\\mathbb{R}|x^{2}+2x+3=0\\}$.\n\nPhân tích: Tập hợp rỗng là tập hợp không chứa phần tử nào.\n- Tập $A$: $x^2 - 4 = 0 \\Leftrightarrow x = 2$ hoặc $x = -2$. Vì $x \\in \\mathbb{N}$ nên $x=2$. Vậy $A=\\{2\\}$.\n- Tập $B$: Phương trình $x^2+2x+3=0$ có $\\Delta' = 1^2 - 1 \\cdot 3 = -2 < 0$, nên phương trình vô nghiệm thực. Vậy $B=\\emptyset$.\n- Tập $C$: $x^2 - 5 = 0 \\Leftrightarrow x = \\pm\\sqrt{5}$. Vậy $C=\\{-\\sqrt{5}; \\sqrt{5}\\}$.\n- Tập $D$: $x^2+x-12=0 \\Leftrightarrow x=3$ hoặc $x=-4$. Cả hai đều là số hữu tỉ. Vậy $D=\\{-4; 3\\}$."
     },
     {
       "q_id": "d1_tn_3",
@@ -38,7 +40,8 @@
         "$a^{2}=b^{2}+c^{2}-2bc \\cos C$",
         "$a^{2}=b^{2}+c^{2}-2bc \\cos B$"
       ],
-      "correct_index": 1
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. $a^{2}=b^{2}+c^{2}-2bc \\cos A$.\n\nPhân tích: Đây là phát biểu của định lý cosin trong tam giác $ABC$."
     },
     {
       "q_id": "d1_tn_4",
@@ -51,7 +54,8 @@
         "$C(-1;1)$",
         "$D(-\\sqrt{3};\\sqrt{3})$"
       ],
-      "correct_index": 0
+      "correct_index": 0,
+      "detailed_explanation": "Đáp án đúng: A. $A(1;-1)$.\n\nPhân tích: Ta thay tọa độ các điểm vào bất phương trình $(1+\\sqrt{3})x-(1-\\sqrt{3})y\\ge2$.\n- Với $A(1;-1)$: $(1+\\sqrt{3})(1)-(1-\\sqrt{3})(-1) = 1+\\sqrt{3}+1-\\sqrt{3}=2$. Do $2 \\ge 2$ là đúng nên điểm $A$ thuộc miền nghiệm.\n- Với $B(-1;-1)$: $(1+\\sqrt{3})(-1)-(1-\\sqrt{3})(-1) = -1-\\sqrt{3}+1-\\sqrt{3}=-2\\sqrt{3} < 2$.\n- Với $C(-1;1)$: $(1+\\sqrt{3})(-1)-(1-\\sqrt{3})(1) = -1-\\sqrt{3}-1+\\sqrt{3}=-2 < 2$.\n- Với $D(-\\sqrt{3};\\sqrt{3})$: $(1+\\sqrt{3})(-\\sqrt{3})-(1-\\sqrt{3})(\\sqrt{3}) = -\\sqrt{3}-3 - (\\sqrt{3}-3) = -2\\sqrt{3} < 2$."
     },
     {
       "q_id": "d1_tn_5",
@@ -64,7 +68,8 @@
         "$2x^{2}+5y>3$",
         "$2x+3y<5$"
       ],
-      "correct_index": 3
+      "correct_index": 3,
+      "detailed_explanation": "Đáp án đúng: D. $2x+3y<5$.\n\nPhân tích: Bất phương trình bậc nhất hai ẩn có dạng tổng quát là $ax+by \\le c$, $ax+by \\ge c$, $ax+by < c$, hoặc $ax+by > c$, trong đó $a, b$ không đồng thời bằng $0$.\n- A có $3$ ẩn.\n- B, C là bất phương trình bậc hai.\n- D là bất phương trình bậc nhất hai ẩn $x, y$."
     },
     {
       "q_id": "d1_tn_6",
@@ -77,7 +82,8 @@
         "$\\{4;7\\}$",
         "$\\{1;3\\}$"
       ],
-      "correct_index": 2
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. $\\{4;7\\}$.\n\nPhân tích: Phép giao $X\\cap Y$ là tập hợp các phần tử chung của cả hai tập hợp $X$ và $Y$.\nTa có $X=\\{7;2;8;4;9;12\\}$ và $Y=\\{1;3;7;4\\}$.\nCác phần tử chung là $4$ và $7$. Vậy $X \\cap Y = \\{4;7\\}$."
     },
     {
       "q_id": "d1_tn_7",
@@ -90,7 +96,8 @@
         "$10$",
         "$6$"
       ],
-      "correct_index": 3
+      "correct_index": 3,
+      "detailed_explanation": "Đáp án đúng: D. 6.\n\nPhân tích: Cách 1: Liệt kê các tập con thoả mãn YCBT: $\\{0;3\\}$, $\\{0;4\\}$, $\\{0;6\\}$, $\\{3;4\\}$, $\\{3;6\\}$, $\\{4;6\\}$ \nCách 2. Sử dụng quy tắc đếm (học ở HK2): Tập $A$ có $4$ phần tử. Số tập con gồm hai phần tử của $A$ được tính bằng tổ hợp chập $2$ của $4$ phần tử: $C_4^2 = \\dfrac{4!}{2!(4-2)!} = \\dfrac{24}{2 \\cdot 2} = 6$."
     },
     {
       "q_id": "d1_tn_8",
@@ -103,7 +110,8 @@
         "$\\{6;9\\}$",
         "$\\{1\\}$"
       ],
-      "correct_index": 2
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. $\\{6;9\\}$.\n\nPhân tích: Phép hiệu $X\\setminus Y$ là tập hợp các phần tử thuộc $X$ nhưng không thuộc $Y$.\nTa có $X=\\{2;4;6;9\\}$ và $Y=\\{1;2;3;4\\}$.\nCác phần tử thuộc $X$ mà không thuộc $Y$ là $6$ và $9$. Vậy $X \\setminus Y = \\{6;9\\}$."
     },
     {
       "q_id": "d1_tn_9",
@@ -116,7 +124,8 @@
         "$a=2R \\tan A$",
         "$a=R \\sin A$"
       ],
-      "correct_index": 1
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. $a=2R \\sin A$.\n\nPhân tích: Đây là phát biểu của định lý sin trong tam giác: $\\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} = \\dfrac{c}{\\sin C} = 2R$.\nTừ $\\dfrac{a}{\\sin A} = 2R$, suy ra $a = 2R \\sin A$."
     },
     {
       "q_id": "d1_tn_10",
@@ -129,7 +138,8 @@
         "Phương trình $ax^{2}+bx+c=0(a\\ne0)$ có nghiệm kép.",
         "Phương trình $ax^{2}+bx+c=0(a\\ne0)$ không có nghiệm."
       ],
-      "correct_index": 0
+      "correct_index": 0,
+      "detailed_explanation": "Đáp án đúng: A. Phương trình $ax^{2}+bx+c=0(a\\ne0)$ có nghiệm.\n\nPhân tích: Phủ định của mệnh đề “P” là mệnh đề “không phải P”. Phủ định của “vô nghiệm” là “có nghiệm” (có thể là một nghiệm hoặc hai nghiệm)."
     },
     {
       "q_id": "d1_tn_11",
@@ -142,7 +152,8 @@
         "$\\dfrac{-2}{3}$",
         "$\\dfrac{1}{2}$"
       ],
-      "correct_index": 1
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. $\\dfrac{-2}{7}$.\n\nPhân tích: Áp dụng định lý cosin để tính góc $B$ trong tam giác $ABC$: $b^2 = a^2+c^2 - 2ac \\cos B$.\nVới $a=BC=7$, $c=AB=4$, $b=AC=9$.\nTa có $\\cos B = \\dfrac{a^2+c^2-b^2}{2ac} = \\dfrac{7^2+4^2-9^2}{2 \\cdot 7 \\cdot 4} = \\dfrac{49+16-81}{56} = \\dfrac{-16}{56} = -\\dfrac{2}{7}$."
     },
     {
       "q_id": "d1_tn_12",
@@ -155,7 +166,8 @@
         "$S=a^{2}\\sqrt{3}$",
         "$S=4a^{2}$"
       ],
-      "correct_index": 1
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. $S=2a^{2}\\sqrt{3}$.\n\nPhân tích: Áp dụng công thức tính diện tích tam giác: $S = \\dfrac{1}{2}AB \\cdot AC \\cdot \\sin A$.\n$S = \\dfrac{1}{2}(2a)(4a) \\sin(120^{\\circ}) = 4a^2 \\cdot \\dfrac{\\sqrt{3}}{2} = 2a^2\\sqrt{3}$."
     },
     {
       "q_id": "d1_ds_1",
@@ -168,7 +180,13 @@
         "Độ dài đường trung tuyến từ đỉnh $A$ trong $\\triangle ABC$ là $\\sqrt{129}$.",
         "Điểm $M$ thuộc đoạn $BC$ sao cho $MC=2MB$. Độ dài cạnh $AM$ bằng $\\dfrac{2\\sqrt{61}}{3}$"
       ],
-      "correct_values": [false, false, false, true]
+      "correct_values": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "detailed_explanation": "Đáp án:\na) Sai. Định lý cosin đúng phải là $BC^2 = AB^2 + AC^2 - 2AB \\cdot AC \\cos A$.\nb) Sai. Ta có $\\cos A = \\dfrac{AB^2+AC^2-BC^2}{2 \\cdot AB \\cdot AC} = \\dfrac{5^2+8^2-7^2}{2 \\cdot 5 \\cdot 8} = \\dfrac{25+64-49}{80} = \\dfrac{40}{80} = \\dfrac{1}{2}$. Suy ra $\\widehat{A} = 60^{\\circ}$.\nc) Sai. Độ dài trung tuyến $m_a^2 = \\dfrac{2(b^2+c^2)-a^2}{4} = \\dfrac{2(8^2+5^2)-7^2}{4} = \\dfrac{2(64+25)-49}{4} = \\dfrac{178-49}{4} = \\dfrac{129}{4}$. Vậy $m_a = \\dfrac{\\sqrt{129}}{2}$.\nd) Đúng. Áp dụng công thức Stewart hoặc định lý cosin. Vì $MC=2MB$ và $MB+MC=BC=7$, ta có $MB = \\dfrac{7}{3}$ và $MC=\\dfrac{14}{3}$. Áp dụng định lý cosin trong tam giác $ABM$: $AM^2 = AB^2+BM^2 - 2AB \\cdot BM \\cos B$. Ta cần $\\cos B = \\dfrac{a^2+c^2-b^2}{2ac} = \\dfrac{7^2+5^2-8^2}{2 \\cdot 7 \\cdot 5} = \\dfrac{10}{70} = \\dfrac{1}{7}$. Vậy $AM^2 = 5^2 + (\\dfrac{7}{3})^2 - 2 \\cdot 5 \\cdot \\dfrac{7}{3} \\cdot \\dfrac{1}{7} = 25 + \\dfrac{49}{9} - \\dfrac{10}{3} = \\dfrac{225+49-30}{9} = \\dfrac{244}{9}$. Suy ra $AM = \\dfrac{\\sqrt{244}}{3} = \\dfrac{2\\sqrt{61}}{3}$."
     },
     {
       "q_id": "d1_ds_2",
@@ -181,7 +199,13 @@
         "Có hai giá trị của tham số $m$ để tập hợp $A$ có đúng hai phần tử.",
         "Có hai giá trị của tham số $m$ để tổng tất cả các phần tử của tập $A$ bằng 6."
       ],
-      "correct_values": [true, false, true, false]
+      "correct_values": [
+        true,
+        false,
+        true,
+        false
+      ],
+      "detailed_explanation": "Đáp án:\na) Đúng. Ta có $x^2-6x+5=0 \\Leftrightarrow x=1$ hoặc $x=5$. Vì $1 \\in \\mathbb{R}$, nên $1$ là nghiệm của phương trình, do đó $1 \\in A$.\nb) Sai. Nếu $m=1$ hoặc $m=5$, phương trình $(x-m)=0$ có nghiệm trùng với nghiệm của $x^2-6x+5=0$, khi đó tập $A$ chỉ có $2$ phần tử.\nc) Đúng. Tập $A$ có đúng hai phần tử khi $m=1$ hoặc $m=5$.\nd) Sai. Các phần tử của $A$ là $\\{1, 5, m\\}$. Tổng các phần tử là $1+5+m = 6+m$. Để tổng bằng $6$ thì $m=0$. Đây chỉ là một giá trị của $m$."
     },
     {
       "q_id": "d1_tl_group",
@@ -192,24 +216,29 @@
         {
           "q_id": "d1_tl_1",
           "question_text": "Cho $\\tan\\alpha=\\dfrac{1}{3}$. Tính giá trị của biểu thức $A=\\dfrac{\\sin\\alpha+\\cos\\alpha}{\\sin\\alpha-\\cos\\alpha}$",
-          "final_answer": "-2"
+          "final_answer": "-2",
+          "detailed_explanation": "Chia cả tử và mẫu của biểu thức $A$ cho $\\cos\\alpha$ (với điều kiện $\\cos\\alpha \\neq 0$, điều này thỏa mãn vì $\\tan\\alpha$ xác định):\n$A = \\dfrac{\\dfrac{\\sin\\alpha}{\\cos\\alpha}+\\dfrac{\\cos\\alpha}{\\cos\\alpha}}{\\dfrac{\\sin\\alpha}{\\cos\\alpha}-\\dfrac{\\cos\\alpha}{\\cos\\alpha}} = \\dfrac{\\tan\\alpha+1}{\\tan\\alpha-1}$.\nThay $\\tan\\alpha=\\dfrac{1}{3}$ vào, ta được: $A = \\dfrac{\\dfrac{1}{3}+1}{\\dfrac{1}{3}-1} = \\dfrac{\\dfrac{4}{3}}{-\\dfrac{2}{3}} = -2$."
         },
         {
           "q_id": "d1_tl_2",
           "question_text": "Một lớp học có 25 học sinh chơi bóng đá, 23 học sinh chơi bóng bàn, 14 học sinh chơi cả bóng đá và bóng bàn và 6 học sinh không chơi môn nào. Số học sinh chỉ chơi 1 môn thể thao là bao nhiêu?",
-          "final_answer": "20"
+          "final_answer": "20",
+          "detailed_explanation": "Gọi $A$ là tập hợp học sinh chơi bóng đá, $B$ là tập hợp học sinh chơi bóng bàn.\nTa có: $|A| = 25$, $|B| = 23$, $|A \\cap B| = 14$.\nSố học sinh chỉ chơi bóng đá là: $|A| - |A \\cap B| = 25 - 14 = 11$.\nSố học sinh chỉ chơi bóng bàn là: $|B| - |A \\cap B| = 23 - 14 = 9$.\nSố học sinh chỉ chơi 1 môn thể thao là tổng hai số trên: $11 + 9 = 20$."
         },
         {
           "q_id": "d1_tl_3",
           "question_text": "Một cái cây dạng thẳng đứng bị gió mạnh làm gãy không hoàn toàn. Một người muốn đo chiều cao của cây trước khi gãy, người ấy đo được đoạn thẳng nối từ gốc cây đến ngọn cây đã ngã là $AB=6m$, hai góc $\\widehat{CAB}=76^{\\circ}$, $\\widehat{CBA}=35^{\\circ}$. Tính chiều dài của cây trước khi bị gãy? (Làm tròn kết quả đến hàng phần trăm)<br><img src=\"data/grade10/de-on-tap-1/images/tree.jpg\" alt=\"Hình ảnh minh họa cây bị gãy\" style=\"max-width: 100%; max-height: 300px; display: block; margin: 10px auto; border: 1px solid #ddd; border-radius: 4px;\">",
-          "final_answer": "9.92"
+          "final_answer": "9.92",
+          "detailed_explanation": "Gọi $A$ là gốc cây, $B$ là ngọn cây trên mặt đất, $C$ là điểm gãy. Cây ban đầu có chiều cao là $AC+BC$.\nTrong tam giác $ABC$, ta có $\\widehat{ACB} = 180^{\\circ} - 76^{\\circ} - 35^{\\circ} = 69^{\\circ}$.\nÁp dụng định lý sin: $\\dfrac{AC}{\\sin B} = \\dfrac{BC}{\\sin A} = \\dfrac{AB}{\\sin C}$.\n$\\Rightarrow AC = \\dfrac{AB \\cdot \\sin B}{\\sin C} = \\dfrac{6 \\cdot \\sin 35^{\\circ}}{\\sin 69^{\\circ}} \\approx 3,68$ m.\n$\\Rightarrow BC = \\dfrac{AB \\cdot \\sin A}{\\sin C} = \\dfrac{6 \\cdot \\sin 76^{\\circ}}{\\sin 69^{\\circ}} \\approx 6,24$ m.\nChiều cao của cây là $AC+BC \\approx 3,68 + 6,24 = 9,92$ m."
         },
         {
           "q_id": "d1_tl_4",
           "question_text": "Có ba nhóm máy $A$, $B$, $C$ dùng để sản xuất ra hai loại sản phẩm I và II. Số máy trong một nhóm và số máy của từng nhóm cần thiết để sản xuất ra một đơn vị sản phẩm được cho trong bảng dưới đây. Một đơn vị sản phẩm loại I lãi 3 triệu đồng, một đơn vị sản phẩm loại II lãi 5 triệu đồng. Hỏi số lãi cao nhất mà đơn vị thu được là bao nhiêu?<br><br><table border='1' style='width:100%; border-collapse: collapse; text-align: center;'><tr><th rowspan='2'>Nhóm</th><th rowspan='2'>Số máy trong mỗi nhóm</th><th colspan='2'>Số máy trong từng nhóm để sản xuất ra một đơn vị sản phẩm</th></tr><tr><th>Loại I</th><th>Loại II</th></tr><tr><td>A</td><td>10</td><td>2</td><td>2</td></tr><tr><td>B</td><td>4</td><td>0</td><td>2</td></tr><tr><td>C</td><td>12</td><td>2</td><td>4</td></tr></table>",
-          "final_answer": "17"  
+          "final_answer": "17",
+          "detailed_explanation": "Gọi $x, y$ lần lượt là số đơn vị sản phẩm loại I và II được sản xuất ($x, y \\ge 0$).\nTa có hệ bất phương trình về số máy sử dụng:\n$\\begin{cases} 2x + 2y \\le 10 \\\\ 0x + 2y \\le 4 \\\\ 2x + 4y \\le 12 \\\\ x \\ge 0 \\\\ y \\ge 0 \\end{cases} \\Leftrightarrow \\begin{cases} x + y \\le 5 \\\\ y \\le 2 \\\\ x + 2y \\le 6 \\\\ x \\ge 0 \\\\ y \\ge 0 \\end{cases}$.\nSố tiền lãi là $L(x;y) = 3x+5y$.\nMiền nghiệm là ngũ giác có các đỉnh $A(0;0)$, $B(5;0)$, $C(4;1)$, $D(2;2)$, $E(0;2)$.</li></ul><br><div class=\"image-zoomable-container\"><img src=\"data/grade10/de-on-tap-1/images/mien-nghiem-3-nhom-may.png\"max-width: 100%; max-height: 350px; display: block; margin: 10px auto; border: 1px solid #ddd; border-radius: 4px;\"></div><br>Ta tính giá trị của $L$ tại các đỉnh:$L(0;0)=0, L(5;0)=15, L(4;1)=3(4)+5(1)=17, L(2;2)=3(2)+5(2)=16, L(0;2)=5(2)=10$.\nVậy, số tiền lãi cao nhất là 17 triệu đồng."
         }
-      ]
+      ],
+      "detailed_explanation": "Chưa có đáp án."
     },
     {
       "q_id": "d1_tln_group",
@@ -220,19 +249,23 @@
         {
           "q_id": "d1_tln_1",
           "question_text": "Cho tập $A=[m^{2}+2m;m^{2}+2m+1]$ và $B=[2m-1;2m+5)$. Có tất cả bao nhiêu số $m$ nguyên để $A\\subset B$?",
-          "final_answer": "3"
+          "final_answer": "3",
+          "detailed_explanation": "Để $A \\subset B$, ta cần có các điều kiện sau:\n$m^2+2m \\ge 2m-1$ VÀ $m^2+2m+1 < 2m+5$.\n1) $m^2+2m \\ge 2m-1 \\Leftrightarrow m^2 \\ge -1$ (Luôn đúng với mọi $m$).\n2) $m^2+2m+1 < 2m+5 \\Leftrightarrow m^2 < 4 \\Leftrightarrow -2 < m < 2$.\nKết hợp hai điều kiện, ta có $-2 < m < 2$. Vì $m$ là số nguyên nên $m \\in \\{-1, 0, 1\\}$.\nVậy có $3$ giá trị nguyên của $m$ thỏa mãn."
         },
         {
           "q_id": "d1_tln_2",
           "question_text": "Cho hệ bất phương trình $\\begin{cases}x-2y\\le0\\\\ x+3y\\ge-2\\\\ x\\le0\\\\ y\\le0\\end{cases}$. Tìm giá trị lớn nhất của hàm số $f(x;y)=2x-3y$ trên miền nghiệm của hệ bất phương trình đã cho.",
-          "final_answer": "4"
+          "final_answer": "4",
+          "detailed_explanation": "<br>Bước 1: Xác định miền nghiệm của hệ bất phương trình</strong><br>Ta vẽ các đường thẳng $d_1: x = 0$, $d_2: y = 0$, $d_3: x + 3y = -2$, và $d_4: x - 2y = 0$ trên mặt phẳng tọa độ. Miền nghiệm là phần mặt phẳng (đa giác lồi) không bị gạch, thỏa mãn tất cả các bất phương trình trên.<br><br><strong>Bước 2: Tìm tọa độ các đỉnh của miền nghiệm</strong><br>Miền nghiệm là một tam giác có 3 đỉnh là giao điểm của các đường thẳng biên tương ứng:<br><ul><li><b>Đỉnh O:</b> Là giao điểm của $x=0$ và $y=0$. Tọa độ là $O(0;0)$.</li><li><b>Đỉnh A:</b> Là giao điểm của $y=0$ và $x+3y=-2$. Giải hệ $\\begin{cases} y=0 \\\\ x+3y=-2 \\end{cases}$ ta được $A(-2;0)$.</li><li><b>Đỉnh B:</b> Là giao điểm của $x-2y=0$ và $x+3y=-2$. Giải hệ $\\begin{cases} x-2y=0 \\\\ x+3y=-2 \\end{cases}$ ta được $B(-4/5; -2/5)$.</li></ul><br><div class=\"image-zoomable-container\"><img src=\"data/grade10/de-on-tap-1/images/mien-nghiem-cau20.png\"max-width: 100%; max-height: 350px; display: block; margin: 10px auto; border: 1px solid #ddd; border-radius: 4px;\"></div><br><strong>Bước 3: Tính giá trị của biểu thức F(x;y) tại các đỉnh</strong><br>Giá trị lớn nhất của F(x,y) sẽ đạt được tại một trong các đỉnh của miền nghiệm. Ta tính giá trị của F tại các đỉnh đã tìm được:<br><ul><li>Tại $O(0;0)$: $F(0;0) = 2(0) - 3(0) = 0$</li><li>Tại $A(-2;0)$: $F(-2;0) = 2(-2) - 3(0) = -4$</li><li>Tại $B(-4/5; -2/5)$: $F(-4/5; -2/5) = 2(-4/5) - 3(-2/5) = -8/5 + 6/5 = -2/5$</li></ul><br><strong>Bước 4: Kết luận</strong><br>So sánh các giá trị vừa tính {0, -4, -2/5}, ta thấy giá trị lớn nhất là 0.<br><br>Vậy, giá trị lớn nhất của biểu thức là <strong>0</strong>, đạt được tại điểm O(0;0)."
         },
         {
           "q_id": "d1_tln_3",
           "question_text": "Hai tàu du lịch xuất phát từ hai thành phố cảng A và B cách nhau 200(km) đến đảo C. Biết góc CAB = 30°, góc CBA = 45°. Tàu 1 ở thành phố A khởi hành lúc 8h và chuyển động đều với vận tốc 80(km/h). Tàu 2 ở thành phố B muốn đến đảo C cùng lúc với tàu 1 thì phải khởi hành sau tàu 1 bao nhiêu phút, biết tàu 2 chuyển động đều với cùng vận tốc 80(km/h)? (Làm tròn kết quả đến hàng đơn vị).",
-          "final_answer": "32"
+          "final_answer": "32",
+          "detailed_explanation": "<div class=\"image-zoomable-container\"><img src=\"data/grade10/de-on-tap-1/images/hai-thuyen.png\"max-width: 100%; max-height: 350px; display: block; margin: 10px auto; border: 1px solid #ddd; border-radius: 4px;\"></div><br>Để giải bài toán, chúng ta cần tìm chênh lệch thời gian di chuyển của hai tàu. Thời gian di chuyển phụ thuộc vào quãng đường, do đó trước hết ta cần tính khoảng cách AC và BC.<br><br><strong>Bước 1: Tính góc C của tam giác ABC</strong><br>Tổng ba góc trong một tam giác bằng $180^{\\circ}$. Ta có:<br>$\\widehat{ACB} = 180^{\\circ} - (\\widehat{CAB} + \\widehat{CBA})$<br>$\\widehat{ACB} = 180^{\\circ} - (30^{\\circ} + 45^{\\circ}) = 180^{\\circ} - 75^{\\circ} = 105^{\\circ}$<br><br><strong>Bước 2: Áp dụng Định lý sin để tính khoảng cách AC và BC</strong><br>Theo Định lý sin, ta có:<br>$\\dfrac{AC}{\\sin(B)} = \\dfrac{BC}{\\sin(A)} = \\dfrac{AB}{\\sin(C)}$<br><ul><li><b>Tính khoảng cách AC (quãng đường tàu 1):</b><br>$AC = \\dfrac{AB \\cdot \\sin(B)}{\\sin(C)} = \\dfrac{200 \\cdot \\sin(45^{\\circ})}{\\sin(105^{\\circ})} \\approx 146.41$ km</li><li><b>Tính khoảng cách BC (quãng đường tàu 2):</b><br>$BC = \\dfrac{AB \\cdot \\sin(A)}{\\sin(C)} = \\dfrac{200 \\cdot \\sin(30^{\\circ})}{\\sin(105^{\\circ})} \\approx 103.53$ km</li></ul><br><strong>Bước 3: Tính thời gian di chuyển của mỗi tàu</strong><br>Vận tốc của cả hai tàu là $80$ km/h.<br><ul><li><b>Thời gian tàu 1 (từ A đến C):</b><br>$t_1 = \\dfrac{\\text{Quãng đường AC}}{\\text{Vận tốc}} = \\dfrac{146.41}{80} \\approx 1.830$ giờ</li><li><b>Thời gian tàu 2 (từ B đến C):</b><br>$t_2 = \\dfrac{\\text{Quãng đường BC}}{\\text{Vận tốc}} = \\dfrac{103.53}{80} \\approx 1.294$ giờ</li></ul><br><strong>Bước 4: Tính chênh lệch thời gian và kết luận</strong><br>Để đến đảo C cùng lúc, tàu 2 phải khởi hành muộn hơn tàu 1 một khoảng thời gian bằng chênh lệch thời gian di chuyển của hai tàu.<br><ul><li><b>Chênh lệch thời gian (giờ):</b><br>$\\Delta t = t_1 - t_2 = 1.830 - 1.294 = 0.536$ giờ</li><li><b>Đổi sang phút:</b><br>$\\Delta t_{\\text{phút}} = 0.536 \\times 60 \\approx 32.16$ phút</li></ul>Làm tròn kết quả đến hàng đơn vị, ta được <strong>32 phút</strong>.<br><br><strong>Kết luận:</strong> Vậy, tàu 2 phải khởi hành sau tàu 1 là <strong>32 phút</strong> để đến đảo C cùng lúc."
         }
-      ]
+      ],
+      "detailed_explanation": "Chưa có đáp án."
     }
   ]
 }

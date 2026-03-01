@@ -1,0 +1,847 @@
+{
+  "title": "Chủ đề phương trình đường tròn - Lê Bá Bảo",
+  "duration": 483,
+  "questions": [
+    {
+      "q_id": "g10_geo_circle_3_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, tìm tất cả các giá trị của tham số $m$ để biểu thức $x^2 + y^2 - 4x + 2my - 5m = 0$ là một phương trình đường tròn?",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Yêu cầu bài toán $\\iff 4 + m^2 - (-5m) > 0 \\iff m^2 + 5m + 4 > 0 \\iff m \\in (-\\infty; -4) \\cup (-1; +\\infty)$."
+    },
+    {
+      "q_id": "g10_geo_circle_4_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, tìm tất cả các giá trị của tham số $m$ để $x^2 + y^2 + 4mx - 2my + 2m + 3 = 0$ là phương trình đường tròn?",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "$(C_m)$ là phương trình đường tròn $\\iff a^2 + b^2 - c > 0 \\iff (-2m)^2 + m^2 - (2m+3) > 0$\r $\\iff 5m^2 - 2m - 3 > 0 \\iff m < -\\frac{5"
+    },
+    {
+      "q_id": "g10_geo_circle_8_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho hai điểm $A(1;1)$ và $B(7;5)$. Viết phương trình đường tròn đường kính $AB$.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Gọi $I$ là trung điểm của $AB$ suy ra $I(4;3)$\r \\[AI = \\sqrt{(4-1)^2 + (3-1)^2"
+    },
+    {
+      "q_id": "g10_geo_circle_9_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho hai điểm $A(-2;1), B(3;5)$ và điểm $M$ là điểm bất kì thỏa mãn $AMB = 90^\\circ$. Khi đó điểm $M$ nằm trên đường tròn có phương trình nào sau đây?",
+      "options": [
+        "$x^2 + y^2 - x - 6y - 1 = 0.$",
+        "$x^2 + y^2 + x + 6y - 1 = 0.$",
+        "$x^2 + y^2 + 5x - 4y + 11 = 0.$",
+        "$x^2 + y^2 - 5x + 4y - 11 = 0.$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "$M$ nằm trên đường tròn đường kính $AB$, có tâm $I\\left(\\frac{1"
+    },
+    {
+      "q_id": "g10_geo_circle_10_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, viết phương trình đường tròn tâm $I(1; 4)$ và đi qua điểm $B(2; 6)$.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn có tâm $I(1; 4)$ và đi qua $B(2; 6)$ thì có bán kính là:\r \\[R = IB = \\sqrt{(2-1)^2 + (6-4)^2"
+    },
+    {
+      "q_id": "g10_geo_circle_11_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, tính bán kính đường tròn tâm $C(-2;-2)$ tiếp xúc với đường thẳng $\\Delta: 5x + 12y - 10 = 0$.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Ta có bán kính $R$ của đường tròn tâm $C$ tiếp xúc với đường thẳng $\\Delta$ là:\r R = d(C, \\Delta) = \\frac{|5.(-2)+12.(-2)-10|"
+    },
+    {
+      "q_id": "g10_geo_circle_12_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, viết phương trình đường tròn $(C)$ tâm I(-4;3) và tiếp xúc với trục tung.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "$(C)$ tiếp xúc với Oy và có tâm I(-4;3) nên: $a = -4, b = 3, R = |a| = 4$.\r Do đó, $(C)$ có phương trình $(x+4)^2 + (y-3)^2 = 16$."
+    },
+    {
+      "q_id": "g10_geo_circle_13_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, viết phương trình đường tròn $(C)$ có tâm I(6;2) và tiếp xúc ngoài với đường tròn $(C') : x^2 + y^2 - 4x + 2y + 1 = 0$.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $(C') : x^2 + y^2 - 4x + 2y + 1 = 0$ có tâm $I'(2;-1)$ bán kính $R' = 2$.\r Đường tròn $(C)$ tâm I(6;2) tiếp xúc ngoài với $(C')$ khi\r $II' = R + R' \\Rightarrow R = II' - R' = 3$ $II' = R + R' \\Rightarrow II' - R = 3$.\r Phương trình đường tròn cần tìm $(x-6)^2 + (x-2)^2 = 9$ hay $x^2 + y^2 - 12x - 4y + 31 = 0$."
+    },
+    {
+      "q_id": "g10_geo_circle_14_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, tìm tọa độ tâm đường tròn đi qua 3 điểm A(0;4), B(2;4), C(4;0).",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Gọi $(C) : x^2 + y^2 - 2ax - 2by + c = 0$. $A,B,C \\in (C)$ nên\r \\[\r \\begin{cases"
+    },
+    {
+      "q_id": "g10_geo_circle_15_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, viết phương trình phương trình đường tròn đi qua 3 điểm A(1;0), B(0;2), C(3;1).",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Gọi $(C) : x^2 + y^2 + 2ax + 2by + c = 0$ là đường tròn đi qua ba điểm A(1;0), B(0;2), C(3;1)\r Ta có hệ\r \\[\r \\begin{cases"
+    },
+    {
+      "q_id": "g10_geo_circle_16_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho hai điểm A(3;0), B(0;4). Viết phương trình đường tròn nội tiếp tam giác OAB.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Phương trình đường thẳng $AB : \\frac{x"
+    },
+    {
+      "q_id": "g10_geo_circle_17_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, viết phương trình đường tròn $(C)$ đi qua hai điểm A(1;3), B(3;1) và có tâm nằm trên đường thẳng $d : 2x - y + 7 = 0$.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "$I(a; b)$ là tâm của đường tròn $(C)$, do đó:\r \r Hay: $a = b$ (1). Mà $I(a; b) \\in d : 2x - y + 7 = 0$ nên $2a - b + 7 = 0$ (2).\r Thay (1) vào (2) ta có: $a = -7 \\Rightarrow b = -7 \\Rightarrow R^2 = AI^2 = 164$.\r Vậy $(C): (x+7)^2 + (y+7)^2 = 164$."
+    },
+    {
+      "q_id": "g10_geo_circle_18_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, viết phương trình đường tròn $(C)$ tiếp xúc với trục tung tại điểm A(0;-2) và đi qua điểm B(4;-2).",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Vì $y_A = y_B = -2$ nên $AB \\perp Oy$ và $AB$ là đường kính của $(C)$. Suy ra $I(2; -2)$ và bán kính $R = IA = 2$. Vậy $(C): (x-2)^2 + (y+2)^2 = 4$."
+    },
+    {
+      "q_id": "g10_geo_circle_19_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho đường tròn $(C): (x+1)^2 + (y-3)^2 = 4$ và đường thẳng $d : 3x - 4y + 5 = 0$. Viết phương trình của đường thẳng $d'$ song song với đường thẳng $ d $ và chắn trên $(C)$ một dây cung có độ dài lớn nhất.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "$(C)$ có tâm $I(-1; 3)$ và $R = 2$. $d' / / d \\Rightarrow d': 3x - 4y + c = 0$.\r Yêu cầu bài toán có nghĩa là $d'$ qua tâm $I(-1; 3)$ của $(C)$, tức là: $-3 - 12 + c = 0 \\iff c = 1$\r Vậy $d': 3x - 4y + 15 = 0$."
+    },
+    {
+      "q_id": "g10_geo_circle_20_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho đường tròn $(C): x^2 + y^2 + 4x - 6y + 5 = 0$. Viết phương trình đường thẳng $ d $ đi qua $A(3;2)$ và cắt $(C)$ theo một dây cung ngắn nhất.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "!\\href{https://i.imgur.com/3Q5z5QG.png"
+    },
+    {
+      "q_id": "g10_geo_circle_46_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2$ + $y^2$ - 2x + 8y - 23 = 0 và điểm M (8;-3). Tính độ dài đoạn tiếp tuyến của $(C)$ xuất phát từ M.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $(C)$: $x^2$ + $y^2$ - 2x + 8y - 23 = 0 có tâm I (1;-4) bán kính R = $\\sqrt{40"
+    },
+    {
+      "q_id": "g10_geo_circle_47_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, tìm m để đường thẳng $\\Delta$: 4x + 3y + m = 0 tiếp xúc với đường tròn $(C)$: $x^2$ + $y^2 = 1$.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $(C): x^2 + y^2 = 1$ có tâm $O(0; 0)$ và bán kính $R = 1$.\r Đường thẳng $\\Delta$ tiếp xúc với đường tròn $(C)$\r \\[\r \\iff d(O, d) = R \\iff \\frac{|m|"
+    },
+    {
+      "q_id": "g10_geo_circle_106_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, phương trình nào sau đây là phương trình của đường tròn?",
+      "options": [
+        "$x^2 + 2y^2 - 4x - 8y + 1 = 0$",
+        "$x^2 + y^2 - 4x + 6y - 12 = 0$",
+        "$x^2 + y^2 - 2x - 8y + 20 = 0$",
+        "$4x^2 + y^2 - 10x - 6y - 2 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Để là phương trình đường tròn thì điều kiện cần là hệ số của $x^2$ và $y^2$ phải bằng nhau nên loại được đáp án A và D.\r Ta có: $x^2 + y^2 - 2x - 8y + 20 = 0 \\iff (x-1)^2 + (y-4)^2 + 3 = 0$ vô lý.\r Ta có: $x^2 + y^2 - 4x + 6y - 12 = 0 \\iff (x-2)^2 + (y+3)^2 = 25$ là phương trình đường tròn tâm $I(2;-3)$, bán kính $R = 5$."
+    },
+    {
+      "q_id": "g10_geo_circle_108_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, đường tròn nào dưới đây đi qua điểm A(4;-2)?",
+      "options": [
+        "$x^2 + y^2 - 2x + 6y = 0$",
+        "$x^2 + y^2 - 4x + 7y - 8 = 0$",
+        "$x^2 + y^2 - 6x - 2y + 9 = 0$",
+        "$x^2 + y^2 + 2x - 20 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Thế tọa độ của điểm A(4;-2) vào phương trình đường tròn $x^2 + y^2 - 2x + 6y = 0$ ta có:\r $4^2 + (-2)^2 - 2.4 + 6(-2) = 16 + 4 - 8 - 12 = 0$ nên A(4;-2) thuộc đường tròn."
+    },
+    {
+      "q_id": "g10_geo_circle_111_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, đường tròn $(C)$:$x^2 + y^2 + 4x + 6y - 12 = 0$ có tâm là",
+      "options": [
+        "I(-2;-3)",
+        "I(2;3)",
+        "I(4;6)",
+        "I(-4;-6)"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Ta có phương trình đường tròn là: $(x + 2)^2 + (y + 3)^2 = 25$.\r Vậy tâm đường tròn là : $I(-2; -3)$."
+    },
+    {
+      "q_id": "g10_geo_circle_112_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, đường tròn $x^2 + y^2 - 10y - 24 = 0$ có bán kính bằng",
+      "options": [
+        "49",
+        "7",
+        "1",
+        "$\\sqrt{29"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $x^2 + y^2 - 10y - 24 = 0$ có tâm $I(0; 5)$, bán kính $R = \\sqrt{0^2 + 5^2 - (-24)"
+    },
+    {
+      "q_id": "g10_geo_circle_113_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, tìm tất cả các giá trị của tham số $ m $ để phương trình $x^2 + y^2 - 2(m + 2)x + 4my + 19m - 6 = 0$ là phương trình đường tròn.",
+      "options": [
+        "$1 < m < 2$",
+        "$m < -2$ hoặc $m > 1$",
+        "$m < 0$ hoặc $m > 1$",
+        "$m < 1$ hoặc $m > 2$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Phương trình (1) là phương trình đường tròn $\\iff 5m^2 - 15m + 10 > 0 \\iff m < 1$ hoặc $m > 2$."
+    },
+    {
+      "q_id": "g10_geo_circle_114_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, tìm $ m $ để $(C_m)$: $x^2 + y^2 + 4mx - 2my + 2m + 3 = 0$ là phương trình đường tròn ?",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "$(C_m)$ là phương trình đường tròn $\\iff (-2m)^2 + m^2 - (2m + 3) > 0$\r \\[\r \\iff 5m^2 - 2m - 3 > 0 \\iff m < -\\frac{5"
+    },
+    {
+      "q_id": "g10_geo_circle_115_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, với giá trị nào của $ m $ thì phương trình sau đây là phương trình sau đây là phương trình của đường tròn $x^2 + y^2 - 2(m + 2)x + 4my + 19m - 6 = 0$ ?",
+      "options": [
+        "$1 < m < 2$",
+        "$-2 \\leq m \\leq 1$",
+        "$m < 1$ hoặc $m > 2$",
+        "$m < -2$ hoặc $m > 1$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Xét phương trình $x^2 + y^2 - 2(m + 2)x + 4my + 19m - 6 = 0 (*)$. Đề (*) là phương trình đường tròn thì $5m^2 - 15m + 10 > 0 \\iff m < 1$ hoặc $m > 2$."
+    },
+    {
+      "q_id": "g10_geo_circle_116_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường cong $(C_m)$: $x^2 + y^2 - 8x + 10y + m = 0$. Với giá trị nào của $ m $ thì $(C_m)$ là đường tròn có bán kính bằng 7 ?",
+      "options": [
+        "$m = 4$",
+        "$m = 8$",
+        "$m = -8$",
+        "$m = -4$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Ta có $R = \\sqrt{4^2 + 5^2 - m"
+    },
+    {
+      "q_id": "g10_geo_circle_117_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường tròn có tâm $I(3; 4)$ tiếp xúc với đường thẳng $\\Delta: 3x + 4y - 10 = 0$. Hỏi bán kính đường tròn bằng bao nhiêu?",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn tâm $I(3;4)$ tiếp xúc với đường thẳng $\\Delta : 3x + 4y - 10 = 0$ nên bán kính đường tròn chính là khoảng cách từ tâm $I(3;4)$ tới đường thẳng $\\Delta : 3x + 4y - 10 = 0$.\r Ta có: $R = d(I,\\Delta) = \\frac{|3.3 + 4.4 - 10|"
+    },
+    {
+      "q_id": "g10_geo_circle_118_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, với những giá trị nào của $m$ thì đường thẳng $\\Delta : 4x + 3y + m = 0$ tiếp xúc với đường tròn $(C): x^2 + y^2 - 9 = 0$?",
+      "options": [
+        "$m = -3$",
+        "$m = 3$ và $m = -3$",
+        "$m = 3$",
+        "$m = 15$ và $m = -15$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $(C)$ có tâm và bán kính là $I \\equiv (0;0), R = 3$.\r $\\Delta$ tiếp xúc $(C) \\iff d(I,\\Delta) = R \\iff \\frac{|m|"
+    },
+    {
+      "q_id": "g10_geo_circle_120_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, phương trình đường tròn có tâm $I(1;2)$ và bán kính $R = 5$ là",
+      "options": [
+        "$x^2 + y^2 - 2x - 4y - 20 = 0$",
+        "$x^2 + y^2 + 2x + 4y + 20 = 0$",
+        "$x^2 + y^2 + 2x + 4y - 20 = 0$",
+        "$x^2 + y^2 - 2x - 4y + 20 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Phương trình đường tròn có tâm $I(1;2)$ và bán kính $R = 5$ là $(x-1)^2 + (y-2)^2 = 5^2$\r $\\iff x^2 - 2x + 1 + y^2 - 4y + 4 = 25 \\iff x^2 + y^2 - 2x - 4y - 20 = 0$."
+    },
+    {
+      "q_id": "g10_geo_circle_121_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho hai điểm $A(-2;1), B(3;5)$ và điểm $M$ là điểm bất kì thỏa mãn $AMB = 90^\\circ$. Khi đó điểm $M$ nằm trên đường tròn có phương trình nào sau đây?",
+      "options": [
+        "$x^2 + y^2 - x - 6y - 1 = 0$",
+        "$x^2 + y^2 + x + 6y - 1 = 0$",
+        "$x^2 + y^2 + 5x - 4y + 11 = 0$",
+        "$x^2 + y^2 - 5x + 4y - 11 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "$M$ nằm trên đường tròn đường kính $AB$, có tâm $I\\left(\\frac{1"
+    },
+    {
+      "q_id": "g10_geo_circle_122_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, đường tròn nào sau đây tiếp xúc với trục Ox?",
+      "options": [
+        "$x^2 + y^2 - 10x = 0$",
+        "$x^2 + y^2 - 5 = 0$",
+        "$x^2 + y^2 - 10x - 2y + 1 = 0$",
+        "$x^2 + y^2 + 6x + 5y + 9 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Xét phương trình đường tròn : $x^2 + y^2 + 6x + 5y + 9 = 0$ có $I\\left(-3; -\\frac{5"
+    },
+    {
+      "q_id": "g10_geo_circle_124_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, tìm tọa độ giao điểm của đường thẳng $\\Delta : x - 2y + 3 = 0$ và đường tròn $(C)$: $x^2 + y^2 - 2x - 4y = 0$",
+      "options": [
+        "(3;3) và (-1;1)",
+        "(-1;1) và (3;-3)",
+        "(3;3) và (1;1)",
+        "(2;1) và (2;-1)"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Tọa độ giao điểm là nghiệm của hệ phương trình sau\r \\[\r \\begin{cases"
+    },
+    {
+      "q_id": "g10_geo_circle_125_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho hai đường tròn $(C_1)$,$(C_2)$ có phương trình lần lượt là $(x+1)^2 + (y+2)^2 = 9$ và $(x-2)^2 + (y-2)^2 = 4$. Khẳng định nào dưới đây sai?",
+      "options": [
+        "Đường tròn $(C_1)$ có tâm $I_1(-1;-2)$ và bán kính $R_1 = 3$",
+        "Đường tròn $(C_2)$ có tâm $I_2(2;2)$ và bán kính $R_2 = 2$",
+        "Hai đường tròn $(C_1)$,$(C_2)$ không có điểm chung",
+        "Hai đường tròn $(C_1)$,$(C_2)$ tiếp xúc với nhau"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Ta thấy đường tròn $(C_1)$ có tâm I(-1;-2) và bán kính $R_1 = 3$ . Đường tròn $(C_2)$ có tâm $I_2(2;2)$ và bán kính $R_2 = 2$ .\r Khi đó: $5 = R_1 + R_2 = I_1I_2 = \\sqrt{(2+1)^2 + (2+2)^2"
+    },
+    {
+      "q_id": "g10_geo_circle_126_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho hai đường tròn $(C)$:$(x-1)^2$ + $y^2$ = 4 và $(C')$:$(x-4)^2$ + $(y-3)^2$ = 16 cắt nhau tại hai điểm phân biệt A và B . Lập phương trình đường thẳng AB.",
+      "options": [
+        "$x + y - 2 = 0$",
+        "$x - y + 2 = 0$",
+        "$x + y + 2 = 0$",
+        "$x - y - 2 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Giả sử hai đường tròn $(C):(x-1)^2 + y^2 = 4$ và $(C'):(x-4)^2 + (y-3)^2 = 16$ cắt nhau tại hai điểm phân biệt $A$ và $B$ khi đó tọa độ của $A$ và thỏa mãn hệ phương trình:\r \\[\r \\begin{cases"
+    },
+    {
+      "q_id": "g10_geo_circle_127_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, viết phương trình đường tròn $(C)$ có đường kính $AB$ với $A(1;1), B(7;5)$",
+      "options": [
+        "$(x+4)^2 + (y+2)^2 = 13$",
+        "$(x-4)^2 + (y-3)^2 = 13$",
+        "$(x+4)^2 + (y-3)^2 = 13$",
+        "$(x-4)^2 + (y+3)^2 = 13$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Gọi $I$ là trung điểm của $AB$ thì $I(4;3)$ là tâm đường tròn $(C)$ có đường kính $AB$.\r $\\overrightarrow{AB"
+    },
+    {
+      "q_id": "g10_geo_circle_128_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho hai điểm $A(1;1)$ và $B(7;5)$. Phương trình đường tròn đường kính $AB$ là",
+      "options": [
+        "$x^2 + y^2 + 8x + 6y + 12 = 0$",
+        "$x^2 + y^2 - 8x + 6y + 12 = 0$",
+        "$x^2 + y^2 - 8x - 6y - 12 = 0$",
+        "$x^2 + y^2 + 8x + 6y - 12 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Gọi $I$ là trung điểm của $AB$ suy ra $I(4;3) \\Rightarrow AI = \\sqrt{13"
+    },
+    {
+      "q_id": "g10_geo_circle_129_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, phương trình đường tròn $(C)$ có tâm $I(1;3)$ và đi qua $M(3;1)$ là",
+      "options": [
+        "$(x-1)^2 + (y-3)^2 = 8$",
+        "$(x-1)^2 + (y-3)^2 = 10$",
+        "$(x-3)^2 + (y-1)^2 = 10$",
+        "$(x-3)^2 + (y-1)^2 = 8$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Điểm $M(3;1)$ thuộc đường tròn $(C)$ nên $R = IM = \\sqrt{(3-1)^2 + (1-3)^2"
+    },
+    {
+      "q_id": "g10_geo_circle_130_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, phương trình đường tròn $(C)$ có tâm I(6; 2) và tiếp xúc ngoài với đường tròn $(C')$: $x^2 + y^2 - 4x + 2y + 1 = 0$ là",
+      "options": [
+        "$x^2 + y^2 - 12x - 4y - 9 = 0$",
+        "$x^2 + y^2 - 6x - 12y + 31 = 0$",
+        "$x^2 + y^2 + 12x + 4y + 31 = 0$",
+        "$x^2 + y^2 - 12x - 4y + 31 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $(C')$: $x^2 + y^2 - 4x + 2y + 1 = 0$ có tâm $I'(2; -1)$ bán kính $R' = 2$.\r Đường tròn $(C)$ tâm I(6; 2) tiếp xúc ngoài với $(C')$ khi\r $II' = R + R' \\Rightarrow R = II' - R' = 3 \\ II' = R + R' \\Rightarrow II' - R = 3$.\r Phương trình đường tròn cần tìm $(x-6)^2 + (x-2)^2 = 9$ hay $x^2 + y^2 - 12x - 4y + 31 = 0$."
+    },
+    {
+      "q_id": "g10_geo_circle_131_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho hai điểm A(-2;1), B(3;5) và điểm M thỏa mãn AMB = 90°. Khi đó điểm M nằm trên đường tròn nào sau đây?",
+      "options": [
+        "$x^2 + y^2 - x - 6y - 1 = 0$",
+        "$x^2 + y^2 + x + 6y - 1 = 0$",
+        "$x^2 + y^2 + 5x - 4y + 11 = 0$",
+        "$x^2 + y^2 - 5x + 4y - 11 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "M nằm trên đường tròn đường kính AB.\r Tâm của $(C)$ là $I\\left(\\frac{1"
+    },
+    {
+      "q_id": "g10_geo_circle_132_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, tìm tọa độ tâm I của đường tròn đi qua ba điểm A(0;4), B(2;4), C(2;0).",
+      "options": [
+        "I(1;1)",
+        "I(0;0)",
+        "I(1;2)",
+        "I(1;0)"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Giả sử phương trình đường tròn đi qua 3 điểm A,B,C có dạng $(C)$: $x^2 + y^2 + 2ax + 2by + c = 0$\r Thay tọa độ 3 điểm A(0;4), B(2;4), C(2;0) ta được:\r \\[\r \\begin{cases"
+    },
+    {
+      "q_id": "g10_geo_circle_133_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho điểm I(1;1) và đường thẳng $(d)$: $3x + 4y - 2 = 0$. Đường tròn tâm I và tiếp xúc với đường thẳng $(d)$ có phương trình",
+      "options": [
+        "$(x-1)^2 + (y-1)^2 = 5$",
+        "$(x-1)^2 + (y-1)^2 = 25$",
+        "$(x-1)^2 + (y-1)^2 = 1$",
+        "$(x-1)^2 + (y-1)^2 = \\dfrac{1"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn tâm I và tiếp xúc với đường thẳng $(d)$ có bán kính $R = d(I,d) = \\frac{|3.1 + 4.1 - 2|"
+    },
+    {
+      "q_id": "g10_geo_circle_134_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, biết đường tròn $(C)$ có tâm $I(-3;2)$ có một tiếp tuyến là đường thẳng $\\Delta : 3x + 4y - 9 = 0$. Viết phương trình của đường tròn $(C)$.",
+      "options": [
+        "$(x+3)^2 + (y-2)^2 = 2.$",
+        "$(x-3)^2 + (y+2)^2 = 2.$",
+        "$(x-3)^2 + (y-2)^2 = 4$",
+        "$(x+3)^2 + (y-2)^2 = 4.$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Vì đường tròn $(C)$ có tâm $I(-3;2)$ và một tiếp tuyến của nó là đường thẳng $\\Delta$ có phương trình là $3x + 4y - 9 = 0$ nên bán kính của đường tròn là $R = d(I,\\Delta) = \\frac{|3(-3) + 4.2 - 9|"
+    },
+    {
+      "q_id": "g10_geo_circle_135_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, tìm tọa độ tâm $I$ của đường tròn đi qua ba điểm $A(0;4), B(2;4), C(2;0)$.",
+      "options": [
+        "$I(1;1)$",
+        "$I(0;0)$",
+        "$I(1;2)$",
+        "$I(1;0)$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Giả sử phương trình đường tròn đi qua 3 điểm $A,B,C$ có dạng $(C): x^2 + y^2 + 2ax + 2by + c = 0$\r Thay tọa độ 3 điểm $A(0;4), B(2;4), C(2;0)$ ta được:\r \\[\r \\begin{cases"
+    },
+    {
+      "q_id": "g10_geo_circle_136_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ có $A(1;-1), B(3;2), C(5;-5)$. Toạ độ tâm đường tròn ngoại tiếp tam giác $ABC$ là",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Gọi $I(x; y)$ là tâm đường tròn ngoại tiếp tam giác $ABC$.\r Ta có: \\[\r \\begin{cases"
+    },
+    {
+      "q_id": "g10_geo_circle_137_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho các điểm $A(3;0)$ và $B(0;4)$. Đường tròn nội tiếp tam giác $OAB$ có phương trình",
+      "options": [
+        "$x^2 + y^2 = 1$",
+        "$x^2 + y^2 - 4x + 4 = 0$",
+        "$x^2 + y^2 = 2$",
+        "$(x-1)^2 + (y-1)^2 = 1$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Vì các điểm $A(3;0)$ và $B(0;4)$ nằm trong góc phần tư thứ nhất nên tam giác $OAB$ cũng nằm trong góc phần tư thứ nhất. Do vậy gọi tâm đường tròn nội tiếp là $I(a,b)$ thì $a > 0, b > 0$.\r Theo đề, ta có: $d(I;Ox) = d(I;Oy) = d(I;AB)$.\r Phương trình theo đoạn chắn của $AB$ là: $\\frac{x"
+    },
+    {
+      "q_id": "g10_geo_circle_138_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho hai điểm $A(3;0),\\ B(0;4)$. Đường tròn nội tiếp tam giác $OAB$ có phương trình là",
+      "options": [
+        "$x^2 + y^2 = 1$",
+        "$x^2 + y^2 - 2x - 2y + 1 = 0$",
+        "$x^2 + y^2 - 6x - 8y + 25 = 0$",
+        "$x^2 + y^2 = 2$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Ta có $OA = 3,\\ OB = 4,\\ AB = 5$.\r Gọi $I(x_I; y_I)$ là tâm đường tròn nội tiếp tam giác $OAB$.\r Từ hệ thức $AB.\\overrightarrow{IO"
+    },
+    {
+      "q_id": "g10_geo_circle_139_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, viết phương trình đường tròn đi qua hai điểm $A(3;0), B(0;2)$ và có tâm thuộc đường thẳng $d: x + y = 0$.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "$A(3;0),\\ B(0;2),\\ d : x + y = 0$.\r Gọi $I$ là tâm đường tròn vậy $I(x;-x)$ vì $I \\in d$.\r $IA^2 = IB^2 \\iff (3-x)^2 + x^2 = x^2 + (2+x)^2 \\iff -6x + 9 = 4x + 4 \\iff x = \\frac{1"
+    },
+    {
+      "q_id": "g10_geo_circle_141_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, đường tròn $(C)$ tiếp xúc với trục tung tại điểm $A(0;-2)$ và đi qua điểm $B(4;-2)$ có phương trình là",
+      "options": [
+        "$(x-2)^2 + (y+2)^2 = 4$",
+        "$(x+2)^2 + (y-2)^2 = 4$",
+        "$(x-3)^2 + (y-2)^2 = 4$",
+        "$(x-3)^2 + (y+2)^2 = 4$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Vì $y_A = y_B = -2$ nên $AB \\perp y'Oy$ và $AB$ là đường kính của $(C)$. Suy ra $I(2;-2)$ và bán kính $R = IA = 2$. Vậy $(C) : (x-2)^2 + (y+2)^2 = 4$."
+    },
+    {
+      "q_id": "g10_geo_circle_142_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường thẳng $\\Delta : 3x - 4y - 19 = 0$ và đường tròn $(C) : (x-1)^2 + (y-1)^2 = 25$. Biết đường thẳng $\\Delta$ cắt $(C)$ tại hai điểm phân biệt $A$ và $B$, khi đó độ dài đoạn thẳng $AB$ là",
+      "options": [
+        "6",
+        "3",
+        "4",
+        "8"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Từ $\\Delta : 3x - 4y - 19 = 0 \\Rightarrow y = \\frac{3"
+    },
+    {
+      "q_id": "g10_geo_circle_143_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho đường tròn $(C)$ có tâm I(1; -1) bán kính R = 5. Biết rằng đường thẳng $(d): 3x - 4y + 8 = 0$ cắt đường tròn $(C)$ tại hai điểm phân biệt A, B. Tính độ dài đoạn thẳng AB.",
+      "options": [
+        "$AB = 8$",
+        "$AB = 4$",
+        "$AB = 3$",
+        "$AB = 6$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "!\\href{$FIGURE_1$"
+    },
+    {
+      "q_id": "g10_geo_circle_144_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho điểm A(3;1), đường tròn $(C)$: $x^2 + y^2 - 2x - 4y + 3 = 0$. Viết phương trình đường thẳng d đi qua A và cắt đường tròn $(C)$ tại hai điểm B, C sao cho $BC = 2\\sqrt{2}$.",
+      "options": [
+        "$d : x + 2y - 5 = 0$",
+        "$d : x - 2y - 5 = 0$",
+        "$d : x + 2y + 5 = 0$",
+        "$d : x - 2y + 5 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $(C)$có tâm I(1;2) và bán kính $R = \\sqrt{1^2 + 2^2 - 3"
+    },
+    {
+      "q_id": "g10_geo_circle_145_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường tròn $(C): (x-1)^2 + (y-4)^2 = 4$. Phương trình tiếp tuyến với đường tròn $(C)$ song song với đường thẳng $\\Delta : 4x - 3y + 2 = 0$ là",
+      "options": [
+        "$4x - 3y + 18 = 0$",
+        "$4x - 3y + 18 = 0$",
+        "$4x - 3y + 18 = 0; 4x - 3y - 2 = 0$",
+        "$4x - 3y - 18 = 0; 4x - 3y + 2 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $(C): (x-1)^2 + (y-4)^2 = 4$ có tâm $I(1;4)$ và bán kính $R = 2$.\r Gọi $d$ là tiếp tuyến của $(C)$.\r Vì $d // \\Delta$ nên đường thẳng $d : 4x - 3y + m = 0 (m \\neq 2)$.\r $d$ là tiếp tuyến của $(C) \\iff d(I;(d)) = R \\iff \\frac{|4.1 - 3.4 + m|"
+    },
+    {
+      "q_id": "g10_geo_circle_146_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, số tiếp tuyến chung của 2 đường tròn $(C): x^2 + y^2 - 2x + 4y + 1 = 0$ và $(C'): x^2 + y^2 + 6x - 8y + 20 = 0$ là",
+      "options": [
+        "1",
+        "2",
+        "4",
+        "3"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $(C): x^2 + y^2 - 2x + 4y + 1 = 0$ có tâm $I(1;-2)$ bán kính $R = 2$.\r Đường tròn $(C'): x^2 + y^2 + 6x - 8y + 20 = 0$ có tâm $I'(-3;4)$ bán kính $R' = \\sqrt{5"
+    },
+    {
+      "q_id": "g10_geo_circle_147_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, viết phương trình tiếp tuyến của đường tròn $(C): (x-2)^2 + (y+4)^2 = 25$, biết tiếp tuyến vuông góc với đường thẳng $d : 3x - 4y + 5 = 0$.",
+      "options": [
+        "$4x + 3y + 29 = 0$",
+        "$4x + 3y + 29 = 0$ hoặc $4x + 3y - 21 = 0$",
+        "$4x - 3y + 5 = 0$ hoặc $4x - 3y - 45 = 0$",
+        "$4x + 3y + 5 = 0$ hoặc $4x + 3y + 3 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $(C): (x-2)^2 + (y+4)^2 = 25$ có tâm $I(2;-4)$, bán kính $R = 5$.\r Đường thẳng $\\Delta$ vuông góc với đường thẳng $d : 3x - 4y + 5 = 0$ có phương trình dạng: $4x + 3y + c = 0$\r $\\Delta$ là tiếp tuyến của đường tròn $(C)$ khi và chỉ khi:\r $d(I;\\Delta) = R \\iff \\frac{|4.2+3.(-4)+c|"
+    },
+    {
+      "q_id": "g10_geo_circle_148_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho đường tròn $(C)$ có phương trình $x^2 + y^2 - 2x + 2y - 3 = 0$. Từ điểm $A(1;1)$ kẻ được bao nhiêu tiếp tuyến đến đường tròn $(C)$?",
+      "options": [
+        "1",
+        "2",
+        "Vô số",
+        "0"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "$(C)$ có tâm $I(1;-1)$ bán kính $R = \\sqrt{1^2 + (-1)^2 - (-3)"
+    },
+    {
+      "q_id": "g10_geo_circle_149_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2 + y^2 - 2x - 4y + 3 = 0$. Viết phương trình tiếp tuyến $ d $ của đường tròn $(C)$ biết tiếp tuyến đó song song với đường thẳng $\\Delta : 3x + 4y + 1 = 0$.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "$(C)$: $x^2 + y^2 - 2x - 4y + 3 = 0 \\iff (x-1)^2 + (y-2)^2 = 2$.\r Do đó đường tròn có tâm $I = (1;2)$ và bán kính $R = \\sqrt{2"
+    },
+    {
+      "q_id": "g10_geo_circle_150_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2 + y^2 - 2x - 4y - 4 = 0$ và điểm $A(1;5)$. Đường thẳng nào trong các đường thẳng dưới đây là tiếp tuyến của đường tròn $(C)$ tại điểm $A$?",
+      "options": [
+        "$y - 5 = 0$",
+        "$y + 5 = 0$",
+        "$x + y - 5 = 0$",
+        "$x - y - 5 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $(C)$ có tâm $I(1;2) \\Rightarrow \\overrightarrow{IA"
+    },
+    {
+      "q_id": "g10_geo_circle_151_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho đường tròn $(C)$: $x^2 + y^2 - 4 = 0$ và điểm $A(-1;2)$. Đường thẳng nào trong các đường thẳng dưới đây đi qua $A$ và là tiếp tuyến của đường tròn $(C)$?",
+      "options": [
+        "$4x - 3y + 10 = 0$",
+        "$6x + y + 4 = 0$",
+        "$3x + 4y + 10 = 0$",
+        "$3x - 4y + 11 = 0$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "Đường tròn $(C)$ có tâm là gốc tọa độ O(0;0) và có bán kính R = 2.\r Họ đường thẳng $\\Delta$ qua A(-1;2): a(x+1)+b(y-2)=0, với $a^2 + b^2 \\neq 0$.\r Điều kiện tiếp xúc d(O;$\\Delta$) = R hay\r \\[\r \\frac{|a-2b|"
+    },
+    {
+      "q_id": "g10_geo_circle_152_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho điểm P(-3;-2) và đường tròn $(C)$:$(x-3)^2$+$(y-4)^2$=36. Từ điểm P kẻ các tiếp tuyến PM và PN tới đường tròn $(C)$, với M , N là các tiếp điểm.\r\nPhương trình đường thẳng MN là",
+      "options": [
+        "x + y +1 = 0",
+        "x - y -1 = 0",
+        "x - y +1 = 0",
+        "x + y -1 = 0"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "!\\href{./$figure_1$.png"
+    },
+    {
+      "q_id": "g10_geo_circle_153_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho điểm M(-3;1) và đường tròn $(C)$: $x^2$ + $y^2$ - 2x - 6y + 6 = 0 . Gọi $T_1$, $T_2$ là các tiếp điểm của các tiếp tuyến kẻ từ M đến $(C)$. Tính khoảng cách từ O đến đường thẳng $T_1T_2$.",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "+$(C)$: $x^2$ + $y^2$ - 2x - 6y + 6 = 0 \\iff $(x-1)^2$ + $(y-3)^2$ = 4 suy ra (C ) có tâm I(1;3) và R=2\r + Phương trình đường thẳng d đi qua M(-3;1) có phương trình: A(x+3)+B(y-1)=0 .\r d là tiếp tuyến với đường tròn khi và chỉ khi d(I;d)=R .\r $\\Rightarrow$ ta có phương trình: $\\frac{|A+3B+3A-B|"
+    },
+    {
+      "q_id": "g10_geo_circle_154_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường tròn $(C): x^2 + y^2 - 2x - 4y - 4 = 0$ và điểm $M(2;1)$. Dây cung của $(C)$ đi qua điểm $M$ có độ dài ngắn nhất là",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "!\\href{$figure_1$.png"
+    },
+    {
+      "q_id": "g10_geo_circle_155_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho tam giác $ABC$ biết $H(3;2), G\\left(\\dfrac{5}{3}; \\dfrac{8}{3}\\right)$ lần lượt là trực tâm và trọng tâm của tam giác, đường thẳng $BC$ có phương trình $x + 2y - 2 = 0$. Viết phương trình đường tròn ngoại tiếp tam giác $ABC$.",
+      "options": [
+        "$(x+1)^2 + (y+1)^2 = 20$",
+        "$(x-2)^2 + (y+4)^2 = 20$",
+        "$(x-1)^2 + (y+3)^2 = 1$",
+        "$(x-1)^2 + (y-3)^2 = 25$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "*) Gọi $I$ là tâm đường tròn ngoại tiếp tam giác $ABC$.\r \\[\r \\Rightarrow \\overline{HI"
+    },
+    {
+      "q_id": "g10_geo_circle_156_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho điểm $I(1;2)$ và đường thẳng $(d): 2x + y - 5 = 0$. Biết rằng có hai điểm $M_1, M_2$ thuộc $(d)$ sao cho $IM_1 = IM_2 = \\sqrt{10}$. Tổng các hoành độ của $M_1$ và $M_2$ là",
+      "options": null,
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "\\[\r \\begin{cases"
+    },
+    {
+      "q_id": "g10_geo_circle_160_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng $Oxy$, cho đường tròn $(C): x^2 + y^2 - 4x + 2y - 15 = 0$ có tâm $I$. Đường thẳng $ d $ đi qua $M(1;-3)$ cắt $(C)$ tại $A, B$. Biết tam giác $IAB$ có diện tích là 8. Phương trình đường thẳng $ d $ là $x + by + c = 0$. Tính $b + c$.",
+      "options": [
+        "8",
+        "2",
+        "6",
+        "1"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "$(C)$ có tâm $I(2;-1)$, bán kính $R = 2\\sqrt{5"
+    },
+    {
+      "q_id": "g10_geo_circle_161_p1",
+      "section": "Lớp 10 > Hình học > Chương III. Phương trình đường tròn > Bài. Phương trình đường tròn",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho tam giác $ABC$ có trung điểm của $BC$ là $M(3;2)$, trọng tâm và tâm đường tròn ngoại tiếp tam giác lần lượt là $G\\left(\\dfrac{2}{3};\\dfrac{2}{3}\\right), I(1;-2)$. Tìm tọa độ đỉnh $C$, biết $C$ có hoành độ lớn hơn 2 .",
+      "options": [
+        "$C(9;1)$",
+        "$C(5;1)$",
+        "$C(4;2)$",
+        "$C(3;-2)$"
+      ],
+      "correct_index": null,
+      "main_section": "duong-tron",
+      "detailed_explanation": "!\\href{$FIGURE_1$"
+    }
+  ],
+  "question_count": 64
+}

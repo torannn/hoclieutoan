@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học liệu: Phương trình đường tròn (3 Phần)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <style>
+        body {
+            font-weight: 500;
+        }
+
+        .card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-left-color: #3b82f6;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .badge-theory {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-practice {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-exam {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .icon-wrapper {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            color: white;
+        }
+
+        .icon-theory {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+
+        .icon-practice {
+            background: linear-gradient(135deg, #10b981 0%, #065f46 100%);
+        }
+
+        .icon-exam {
+            background: linear-gradient(135deg, #ef4444 0%, #991b1b 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 via-indigo-50 to-blue-50 min-h-screen">
+
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="inline-block mb-4">
+                <div
+                    class="w-20 h-20 mx-auto bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="9" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M3 12h18" />
+                    </svg>
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                Chuyên đề: Phương trình đường tròn
+            </h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Tài liệu học tập toàn diện, chia làm 3 phần riêng biệt giúp bạn ôn luyện từ cơ bản đến nâng cao. Tóm tắt
+                lý thuyết, giải bài tập từng câu và tự kiểm tra đánh giá rèn kỹ năng.
+            </p>
+        </div>
+
+        <!-- Learning Path -->
+        <div class="grid gap-6 md:gap-8">
+
+            <!-- Card 1: Lý thuyết -->
+            <div class="card bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="icon-wrapper icon-theory">
+                        <span>📖</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="badge badge-theory">Phần 1: Nền tảng</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-3">
+                            Lý thuyết và Bài tập ví dụ
+                        </h2>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Nắm vững các phương trình đường tròn cơ bản, khái niệm tiếp tuyến, và giao điểm. Đọc các tóm
+                            tắt lý thuyết cũng như tham khảo <strong>những ví dụ có giải chi tiết</strong> đi kèm, giúp
+                            hình thành nền tảng vững vàng nhất.
+                        </p>
+                        <a href="duong-tron-theory.html"
+                            class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
+                            Bắt đầu học Lý thuyết
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Luyện tập -->
+            <div class="card bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="icon-wrapper icon-practice">
+                        <span>✏️</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="badge badge-practice">Phần 2: Rèn luyện</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-3">
+                            Bài tập tự giải (Tra cứu từng câu)
+                        </h2>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Một kho bài tập tự luyện được tổ chức <strong>làm và xem lời giải từng câu</strong> một cách
+                            linh hoạt không cần phải nộp bài. Nếu gặp khó khăn có thể bật ngay phần giải để học cách suy
+                            luận của bài toán.
+                        </p>
+                        <a href="duong-tron-practice.html"
+                            class="inline-flex items-center px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors shadow-md hover:shadow-lg">
+                            Mở bài tập Tự giải
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Kiểm tra -->
+            <div class="card bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="icon-wrapper icon-exam">
+                        <span>⏱️</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="badge badge-exam">Phần 3: Đánh giá</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-3">
+                            Bài tập Tự luyện Chấm điểm
+                        </h2>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Thực hiện một bài kiểm tra nghiêm túc tổng hợp toàn bộ các dạng bài. Bạn phải chọn đáp án và
+                            <strong>nộp bài để hệ thống chấm điểm</strong>. Qua đó đánh giá chính xác độ hiểu bài và kỹ
+                            năng làm phòng thi.
+                        </p>
+                        <a href="index.html#/exam?path=data/grade10/Duong-tron-trong-mat-phang-toa-do/&mode=interactive"
+                            class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors shadow-md hover:shadow-lg">
+                            Bắt đầu Kiểm tra
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-12 text-center">
+            <a href="index.html#/classes"
+                class="inline-flex items-center px-4 py-2 bg-slate-200 text-slate-700 hover:bg-slate-300 font-semibold rounded transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+                Quay về menu chính
+            </a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

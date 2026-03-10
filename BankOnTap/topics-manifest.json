@@ -31,6 +31,34 @@
           "note": "Nhiều câu thiếu đáp án chuẩn và thiếu options ở một số mục; phù hợp làm nguồn thô để chuẩn hóa thêm."
         }
       ]
+    },
+    {
+      "id": "duong-tron",
+      "title": "Phương trình đường tròn",
+      "subtitle": "Hình học 10 • Chương III",
+      "description": "Nhận dạng, viết phương trình, tiếp tuyến đường tròn.",
+      "icon": "fa-solid fa-circle",
+      "theme": {
+        "gradient": "linear-gradient(135deg, #0891b2 0%, #0e7490 100%)",
+        "chipClass": "bg-cyan-100 text-cyan-700"
+      },
+      "activeSource": "le-ba-bao",
+      "sources": [
+        {
+          "id": "le-ba-bao",
+          "label": "Lê Bá Bảo",
+          "path": "duongtron_exam.json",
+          "recommended": true,
+          "note": "Nguồn từ LaTeX, 43 câu trắc nghiệm có lời giải chi tiết."
+        },
+        {
+          "id": "self-solve",
+          "label": "Bài tập tự giải",
+          "path": "duongtron_self_solve.json",
+          "recommended": false,
+          "note": "87 câu tự luận có lời giải, xem đáp án không cần nộp bài."
+        }
+      ]
     }
   ]
 }

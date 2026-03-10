@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lý thuyết và Ví dụ - Phương trình đường tròn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/tex-gyre-pagella" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script src="assets/js/mathjax-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        .font-pagella {
+            font-family: 'TeX Gyre Pagella', serif;
+        }
+
+        /* Markdown Styles */
+        .prose h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #bfdbfe;
+            padding-bottom: 0.5rem;
+        }
+
+        .prose h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .prose p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .prose li {
+            margin-bottom: 0.5rem;
+        }
+
+        .prose strong {
+            color: #0f172a;
+        }
+
+        .prose table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .prose th,
+        .prose td {
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .prose th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        .example-card {
+            border-left: 4px solid #3b82f6;
+        }
+
+        .solution-panel {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .solution-panel.open {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="p-4 md:p-8">
+    <main class="max-w-5xl mx-auto">
+        <!-- Header -->
+        <header
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-8 mt-4 flex justify-between items-center sticky top-4 z-10">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-extrabold text-blue-900">1. Lý thuyết & Bài tập ví dụ</h1>
+                <p class="text-slate-500 mt-1">Chủ đề: Phương trình đường tròn</p>
+            </div>
+            <a href="duong-tron-hub.html"
+                class="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg transition-colors">
+                <i class="fa-solid fa-arrow-left"></i> Về Hub
+            </a>
+            <a href="duong-tron-hub.html"
+                class="md:hidden inline-flex items-center justify-center w-10 h-10 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </header>
+
+        <div class="grid grid-cols-1 gap-8">
+
+            <!-- Theory Section -->
+            <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-10">
+                <div id="theoryContent" class="prose max-w-none font-pagella text-lg text-slate-800">
+                    <div class="flex justify-center items-center py-10">
+                        <i class="fa-solid fa-circle-notch fa-spin text-4xl text-blue-500"></i>
+                        <span class="ml-3 text-slate-500">Đang tải lý thuyết...</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Examples Section -->
+            <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-10">
+                <h2
+                    class="text-2xl font-bold text-emerald-700 mb-6 flex items-center border-b-2 border-emerald-100 pb-3">
+                    <i class="fa-solid fa-book-open mr-3"></i> Bài tập minh hoạ có lời giải
+                </h2>
+                <div id="examplesContent" class="space-y-6">
+                    <div class="flex justify-center flex-col items-center py-8">
+                        <i class="fa-solid fa-spinner fa-spin text-3xl text-emerald-500 mb-2"></i>
+                        <p class="text-slate-500">Tải ví dụ...</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTheory();
+            loadExamples();
+        });
+
+        async function loadTheory() {
+            try {
+                const res = await fetch('data/grade10/Duong-tron-trong-mat-phang-toa-do/theory.md');
+                if (!res.ok) throw new Error('Network format error');
+                let md = await res.text();
+                md = md.replace(/\r\n/g, '\n'); // normalize line endings
+
+                // Protect math from marked.js — order matters: $$ before $
+                const mathStore = [];
+                function store(match) {
+                    mathStore.push(match);
+                    return '\x00MATH' + (mathStore.length - 1) + '\x00';
+                }
+                // 1) Display math: $$ block $$ (multiline)
+                md = md.replace(/\$\$\n[\s\S]*?\n\$\$/g, store);
+                // 2) Inline $$...$$ on one line
+                md = md.replace(/\$\$[^$\n]+?\$\$/g, store);
+                // 3) Single $ inline math
+                md = md.replace(/\$([^$\n]+?)\$/g, store);
+
+                const html = marked.parse(md);
+
+                // Restore math
+                const finalHtml = html.replace(/\x00MATH(\d+)\x00/g, (_, i) => mathStore[Number(i)]);
+
+                const theoryDiv = document.getElementById('theoryContent');
+                theoryDiv.innerHTML = finalHtml;
+
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([theoryDiv]).catch(console.error);
+                }
+            } catch (e) {
+                document.getElementById('theoryContent').innerHTML = '<p class="text-red-500 font-medium">Ops, không thể tải nội dung lý thuyết.</p>';
+                console.error(e);
+            }
+        }
+
+        async function loadExamples() {
+            try {
+                const res = await fetch('data/grade10/Duong-tron-trong-mat-phang-toa-do/example_exercises.json');
+                if (!res.ok) throw new Error('Failed to load JSON');
+                const data = await res.json();
+
+                renderExamples(data.questions || []);
+            } catch (e) {
+                document.getElementById('examplesContent').innerHTML = '<p class="text-red-500 font-medium">Ops, không thể tải ví dụ minh họa.</p>';
+                console.error(e);
+            }
+        }
+
+        function renderExamples(questions) {
+            const container = document.getElementById('examplesContent');
+            container.innerHTML = '';
+
+            if (!questions.length) {
+                container.innerHTML = '<p class="text-slate-500">Chưa có bài tập nào.</p>';
+                return;
+            }
+
+            questions.forEach((q, idx) => {
+                const div = document.createElement('div');
+                div.className = 'example-card bg-slate-50 rounded-xl p-5 md:p-6 shadow-sm relative';
+
+                let contentHtml = `
+          <div class="mb-3">
+            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">
+              Ví dụ ${idx + 1}
+            </span>
+          </div>
+          <div class="font-pagella text-lg text-slate-800 leading-relaxed mb-4">
+            ${q.stem || ''}
+          </div>
+        `;
+
+                // Nếu là type 'group', duyệt sub_questions
+                if (q.type === 'group' && q.sub_questions && q.sub_questions.length > 0) {
+                    contentHtml += `<ul class="space-y-3 mb-4 pl-0">`;
+                    q.sub_questions.forEach(sq => {
+                        contentHtml += `<li class="font-pagella text-base text-slate-700 list-none ml-4">• ${sq.stem}</li>`;
+                    });
+                    contentHtml += `</ul>`;
+                }
+
+                // Nút xem lời giải
+                contentHtml += `
+          <button onclick="toggleSol('sol_${idx}', this)" class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 rounded-lg text-sm font-semibold transition-colors">
+            <i class="fa-solid fa-eye text-amber-500"></i> Xem Lời giải
+          </button>
+        `;
+
+                // Khung lời giải (ẩn mặc định)
+                contentHtml += `
+          <div id="sol_${idx}" class="solution-panel transition-all">
+            <h4 class="font-bold text-amber-800 mb-2 border-b border-amber-200 pb-1">Lời giải chi tiết</h4>
+            <div class="font-pagella text-base text-slate-800 leading-relaxed">
+              ${q.detailed_explanation ? q.detailed_explanation.replace(/\\n/g, '<br/>') : 'Không có lời giải chi tiết'}
+            </div>
+          </div>
+        `;
+
+                div.innerHTML = contentHtml;
+                container.appendChild(div);
+            });
+
+            // Render MathJax cho ví dụ
+            if (window.MathJax && MathJax.typesetPromise) {
+                MathJax.typesetPromise([container]).catch(console.error);
+            }
+        }
+
+        // Gắn handler ra global scope vì html template đang dùng inline onclick
+        window.toggleSol = function (id, btn) {
+            const p = document.getElementById(id);
+            if (p.classList.contains('open')) {
+                p.classList.remove('open');
+                btn.innerHTML = '<i class="fa-solid fa-eye text-amber-500"></i> Xem Lời giải';
+            } else {
+                p.classList.add('open');
+                btn.innerHTML = '<i class="fa-solid fa-eye-slash text-amber-600"></i> Ẩn Lời giải';
+            }
+        }
+    </script>
+</body>
+
+</html>

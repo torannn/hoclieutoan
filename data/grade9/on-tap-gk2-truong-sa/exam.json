@@ -1,0 +1,99 @@
+{
+    "duration": 5400,
+    "questions": [
+        {
+            "q_id": "b1_group_v2",
+            "section": "Bài 1. (2,0 điểm)",
+            "type": "essay",
+            "is_group": true,
+            "sub_questions": [
+                {
+                    "q_id": "b1_1_v2",
+                    "question_text": "Giải phương trình: $x^{2} - 5 x + 6 = 0$.",
+                    "detailed_explanation": "<b>Cách 1: Sử dụng công thức nghiệm (Delta)</b><br>Phương trình $x^{2} - 5 x + 6 = 0$ có các hệ số $a=1, b=-5, c=6$.<br>Ta có $\\Delta = b^2 - 4ac = (-5)^2 - 4 \\cdot 1 \\cdot 6$<br>$\\Delta = 25 - 24 = 1 > 0$<br>$\\sqrt{\\Delta} = \\sqrt{1} = 1$<br>Phương trình có hai nghiệm phân biệt:<br>$x_1 = \\frac{-b + \\sqrt{\\Delta}}{2a} = \\frac{5 + 1}{2} = 3$<br>$x_2 = \\frac{-b - \\sqrt{\\Delta}}{2a} = \\frac{5 - 1}{2} = 2$<br>Vậy tập nghiệm $S = \\{2; 3\\}$.<br><br><b>Cách 2: Sử dụng công thức nhẩm nghiệm (Vi-ét)</b><br>Ta cần tìm hai số có tổng bằng $-\\frac{b}{a} = 5$ và tích bằng $\\frac{c}{a} = 6$.<br>Nhẩm được hai số đó là 2 và 3.<br>Vậy tập nghiệm $S = \\{2; 3\\}$."
+                },
+                {
+                    "q_id": "b1_2_v2",
+                    "question_text": "Giải hệ phương trình: $\\begin{cases} 2x + y = 5 \\\\ x - y = 1 \\end{cases}$",
+                    "detailed_explanation": "<b>Phương pháp cộng đại số</b><br>Hệ phương trình:<br>$\\left\\{ \\begin{aligned} &2x + y = 5 \\quad (1) \\\\ &x - y = 1 \\quad (2) \\end{aligned} \\right.$<br>Cộng vế theo vế phương trình (1) và (2):<br>$(2x + x) + (y - y) = 5 + 1$<br>$3x = 6$<br>$x = 2$<br>Thay $x = 2$ vào phương trình (2):<br>$2 - y = 1$<br>$y = 1$<br>Vậy hệ phương trình có nghiệm duy nhất $(2; 1)$."
+                },
+                {
+                    "q_id": "b1_3_v2",
+                    "question_text": "Giải bất phương trình: $3x - 12 > 0$.",
+                    "detailed_explanation": "Bất phương trình $3x - 12 > 0$<br>$\\Leftrightarrow 3x > 12$<br>$\\Leftrightarrow x > \\frac{12}{3}$ (chia cả hai vế cho 3 > 0 nên giữ nguyên chiều)<br>$\\Leftrightarrow x > 4$.<br>Vậy tập nghiệm của bất phương trình là $S = \\{x | x > 4\\}$."
+                },
+                {
+                    "q_id": "b1_4_v2",
+                    "question_text": "Giải phương trình $\\frac{1}{x - 1} + \\frac{2}{x + 1} = \\frac{5x - 1}{x^{2} - 1}$",
+                    "detailed_explanation": "Điều kiện xác định: $x \\neq 1 , x \\neq -1$.<br>Phương trình trở thành:<br>$\\frac{1(x + 1)}{(x - 1)(x + 1)} + \\frac{2(x - 1)}{(x - 1)(x + 1)} = \\frac{5x - 1}{(x - 1)(x + 1)}$<br>Suy ra: $x + 1 + 2(x - 1) = 5x - 1$<br>$\\Leftrightarrow x + 1 + 2x - 2 = 5x - 1$<br>$\\Leftrightarrow 3x - 1 = 5x - 1$<br>$\\Leftrightarrow 2x = 0$<br>$\\Leftrightarrow x = 0$.<br>Đối chiếu điều kiện, nghiệm $x = 0$ thỏa mãn.<br>Vậy tập nghiệm $S = \\{0\\}$."
+                }
+            ],
+            "detailed_explanation": "Chưa có đáp án."
+        },
+        {
+            "q_id": "b2_v2",
+            "section": "Bài 2. (0,75 điểm)",
+            "type": "essay",
+            "stem": "Cho phương trình $x^{2} - 7x + 5 = 0$. Chứng minh phương trình luôn có hai nghiệm phân biệt $x_{1} , x_{2}$. Không giải phương trình, hãy tính giá trị của biểu thức:<br>$$M = \\left( x_{1} - 2 \\right) \\left( x_{2} - 2 \\right) + \\frac{1}{x_{1}} + \\frac{1}{x_{2}}$$",
+            "detailed_explanation": "1. Chứng minh phương trình có 2 nghiệm phân biệt:<br>Xét phương trình $x^{2} - 7x + 5 = 0$.<br>Ta có biệt thức: $\\Delta = (-7)^2 - 4 \\cdot 1 \\cdot 5 = 49 - 20 = 29 > 0$.<br>Vì $\\Delta > 0$ nên phương trình luôn có hai nghiệm phân biệt $x_1, x_2$.<br><br>2. Tính giá trị biểu thức M:<br>Theo định lý Vi-ét: $\\begin{cases} x_1 + x_2 = 7 \\\\ x_1 x_2 = 5 \\end{cases}$<br>Biến đổi biểu thức $M$:<br>$M = x_1x_2 - 2x_1 - 2x_2 + 4 + \\frac{x_1 + x_2}{x_1x_2}$<br>$M = x_1x_2 - 2(x_1 + x_2) + 4 + \\frac{x_1 + x_2}{x_1x_2}$<br>Thay số vào biểu thức:<br>$M = 5 - 2(7) + 4 + \\frac{7}{5}$<br>$M = 5 - 14 + 4 + 1,4 = -3,6$.<br>Vậy $M = -3,6$ (hoặc $-\\frac{18}{5}$)."
+        },
+        {
+            "q_id": "b3_v2",
+            "section": "Bài 3. (1,0 điểm)",
+            "type": "essay",
+            "stem": "Một xưởng may dự định may 300 áo trong một thời gian quy định. Khi thực hiện, do cải tiến kỹ thuật nên mỗi ngày xưởng may được nhiều hơn 10 áo so với kế hoạch. Vì thế xưởng đã hoàn thành công việc sớm hơn 1 ngày. Hỏi theo kế hoạch, mỗi ngày xưởng phải may bao nhiêu chiếc áo?",
+            "detailed_explanation": "Gọi số áo xưởng dự định may mỗi ngày là $x$ (áo/ngày). Điều kiện: $x > 0, x \\in \\mathbb{N}^*$.<br>Thời gian dự định hoàn thành công việc là $\\frac{300}{x}$ (ngày).<br>Thực tế mỗi ngày xưởng may được: $x + 10$ (áo/ngày).<br>Thời gian thực tế hoàn thành là $\\frac{300}{x + 10}$ (ngày).<br>Vì xưởng hoàn thành sớm hơn 1 ngày, ta có phương trình:<br>$\\frac{300}{x} - \\frac{300}{x + 10} = 1$<br>$\\Rightarrow 300(x + 10) - 300x = x(x + 10)$<br>$\\Leftrightarrow 3000 = x^2 + 10x$<br>$\\Leftrightarrow x^2 + 10x - 3000 = 0$<br>Giải phương trình bậc hai: $\\Delta' = 5^2 - 1 \\cdot (-3000) = 3025 > 0$. $\\sqrt{\\Delta'} = 55$.<br>$x_1 = -5 + 55 = 50$ (thỏa mãn)<br>$x_2 = -5 - 55 = -60$ (loại)<br>Vậy theo kế hoạch, mỗi ngày xưởng phải may <b>50 chiếc áo</b>."
+        },
+        {
+            "q_id": "b4_v2",
+            "section": "Bài 4. (1,25 điểm)",
+            "type": "essay",
+            "stem": "Với $x > 0$ và $x \\neq 1$, xét biểu thức:<br>$$P = \\left( \\frac{\\sqrt{x}}{\\sqrt{x} - 1} - \\frac{1}{x - \\sqrt{x}} \\right) : \\left( \\frac{1}{\\sqrt{x} + 1} + \\frac{2}{x - 1} \\right)$$<br>a. Rút gọn biểu thức $P$<br>b. Tìm các giá trị của $x$ để $P > 0$.",
+            "detailed_explanation": "<b>a. Rút gọn biểu thức P</b><br>Tử số (ngoặc thứ nhất):<br>$A = \\frac{\\sqrt{x}}{\\sqrt{x} - 1} - \\frac{1}{\\sqrt{x}(\\sqrt{x} - 1)}$<br>$A = \\frac{x - 1}{\\sqrt{x}(\\sqrt{x} - 1)} = \\frac{(\\sqrt{x} - 1)(\\sqrt{x} + 1)}{\\sqrt{x}(\\sqrt{x} - 1)} = \\frac{\\sqrt{x} + 1}{\\sqrt{x}}$<br><br>Mẫu số (ngoặc thứ hai):<br>$B = \\frac{1}{\\sqrt{x} + 1} + \\frac{2}{(\\sqrt{x} - 1)(\\sqrt{x} + 1)}$<br>$B = \\frac{\\sqrt{x} - 1 + 2}{(\\sqrt{x} - 1)(\\sqrt{x} + 1)} = \\frac{\\sqrt{x} + 1}{(\\sqrt{x} - 1)(\\sqrt{x} + 1)} = \\frac{1}{\\sqrt{x} - 1}$<br><br>Thực hiện phép chia:<br>$P = A : B = \\frac{\\sqrt{x} + 1}{\\sqrt{x}} \\cdot (\\sqrt{x} - 1) = \\frac{x - 1}{\\sqrt{x}}$.<br>Vậy $P = \\frac{x - 1}{\\sqrt{x}}$.<br><br><b>b. Tìm x để P > 0</b><br>Ta có $P = \\frac{x - 1}{\\sqrt{x}}$.<br>Vì điều kiện $x > 0$ nên $\\sqrt{x} > 0$.<br>Để $P > 0$ thì tử số phải lớn hơn 0, tức là $x - 1 > 0 \\Leftrightarrow x > 1$.<br>Kết hợp với điều kiện ban đầu ($x > 0, x \\neq 1$), ta được <b>$x > 1$</b> thì $P > 0$."
+        },
+        {
+            "q_id": "b5_v2",
+            "section": "Bài 5. (2,0 điểm)",
+            "type": "essay",
+            "is_group": true,
+            "sub_questions": [
+                {
+                    "q_id": "b5_a_v2",
+                    "question_text": "Bóng của một cái tháp trên mặt đất có độ dài $30 m$. Cùng thời điểm đó, tia sáng mặt trời tạo với mặt đất một góc bằng $60^{\\circ}$. Tính chiều cao của tháp (làm tròn kết quả đến hàng phần mười của mét).<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"geometry\",\"axes\":false,\"bbox\":[-2,10,10,-2],\"height\":250,\"keepAspectRatio\":true,\"draw\":[{\"type\":\"polygon\",\"points\":[[-1,0],[7,0],[-1,8]]}]}'></div>",
+                    "detailed_explanation": "Gọi chiều cao của tháp là $h$, chiều dài bóng tháp là $d = 30$ m.<br>Góc tạo bởi tia sáng và mặt đất là $\\alpha = 60^\\circ$.<br>Tháp và bóng của nó trên mặt đất tạo thành một tam giác vuông.<br>Áp dụng hệ thức lượng trong tam giác vuông, ta có:<br>$\\tan \\alpha = \\frac{h}{d} \\Rightarrow h = d \\cdot \\tan \\alpha$<br>$h = 30 \\cdot \\tan 60^\\circ = 30\\sqrt{3} \\approx 30 \\cdot 1,732$<br>$h \\approx 51,96$ (m).<br>Làm tròn đến hàng phần mười: <b>Chiều cao tháp $\\approx$ 52,0 m</b>."
+                },
+                {
+                    "q_id": "b5_b_v2",
+                    "question_text": "Một silo (tháp chứa hạt) có hình dáng gồm một phần hình trụ ở dưới và một phần nửa hình cầu ở trên. Biết phần hình trụ có chiều cao $10 m$, bán kính đáy là $3 m$. Tính thể tích không gian bên trong của silo đó (lấy $\\pi \\approx 3,14$).<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"geometry\",\"axes\":false,\"bbox\":[-6,15,6,-2],\"height\":300,\"keepAspectRatio\":true,\"draw\":[{\"type\":\"circle\",\"center\":[0,10],\"radius\":3}]}'></div>",
+                    "detailed_explanation": "Silo gồm hình trụ và nửa hình cầu có cùng bán kính $R = 3$ m.<br>Chiều cao hình trụ $h = 10$ m.<br>Thể tích phần hình trụ: $V_{trụ} = \\pi R^2 h = 3,14 \\cdot 3^2 \\cdot 10 = 3,14 \\cdot 90 = 282,6 \\text{ (m}^3\\text{)}$.<br>Thể tích phần nửa hình cầu: $V_{cầu} = \\frac{1}{2} \\cdot \\frac{4}{3} \\pi R^3 = \\frac{2}{3} \\pi R^3 = \\frac{2}{3} \\cdot 3,14 \\cdot 3^3 = 2 \\cdot 3,14 \\cdot 9 = 56,52 \\text{ (m}^3\\text{)}$.<br>Thể tích tổng cộng của silo:<br>$V = V_{trụ} + V_{cầu} = 282,6 + 56,52 = 339,12 \\text{ (m}^3\\text{)}$."
+                }
+            ],
+            "detailed_explanation": "Chưa có đáp án."
+        },
+        {
+            "q_id": "b6_v2",
+            "section": "Bài 6 (3,0 điểm)",
+            "type": "essay",
+            "stem": "Cho đường tròn $(O)$ đường kính $AB$. Lấy điểm $C$ thuộc $(O)$ sao cho $AC < BC$. Tiếp tuyến tại $A$ của đường tròn $(O)$ cắt đường thẳng $BC$ tại $D$. Kẻ $CH \\perp AB$ tại $H$. Gọi $M$ là trung điểm của $CH$. Tia $BM$ cắt $AD$ tại $F$.<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"geometry\",\"axes\":false,\"bbox\":[-6,10,12,-6],\"height\":380,\"keepAspectRatio\":true,\"constructions\":[{\"id\":\"O\",\"type\":\"point\",\"xy\":[0,0]},{\"id\":\"circO\",\"type\":\"circle\",\"center\":\"O\",\"radius\":4},{\"id\":\"A\",\"type\":\"point\",\"xy\":[-4,0]},{\"id\":\"B\",\"type\":\"point\",\"xy\":[4,0]},{\"id\":\"C\",\"type\":\"point\",\"xy\":[-2.4,3.2]}]}'></div>",
+            "is_group": true,
+            "sub_questions": [
+                {
+                    "q_id": "b6_a_v2",
+                    "question_text": "a) Chứng minh tam giác $ABC$ vuông và $AC^2 = CD \\cdot CB$.",
+                    "detailed_explanation": "1. Chứng minh $\\Delta ABC$ vuông:<br>Tam giác $ABC$ nội tiếp đường tròn $(O)$ có cạnh $AB$ là đường kính.<br>Suy ra $\\Delta ABC$ vuông tại $C$ (góc nội tiếp chắn nửa đường tròn bằng $90^\\circ$). Do đó $AC \\perp BC$.<br><br>2. Chứng minh $AC^2 = CD \\cdot CB$:<br>Vì $AD$ là tiếp tuyến của $(O)$ tại $A$ nên $AD \\perp AB$ tại $A$.<br>Xét tam giác $DAB$ vuông tại $A$, có $AC$ là đường cao (do $AC \\perp BC \\equiv BD$).<br>Áp dụng hệ thức lượng trong tam giác vuông $DAB$, ta có bình phương cạnh góc vuông bằng tích của hình chiếu và cạnh huyền:<br>$\\Rightarrow AC^2 = CD \\cdot CB$ (đpcm)."
+                },
+                {
+                    "q_id": "b6_b_v2",
+                    "question_text": "b) Chứng minh $AF = FD$.",
+                    "detailed_explanation": "Do $AD \\perp AB$ và $CH \\perp AB$, suy ra $AD \\parallel CH$.<br>Xét tam giác $DAB$, vì $AD \\parallel CH$, theo hệ quả định lý Thales ta có:<br>$\\frac{CH}{AD} = \\frac{BH}{BA}$ (1)<br><br>Mặt khác, xét tam giác $FAB$, vì $MH \\parallel FA$ (do $M$ nằm trên $CH$, $F$ nằm trên $AD$), ta có:<br>$\\frac{MH}{FA} = \\frac{BH}{BA}$ (2)<br><br>Từ (1) và (2) suy ra $\\frac{CH}{AD} = \\frac{MH}{FA}$.<br>Mà $M$ là trung điểm của $CH$ nên $CH = 2MH$.<br>Thay vào tỉ lệ thức ta được: $\\frac{2MH}{AD} = \\frac{MH}{FA} \\Rightarrow AD = 2FA$.<br>Vì $F$ nằm trên đoạn $AD$ nên $AD = AF + FD$.<br>Do đó $2FA = AF + FD \\Rightarrow AF = FD$.<br>Vậy $F$ là trung điểm của $AD$ (đpcm)."
+                },
+                {
+                    "q_id": "b6_c_v2",
+                    "question_text": "c) Chứng minh $FC$ là tiếp tuyến của đường tròn $(O)$.",
+                    "detailed_explanation": "Xét tam giác vuông $ACD$ (vuông tại $C$ do $AC \\perp BD$):<br>Có $F$ là trung điểm của cạnh huyền $AD$ (chứng minh ở câu b).<br>Trong tam giác vuông, đường trung tuyến ứng với cạnh huyền bằng nửa cạnh huyền.<br>Suy ra $CF = FA = FD$.<br><br>Xét $\\Delta FAO$ và $\\Delta FCO$:<br>Ta có $FA = FC$ (chứng minh trên).<br>$OA = OC$ (cùng là bán kính đường tròn $(O)$).<br>$FO$ là cạnh chung.<br>Suy ra $\\Delta FAO = \\Delta FCO$ (c-c-c).<br>$\\Rightarrow \\widehat{FCO} = \\widehat{FAO} = 90^\\circ$ (vì $AD$ là tiếp tuyến tại $A$).<br>Do đó $FC \\perp OC$ tại điểm $C$ nằm trên đường tròn $(O)$.<br>Vậy $FC$ là tiếp tuyến của đường tròn $(O)$ (đpcm)."
+                }
+            ],
+            "detailed_explanation": "Chưa có đáp án."
+        }
+    ]
+}

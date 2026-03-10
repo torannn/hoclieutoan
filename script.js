@@ -1039,7 +1039,16 @@ function renderInputElement(question, parentType) {
 
     if (qType === 'multiple_choice') {
         const parsed = getMCParsed(question);
-        if (!parsed.options.length) return '';
+        if (!parsed.options.length) {
+            // No options - show essay input for self-study
+            return `
+            <div class="answer-input-container mt-3">
+                <textarea id="${qId}" rows="3"
+                          class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all resize-y" 
+                          placeholder="Nhập đáp án (tự luận)" 
+                          oninput="saveAnswer('${qId}', this.value)"></textarea>
+            </div>`;
+        }
         return `
             <div class="answer-input-container mt-3 space-y-2">
                 ${parsed.options.map(opt => `
@@ -1530,14 +1539,23 @@ async function startExam(examInfo) {
         const fetchOpts = { cache: 'no-store' };
         const [examRes, answersRes] = await Promise.all([
             fetch(examUrl, fetchOpts),
-            fetch(answersUrl, fetchOpts)
+            fetch(answersUrl, fetchOpts).catch(() => null)
         ]);
 
         if (!examRes.ok) throw new Error(`Không thể tải exam.json (${examRes.status})`);
-        if (!answersRes.ok) throw new Error(`Không thể tải answers.json (${answersRes.status})`);
 
         const examContent = await examRes.json();
-        const answersContent = await answersRes.json();
+        let answersContent = {};
+        if (answersRes && answersRes.ok) {
+            try {
+                answersContent = await answersRes.json();
+            } catch (e) {
+                console.warn('answers.json không hợp lệ, bỏ qua và dùng detailed_explanation trong exam.json', e);
+                answersContent = {};
+            }
+        } else {
+            console.warn('Không tải được answers.json, tiếp tục với detailed_explanation trong exam.json');
+        }
 
         examContent.questions.forEach(q => {
             // Use detailed_explanation from exam.json if available, otherwise fallback to answers.json

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lý thuyết — Ôn tập GK2 Toán 9</title>
+  <meta name="description" content="Lý thuyết trọng tâm ôn tập thi giữa kì 2 Toán lớp 9">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="../../../assets/js/mathjax-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Source Serif 4', 'Inter', Georgia, serif;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .font-sans { font-family: 'Inter', system-ui, sans-serif; }
+
+    /* Sticky header */
+    .sticky-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0.75rem 1.5rem;
+    }
+    .sticky-header-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .sticky-header-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem; font-weight: 600; color: #94a3b8;
+    }
+    .header-progress {
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .progress-bar-wrapper {
+      width: 120px; height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, #6366f1, #a855f7);
+      border-radius: 3px;
+      transition: width 0.3s;
+    }
+    .progress-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem; color: #64748b; font-weight: 600;
+    }
+
+    /* Main container */
+    .container {
+      max-width: 820px; margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Section navigation */
+    .section-nav {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .section-nav-btn {
+      font-family: 'Inter', sans-serif;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: transparent;
+      color: #94a3b8;
+      font-size: 0.8rem; font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .section-nav-btn:hover {
+      background: rgba(99,102,241,0.1);
+      border-color: rgba(99,102,241,0.3);
+      color: #a5b4fc;
+    }
+    .section-nav-btn.active {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 4px 15px rgba(99,102,241,0.3);
+    }
+    .section-nav-btn .check-icon {
+      display: none;
+      margin-left: 0.3rem;
+    }
+    .section-nav-btn.read .check-icon { display: inline; }
+
+    /* Theory sections */
+    .theory-section {
+      margin-bottom: 3rem;
+      scroll-margin-top: 80px;
+    }
+    .section-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.75rem; font-weight: 800;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid rgba(255,255,255,0.08);
+    }
+    .section-heading .letter {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 10px;
+      font-size: 1rem; margin-right: 0.75rem;
+      color: white;
+    }
+    .section-heading .letter.blue { background: linear-gradient(135deg, #3b82f6, #6366f1); }
+    .section-heading .letter.emerald { background: linear-gradient(135deg, #10b981, #059669); }
+
+    /* Subsection */
+    .subsection {
+      margin-bottom: 2.5rem;
+    }
+    .subsection-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: #c4b5fd; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .subsection-title i { font-size: 0.9rem; color: #818cf8; }
+
+    /* Theory box */
+    .theory-box {
+      background: rgba(99,102,241,0.06);
+      border: 1px solid rgba(99,102,241,0.15);
+      border-left: 4px solid #6366f1;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .theory-box.green {
+      background: rgba(16,185,129,0.06);
+      border-color: rgba(16,185,129,0.15);
+      border-left-color: #10b981;
+    }
+    .theory-box h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: #a5b4fc; margin-bottom: 0.75rem;
+    }
+    .theory-box.green h4 { color: #6ee7b7; }
+
+    .theory-box ul {
+      list-style: none; padding: 0;
+    }
+    .theory-box ul li {
+      padding: 0.4rem 0 0.4rem 1.25rem;
+      position: relative;
+      line-height: 1.8;
+      font-size: 1rem;
+      color: #cbd5e1;
+    }
+    .theory-box ul li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: #818cf8; font-weight: bold;
+    }
+    .theory-box.green ul li::before { color: #34d399; }
+
+    .theory-box p {
+      line-height: 1.8; color: #cbd5e1; font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Formula highlight */
+    .formula-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin: 0.75rem 0;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    /* Example / Exercise */
+    .example-block {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .example-header {
+      font-family: 'Inter', sans-serif;
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.85rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: #f59e0b; margin-bottom: 0.75rem;
+    }
+    .example-header i { font-size: 0.8rem; }
+
+    .example-question {
+      font-size: 1rem; line-height: 1.8;
+      color: #e2e8f0; margin-bottom: 1rem;
+    }
+
+    /* Collapsible solution */
+    .solution-toggle {
+      font-family: 'Inter', sans-serif;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(99,102,241,0.3);
+      background: rgba(99,102,241,0.08);
+      color: #a5b4fc;
+      font-size: 0.85rem; font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .solution-toggle:hover {
+      background: rgba(99,102,241,0.15);
+      border-color: rgba(99,102,241,0.5);
+    }
+    .solution-toggle i { transition: transform 0.3s; }
+    .solution-toggle.open i { transform: rotate(180deg); }
+
+    .solution-content {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-top: 0.75rem;
+    }
+    .solution-content.open {
+      max-height: 3000px;
+    }
+    .solution-inner {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 1.25rem;
+      color: #94a3b8;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+    .solution-inner strong { color: #cbd5e1; }
+
+    /* Mark as read button */
+    .mark-read-btn {
+      font-family: 'Inter', sans-serif;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 12px;
+      border: 2px dashed rgba(99,102,241,0.3);
+      background: transparent;
+      color: #818cf8;
+      font-size: 0.95rem; font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 1rem;
+    }
+    .mark-read-btn:hover {
+      border-color: rgba(99,102,241,0.6);
+      background: rgba(99,102,241,0.06);
+    }
+    .mark-read-btn.done {
+      border-style: solid;
+      border-color: #10b981;
+      color: #34d399;
+      background: rgba(16,185,129,0.08);
+    }
+
+    /* Table styling */
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      margin: 0.75rem 0; font-size: 0.95rem;
+    }
+    .data-table th, .data-table td {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    .data-table th {
+      background: rgba(255,255,255,0.04);
+      color: #94a3b8; font-weight: 600;
+    }
+    .data-table td { color: #cbd5e1; }
+
+    /* Bottom CTA */
+    .bottom-cta {
+      margin-top: 3rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 2rem;
+      text-align: center;
+    }
+    .bottom-cta h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5rem; font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .bottom-cta p {
+      color: #64748b; margin-bottom: 1.25rem;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 12px; border: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600; font-size: 1rem;
+      color: white; cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      background: linear-gradient(135deg, #f43f5e, #e11d48);
+      box-shadow: 0 8px 24px rgba(244,63,94,0.35);
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(244,63,94,0.5); }
+    .cta-hub {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      box-shadow: 0 8px 24px rgba(99,102,241,0.35);
+    }
+    .cta-hub:hover { box-shadow: 0 12px 30px rgba(99,102,241,0.5); }
+
+    /* Back button */
+    .back-btn {
+      font-family: 'Inter', sans-serif;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1rem; border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8; font-weight: 500; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.3s;
+    }
+    .back-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: #e2e8f0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: 1rem 1rem 3rem; }
+      .section-heading { font-size: 1.35rem; }
+      .theory-box { padding: 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Sticky reading progress header -->
+  <div class="sticky-header" id="sticky-header">
+    <div class="sticky-header-inner">
+      <a href="hub.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i> Hub
+      </a>
+      <span class="sticky-header-title">Lý thuyết ôn tập GK2</span>
+      <div class="header-progress">
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar-fill" id="reading-progress"></div>
+        </div>
+        <span class="progress-text" id="reading-pct">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Section navigation -->
+    <nav class="section-nav font-sans" id="section-nav">
+      <button class="section-nav-btn active" data-target="phan-a1" onclick="scrollToSection('phan-a1')">
+        📈 Hàm số $y=ax^2$
+        <span class="check-icon">✓</span>
+      </button>
+      <button class="section-nav-btn" data-target="phan-a2" onclick="scrollToSection('phan-a2')">
+        📐 PT bậc hai & Viète
+        <span class="check-icon">✓</span>
+      </button>
+      <button class="section-nav-btn" data-target="phan-b" onclick="scrollToSection('phan-b')">
+        📦 Trụ · Nón · Cầu
+        <span class="check-icon">✓</span>
+      </button>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- PHẦN A1: HÀM SỐ y = ax² -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="theory-section" id="phan-a1">
+      <h2 class="section-heading">
+        <span class="letter blue">A</span>
+        Hàm số $y = ax^2$ ($a \neq 0$) và đồ thị
+      </h2>
+
+      <!-- Lý thuyết -->
+      <div class="theory-box">
+        <h4><i class="fa-solid fa-lightbulb"></i> 1. Tính chất hàm số</h4>
+        <ul>
+          <li><strong>Tập xác định:</strong> $\mathbb{R}$ (mọi số thực).</li>
+          <li>Nếu $a > 0$: Hàm số <em>nghịch biến</em> khi $x < 0$ và <em>đồng biến</em> khi $x > 0$. Giá trị nhỏ nhất $y = 0$ tại $x = 0$.</li>
+          <li>Nếu $a < 0$: Hàm số <em>đồng biến</em> khi $x < 0$ và <em>nghịch biến</em> khi $x > 0$. Giá trị lớn nhất $y = 0$ tại $x = 0$.</li>
+        </ul>
+      </div>
+
+      <div class="theory-box">
+        <h4><i class="fa-solid fa-chart-line"></i> 2. Đồ thị — Parabol</h4>
+        <ul>
+          <li>Đồ thị là đường cong (Parabol) đi qua gốc tọa độ, nhận trục $Oy$ làm trục đối xứng, đỉnh $O(0;0)$.</li>
+          <li>$a > 0$: Đồ thị nằm <strong>phía trên</strong> trục hoành, $O$ là điểm thấp nhất.</li>
+          <li>$a < 0$: Đồ thị nằm <strong>phía dưới</strong> trục hoành, $O$ là điểm cao nhất.</li>
+        </ul>
+      </div>
+
+      <div class="theory-box">
+        <h4><i class="fa-solid fa-pencil"></i> 3. Cách vẽ đồ thị</h4>
+        <ul>
+          <li><strong>Bước 1:</strong> Lập bảng giá trị (5 giá trị $x$ đối xứng: $-2, -1, 0, 1, 2$).</li>
+          <li><strong>Bước 2:</strong> Biểu diễn các điểm trên mặt phẳng tọa độ.</li>
+          <li><strong>Bước 3:</strong> Vẽ đường Parabol cong đều, trơn mượt, đối xứng.</li>
+        </ul>
+      </div>
+
+      <!-- Bài tập ví dụ 1 -->
+      <div class="example-block">
+        <div class="example-header">
+          <i class="fa-solid fa-flask"></i> Ví dụ 1 — Vẽ đồ thị & Tìm điểm thuộc Parabol
+        </div>
+        <div class="example-question">
+          Cho hàm số $y = -\frac{1}{2}x^2$.<br>
+          a) Lập bảng giá trị và vẽ đồ thị $(P)$.<br>
+          b) Trong các điểm sau, điểm nào thuộc $(P)$: $A(2; -2)$, $B(-2; 2)$, $C(4; -8)$.<br>
+          c) Tìm trên $(P)$ điểm có hoành độ bằng $-6$. Tìm điểm có tung độ bằng $-4{,}5$.
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">
+          <i class="fa-solid fa-chevron-down"></i> Xem lời giải
+        </button>
+        <div class="solution-content">
+          <div class="solution-inner">
+            <strong>a) Bảng giá trị:</strong>
+            <table class="data-table">
+              <tr><th>$x$</th><th>$-2$</th><th>$-1$</th><th>$0$</th><th>$1$</th><th>$2$</th></tr>
+              <tr><td>$y = -\frac{1}{2}x^2$</td><td>$-2$</td><td>$-0{,}5$</td><td>$0$</td><td>$-0{,}5$</td><td>$-2$</td></tr>
+            </table>
+            <p><em>Đường cong nằm dưới trục hoành, nhận trục $Oy$ làm trục đối xứng, đỉnh $O$.</em></p>
+            <br>
+            <strong>b) Thay tọa độ vào $y = -\frac{1}{2}x^2$:</strong>
+            <ul>
+              <li>$A(2; -2)$: $-\frac{1}{2} \cdot 2^2 = -2$ ✓ → $A$ <strong>thuộc</strong> $(P)$.</li>
+              <li>$B(-2; 2)$: $-\frac{1}{2} \cdot (-2)^2 = -2 \neq 2$ → $B$ <strong>không thuộc</strong> $(P)$.</li>
+              <li>$C(4; -8)$: $-\frac{1}{2} \cdot 4^2 = -8$ ✓ → $C$ <strong>thuộc</strong> $(P)$.</li>
+            </ul>
+            <br>
+            <strong>c)</strong>
+            <ul>
+              <li>$x = -6 \Rightarrow y = -\frac{1}{2} \cdot 36 = -18$. Điểm $(-6; -18)$.</li>
+              <li>$y = -4{,}5 \Rightarrow x^2 = 9 \Rightarrow x = \pm 3$. Hai điểm: $(3; -4{,}5)$ và $(-3; -4{,}5)$.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bài tập ví dụ 2 -->
+      <div class="example-block">
+        <div class="example-header">
+          <i class="fa-solid fa-flask"></i> Ví dụ 2 — Bài toán thực tiễn (Ném bóng)
+        </div>
+        <div class="example-question">
+          Quả bóng được đá lên từ mặt đất với vận tốc $v_0 = 20$ m/s. Độ cao:
+          $h(t) = -4{,}9t^2 + v_0 t$.<br>
+          a) Viết công thức $h$ theo $t$.<br>
+          b) Tính $h$ sau 1 giây, sau 2 giây.<br>
+          c) Sau bao lâu bóng chạm đất?
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">
+          <i class="fa-solid fa-chevron-down"></i> Xem lời giải
+        </button>
+        <div class="solution-content">
+          <div class="solution-inner">
+            <strong>a)</strong> $h(t) = -4{,}9t^2 + 20t$.<br><br>
+            <strong>b)</strong><br>
+            $h(1) = -4{,}9 + 20 = 15{,}1$ (m).<br>
+            $h(2) = -4{,}9 \cdot 4 + 40 = 20{,}4$ (m).<br><br>
+            <strong>c)</strong> $h = 0$:<br>
+            $-4{,}9t^2 + 20t = 0 \Leftrightarrow t(-4{,}9t + 20) = 0$<br>
+            $t = 0$ (ban đầu) hoặc $t = \frac{20}{4{,}9} \approx 4{,}08$ giây.<br>
+            <strong>Đáp số:</strong> Sau khoảng <strong>4,08 giây</strong> bóng chạm đất.
+          </div>
+        </div>
+      </div>
+
+      <button class="mark-read-btn" id="mark-a1" onclick="markRead('phan-a1')">
+        <i class="fa-solid fa-check-circle"></i> Đánh dấu đã đọc xong phần này
+      </button>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- PHẦN A2: PHƯƠNG TRÌNH BẬC HAI & VIÈTE -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="theory-section" id="phan-a2">
+      <h2 class="section-heading">
+        <span class="letter blue">A</span>
+        Phương trình bậc hai một ẩn & Định lí Viète
+      </h2>
+
+      <div class="theory-box">
+        <h4><i class="fa-solid fa-circle-info"></i> 1. Định nghĩa</h4>
+        <p>
+          Phương trình bậc hai một ẩn có dạng $ax^2 + bx + c = 0$ ($a \neq 0$),
+          với $x$ là ẩn; $a, b, c$ là các hệ số.
+        </p>
+      </div>
+
+      <div class="theory-box">
+        <h4><i class="fa-solid fa-calculator"></i> 2. Công thức nghiệm</h4>
+        <p><strong>Biệt thức Delta:</strong></p>
+        <div class="formula-box">$\Delta = b^2 - 4ac$</div>
+        <ul>
+          <li>$\Delta > 0$: Hai nghiệm phân biệt $x_{1,2} = \dfrac{-b \pm \sqrt{\Delta}}{2a}$.</li>
+          <li>$\Delta = 0$: Nghiệm kép $x = \dfrac{-b}{2a}$.</li>
+          <li>$\Delta < 0$: Vô nghiệm.</li>
+        </ul>
+        <br>
+        <p><strong>Delta phẩy ($\Delta'$):</strong> Khi $b = 2b'$ (b chẵn):</p>
+        <div class="formula-box">$\Delta' = (b')^2 - ac$</div>
+        <ul>
+          <li>$\Delta' > 0$: $x_{1,2} = \dfrac{-b' \pm \sqrt{\Delta'}}{a}$.</li>
+          <li>$\Delta' = 0$: $x = \dfrac{-b'}{a}$.</li>
+        </ul>
+      </div>
+
+      <div class="theory-box">
+        <h4><i class="fa-solid fa-star"></i> 3. Định lí Viète</h4>
+        <p><strong>Định lí thuận:</strong> Nếu PT $ax^2 + bx + c = 0$ có hai nghiệm $x_1, x_2$ thì:</p>
+        <div class="formula-box">
+          $S = x_1 + x_2 = \dfrac{-b}{a} \qquad \text{và} \qquad P = x_1 \cdot x_2 = \dfrac{c}{a}$
+        </div>
+        <p><strong>Định lí đảo:</strong> Nếu $u + v = S$ và $u \cdot v = P$ ($S^2 \geq 4P$) thì $u, v$ là nghiệm của $X^2 - SX + P = 0$.</p>
+      </div>
+
+      <div class="theory-box">
+        <h4><i class="fa-solid fa-bolt"></i> 4. Nhẩm nghiệm nhanh</h4>
+        <ul>
+          <li>$a + b + c = 0 \Rightarrow x_1 = 1,\ x_2 = \frac{c}{a}$.</li>
+          <li>$a - b + c = 0 \Rightarrow x_1 = -1,\ x_2 = -\frac{c}{a}$.</li>
+        </ul>
+      </div>
+
+      <!-- Ví dụ -->
+      <div class="example-block">
+        <div class="example-header">
+          <i class="fa-solid fa-flask"></i> Ví dụ 1 — Nhẩm nghiệm PT
+        </div>
+        <div class="example-question">
+          Nhẩm nghiệm:<br>
+          a) $-5x^2 + 3x + 2 = 0$<br>
+          b) $2023x^2 - 2024x + 1 = 0$
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">
+          <i class="fa-solid fa-chevron-down"></i> Xem lời giải
+        </button>
+        <div class="solution-content">
+          <div class="solution-inner">
+            <strong>a)</strong> $a+b+c = -5+3+2 = 0$.<br>
+            $\Rightarrow x_1 = 1,\ x_2 = \frac{c}{a} = \frac{2}{-5} = -\frac{2}{5}$.<br><br>
+            <strong>b)</strong> $a+b+c = 2023-2024+1 = 0$.<br>
+            $\Rightarrow x_1 = 1,\ x_2 = \frac{1}{2023}$.
+          </div>
+        </div>
+      </div>
+
+      <div class="example-block">
+        <div class="example-header">
+          <i class="fa-solid fa-flask"></i> Ví dụ 2 — Tìm hai số biết tổng và tích
+        </div>
+        <div class="example-question">
+          Tìm $u, v$ biết:<br>
+          a) $u + v = 5$ và $u \cdot v = 6$<br>
+          b) $u - v = 1$ và $u \cdot v = 6$
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">
+          <i class="fa-solid fa-chevron-down"></i> Xem lời giải
+        </button>
+        <div class="solution-content">
+          <div class="solution-inner">
+            <strong>a)</strong> $u, v$ là nghiệm của $X^2 - 5X + 6 = 0$.<br>
+            $\Delta = 25 - 24 = 1 > 0 \Rightarrow X = 3$ hoặc $X = 2$.<br>
+            Vậy $(u; v) = (3; 2)$ hoặc $(2; 3)$.<br><br>
+            <strong>b)</strong> Đặt $u' = u, v' = -v$. Khi đó $u' + v' = 1, u' \cdot v' = -6$.<br>
+            $X^2 - X - 6 = 0 \Rightarrow X = 3$ hoặc $X = -2$.<br>
+            • $u' = 3, v' = -2 \Rightarrow u = 3, v = 2$.<br>
+            • $u' = -2, v' = 3 \Rightarrow u = -2, v = -3$.
+          </div>
+        </div>
+      </div>
+
+      <button class="mark-read-btn" id="mark-a2" onclick="markRead('phan-a2')">
+        <i class="fa-solid fa-check-circle"></i> Đánh dấu đã đọc xong phần này
+      </button>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- PHẦN B: HÌNH HỌC -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="theory-section" id="phan-b">
+      <h2 class="section-heading">
+        <span class="letter emerald">B</span>
+        Hình trụ · Hình nón · Hình cầu
+      </h2>
+
+      <div class="theory-box green">
+        <h4><i class="fa-solid fa-cylinder"></i> 1. Hình trụ</h4>
+        <ul>
+          <li>Đường sinh $l = h$ (chiều cao).</li>
+          <li><strong>Diện tích xung quanh:</strong> $S_{xq} = 2\pi rh$</li>
+          <li><strong>Diện tích toàn phần:</strong> $S_{tp} = 2\pi rh + 2\pi r^2$</li>
+          <li><strong>Thể tích:</strong> $V = \pi r^2 h$</li>
+        </ul>
+      </div>
+
+      <div class="theory-box green">
+        <h4><i class="fa-solid fa-mountain"></i> 2. Hình nón</h4>
+        <ul>
+          <li>Mối liên hệ: $l^2 = h^2 + r^2$ (Pytago)</li>
+          <li><strong>Diện tích xung quanh:</strong> $S_{xq} = \pi rl$</li>
+          <li><strong>Diện tích toàn phần:</strong> $S_{tp} = \pi rl + \pi r^2$</li>
+          <li><strong>Thể tích:</strong> $V = \frac{1}{3}\pi r^2 h$</li>
+        </ul>
+      </div>
+
+      <div class="theory-box green">
+        <h4><i class="fa-solid fa-globe"></i> 3. Hình cầu</h4>
+        <ul>
+          <li>Mặt phẳng cắt hình cầu luôn cho một <strong>hình tròn</strong>.</li>
+          <li><strong>Diện tích mặt cầu:</strong> $S = 4\pi R^2$</li>
+          <li><strong>Thể tích:</strong> $V = \frac{4}{3}\pi R^3$</li>
+        </ul>
+      </div>
+
+      <!-- Ví dụ hình trụ -->
+      <div class="example-block">
+        <div class="example-header">
+          <i class="fa-solid fa-flask"></i> Ví dụ 1 — Thùng nước hình trụ
+        </div>
+        <div class="example-question">
+          Thùng nước hình trụ cao $1{,}2\text{ m}$, đường kính đáy $0{,}8\text{ m}$.<br>
+          Tính diện tích sơn xung quanh và thể tích chứa nước (đơn vị lít).
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">
+          <i class="fa-solid fa-chevron-down"></i> Xem lời giải
+        </button>
+        <div class="solution-content">
+          <div class="solution-inner">
+            $r = 0{,}4$ m.<br>
+            $S_{xq} = 2\pi \cdot 0{,}4 \cdot 1{,}2 \approx 3{,}0144 \text{ m}^2$.<br>
+            $V = \pi \cdot 0{,}4^2 \cdot 1{,}2 \approx 0{,}60288 \text{ m}^3 = \mathbf{602{,}88}$ <strong>lít</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- Ví dụ hình nón -->
+      <div class="example-block">
+        <div class="example-header">
+          <i class="fa-solid fa-flask"></i> Ví dụ 2 — Nón lá
+        </div>
+        <div class="example-question">
+          Nón lá đường kính đáy $40$ cm, đường sinh $30$ cm.<br>
+          Tính diện tích lá làm nón và thể tích bên trong.
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">
+          <i class="fa-solid fa-chevron-down"></i> Xem lời giải
+        </button>
+        <div class="solution-content">
+          <div class="solution-inner">
+            $r = 20$ cm, $l = 30$ cm.<br>
+            $S_{xq} = \pi \cdot 20 \cdot 30 = 1884$ cm².<br>
+            $h = \sqrt{30^2 - 20^2} = \sqrt{500} \approx 22{,}36$ cm.<br>
+            $V = \frac{1}{3}\pi \cdot 20^2 \cdot 22{,}36 \approx \mathbf{9361{,}39}$ cm³.
+          </div>
+        </div>
+      </div>
+
+      <!-- Ví dụ hình cầu -->
+      <div class="example-block">
+        <div class="example-header">
+          <i class="fa-solid fa-flask"></i> Ví dụ 3 — Quả bóng đá
+        </div>
+        <div class="example-question">
+          Bóng đá tiêu chuẩn đường kính $22$ cm.<br>
+          a) Tính diện tích da bề mặt.<br>
+          b) Tính thể tích không khí bên trong.
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution(this)">
+          <i class="fa-solid fa-chevron-down"></i> Xem lời giải
+        </button>
+        <div class="solution-content">
+          <div class="solution-inner">
+            $R = 11$ cm.<br>
+            <strong>a)</strong> $S = 4\pi \cdot 11^2 \approx 1519{,}76$ cm².<br>
+            <strong>b)</strong> $V = \frac{4}{3}\pi \cdot 11^3 \approx \mathbf{5572{,}45}$ cm³.
+          </div>
+        </div>
+      </div>
+
+      <button class="mark-read-btn" id="mark-b" onclick="markRead('phan-b')">
+        <i class="fa-solid fa-check-circle"></i> Đánh dấu đã đọc xong phần này
+      </button>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-cta" id="bottom-cta">
+      <h3>🎯 Đã sẵn sàng?</h3>
+      <p>Bạn đã đọc xong lý thuyết! Hãy kiểm tra kiến thức bằng đề thi thử 90 phút.</p>
+      <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+        <a href="../../../index.html#/exam?path=data/grade9/on-tap-gk2-truong-sa/&mode=interactive" class="cta-btn">
+          <i class="fa-solid fa-play"></i> Làm đề Kiểm tra
+        </a>
+        <a href="hub.html" class="cta-btn cta-hub">
+          <i class="fa-solid fa-arrow-left"></i> Quay về Hub
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ── Toggle solution visibility ──
+    function toggleSolution(btn) {
+      const content = btn.nextElementSibling;
+      const isOpen = content.classList.contains('open');
+      content.classList.toggle('open');
+      btn.classList.toggle('open');
+      btn.innerHTML = isOpen
+        ? '<i class="fa-solid fa-chevron-down"></i> Xem lời giải'
+        : '<i class="fa-solid fa-chevron-up"></i> Ẩn lời giải';
+
+      // Re-typeset MathJax for newly-visible content
+      if (!isOpen && typeof MathJax !== 'undefined') {
+        MathJax.typesetPromise([content]).catch(() => {});
+      }
+    }
+
+    // ── Scroll to section ──
+    function scrollToSection(id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ── "Mark as read" per section ──
+    const THEORY_KEY = 'gk2_truongsa_theory';
+    function getTheoryProgress() {
+      try { return JSON.parse(localStorage.getItem(THEORY_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function markRead(sectionId) {
+      const progress = getTheoryProgress();
+      progress[sectionId] = true;
+      localStorage.setItem(THEORY_KEY, JSON.stringify(progress));
+
+      const btn = document.getElementById('mark-' + sectionId.replace('phan-', ''));
+      if (btn) {
+        btn.classList.add('done');
+        btn.innerHTML = '<i class="fa-solid fa-check-circle"></i> ✓ Đã đọc xong!';
+      }
+
+      // Update nav
+      const navBtn = document.querySelector(`.section-nav-btn[data-target="${sectionId}"]`);
+      if (navBtn) navBtn.classList.add('read');
+
+      // Update hub progress
+      updateHubProgress();
+    }
+
+    function updateHubProgress() {
+      const progress = getTheoryProgress();
+      const allRead = progress['phan-a1'] && progress['phan-a2'] && progress['phan-b'];
+      if (allRead) {
+        // Mark theory as done in hub storage
+        const HUB_KEY = 'gk2_truongsa_progress';
+        let hub;
+        try { hub = JSON.parse(localStorage.getItem(HUB_KEY)) || {}; }
+        catch { hub = {}; }
+        hub.theoryRead = true;
+        localStorage.setItem(HUB_KEY, JSON.stringify(hub));
+      }
+    }
+
+    // ── Restore state on load ──
+    function restoreState() {
+      const progress = getTheoryProgress();
+      ['phan-a1', 'phan-a2', 'phan-b'].forEach(id => {
+        if (progress[id]) {
+          const shortId = id.replace('phan-', '');
+          const btn = document.getElementById('mark-' + shortId);
+          if (btn) {
+            btn.classList.add('done');
+            btn.innerHTML = '<i class="fa-solid fa-check-circle"></i> ✓ Đã đọc xong!';
+          }
+          const navBtn = document.querySelector(`.section-nav-btn[data-target="${id}"]`);
+          if (navBtn) navBtn.classList.add('read');
+        }
+      });
+    }
+    restoreState();
+
+    // ── Reading progress bar ──
+    function updateReadingProgress() {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      const pct = Math.min(100, Math.round((scrolled / docHeight) * 100));
+      document.getElementById('reading-progress').style.width = pct + '%';
+      document.getElementById('reading-pct').textContent = pct + '%';
+    }
+    window.addEventListener('scroll', updateReadingProgress);
+
+    // ── Highlight active nav section ──
+    const sections = document.querySelectorAll('.theory-section');
+    const navBtns = document.querySelectorAll('.section-nav-btn');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navBtns.forEach(b => b.classList.remove('active'));
+          const btn = document.querySelector(`.section-nav-btn[data-target="${entry.target.id}"]`);
+          if (btn) btn.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-100px 0px -60% 0px' });
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+
+</html>

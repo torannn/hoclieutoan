@@ -18,9 +18,25 @@
               "type": "exam",
               "description": "Đề kiểm tra Toán 9: Phương trình, hệ phương trình, bất phương trình, biểu thức chứa căn, hình học đường tròn, lượng giác và hình không gian.",
               "path": "data/grade9/de-kiem-tra-lan-1/"
+            },
+            {
+              "id": "lop9_ontap_gk2_truongsa",
+              "title": "Đề ôn tập Giữa Kì 2",
+              "type": "exam",
+              "category": "gk2",
+              "description": "Đề kiểm tra GK2 Toán 9 (6 bài tự luận, 90 phút): PT bậc hai, Viète, lập PT, rút gọn căn, hình không gian, hình học đường tròn.",
+              "path": "data/grade9/on-tap-gk2-truong-sa/"
             }
           ],
-          "tools": []
+          "tools": [
+            {
+              "id": "hoc-lieu-on-tap-gk2-truongsa",
+              "title": "📚 Học liệu: Ôn tập Giữa Kì 2 (3 Bước) 🎯",
+              "type": "tool",
+              "description": "Lộ trình ôn tập 3 bước: (1) Lý thuyết & Ví dụ; (2) Đề thi thử 90 phút; (3) Chẩn đoán & Ôn tập bổ sung. Tự động gợi ý phần cần ôn lại.",
+              "url": "data/grade9/on-tap-gk2-truong-sa/hub.html"
+            }
+          ]
         },
         "grade10": {
           "label": "Lớp 10",
@@ -83,7 +99,7 @@
             },
             {
               "id": "lop10_duong_tron_le_ba_bao",
-              "title": "Phương trình đường tròn",
+              "title": "Phần 3: Bài kiểm tra Tự luyện (Đường tròn)",
               "type": "exam",
               "description": "Chuyên đề phương trình đường tròn Toán 10: nhận dạng, viết phương trình, tiếp tuyến (161 câu).",
               "path": "data/grade10/Duong-tron-trong-mat-phang-toa-do/"
@@ -131,6 +147,13 @@
               "type": "tool",
               "description": "Mở panel carousel các chủ đề ôn tập, luyện từng câu và theo dõi tiến độ học theo từng chủ đề.",
               "url": "BankOnTap/index.html"
+            },
+            {
+              "id": "hoc-lieu-duong-tron-hub",
+              "title": "Học liệu: Phương trình đường tròn (3 Phần) 🎯",
+              "type": "tool",
+              "description": "Trọn bộ chuyên đề: (1) Lý thuyết & Ví dụ giải sẵn; (2) Bài tập tự giải từng câu; (3) Kiểm tra Online.",
+              "url": "duong-tron-hub.html"
             }
           ]
         },

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài tập tự giải - Phương trình đường tròn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/tex-gyre-pagella" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="assets/js/mathjax-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <script src="assets/js/app-config.js?v=2"></script>
+    <script src="assets/js/firebase-utils.js" defer></script>
+    <script src="assets/js/auth.js" defer></script>
+    <script src="assets/js/data.js" defer></script>
+    <script src="assets/js/diagrams.js" defer></script>
+    <link rel="stylesheet" href="assets/css/features.css" />
+    <script src="assets/js/features.js" defer></script>
+    <style>
+        body {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            min-height: 100vh;
+            background: radial-gradient(1000px 600px at 5% 10%, #d1fae5, #eef2ff 45%, #f8fafc 80%);
+            color: #0f172a;
+        }
+
+        .font-pagella {
+            font-family: 'TeX Gyre Pagella', 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+        }
+
+        .option-letter {
+            font-weight: 700 !important;
+            color: #15803d;
+            margin-right: 2px;
+        }
+
+        .question-container {
+            contain: content;
+        }
+
+        .progress-rail {
+            background: #e2e8f0;
+            border-radius: 999px;
+            overflow: hidden;
+            height: 8px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #10b981, #059669);
+            height: 100%;
+            transition: width .25s ease;
+        }
+
+        .solution-panel {
+            margin-top: 16px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1px solid #f59e0b;
+        }
+
+        .solution-panel.hidden {
+            display: none;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .anim-fade-up {
+            animation: fadeSlideUp .5s ease-out both;
+        }
+
+        .opt-label {
+            transition: all .15s ease;
+        }
+
+        .opt-label:hover {
+            background: #f1f5f9;
+        }
+
+        .opt-label.selected {
+            background: #eff6ff;
+            border-color: #3b82f6;
+        }
+
+        .opt-label.correct {
+            background: #ecfdf5;
+            border-color: #22c55e;
+        }
+
+        .opt-label.wrong {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+
+<body class="p-4 md:p-7">
+    <main class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <header class="rounded-2xl border border-slate-200 bg-white/90 backdrop-blur p-5 shadow-sm mb-6">
+            <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900">Bài tập Tự giải — Từng câu</h1>
+                    <p class="mt-1 text-slate-600">Chuyên đề Phương trình đường tròn · Lớp 10</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <a href="./duong-tron-hub.html"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold">
+                        <i class="fa-solid fa-arrow-left"></i> Về Hub
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-4 flex items-center gap-4">
+                <div class="flex-1 progress-rail">
+                    <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+                </div>
+                <span id="progressText" class="text-sm font-medium text-slate-600">0/0</span>
+            </div>
+        </header>
+
+        <!-- Question Card -->
+        <section id="practiceCard"
+            class="question-container rounded-2xl border border-slate-200 bg-white p-5 md:p-7 shadow-sm hover:shadow-md transition">
+            <div class="flex items-center gap-3 mb-4">
+                <span id="questionNo"
+                    class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-emerald-600 text-white text-sm font-bold">1</span>
+                <span id="questionBadge"
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700">MC</span>
+                <span id="questionSection" class="text-slate-400 text-xs truncate hidden md:inline"></span>
+            </div>
+
+            <div id="questionStem" class="font-pagella text-slate-800 text-base md:text-lg leading-relaxed"></div>
+            <div id="answerArea" class="mt-4 font-pagella"></div>
+
+            <!-- Buttons -->
+            <div class="mt-5 flex flex-wrap gap-2">
+                <button id="prevBtn"
+                    class="px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-medium disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i class="fa-solid fa-chevron-left mr-1"></i>Câu trước
+                </button>
+                <button id="checkBtn"
+                    class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium shadow hidden">
+                    <i class="fa-solid fa-check mr-1"></i>Kiểm tra
+                </button>
+                <button id="solutionBtn"
+                    class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-medium shadow">
+                    <i class="fa-solid fa-lightbulb mr-1"></i>Xem lời giải
+                </button>
+                <button id="nextBtn"
+                    class="px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-medium disabled:opacity-40 disabled:cursor-not-allowed">
+                    Câu tiếp<i class="fa-solid fa-chevron-right ml-1"></i>
+                </button>
+            </div>
+
+            <!-- Feedback -->
+            <div id="feedback" class="hidden mt-4 rounded-xl p-3 text-sm font-medium border"></div>
+
+            <!-- Solution Panel -->
+            <div id="solutionPanel" class="solution-panel hidden">
+                <div class="flex items-center gap-2 mb-3 border-b border-amber-200 pb-2">
+                    <i class="fa-solid fa-check-circle text-amber-600"></i>
+                    <span class="font-bold text-amber-800 text-lg">Lời giải Chi tiết</span>
+                </div>
+                <div id="solutionContent"
+                    class="prose max-w-none font-pagella text-base md:text-lg leading-relaxed text-slate-800"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        (function () {
+            'use strict';
+
+            /* ── State ── */
+            const state = {
+                items: [],       // normalized question items
+                index: 0,        // current question index in queue
+                queue: [],       // indices into items[]
+                checked: false,  // whether current question has been checked
+                solutionOpen: false
+            };
+
+            /* ── DOM references ── */
+            const $ = id => document.getElementById(id);
+            const els = {
+                progressFill: $('progressFill'),
+                progressText: $('progressText'),
+                questionNo: $('questionNo'),
+                questionBadge: $('questionBadge'),
+                questionSection: $('questionSection'),
+                questionStem: $('questionStem'),
+                answerArea: $('answerArea'),
+                prevBtn: $('prevBtn'),
+                nextBtn: $('nextBtn'),
+                checkBtn: $('checkBtn'),
+                solutionBtn: $('solutionBtn'),
+                feedback: $('feedback'),
+                solutionPanel: $('solutionPanel'),
+                solutionContent: $('solutionContent')
+            };
+
+            /* ── Helpers ── */
+            function letterFromIndex(i) { return String.fromCharCode(65 + i); }
+            function escapeHtml(s) {
+                return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            }
+            function formatText(s) {
+                return escapeHtml(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\\n/g, '<br/>');
+            }
+
+            /**
+             * Normalize raw JSON question → internal item
+             * Follows BankOnTap's normalizeQuestion pattern
+             */
+            function normalizeQuestion(raw, idx) {
+                const type = raw.type || 'multiple_choice';
+                const hasOptions = Array.isArray(raw.options) && raw.options.length > 0;
+                const hasCorrectIdx = typeof raw.correct_index === 'number';
+
+                if (type === 'multiple_choice' && hasOptions) {
+                    return {
+                        id: raw.q_id || `q_${idx + 1}`,
+                        type: 'mc',
+                        stem: raw.stem || '',
+                        options: raw.options,
+                        answer: hasCorrectIdx ? raw.correct_index : null,
+                        autoCheck: hasCorrectIdx,
+                        section: raw.section || '',
+                        detailed_explanation: raw.detailed_explanation || ''
+                    };
+                }
+
+                // No options → treat as essay/self-study (show stem + solution only)
+                return {
+                    id: raw.q_id || `q_${idx + 1}`,
+                    type: 'essay',
+                    stem: raw.stem || '',
+                    options: [],
+                    answer: null,
+                    autoCheck: false,
+                    section: raw.section || '',
+                    detailed_explanation: raw.detailed_explanation || ''
+                };
+            }
+
+            function badgeText(type) {
+                if (type === 'mc') return 'Trắc nghiệm';
+                return 'Tự luận';
+            }
+            function badgeClass(type) {
+                if (type === 'mc') return 'bg-indigo-100 text-indigo-700';
+                return 'bg-emerald-100 text-emerald-700';
+            }
+
+            function currentItem() {
+                const idx = state.queue[state.index];
+                return Number.isInteger(idx) ? state.items[idx] : null;
+            }
+
+            /* ── Data loading ── */
+            async function loadData() {
+                try {
+                    const res = await fetch('data/grade10/Duong-tron-trong-mat-phang-toa-do/self_solve.json');
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    const raw = await res.json();
+                    const arr = Array.isArray(raw) ? raw : (raw.questions || []);
+
+                    state.items = arr.map((q, i) => normalizeQuestion(q, i)).filter(Boolean);
+                    state.queue = state.items.map((_, i) => i);
+                    state.index = 0;
+
+                    renderQuestion();
+                    updateProgress();
+                } catch (err) {
+                    console.error('Lỗi tải dữ liệu:', err);
+                    els.questionStem.innerHTML = `<div class="text-red-500 font-medium p-4"><i class="fa-solid fa-triangle-exclamation mr-2"></i>Lỗi tải dữ liệu: ${escapeHtml(err.message)}</div>`;
+                }
+            }
+
+            /* ── Rendering ── */
+            async function renderQuestion() {
+                const q = currentItem();
+                if (!q) return;
+
+                // Reset UI state
+                state.checked = false;
+                state.solutionOpen = false;
+                els.feedback.classList.add('hidden');
+                els.solutionPanel.classList.add('hidden');
+                els.solutionContent.innerHTML = '';
+                els.solutionBtn.innerHTML = '<i class="fa-solid fa-lightbulb mr-1"></i>Xem lời giải';
+                els.solutionBtn.classList.remove('bg-slate-500', 'hover:bg-slate-600');
+                els.solutionBtn.classList.add('bg-amber-500', 'hover:bg-amber-600');
+
+                const globalIdx = state.queue[state.index];
+
+                // Header
+                els.questionNo.textContent = String(globalIdx + 1);
+                els.questionBadge.textContent = badgeText(q.type);
+                els.questionBadge.className = `inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${badgeClass(q.type)}`;
+                if (q.section) {
+                    els.questionSection.textContent = q.section;
+                    els.questionSection.classList.remove('hidden');
+                } else {
+                    els.questionSection.classList.add('hidden');
+                }
+
+                // Stem
+                els.questionStem.innerHTML = q.stem || '';
+
+                // Answer area
+                if (q.type === 'mc' && q.options.length > 0) {
+                    els.answerArea.innerHTML = `
+          <div class="space-y-2">
+            ${q.options.map((opt, idx) => `
+              <label class="opt-label flex items-start gap-3 p-3 rounded-lg border border-slate-200 cursor-pointer" data-opt="${idx}">
+                <input type="radio" name="mc_answer" value="${idx}" class="w-4 h-4 mt-1 text-blue-600 flex-shrink-0" />
+                <div class="leading-relaxed"><span class="option-letter">${letterFromIndex(idx)}.</span> ${opt}</div>
+              </label>
+            `).join('')}
+          </div>`;
+
+                    // Show check button only for questions with correct answer
+                    if (q.autoCheck) {
+                        els.checkBtn.classList.remove('hidden');
+                    } else {
+                        els.checkBtn.classList.add('hidden');
+                    }
+
+                    // Highlight selected option
+                    els.answerArea.querySelectorAll('input[name="mc_answer"]').forEach(input => {
+                        input.addEventListener('change', () => {
+                            els.answerArea.querySelectorAll('.opt-label').forEach(l => l.classList.remove('selected'));
+                            input.closest('.opt-label').classList.add('selected');
+                        });
+                    });
+
+                } else {
+                    // Essay type - no answer area, just stem + solution
+                    els.answerArea.innerHTML = '';
+                    els.checkBtn.classList.add('hidden');
+                }
+
+                // Nav buttons
+                els.prevBtn.disabled = state.index === 0;
+                els.nextBtn.disabled = state.index >= state.queue.length - 1;
+
+                // MathJax rendering
+                if (window.Diagrams && typeof window.Diagrams.renderAll === 'function') {
+                    await window.Diagrams.renderAll(els.questionStem, { mode: 'static' }).catch(() => { });
+                    await window.Diagrams.renderAll(els.answerArea, { mode: 'static' }).catch(() => { });
+                }
+                if (window.MathJax && MathJax.typesetPromise) {
+                    await MathJax.typesetPromise([els.questionStem, els.answerArea]).catch(() => { });
+                }
+            }
+
+            /* ── Check answer (MC with correct_index only) ── */
+            function checkAnswer() {
+                const q = currentItem();
+                if (!q || q.type !== 'mc' || !q.autoCheck || state.checked) return;
+
+                const selected = document.querySelector('input[name="mc_answer"]:checked');
+                if (!selected) {
+                    showFeedback('neutral', 'Bạn chưa chọn đáp án nào.');
+                    return;
+                }
+
+                state.checked = true;
+                const chosenIdx = Number(selected.value);
+                const isCorrect = chosenIdx === q.answer;
+
+                // Highlight options
+                els.answerArea.querySelectorAll('.opt-label').forEach(label => {
+                    const optIdx = Number(label.dataset.opt);
+                    label.classList.remove('selected');
+                    if (optIdx === q.answer) label.classList.add('correct');
+                    else if (optIdx === chosenIdx && !isCorrect) label.classList.add('wrong');
+                });
+
+                // Disable inputs
+                els.answerArea.querySelectorAll('input').forEach(i => i.disabled = true);
+
+                if (isCorrect) {
+                    showFeedback('correct', `✅ Chính xác! Đáp án là ${letterFromIndex(q.answer)}.`);
+                } else {
+                    showFeedback('wrong', `❌ Sai. Đáp án đúng là ${letterFromIndex(q.answer)}.`);
+                }
+
+                // Auto show solution
+                toggleSolution(true);
+            }
+
+            function showFeedback(kind, text) {
+                els.feedback.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-300', 'text-emerald-800', 'bg-rose-50', 'border-rose-300', 'text-rose-800', 'bg-slate-50', 'border-slate-300', 'text-slate-800');
+                if (kind === 'correct') {
+                    els.feedback.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-800');
+                } else if (kind === 'wrong') {
+                    els.feedback.classList.add('bg-rose-50', 'border-rose-300', 'text-rose-800');
+                } else {
+                    els.feedback.classList.add('bg-slate-50', 'border-slate-300', 'text-slate-800');
+                }
+                els.feedback.textContent = text;
+            }
+
+            /* ── Toggle solution ── */
+            function toggleSolution(forceShow) {
+                const q = currentItem();
+                if (!q) return;
+
+                const shouldShow = (typeof forceShow === 'boolean') ? forceShow : !state.solutionOpen;
+
+                if (shouldShow) {
+                    state.solutionOpen = true;
+                    const explanation = q.detailed_explanation || 'Chưa có lời giải chi tiết cho câu này.';
+                    els.solutionContent.innerHTML = formatText(explanation);
+                    els.solutionPanel.classList.remove('hidden');
+                    els.solutionBtn.innerHTML = '<i class="fa-solid fa-eye-slash mr-1"></i>Ẩn lời giải';
+                    els.solutionBtn.classList.remove('bg-amber-500', 'hover:bg-amber-600');
+                    els.solutionBtn.classList.add('bg-slate-500', 'hover:bg-slate-600');
+
+                    if (window.MathJax && MathJax.typesetPromise) {
+                        MathJax.typesetPromise([els.solutionPanel]).catch(() => { });
+                    }
+                } else {
+                    state.solutionOpen = false;
+                    els.solutionPanel.classList.add('hidden');
+                    els.solutionBtn.innerHTML = '<i class="fa-solid fa-lightbulb mr-1"></i>Xem lời giải';
+                    els.solutionBtn.classList.remove('bg-slate-500', 'hover:bg-slate-600');
+                    els.solutionBtn.classList.add('bg-amber-500', 'hover:bg-amber-600');
+                }
+            }
+
+            /* ── Progress ── */
+            function updateProgress() {
+                const total = state.queue.length;
+                const current = state.index + 1;
+                const pct = total ? Math.round((current / total) * 100) : 0;
+                els.progressFill.style.width = `${pct}%`;
+                els.progressText.textContent = `${current}/${total}`;
+            }
+
+            /* ── Navigation ── */
+            function goPrev() {
+                if (state.index > 0) {
+                    state.index--;
+                    renderQuestion();
+                    updateProgress();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+
+            function goNext() {
+                if (state.index < state.queue.length - 1) {
+                    state.index++;
+                    renderQuestion();
+                    updateProgress();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+
+            /* ── Events ── */
+            function bindEvents() {
+                els.prevBtn.addEventListener('click', goPrev);
+                els.nextBtn.addEventListener('click', goNext);
+                els.checkBtn.addEventListener('click', checkAnswer);
+                els.solutionBtn.addEventListener('click', () => toggleSolution());
+
+                // Keyboard navigation
+                document.addEventListener('keydown', e => {
+                    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+                    if (e.key === 'ArrowLeft') goPrev();
+                    else if (e.key === 'ArrowRight') goNext();
+                    else if (e.key === 's' || e.key === 'S') toggleSolution();
+                });
+            }
+
+            /* ── Init ── */
+            document.addEventListener('DOMContentLoaded', () => {
+                bindEvents();
+                loadData();
+            });
+        })();
+    </script>
+</body>
+
+</html>

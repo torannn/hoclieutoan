@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ôn tập Giữa Kì 2 — Toán 9</title>
+  <meta name="description" content="Học liệu ôn tập thi giữa kì 2 Toán lớp 9: Lý thuyết, bài tập và kiểm tra đánh giá.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="../../../assets/js/mathjax-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated background particles */
+    .bg-particles {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(99,102,241,0.3) 0%, transparent 100%),
+        radial-gradient(2px 2px at 40% 70%, rgba(168,85,247,0.2) 0%, transparent 100%),
+        radial-gradient(2px 2px at 80% 40%, rgba(59,130,246,0.3) 0%, transparent 100%),
+        radial-gradient(3px 3px at 60% 80%, rgba(236,72,153,0.15) 0%, transparent 100%),
+        radial-gradient(2px 2px at 10% 90%, rgba(34,211,238,0.2) 0%, transparent 100%);
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+    @keyframes drift {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-30px, -20px); }
+    }
+
+    .container-main {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 4rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center; padding: 3rem 0 2.5rem;
+    }
+    .hero-icon {
+      width: 96px; height: 96px; margin: 0 auto 1.5rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 20px 60px rgba(99,102,241,0.4);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 20px 60px rgba(99,102,241,0.4); }
+      50% { box-shadow: 0 20px 80px rgba(168,85,247,0.6); }
+    }
+    .hero-icon i { font-size: 40px; color: white; }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800; line-height: 1.2;
+      background: linear-gradient(135deg, #818cf8, #c084fc, #f472b6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .subtitle {
+      font-size: 1.125rem; color: #94a3b8; margin-top: 0.75rem;
+      max-width: 600px; margin-left: auto; margin-right: auto;
+    }
+
+    /* Content overview pills */
+    .content-pills {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .content-pill {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem; font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+      color: #cbd5e1;
+      transition: all 0.3s;
+    }
+    .content-pill:hover {
+      background: rgba(99,102,241,0.2);
+      border-color: rgba(99,102,241,0.4);
+      color: #a5b4fc;
+    }
+    .content-pill i { margin-right: 0.35rem; }
+
+    /* Step indicator */
+    .steps-indicator {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; margin: 2.5rem auto 2rem; max-width: 600px;
+    }
+    .step-dot {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.15);
+      color: #64748b;
+      transition: all 0.4s;
+      flex-shrink: 0;
+    }
+    .step-dot.active {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 0 20px rgba(99,102,241,0.5);
+    }
+    .step-dot.completed {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-color: transparent;
+      color: white;
+    }
+    .step-line {
+      flex: 1; height: 2px;
+      background: rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .step-line .fill {
+      height: 100%; width: 0;
+      background: linear-gradient(90deg, #10b981, #6366f1);
+      border-radius: 2px;
+      transition: width 0.6s ease;
+    }
+
+    /* Cards */
+    .learning-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(12px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+    .learning-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent-from), var(--accent-to));
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .learning-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.15);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .learning-card:hover::before { opacity: 1; }
+
+    .card-header {
+      display: flex; align-items: flex-start; gap: 1.25rem;
+    }
+    .card-icon {
+      width: 60px; height: 60px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.75rem; flex-shrink: 0;
+      color: white;
+    }
+    .card-icon.theory { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+    .card-icon.practice { background: linear-gradient(135deg, #10b981, #059669); }
+    .card-icon.exam { background: linear-gradient(135deg, #f43f5e, #e11d48); }
+
+    .card-badge {
+      display: inline-flex; padding: 0.3rem 0.75rem;
+      border-radius: 999px; font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .badge-theory { background: rgba(59,130,246,0.15); color: #60a5fa; }
+    .badge-practice { background: rgba(16,185,129,0.15); color: #34d399; }
+    .badge-exam { background: rgba(244,63,94,0.15); color: #fb7185; }
+
+    .card-title {
+      font-size: 1.5rem; font-weight: 700; color: #f1f5f9;
+      margin: 0.5rem 0;
+    }
+    .card-desc {
+      font-size: 0.95rem; color: #94a3b8; line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .card-desc strong { color: #cbd5e1; }
+
+    /* Feature list inside card */
+    .card-features {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .card-feature {
+      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      font-size: 0.8rem; color: #94a3b8;
+    }
+    .card-feature i { font-size: 0.7rem; }
+
+    /* CTA Button */
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 1.75rem;
+      border-radius: 12px; border: none;
+      font-weight: 600; font-size: 0.95rem;
+      color: white; cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .cta-btn::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .cta-btn:hover::after { opacity: 1; }
+    .cta-btn:hover { transform: translateY(-2px); }
+    .cta-btn.theory-btn { background: linear-gradient(135deg, #3b82f6, #6366f1); box-shadow: 0 8px 24px rgba(59,130,246,0.35); }
+    .cta-btn.practice-btn { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 8px 24px rgba(16,185,129,0.35); }
+    .cta-btn.exam-btn { background: linear-gradient(135deg, #f43f5e, #e11d48); box-shadow: 0 8px 24px rgba(244,63,94,0.35); }
+
+    /* Diagnostic Section */
+    .diagnostic-section {
+      margin-top: 3rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 2rem;
+      backdrop-filter: blur(12px);
+    }
+    .diagnostic-title {
+      font-size: 1.5rem; font-weight: 700; color: #f1f5f9;
+      margin-bottom: 0.5rem;
+    }
+    .diagnostic-subtitle {
+      font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem;
+    }
+
+    .diagnostic-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      font-size: 0.85rem;
+    }
+    .diagnostic-table thead th {
+      text-align: left; padding: 0.75rem 1rem;
+      color: #94a3b8; font-weight: 600; font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .diagnostic-table tbody tr {
+      transition: background 0.2s;
+    }
+    .diagnostic-table tbody tr:hover {
+      background: rgba(255,255,255,0.04);
+    }
+    .diagnostic-table tbody td {
+      padding: 0.75rem 1rem; color: #cbd5e1;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      vertical-align: top;
+    }
+    .diagnostic-table .topic-tag {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.25rem 0.6rem; border-radius: 6px;
+      font-size: 0.75rem; font-weight: 600;
+      background: rgba(99,102,241,0.15); color: #a5b4fc;
+      white-space: nowrap;
+    }
+    .diagnostic-table .review-link {
+      color: #60a5fa; text-decoration: none; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .diagnostic-table .review-link:hover { color: #818cf8; text-decoration: underline; }
+
+    /* Progress section */
+    .progress-section {
+      margin-top: 2rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .progress-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 1.25rem;
+      text-align: center;
+    }
+    .progress-card .pvalue {
+      font-size: 2rem; font-weight: 800;
+      background: linear-gradient(135deg, #818cf8, #f472b6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .progress-card .plabel {
+      font-size: 0.8rem; color: #64748b; margin-top: 0.25rem;
+    }
+
+    /* Back button */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.25rem; border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8; font-weight: 500; font-size: 0.9rem;
+      text-decoration: none; transition: all 0.3s;
+    }
+    .back-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: #e2e8f0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .card-header { flex-direction: column; align-items: stretch; }
+      .card-icon { width: 48px; height: 48px; font-size: 1.25rem; border-radius: 12px; }
+      .card-title { font-size: 1.25rem; }
+      .diagnostic-table { display: block; overflow-x: auto; }
+      .steps-indicator { gap: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-particles"></div>
+
+  <div class="container-main">
+
+    <!-- Back to main -->
+    <a href="../../../index.html#/grade/9" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Quay về danh sách
+    </a>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-icon">
+        <i class="fa-solid fa-book-open-reader"></i>
+      </div>
+      <h1>Ôn tập Giữa Kì 2 — Toán 9</h1>
+      <p class="subtitle">
+        Lộ trình ôn tập 3 bước: nắm lý thuyết, luyện bài tập, kiểm tra đánh giá.
+        Kết quả kiểm tra sẽ chỉ ra những phần cần ôn tập lại.
+      </p>
+
+      <!-- Topic pills -->
+      <div class="content-pills">
+        <span class="content-pill"><i class="fa-solid fa-chart-line"></i> Hàm số $y = ax^2$</span>
+        <span class="content-pill"><i class="fa-solid fa-superscript"></i> PT bậc hai & Viète</span>
+        <span class="content-pill"><i class="fa-solid fa-shapes"></i> Hình trụ · Nón · Cầu</span>
+        <span class="content-pill"><i class="fa-solid fa-ruler-combined"></i> Lượng giác</span>
+        <span class="content-pill"><i class="fa-solid fa-circle"></i> Đường tròn</span>
+        <span class="content-pill"><i class="fa-solid fa-square-root-variable"></i> Biểu thức chứa căn</span>
+      </div>
+    </section>
+
+    <!-- Step Indicator -->
+    <div class="steps-indicator" id="step-indicator">
+      <div class="step-dot" data-step="1" id="dot-1">1</div>
+      <div class="step-line"><div class="fill" id="line-1-2"></div></div>
+      <div class="step-dot" data-step="2" id="dot-2">2</div>
+      <div class="step-line"><div class="fill" id="line-2-3"></div></div>
+      <div class="step-dot" data-step="3" id="dot-3">3</div>
+    </div>
+
+    <!-- Card 1: Lý thuyết -->
+    <div class="learning-card" style="--accent-from: #3b82f6; --accent-to: #6366f1;">
+      <div class="card-header">
+        <div class="card-icon theory">
+          <i class="fa-solid fa-book-open"></i>
+        </div>
+        <div style="flex:1;">
+          <span class="card-badge badge-theory">Bước 1 — Nền tảng</span>
+          <h2 class="card-title">Đọc Lý thuyết & Bài tập mẫu</h2>
+          <p class="card-desc">
+            Nắm vững <strong>lý thuyết trọng tâm</strong> của từng chủ đề: tính chất hàm số $y=ax^2$,
+            công thức nghiệm phương trình bậc hai, định lí Viète, và công thức tính diện tích/thể tích
+            hình trụ, hình nón, hình cầu. Mỗi chủ đề đều kèm <strong>bài tập ví dụ có lời giải chi tiết</strong>.
+          </p>
+          <div class="card-features">
+            <span class="card-feature"><i class="fa-solid fa-check"></i> 3 chủ đề trọng tâm</span>
+            <span class="card-feature"><i class="fa-solid fa-check"></i> Bài mẫu có lời giải</span>
+            <span class="card-feature"><i class="fa-solid fa-check"></i> Công thức tóm tắt</span>
+          </div>
+          <a href="theory.html" class="cta-btn theory-btn" id="btn-theory">
+            <i class="fa-solid fa-book-open"></i>
+            Bắt đầu đọc Lý thuyết
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Làm đề kiểm tra -->
+    <div class="learning-card" style="--accent-from: #f43f5e; --accent-to: #e11d48;">
+      <div class="card-header">
+        <div class="card-icon exam">
+          <i class="fa-solid fa-file-pen"></i>
+        </div>
+        <div style="flex:1;">
+          <span class="card-badge badge-exam">Bước 2 — Kiểm tra</span>
+          <h2 class="card-title">Làm đề thi thử 90 phút</h2>
+          <p class="card-desc">
+            Thực hành với <strong>đề thi giữa kì 2 gồm 6 bài toán tự luận</strong>, bao quát toàn bộ
+            nội dung ôn tập: Phương trình bậc hai, hệ phương trình, biểu thức chứa căn, bài toán thực tế,
+            hình không gian và hình học đường tròn. Hệ thống sẽ <strong>hiển thị lời giải chi tiết</strong> sau khi bạn nộp bài.
+          </p>
+          <div class="card-features">
+            <span class="card-feature"><i class="fa-solid fa-clock"></i> 90 phút</span>
+            <span class="card-feature"><i class="fa-solid fa-pen"></i> 6 bài tự luận</span>
+            <span class="card-feature"><i class="fa-solid fa-star"></i> 10 điểm</span>
+            <span class="card-feature"><i class="fa-solid fa-lightbulb"></i> Lời giải chi tiết</span>
+          </div>
+          <a href="../../../index.html#/exam?path=data/grade9/on-tap-gk2-truong-sa/&mode=interactive"
+             class="cta-btn exam-btn" id="btn-exam">
+            <i class="fa-solid fa-play"></i>
+            Làm bài Kiểm tra
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Chẩn đoán & Ôn tập lại -->
+    <div class="learning-card" style="--accent-from: #10b981; --accent-to: #059669;">
+      <div class="card-header">
+        <div class="card-icon practice">
+          <i class="fa-solid fa-stethoscope"></i>
+        </div>
+        <div style="flex:1;">
+          <span class="card-badge badge-practice">Bước 3 — Bù đắp</span>
+          <h2 class="card-title">Chẩn đoán & Ôn tập bổ sung</h2>
+          <p class="card-desc">
+            Sau khi làm xong đề kiểm tra, đối chiếu kết quả với <strong>Bảng chẩn đoán</strong> bên dưới.
+            Mỗi bài thi tương ứng một chủ đề kiến thức — nếu bạn sai bài nào, hãy quay lại ôn tập phần
+            lý thuyết tương ứng. <strong>Hệ thống sẽ gợi ý cụ thể</strong> phần cần đọc lại.
+          </p>
+          <div class="card-features">
+            <span class="card-feature"><i class="fa-solid fa-check"></i> Chẩn đoán theo từng câu</span>
+            <span class="card-feature"><i class="fa-solid fa-check"></i> Gợi ý ôn tập tập trung</span>
+            <span class="card-feature"><i class="fa-solid fa-check"></i> Liên kết trực tiếp đến lý thuyết</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagnostic Table -->
+    <div class="diagnostic-section">
+      <h3 class="diagnostic-title">
+        <i class="fa-solid fa-stethoscope" style="color:#34d399; margin-right:0.5rem;"></i>
+        Bảng chẩn đoán kết quả
+      </h3>
+      <p class="diagnostic-subtitle">
+        Sau khi hoàn thành bài kiểm tra, đối chiếu kết quả của từng bài với bảng dưới đây để biết cần ôn lại phần nào.
+      </p>
+
+      <div style="overflow-x:auto;">
+        <table class="diagnostic-table">
+          <thead>
+            <tr>
+              <th>Phần thi</th>
+              <th>Chủ đề kiến thức</th>
+              <th>Nếu sai, nên ôn lại</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bài 1.1</strong> (PT bậc 2)</td>
+              <td>
+                <span class="topic-tag"><i class="fa-solid fa-superscript"></i> Phương trình bậc hai</span>
+              </td>
+              <td>
+                <a href="theory.html#phan-a2" class="review-link">
+                  <i class="fa-solid fa-book-open"></i>
+                  Mục A2: Công thức Delta & nhẩm nghiệm
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Bài 1.2</strong> (Hệ PT)</td>
+              <td>
+                <span class="topic-tag"><i class="fa-solid fa-equals"></i> Hệ phương trình</span>
+              </td>
+              <td>
+                <a href="theory.html#phan-a2" class="review-link">
+                  <i class="fa-solid fa-book-open"></i>
+                  Ôn lại phương pháp cộng đại số / thế
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Bài 1.3</strong> (BPT)</td>
+              <td>
+                <span class="topic-tag"><i class="fa-solid fa-greater-than"></i> Bất phương trình</span>
+              </td>
+              <td>
+                <a href="theory.html#phan-a2" class="review-link">
+                  <i class="fa-solid fa-book-open"></i>
+                  Ôn lại quy tắc biến đổi BPT bậc nhất
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Bài 1.4</strong> (PT chứa ẩn ở mẫu)</td>
+              <td>
+                <span class="topic-tag"><i class="fa-solid fa-divide"></i> PT chứa ẩn ở mẫu</span>
+              </td>
+              <td>
+                <a href="theory.html#phan-a2" class="review-link">
+                  <i class="fa-solid fa-book-open"></i>
+                  Đặt ĐKXĐ → quy đồng → giải → kiểm tra ĐK
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Bài 2</strong> (Viète)</td>
+              <td>
+                <span class="topic-tag"><i class="fa-solid fa-calculator"></i> Định lí Viète</span>
+              </td>
+              <td>
+                <a href="theory.html#phan-a2" class="review-link">
+                  <i class="fa-solid fa-book-open"></i>
+                  Mục A2: Định lí Viète — biến đổi biểu thức theo S, P
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Bài 3</strong> (Bài toán thực tế)</td>
+              <td>
+                <span class="topic-tag"><i class="fa-solid fa-industry"></i> Lập phương trình</span>
+              </td>
+              <td>
+                <a href="theory.html#phan-a2" class="review-link">
+                  <i class="fa-solid fa-book-open"></i>
+                  Ôn: Gọi ẩn → Lập phương trình → Giải → Đối chiếu ĐK
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Bài 4</strong> (Biểu thức chứa căn)</td>
+              <td>
+                <span class="topic-tag"><i class="fa-solid fa-square-root-variable"></i> Rút gọn căn thức</span>
+              </td>
+              <td>
+                <a href="theory.html#phan-a1" class="review-link">
+                  <i class="fa-solid fa-book-open"></i>
+                  Ôn: Phân tích nhân tử với $\sqrt{x}$, điều kiện $x>0, x\neq 1$
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Bài 5a</strong> (Lượng giác)</td>
+              <td>
+                <span class="topic-tag"><i class="fa-solid fa-ruler-combined"></i> Hệ thức lượng</span>
+              </td>
+              <td>
+                <a href="theory.html#phan-b" class="review-link">
+                  <i class="fa-solid fa-book-open"></i>
+                  Ôn: tan, sin, cos trong tam giác vuông
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Bài 5b</strong> (Hình khối)</td>
+              <td>
+                <span class="topic-tag"><i class="fa-solid fa-shapes"></i> Trụ · Nón · Cầu</span>
+              </td>
+              <td>
+                <a href="theory.html#phan-b" class="review-link">
+                  <i class="fa-solid fa-book-open"></i>
+                  Mục B: Công thức $S_{xq}$ và $V$ của hình trụ, nón, cầu
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Bài 6</strong> (Hình học tổng hợp)</td>
+              <td>
+                <span class="topic-tag"><i class="fa-solid fa-circle"></i> Đường tròn & tiếp tuyến</span>
+              </td>
+              <td>
+                <a href="theory.html#phan-b" class="review-link">
+                  <i class="fa-solid fa-book-open"></i>
+                  Ôn: Tiếp tuyến, góc nội tiếp, hệ thức lượng, Thales
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Progress Stats -->
+    <div class="progress-section" id="progress-section">
+      <div class="progress-card">
+        <div class="pvalue" id="stat-theory">—</div>
+        <div class="plabel">Lý thuyết đã đọc</div>
+      </div>
+      <div class="progress-card">
+        <div class="pvalue" id="stat-exam">—</div>
+        <div class="plabel">Đề đã làm</div>
+      </div>
+      <div class="progress-card">
+        <div class="pvalue" id="stat-score">—</div>
+        <div class="plabel">Điểm cao nhất</div>
+      </div>
+      <div class="progress-card">
+        <div class="pvalue" id="stat-weak">—</div>
+        <div class="plabel">Phần cần ôn lại</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align:center; margin-top:3rem;">
+      <a href="../../../index.html#/grade/9" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i> Quay về danh sách đề thi
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    // ── Progress tracking via localStorage ──
+    const STORAGE_KEY = 'gk2_truongsa_progress';
+
+    function getProgress() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+      } catch { return {}; }
+    }
+
+    function updateStepIndicator() {
+      const progress = getProgress();
+      const dot1 = document.getElementById('dot-1');
+      const dot2 = document.getElementById('dot-2');
+      const dot3 = document.getElementById('dot-3');
+      const line12 = document.getElementById('line-1-2');
+      const line23 = document.getElementById('line-2-3');
+
+      // Step 1: Theory read
+      if (progress.theoryRead) {
+        dot1.classList.add('completed');
+        dot1.innerHTML = '<i class="fa-solid fa-check" style="font-size:0.8rem;"></i>';
+        line12.style.width = '100%';
+        dot2.classList.add('active');
+      } else {
+        dot1.classList.add('active');
+      }
+
+      // Step 2: Exam done
+      if (progress.examDone) {
+        dot2.classList.remove('active');
+        dot2.classList.add('completed');
+        dot2.innerHTML = '<i class="fa-solid fa-check" style="font-size:0.8rem;"></i>';
+        line23.style.width = '100%';
+        dot3.classList.add('active');
+      }
+
+      // Step 3: Review done
+      if (progress.reviewDone) {
+        dot3.classList.remove('active');
+        dot3.classList.add('completed');
+        dot3.innerHTML = '<i class="fa-solid fa-check" style="font-size:0.8rem;"></i>';
+      }
+
+      // Stats
+      document.getElementById('stat-theory').textContent = progress.theoryRead ? '✓' : '—';
+      document.getElementById('stat-exam').textContent = progress.examCount || '0';
+      document.getElementById('stat-score').textContent = progress.bestScore ? progress.bestScore + '/10' : '—';
+      document.getElementById('stat-weak').textContent = progress.weakTopics || '—';
+    }
+
+    // Mark theory as read when user comes back from theory page
+    if (document.referrer && document.referrer.includes('theory.html')) {
+      const p = getProgress();
+      p.theoryRead = true;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+    }
+
+    updateStepIndicator();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bài tập tự giải - Phương trình đường tròn</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/tex-gyre-pagella" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="../assets/js/mathjax-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <script src="../assets/js/app-config.js?v=2"></script>
+  <script src="../assets/js/firebase-utils.js" defer></script>
+  <script src="../assets/js/auth.js" defer></script>
+  <script src="../assets/js/data.js" defer></script>
+  <script src="../assets/js/diagrams.js" defer></script>
+  <link rel="stylesheet" href="../assets/css/features.css" />
+  <script src="../assets/js/features.js" defer></script>
+  <style>
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(1000px 600px at 5% 10%, #dbeafe, #eef2ff 45%, #f8fafc 80%);
+      color: #0f172a;
+    }
+    .font-pagella { font-family: 'TeX Gyre Pagella', 'Palatino Linotype', 'Book Antiqua', Palatino, serif; }
+    .question-container { contain: content; }
+    .solution-panel {
+      margin-top: 16px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border: 1px solid #f59e0b;
+    }
+    .solution-panel.hidden { display: none; }
+    .progress-rail { background: #e2e8f0; border-radius: 999px; overflow: hidden; height: 8px; }
+    .progress-fill { background: linear-gradient(90deg, #2563eb, #7c3aed); height: 100%; transition: width .25s ease; }
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .anim-fade-up { animation: fadeSlideUp .5s ease-out both; }
+  </style>
+</head>
+<body class="p-4 md:p-7">
+  <main class="max-w-4xl mx-auto">
+    <header class="rounded-2xl border border-slate-200 bg-white/90 backdrop-blur p-5 shadow-sm mb-6">
+      <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div>
+          <h1 id="topicTitle" class="text-2xl md:text-3xl font-extrabold text-slate-900">Bài tập tự giải</h1>
+          <p id="topicSubtitle" class="mt-1 text-slate-600">Luyện tập với lời giải chi tiết</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <a href="./index.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700">
+            <i class="fa-solid fa-layer-group"></i> Danh sách chủ đề
+          </a>
+          <a href="../index.html#/classes" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700">
+            <i class="fa-solid fa-house"></i> Trang chính
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-4 flex items-center gap-4">
+        <div class="flex-1 progress-rail">
+          <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+        </div>
+        <span id="progressText" class="text-sm font-medium text-slate-600">0/0</span>
+      </div>
+    </header>
+
+    <div id="questionArea" class="question-container"></div>
+
+    <nav class="mt-6 flex justify-between items-center">
+      <button id="prevBtn" class="px-6 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-medium disabled:opacity-40 disabled:cursor-not-allowed">
+        <i class="fa-solid fa-chevron-left mr-2"></i>Câu trước
+      </button>
+      <button id="solutionBtn" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-medium">
+        <i class="fa-solid fa-lightbulb mr-2"></i>Xem lời giải
+      </button>
+      <button id="nextBtn" class="px-6 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-medium disabled:opacity-40 disabled:cursor-not-allowed">
+        Câu tiếp theo<i class="fa-solid fa-chevron-right ml-2"></i>
+      </button>
+    </nav>
+  </main>
+
+  <script>
+    const state = {
+      items: [],
+      index: 0,
+      topic: { id: 'duong-tron', title: 'Phương trình đường tròn' }
+    };
+
+    const els = {
+      topicTitle: document.getElementById('topicTitle'),
+      topicSubtitle: document.getElementById('topicSubtitle'),
+      progressFill: document.getElementById('progressFill'),
+      progressText: document.getElementById('progressText'),
+      questionArea: document.getElementById('questionArea'),
+      prevBtn: document.getElementById('prevBtn'),
+      nextBtn: document.getElementById('nextBtn'),
+      solutionBtn: document.getElementById('solutionBtn')
+    };
+
+    function init() {
+      loadData();
+      bindEvents();
+    }
+
+    function loadData() {
+      fetch('./duongtron_self_solve.json')
+        .then(r => r.json())
+        .then(data => {
+          state.items = data.map((item, idx) => ({
+            id: item.q_id || `q_${idx + 1}`,
+            stem: item.stem || '',
+            section: item.section || '',
+            detailed_explanation: item.detailed_explanation || ''
+          }));
+          renderQuestion();
+          updateProgress();
+        })
+        .catch(err => {
+          console.error('Lỗi tải dữ liệu:', err);
+          els.questionArea.innerHTML = '<div class="text-red-500 p-4">Lỗi tải dữ liệu câu hỏi</div>';
+        });
+    }
+
+    function bindEvents() {
+      els.prevBtn.addEventListener('click', () => {
+        if (state.index > 0) {
+          state.index--;
+          renderQuestion();
+          updateProgress();
+        }
+      });
+
+      els.nextBtn.addEventListener('click', () => {
+        if (state.index < state.items.length - 1) {
+          state.index++;
+          renderQuestion();
+          updateProgress();
+        }
+      });
+
+      els.solutionBtn.addEventListener('click', toggleSolution);
+    }
+
+    function renderQuestion() {
+      const q = state.items[state.index];
+      if (!q) return;
+
+      const questionNo = state.index + 1;
+      const total = state.items.length;
+
+      els.questionArea.innerHTML = `
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 anim-fade-up">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
+              Câu ${questionNo}
+            </span>
+            <span class="text-slate-500 text-sm">${q.section}</span>
+          </div>
+          <div class="prose max-w-none font-pagella text-lg leading-relaxed text-slate-800">
+            ${q.stem}
+          </div>
+          <div id="solutionPanel" class="solution-panel hidden">
+            <div class="flex items-center gap-2 mb-3">
+              <i class="fa-solid fa-check-circle text-amber-600"></i>
+              <span class="font-semibold text-amber-800">Lời giải</span>
+            </div>
+            <div class="prose max-w-none font-pagella text-base text-slate-800">
+              ${q.detailed_explanation}
+            </div>
+          </div>
+        </div>
+      `;
+
+      els.prevBtn.disabled = state.index === 0;
+      els.nextBtn.disabled = state.index === state.items.length - 1;
+
+      if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([els.questionArea]).catch(() => {});
+      }
+      if (window.Diagrams && typeof window.Diagrams.renderAll === 'function') {
+        window.Diagrams.renderAll(els.questionArea, { mode: 'static' }).catch(() => {});
+      }
+    }
+
+    function toggleSolution() {
+      const panel = document.getElementById('solutionPanel');
+      if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        els.solutionBtn.innerHTML = '<i class="fa-solid fa-eye-slash mr-2"></i>Ẩn lời giải';
+        if (window.MathJax && MathJax.typesetPromise) {
+          MathJax.typesetPromise([panel]).catch(() => {});
+        }
+      } else {
+        panel.classList.add('hidden');
+        els.solutionBtn.innerHTML = '<i class="fa-solid fa-lightbulb mr-2"></i>Xem lời giải';
+      }
+    }
+
+    function updateProgress() {
+      const pct = state.items.length ? Math.round(((state.index + 1) / state.items.length) * 100) : 0;
+      els.progressFill.style.width = `${pct}%`;
+      els.progressText.textContent = `${state.index + 1}/${state.items.length}`;
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

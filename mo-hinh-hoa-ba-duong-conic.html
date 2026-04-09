@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học liệu tương tác: Mô hình hoá với ba đường conic</title>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/lesson.css">
+    <script src="assets/js/mathjax-config.js"></script>
+    <script src="assets/js/diagrams.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <style>
+        :root {
+            --primary-color: #0f766e;
+            --secondary-color: #64748b;
+            --danger-color: #dc2626;
+            --success-color: #16a34a;
+            --warning-color: #f59e0b;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --slide-bg-color: #ffffff;
+            --slide-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            --border-radius: 14px;
+            --highlight-pastel-color: rgba(125, 211, 252, 0.45);
+        }
+
+        body {
+            font-family: 'Lora', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 1.75;
+            margin: 0;
+            padding: 2rem;
+            background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-container {
+            max-width: 1320px;
+            width: 100%;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .page-subtitle {
+            text-align: center;
+            margin: 0 0 2rem;
+            color: var(--secondary-color);
+            font-size: 1.05rem;
+        }
+
+        .content-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .left-panel {
+            flex: 1 1 38%;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .right-panel {
+            flex: 1 1 62%;
+        }
+
+        .slide,
+        .problem-statement,
+        .navigation {
+            background-color: var(--slide-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--slide-shadow);
+        }
+
+        .slide {
+            display: none;
+            padding: 2rem 2.4rem;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid var(--primary-color);
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .problem-statement {
+            border-left: 6px solid #cbd5e1;
+            padding: 1.25rem 1.5rem;
+            font-style: italic;
+            line-height: 1.95;
+            display: none;
+        }
+
+        .problem-statement strong,
+        .slide strong,
+        .slide b {
+            color: var(--danger-color);
+            font-weight: 700;
+        }
+
+        .highlight-pastel {
+            background-color: var(--highlight-pastel-color);
+            padding: 2px 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .processed {
+            text-decoration: line-through;
+            color: #94a3b8;
+            background-color: transparent !important;
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.65rem;
+            margin-bottom: 1.25rem;
+        }
+
+        h3 {
+            color: #0f172a;
+        }
+
+        .formula-box,
+        .note-box,
+        .hint-content,
+        .result-box {
+            border-radius: 12px;
+            padding: 1rem 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .formula-box {
+            background: #f0fdfa;
+            border: 1px solid #99f6e4;
+        }
+
+        .note-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .hint-content {
+            background: #fffbeb;
+            border: 1px dashed var(--warning-color);
+            display: none;
+        }
+
+        .result-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .nav-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.25s, transform 0.2s;
+        }
+
+        .nav-button:hover {
+            background-color: #115e59;
+            transform: translateY(-1px);
+        }
+
+        .nav-button:disabled {
+            background-color: #99d5d0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            font-size: 16px;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .exercise-input-group {
+            margin: 1.2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .exercise-input-group label {
+            font-weight: 600;
+        }
+
+        .exercise-input-group input[type="text"],
+        .exercise-input-group input[type="number"] {
+            padding: 11px 12px;
+            font-size: 16px;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            font-family: 'Lora', sans-serif;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .exercise-input-group input.correct {
+            border-color: var(--success-color);
+            background-color: #ecfdf5;
+        }
+
+        .exercise-input-group input.incorrect {
+            border-color: var(--danger-color);
+            background-color: #fef2f2;
+        }
+
+        .radio-option {
+            padding: 10px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .radio-option:hover {
+            background-color: #f8fafc;
+        }
+
+        .radio-option.correct {
+            border-color: var(--success-color);
+            background-color: #ecfdf5;
+        }
+
+        .radio-option.incorrect {
+            border-color: var(--danger-color);
+            background-color: #fef2f2;
+        }
+
+        .exercise-buttons {
+            margin-top: 1.4rem;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .hint-button {
+            background-color: var(--warning-color);
+            color: #111827;
+        }
+
+        .hint-button:hover {
+            background-color: #d97706;
+        }
+
+        .feedback-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .feedback-message.success {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .feedback-message.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            background: #ccfbf1;
+            color: #115e59;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        ul {
+            padding-left: 1.3rem;
+        }
+
+        .jxg-diagram {
+            width: 100%;
+            min-height: 260px;
+            margin-top: 1rem;
+        }
+
+        .diagram-caption {
+            margin-top: 0.65rem;
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .problem-figure {
+            margin-top: 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 0.75rem;
+        }
+
+        .problem-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .volleyball-figure {
+            margin-top: 1rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #cbd5e1;
+            border-radius: 14px;
+            padding: 0.75rem;
+        }
+
+        .volleyball-figure svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .figure-axis-label,
+        .figure-point-label,
+        .figure-dim-label,
+        .figure-note-label {
+            font-family: 'Lora', sans-serif;
+        }
+
+        .figure-axis-label,
+        .figure-point-label {
+            fill: #0f172a;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .figure-dim-label {
+            fill: #1d4ed8;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .figure-note-label {
+            fill: #334155;
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .left-panel {
+                position: static;
+                width: 100%;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .slide {
+                padding: 1.35rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="page-title">Học liệu tương tác: Mô hình hoá với ba đường conic</h1>
+        <p class="page-subtitle">Elip, hypebol, parabol trong các bài toán thực tế lớp 10</p>
+        <div class="content-wrapper">
+            <div class="left-panel">
+                <div id="problem1-statement-display" class="problem-statement">
+                    <strong>Bài toán 1.</strong><br>
+                    Một sân vận động hình elip có <span id="p1_major">độ dài trục lớn \(AA' = 80\,m\)</span>, <span id="p1_minor">độ dài trục bé \(BB' = 60\,m\)</span>. Người ta muốn xây dựng một sân bóng đá dạng <span id="p1_rect">hình chữ nhật nội tiếp elip</span>. Hãy tính <span id="p1_goal">diện tích lớn nhất của hình chữ nhật đó</span>.
+                </div>
+                <div id="problem2-statement-display" class="problem-statement">
+                    <strong>Bài toán 2.</strong><br>
+                    Một cột trụ có mặt cắt là một hypebol, <span id="p2_height">chiều cao \(6\,m\)</span>, <span id="p2_mid">chỗ nhỏ nhất ở chính giữa rộng \(0{,}8\,m\)</span>, còn <span id="p2_top">đỉnh và đáy đều rộng \(1\,m\)</span>. Tính <span id="p2_goal">độ rộng của cột ở độ cao \(5\,m\)</span>.
+                </div>
+                <div id="problem3-statement-display" class="problem-statement">
+                    <strong>Bài toán 3.</strong><br>
+                    Một toà tháp có mặt cắt là một hypebol, <span id="p3_height">chiều cao \(200\,m\)</span>, <span id="p3_mid">chỗ nhỏ nhất ở chính giữa rộng \(50\,m\)</span>, còn <span id="p3_top">đỉnh và đáy đều rộng \(60\,m\)</span>. Tính <span id="p3_goal">độ rộng của toà tháp ở độ cao \(150\,m\)</span>.
+                </div>
+                <div id="problem4-statement-display" class="problem-statement">
+                    <strong>Bài toán 4.</strong><br>
+                    Một angten vệ tinh có mặt cắt là một parabol, <span id="p4_diameter">đường kính miệng angten \(300\,cm\)</span>, <span id="p4_distance">khoảng cách từ đầu thu đến miệng angten là \(180\,cm\)</span>. Hãy tính <span id="p4_goal">khoảng cách từ đầu thu đến đỉnh angten</span>.
+                    <div class="problem-figure">
+                        <img src="Untitled.png" alt="Hình minh hoạ angten vệ tinh của bài toán 4">
+                    </div>
+                </div>
+                <div id="problem5-statement-display" class="problem-statement">
+                    <strong>Bài toán 5.</strong><br>
+                    Một nhà vòm chứa máy bay có mặt cắt là <span id="p5_height">nửa elip cao \(10\,m\)</span> và <span id="p5_width">rộng \(24\,m\)</span>. Tính <span id="p5_offset">khoảng cách theo phương thẳng đứng từ một điểm cách chân tường \(6\,m\)</span> lên tới mái vòm, tức là <span id="p5_goal">độ cao của mái ở vị trí đó</span>.
+                </div>
+                <div id="problem6-statement-display" class="problem-statement">
+                    <strong>Bài toán 6.</strong><br>
+                    Trong một đường chuyền bóng, quả bóng rời tay An tại \(A\), đến tay Bình tại \(B\), và chuyển động theo một parabol. Biết <span id="p6_release">\(OA = BH = 1{,}7\,m\)</span>, <span id="p6_pointc">\(CK = 3{,}4625\,m\), \(OK = 2{,}5\,m\)</span>, <span id="p6_distance">\(OH = 10\,m\)</span>. Hãy xác định <span id="p6_goal">độ cao lớn nhất của quả bóng so với mặt đất</span>.
+                </div>
+            </div>
+            <div class="right-panel">
+                <div id="slides-container"></div>
+                <div class="navigation">
+                    <button id="prevBtn" class="nav-button">Trang trước</button>
+                    <span id="slideCounter" class="slide-counter"></span>
+                    <button id="nextBtn" class="nav-button">Trang sau</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slidesConfig = [
+                {
+                    problem: 1,
+                    title: 'Bài 1: Chọn mô hình elip',
+                    content: String.raw`<span class="pill">Elip</span>
+                    <h3>Bước 1. Đưa elip về hệ trục toạ độ quen thuộc</h3>
+                    <p>Đặt tâm elip tại gốc tọa độ \(O\), trục lớn nằm trên trục \(Ox\), trục bé nằm trên trục \(Oy\).</p>
+                    <ul>
+                        <li>\(AA' = 80 \Rightarrow a = 40\).</li>
+                        <li>\(BB' = 60 \Rightarrow b = 30\).</li>
+                    </ul>
+                    <div class="formula-box">
+                        Khi đó phương trình elip là:
+                        $$\frac{x^2}{1600} + \frac{y^2}{900} = 1.$$ 
+                    </div>
+                    <p>Nếu một đỉnh của hình chữ nhật ở góc phần tư thứ nhất là \(M(x,y)\), thì bốn đỉnh là \((\pm x, \pm y)\).</p>
+                    <div class="jxg-diagram" data-jxg='{"preset":"function","bbox":[-45,35,45,-35],"exprs":["30*sqrt(1-x^2/1600)","-30*sqrt(1-x^2/1600)"],"domains":[[-40,40]],"width":360,"height":280,"keepAspectRatio":true,"points":[{"x":0,"y":0,"name":"O","color":"#0f172a"},{"x":40,"y":0,"name":"A","color":"#dc2626"},{"x":0,"y":30,"name":"B","color":"#dc2626"}]}'></div>
+                    <div class="diagram-caption">Elip chuẩn với nửa trục lớn \(a=40\), nửa trục bé \(b=30\).</div>`,
+                    highlights: { current: ['p1_major', 'p1_minor', 'p1_rect'] }
+                },
+                {
+                    problem: 1,
+                    title: 'Bài 1: Biểu thức diện tích',
+                    content: String.raw`<h3>Bước 2. Viết diện tích theo \(x, y\)</h3>
+                    <p>Chiều dài hình chữ nhật là \(2x\), chiều rộng là \(2y\), nên:</p>
+                    <div class="formula-box">$$S = 4xy.$$</div>
+                    <p>Vì \(M(x,y)\) thuộc elip nên:</p>
+                    <div class="formula-box">$$\frac{x^2}{1600} + \frac{y^2}{900} = 1 \Rightarrow y = 30\sqrt{1-\frac{x^2}{1600}}.$$</div>
+                    <p>Từ đó:</p>
+                    <div class="formula-box">$$S = 120x\sqrt{1-\frac{x^2}{1600}}.$$</div>
+                    <div class="note-box">Thay vì tối ưu trực tiếp \(S\), ta có thể tối ưu \(S^2\) để biểu thức gọn hơn.</div>
+                    <div class="jxg-diagram" data-jxg='{"preset":"function","bbox":[-45,35,45,-35],"exprs":["30*sqrt(1-x^2/1600)","-30*sqrt(1-x^2/1600)"],"domains":[[-40,40]],"width":360,"height":280,"keepAspectRatio":true,"vLines":[28.284271],"hLines":[21.213203],"points":[{"x":28.284271,"y":21.213203,"name":"M","color":"#dc2626"}]}'></div>
+                    <div class="diagram-caption">Điểm \(M(x,y)\) trên elip quyết định hình chữ nhật nội tiếp.</div>`,
+                    highlights: { current: ['p1_goal'], processed: ['p1_major', 'p1_minor', 'p1_rect'] }
+                },
+                {
+                    problem: 1,
+                    title: 'Bài 1: Tìm diện tích lớn nhất',
+                    content: String.raw`<h3>Bước 3. Tối ưu diện tích</h3>
+                    <p>Đặt \(t = \dfrac{x^2}{1600}\), khi đó \(0 \le t \le 1\).</p>
+                    <div class="formula-box">
+                        $$S^2 = 16x^2y^2 = 16 \cdot 1600 \cdot 900\, t(1-t).$$
+                    </div>
+                    <p>Vì \(t(1-t) \le \dfrac{1}{4}\), dấu bằng khi \(t = \dfrac{1}{2}\), nên \(x = \dfrac{40}{\sqrt{2}} = 20\sqrt{2}\), \(y = \dfrac{30}{\sqrt{2}} = 15\sqrt{2}\).</p>
+                    <div class="exercise-input-group">
+                        <label>Diện tích lớn nhất của sân bóng là:</label>
+                        <label class="radio-option"><input type="radio" name="p1_area" value="wrong1"> \(1200\,m^2\)</label>
+                        <label class="radio-option"><input type="radio" name="p1_area" value="correct"> \(2400\,m^2\)</label>
+                        <label class="radio-option"><input type="radio" name="p1_area" value="wrong2"> \(4800\,m^2\)</label>
+                    </div>
+                    <div id="hint-2" class="hint-content"><strong>Gợi ý:</strong> Với hình chữ nhật nội tiếp elip có cạnh song song trục tọa độ, ta có \(S_{\max} = 2ab\).</div>`,
+                    highlights: { current: ['p1_goal'], processed: ['p1_major', 'p1_minor', 'p1_rect'] },
+                    isExercise: true,
+                    answers: { p1_area: 'correct' }
+                },
+                {
+                    problem: 1,
+                    title: 'Kết luận bài 1',
+                    content: String.raw`<div class="result-box">
+                        <h3>Kết luận</h3>
+                        <p>Diện tích lớn nhất của hình chữ nhật nội tiếp elip là:</p>
+                        $$S_{\max} = 2400\,m^2.$$
+                        <p>Đây là bài toán mô hình hoá cực trị rất điển hình với <strong>elip</strong>: chọn hệ tọa độ đúng, viết điều kiện điểm thuộc elip, rồi tối ưu đại lượng cần tìm.</p>
+                    </div>`,
+                    highlights: { processed: ['p1_goal'] }
+                },
+                {
+                    problem: 2,
+                    title: 'Bài 2: Dựng mô hình hypebol',
+                    content: String.raw`<span class="pill">Hypebol</span>
+                    <h3>Bước 1. Chọn hệ trục phù hợp</h3>
+                    <p>Đặt gốc tọa độ tại điểm giữa thân cột, trục \(Oy\) thẳng đứng đi qua trục đối xứng của cột, trục \(Ox\) nằm ngang.</p>
+                    <p>Vì thân cột thắt ở giữa nên mặt cắt phù hợp là hypebol có dạng:</p>
+                    <div class="formula-box">$$\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1.$$</div>
+                    <ul>
+                        <li>Độ rộng nhỏ nhất ở giữa là \(0{,}8\,m\) nên \(2a = 0{,}8 \Rightarrow a = 0{,}4\).</li>
+                        <li>Chiều cao cột là \(6\,m\), nên mép trên và mép dưới ứng với \(y = \pm 3\).</li>
+                        <li>Ở đó độ rộng là \(1\,m\), nên \(x = 0{,}5\).</li>
+                    </ul>
+                    <div class="jxg-diagram" data-jxg='{"preset":"function","bbox":[-1.2,3.8,1.2,-3.8],"exprs":["4*sqrt(x^2/0.16-1)","-4*sqrt(x^2/0.16-1)"],"domains":[[-1.2,-0.4],[0.4,1.2]],"width":320,"height":300,"keepAspectRatio":true,"points":[{"x":0.4,"y":0,"name":"A","color":"#dc2626"},{"x":0.5,"y":3,"name":"M","color":"#2563eb"}]}'></div>
+                    <div class="diagram-caption">Mặt cắt hypebol của thân cột, thắt ở giữa và nở dần lên trên, xuống dưới.</div>`,
+                    highlights: { current: ['p2_height', 'p2_mid', 'p2_top'], processed: ['p1_goal'] }
+                },
+                {
+                    problem: 2,
+                    title: 'Bài 2: Tìm tham số còn lại',
+                    content: String.raw`<h3>Bước 2. Tính \(b^2\)</h3>
+                    <p>Thế điểm \((0{,}5; 3)\) vào hypebol:</p>
+                    <div class="formula-box">$$\frac{0{,}5^2}{0{,}4^2} - \frac{3^2}{b^2} = 1.$$</div>
+                    <p>Suy ra:</p>
+                    <div class="formula-box">$$\frac{0{,}25}{0{,}16} - \frac{9}{b^2} = 1 \Rightarrow 1{,}5625 - \frac{9}{b^2} = 1 \Rightarrow \frac{9}{b^2} = 0{,}5625.$$</div>
+                    <div class="exercise-input-group">
+                        <label for="p2_b2">Giá trị của \(b^2\) là:</label>
+                        <input type="number" id="p2_b2" placeholder="Nhập một số">
+                    </div>
+                    <div id="hint-5" class="hint-content"><strong>Gợi ý:</strong> Vì \(0{,}5625 = \dfrac{9}{16}\) nên \(\dfrac{9}{b^2} = \dfrac{9}{16}\).</div>`,
+                    highlights: { current: ['p2_top'], processed: ['p2_height', 'p2_mid'] },
+                    isExercise: true,
+                    numericAnswers: { p2_b2: { value: 16, tolerance: 0.001 } }
+                },
+                {
+                    problem: 2,
+                    title: 'Bài 2: Tính độ rộng ở độ cao 5m',
+                    content: String.raw`<h3>Bước 3. Đổi vị trí thực tế sang tung độ</h3>
+                    <p>Độ cao \(5\,m\) tính từ đáy tương ứng với tung độ:</p>
+                    <div class="formula-box">$$y = -3 + 5 = 2.$$</div>
+                    <p>Phương trình hypebol lúc này là:</p>
+                    <div class="formula-box">$$\frac{x^2}{0{,}16} - \frac{y^2}{16} = 1.$$</div>
+                    <p>Thay \(y = 2\):</p>
+                    <div class="formula-box">$$\frac{x^2}{0{,}16} - \frac{4}{16} = 1 \Rightarrow \frac{x^2}{0{,}16} = 1{,}25 \Rightarrow x^2 = 0{,}2.$$</div>
+                    <p>Vậy độ rộng là \(2x = 2\sqrt{0{,}2}\).</p>
+                    <div class="exercise-input-group">
+                        <label for="p2_width">Độ rộng xấp xỉ của cột ở độ cao \(5\,m\) là (m):</label>
+                        <input type="text" id="p2_width" placeholder="Ví dụ: 0,89">
+                    </div>
+                    <div id="hint-6" class="hint-content"><strong>Gợi ý:</strong> \(\sqrt{0{,}2} \approx 0{,}4472\).</div>`,
+                    highlights: { current: ['p2_goal'], processed: ['p2_height', 'p2_mid', 'p2_top'] },
+                    isExercise: true,
+                    numericAnswers: { p2_width: { value: 0.8944, tolerance: 0.02 } }
+                },
+                {
+                    problem: 2,
+                    title: 'Kết luận bài 2',
+                    content: String.raw`<div class="result-box">
+                        <h3>Kết luận</h3>
+                        <p>Độ rộng của cột ở độ cao \(5\,m\) là:</p>
+                        $$2\sqrt{0{,}2} \approx 0{,}89\,m.$$
+                        <p>Điểm mấu chốt là phải quy đổi <strong>độ cao thực tế</strong> về tung độ trong hệ trục đặt tại tâm đối xứng.</p>
+                    </div>`,
+                    highlights: { processed: ['p2_goal'] }
+                },
+                {
+                    problem: 3,
+                    title: 'Bài 3: Tự luyện với hypebol',
+                    content: String.raw`<span class="pill">Bài tập tương tự</span>
+                    <h3>Hãy tự mô hình hoá nhanh bài toán toà tháp</h3>
+                    <ul>
+                        <li>Chiều cao \(200\,m\) \(\Rightarrow y = \pm 100\) ở đỉnh và đáy.</li>
+                        <li>Chỗ hẹp nhất ở giữa rộng \(50\,m\) \(\Rightarrow a = 25\).</li>
+                        <li>Đỉnh và đáy rộng \(60\,m\) \(\Rightarrow x = 30\) khi \(y = \pm 100\).</li>
+                        <li>Độ cao cần tính là \(150\,m\) tính từ đáy, nên \(y = -100 + 150 = 50\).</li>
+                    </ul>
+                    <div class="jxg-diagram" data-jxg='{"preset":"function","bbox":[-70,120,70,-120],"exprs":["75.377836*sqrt(x^2/625-1)","-75.377836*sqrt(x^2/625-1)"],"domains":[[-60,-25],[25,60]],"width":320,"height":300,"keepAspectRatio":true,"points":[{"x":25,"y":0,"name":"A","color":"#dc2626"},{"x":30,"y":100,"name":"M","color":"#2563eb"}]}'></div>
+                    <div class="diagram-caption">Cùng mô hình hypebol, nhưng kích thước lớn hơn nhiều so với bài cột trụ.</div>
+                    <p>Nếu làm đúng, bạn sẽ tìm được độ rộng của tháp ở độ cao đó.</p>
+                    <div class="exercise-input-group">
+                        <label for="p3_width_ans">Độ rộng xấp xỉ của toà tháp ở độ cao \(150\,m\) là (m):</label>
+                        <input type="text" id="p3_width_ans" placeholder="Ví dụ: 52,68">
+                    </div>
+                    <div id="hint-8" class="hint-content"><strong>Gợi ý:</strong> Từ \(\dfrac{30^2}{25^2} - \dfrac{100^2}{b^2} = 1\) suy ra \(b^2 = \dfrac{250000}{11}\).</div>`,
+                    highlights: { current: ['p3_height', 'p3_mid', 'p3_top', 'p3_goal'], processed: ['p2_goal'] },
+                    isExercise: true,
+                    numericAnswers: { p3_width_ans: { value: 52.678, tolerance: 0.08 } }
+                },
+                {
+                    problem: 3,
+                    title: 'Lời giải nhanh bài 3',
+                    content: String.raw`<h3>Kiểm tra lời giải</h3>
+                    <p>Phương trình hypebol có dạng:</p>
+                    <div class="formula-box">$$\frac{x^2}{625} - \frac{y^2}{250000/11} = 1.$$</div>
+                    <p>Tại \(y = 50\):</p>
+                    <div class="formula-box">$$\frac{x^2}{625} - \frac{2500}{250000/11} = 1 \Rightarrow \frac{x^2}{625} = 1{,}11.$$</div>
+                    <p>Suy ra \(x = 2{,}5\sqrt{111} \approx 26{,}34\). Vậy độ rộng là:</p>
+                    <div class="result-box">$$2x = 5\sqrt{111} \approx 52{,}68\,m.$$</div>`,
+                    highlights: { processed: ['p3_height', 'p3_mid', 'p3_top', 'p3_goal'] }
+                },
+                {
+                    problem: 4,
+                    title: 'Bài 4: Mô hình parabol của angten',
+                    content: String.raw`<span class="pill">Parabol</span>
+                    <h3>Bước 1. Chọn phương trình parabol</h3>
+                    <p>Đặt đỉnh angten tại gốc tọa độ, trục đối xứng trùng với trục \(Ox\), parabol mở sang phải:</p>
+                    <div class="formula-box">$$y^2 = 4px.$$</div>
+                    <p>Khi đó tiêu điểm là \(F(p,0)\), chính là vị trí đặt đầu thu.</p>
+                    <ul>
+                        <li>Đường kính miệng angten là \(300\,cm\), nên bán kính miệng là \(150\,cm\).</li>
+                        <li>Một điểm ở vành miệng có tọa độ \(M(x_M, 150)\).</li>
+                    </ul>
+                    <div class="note-box">Đại lượng cần tìm chính là khoảng cách từ tiêu điểm đến đỉnh, tức là \(p\).</div>
+                    <div class="note-box">Quan sát hình minh hoạ ở phần đề bài để thấy rõ vị trí đầu thu, miệng angten và cạnh có độ dài \(180\,cm\).</div>`,
+                    highlights: { current: ['p4_diameter', 'p4_goal'], processed: ['p3_goal'] }
+                },
+                {
+                    problem: 4,
+                    title: 'Bài 4: Lập phương trình theo tính chất tiêu điểm',
+                    content: String.raw`<h3>Bước 2. Dùng dữ kiện khoảng cách</h3>
+                    <p>Với điểm \(M\) thuộc parabol, khoảng cách đến tiêu điểm bằng khoảng cách đến đường chuẩn. Do đó:</p>
+                    <div class="formula-box">$$FM = x_M + p.$$</div>
+                    <p>Đề bài cho \(FM = 180\), nên \(x_M + p = 180\).</p>
+                    <p>Mặt khác, \(M\) nằm trên parabol nên:</p>
+                    <div class="formula-box">$$150^2 = 4px_M \Rightarrow x_M = \frac{22500}{4p} = \frac{5625}{p}.$$</div>
+                    <p>Thế vào, được:</p>
+                    <div class="formula-box">$$\frac{5625}{p} + p = 180 \Rightarrow p^2 - 180p + 5625 = 0.$$</div>
+                    <div class="exercise-input-group">
+                        <label for="p4_focus_distance">Khoảng cách từ đầu thu đến đỉnh angten là (cm):</label>
+                        <input type="text" id="p4_focus_distance" placeholder="Ví dụ: 40,3">
+                    </div>
+                    <div id="hint-11" class="hint-content"><strong>Gợi ý:</strong> Phương trình bậc hai có hai nghiệm, nhưng chỉ một nghiệm phù hợp về mặt hình học.</div>`,
+                    highlights: { current: ['p4_distance'], processed: ['p4_diameter', 'p4_goal'] },
+                    isExercise: true,
+                    numericAnswers: { p4_focus_distance: { value: 40.25, tolerance: 0.2 } }
+                },
+                {
+                    problem: 4,
+                    title: 'Kết luận bài 4',
+                    content: String.raw`<div class="result-box">
+                        <h3>Kết luận</h3>
+                        <p>Giải phương trình \(p^2 - 180p + 5625 = 0\) cho hai nghiệm gần đúng \(139{,}75\) và \(40{,}25\).</p>
+                        <p>Ta chọn \(p \approx 40{,}25\,cm\), vì nếu chọn nghiệm còn lại thì tiêu điểm nằm ngoài vùng lòng chảo của angten, không phù hợp với thực tế.</p>
+                        <p>Vậy khoảng cách từ đầu thu tới đỉnh angten xấp xỉ:</p>
+                        $$40{,}3\,cm.$$
+                    </div>`,
+                    highlights: { processed: ['p4_distance'] }
+                },
+                {
+                    problem: 5,
+                    title: 'Bài 5: Nửa elip của mái vòm',
+                    content: String.raw`<span class="pill">Elip</span>
+                    <h3>Bước 1. Lập phương trình mái vòm</h3>
+                    <p>Đặt gốc tọa độ tại tâm của elip đầy đủ, trục \(Ox\) nằm ngang, trục \(Oy\) thẳng đứng. Vì mái là <strong>nửa elip phía trên</strong>, ta có:</p>
+                    <ul>
+                        <li>Rộng \(24\,m\) \(\Rightarrow a = 12\).</li>
+                        <li>Cao \(10\,m\) \(\Rightarrow b = 10\).</li>
+                    </ul>
+                    <div class="formula-box">$$\frac{x^2}{144} + \frac{y^2}{100} = 1,\quad y \ge 0.$$</div>
+                    <p>Một điểm cách chân tường \(6\,m\) tính từ một bên sẽ có hoành độ cách tâm một đoạn \(6\,m\), tức là \(|x| = 6\).</p>
+                    <div class="jxg-diagram" data-jxg='{"preset":"function","bbox":[-14,12,14,-1],"exprs":["10*sqrt(1-x^2/144)"],"domains":[[-12,12]],"width":360,"height":240,"keepAspectRatio":true,"vLines":[6],"points":[{"x":6,"y":8.660254,"name":"M","color":"#dc2626"},{"x":0,"y":10,"name":"N","color":"#2563eb"}]}'></div>
+                    <div class="diagram-caption">Nửa elip phía trên mô tả mặt cắt nhà vòm chứa máy bay.</div>
+                    <div class="exercise-input-group">
+                        <label for="p5_height_ans">Độ cao của mái tại vị trí đó là (m):</label>
+                        <input type="text" id="p5_height_ans" placeholder="Ví dụ: 8,66">
+                    </div>
+                    <div id="hint-13" class="hint-content"><strong>Gợi ý:</strong> Thay \(x = 6\) vào phương trình elip rồi lấy nghiệm dương của \(y\).</div>`,
+                    highlights: { current: ['p5_height', 'p5_width', 'p5_offset', 'p5_goal'], processed: ['p4_distance'] },
+                    isExercise: true,
+                    numericAnswers: { p5_height_ans: { value: 8.6603, tolerance: 0.03 } }
+                },
+                {
+                    problem: 5,
+                    title: 'Kết luận bài 5',
+                    content: String.raw`<h3>Bước 2. Tính giá trị cụ thể</h3>
+                    <div class="formula-box">$$\frac{6^2}{144} + \frac{y^2}{100} = 1 \Rightarrow \frac{36}{144} + \frac{y^2}{100} = 1.$$</div>
+                    <div class="formula-box">$$\frac{y^2}{100} = \frac{3}{4} \Rightarrow y = 10\cdot\frac{\sqrt{3}}{2} = 5\sqrt{3} \approx 8{,}66.$$</div>
+                    <div class="result-box">
+                        Vậy khoảng cách theo phương thẳng đứng từ điểm đã cho lên mái vòm là:
+                        $$5\sqrt{3} \approx 8{,}66\,m.$$
+                    </div>`,
+                    highlights: { processed: ['p5_height', 'p5_width', 'p5_offset', 'p5_goal'] }
+                },
+                {
+                    problem: 6,
+                    title: 'Bài 6: Quỹ đạo parabol của quả bóng',
+                    content: String.raw`<span class="pill">Parabol</span>
+                    <h3>Bước 1. Đưa dữ kiện về toạ độ</h3>
+                    <p>Theo hình vẽ, ta chọn gốc tọa độ tại \(O\), trục \(Ox\) trùng với mặt đất và trục \(Oy\) thẳng đứng.</p>
+                    <ul>
+                        <li>\(A(0;1{,}7)\) vì \(OA = 1{,}7\,m\).</li>
+                        <li>\(B(10;1{,}7)\) vì \(OH = 10\,m\) và \(BH = 1{,}7\,m\).</li>
+                        <li>\(C(2{,}5;3{,}4625)\) vì \(OK = 2{,}5\,m\), \(CK = 3{,}4625\,m\).</li>
+                    </ul>
+                    <div class="note-box">Do \(A\) và \(B\) có cùng độ cao nên trục đối xứng của parabol đi qua trung điểm của \(AB\), tức là \(x = 5\).</div>
+                    <div class="volleyball-figure">
+                        <svg viewBox="0 0 360 250" aria-label="Quỹ đạo parabol của quả bóng chuyền">
+                            <defs>
+                                <marker id="vb-arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
+                                    <path d="M0,0 L8,4 L0,8 z" fill="#334155"></path>
+                                </marker>
+                            </defs>
+                            <line x1="20" y1="210" x2="335" y2="210" stroke="#0f172a" stroke-width="1.6"></line>
+                            <line x1="40" y1="228" x2="40" y2="20" stroke="#0f172a" stroke-width="1.6"></line>
+                            <path d="M40 142 L66 108.16 L92 81.84 L105 71.5 L118 63.04 L144 51.76 L170 48 L196 51.76 L222 63.04 L235 71.5 L248 81.84 L274 108.16 L300 142" fill="none" stroke="#111827" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <line x1="40" y1="142" x2="300" y2="142" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 5"></line>
+                            <line x1="105" y1="71.5" x2="105" y2="210" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 5"></line>
+                            <line x1="300" y1="142" x2="300" y2="210" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 5"></line>
+                            <circle cx="40" cy="210" r="3.8" fill="#0f172a"></circle>
+                            <circle cx="40" cy="142" r="3.8" fill="#0f172a"></circle>
+                            <circle cx="105" cy="210" r="3.8" fill="#0f172a"></circle>
+                            <circle cx="105" cy="71.5" r="3.8" fill="#0f172a"></circle>
+                            <circle cx="300" cy="210" r="3.8" fill="#0f172a"></circle>
+                            <circle cx="300" cy="142" r="3.8" fill="#0f172a"></circle>
+                            <path d="M40 210 L52 210 L52 198" fill="none" stroke="#0f172a" stroke-width="1.4"></path>
+                            <path d="M105 210 L117 210 L117 198" fill="none" stroke="#0f172a" stroke-width="1.4"></path>
+                            <path d="M300 210 L312 210 L312 198" fill="none" stroke="#0f172a" stroke-width="1.4"></path>
+                            <text x="27" y="225" class="figure-point-label">O</text>
+                            <text x="25" y="136" class="figure-point-label">A</text>
+                            <text x="100" y="225" class="figure-point-label">K</text>
+                            <text x="98" y="64" class="figure-point-label">C</text>
+                            <text x="304" y="225" class="figure-point-label">H</text>
+                            <text x="306" y="136" class="figure-point-label">B</text>
+                            <text x="340" y="214" class="figure-axis-label">x</text>
+                            <text x="45" y="18" class="figure-axis-label">y</text>
+                            <text x="52" y="177" class="figure-dim-label">1,7</text>
+                            <text x="306" y="177" class="figure-dim-label">1,7</text>
+                            <text x="112" y="144" class="figure-dim-label">3,4625</text>
+                            <text x="67" y="228" class="figure-dim-label">2,5</text>
+                            <text x="165" y="228" class="figure-dim-label">10</text>
+                            <text x="304" y="196" class="figure-note-label">Mặt đất</text>
+                            <text x="247" y="48" class="figure-note-label">Quỹ đạo bóng</text>
+                            <line x1="295" y1="55" x2="238" y2="73" stroke="#334155" stroke-width="1.5" marker-end="url(#vb-arrow)"></line>
+                        </svg>
+                    </div>
+                    <div class="diagram-caption">Từ dữ kiện thực tế ta xác định được ba điểm \(A\), \(B\), \(C\) thuộc quỹ đạo parabol của quả bóng.</div>`,
+                    highlights: { current: ['p6_release', 'p6_pointc', 'p6_distance'], processed: ['p5_height', 'p5_width', 'p5_offset', 'p5_goal'] }
+                },
+                {
+                    problem: 6,
+                    title: 'Bài 6: Lập phương trình parabol',
+                    content: String.raw`<h3>Bước 2. Dùng trục đối xứng để viết dạng thuận lợi</h3>
+                    <p>Vì trục đối xứng là \(x=5\), ta đặt phương trình parabol dưới dạng:</p>
+                    <div class="formula-box">$$y = a(x-5)^2 + k, \quad a&lt;0.$$</div>
+                    <p>Thế điểm \(A(0;1{,}7)\) và \(C(2{,}5;3{,}4625)\) vào phương trình:</p>
+                    <div class="formula-box">$$\begin{cases}1{,}7 = 25a + k,\\ 3{,}4625 = 6{,}25a + k.\end{cases}$$</div>
+                    <p>Lấy phương trình trên trừ phương trình dưới, được:</p>
+                    <div class="formula-box">$$1{,}7 - 3{,}4625 = (25 - 6{,}25)a \Rightarrow -1{,}7625 = 18{,}75a \Rightarrow a = -0{,}094.$$</div>
+                    <p>Suy ra:</p>
+                    <div class="formula-box">$$k = 1{,}7 - 25(-0{,}094) = 4{,}05.$$</div>
+                    <div class="note-box">Vậy quỹ đạo quả bóng có phương trình \(y = -0{,}094(x-5)^2 + 4{,}05\).</div>`,
+                    highlights: { current: ['p6_goal'], processed: ['p6_release', 'p6_pointc', 'p6_distance'] }
+                },
+                {
+                    problem: 6,
+                    title: 'Bài 6: Tìm độ cao lớn nhất',
+                    content: String.raw`<h3>Bước 3. Đọc ngay từ đỉnh parabol</h3>
+                    <p>Phương trình đang ở dạng đỉnh nên đỉnh của parabol là:</p>
+                    <div class="formula-box">$$I(5;4{,}05).$$</div>
+                    <p>Vì \(a=-0{,}094&lt;0\), parabol quay xuống dưới nên tung độ đỉnh chính là giá trị lớn nhất của \(y\).</p>
+                    <div class="exercise-input-group">
+                        <label for="p6_max_height">Độ cao lớn nhất của quả bóng so với mặt đất là (m):</label>
+                        <input type="text" id="p6_max_height" placeholder="Ví dụ: 4,05">
+                    </div>
+                    <div id="hint-15" class="hint-content"><strong>Gợi ý:</strong> Với \(y = a(x-h)^2 + k\), nếu \(a&lt;0\) thì giá trị lớn nhất của hàm số là \(k\).</div>`,
+                    highlights: { current: ['p6_goal'], processed: ['p6_release', 'p6_pointc', 'p6_distance'] },
+                    isExercise: true,
+                    numericAnswers: { p6_max_height: { value: 4.05, tolerance: 0.02 } }
+                },
+                {
+                    problem: 6,
+                    title: 'Kết luận bài 6',
+                    content: String.raw`<div class="result-box">
+                        <h3>Kết luận</h3>
+                        <p>Độ cao lớn nhất của quả bóng so với mặt đất là tung độ đỉnh của parabol:</p>
+                        $$y_{\max} = 4{,}05\,m.$$
+                        <p>Đây là một mô hình đẹp của <strong>parabol trong chuyển động</strong>: chỉ cần xác định đúng các điểm đặc trưng và nhận ra trục đối xứng.</p>
+                    </div>`,
+                    highlights: { processed: ['p6_release', 'p6_pointc', 'p6_distance', 'p6_goal'] }
+                },
+                {
+                    problem: 6,
+                    title: 'Tổng kết: Khi nào chọn elip, hypebol, parabol?',
+                    content: String.raw`<h3>Một số chiến lược mô hình hoá quan trọng</h3>
+                    <ul>
+                        <li><strong>Elip:</strong> phù hợp khi vật thể kín, đối xứng và bị chặn cả theo chiều ngang lẫn chiều dọc, như sân vận động hoặc mái vòm.</li>
+                        <li><strong>Hypebol:</strong> phù hợp khi vật thể thắt ở giữa và mở rộng dần về hai phía, như thân cột hay mặt cắt tháp.</li>
+                        <li><strong>Parabol:</strong> phù hợp với các thiết kế phản xạ hội tụ về tiêu điểm, như gương parabol, angten vệ tinh, hoặc quỹ đạo chuyển động lý tưởng của vật thể như quả bóng.</li>
+                        <li><strong>Mẹo chung:</strong> luôn đặt hệ trục sao cho tâm đối xứng hoặc đỉnh đi vào vị trí đơn giản nhất, rồi biến dữ kiện thực tế thành tọa độ cụ thể.</li>
+                    </ul>
+                    <div class="note-box">Nếu bạn muốn, tôi có thể tiếp tục biến học liệu này thành một <strong>tool có minh hoạ SVG/đồ thị tương tác</strong> giống các công cụ học khác trong site.</div>`,
+                    highlights: { processed: ['p6_goal'] }
+                }
+            ];
+
+            const slidesContainer = document.getElementById('slides-container');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            const problemDisplays = {
+                1: document.getElementById('problem1-statement-display'),
+                2: document.getElementById('problem2-statement-display'),
+                3: document.getElementById('problem3-statement-display'),
+                4: document.getElementById('problem4-statement-display'),
+                5: document.getElementById('problem5-statement-display'),
+                6: document.getElementById('problem6-statement-display')
+            };
+
+            let currentSlide = 0;
+
+            function generateSlides() {
+                slidesConfig.forEach((slide, index) => {
+                    const slideEl = document.createElement('div');
+                    slideEl.className = 'slide';
+                    slideEl.id = `slide-${index}`;
+
+                    let contentHTML = `<h2>${slide.title}</h2><div>${slide.content}</div>`;
+                    if (slide.isExercise) {
+                        contentHTML += `
+                            <div class="exercise-buttons">
+                                <button class="nav-button hint-button" onclick="toggleHint(${index})">Gợi ý</button>
+                                <button class="nav-button" style="background-color: var(--success-color);" onclick="checkAnswers(${index})">Kiểm tra đáp án</button>
+                            </div>
+                            <div id="feedback-message-${index}" class="feedback-message"></div>
+                        `;
+                    }
+
+                    slideEl.innerHTML = contentHTML;
+                    slidesContainer.appendChild(slideEl);
+                });
+            }
+
+            function normalizeAnswer(str) {
+                if (typeof str !== 'string') return '';
+                return str.toLowerCase().replace(/\s+/g, '').replace(/,/g, '.');
+            }
+
+            function parseNumericValue(raw) {
+                const normalized = normalizeAnswer(raw).replace(/[^0-9.+\-]/g, '');
+                return parseFloat(normalized);
+            }
+
+            window.checkAnswers = function (slideIndex) {
+                const slide = slidesConfig[slideIndex];
+                if (!slide || !slide.isExercise) return;
+
+                let allCorrect = true;
+                const feedbackMsg = document.getElementById(`feedback-message-${slideIndex}`);
+
+                if (slide.answers) {
+                    for (const [key, correctAnswer] of Object.entries(slide.answers)) {
+                        const inputEl = document.getElementById(key);
+                        const radioGroup = document.querySelectorAll(`#slide-${slideIndex} input[name="${key}"]`);
+
+                        if (radioGroup.length > 0) {
+                            const checkedRadio = document.querySelector(`#slide-${slideIndex} input[name="${key}"]:checked`);
+                            radioGroup.forEach(radio => radio.parentElement.classList.remove('correct', 'incorrect'));
+
+                            if (checkedRadio && checkedRadio.value === correctAnswer) {
+                                checkedRadio.parentElement.classList.add('correct');
+                            } else {
+                                if (checkedRadio) checkedRadio.parentElement.classList.add('incorrect');
+                                allCorrect = false;
+                            }
+                        } else if (inputEl) {
+                            const userAnswer = normalizeAnswer(inputEl.value);
+                            const normalizedCorrectAnswer = normalizeAnswer(correctAnswer);
+                            inputEl.classList.remove('correct', 'incorrect');
+                            if (userAnswer === normalizedCorrectAnswer) {
+                                inputEl.classList.add('correct');
+                            } else {
+                                inputEl.classList.add('incorrect');
+                                allCorrect = false;
+                            }
+                        }
+                    }
+                }
+
+                if (slide.numericAnswers) {
+                    for (const [key, config] of Object.entries(slide.numericAnswers)) {
+                        const inputEl = document.getElementById(key);
+                        if (!inputEl) continue;
+                        const userValue = parseNumericValue(inputEl.value);
+                        const tolerance = typeof config.tolerance === 'number' ? config.tolerance : 0.01;
+                        inputEl.classList.remove('correct', 'incorrect');
+                        if (!Number.isNaN(userValue) && Math.abs(userValue - config.value) <= tolerance) {
+                            inputEl.classList.add('correct');
+                        } else {
+                            inputEl.classList.add('incorrect');
+                            allCorrect = false;
+                        }
+                    }
+                }
+
+                feedbackMsg.style.display = 'block';
+                feedbackMsg.classList.remove('success', 'error');
+                if (allCorrect) {
+                    feedbackMsg.textContent = 'Chính xác! Bạn có thể sang trang tiếp theo.';
+                    feedbackMsg.classList.add('success');
+                } else {
+                    feedbackMsg.textContent = 'Chưa đúng hoàn toàn. Hãy xem lại phần tô đỏ hoặc mở gợi ý.';
+                    feedbackMsg.classList.add('error');
+                }
+            };
+
+            window.toggleHint = function (slideIndex) {
+                const currentSlideEl = document.getElementById(`slide-${slideIndex}`);
+                if (!currentSlideEl) return;
+                const hintEl = currentSlideEl.querySelector('.hint-content');
+                if (hintEl) {
+                    hintEl.style.display = hintEl.style.display === 'none' ? 'block' : 'none';
+                    if (window.MathJax && window.MathJax.typesetPromise) {
+                        window.MathJax.typesetPromise([hintEl]);
+                    }
+                }
+            };
+
+            function updateHighlights() {
+                const allSpans = document.querySelectorAll('.problem-statement span');
+                allSpans.forEach(span => span.classList.remove('highlight-pastel', 'processed'));
+
+                const slideConf = slidesConfig[currentSlide];
+                if (!slideConf || !slideConf.highlights) return;
+
+                for (let i = 0; i < currentSlide; i++) {
+                    const pastConf = slidesConfig[i];
+                    if (pastConf.problem === slideConf.problem && pastConf.highlights) {
+                        const allPastHighlights = [
+                            ...(pastConf.highlights.current || []),
+                            ...(pastConf.highlights.processed || [])
+                        ];
+                        allPastHighlights.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el) el.classList.add('processed');
+                        });
+                    }
+                }
+
+                if (slideConf.highlights.current) {
+                    slideConf.highlights.current.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) {
+                            el.classList.remove('processed');
+                            el.classList.add('highlight-pastel');
+                        }
+                    });
+                }
+            }
+
+            function showSlide(index) {
+                const allSlides = document.querySelectorAll('.slide');
+                allSlides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+
+                Object.values(problemDisplays).forEach(el => {
+                    if (el) el.style.display = 'none';
+                });
+                const currentProblem = slidesConfig[index].problem;
+                if (problemDisplays[currentProblem]) {
+                    problemDisplays[currentProblem].style.display = 'block';
+                }
+
+                slideCounter.textContent = `Trang ${index + 1} / ${slidesConfig.length}`;
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === slidesConfig.length - 1;
+                updateHighlights();
+                const activeSlide = document.getElementById(`slide-${index}`);
+                Promise.resolve()
+                    .then(() => {
+                        if (window.Diagrams && typeof window.Diagrams.renderAll === 'function' && activeSlide) {
+                            return window.Diagrams.renderAll(activeSlide);
+                        }
+                    })
+                    .then(() => {
+                        if (window.MathJax && window.MathJax.typesetPromise) {
+                            const targets = [activeSlide, problemDisplays[currentProblem]].filter(Boolean);
+                            return window.MathJax.typesetPromise(targets);
+                        }
+                    })
+                    .catch(() => {});
+            }
+
+            generateSlides();
+            showSlide(currentSlide);
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide -= 1;
+                    showSlide(currentSlide);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slidesConfig.length - 1) {
+                    currentSlide += 1;
+                    showSlide(currentSlide);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -970,6 +970,10 @@
     model: 'llama-3.3-70b-versatile',
     conversationHistory: [],
     isOpen: false,
+    lastQuestionContext: '',
+    lastStructuredQuestion: null,
+    lastResponseAudit: null,
+    pendingAuditPayload: null,
 
     init() {
       this.createUI();
@@ -1244,6 +1248,223 @@
     close() {
       if (this.isOpen) this.toggle();
     },
+
+    isDebugEnabled() {
+      try {
+        const params = new URLSearchParams(window.location.search || '');
+        return params.get('ai_debug') === '1' || localStorage.getItem('ai_debug') === '1';
+      } catch (error) {
+        return localStorage.getItem('ai_debug') === '1';
+      }
+    },
+
+    setDebugEnabled(enabled) {
+      try {
+        localStorage.setItem('ai_debug', enabled ? '1' : '0');
+      } catch (error) {
+      }
+      return this.isDebugEnabled();
+    },
+
+    normalizeAuditText(text) {
+      return String(text || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/Đ/g, 'D')
+        .toLowerCase()
+        .replace(/\s+/g, ' ')
+        .trim();
+    },
+
+    extractAuditKeywords(text, limit = 12) {
+      const stopWords = new Set(['giai', 'cac', 'sau', 'cho', 'voi', 'mot', 'hai', 'ba', 'bon', 'nhung', 'hay', 'the', 'va', 'cua', 'trong', 'neu', 'khi', 'roi', 'theo', 'dang', 'bai', 'toan', 'phuong', 'trinh', 'he', 'bat', 'phuong', 'minh', 'tinh', 'gia', 'tri']);
+      const tokens = this.normalizeAuditText(text)
+        .replace(/[^a-z0-9\s]/g, ' ')
+        .split(/\s+/)
+        .filter(token => token.length >= 3 && !stopWords.has(token));
+      return [...new Set(tokens)].slice(0, limit);
+    },
+
+    buildStructuredQuestionPrompt(questionData) {
+      const lines = ['Hãy hướng dẫn tôi giải bài toán này từng bước.', ''];
+      if (questionData.topicTitle) lines.push(`[Chủ đề] ${questionData.topicTitle}`);
+      if (questionData.questionId) lines.push(`[Mã câu] ${questionData.questionId}`);
+      if (questionData.questionType) lines.push(`[Loại câu] ${questionData.questionType}`);
+      if (questionData.questionNumber) lines.push(`[Câu trong phiên] ${questionData.questionNumber}`);
+      if (questionData.sessionLength) lines.push(`[Tổng số câu trong phiên] ${questionData.sessionLength}`);
+
+      lines.push('', '[Đề bài]', questionData.prompt || '');
+
+      if (questionData.subparts && questionData.subparts.length) {
+        lines.push('', '[Các ý của bài toán]');
+        questionData.subparts.forEach(part => {
+          lines.push(`${part.label || '-'} ${part.text || ''}`.trim());
+        });
+      }
+
+      if (questionData.options && questionData.options.length) {
+        lines.push('', '[Các đáp án]');
+        questionData.options.forEach(option => {
+          lines.push(`${option.label || '-'}. ${option.text || ''}`.trim());
+        });
+      }
+
+      if (questionData.userAnswerLabel) {
+        lines.push('', `[Lựa chọn của học sinh] ${questionData.userAnswerLabel}`);
+      }
+
+      if (questionData.answer && questionData.answer.hasAnswer) {
+        if (questionData.answer.kind === 'multiple_choice') {
+          lines.push('', '[Đáp án đúng]', `${questionData.answer.letter || ''}${questionData.answer.text ? ` — ${questionData.answer.text}` : ''}`.trim());
+        } else if (questionData.answer.finalAnswer) {
+          lines.push('', '[Đáp án tham khảo]', questionData.answer.finalAnswer);
+        }
+        if (questionData.answer.explanation) {
+          lines.push('', '[Lời giải tham khảo]', questionData.answer.explanation);
+        }
+      }
+
+      lines.push('', '[Yêu cầu cho AI]');
+      lines.push('1. Nhắc lại đầy đủ dữ kiện của đề trước khi giải.');
+      lines.push('2. Nếu bài có nhiều ý, giải tuần tự từng ý và ghi rõ ý tương ứng.');
+      lines.push('3. Nếu đã có đáp án hoặc lời giải tham khảo, phải bám sát chúng để giảng giải.');
+      lines.push('4. Chỉ được nói đề thiếu dữ kiện nếu trong toàn bộ nội dung trên thật sự không có dữ kiện toán học cụ thể.');
+
+      return lines.join('\n');
+    },
+
+    auditAIResponse(responseText, questionData) {
+      if (!questionData) return null;
+
+      const sourceText = [
+        questionData.prompt || '',
+        ...(questionData.subparts || []).map(part => `${part.label || ''} ${part.text || ''}`),
+        ...(questionData.options || []).map(option => `${option.label || ''} ${option.text || ''}`)
+      ].join(' ');
+
+      const normalizedResponse = this.normalizeAuditText(responseText);
+      const questionKeywords = this.extractAuditKeywords(sourceText);
+      const matchedKeywords = questionKeywords.filter(keyword => normalizedResponse.includes(keyword));
+      const subpartLabels = (questionData.subparts || []).map(part => String(part.label || '').trim()).filter(Boolean);
+      const coveredSubparts = subpartLabels.filter(label => {
+        const normalizedLabel = this.normalizeAuditText(label).replace(/[^a-z0-9]/g, '');
+        if (!normalizedLabel) return false;
+        return normalizedResponse.includes(normalizedLabel) || normalizedResponse.includes(`y ${normalizedLabel}`) || normalizedResponse.includes(`phan ${normalizedLabel}`);
+      });
+
+      const genericPatterns = [
+        'vui long cung cap',
+        'khong co du lieu cu the',
+        'khong co phuong trinh cu the',
+        'de bai chua day du',
+        'khong the giai chi tiet',
+        'vi du minh hoa',
+        'phuong phap tong quat'
+      ];
+
+      const issues = [];
+      const hasConcreteQuestion = !!((questionData.subparts && questionData.subparts.length) || (questionData.options && questionData.options.length) || questionKeywords.length >= 3);
+      const hasGenericFailure = genericPatterns.some(pattern => normalizedResponse.includes(pattern));
+
+      if (hasConcreteQuestion && hasGenericFailure) {
+        issues.push('AI có dấu hiệu coi đề là thiếu dữ kiện dù câu hỏi đã có nội dung cụ thể.');
+      }
+
+      if (subpartLabels.length > 1 && coveredSubparts.length === 0) {
+        issues.push('AI chưa nhắc tới các ý a), b), c)... của bài toán.');
+      }
+
+      if (questionKeywords.length >= 4 && matchedKeywords.length < 2) {
+        issues.push('Độ khớp từ khóa giữa câu hỏi và phản hồi AI đang thấp.');
+      }
+
+      if (questionData.answer && questionData.answer.kind === 'multiple_choice' && questionData.answer.letter) {
+        const mentionedAnswer = normalizedResponse.includes(`dap an ${this.normalizeAuditText(questionData.answer.letter)}`)
+          || normalizedResponse.includes(`chon ${this.normalizeAuditText(questionData.answer.letter)}`)
+          || (questionData.answer.text && normalizedResponse.includes(this.normalizeAuditText(questionData.answer.text).slice(0, 24)));
+        if ((normalizedResponse.includes('dap an') || normalizedResponse.includes('lua chon')) && !mentionedAnswer) {
+          issues.push('AI có nói về đáp án nhưng không khớp rõ với đáp án chuẩn của câu hỏi.');
+        }
+      }
+
+      return {
+        ok: issues.length === 0,
+        suspected: issues.length > 0,
+        issues,
+        questionId: questionData.questionId || '',
+        questionType: questionData.questionType || '',
+        questionKeywords,
+        matchedKeywords,
+        subpartLabels,
+        coveredSubparts,
+        debugEnabled: this.isDebugEnabled(),
+        responseLength: String(responseText || '').trim().length
+      };
+    },
+
+    formatAuditReport(report) {
+      if (!report) return '';
+      const lines = ['🔎 **AI Debug Report**'];
+      lines.push(`- Mã câu: ${report.questionId || '—'}`);
+      lines.push(`- Loại câu: ${report.questionType || '—'}`);
+      lines.push(`- Kết quả kiểm tra: ${report.ok ? 'Ổn' : 'Cần xem lại'}`);
+      lines.push(`- Độ dài phản hồi: ${report.responseLength}`);
+      if (report.issues.length) lines.push(`- Cảnh báo: ${report.issues.join(' | ')}`);
+      if (report.questionKeywords.length) lines.push(`- Từ khóa đề: ${report.questionKeywords.join(', ')}`);
+      if (report.matchedKeywords.length) lines.push(`- Từ khóa khớp: ${report.matchedKeywords.join(', ')}`);
+      if (report.subpartLabels.length) lines.push(`- Các ý trong đề: ${report.subpartLabels.join(', ')}`);
+      if (report.coveredSubparts.length) lines.push(`- Các ý AI đã nhắc: ${report.coveredSubparts.join(', ')}`);
+      return lines.join('\n');
+    },
+
+    emitAuditReport(report) {
+      this.lastResponseAudit = report;
+      if (!report) return;
+      try {
+        window.dispatchEvent(new CustomEvent('hoclieutoan:ai-audit', { detail: report }));
+      } catch (error) {
+      }
+      if (report.suspected || report.debugEnabled) {
+        const logger = report.suspected ? console.warn : console.log;
+        logger('[AITutor][Audit]', report);
+      }
+    },
+
+    async submitStructuredQuestion(questionData, options = {}) {
+      this.open();
+      const prompt = this.buildStructuredQuestionPrompt(questionData || {});
+      this.lastQuestionContext = prompt;
+      this.lastStructuredQuestion = questionData || null;
+      this.pendingAuditPayload = questionData || null;
+
+      const sidePanel = document.getElementById('ai-side-panel');
+      const presetsPanel = document.getElementById('ai-preset-buttons');
+      const bookmarksPanel = document.getElementById('ai-bookmarks');
+      const sideTitle = document.getElementById('ai-side-title');
+      if (sidePanel) sidePanel.classList.remove('hidden');
+      if (sideTitle) sideTitle.textContent = 'Prompting';
+      if (presetsPanel) presetsPanel.classList.remove('hidden');
+      if (bookmarksPanel) bookmarksPanel.classList.add('hidden');
+      this.showPresetButtons(prompt);
+
+      const delayMs = Number.isFinite(options.delayMs) ? options.delayMs : 100;
+      return new Promise(resolve => {
+        setTimeout(async () => {
+          const input = document.getElementById('ai-input');
+          if (!input) {
+            resolve(null);
+            return;
+          }
+          input.value = prompt;
+          input.focus();
+          input.style.height = 'auto';
+          input.style.height = Math.min(input.scrollHeight, 200) + 'px';
+          const response = await this.sendMessage({ auditPayload: questionData || null });
+          resolve(response);
+        }, delayMs);
+      });
+    },
     
     toggleBookmarks() {
       const section = document.getElementById('ai-bookmarks');
@@ -1290,6 +1511,10 @@
 
     // Format question with full context for AI (including solution)
     formatQuestionForAI(data) {
+      if (data && (data.prompt || (data.subparts && data.subparts.length) || (data.answer && typeof data.answer === 'object'))) {
+        return this.buildStructuredQuestionPrompt(data);
+      }
+
       let text = `**Câu ${data.questionIndex + 1}:** ${data.questionText}`;
       
       // Add options if available
@@ -1334,6 +1559,8 @@
     askAboutBookmark(bookmark) {
       this.open();
       const formattedQuestion = this.formatQuestionForAI(bookmark);
+      this.lastStructuredQuestion = bookmark;
+      this.pendingAuditPayload = bookmark;
       
       // Get user's preferred prompt template
       const preferredTemplate = localStorage.getItem('ai_prompt_template') || 'deep_dive';
@@ -1485,6 +1712,8 @@ Hãy tạo 2-3 bài tập tương tự với độ khó tăng dần để tôi l
       this.open();
       
       const formattedQuestion = this.formatQuestionForAI(questionData);
+      this.lastStructuredQuestion = questionData;
+      this.pendingAuditPayload = questionData;
       
       // Get user's preferred prompt template from localStorage or use default
       const preferredTemplate = localStorage.getItem('ai_prompt_template') || 'deep_dive';
@@ -1585,9 +1814,10 @@ Hãy tạo 2-3 bài tập tương tự với độ khó tăng dần để tôi l
       container.classList.remove('hidden');
     },
 
-    async sendMessage() {
+    async sendMessage(options = {}) {
       const input = document.getElementById('ai-input');
       const message = input.value.trim();
+      const auditPayload = options.auditPayload || this.pendingAuditPayload || null;
       
       if (!message) return;
 
@@ -1609,16 +1839,27 @@ Hãy tạo 2-3 bài tập tương tự với độ khó tăng dần để tôi l
         const response = await this.callAIService(message);
         this.removeTyping(typingId);
         this.addMessage(response, 'bot');
+
+        const auditReport = this.auditAIResponse(response, auditPayload);
+        this.emitAuditReport(auditReport);
+        if (auditReport && auditReport.debugEnabled) {
+          this.addMessage(this.formatAuditReport(auditReport), 'bot', !auditReport.ok);
+        } else if (auditReport && auditReport.suspected) {
+          this.addMessage('⚠️ Kiểm tra tự động cho thấy phản hồi AI có thể chưa bám sát đầy đủ đề bài. Bạn nên đối chiếu lại các ý của câu hỏi hoặc hỏi lại.', 'bot', true);
+        }
+        this.pendingAuditPayload = null;
         
         this.conversationHistory.push({
           role: 'assistant',
           content: response
         });
+        return response;
       } catch (error) {
         this.removeTyping(typingId);
         const errorMsg = error.message || 'Lỗi không xác định';
         this.addMessage(`Xin lỗi, đã có lỗi xảy ra (${errorMsg}). Vui lòng thử lại sau.`, 'bot', true);
         console.error('AI Error:', error);
+        return null;
       }
     },
 
@@ -1629,6 +1870,9 @@ CONTEXT QUAN TRỌNG:
 - Khi user gửi câu hỏi có kèm "[Lời giải có sẵn]" hoặc "[Lời giải tham khảo]", đó là lời giải chuẩn đã được kiểm duyệt
 - Hãy DỰA VÀO lời giải đó để giảng giải, KHÔNG tự bịa ra cách giải khác trừ khi được yêu cầu
 - Mục tiêu là giúp học sinh HIỂU lời giải, không phải tạo lời giải mới
+- Nếu user gửi khối "[Đề bài]", "[Các ý của bài toán]", "[Các đáp án]", hãy coi đó là dữ kiện chính thức và đầy đủ của câu hỏi
+- Nếu bài có nhiều ý a), b), c)... phải giải lần lượt từng ý, không được bỏ qua
+- Chỉ được nói đề thiếu dữ kiện khi trong toàn bộ message thật sự không có biểu thức, phương trình, hệ thức hoặc dữ kiện cụ thể
 
 Nhiệm vụ của bạn:
 1. Giải thích các bài toán một cách chi tiết, dễ hiểu
@@ -1710,21 +1954,30 @@ Quy tắc format:
     },
 
     formatMessage(content) {
+      content = String(content == null ? '' : content);
+
       // First, protect LaTeX math expressions from escaping
       const mathBlocks = [];
       let idx = 0;
-      
+
       // Protect display math $$...$$ and \[...\]
       let formatted = content.replace(/\$\$([\s\S]*?)\$\$|\\\[([\s\S]*?)\\\]/g, (match) => {
         mathBlocks.push(match);
         return `%%MATH_BLOCK_${idx++}%%`;
       });
-      
+
       // Protect inline math $...$ and \(...\) (but not $$ which we already handled)
       formatted = formatted.replace(/\$([^\$\n]+?)\$|\\\(([\s\S]+?)\\\)/g, (match) => {
         mathBlocks.push(match);
         return `%%MATH_BLOCK_${idx++}%%`;
       });
+
+      // Unescape stringified control chars that slipped in from JSON payloads.
+      // Math was extracted above, so these replacements won't break LaTeX like \neq, \tau.
+      formatted = formatted
+        .replace(/\\r\\n/g, '\n')
+        .replace(/\\n/g, '\n')
+        .replace(/\\t/g, '    ');
       
       // Now escape HTML
       formatted = this.escapeHtml(formatted);
@@ -1800,6 +2053,9 @@ Quy tắc format:
 
     clearChat() {
       this.conversationHistory = [];
+      this.lastStructuredQuestion = null;
+      this.lastResponseAudit = null;
+      this.pendingAuditPayload = null;
       const container = document.getElementById('ai-messages');
       container.innerHTML = `
         <div class="ai-message ai-message-bot">

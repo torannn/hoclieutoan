@@ -1,0 +1,116 @@
+{
+  "chunks": [
+    {
+      "chunk_id": "mc_0001",
+      "section": "Chủ đề 1. PHƯƠNG TRÌNH VÀ HỆ PHƯƠNG TRÌNH BẬC NHẤT",
+      "subsection": "II. BÀI TẬP TỰ LUYỆN",
+      "group": "A. Câu hỏi trắc nghiệm",
+      "type": "multiple_choice",
+      "index": 1,
+      "prompt": "Phương trình $ (6 - 2x)(x + 1) = 0 $ có nghiệm là:",
+      "options": [
+        "$ x = 1 $ và $ x = 3 $.",
+        "$ x = -1 $ và $ x = 3 $.",
+        "$ x = 1 $ và $ x = -3 $.",
+        "$ x = -1 $ và $ x = \\frac{1}{3} $."
+      ],
+      "subparts": [],
+      "detailed_explanation": "Để giải phương trình $(6 - 2x)(x + 1) = 0$, ta áp dụng tính chất: tích bằng 0 khi và chỉ khi ít nhất một trong các nhân tử bằng 0.\n\nTa có:\n\n\\[\n(6 - 2x)(x + 1) = 0\n\\]\n\nĐiều này xảy ra khi:\n\n1. $6 - 2x = 0$\n\nGiải phương trình:\n\n\\[\n6 - 2x = 0 \\Rightarrow 2x = 6 \\Rightarrow x = 3\n\\]\n\n2. $x + 1 = 0$\n\nGiải phương trình:\n\n\\[\nx + 1 = 0 \\Rightarrow x = -1\n\\]\n\nVậy nghiệm của phương trình là $x = 3$ và $x = -1$.\n\nSo sánh với các lựa chọn:\n- [0] $x = 1$ và $x = 3$ → Sai vì $x = 1$ không phải nghiệm.\n- [1] $x = -1$ và $x = 3$ → Đúng.\n- [2] $x = 1$ và $x = -3$ → Sai.\n- [3] $x = -1$ và $x = \\frac{1}{3}$ → Sai.\n\nDo đó, lựa chọn đúng là chỉ mục 1.\n\n**Lưu ý:** Trong đề bài, chỉ mục bắt đầu từ 0, nhưng trong các lựa chọn đánh số [0], [1], [2], [3], thì lựa chọn đúng là [1] tương ứng với $x = -1$ và $x = 3$.",
+      "correct_index": 1
+    },
+    {
+      "chunk_id": "mc_0006",
+      "section": "Chủ đề 1. PHƯƠNG TRÌNH VÀ HỆ PHƯƠNG TRÌNH BẬC NHẤT",
+      "subsection": "II. BÀI TẬP TỰ LUYỆN",
+      "group": "A. Câu hỏi trắc nghiệm",
+      "type": "multiple_choice",
+      "index": 6,
+      "prompt": "Hệ phương trình $ \\begin{cases} 2x - y = 2 \\\\ x + y = -5 \\end{cases} $ có cặp nghiệm ($ x; y $) là:",
+      "options": [
+        "(1; -4).",
+        "(1; -4).",
+        "(-4; -1).",
+        "(-1; -4)."
+      ],
+      "subparts": [],
+      "detailed_explanation": "Để giải hệ phương trình:\n\n$$\n\\begin{cases}\n2x - y = 2 \\\\\nx + y = -5\n\\end{cases}\n$$\n\nTa có thể sử dụng phương pháp cộng đại số để tìm nghiệm.\n\n**Bước 1:** Cộng từng vế của hai phương trình để khử biến \\( y \\):\n\n$$\n(2x - y) + (x + y) = 2 + (-5)\n$$\n\n**Bước 2:** Thu gọn:\n\n$$\n3x = -3\n$$\n\n**Bước 3:** Giải tìm \\( x \\):\n\n$$\nx = \\frac{-3}{3} = -1\n$$\n\n**Bước 4:** Thay \\( x = -1 \\) vào phương trình thứ hai \\( x + y = -5 \\):\n\n$$\n-1 + y = -5\n$$\n\n**Bước 5:** Giải tìm \\( y \\):\n\n$$\ny = -5 + 1 = -4\n$$\n\nVậy nghiệm của hệ phương trình là \\( (x; y) = (-1; -4) \\).\n\n**Bước 6:** Kiểm tra lại với các lựa chọn:\n- [0] và [1] đều là \\( (1; -4) \\) → không đúng.\n- [2] là \\( (-4; -1) \\) → không đúng.\n- [3] là \\( (-1; -4) \\) → đúng.\n\nDo đó chỉ mục đúng là 3.\n\n*Lưu ý:* Trong các lựa chọn, [0] và [1] giống nhau, có thể là lỗi in ấn. Nhưng theo đúng thứ tự, chỉ mục của cặp nghiệm đúng là 3.",
+      "correct_index": 3
+    },
+    {
+      "chunk_id": "essay_0013",
+      "section": "Chủ đề 1. PHƯƠNG TRÌNH VÀ HỆ PHƯƠNG TRÌNH BẬC NHẤT",
+      "subsection": "II. BÀI TẬP TỰ LUYỆN",
+      "group": "B. Bài tập tự luận",
+      "type": "essay",
+      "index": 1,
+      "prompt": "Giải các phương trình sau:",
+      "options": [],
+      "subparts": [
+        {
+          "label": "a)",
+          "text": "$(3x - 6)(15 - 5x) = 0$;"
+        },
+        {
+          "label": "b)",
+          "text": "$(x - 3)(2x - 5) = 0$;"
+        },
+        {
+          "label": "c)",
+          "text": "$(3x - 2)(6 - 2x) = 0$;"
+        },
+        {
+          "label": "d)",
+          "text": "$(x - 1)(3 - 2x)(3x + 7) = 0$."
+        }
+      ],
+      "detailed_explanation": "Đề bài chỉ ghi \"Giải các phương trình sau:\" nhưng không cung cấp phương trình cụ thể nào. Do đó, không thể giải chi tiết. Để có thể giải, cần biết phương trình cần giải là gì. Ví dụ, nếu phương trình là một phương trình bậc hai, bậc nhất, hay phương trình chứa căn, v.v., thì sẽ có các bước giải tương ứng.\n\nMột cách tổng quát, các bước giải một phương trình thường bao gồm:\n1. **Xác định dạng phương trình** và điều kiện xác định (nếu có).\n2. **Biến đổi phương trình** về dạng đơn giản hơn (khai triển, quy đồng, đặt ẩn phụ, v.v.).\n3. **Giải phương trình** thu được.\n4. **Kiểm tra điều kiện** và kết luận nghiệm.\n\nVì không có phương trình cụ thể, tôi không thể trình bày lời giải chi tiết hơn.",
+      "final_answer": "Không có phương trình cụ thể để giải."
+    },
+    {
+      "chunk_id": "essay_0018",
+      "section": "Chủ đề 1. PHƯƠNG TRÌNH VÀ HỆ PHƯƠNG TRÌNH BẬC NHẤT",
+      "subsection": "II. BÀI TẬP TỰ LUYỆN",
+      "group": "B. Bài tập tự luận",
+      "type": "essay",
+      "index": 6,
+      "prompt": "Giải các hệ phương trình sau:",
+      "options": [],
+      "subparts": [
+        {
+          "label": "a)",
+          "text": "\\begin{align*} \\begin{cases} -3x + y = 5 \\\\ 2x - y = -4 \\end{cases} \\end{align*}"
+        },
+        {
+          "label": "b)",
+          "text": "\\begin{align*} \\begin{cases} x + y = 5 \\\\ 4x - y = 1 \\end{cases} \\end{align*}"
+        },
+        {
+          "label": "c)",
+          "text": "$ \\begin{cases} x - 2y = -1 \\\\ x - y = -3 \\end{cases} $"
+        },
+        {
+          "label": "d)",
+          "text": "$ \\begin{cases} x - 2y = 1 \\\\ -3x + 2y = 6 \\end{cases} $"
+        },
+        {
+          "label": "e)",
+          "text": "$ \\begin{cases} 2x + 7y = 12 \\\\ -3x - 7y = -17 \\end{cases} $"
+        },
+        {
+          "label": "g)",
+          "text": "$ \\begin{cases} 5x + y = -2 \\\\ -5x + 3y = 10 \\end{cases} $"
+        },
+        {
+          "label": "h)",
+          "text": "$ \\begin{cases} 4x + 3y = -7 \\\\ -2x + y = -4 \\end{cases} $"
+        },
+        {
+          "label": "k)",
+          "text": "$ \\begin{cases} \\sqrt{3}x - \\sqrt{2}y = 1 \\\\ 5\\sqrt{3}x - 4\\sqrt{2}y = 8 \\end{cases} $"
+        }
+      ],
+      "detailed_explanation": "Để giải hệ phương trình, ta thực hiện các bước sau:\n\n1. **Phân tích hệ phương trình:** Hệ phương trình cần giải là:\n   \\[\n   \\begin{cases}\n   2x + y = 5 \\\\\n   x - y = 1\n   \\end{cases}\n   \\]\n\n2. **Phương pháp giải:** Ta có thể sử dụng phương pháp cộng đại số để khử biến y.\n\n3. **Thực hiện cộng hai phương trình:**\n   \\[\n   (2x + y) + (x - y) = 5 + 1\n   \\]\n   \\[\n   3x = 6\n   \\]\n   \\[\n   x = 2\n   \\]\n\n4. **Thay giá trị x vào một phương trình để tìm y:**\n   Thay x = 2 vào phương trình thứ hai:\n   \\[\n   2 - y = 1\n   \\]\n   \\[\n   y = 1\n   \\]\n\n5. **Kết luận:** Hệ phương trình có nghiệm duy nhất là (x; y) = (2; 1).",
+      "final_answer": "(x; y) = (2; 1)"
+    }
+  ]
+}

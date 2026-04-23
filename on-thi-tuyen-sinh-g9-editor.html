@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor câu hỏi ôn thi tuyển sinh lớp 9</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --bg:#f7fafc; --card:#ffffff; --muted:#64748b; --border:#e2e8f0;
+    --primary:#2563eb; --primary-dark:#1d4ed8; --danger:#dc2626;
+    --warning:#d97706; --success:#16a34a; --chip:#eef2ff; --chip-text:#3730a3;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:#0f172a;height:100vh;overflow:hidden}
+  header{background:#0f172a;color:#fff;padding:10px 16px;display:flex;align-items:center;gap:16px}
+  header h1{font-size:16px;margin:0;font-weight:600}
+  header .stats{font-size:13px;color:#cbd5e1}
+  header .actions{margin-left:auto;display:flex;gap:8px}
+  button{cursor:pointer;border:1px solid var(--border);background:#fff;padding:6px 12px;border-radius:6px;font-size:13px}
+  button.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+  button.primary:hover{background:var(--primary-dark)}
+  button.danger{background:var(--danger);color:#fff;border-color:var(--danger)}
+  button:disabled{opacity:0.5;cursor:not-allowed}
+  .app{display:grid;grid-template-columns:320px 1fr 1fr;height:calc(100vh - 44px)}
+  .list-pane,.edit-pane,.preview-pane{overflow-y:auto;border-right:1px solid var(--border);background:var(--card)}
+  .preview-pane{border-right:none}
+  .filters{position:sticky;top:0;background:#f1f5f9;padding:10px;border-bottom:1px solid var(--border);z-index:2}
+  .filters input[type=text],.filters select{width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-size:13px;margin-bottom:6px}
+  .filters label{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+  .q-item{padding:8px 10px;border-bottom:1px solid var(--border);cursor:pointer;font-size:13px}
+  .q-item:hover{background:#f1f5f9}
+  .q-item.active{background:#dbeafe;border-left:3px solid var(--primary)}
+  .q-item .q-head{display:flex;justify-content:space-between;gap:6px;font-weight:600;color:#334155}
+  .q-item .q-preview{color:var(--muted);font-size:12px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical}
+  .q-item .badge{font-size:11px;padding:1px 6px;border-radius:3px;background:var(--chip);color:var(--chip-text)}
+  .q-item.flagged .badge{background:#fef3c7;color:#92400e}
+  .q-item.has-error .badge{background:#fee2e2;color:var(--danger)}
+  .pane-title{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);padding:10px 16px 4px;border-bottom:1px solid var(--border);background:#f8fafc;position:sticky;top:0;z-index:1;display:flex;justify-content:space-between;align-items:center}
+  .form{padding:16px}
+  .form .group{margin-bottom:14px}
+  .form label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
+  .form input[type=text],.form input[type=number],.form textarea,.form select{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.55;background:#fff}
+  .form textarea{resize:vertical;min-height:80px}
+  .option-row,.subpart-row{display:flex;gap:6px;margin-bottom:6px;align-items:flex-start}
+  .option-row input[type=radio]{margin-top:10px}
+  .option-row input[type=text],.subpart-row input[type=text],.subpart-row textarea{flex:1}
+  .subpart-row input[type=text]{max-width:60px}
+  .row-actions{display:flex;flex-direction:column;gap:4px}
+  .row-actions button{padding:2px 8px;font-size:12px}
+  .btn-add{font-size:12px;padding:4px 8px}
+  .save-bar{position:sticky;bottom:0;background:#fff;padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center}
+  .save-bar .status{font-size:13px;color:var(--muted);margin-right:auto}
+  .save-bar .status.ok{color:var(--success)}
+  .save-bar .status.err{color:var(--danger)}
+  .save-bar .status.dirty{color:var(--warning)}
+  .preview{padding:16px;font-size:14px;line-height:1.6}
+  .preview .qprompt{font-weight:600;margin-bottom:10px}
+  .preview .subpart{margin:6px 0;padding-left:12px;border-left:2px solid var(--border)}
+  .preview .option{padding:6px 8px;margin:4px 0;border:1px solid var(--border);border-radius:6px;background:#fafafa}
+  .preview .option.correct{border-color:var(--success);background:#dcfce7;font-weight:600}
+  .preview .option .letter{display:inline-block;width:20px;font-weight:700;color:var(--primary)}
+  .preview .expl{margin-top:16px;padding:10px;background:#f8fafc;border-left:3px solid var(--primary);border-radius:3px;white-space:pre-wrap}
+  .preview .meta{font-size:12px;color:var(--muted);margin-bottom:6px}
+  .problems-banner{padding:8px 12px;margin:0 16px 12px;border-radius:6px;font-size:13px;background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+  .problems-banner ul{margin:4px 0 0 18px;padding:0}
+  .problems-banner.none{background:#dcfce7;color:#166534;border-color:#86efac}
+  .empty{padding:40px 20px;text-align:center;color:var(--muted);font-size:14px}
+  .kbd{background:#e2e8f0;border-radius:3px;padding:1px 6px;font-family:ui-monospace,monospace;font-size:12px}
+  /* Narrow: collapse list into a horizontal bar on top, keep edit + preview side by side */
+  @media (max-width: 1100px) {
+    .app{grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;height:calc(100vh - 44px)}
+    .list-pane{grid-column:1/-1;max-height:180px;border-right:none;border-bottom:1px solid var(--border)}
+    .list-pane .filters{padding:6px 10px}
+    .list-pane .filters input[type=text],.list-pane .filters select{margin-bottom:3px}
+    .edit-pane{grid-column:1;grid-row:2}
+    .preview-pane{grid-column:2;grid-row:2}
+  }
+  @media (max-width: 720px) {
+    .app{grid-template-columns:1fr;grid-template-rows:auto auto 1fr}
+    .edit-pane{grid-column:1;grid-row:2;max-height:50vh}
+    .preview-pane{grid-column:1;grid-row:3}
+  }
+  /* Toggle-preview button lets you full-width the editor when preview not needed */
+  body.hide-preview .preview-pane{display:none}
+  body.hide-preview .app{grid-template-columns:320px 1fr}
+  @media (max-width: 1100px){ body.hide-preview .app{grid-template-columns:1fr} body.hide-preview .edit-pane{grid-column:1} }
+</style>
+</head>
+<body>
+<header>
+  <h1>📝 Editor câu hỏi — Ôn thi tuyển sinh lớp 9</h1>
+  <div class="stats" id="stats">Đang tải…</div>
+  <div class="actions">
+    <button id="btn-toggle-preview" title="Ẩn/hiện preview">👁 Preview</button>
+    <button id="btn-rescan" title="Quét lại dữ liệu tìm lỗi">🔍 Quét lại</button>
+    <button id="btn-reload">↻ Tải lại danh sách</button>
+  </div>
+</header>
+
+<div class="app">
+  <!-- LIST PANE -->
+  <div class="list-pane">
+    <div class="filters">
+      <input id="filter-search" type="text" placeholder="Tìm theo chunk_id hoặc nội dung…">
+      <select id="filter-type">
+        <option value="">— Mọi loại —</option>
+        <option value="multiple_choice">Trắc nghiệm</option>
+        <option value="essay">Tự luận</option>
+      </select>
+      <label><input type="checkbox" id="filter-flagged"> Chỉ hiện câu có dấu hiệu lỗi</label>
+    </div>
+    <div id="q-list"></div>
+  </div>
+
+  <!-- EDIT PANE -->
+  <div class="edit-pane">
+    <div class="pane-title">
+      <span>✏️ Chỉnh sửa</span>
+      <span id="edit-id" style="font-family:ui-monospace,monospace;text-transform:none;letter-spacing:normal"></span>
+    </div>
+    <div id="edit-body"><div class="empty">← Chọn một câu hỏi từ danh sách bên trái để bắt đầu chỉnh sửa.</div></div>
+    <div class="save-bar" id="save-bar" style="display:none">
+      <span class="status" id="save-status">Chưa có thay đổi</span>
+      <button id="btn-revert">↶ Hoàn tác</button>
+      <button id="btn-save" class="primary">💾 Lưu</button>
+    </div>
+  </div>
+
+  <!-- PREVIEW PANE -->
+  <div class="preview-pane">
+    <div class="pane-title"><span>👁 Xem trước (live, render MathJax)</span></div>
+    <div id="preview" class="preview"><div class="empty">Xem trước sẽ hiện ở đây khi bạn chọn câu.</div></div>
+  </div>
+</div>
+
+<script>
+const API_BASE = (() => {
+  // If served from file:// or a port other than 3001, assume backend at :3001
+  const { protocol, hostname, port } = window.location;
+  if (protocol === 'file:') return 'http://localhost:3001';
+  if (port && port !== '3001') return `${protocol}//${hostname}:3001`;
+  return '';
+})();
+
+let allQuestions = [];      // list items from /api/g9/questions
+let currentQ = null;        // full question object being edited
+let originalSnapshot = null; // JSON string for dirty detection
+
+const $ = id => document.getElementById(id);
+const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+// ============== LOAD LIST ==============
+async function loadList() {
+  try {
+    const r = await fetch(`${API_BASE}/api/g9/questions`);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const data = await r.json();
+    allQuestions = data.questions;
+    const hist = data.scan_histogram || {};
+    const histStr = Object.entries(hist).map(([k,v]) => `${k}:${v}`).join(' · ') || 'không có';
+    $('stats').textContent = `${data.total} câu · ${data.flagged_total} câu có dấu hiệu lỗi · ${histStr}`;
+    renderList();
+  } catch (e) {
+    $('stats').textContent = 'Lỗi tải dữ liệu: ' + e.message + ' (kiểm tra backend đang chạy ở :3001)';
+  }
+}
+
+function renderList() {
+  const search = $('filter-search').value.trim().toLowerCase();
+  const type = $('filter-type').value;
+  const flaggedOnly = $('filter-flagged').checked;
+  const container = $('q-list');
+  const filtered = allQuestions.filter(q => {
+    if (type && q.type !== type) return false;
+    if (flaggedOnly && (!q.problems || q.problems.length === 0)) return false;
+    if (search) {
+      const hay = (q.chunk_id + ' ' + (q.prompt_preview || '')).toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="empty">Không có câu nào khớp tiêu chí.</div>';
+    return;
+  }
+  container.innerHTML = filtered.map(q => {
+    const hasError = q.problems && q.problems.length > 0;
+    const cls = 'q-item' + (hasError ? ' has-error' : '') + (currentQ && currentQ.chunk_id === q.chunk_id ? ' active' : '');
+    const badge = hasError ? `<span class="badge" title="${escapeHtml(q.problems.join(', '))}">⚠ ${q.problems.length}</span>` : `<span class="badge">${q.type === 'multiple_choice' ? 'MC' : 'TL'}</span>`;
+    return `<div class="${cls}" data-id="${q.chunk_id}">
+      <div class="q-head"><span>${q.chunk_id} · #${q.index}</span>${badge}</div>
+      <div class="q-preview">${escapeHtml(q.prompt_preview)}</div>
+    </div>`;
+  }).join('');
+  container.querySelectorAll('.q-item').forEach(el => {
+    el.addEventListener('click', () => selectQuestion(el.dataset.id));
+  });
+}
+
+// ============== SELECT ==============
+async function selectQuestion(id) {
+  if (currentQ && isDirty() && !confirm('Bạn có thay đổi chưa lưu. Tiếp tục bỏ?')) return;
+  try {
+    const r = await fetch(`${API_BASE}/api/g9/question/${encodeURIComponent(id)}`);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const { question } = await r.json();
+    currentQ = question;
+    originalSnapshot = JSON.stringify(question);
+    $('edit-id').textContent = question.chunk_id;
+    renderEditor();
+    renderPreview();
+    renderList(); // highlight active
+  } catch (e) {
+    alert('Lỗi tải câu hỏi: ' + e.message);
+  }
+}
+
+function isDirty() {
+  if (!currentQ || !originalSnapshot) return false;
+  return JSON.stringify(currentQ) !== originalSnapshot;
+}
+
+function updateSaveStatus() {
+  const st = $('save-status');
+  if (!currentQ) return;
+  if (isDirty()) { st.className = 'status dirty'; st.textContent = '● Có thay đổi chưa lưu'; }
+  else { st.className = 'status'; st.textContent = 'Chưa có thay đổi'; }
+}
+
+// ============== EDITOR UI ==============
+function renderEditor() {
+  $('save-bar').style.display = 'flex';
+  const q = currentQ;
+  const flagged = (allQuestions.find(x => x.chunk_id === q.chunk_id) || {}).problems || [];
+  const banner = flagged.length > 0
+    ? `<div class="problems-banner"><strong>⚠ Dấu hiệu lỗi:</strong><ul>${flagged.map(p=>`<li>${escapeHtml(p)}</li>`).join('')}</ul></div>`
+    : `<div class="problems-banner none">✓ Không phát hiện lỗi tự động</div>`;
+
+  let body = `${banner}<div class="form">
+    <div class="group"><label>Section</label><input type="text" data-bind="section"></div>
+    <div class="group"><label>Subsection</label><input type="text" data-bind="subsection"></div>
+    <div class="group"><label>Group</label><input type="text" data-bind="group"></div>
+    <div class="group"><label>Type</label><input type="text" data-bind="type" disabled></div>
+    <div class="group"><label>Prompt (hỗ trợ LaTeX \\( \\) hoặc $…$)</label><textarea data-bind="prompt" rows="4"></textarea></div>`;
+
+  if (q.type === 'multiple_choice') {
+    body += `<div class="group"><label>Options (chọn 1 đáp án đúng)</label><div id="mc-options"></div>
+      <button class="btn-add" type="button" onclick="addOption()">+ Thêm lựa chọn</button></div>`;
+  } else if (q.type === 'essay') {
+    body += `<div class="group"><label>Subparts</label><div id="essay-subparts"></div>
+      <button class="btn-add" type="button" onclick="addSubpart()">+ Thêm ý (subpart)</button></div>`;
+  }
+
+  body += `<div class="group"><label>Final answer (đáp số tổng — hiển thị dưới phần lời giải trên học liệu)</label><input type="text" data-bind="final_answer" placeholder="Ví dụ: $-2$ hoặc $x=3$"></div>`;
+  body += `<div class="group"><label>Detailed explanation (lời giải chi tiết — fallback khi không có subpart_solutions)</label><textarea data-bind="detailed_explanation" rows="10"></textarea></div>`;
+
+  // subpart_solutions block (essay only, or any chunk that already has it)
+  if (q.type === 'essay' || Array.isArray(q.subpart_solutions)) {
+    const hasSS = Array.isArray(q.subpart_solutions) && q.subpart_solutions.length > 0;
+    body += `<div class="group">
+      <label style="display:flex;justify-content:space-between;align-items:center">
+        <span>Subpart solutions ${hasSS ? `(${q.subpart_solutions.length} ý — <strong style="color:var(--warning)">ưu tiên hơn detailed_explanation khi hiển thị</strong>)` : '(chưa có)'}</span>
+        <span style="display:flex;gap:6px">
+          <button type="button" class="btn-add" onclick="syncSubpartSolutionsFromSubparts()">↻ Đồng bộ theo Subparts</button>
+          ${hasSS ? '<button type="button" class="btn-add" style="background:#fee2e2;color:#991b1b;border-color:#fecaca" onclick="deleteSubpartSolutions()">🗑 Xoá (dùng detailed_explanation)</button>' : ''}
+        </span>
+      </label>
+      <div id="subpart-solutions"></div>
+    </div>`;
+  }
+
+  body += `</div>`;
+
+  $('edit-body').innerHTML = body;
+
+  // Bind scalar fields
+  $('edit-body').querySelectorAll('[data-bind]').forEach(el => {
+    const key = el.dataset.bind;
+    el.value = q[key] ?? '';
+    el.addEventListener('input', () => {
+      q[key] = el.value;
+      renderPreview();
+      updateSaveStatus();
+    });
+  });
+
+  if (q.type === 'multiple_choice') renderOptions();
+  else if (q.type === 'essay') renderSubparts();
+  if (document.getElementById('subpart-solutions')) renderSubpartSolutions();
+
+  updateSaveStatus();
+}
+
+// ============== SUBPART_SOLUTIONS ==============
+function renderSubpartSolutions() {
+  const wrap = $('subpart-solutions');
+  if (!wrap) return;
+  const arr = currentQ.subpart_solutions || [];
+  if (arr.length === 0) { wrap.innerHTML = '<div style="font-size:12px;color:var(--muted);padding:6px 0">Không có. Phần hiển thị sẽ fallback về <em>detailed_explanation</em>.</div>'; return; }
+  wrap.innerHTML = arr.map((s, i) => `
+    <div style="border:1px solid var(--border);border-radius:6px;padding:8px;margin-bottom:8px;background:#fafafa">
+      <div style="display:flex;gap:6px;margin-bottom:4px;align-items:center">
+        <input type="text" style="max-width:70px" value="${escapeHtml(s.label || '')}" oninput="updateSS(${i},'label',this.value)" placeholder="a)">
+        <input type="text" value="${escapeHtml(s.final_answer || '')}" oninput="updateSS(${i},'final_answer',this.value)" placeholder="Đáp số (tuỳ chọn)" style="flex:1">
+        <button type="button" onclick="removeSS(${i})" title="Xoá ý này">✕</button>
+      </div>
+      <textarea rows="6" style="width:100%" oninput="updateSS(${i},'explanation',this.value)" placeholder="Lời giải ý này…">${escapeHtml(s.explanation || s.solution || '')}</textarea>
+    </div>
+  `).join('');
+}
+window.updateSS = (i, k, v) => {
+  if (!currentQ.subpart_solutions) currentQ.subpart_solutions = [];
+  currentQ.subpart_solutions[i][k] = v;
+  // If user sets `explanation` but data originally used `solution`, also sync it
+  if (k === 'explanation' && 'solution' in currentQ.subpart_solutions[i]) {
+    currentQ.subpart_solutions[i].solution = v;
+  }
+  renderPreview(); updateSaveStatus();
+};
+window.removeSS = i => {
+  currentQ.subpart_solutions.splice(i, 1);
+  renderSubpartSolutions(); renderPreview(); updateSaveStatus();
+};
+window.deleteSubpartSolutions = () => {
+  if (!confirm('Xoá toàn bộ mảng subpart_solutions? Khi đó học liệu sẽ hiển thị lại từ detailed_explanation.')) return;
+  delete currentQ.subpart_solutions;
+  renderEditor(); renderPreview();
+};
+window.syncSubpartSolutionsFromSubparts = () => {
+  const labels = (currentQ.subparts || []).map(s => (s && s.label) || '');
+  if (!labels.length) { alert('Không có subparts để đồng bộ.'); return; }
+  const old = Array.isArray(currentQ.subpart_solutions) ? currentQ.subpart_solutions : [];
+  const byLabel = new Map(old.map(o => [(o.label || '').trim(), o]));
+  currentQ.subpart_solutions = labels.map(lab => {
+    const existing = byLabel.get(lab.trim());
+    return existing || { label: lab, explanation: '', final_answer: '' };
+  });
+  renderEditor(); renderPreview();
+};
+
+function renderOptions() {
+  const wrap = $('mc-options');
+  const opts = currentQ.options || [];
+  wrap.innerHTML = opts.map((opt, i) => `
+    <div class="option-row">
+      <input type="radio" name="mc-correct" ${currentQ.correct_index === i ? 'checked' : ''} onchange="setCorrect(${i})" title="Đánh dấu đáp án đúng">
+      <input type="text" value="${escapeHtml(opt)}" oninput="updateOption(${i}, this.value)">
+      <div class="row-actions">
+        <button type="button" onclick="removeOption(${i})" title="Xoá">✕</button>
+        <button type="button" onclick="moveOption(${i},-1)" title="Lên">↑</button>
+        <button type="button" onclick="moveOption(${i},1)" title="Xuống">↓</button>
+      </div>
+    </div>
+  `).join('');
+}
+window.setCorrect = i => { currentQ.correct_index = i; renderPreview(); updateSaveStatus(); };
+window.updateOption = (i, v) => { currentQ.options[i] = v; renderPreview(); updateSaveStatus(); };
+window.addOption = () => { if (!currentQ.options) currentQ.options = []; currentQ.options.push(''); renderOptions(); renderPreview(); updateSaveStatus(); };
+window.removeOption = i => {
+  currentQ.options.splice(i, 1);
+  if (currentQ.correct_index === i) currentQ.correct_index = null;
+  else if (currentQ.correct_index > i) currentQ.correct_index--;
+  renderOptions(); renderPreview(); updateSaveStatus();
+};
+window.moveOption = (i, dir) => {
+  const j = i + dir;
+  if (j < 0 || j >= currentQ.options.length) return;
+  const arr = currentQ.options; [arr[i], arr[j]] = [arr[j], arr[i]];
+  if (currentQ.correct_index === i) currentQ.correct_index = j;
+  else if (currentQ.correct_index === j) currentQ.correct_index = i;
+  renderOptions(); renderPreview(); updateSaveStatus();
+};
+
+function renderSubparts() {
+  const wrap = $('essay-subparts');
+  const sps = currentQ.subparts || [];
+  wrap.innerHTML = sps.map((s, i) => `
+    <div class="subpart-row">
+      <input type="text" value="${escapeHtml(s.label || '')}" placeholder="a)" oninput="updateSubpart(${i},'label',this.value)">
+      <textarea rows="2" oninput="updateSubpart(${i},'text',this.value)" placeholder="Nội dung ý…">${escapeHtml(s.text || '')}</textarea>
+      <div class="row-actions">
+        <button type="button" onclick="removeSubpart(${i})">✕</button>
+        <button type="button" onclick="moveSubpart(${i},-1)">↑</button>
+        <button type="button" onclick="moveSubpart(${i},1)">↓</button>
+      </div>
+    </div>
+  `).join('');
+}
+window.updateSubpart = (i, k, v) => { currentQ.subparts[i][k] = v; renderPreview(); updateSaveStatus(); };
+window.addSubpart = () => { if (!currentQ.subparts) currentQ.subparts = []; currentQ.subparts.push({ label: '', text: '' }); renderSubparts(); renderPreview(); updateSaveStatus(); };
+window.removeSubpart = i => { currentQ.subparts.splice(i, 1); renderSubparts(); renderPreview(); updateSaveStatus(); };
+window.moveSubpart = (i, dir) => {
+  const j = i + dir;
+  if (j < 0 || j >= currentQ.subparts.length) return;
+  const arr = currentQ.subparts; [arr[i], arr[j]] = [arr[j], arr[i]];
+  renderSubparts(); renderPreview(); updateSaveStatus();
+};
+
+// ============== PREVIEW ==============
+let previewTimer = null;
+function renderPreview() {
+  clearTimeout(previewTimer);
+  previewTimer = setTimeout(doRenderPreview, 150);
+}
+function doRenderPreview() {
+  const q = currentQ;
+  if (!q) { $('preview').innerHTML = '<div class="empty">—</div>'; return; }
+  let html = `<div class="meta">${escapeHtml(q.section || '')} · ${escapeHtml(q.subsection || '')} · ${q.type === 'multiple_choice' ? 'Trắc nghiệm' : 'Tự luận'}</div>`;
+  html += `<div class="qprompt">${escapeHtml(q.prompt || '')}</div>`;
+  if (q.type === 'multiple_choice' && Array.isArray(q.options)) {
+    const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+    html += q.options.map((o, i) => `<div class="option ${q.correct_index === i ? 'correct' : ''}"><span class="letter">${letters[i] || (i+1)}.</span>${escapeHtml(o)}${q.correct_index === i ? ' ✓' : ''}</div>`).join('');
+  } else if (q.type === 'essay' && Array.isArray(q.subparts)) {
+    html += q.subparts.map(s => `<div class="subpart"><strong>${escapeHtml(s.label || '')}</strong> ${escapeHtml(s.text || '')}</div>`).join('');
+  }
+  // Prefer subpart_solutions (matches practice-page behaviour)
+  if (Array.isArray(q.subpart_solutions) && q.subpart_solutions.length) {
+    html += `<div class="expl"><strong>Lời giải theo từng ý (từ subpart_solutions — đây là cái học liệu ưu tiên hiển thị):</strong>`;
+    html += q.subpart_solutions.map(s => {
+      const expl = escapeHtml(s.explanation || s.solution || '');
+      const fin = s.final_answer ? `<div style="margin-top:4px"><em>Đáp số:</em> ${escapeHtml(s.final_answer)}</div>` : '';
+      return `<div style="margin-top:10px;padding:8px;background:#fff;border-radius:4px;border-left:3px solid var(--success)"><strong>${escapeHtml(s.label || '')}</strong>\n${expl}${fin}</div>`;
+    }).join('');
+    html += `</div>`;
+    if (q.detailed_explanation) {
+      html += `<details style="margin-top:10px"><summary style="cursor:pointer;color:var(--muted);font-size:13px">detailed_explanation (fallback, không được dùng khi có subpart_solutions)</summary><div class="expl" style="opacity:0.6">${escapeHtml(q.detailed_explanation)}</div></details>`;
+    }
+  } else if (q.detailed_explanation) {
+    html += `<div class="expl"><strong>Lời giải:</strong>\n${escapeHtml(q.detailed_explanation)}</div>`;
+  }
+  if (q.final_answer) {
+    html += `<div style="margin-top:10px;padding:8px 10px;background:#fef3c7;border:1px solid #fde68a;border-radius:4px"><strong>Đáp số (final_answer):</strong> ${escapeHtml(q.final_answer)}</div>`;
+  }
+  $('preview').innerHTML = html;
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([$('preview')]).catch(()=>{});
+}
+
+// ============== SAVE ==============
+async function save() {
+  if (!currentQ) return;
+  const btn = $('btn-save'); btn.disabled = true;
+  try {
+    const r = await fetch(`${API_BASE}/api/g9/question/${encodeURIComponent(currentQ.chunk_id)}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: currentQ })
+    });
+    const data = await r.json();
+    if (!r.ok || !data.success) throw new Error(data.error || 'save_failed');
+    currentQ = data.question;
+    originalSnapshot = JSON.stringify(currentQ);
+    const st = $('save-status'); st.className = 'status ok'; st.textContent = '✓ Đã lưu lúc ' + new Date().toLocaleTimeString();
+  } catch (e) {
+    const st = $('save-status'); st.className = 'status err'; st.textContent = '✗ Lỗi: ' + e.message;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function revert() {
+  if (!originalSnapshot) return;
+  currentQ = JSON.parse(originalSnapshot);
+  renderEditor();
+  renderPreview();
+}
+
+async function rescan() {
+  const btn = $('btn-rescan'); btn.disabled = true; btn.textContent = '⏳ Đang quét…';
+  try {
+    const r = await fetch(`${API_BASE}/api/g9/scan`, { method: 'POST' });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'scan_failed');
+    await loadList();
+  } catch (e) {
+    alert('Lỗi quét: ' + e.message);
+  } finally {
+    btn.disabled = false; btn.textContent = '🔍 Quét lại';
+  }
+}
+
+// ============== EVENTS ==============
+$('btn-toggle-preview').addEventListener('click', () => {
+  document.body.classList.toggle('hide-preview');
+});
+$('btn-reload').addEventListener('click', loadList);
+$('btn-rescan').addEventListener('click', rescan);
+$('btn-save').addEventListener('click', save);
+$('btn-revert').addEventListener('click', revert);
+$('filter-search').addEventListener('input', renderList);
+$('filter-type').addEventListener('change', renderList);
+$('filter-flagged').addEventListener('change', renderList);
+
+// Ctrl+S to save
+window.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); save(); }
+});
+
+// Warn on page unload if dirty
+window.addEventListener('beforeunload', e => {
+  if (isDirty()) { e.preventDefault(); e.returnValue = ''; }
+});
+
+loadList();
+</script>
+</body>
+</html>

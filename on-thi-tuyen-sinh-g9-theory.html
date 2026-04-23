@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sổ tay Lý thuyết — Ôn thi Tuyển sinh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <!-- MathJax -->
+  <script src="assets/js/mathjax-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <!-- Marked.js -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    :root {
+      --duo-bg: #f7f7f7;
+    }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--duo-bg);
+      color: #1c1c1e;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .top-bar {
+      position: sticky; top: 0; z-index: 50;
+      background: #fff;
+      border-bottom: 2px solid #e5e5e5;
+      padding: 12px 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .close-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #f5f5f5; border: none; cursor: pointer;
+      font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.15s;
+    }
+    .close-btn:hover { background: #eee; }
+    .header-title { flex: 1; font-weight: 800; font-size: 1.05rem; color: #555; }
+
+    .main-content {
+      max-width: 680px; margin: 0 auto;
+      padding: 32px 16px 80px;
+    }
+
+    .overview-card {
+      background: #fff;
+      border-radius: 24px;
+      border: 3px solid #e5e5e5;
+      padding: 16px 16px 14px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .topic-kicker { font-size: 0.75rem; font-weight: 900; color: #f59e0b; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; }
+    .topic-main-title { font-size: 1rem; font-weight: 900; line-height: 1.25; margin: 0 0 10px; color: #0f172a; }
+    .topic-subtitle { font-size: 0.82rem; color: #64748b; font-weight: 700; margin: 10px 0 0; }
+    .stage-progress-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .stage-progress-label { font-size: 0.82rem; font-weight: 800; color: #334155; }
+    .stage-progress-meta { font-size: 0.82rem; font-weight: 800; color: #94a3b8; }
+    .stage-progress-rail { width: 100%; height: 8px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin-bottom: 12px; }
+    .stage-progress-fill { height: 100%; background: linear-gradient(90deg, #58cc02, #1cb0f6); border-radius: 999px; transition: width 0.25s ease; }
+    .stage-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stage-chip {
+      border: 2px solid #e5e7eb;
+      background: #fff;
+      border-radius: 999px;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stage-chip:hover:not(.locked) { transform: translateY(-1px); border-color: #cbd5e1; }
+    .stage-chip.locked { opacity: 0.5; cursor: not-allowed; }
+    .stage-chip.active { border-color: #1cb0f6; background: #eff6ff; }
+    .stage-chip.done { border-color: #86efac; background: #f0fdf4; }
+    .stage-chip-index { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 999px; font-size: 0.8rem; font-weight: 900; background: #f1f5f9; color: #334155; }
+    .stage-chip.active .stage-chip-index { background: #1cb0f6; color: #fff; }
+    .stage-chip.done .stage-chip-index { background: #58cc02; color: #fff; }
+    .current-stage-title { margin-top: 10px; font-size: 0.92rem; font-weight: 800; color: #0f172a; }
+
+    .theory-card {
+      background: #fff;
+      border-radius: 24px;
+      border: 3px solid #e5e5e5;
+      padding: 32px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    
+    .theory-card h1 { font-size: 1.8rem; font-weight: 900; margin-top: 0; color: #1c1c1e; }
+    .theory-card h2 { font-size: 1.3rem; font-weight: 800; margin: 24px 0 12px; color: #3b82f6; border-bottom: 2px dashed #e5e5e5; padding-bottom: 8px; }
+    .theory-card h3 { font-size: 1.1rem; font-weight: 800; margin: 20px 0 10px; color: #1c1c1e; }
+    .theory-card p { font-size: 1.05rem; line-height: 1.7; margin-bottom: 14px; }
+    .theory-card ul { margin-left: 20px; margin-bottom: 14px; list-style-type: disc; font-size: 1.05rem; line-height: 1.6; }
+    .theory-card ol { margin-left: 20px; margin-bottom: 14px; font-size: 1.05rem; line-height: 1.6; }
+    .theory-card li { margin-bottom: 6px; }
+    .theory-card pre { white-space: pre-wrap; word-break: break-word; font-family: inherit; font-size: 1rem; line-height: 1.7; background: #f8fafc; border-radius: 14px; padding: 14px 16px; border: 1px solid #e5e7eb; }
+    .theory-card blockquote { margin: 0 0 16px; padding: 12px 16px; border-left: 4px solid #f59e0b; background: #fffbeb; border-radius: 0 12px 12px 0; color: #92400e; font-weight: 700; }
+    .theory-card strong { color: #0f172a; }
+    .theory-card .math-display { margin: 14px 0; padding: 2px 0; background: transparent; border: none; border-radius: 0; overflow-x: auto; text-align: center; }
+    .theory-card .label-line { margin-bottom: 6px; line-height: 1.7; font-size: 1.05rem; }
+    .theory-card .label-line strong { font-weight: 800; color: #1c1c1e; }
+
+    .nav-card {
+      background: #fff;
+      border-radius: 24px;
+      border: 3px solid #e5e5e5;
+      padding: 16px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .nav-spacer { flex: 1; min-width: 10px; }
+    .nav-btn {
+      border: none;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .nav-btn:hover:not(:disabled) { filter: brightness(1.03); transform: translateY(-1px); }
+    .nav-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .nav-btn.secondary { background: #f1f5f9; color: #334155; }
+    .nav-btn.primary { background: #58cc02; color: #fff; }
+    .nav-btn.ghost { background: #e0f2fe; color: #0369a1; }
+    .nav-note { width: 100%; font-size: 0.83rem; color: #64748b; font-weight: 700; }
+
+    .cta-card {
+      background: linear-gradient(135deg, #ecfccb, #dbeafe);
+      border-radius: 24px;
+      border: 3px solid #bfdbfe;
+      padding: 18px;
+      margin-top: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .cta-title { font-size: 1rem; font-weight: 900; margin: 0 0 4px; color: #0f172a; }
+    .cta-sub { font-size: 0.86rem; font-weight: 700; color: #475569; margin: 0 0 14px; }
+    .cta-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    
+    .empty-state { text-align: center; color: #888; font-weight: 700; padding: 40px 20px; }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <button class="close-btn" onclick="window.location.href='on-thi-tuyen-sinh-g9.html'" title="Trở về">✕</button>
+  <div class="header-title" id="headerTitle">Sổ tay Lý thuyết</div>
+</div>
+
+<div class="main-content">
+  <div class="overview-card">
+    <div class="topic-kicker" id="topicKicker">Sổ tay lý thuyết</div>
+    <h1 class="topic-main-title" id="topicMainTitle">Đang tải chủ đề...</h1>
+    <div class="stage-progress-row">
+      <div class="stage-progress-label" id="stageCounter">Đang tải...</div>
+      <div class="stage-progress-meta" id="stageCompletion">0/0 hoàn thành</div>
+    </div>
+    <div class="stage-progress-rail">
+      <div class="stage-progress-fill" id="stageProgressFill" style="width:0%"></div>
+    </div>
+    <div class="stage-grid" id="stageList"></div>
+    <div class="current-stage-title" id="currentStageTitle"></div>
+    <p class="topic-subtitle" id="topicSubtitle">Học lần lượt từng dạng, hoàn thành xong mới mở tiếp dạng sau.</p>
+  </div>
+  <div class="theory-card" id="theoryContainer">
+    <div class="empty-state">Đang tải lý thuyết...</div>
+  </div>
+  <div class="nav-card" id="navCard" style="display:none">
+    <button class="nav-btn secondary" id="prevBtn" onclick="goPrev()">← Dạng trước</button>
+    <button class="nav-btn primary" id="completeBtn" onclick="completeCurrentStage()">Đã học xong dạng này</button>
+    <div class="nav-spacer"></div>
+    <button class="nav-btn ghost" id="nextBtn" onclick="goNext()">Dạng tiếp theo →</button>
+    <div class="nav-note" id="navNote"></div>
+  </div>
+  <div class="cta-card" id="ctaCard" style="display:none">
+    <div class="cta-title">Bạn đã học xong toàn bộ lý thuyết của chủ đề này 🎉</div>
+    <div class="cta-sub">Tiếp theo, hãy chuyển sang luyện tập để củng cố kiến thức.</div>
+    <div class="cta-actions">
+      <button class="nav-btn primary" onclick="openPractice('mc')">Làm trắc nghiệm</button>
+      <button class="nav-btn secondary" onclick="openPractice('essay')">Làm tự luận</button>
+      <button class="nav-btn ghost" onclick="openPractice('all')">Làm hỗn hợp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const topicId = params.get('topic') || '';
+  const THEORY_PROGRESS_KEY = 'g9TheoryProgressV1';
+  let currentTopic = null;
+  let currentStageIndex = 0;
+  let stageItems = [];
+  let topicProgress = { completed: [] };
+
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function renderMarkdownFallback(md) {
+    const lines = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+    const html = [];
+    let inList = false;
+    let inMathBlock = false;
+    let mathBuffer = [];
+
+    function closeList() {
+      if (inList) {
+        html.push('</ul>');
+        inList = false;
+      }
+    }
+
+    function pushParagraph(text) {
+      if (!text.trim()) return;
+      html.push(`<p>${escapeHtml(text)}</p>`);
+    }
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+
+      if (line === '\\[') {
+        closeList();
+        inMathBlock = true;
+        mathBuffer = ['\\['];
+        continue;
+      }
+
+      if (inMathBlock) {
+        mathBuffer.push(rawLine);
+        if (line === '\\]') {
+          html.push(`<pre>${escapeHtml(mathBuffer.join('\n'))}</pre>`);
+          inMathBlock = false;
+          mathBuffer = [];
+        }
+        continue;
+      }
+
+      if (!line) {
+        closeList();
+        continue;
+      }
+
+      if (line.startsWith('# ')) {
+        closeList();
+        html.push(`<h1>${escapeHtml(line.slice(2))}</h1>`);
+        continue;
+      }
+
+      if (line.startsWith('## ')) {
+        closeList();
+        html.push(`<h2>${escapeHtml(line.slice(3))}</h2>`);
+        continue;
+      }
+
+      if (line.startsWith('### ')) {
+        closeList();
+        html.push(`<h3>${escapeHtml(line.slice(4))}</h3>`);
+        continue;
+      }
+
+      if (line.startsWith('> ')) {
+        closeList();
+        html.push(`<blockquote>${escapeHtml(line.slice(2))}</blockquote>`);
+        continue;
+      }
+
+      if (line.startsWith('- ')) {
+        if (!inList) {
+          html.push('<ul>');
+          inList = true;
+        }
+        html.push(`<li>${escapeHtml(line.slice(2))}</li>`);
+        continue;
+      }
+
+      closeList();
+      pushParagraph(rawLine);
+    }
+
+    closeList();
+
+    if (inMathBlock && mathBuffer.length) {
+      html.push(`<pre>${escapeHtml(mathBuffer.join('\n'))}</pre>`);
+    }
+
+    return html.join('\n');
+  }
+
+  function renderMarkdown(md) {
+    if (window.marked && typeof window.marked.parse === 'function') {
+      window.marked.setOptions({ breaks: true, gfm: true });
+      return window.marked.parse(md);
+    }
+    return renderMarkdownFallback(md);
+  }
+
+  function formatInline(text) {
+    return escapeHtml(text).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  }
+
+  function stripStageTitle(title) {
+    return title
+      .replace(/\$[^$]*\$/g, '')
+      .replace(/\\[a-zA-Z]+/g, '')
+      .replace(/[{}]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function normalizeStageMarkdown(md) {
+    return md
+      .replace(/\r\n/g, '\n')
+      .replace(/\r/g, '\n')
+      .replace(/^\*\*Ví dụ giải:\*\*$/gm, '### Lời giải')
+      .replace(/^\*\*Phương pháp giải:\*\*$/gm, '### Phương pháp giải')
+      .replace(/^\-\s+Phương pháp giải:\s*/gm, '### Phương pháp giải\n')
+      .replace(/(^|\n)-\s+([^\n:]{1,80})\n(?=##\s+Dạng)/g, '$1### $2\n')
+      .replace(/\$\s*\\bullet\s*\$/g, '\n- ')
+      .replace(/\s+(##\s+Dạng)/g, '\n$1')
+      .replace(/\s+(###\s+Ví dụ)/g, '\n$1')
+      .replace(/\s+(###\s+Lời giải)/g, '\n$1')
+      .replace(/(###\s+Ví dụ\s+\d+\.)\s+(?=\S)/g, '$1\n')
+      .replace(/([:?.!;])\s*([a-z]\))/g, '$1\n$2')
+      .replace(/(^|\n)([a-z]\))\s+(?=\\begin\{cases\})/g, '$1$2\n')
+      .replace(/(^|\n)([a-z]\))\s+(\\begin\{cases\}[\s\S]*?\\end\{cases\})/g, '$1$2\n\\[\n$3\n\\]')
+      .replace(/([^\\])(\\begin\{cases\}[\s\S]*?\\end\{cases\})/g, '$1\n\\[\n$2\n\\]')
+      .replace(/\\\[\s*([^\n][\s\S]*?[^\n])\s*\\\]/g, '\\[\n$1\n\\]')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+  }
+
+  function renderTheoryContent(md) {
+    const source = normalizeStageMarkdown(md);
+    const lines = source.split('\n');
+    const html = [];
+    let listType = null;
+    let paragraphBuffer = [];
+
+    function closeList() {
+      if (listType) {
+        html.push(listType === 'ol' ? '</ol>' : '</ul>');
+        listType = null;
+      }
+    }
+
+    function flushParagraph() {
+      if (!paragraphBuffer.length) return;
+      const content = paragraphBuffer.map(s => s.trim()).filter(Boolean).join(' ');
+      if (content) html.push(`<p>${formatInline(content)}</p>`);
+      paragraphBuffer = [];
+    }
+
+    for (let i = 0; i < lines.length; i++) {
+      const rawLine = lines[i];
+      const line = rawLine.trim();
+      if (!line) {
+        flushParagraph();
+        closeList();
+        continue;
+      }
+
+      if (line === '\\[') {
+        flushParagraph();
+        closeList();
+        const block = ['\\['];
+        i++;
+        while (i < lines.length) {
+          block.push(lines[i]);
+          if (lines[i].trim() === '\\]') break;
+          i++;
+        }
+        html.push(`<div class="math-display">${formatInline(block.join('\n'))}</div>`);
+        continue;
+      }
+
+      if (line === '\\]') {
+        flushParagraph();
+        continue;
+      }
+
+      if (line.startsWith('## ')) {
+        flushParagraph();
+        closeList();
+        html.push(`<h2>${formatInline(line.slice(3))}</h2>`);
+        continue;
+      }
+
+      if (line.startsWith('### ')) {
+        flushParagraph();
+        closeList();
+        const headingText = line.slice(4).trim();
+        const exampleMatch = headingText.match(/^(Ví dụ\s+\d+\.)(?:\s+(.*))?$/);
+        if (exampleMatch) {
+          html.push(`<p><strong>${formatInline(exampleMatch[1])}</strong></p>`);
+          if (exampleMatch[2]) {
+            html.push(`<p>${formatInline(exampleMatch[2])}</p>`);
+          }
+        } else {
+          html.push(`<h3>${formatInline(headingText)}</h3>`);
+        }
+        continue;
+      }
+
+      if (line.startsWith('> ')) {
+        flushParagraph();
+        closeList();
+        html.push(`<blockquote>${formatInline(line.slice(2))}</blockquote>`);
+        continue;
+      }
+
+      const abcMatch = line.match(/^([a-z]\))\s*(.*)$/);
+      if (abcMatch) {
+        flushParagraph();
+        closeList();
+        if (abcMatch[2]) {
+          html.push(`<div class="label-line"><strong>${formatInline(abcMatch[1])}</strong> ${formatInline(abcMatch[2])}</div>`);
+        } else {
+          html.push(`<div class="label-line"><strong>${formatInline(abcMatch[1])}</strong></div>`);
+        }
+        continue;
+      }
+
+      if (line.startsWith('- ')) {
+        flushParagraph();
+        if (listType !== 'ul') {
+          closeList();
+          listType = 'ul';
+          html.push('<ul>');
+        }
+        html.push(`<li>${formatInline(line.slice(2))}</li>`);
+        continue;
+      }
+
+      if (/^\d+\./.test(line)) {
+        flushParagraph();
+        if (listType !== 'ol') {
+          closeList();
+          listType = 'ol';
+          html.push('<ol>');
+        }
+        html.push(`<li>${formatInline(line.replace(/^\d+\.\s*/, ''))}</li>`);
+        continue;
+      }
+
+      closeList();
+      paragraphBuffer.push(rawLine);
+    }
+
+    flushParagraph();
+    closeList();
+    return html.join('\n');
+  }
+
+  function loadTheoryProgressMap() {
+    try {
+      return JSON.parse(localStorage.getItem(THEORY_PROGRESS_KEY)) || {};
+    } catch {
+      return {};
+    }
+  }
+
+  function saveTheoryProgressMap(progressMap) {
+    localStorage.setItem(THEORY_PROGRESS_KEY, JSON.stringify(progressMap));
+  }
+
+  function syncTopicProgress() {
+    const all = loadTheoryProgressMap();
+    const raw = all[topicId] || {};
+    const completed = Array.isArray(raw.completed) ? raw.completed.slice(0, stageItems.length) : [];
+    while (completed.length < stageItems.length) completed.push(false);
+    topicProgress = { completed };
+  }
+
+  function persistTopicProgress() {
+    const all = loadTheoryProgressMap();
+    all[topicId] = topicProgress;
+    saveTheoryProgressMap(all);
+  }
+
+  function getCompletedCount() {
+    return topicProgress.completed.filter(Boolean).length;
+  }
+
+  function getMaxUnlockedIndex() {
+    const firstIncomplete = topicProgress.completed.findIndex(v => !v);
+    if (firstIncomplete === -1) return Math.max(0, stageItems.length - 1);
+    return firstIncomplete;
+  }
+
+  function isUnlocked(index) {
+    return index <= getMaxUnlockedIndex();
+  }
+
+  function splitTheoryMarkdown(md) {
+    const normalized = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+    const titleMatch = normalized.match(/^#\s+(.+)$/m);
+    const kickerMatch = normalized.match(/^>\s+(.+)$/m);
+    let body = normalized
+      .replace(/^#\s+.+$/m, '')
+      .replace(/^>\s+.+$/m, '')
+      .trim();
+
+    body = body.replace(/^##\s+Các dạng toán trọng tâm\s*/m, '').trim();
+
+    const headingRegex = /^##\s+(Dạng[^\n]+)$/gm;
+    const matches = [...body.matchAll(headingRegex)];
+
+    if (!matches.length) {
+      return {
+        title: titleMatch ? titleMatch[1].trim() : 'Sổ tay lý thuyết',
+        kicker: kickerMatch ? kickerMatch[1].trim() : '',
+        intro: '',
+        stages: [{ title: 'Nội dung chính', content: body }]
+      };
+    }
+
+    const intro = body.slice(0, matches[0].index).trim();
+    const stages = matches.map((match, index) => {
+      const start = match.index;
+      const end = index + 1 < matches.length ? matches[index + 1].index : body.length;
+      return {
+        title: match[1].trim(),
+        content: body.slice(start, end).trim()
+      };
+    });
+
+    return {
+      title: titleMatch ? titleMatch[1].trim() : 'Sổ tay lý thuyết',
+      kicker: kickerMatch ? kickerMatch[1].trim() : '',
+      intro,
+      stages
+    };
+  }
+
+  function renderStageList() {
+    const listEl = document.getElementById('stageList');
+    listEl.innerHTML = stageItems.map((stage, index) => {
+      const locked = !isUnlocked(index);
+      const done = !!topicProgress.completed[index];
+      const active = index === currentStageIndex;
+      return `
+        <button
+          class="stage-chip ${locked ? 'locked' : ''} ${done ? 'done' : ''} ${active ? 'active' : ''}"
+          title="${escapeHtml(stripStageTitle(stage.title) || stage.title)}"
+          onclick="selectStage(${index})"
+          ${locked ? 'disabled' : ''}
+        >
+          <span class="stage-chip-index">${done ? '✓' : index + 1}</span>
+        </button>
+      `;
+    }).join('');
+  }
+
+  function renderCurrentStage() {
+    const container = document.getElementById('theoryContainer');
+    const navCard = document.getElementById('navCard');
+    const ctaCard = document.getElementById('ctaCard');
+    if (!stageItems.length) {
+      container.innerHTML = `<div class="empty-state">Chưa có nội dung lý thuyết.</div>`;
+      navCard.style.display = 'none';
+      ctaCard.style.display = 'none';
+      return;
+    }
+
+    const stage = stageItems[currentStageIndex];
+    const introBlock = currentStageIndex === 0 && currentTopic.intro
+      ? currentTopic.intro + '\n\n'
+      : '';
+    container.innerHTML = renderTheoryContent(introBlock + stage.content);
+
+    document.getElementById('topicKicker').textContent = currentTopic.kicker || 'Sổ tay lý thuyết';
+    document.getElementById('topicMainTitle').textContent = currentTopic.title;
+    document.getElementById('topicSubtitle').textContent = `Chủ đề này có ${stageItems.length} dạng trọng tâm.`;
+    document.getElementById('stageCounter').textContent = `Đang học: dạng ${currentStageIndex + 1}/${stageItems.length}`;
+    document.getElementById('stageCompletion').textContent = `${getCompletedCount()}/${stageItems.length} hoàn thành`;
+    document.getElementById('stageProgressFill').style.width = `${stageItems.length ? (getCompletedCount() / stageItems.length) * 100 : 0}%`;
+    document.getElementById('currentStageTitle').textContent = stripStageTitle(stage.title) || `Dạng ${currentStageIndex + 1}`;
+
+    renderStageList();
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const completeBtn = document.getElementById('completeBtn');
+    const navNote = document.getElementById('navNote');
+
+    prevBtn.disabled = currentStageIndex === 0;
+    nextBtn.disabled = currentStageIndex >= getMaxUnlockedIndex() || currentStageIndex === stageItems.length - 1;
+    completeBtn.textContent = topicProgress.completed[currentStageIndex]
+      ? 'Đã hoàn thành dạng này'
+      : 'Đã học xong dạng này';
+    navNote.textContent = topicProgress.completed[currentStageIndex]
+      ? 'Bạn có thể chuyển sang dạng tiếp theo hoặc ôn lại dạng này.'
+      : 'Hãy đánh dấu hoàn thành để mở khóa dạng tiếp theo.';
+    navCard.style.display = 'flex';
+    ctaCard.style.display = getCompletedCount() === stageItems.length ? 'block' : 'none';
+
+    if (window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise([container]).catch(() => {});
+    }
+  }
+
+  function selectStage(index) {
+    if (!isUnlocked(index)) return;
+    currentStageIndex = index;
+    renderCurrentStage();
+  }
+
+  function completeCurrentStage() {
+    if (!stageItems.length) return;
+    topicProgress.completed[currentStageIndex] = true;
+    persistTopicProgress();
+    if (currentStageIndex < stageItems.length - 1 && isUnlocked(currentStageIndex + 1)) {
+      currentStageIndex += 1;
+    }
+    renderCurrentStage();
+  }
+
+  function goPrev() {
+    if (currentStageIndex === 0) return;
+    currentStageIndex -= 1;
+    renderCurrentStage();
+  }
+
+  function goNext() {
+    if (currentStageIndex >= stageItems.length - 1) return;
+    if (!isUnlocked(currentStageIndex + 1)) return;
+    currentStageIndex += 1;
+    renderCurrentStage();
+  }
+
+  function openPractice(mode) {
+    window.location.href = `on-thi-tuyen-sinh-g9-practice.html?topic=${encodeURIComponent(topicId)}&mode=${mode}`;
+  }
+
+  async function fetchTextWithTimeout(url, timeoutMs = 8000) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const resp = await fetch(url, { signal: controller.signal });
+      return resp;
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  async function loadTheory() {
+    const container = document.getElementById('theoryContainer');
+    try {
+      if (!topicId) {
+        container.innerHTML = `<div class="empty-state">Không xác định được chủ đề lý thuyết.</div>`;
+        return;
+      }
+
+      const manifestResp = await fetchTextWithTimeout('data/grade9/on-thi-tuyen-sinh/sections-manifest.json');
+      const manifest = await manifestResp.json();
+      const topic = manifest.topics.find(t => t.id === topicId);
+      
+      if (topic) {
+        document.getElementById('headerTitle').textContent = 'Sổ tay: ' + topic.label;
+      }
+
+      const theoryResp = await fetchTextWithTimeout(`data/grade9/on-thi-tuyen-sinh/theory/${topicId}.md`);
+      if (!theoryResp.ok) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div style="font-size:3rem;margin-bottom:10px">🚧</div>
+            Phần lý thuyết cho chủ đề này đang được biên soạn.<br>Hãy quay lại sau nhé!
+          </div>`;
+        return;
+      }
+      
+      const mdContent = await theoryResp.text();
+      currentTopic = splitTheoryMarkdown(mdContent);
+      stageItems = currentTopic.stages;
+      syncTopicProgress();
+      currentStageIndex = Math.min(getMaxUnlockedIndex(), Math.max(0, currentStageIndex));
+      renderCurrentStage();
+    } catch (e) {
+      container.innerHTML = `<div class="empty-state">Không tải được lý thuyết. Vui lòng thử tải lại trang.</div>`;
+    }
+  }
+
+  loadTheory();
+</script>
+</body>
+</html>

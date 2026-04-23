@@ -1,0 +1,180 @@
+{
+  "__meta": {
+    "cache_version": "2",
+    "prompt_version": "2026-04-17-v2",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "input_file": "data/grade9/on-thi-tuyen-sinh/__deepinfra_test_subset.json",
+    "output_file": "data/grade9/on-thi-tuyen-sinh/__deepinfra_test_output.json",
+    "run_signature": "461cb826b5357b3adbd410e7c98bebcfb6f0f3c3",
+    "updated_at": "2026-04-17T07:25:18.959Z",
+    "previous_updated_at": null,
+    "force_refresh": true,
+    "force_refresh_ids": [],
+    "reuse_suspected_cache": false,
+    "reused_count": 0,
+    "invalidated_count": 0,
+    "solved_count": 4,
+    "total_chunks": 4
+  },
+  "mc_0001": {
+    "id": "mc_0001",
+    "detailed_explanation": "Phương trình $(6 - 2x)(x + 1) = 0$ là phương trình tích. Để phương trình tích bằng 0, ít nhất một trong các nhân tử phải bằng 0. Ta giải từng nhân tử:\n1) $6 - 2x = 0 \\Leftrightarrow 2x = 6 \\Leftrightarrow x = 3$.\n2) $x + 1 = 0 \\Leftrightarrow x = -1$.\nVậy phương trình có hai nghiệm là $x = 3$ và $x = -1$. So sánh với các lựa chọn:\n[0] $x = 1$ và $x = 3$ → Sai vì $x = 1$ không phải nghiệm.\n[1] $x = -1$ và $x = 3$ → Đúng.\n[2] $x = 1$ và $x = -3$ → Sai.\n[3] $x = -1$ và $x = \\frac{1}{3}$ → Sai.\nDo đó đáp án đúng là lựa chọn [1].",
+    "correct_index": 1,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T07:22:13.684Z",
+    "cache_version": "2",
+    "prompt_version": "2026-04-17-v2",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "eec36a0e2a2693a8365a2351b9f10b24b3a4564c",
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "nghiem",
+        "frac"
+      ],
+      "matchedKeywords": [
+        "nghiem",
+        "frac"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "responseLength": 530
+    },
+    "attempts": 1,
+    "debug": {
+      "prompt": "Bạn sẽ nhận một bài toán toán học ở dạng có cấu trúc. Hãy sử dụng toàn bộ dữ kiện được cung cấp.\nBẮT BUỘC trả về một JSON object hợp lệ, không có text thừa ngoài JSON.\n\n[Mã câu] mc_0001\n[Loại câu] multiple_choice\n[Chủ đề] Chủ đề 1. PHƯƠNG TRÌNH VÀ HỆ PHƯƠNG TRÌNH BẬC NHẤT\n[Phân mục] II. BÀI TẬP TỰ LUYỆN\n[Nhóm] A. Câu hỏi trắc nghiệm\n\n[Đề bài]\nPhương trình $ (6 - 2x)(x + 1) = 0 $ có nghiệm là:\n\n[Các lựa chọn]\n[0] $ x = 1 $ và $ x = 3 $.\n[1] $ x = -1 $ và $ x = 3 $.\n[2] $ x = 1 $ và $ x = -3 $.\n[3] $ x = -1 $ và $ x = \\frac{1}{3} $.\n\n[Yêu cầu xuất JSON]\n{\n  \"detailed_explanation\": \"Lời giải chi tiết, bám đúng dữ kiện của đề\",\n  \"correct_index\": 0\n}\ncorrect_index phải là số nguyên từ 0 đến 3.\nNếu bài có nhiều ý phụ thì phải phân tích đủ các ý trước khi kết luận đáp án.",
+      "model": "deepseek-ai/DeepSeek-V3.2"
+    }
+  },
+  "mc_0006": {
+    "id": "mc_0006",
+    "detailed_explanation": "Giải hệ phương trình: $\\begin{cases} 2x - y = 2 \\\\ x + y = -5 \\end{cases}$.\nCộng từng vế hai phương trình: $(2x - y) + (x + y) = 2 + (-5) \\Rightarrow 3x = -3 \\Rightarrow x = -1$.\nThay $x = -1$ vào phương trình thứ hai: $-1 + y = -5 \\Rightarrow y = -4$.\nVậy nghiệm của hệ là $(x; y) = (-1; -4)$.\nKiểm tra các lựa chọn: [0] (1; -4), [1] (1; -4), [2] (-4; -1), [3] (-1; -4). Lựa chọn đúng là [3] (-1; -4).\nLưu ý: [0] và [1] giống nhau, nhưng theo chỉ dẫn, chỉ số đúng là chỉ mục của lựa chọn chứa đáp án đúng. Do đó, chỉ số đúng là 3.",
+    "correct_index": 3,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T07:22:28.147Z",
+    "cache_version": "2",
+    "prompt_version": "2026-04-17-v2",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "02c8bef3be331a89d360f7d6dd2a622181e1cd53",
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "begin",
+        "cases",
+        "end",
+        "cap",
+        "nghiem"
+      ],
+      "matchedKeywords": [
+        "begin",
+        "cases",
+        "end",
+        "nghiem"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "responseLength": 531
+    },
+    "attempts": 1,
+    "debug": {
+      "prompt": "Bạn sẽ nhận một bài toán toán học ở dạng có cấu trúc. Hãy sử dụng toàn bộ dữ kiện được cung cấp.\nBẮT BUỘC trả về một JSON object hợp lệ, không có text thừa ngoài JSON.\n\n[Mã câu] mc_0006\n[Loại câu] multiple_choice\n[Chủ đề] Chủ đề 1. PHƯƠNG TRÌNH VÀ HỆ PHƯƠNG TRÌNH BẬC NHẤT\n[Phân mục] II. BÀI TẬP TỰ LUYỆN\n[Nhóm] A. Câu hỏi trắc nghiệm\n\n[Đề bài]\nHệ phương trình $ \\begin{cases} 2x - y = 2 \\\\ x + y = -5 \\end{cases} $ có cặp nghiệm ($ x; y $) là:\n\n[Các lựa chọn]\n[0] (1; -4).\n[1] (1; -4).\n[2] (-4; -1).\n[3] (-1; -4).\n\n[Yêu cầu xuất JSON]\n{\n  \"detailed_explanation\": \"Lời giải chi tiết, bám đúng dữ kiện của đề\",\n  \"correct_index\": 0\n}\ncorrect_index phải là số nguyên từ 0 đến 3.\nNếu bài có nhiều ý phụ thì phải phân tích đủ các ý trước khi kết luận đáp án.",
+      "model": "deepseek-ai/DeepSeek-V3.2"
+    }
+  },
+  "essay_0013": {
+    "id": "essay_0013",
+    "detailed_explanation": "a) Phương trình $(3x - 6)(15 - 5x) = 0$.\\nĐể tích bằng 0 thì một trong hai nhân tử bằng 0.\\n- $3x - 6 = 0 \\Leftrightarrow 3x = 6 \\Leftrightarrow x = 2$.\\n- $15 - 5x = 0 \\Leftrightarrow 5x = 15 \\Leftrightarrow x = 3$.\\nVậy phương trình có tập nghiệm $S = \\{2; 3\\}$.\\n\\nb) Phương trình $(x - 3)(2x - 5) = 0$.\\n- $x - 3 = 0 \\Leftrightarrow x = 3$.\\n- $2x - 5 = 0 \\Leftrightarrow 2x = 5 \\Leftrightarrow x = \\frac{5}{2}$.\\nVậy tập nghiệm $S = \\left\\{3; \\frac{5}{2}\\right\\}$.\\n\\nc) Phương trình $(3x - 2)(6 - 2x) = 0$.\\n- $3x - 2 = 0 \\Leftrightarrow 3x = 2 \\Leftrightarrow x = \\frac{2}{3}$.\\n- $6 - 2x = 0 \\Leftrightarrow 2x = 6 \\Leftrightarrow x = 3$.\\nVậy tập nghiệm $S = \\left\\{\\frac{2}{3}; 3\\right\\}$.\\n\\nd) Phương trình $(x - 1)(3 - 2x)(3x + 7) = 0$.\\nTích bằng 0 khi một trong ba nhân tử bằng 0.\\n- $x - 1 = 0 \\Leftrightarrow x = 1$.\\n- $3 - 2x = 0 \\Leftrightarrow 2x = 3 \\Leftrightarrow x = \\frac{3}{2}$.\\n- $3x + 7 = 0 \\Leftrightarrow 3x = -7 \\Leftrightarrow x = -\\frac{7}{3}$.\\nVậy tập nghiệm $S = \\left\\{1; \\frac{3}{2}; -\\frac{7}{3}\\right\\}$.",
+    "correct_index": null,
+    "correct_values": null,
+    "final_answer": "a) $S = \\{2; 3\\}$; b) $S = \\left\\{3; \\frac{5}{2}\\right\\}$; c) $S = \\left\\{\\frac{2}{3}; 3\\right\\}$; d) $S = \\left\\{1; \\frac{3}{2}; -\\frac{7}{3}\\right\\}$.",
+    "timestamp": "2026-04-17T07:22:57.074Z",
+    "cache_version": "2",
+    "prompt_version": "2026-04-17-v2",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "02d8b5785844b0e40038e51df501df47e4866496",
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [],
+      "matchedKeywords": [],
+      "subpartLabels": [
+        "a)",
+        "b)",
+        "c)",
+        "d)"
+      ],
+      "coveredSubparts": [
+        "a)",
+        "b)",
+        "c)",
+        "d)"
+      ],
+      "responseLength": 1199
+    },
+    "attempts": 1,
+    "debug": {
+      "prompt": "Bạn sẽ nhận một bài toán toán học ở dạng có cấu trúc. Hãy sử dụng toàn bộ dữ kiện được cung cấp.\nBẮT BUỘC trả về một JSON object hợp lệ, không có text thừa ngoài JSON.\n\n[Mã câu] essay_0013\n[Loại câu] essay\n[Chủ đề] Chủ đề 1. PHƯƠNG TRÌNH VÀ HỆ PHƯƠNG TRÌNH BẬC NHẤT\n[Phân mục] II. BÀI TẬP TỰ LUYỆN\n[Nhóm] B. Bài tập tự luận\n\n[Đề bài]\nGiải các phương trình sau:\n\n[Các ý của bài toán]\na) $(3x - 6)(15 - 5x) = 0$;\nb) $(x - 3)(2x - 5) = 0$;\nc) $(3x - 2)(6 - 2x) = 0$;\nd) $(x - 1)(3 - 2x)(3x + 7) = 0$.\n\n[Yêu cầu xuất JSON]\n{\n  \"detailed_explanation\": \"Lời giải chi tiết từng bước, xử lý đầy đủ mọi ý của đề\",\n  \"final_answer\": \"Kết quả cuối cùng ngắn gọn\"\n}\nNếu đề có các ý a), b), c)... thì detailed_explanation phải giải tuần tự từng ý.\nChỉ được nói đề thiếu dữ kiện nếu trong toàn bộ thông tin trên thật sự không có biểu thức hoặc dữ kiện cụ thể.",
+      "model": "deepseek-ai/DeepSeek-V3.2"
+    }
+  },
+  "essay_0018": {
+    "id": "essay_0018",
+    "detailed_explanation": "a) Hệ phương trình: -3x + y = 5 (1) và 2x - y = -4 (2). Cộng vế với vế (1) và (2): (-3x + y) + (2x - y) = 5 + (-4) => -x = 1 => x = -1. Thay x = -1 vào (1): -3*(-1) + y = 5 => 3 + y = 5 => y = 2. Vậy nghiệm (x; y) = (-1; 2).\nb) Hệ phương trình: x + y = 5 (1) và 4x - y = 1 (2). Cộng vế với vế (1) và (2): (x + y) + (4x - y) = 5 + 1 => 5x = 6 => x = 6/5. Thay x = 6/5 vào (1): 6/5 + y = 5 => y = 5 - 6/5 = 25/5 - 6/5 = 19/5. Vậy nghiệm (x; y) = (6/5; 19/5).\nc) Hệ phương trình: x - 2y = -1 (1) và x - y = -3 (2). Trừ vế với vế (1) cho (2): (x - 2y) - (x - y) = -1 - (-3) => -y = 2 => y = -2. Thay y = -2 vào (2): x - (-2) = -3 => x + 2 = -3 => x = -5. Vậy nghiệm (x; y) = (-5; -2).\nd) Hệ phương trình: x - 2y = 1 (1) và -3x + 2y = 6 (2). Cộng vế với vế (1) và (2): (x - 2y) + (-3x + 2y) = 1 + 6 => -2x = 7 => x = -7/2. Thay x = -7/2 vào (1): -7/2 - 2y = 1 => -2y = 1 + 7/2 = 2/2 + 7/2 = 9/2 => y = -9/4. Vậy nghiệm (x; y) = (-7/2; -9/4).\ne) Hệ phương trình: 2x + 7y = 12 (1) và -3x - 7y = -17 (2). Cộng vế với vế (1) và (2): (2x + 7y) + (-3x - 7y) = 12 + (-17) => -x = -5 => x = 5. Thay x = 5 vào (1): 2*5 + 7y = 12 => 10 + 7y = 12 => 7y = 2 => y = 2/7. Vậy nghiệm (x; y) = (5; 2/7).\ng) Hệ phương trình: 5x + y = -2 (1) và -5x + 3y = 10 (2). Cộng vế với vế (1) và (2): (5x + y) + (-5x + 3y) = -2 + 10 => 4y = 8 => y = 2. Thay y = 2 vào (1): 5x + 2 = -2 => 5x = -4 => x = -4/5. Vậy nghiệm (x; y) = (-4/5; 2).\nh) Hệ phương trình: 4x + 3y = -7 (1) và -2x + y = -4 (2). Nhân hai vế của (2) với 2: -4x + 2y = -8 (3). Cộng vế với vế (1) và (3): (4x + 3y) + (-4x + 2y) = -7 + (-8) => 5y = -15 => y = -3. Thay y = -3 vào (2): -2x + (-3) = -4 => -2x - 3 = -4 => -2x = -1 => x = 1/2. Vậy nghiệm (x; y) = (1/2; -3).\nk) Hệ phương trình: √3 x - √2 y = 1 (1) và 5√3 x - 4√2 y = 8 (2). Nhân hai vế của (1) với 5: 5√3 x - 5√2 y = 5 (3). Trừ vế với vế (3) cho (2): (5√3 x - 5√2 y) - (5√3 x - 4√2 y) = 5 - 8 => -√2 y = -3 => y = 3/√2 = (3√2)/2. Thay y = 3/√2 vào (1): √3 x - √2*(3/√2) = 1 => √3 x - 3 = 1 => √3 x = 4 => x = 4/√3 = (4√3)/3. Vậy nghiệm (x; y) = (4√3/3; 3√2/2).",
+    "correct_index": null,
+    "correct_values": null,
+    "final_answer": "a) (x; y) = (-1; 2); b) (x; y) = (6/5; 19/5); c) (x; y) = (-5; -2); d) (x; y) = (-7/2; -9/4); e) (x; y) = (5; 2/7); g) (x; y) = (-4/5; 2); h) (x; y) = (1/2; -3); k) (x; y) = (4√3/3; 3√2/2).",
+    "timestamp": "2026-04-17T07:25:18.142Z",
+    "cache_version": "2",
+    "prompt_version": "2026-04-17-v2",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "0d5541c1f5feddc2e548b19cb018e978e0a00265",
+    "audit": {
+      "ok": false,
+      "suspected": true,
+      "issues": [
+        "Độ khớp từ khóa giữa đề và phản hồi đang thấp."
+      ],
+      "questionKeywords": [
+        "begin",
+        "align",
+        "cases",
+        "end",
+        "sqrt"
+      ],
+      "matchedKeywords": [],
+      "subpartLabels": [
+        "a)",
+        "b)",
+        "c)",
+        "d)",
+        "e)",
+        "g)",
+        "h)",
+        "k)"
+      ],
+      "coveredSubparts": [
+        "a)",
+        "b)",
+        "c)",
+        "d)",
+        "e)",
+        "g)",
+        "h)",
+        "k)"
+      ],
+      "responseLength": 2246
+    },
+    "attempts": 2,
+    "debug": {
+      "prompt": "Bạn sẽ nhận một bài toán toán học ở dạng có cấu trúc. Hãy sử dụng toàn bộ dữ kiện được cung cấp.\nBẮT BUỘC trả về một JSON object hợp lệ, không có text thừa ngoài JSON.\n\n[Mã câu] essay_0018\n[Loại câu] essay\n[Chủ đề] Chủ đề 1. PHƯƠNG TRÌNH VÀ HỆ PHƯƠNG TRÌNH BẬC NHẤT\n[Phân mục] II. BÀI TẬP TỰ LUYỆN\n[Nhóm] B. Bài tập tự luận\n\n[Đề bài]\nGiải các hệ phương trình sau:\n\n[Các ý của bài toán]\na) \\begin{align*} \\begin{cases} -3x + y = 5 \\\\ 2x - y = -4 \\end{cases} \\end{align*}\nb) \\begin{align*} \\begin{cases} x + y = 5 \\\\ 4x - y = 1 \\end{cases} \\end{align*}\nc) $ \\begin{cases} x - 2y = -1 \\\\ x - y = -3 \\end{cases} $\nd) $ \\begin{cases} x - 2y = 1 \\\\ -3x + 2y = 6 \\end{cases} $\ne) $ \\begin{cases} 2x + 7y = 12 \\\\ -3x - 7y = -17 \\end{cases} $\ng) $ \\begin{cases} 5x + y = -2 \\\\ -5x + 3y = 10 \\end{cases} $\nh) $ \\begin{cases} 4x + 3y = -7 \\\\ -2x + y = -4 \\end{cases} $\nk) $ \\begin{cases} \\sqrt{3}x - \\sqrt{2}y = 1 \\\\ 5\\sqrt{3}x - 4\\sqrt{2}y = 8 \\end{cases} $\n\n[Cảnh báo từ lần thử trước]\n1. Độ khớp từ khóa giữa đề và phản hồi đang thấp.\n\n[Yêu cầu xuất JSON]\n{\n  \"detailed_explanation\": \"Lời giải chi tiết từng bước, xử lý đầy đủ mọi ý của đề\",\n  \"final_answer\": \"Kết quả cuối cùng ngắn gọn\"\n}\nNếu đề có các ý a), b), c)... thì detailed_explanation phải giải tuần tự từng ý.\nChỉ được nói đề thiếu dữ kiện nếu trong toàn bộ thông tin trên thật sự không có biểu thức hoặc dữ kiện cụ thể.",
+      "model": "deepseek-ai/DeepSeek-V3.2"
+    }
+  }
+}

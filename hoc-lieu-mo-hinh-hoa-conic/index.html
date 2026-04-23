@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Học liệu tương tác: Mô hình hoá với ba đường conic</title>
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/lesson.css">
-    <script src="assets/js/mathjax-config.js"></script>
-    <script src="assets/js/diagrams.js"></script>
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/lesson.css">
+    <script src="../assets/js/mathjax-config.js"></script>
+    <script src="../assets/js/diagrams.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" id="MathJax-script" async></script>
     <style>
         :root {
@@ -331,45 +331,6 @@
             height: auto;
         }
 
-        .volleyball-figure {
-            margin-top: 1rem;
-            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-            border: 1px solid #cbd5e1;
-            border-radius: 14px;
-            padding: 0.75rem;
-        }
-
-        .volleyball-figure svg {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        .figure-axis-label,
-        .figure-point-label,
-        .figure-dim-label,
-        .figure-note-label {
-            font-family: 'Lora', sans-serif;
-        }
-
-        .figure-axis-label,
-        .figure-point-label {
-            fill: #0f172a;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .figure-dim-label {
-            fill: #1d4ed8;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .figure-note-label {
-            fill: #334155;
-            font-size: 13px;
-        }
-
         @media (max-width: 900px) {
             .content-wrapper {
                 flex-direction: column;
@@ -412,16 +373,23 @@
                     <strong>Bài toán 4.</strong><br>
                     Một angten vệ tinh có mặt cắt là một parabol, <span id="p4_diameter">đường kính miệng angten \(300\,cm\)</span>, <span id="p4_distance">khoảng cách từ đầu thu đến miệng angten là \(180\,cm\)</span>. Hãy tính <span id="p4_goal">khoảng cách từ đầu thu đến đỉnh angten</span>.
                     <div class="problem-figure">
-                        <img src="Untitled.png" alt="Hình minh hoạ angten vệ tinh của bài toán 4">
+                        <img src="images/angten-ve-tinh-parabol.png" alt="Hình minh hoạ angten vệ tinh của bài toán 4">
                     </div>
                 </div>
                 <div id="problem5-statement-display" class="problem-statement">
                     <strong>Bài toán 5.</strong><br>
                     Một nhà vòm chứa máy bay có mặt cắt là <span id="p5_height">nửa elip cao \(10\,m\)</span> và <span id="p5_width">rộng \(24\,m\)</span>. Tính <span id="p5_offset">khoảng cách theo phương thẳng đứng từ một điểm cách chân tường \(6\,m\)</span> lên tới mái vòm, tức là <span id="p5_goal">độ cao của mái ở vị trí đó</span>.
+                    <div class="problem-figure">
+                        <img src="images/nha-vom-nua-elip.png" alt="Hình minh hoạ nhà vòm nửa elip của bài toán 5">
+                    </div>
                 </div>
                 <div id="problem6-statement-display" class="problem-statement">
                     <strong>Bài toán 6.</strong><br>
                     Trong một đường chuyền bóng, quả bóng rời tay An tại \(A\), đến tay Bình tại \(B\), và chuyển động theo một parabol. Biết <span id="p6_release">\(OA = BH = 1{,}7\,m\)</span>, <span id="p6_pointc">\(CK = 3{,}4625\,m\), \(OK = 2{,}5\,m\)</span>, <span id="p6_distance">\(OH = 10\,m\)</span>. Hãy xác định <span id="p6_goal">độ cao lớn nhất của quả bóng so với mặt đất</span>.
+                </div>
+                <div id="problem7-statement-display" class="problem-statement">
+                    <strong>Bài toán 7.</strong><br>
+                    Trên bản đồ quy hoạch (hệ trục \(Oxy\), 1 đơn vị tọa độ \(=1\,m\) thực tế), ranh giới một khu rừng sinh thái là <span id="p7_circle">đường tròn \(x^2+y^2-1000x-800y+400000=0\)</span>. Ban quản lý dự định mở con đường mòn du lịch đi thẳng xuyên qua khu rừng, tuyến đường nằm trên <span id="p7_line">đường thẳng \(\Delta:\ 3x+4y-3040=0\)</span>. Chi phí rải đá dăm là <span id="p7_rate">\(850\,000\) đồng cho mỗi mét chiều dài</span>. Hỏi <span id="p7_goal">tổng chi phí rải đá cho đoạn đường nằm phía trong khu rừng là bao nhiêu triệu đồng</span> (làm tròn đến hàng đơn vị)?
                 </div>
             </div>
             <div class="right-panel">
@@ -609,13 +577,13 @@
                     content: String.raw`<span class="pill">Parabol</span>
                     <h3>Bước 1. Chọn phương trình parabol</h3>
                     <p>Đặt đỉnh angten tại gốc tọa độ, trục đối xứng trùng với trục \(Ox\), parabol mở sang phải:</p>
-                    <div class="formula-box">$$y^2 = 4px.$$</div>
-                    <p>Khi đó tiêu điểm là \(F(p,0)\), chính là vị trí đặt đầu thu.</p>
+                    <div class="formula-box">$$y^2 = 2px.$$</div>
+                    <p>Khi đó tiêu điểm là \(F\left(\dfrac{p}{2},0\right)\), chính là vị trí đặt đầu thu.</p>
                     <ul>
                         <li>Đường kính miệng angten là \(300\,cm\), nên bán kính miệng là \(150\,cm\).</li>
                         <li>Một điểm ở vành miệng có tọa độ \(M(x_M, 150)\).</li>
                     </ul>
-                    <div class="note-box">Đại lượng cần tìm chính là khoảng cách từ tiêu điểm đến đỉnh, tức là \(p\).</div>
+                    <div class="note-box">Đại lượng cần tìm chính là khoảng cách từ tiêu điểm đến đỉnh, tức là \(\dfrac{p}{2}\).</div>
                     <div class="note-box">Quan sát hình minh hoạ ở phần đề bài để thấy rõ vị trí đầu thu, miệng angten và cạnh có độ dài \(180\,cm\).</div>`,
                     highlights: { current: ['p4_diameter', 'p4_goal'], processed: ['p3_goal'] }
                 },
@@ -624,12 +592,12 @@
                     title: 'Bài 4: Lập phương trình theo tính chất tiêu điểm',
                     content: String.raw`<h3>Bước 2. Dùng dữ kiện khoảng cách</h3>
                     <p>Với điểm \(M\) thuộc parabol, khoảng cách đến tiêu điểm bằng khoảng cách đến đường chuẩn. Do đó:</p>
-                    <div class="formula-box">$$FM = x_M + p.$$</div>
-                    <p>Đề bài cho \(FM = 180\), nên \(x_M + p = 180\).</p>
+                    <div class="formula-box">$$FM = x_M + \frac{p}{2}.$$</div>
+                    <p>Đề bài cho \(FM = 180\), nên \(x_M + \dfrac{p}{2} = 180\).</p>
                     <p>Mặt khác, \(M\) nằm trên parabol nên:</p>
-                    <div class="formula-box">$$150^2 = 4px_M \Rightarrow x_M = \frac{22500}{4p} = \frac{5625}{p}.$$</div>
+                    <div class="formula-box">$$150^2 = 2px_M \Rightarrow x_M = \frac{22500}{2p} = \frac{11250}{p}.$$</div>
                     <p>Thế vào, được:</p>
-                    <div class="formula-box">$$\frac{5625}{p} + p = 180 \Rightarrow p^2 - 180p + 5625 = 0.$$</div>
+                    <div class="formula-box">$$\frac{11250}{p} + \frac{p}{2} = 180 \Rightarrow p^2 - 360p + 22500 = 0.$$</div>
                     <div class="exercise-input-group">
                         <label for="p4_focus_distance">Khoảng cách từ đầu thu đến đỉnh angten là (cm):</label>
                         <input type="text" id="p4_focus_distance" placeholder="Ví dụ: 40,3">
@@ -644,8 +612,9 @@
                     title: 'Kết luận bài 4',
                     content: String.raw`<div class="result-box">
                         <h3>Kết luận</h3>
-                        <p>Giải phương trình \(p^2 - 180p + 5625 = 0\) cho hai nghiệm gần đúng \(139{,}75\) và \(40{,}25\).</p>
-                        <p>Ta chọn \(p \approx 40{,}25\,cm\), vì nếu chọn nghiệm còn lại thì tiêu điểm nằm ngoài vùng lòng chảo của angten, không phù hợp với thực tế.</p>
+                        <p>Giải phương trình \(p^2 - 360p + 22500 = 0\) cho hai nghiệm gần đúng \(279{,}5\) và \(80{,}5\).</p>
+                        <p>Vì khoảng cách từ tiêu điểm đến đỉnh là \(\dfrac{p}{2}\), ta được hai giá trị ứng viên là \(139{,}75\,cm\) và \(40{,}25\,cm\).</p>
+                        <p>Ta chọn \(\dfrac{p}{2} \approx 40{,}25\,cm\), vì nếu chọn giá trị còn lại thì tiêu điểm nằm ngoài vùng lòng chảo của angten, không phù hợp với thực tế.</p>
                         <p>Vậy khoảng cách từ đầu thu tới đỉnh angten xấp xỉ:</p>
                         $$40{,}3\,cm.$$
                     </div>`,
@@ -698,45 +667,8 @@
                         <li>\(C(2{,}5;3{,}4625)\) vì \(OK = 2{,}5\,m\), \(CK = 3{,}4625\,m\).</li>
                     </ul>
                     <div class="note-box">Do \(A\) và \(B\) có cùng độ cao nên trục đối xứng của parabol đi qua trung điểm của \(AB\), tức là \(x = 5\).</div>
-                    <div class="volleyball-figure">
-                        <svg viewBox="0 0 360 250" aria-label="Quỹ đạo parabol của quả bóng chuyền">
-                            <defs>
-                                <marker id="vb-arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
-                                    <path d="M0,0 L8,4 L0,8 z" fill="#334155"></path>
-                                </marker>
-                            </defs>
-                            <line x1="20" y1="210" x2="335" y2="210" stroke="#0f172a" stroke-width="1.6"></line>
-                            <line x1="40" y1="228" x2="40" y2="20" stroke="#0f172a" stroke-width="1.6"></line>
-                            <path d="M40 142 L66 108.16 L92 81.84 L105 71.5 L118 63.04 L144 51.76 L170 48 L196 51.76 L222 63.04 L235 71.5 L248 81.84 L274 108.16 L300 142" fill="none" stroke="#111827" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <line x1="40" y1="142" x2="300" y2="142" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 5"></line>
-                            <line x1="105" y1="71.5" x2="105" y2="210" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 5"></line>
-                            <line x1="300" y1="142" x2="300" y2="210" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 5"></line>
-                            <circle cx="40" cy="210" r="3.8" fill="#0f172a"></circle>
-                            <circle cx="40" cy="142" r="3.8" fill="#0f172a"></circle>
-                            <circle cx="105" cy="210" r="3.8" fill="#0f172a"></circle>
-                            <circle cx="105" cy="71.5" r="3.8" fill="#0f172a"></circle>
-                            <circle cx="300" cy="210" r="3.8" fill="#0f172a"></circle>
-                            <circle cx="300" cy="142" r="3.8" fill="#0f172a"></circle>
-                            <path d="M40 210 L52 210 L52 198" fill="none" stroke="#0f172a" stroke-width="1.4"></path>
-                            <path d="M105 210 L117 210 L117 198" fill="none" stroke="#0f172a" stroke-width="1.4"></path>
-                            <path d="M300 210 L312 210 L312 198" fill="none" stroke="#0f172a" stroke-width="1.4"></path>
-                            <text x="27" y="225" class="figure-point-label">O</text>
-                            <text x="25" y="136" class="figure-point-label">A</text>
-                            <text x="100" y="225" class="figure-point-label">K</text>
-                            <text x="98" y="64" class="figure-point-label">C</text>
-                            <text x="304" y="225" class="figure-point-label">H</text>
-                            <text x="306" y="136" class="figure-point-label">B</text>
-                            <text x="340" y="214" class="figure-axis-label">x</text>
-                            <text x="45" y="18" class="figure-axis-label">y</text>
-                            <text x="52" y="177" class="figure-dim-label">1,7</text>
-                            <text x="306" y="177" class="figure-dim-label">1,7</text>
-                            <text x="112" y="144" class="figure-dim-label">3,4625</text>
-                            <text x="67" y="228" class="figure-dim-label">2,5</text>
-                            <text x="165" y="228" class="figure-dim-label">10</text>
-                            <text x="304" y="196" class="figure-note-label">Mặt đất</text>
-                            <text x="247" y="48" class="figure-note-label">Quỹ đạo bóng</text>
-                            <line x1="295" y1="55" x2="238" y2="73" stroke="#334155" stroke-width="1.5" marker-end="url(#vb-arrow)"></line>
-                        </svg>
+                    <div class="problem-figure">
+                        <img src="images/quy-dao-bong-chuyen-parabol.png" alt="Hình minh hoạ quỹ đạo parabol của quả bóng chuyền ở bài toán 6">
                     </div>
                     <div class="diagram-caption">Từ dữ kiện thực tế ta xác định được ba điểm \(A\), \(B\), \(C\) thuộc quỹ đạo parabol của quả bóng.</div>`,
                     highlights: { current: ['p6_release', 'p6_pointc', 'p6_distance'], processed: ['p5_height', 'p5_width', 'p5_offset', 'p5_goal'] }
@@ -784,17 +716,97 @@
                     highlights: { processed: ['p6_release', 'p6_pointc', 'p6_distance', 'p6_goal'] }
                 },
                 {
-                    problem: 6,
-                    title: 'Tổng kết: Khi nào chọn elip, hypebol, parabol?',
+                    problem: 7,
+                    title: 'Bài 7: Đưa đường tròn về dạng chuẩn',
+                    content: String.raw`<span class="pill">Đường tròn</span>
+                    <h3>Bước 1. Hoàn thành bình phương để tìm tâm và bán kính</h3>
+                    <p>Phương trình đường tròn là:</p>
+                    <div class="formula-box">$$x^2 + y^2 - 1000x - 800y + 400000 = 0.$$</div>
+                    <p>Nhóm theo \(x\) và \(y\), rồi thêm bớt để hoàn thành bình phương:</p>
+                    <div class="formula-box">$$\bigl(x^2 - 1000x\bigr) + \bigl(y^2 - 800y\bigr) = -400000.$$</div>
+                    <div class="formula-box">$$\bigl(x-500\bigr)^2 - 500^2 + \bigl(y-400\bigr)^2 - 400^2 = -400000.$$</div>
+                    <div class="formula-box">$$\bigl(x-500\bigr)^2 + \bigl(y-400\bigr)^2 = 250000 + 160000 - 400000 = 10000.$$</div>
+                    <div class="note-box">Vậy đường tròn có tâm \(I(500;400)\) và bán kính \(R = \sqrt{10000} = 100\,m\).</div>
+                    <div class="jxg-diagram" data-jxg='{"preset":"function","bbox":[380,520,620,280],"exprs":["400 + sqrt(10000 - (x-500)^2)","400 - sqrt(10000 - (x-500)^2)"],"domains":[[400,600],[400,600]],"width":360,"height":300,"keepAspectRatio":true,"points":[{"x":500,"y":400,"name":"I","color":"#dc2626"},{"x":600,"y":400,"name":"","color":"#64748b"}]}'></div>
+                    <div class="diagram-caption">Ranh giới khu rừng là đường tròn tâm \(I(500;400)\), bán kính \(R=100\,m\).</div>`,
+                    highlights: { current: ['p7_circle'], processed: ['p6_release', 'p6_pointc', 'p6_distance', 'p6_goal'] }
+                },
+                {
+                    problem: 7,
+                    title: 'Bài 7: Vị trí tương đối của \u0394 và đường tròn',
+                    content: String.raw`<h3>Bước 2. Tính khoảng cách từ tâm \(I\) đến đường thẳng \(\Delta\)</h3>
+                    <p>Với \(\Delta:\ 3x + 4y - 3040 = 0\), áp dụng công thức khoảng cách điểm–đường:</p>
+                    <div class="formula-box">$$d\bigl(I,\Delta\bigr) = \dfrac{|3\cdot 500 + 4\cdot 400 - 3040|}{\sqrt{3^2 + 4^2}} = \dfrac{|1500 + 1600 - 3040|}{5} = \dfrac{60}{5} = 12\,m.$$</div>
+                    <p>So sánh với bán kính:</p>
+                    <div class="formula-box">$$d = 12 < 100 = R.$$</div>
+                    <div class="note-box">Vì \(d<R\) nên \(\Delta\) <strong>cắt đường tròn tại hai điểm phân biệt</strong>. Đoạn đường mòn nằm trong khu rừng chính là <strong>dây cung</strong> do \(\Delta\) chắn trên đường tròn.</div>
+                    <div class="jxg-diagram" data-jxg='{"preset":"function","bbox":[380,520,620,280],"exprs":["400 + sqrt(10000 - (x-500)^2)","400 - sqrt(10000 - (x-500)^2)","(3040 - 3*x)/4"],"domains":[[400,600],[400,600],[380,620]],"width":360,"height":300,"keepAspectRatio":true,"points":[{"x":500,"y":400,"name":"I","color":"#dc2626"},{"x":492.8,"y":390.4,"name":"H","color":"#2563eb"}]}'></div>
+                    <div class="diagram-caption">\(H\) là chân đường vuông góc từ \(I\) xuống \(\Delta\); \(IH = d = 12\,m\).</div>`,
+                    highlights: { current: ['p7_line'], processed: ['p7_circle'] }
+                },
+                {
+                    problem: 7,
+                    title: 'Bài 7: Độ dài đoạn đường trong rừng',
+                    content: String.raw`<h3>Bước 3. Áp dụng công thức dây cung</h3>
+                    <p>Gọi \(M_1\), \(M_2\) là hai giao điểm của \(\Delta\) với đường tròn, \(H\) là trung điểm của \(M_1M_2\) (chân đường vuông góc từ \(I\)). Trong tam giác vuông \(IHM_1\):</p>
+                    <div class="formula-box">$$HM_1 = \sqrt{R^2 - d^2}.$$</div>
+                    <p>Do đó độ dài dây cung là:</p>
+                    <div class="formula-box">$$M_1M_2 = 2\sqrt{R^2 - d^2} = 2\sqrt{100^2 - 12^2} = 2\sqrt{10000 - 144} = 2\sqrt{9856}.$$</div>
+                    <p>Rút gọn: \(\sqrt{9856} = \sqrt{64\cdot 154} = 8\sqrt{154}\), nên:</p>
+                    <div class="formula-box">$$M_1M_2 = 16\sqrt{154}\,m \approx 198{,}56\,m.$$</div>
+                    <div class="jxg-diagram" data-jxg='{"preset":"function","bbox":[380,520,620,280],"exprs":["400 + sqrt(10000 - (x-500)^2)","400 - sqrt(10000 - (x-500)^2)","(3040 - 3*x)/4"],"domains":[[400,600],[400,600],[380,620]],"width":360,"height":300,"keepAspectRatio":true,"points":[{"x":500,"y":400,"name":"I","color":"#dc2626"},{"x":492.8,"y":390.4,"name":"H","color":"#2563eb"},{"x":413.38,"y":449.97,"name":"M_1","color":"#16a34a"},{"x":572.22,"y":330.83,"name":"M_2","color":"#16a34a"}]}'></div>
+                    <div class="diagram-caption">Đoạn đường mòn trong rừng là dây cung \(M_1M_2\).</div>
+                    <div class="exercise-input-group">
+                        <label for="p7_chord">Độ dài đoạn đường mòn nằm trong khu rừng xấp xỉ (m):</label>
+                        <input type="text" id="p7_chord" placeholder="Ví dụ: 198,56">
+                    </div>
+                    <div id="hint-chord" class="hint-content"><strong>Gợi ý:</strong> \(\sqrt{154}\approx 12{,}4097\) nên \(16\sqrt{154}\approx 16\cdot 12{,}4097\).</div>`,
+                    highlights: { current: ['p7_line'], processed: ['p7_circle'] },
+                    isExercise: true,
+                    numericAnswers: { p7_chord: { value: 198.555, tolerance: 0.2 } }
+                },
+                {
+                    problem: 7,
+                    title: 'Bài 7: Tính tổng chi phí rải đá',
+                    content: String.raw`<h3>Bước 4. Nhân đơn giá rồi làm tròn</h3>
+                    <p>Đơn giá rải đá dăm là \(850\,000\) đồng/mét. Vậy tổng chi phí (đồng) là:</p>
+                    <div class="formula-box">$$T = 16\sqrt{154}\cdot 850\,000 = 13\,600\,000\sqrt{154}\,\text{đồng}.$$</div>
+                    <p>Thay \(\sqrt{154}\approx 12{,}4097\):</p>
+                    <div class="formula-box">$$T \approx 13\,600\,000\cdot 12{,}4097 \approx 168\,771\,750\,\text{đồng} \approx 168{,}77\,\text{triệu đồng}.$$</div>
+                    <p>Làm tròn đến hàng đơn vị (triệu đồng):</p>
+                    <div class="exercise-input-group">
+                        <label for="p7_cost">Tổng chi phí (triệu đồng, làm tròn hàng đơn vị):</label>
+                        <input type="number" id="p7_cost" placeholder="Ví dụ: 169">
+                    </div>
+                    <div id="hint-cost" class="hint-content"><strong>Gợi ý:</strong> \(168{,}77\) làm tròn đến hàng đơn vị là \(169\).</div>`,
+                    highlights: { current: ['p7_rate', 'p7_goal'], processed: ['p7_circle', 'p7_line'] },
+                    isExercise: true,
+                    numericAnswers: { p7_cost: { value: 169, tolerance: 0.001 } }
+                },
+                {
+                    problem: 7,
+                    title: 'Kết luận bài 7',
+                    content: String.raw`<div class="result-box">
+                        <h3>Kết luận</h3>
+                        <p>Đoạn đường mòn nằm trong khu rừng dài \(16\sqrt{154}\approx 198{,}56\,m\), với đơn giá \(850\,000\) đồng/mét, tổng chi phí rải đá dăm xấp xỉ:</p>
+                        $$T \approx 169\,\text{triệu đồng}.$$
+                        <p>Ý tưởng cốt lõi: đưa <strong>đường tròn về dạng chuẩn</strong>, tính <strong>khoảng cách từ tâm đến đường thẳng</strong>, rồi dùng công thức dây cung \(\ell = 2\sqrt{R^2-d^2}\). Đây là mô hình điển hình ứng dụng <strong>đường tròn</strong> – trường hợp đặc biệt của elip.</p>
+                    </div>`,
+                    highlights: { processed: ['p7_circle', 'p7_line', 'p7_rate', 'p7_goal'] }
+                },
+                {
+                    problem: 7,
+                    title: 'Tổng kết: Khi nào chọn elip, hypebol, parabol, đường tròn?',
                     content: String.raw`<h3>Một số chiến lược mô hình hoá quan trọng</h3>
                     <ul>
                         <li><strong>Elip:</strong> phù hợp khi vật thể kín, đối xứng và bị chặn cả theo chiều ngang lẫn chiều dọc, như sân vận động hoặc mái vòm.</li>
                         <li><strong>Hypebol:</strong> phù hợp khi vật thể thắt ở giữa và mở rộng dần về hai phía, như thân cột hay mặt cắt tháp.</li>
                         <li><strong>Parabol:</strong> phù hợp với các thiết kế phản xạ hội tụ về tiêu điểm, như gương parabol, angten vệ tinh, hoặc quỹ đạo chuyển động lý tưởng của vật thể như quả bóng.</li>
+                        <li><strong>Đường tròn:</strong> trường hợp đặc biệt của elip (\(a=b\)), dùng khi ranh giới đều về mọi phía — ví dụ bản đồ khu rừng, vùng phủ sóng. Các bài tính đoạn thẳng nằm trong đường tròn thường quy về <em>công thức dây cung</em> \(\ell = 2\sqrt{R^2 - d^2}\).</li>
                         <li><strong>Mẹo chung:</strong> luôn đặt hệ trục sao cho tâm đối xứng hoặc đỉnh đi vào vị trí đơn giản nhất, rồi biến dữ kiện thực tế thành tọa độ cụ thể.</li>
                     </ul>
                     <div class="note-box">Nếu bạn muốn, tôi có thể tiếp tục biến học liệu này thành một <strong>tool có minh hoạ SVG/đồ thị tương tác</strong> giống các công cụ học khác trong site.</div>`,
-                    highlights: { processed: ['p6_goal'] }
+                    highlights: { processed: ['p7_circle', 'p7_line', 'p7_rate', 'p7_goal'] }
                 }
             ];
 
@@ -808,7 +820,8 @@
                 3: document.getElementById('problem3-statement-display'),
                 4: document.getElementById('problem4-statement-display'),
                 5: document.getElementById('problem5-statement-display'),
-                6: document.getElementById('problem6-statement-display')
+                6: document.getElementById('problem6-statement-display'),
+                7: document.getElementById('problem7-statement-display')
             };
 
             let currentSlide = 0;

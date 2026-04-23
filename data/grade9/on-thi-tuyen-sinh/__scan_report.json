@@ -1,0 +1,67 @@
+{
+  "total_chunks": 347,
+  "total_flagged": 5,
+  "duplicate_ids": [],
+  "issue_histogram": {
+    "mc_no_options": 4,
+    "mc_correct_index_out_of_range": 3,
+    "mc_missing_correct_index": 1,
+    "mc_options_not_4": 1
+  },
+  "issues": [
+    {
+      "chunk_id": "mc_0146",
+      "type": "multiple_choice",
+      "section": "Chủ đề 6. TỈ SỐ LƯỢNG GIÁC CỦA GÓC NHỌN. MỘT SỐ HỆ THỨC VỀ CẠNH VÀ GÓC TRONG TAM GIÁC VUÔNG",
+      "index": 4,
+      "problems": [
+        "mc_no_options",
+        "mc_correct_index_out_of_range"
+      ],
+      "preview": "Cho tam giác $ MNP $ vuông tại $ M $. Hãy tính tỉ số lượng giác tan $ P $, biết rằng $ NP = 9 $ cm, $ MN = 5 $ cm."
+    },
+    {
+      "chunk_id": "mc_0280",
+      "type": "multiple_choice",
+      "section": "Chủ đề 11. TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
+      "index": 1,
+      "problems": [
+        "mc_no_options",
+        "mc_correct_index_out_of_range"
+      ],
+      "preview": "Trong ngày hôm qua, nhà ăn tại một trường đã ghi lại 400 lượt gọi món như bảng sau: \\begin{tabular}{|c|c|c|c|c|c|} \\hlin"
+    },
+    {
+      "chunk_id": "mc_0286",
+      "type": "multiple_choice",
+      "section": "Chủ đề 11. TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
+      "index": 7,
+      "problems": [
+        "mc_no_options",
+        "mc_correct_index_out_of_range"
+      ],
+      "preview": "Cho bảng tần số ghép nhóm về thời gian học tại nhà của học sinh lớp 9A như sau: \\begin{tabular}{|c|c|c|c|c|} \\hline Thời"
+    },
+    {
+      "chunk_id": "mc_0292",
+      "type": "multiple_choice",
+      "section": "Chủ đề 11. TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
+      "index": 13,
+      "problems": [
+        "mc_no_options",
+        "mc_missing_correct_index"
+      ],
+      "preview": "Cho biểu đồ tần số ghép nhóm biểu diễn chiều cao của các vận động viên trong đội tuyển A như sau: Biểu đồ cột cho chiều "
+    },
+    {
+      "chunk_id": "mc_0319",
+      "type": "multiple_choice",
+      "section": "Chủ đề 12. XÁC SUẤT CỦA BIẾN CỐ TRONG MỘT SỐ MÔ HÌNH ĐƠN GIẢN",
+      "index": 11,
+      "problems": [
+        "mc_options_not_4"
+      ],
+      "preview": "Trong giờ học nhảy, giáo viên chia lớp thành 2 nhóm, mỗi nhóm 3 học sinh. Giáo viên lựa chọn ghép cặp ngẫu nhiên một bạn"
+    }
+  ]
+}

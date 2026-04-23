@@ -154,6 +154,27 @@
               "type": "tool",
               "description": "Trọn bộ chuyên đề: (1) Lý thuyết & Ví dụ giải sẵn; (2) Bài tập tự giải từng câu; (3) Kiểm tra Online.",
               "url": "duong-tron-hub.html"
+            },
+            {
+              "id": "hoc-lieu-mo-hinh-hoa-conic",
+              "title": "Học liệu: Mô hình hoá với ba đường conic 🎯",
+              "type": "tool",
+              "description": "Học liệu tương tác về elip, hypebol, parabol qua các bài toán thực tế: sân vận động, cột trụ, angten vệ tinh, nhà vòm và quỹ đạo bóng chuyền.",
+              "url": "hoc-lieu-mo-hinh-hoa-conic/index.html"
+            },
+            {
+              "id": "hoc-lieu-on-thi-tuyen-sinh-g9-ly-thuyet",
+              "title": "📘 Học liệu: Ôn thi Tuyển sinh lớp 9 — Lý thuyết",
+              "type": "tool",
+              "description": "Sổ tay lý thuyết ôn thi tuyển sinh vào lớp 10: tổng hợp kiến thức trọng tâm, công thức và phương pháp giải nhanh.",
+              "url": "on-thi-tuyen-sinh-g9-theory.html"
+            },
+            {
+              "id": "hoc-lieu-on-thi-tuyen-sinh-g9-luyen-tap",
+              "title": "📘 Học liệu: Ôn thi Tuyển sinh lớp 9 — Luyện tập",
+              "type": "tool",
+              "description": "Luyện tập tương tác ôn thi tuyển sinh vào lớp 10: làm từng câu, kiểm tra ngay, có gợi ý và lời giải chi tiết.",
+              "url": "on-thi-tuyen-sinh-g9.html"
             }
           ]
         },

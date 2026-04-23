@@ -971,6 +971,130 @@ app.post('/api/bankontap/md-file', apiLimiter, (req, res) => {
 });
 
 // ============================================
+// ON THI TUYEN SINH G9 — QUESTION EDITOR
+// ============================================
+const G9_CHUNKS_PATH = path.join(PROJECT_ROOT, 'data', 'grade9', 'on-thi-tuyen-sinh', 'ON_TAP_LOP_9_chunks.json');
+const G9_SCAN_PATH = path.join(PROJECT_ROOT, 'data', 'grade9', 'on-thi-tuyen-sinh', '__scan_report.json');
+
+function readG9() {
+  const raw = JSON.parse(fs.readFileSync(G9_CHUNKS_PATH, 'utf8'));
+  return raw;
+}
+
+function writeG9WithBackup(data) {
+  // Snapshot backup (rotating: keep max 10 most recent)
+  const dir = path.dirname(G9_CHUNKS_PATH);
+  const stamp = Date.now();
+  const bak = path.join(dir, `ON_TAP_LOP_9_chunks.json.bak-${stamp}`);
+  try { fs.copyFileSync(G9_CHUNKS_PATH, bak); } catch (_) {}
+  // Cleanup old backups (keep latest 10)
+  try {
+    const baks = fs.readdirSync(dir)
+      .filter(n => n.startsWith('ON_TAP_LOP_9_chunks.json.bak-'))
+      .map(n => ({ n, t: parseInt(n.split('bak-')[1], 10) || 0 }))
+      .sort((a, b) => b.t - a.t);
+    baks.slice(10).forEach(b => { try { fs.unlinkSync(path.join(dir, b.n)); } catch (_) {} });
+  } catch (_) {}
+  fs.writeFileSync(G9_CHUNKS_PATH, JSON.stringify(data, null, 2), 'utf8');
+}
+
+// GET all questions (lightweight list + optional flagged-only)
+app.get('/api/g9/questions', (req, res) => {
+  try {
+    const data = readG9();
+    const flaggedOnly = String(req.query.flagged || '') === '1';
+    let scan = null;
+    if (fs.existsSync(G9_SCAN_PATH)) {
+      try { scan = JSON.parse(fs.readFileSync(G9_SCAN_PATH, 'utf8')); } catch (_) {}
+    }
+    const issueMap = new Map();
+    if (scan && Array.isArray(scan.issues)) scan.issues.forEach(i => issueMap.set(i.chunk_id, i.problems));
+    const list = data.chunks.map(c => ({
+      chunk_id: c.chunk_id,
+      type: c.type,
+      section: c.section,
+      subsection: c.subsection,
+      index: c.index,
+      prompt_preview: (c.prompt || '').slice(0, 120),
+      problems: issueMap.get(c.chunk_id) || []
+    }));
+    const filtered = flaggedOnly ? list.filter(q => q.problems.length > 0) : list;
+    res.json({
+      total: data.chunks.length,
+      flagged_total: list.filter(q => q.problems.length > 0).length,
+      scan_histogram: (scan && scan.issue_histogram) || {},
+      questions: filtered
+    });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// GET a single question
+app.get('/api/g9/question/:id', (req, res) => {
+  try {
+    const data = readG9();
+    const q = data.chunks.find(c => c.chunk_id === req.params.id);
+    if (!q) return res.status(404).json({ error: 'not_found' });
+    res.json({ question: q });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// POST update question (full replace of one chunk by id)
+app.post('/api/g9/question/:id', (req, res) => {
+  try {
+    const id = req.params.id;
+    const patch = req.body && req.body.question;
+    if (!patch || typeof patch !== 'object') return res.status(400).json({ error: 'missing_question_in_body' });
+    const data = readG9();
+    const idx = data.chunks.findIndex(c => c.chunk_id === id);
+    if (idx < 0) return res.status(404).json({ error: 'not_found' });
+    // Preserve chunk_id and type (for data integrity)
+    const original = data.chunks[idx];
+    const merged = { ...original, ...patch, chunk_id: original.chunk_id };
+    // Basic validation
+    if (merged.type === 'multiple_choice') {
+      if (!Array.isArray(merged.options)) merged.options = [];
+      if (merged.correct_index !== null && merged.correct_index !== undefined) {
+        merged.correct_index = Number(merged.correct_index);
+      }
+    }
+    if (merged.type === 'essay' && !Array.isArray(merged.subparts)) {
+      merged.subparts = [];
+    }
+    data.chunks[idx] = merged;
+    writeG9WithBackup(data);
+    res.json({ success: true, question: merged });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// POST re-run scan on current chunks file
+app.post('/api/g9/scan', (req, res) => {
+  try {
+    const { spawnSync } = require('child_process');
+    const script = path.join(PROJECT_ROOT, 'scripts', 'scan-questions.js');
+    const r = spawnSync(process.execPath, [script], { encoding: 'utf8' });
+    if (r.status !== 0) return res.status(500).json({ error: r.stderr || 'scan_failed' });
+    const report = JSON.parse(fs.readFileSync(G9_SCAN_PATH, 'utf8'));
+    res.json({ success: true, report: { total_chunks: report.total_chunks, total_flagged: report.total_flagged, issue_histogram: report.issue_histogram } });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Serve editor HTML and a friendly index
+app.get(['/editor', '/on-thi-tuyen-sinh-g9-editor', '/on-thi-tuyen-sinh-g9-editor.html'], (req, res) => {
+  res.sendFile(path.join(PROJECT_ROOT, 'on-thi-tuyen-sinh-g9-editor.html'));
+});
+app.get('/', (req, res) => {
+  res.send('<h3>Hoc Lieu Toan backend</h3><ul><li><a href="/editor">G9 Question Editor</a></li><li><a href="/api/health">Health</a></li></ul>');
+});
+
+// ============================================
 // HEALTH CHECK
 // ============================================
 app.get('/api/health', (req, res) => {

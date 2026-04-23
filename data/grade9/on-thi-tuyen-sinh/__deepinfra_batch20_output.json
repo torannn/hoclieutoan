@@ -1,0 +1,1004 @@
+{
+  "__meta": {
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "input_file": "./data/grade9/on-thi-tuyen-sinh/ON_TAP_LOP_9_chunks.json",
+    "output_file": "./data/grade9/on-thi-tuyen-sinh/__deepinfra_batch20_output.json",
+    "run_signature": "3a71c063d9c75ca31eb89f5d931f40b40b202231",
+    "updated_at": "2026-04-17T08:26:26.837Z",
+    "previous_updated_at": "2026-04-17T07:52:46.199Z",
+    "force_refresh": true,
+    "force_refresh_ids": [],
+    "reuse_suspected_cache": false,
+    "limit": null,
+    "only_ids": [
+      "mc_0001",
+      "mc_0002",
+      "mc_0003",
+      "essay_0013",
+      "essay_0014",
+      "mc_0033",
+      "mc_0034",
+      "mc_0035",
+      "essay_0045",
+      "essay_0046",
+      "mc_0062",
+      "mc_0063",
+      "mc_0064",
+      "essay_0074",
+      "essay_0075",
+      "mc_0119",
+      "mc_0120",
+      "mc_0121",
+      "essay_0131",
+      "essay_0132"
+    ],
+    "only_types": [],
+    "only_sections": [],
+    "reused_count": 0,
+    "invalidated_count": 2,
+    "solved_count": 20,
+    "skipped_by_filter": 327,
+    "total_chunks": 347
+  },
+  "mc_0001": {
+    "id": "mc_0001",
+    "type": "multiple_choice",
+    "detailed_explanation": "Phương trình đã cho là: (6 - 2x)(x + 1) = 0.\nĐây là phương trình tích. Một tích bằng 0 khi và chỉ khi ít nhất một trong các nhân tử bằng 0.\nTa có hai nhân tử: (6 - 2x) và (x + 1).\nGiải từng nhân tử bằng 0:\n- Nhân tử thứ nhất: 6 - 2x = 0 ⇔ 2x = 6 ⇔ x = 3.\n- Nhân tử thứ hai: x + 1 = 0 ⇔ x = -1.\nVậy phương trình có hai nghiệm là x = 3 và x = -1.\nSo sánh với các lựa chọn:\n[0] x = 1 và x = 3 → Sai vì có x = 1 không phải nghiệm.\n[1] x = -1 và x = 3 → Đúng.\n[2] x = 1 và x = -3 → Sai.\n[3] x = -1 và x = 1/3 → Sai.\nDo đó, lựa chọn đúng là [1].",
+    "subpart_solutions": null,
+    "correct_index": 1,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T07:53:24.995Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "eec36a0e2a2693a8365a2351b9f10b24b3a4564c",
+    "external_answer": 1,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "nghiem"
+      ],
+      "matchedKeywords": [
+        "nghiem"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 539
+    },
+    "attempts": 1
+  },
+  "essay_0013": {
+    "id": "essay_0013",
+    "type": "essay",
+    "detailed_explanation": "a) Giải phương trình $(3x - 6)(15 - 5x) = 0$.\nPhương trình tích bằng 0 khi $3x - 6 = 0$ hoặc $15 - 5x = 0$.\nGiải $3x - 6 = 0$ ta được $x = 2$.\nGiải $15 - 5x = 0$ ta được $x = 3$.\nVậy phương trình có nghiệm $x = 2$ hoặc $x = 3$.\n\nb) Giải phương trình $(x - 3)(2x - 5) = 0$.\nPhương trình tích bằng 0 khi $x - 3 = 0$ hoặc $2x - 5 = 0$.\nGiải $x - 3 = 0$ ta được $x = 3$.\nGiải $2x - 5 = 0$ ta được $x = \\frac{5}{2}$.\nVậy phương trình có nghiệm $x = 3$ hoặc $x = \\frac{5}{2}$.\n\nc) Giải phương trình $(3x - 2)(6 - 2x) = 0$.\nPhương trình tích bằng 0 khi $3x - 2 = 0$ hoặc $6 - 2x = 0$.\nGiải $3x - 2 = 0$ ta được $x = \\frac{2}{3}$.\nGiải $6 - 2x = 0$ ta được $x = 3$.\nVậy phương trình có nghiệm $x = \\frac{2}{3}$ hoặc $x = 3$.\n\nd) Giải phương trình $(x - 1)(3 - 2x)(3x + 7) = 0$.\nPhương trình tích bằng 0 khi $x - 1 = 0$ hoặc $3 - 2x = 0$ hoặc $3x + 7 = 0$.\nGiải $x - 1 = 0$ ta được $x = 1$.\nGiải $3 - 2x = 0$ ta được $x = \\frac{3}{2}$.\nGiải $3x + 7 = 0$ ta được $x = -\\frac{7}{3}$.\nVậy phương trình có nghiệm $x = 1$, $x = \\frac{3}{2}$ hoặc $x = -\\frac{7}{3}$.",
+    "subpart_solutions": [
+      {
+        "label": "a)",
+        "explanation": "Phương trình tích $(3x - 6)(15 - 5x) = 0$.\nĐể tích bằng 0 thì ít nhất một trong các nhân tử bằng 0.\nTrường hợp 1: $3x - 6 = 0 \\Leftrightarrow 3x = 6 \\Leftrightarrow x = 2$.\nTrường hợp 2: $15 - 5x = 0 \\Leftrightarrow 5x = 15 \\Leftrightarrow x = 3$.\nVậy phương trình có hai nghiệm.",
+        "final_answer": "$x = 2$ hoặc $x = 3$"
+      },
+      {
+        "label": "b)",
+        "explanation": "Phương trình tích $(x - 3)(2x - 5) = 0$.\nĐể tích bằng 0 thì ít nhất một trong các nhân tử bằng 0.\nTrường hợp 1: $x - 3 = 0 \\Leftrightarrow x = 3$.\nTrường hợp 2: $2x - 5 = 0 \\Leftrightarrow 2x = 5 \\Leftrightarrow x = \\frac{5}{2}$.\nVậy phương trình có hai nghiệm.",
+        "final_answer": "$x = 3$ hoặc $x = \\frac{5}{2}$"
+      },
+      {
+        "label": "c)",
+        "explanation": "Phương trình tích $(3x - 2)(6 - 2x) = 0$.\nĐể tích bằng 0 thì ít nhất một trong các nhân tử bằng 0.\nTrường hợp 1: $3x - 2 = 0 \\Leftrightarrow 3x = 2 \\Leftrightarrow x = \\frac{2}{3}$.\nTrường hợp 2: $6 - 2x = 0 \\Leftrightarrow 2x = 6 \\Leftrightarrow x = 3$.\nVậy phương trình có hai nghiệm.",
+        "final_answer": "$x = \\frac{2}{3}$ hoặc $x = 3$"
+      },
+      {
+        "label": "d)",
+        "explanation": "Phương trình tích $(x - 1)(3 - 2x)(3x + 7) = 0$.\nĐể tích bằng 0 thì ít nhất một trong các nhân tử bằng 0.\nTrường hợp 1: $x - 1 = 0 \\Leftrightarrow x = 1$.\nTrường hợp 2: $3 - 2x = 0 \\Leftrightarrow 2x = 3 \\Leftrightarrow x = \\frac{3}{2}$.\nTrường hợp 3: $3x + 7 = 0 \\Leftrightarrow 3x = -7 \\Leftrightarrow x = -\\frac{7}{3}$.\nVậy phương trình có ba nghiệm.",
+        "final_answer": "$x = 1$, $x = \\frac{3}{2}$ hoặc $x = -\\frac{7}{3}$"
+      }
+    ],
+    "correct_index": null,
+    "correct_values": null,
+    "final_answer": "a) $x = 2$ hoặc $x = 3$; b) $x = 3$ hoặc $x = \\frac{5}{2}$; c) $x = \\frac{2}{3}$ hoặc $x = 3$; d) $x = 1$, $x = \\frac{3}{2}$ hoặc $x = -\\frac{7}{3}$.",
+    "timestamp": "2026-04-17T07:56:58.515Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "02d8b5785844b0e40038e51df501df47e4866496",
+    "external_answer": null,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [],
+      "matchedKeywords": [],
+      "subpartLabels": [
+        "a)",
+        "b)",
+        "c)",
+        "d)"
+      ],
+      "coveredSubparts": [
+        "a)",
+        "b)",
+        "c)",
+        "d)"
+      ],
+      "hasSubpartSolutions": true,
+      "responseLength": 2530
+    },
+    "attempts": 1
+  },
+  "mc_0002": {
+    "id": "mc_0002",
+    "type": "multiple_choice",
+    "detailed_explanation": "Giải phương trình:\n$x^2 - 3x = 2x - 6$\nChuyển tất cả các hạng tử về một vế:\n$x^2 - 3x - 2x + 6 = 0$\n$x^2 - 5x + 6 = 0$\nPhân tích thành nhân tử:\n$(x - 2)(x - 3) = 0$\nSuy ra:\n$x - 2 = 0$ hoặc $x - 3 = 0$\nVậy nghiệm của phương trình là:\n$x = 2$ và $x = 3$\nĐối chiếu với các lựa chọn:\n[0] $x = -2$ và $x = -3$.\n[1] $x = -2$ và $x = 3$.\n[2] $x = 2$ và $x = 3$.\n[3] $x = -3$ và $x = 2$.\nNghiệm đúng là $x = 2$ và $x = 3$, tương ứng với lựa chọn [2].",
+    "subpart_solutions": null,
+    "correct_index": 2,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T07:53:55.424Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "3fd309b116582125c6190fdb2343a2e2caeaa88f",
+    "external_answer": 2,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "nghiem"
+      ],
+      "matchedKeywords": [
+        "nghiem"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 443
+    },
+    "attempts": 1
+  },
+  "mc_0003": {
+    "id": "mc_0003",
+    "type": "multiple_choice",
+    "detailed_explanation": "Điều kiện xác định: Mẫu số khác 0 => x - 1 ≠ 0 => x ≠ 1.\nPhương trình: (x - 3)/(x - 1) = (2x + 1)/(x - 1).\nVới điều kiện x ≠ 1, ta có thể khử mẫu bằng cách nhân hai vế với (x - 1):\nx - 3 = 2x + 1.\nChuyển vế: x - 3 - 2x - 1 = 0 => -x - 4 = 0 => x = -4.\nKiểm tra điều kiện: x = -4 ≠ 1 (thỏa mãn).\nVậy phương trình có nghiệm x = -4.\nSo sánh với các lựa chọn:\n[0] x = -4/3 (không đúng).\n[1] x = -2 (không đúng).\n[2] x = -4 (đúng).\n[3] x = 2 (không đúng).\nDo đó đáp án đúng là lựa chọn có chỉ số 2.\n\nLưu ý: Cảnh báo từ lần thử trước ghi 'AI chọn đáp án 2 nhưng answers.json ghi 1.' Tuy nhiên, sau khi giải toán, ta thấy nghiệm đúng là x = -4, tương ứng với lựa chọn [2]. Vì vậy, correct_index phải là 2.",
+    "subpart_solutions": null,
+    "correct_index": 2,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T07:55:01.597Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "65c79b7e812cead3c954af711ece59793a5b089b",
+    "external_answer": 1,
+    "audit": {
+      "ok": false,
+      "suspected": true,
+      "issues": [
+        "AI chọn đáp án 2 nhưng answers.json ghi 1."
+      ],
+      "questionKeywords": [
+        "nghiem"
+      ],
+      "matchedKeywords": [
+        "nghiem"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 698
+    },
+    "attempts": 2
+  },
+  "essay_0014": {
+    "id": "essay_0014",
+    "type": "essay",
+    "detailed_explanation": "a) Phương trình: $(x - 1)(2x - 3) = (x - 1)(3x - 4)$.\nChuyển về phương trình tích: $(x - 1)(2x - 3) - (x - 1)(3x - 4) = 0$.\nNhân tử chung: $(x - 1)[(2x - 3) - (3x - 4)] = 0$.\nRút gọn: $(x - 1)(2x - 3 - 3x + 4) = 0$.\nTiếp tục: $(x - 1)(-x + 1) = 0$.\nHay: $(x - 1)(1 - x) = 0$.\nPhương trình tích: $x - 1 = 0$ hoặc $1 - x = 0$.\nGiải: $x = 1$ hoặc $x = 1$.\nVậy phương trình có nghiệm duy nhất $x = 1$.\n\nb) Phương trình: $(x - 3)(3x + 5) = (2x - 6)(x + 1)$.\nNhận thấy $2x - 6 = 2(x - 3)$.\nPhương trình trở thành: $(x - 3)(3x + 5) = 2(x - 3)(x + 1)$.\nChuyển vế: $(x - 3)(3x + 5) - 2(x - 3)(x + 1) = 0$.\nNhân tử chung: $(x - 3)[(3x + 5) - 2(x + 1)] = 0$.\nRút gọn: $(x - 3)(3x + 5 - 2x - 2) = 0$.\nTiếp tục: $(x - 3)(x + 3) = 0$.\nPhương trình tích: $x - 3 = 0$ hoặc $x + 3 = 0$.\nGiải: $x = 3$ hoặc $x = -3$.\n\nc) Phương trình: $(2x + 5)(x - 3) = (x - 5)(3 - x)$.\nNhận thấy $3 - x = -(x - 3)$.\nPhương trình trở thành: $(2x + 5)(x - 3) = -(x - 5)(x - 3)$.\nChuyển vế: $(2x + 5)(x - 3) + (x - 5)(x - 3) = 0$.\nNhân tử chung: $(x - 3)[(2x + 5) + (x - 5)] = 0$.\nRút gọn: $(x - 3)(2x + 5 + x - 5) = 0$.\nTiếp tục: $(x - 3)(3x) = 0$.\nPhương trình tích: $x - 3 = 0$ hoặc $3x = 0$.\nGiải: $x = 3$ hoặc $x = 0$.\n\nd) Phương trình: $9x^2 - 1 = (3x - 1)(x - 2)$.\nNhận thấy $9x^2 - 1 = (3x - 1)(3x + 1)$ (hằng đẳng thức).\nPhương trình trở thành: $(3x - 1)(3x + 1) = (3x - 1)(x - 2)$.\nChuyển vế: $(3x - 1)(3x + 1) - (3x - 1)(x - 2) = 0$.\nNhân tử chung: $(3x - 1)[(3x + 1) - (x - 2)] = 0$.\nRút gọn: $(3x - 1)(3x + 1 - x + 2) = 0$.\nTiếp tục: $(3x - 1)(2x + 3) = 0$.\nPhương trình tích: $3x - 1 = 0$ hoặc $2x + 3 = 0$.\nGiải: $x = \\frac{1}{3}$ hoặc $x = -\\frac{3}{2}$.\n\ne) Phương trình: $(x - 2)(x^2 - 3x + 1) = x^3 - 8$.\nNhận thấy $x^3 - 8 = (x - 2)(x^2 + 2x + 4)$ (hằng đẳng thức).\nPhương trình trở thành: $(x - 2)(x^2 - 3x + 1) = (x - 2)(x^2 + 2x + 4)$.\nChuyển vế: $(x - 2)(x^2 - 3x + 1) - (x - 2)(x^2 + 2x + 4) = 0$.\nNhân tử chung: $(x - 2)[(x^2 - 3x + 1) - (x^2 + 2x + 4)] = 0$.\nRút gọn: $(x - 2)(x^2 - 3x + 1 - x^2 - 2x - 4) = 0$.\nTiếp tục: $(x - 2)(-5x - 3) = 0$.\nHay: $(x - 2)(5x + 3) = 0$ (nhân với $-1$).\nPhương trình tích: $x - 2 = 0$ hoặc $5x + 3 = 0$.\nGiải: $x = 2$ hoặc $x = -\\frac{3}{5}$.\n\ng) Phương trình: $x^3 + 3x^2 + x + 3 = 0$.\nNhóm hạng tử: $(x^3 + 3x^2) + (x + 3) = 0$.\nĐặt nhân tử chung: $x^2(x + 3) + 1(x + 3) = 0$.\nNhân tử chung: $(x + 3)(x^2 + 1) = 0$.\nPhương trình tích: $x + 3 = 0$ hoặc $x^2 + 1 = 0$.\nGiải: $x + 3 = 0$ cho $x = -3$.\nPhương trình $x^2 + 1 = 0$ vô nghiệm vì $x^2 \\ge 0$ với mọi $x$.\nVậy phương trình có nghiệm duy nhất $x = -3$.",
+    "subpart_solutions": [
+      {
+        "label": "a)",
+        "explanation": "Phương trình: $(x - 1)(2x - 3) = (x - 1)(3x - 4)$.\nChuyển về phương trình tích: $(x - 1)(2x - 3) - (x - 1)(3x - 4) = 0$.\nNhân tử chung: $(x - 1)[(2x - 3) - (3x - 4)] = 0$.\nRút gọn: $(x - 1)(2x - 3 - 3x + 4) = 0$.\nTiếp tục: $(x - 1)(-x + 1) = 0$.\nHay: $(x - 1)(1 - x) = 0$.\nPhương trình tích: $x - 1 = 0$ hoặc $1 - x = 0$.\nGiải: $x = 1$ hoặc $x = 1$.\nVậy phương trình có nghiệm duy nhất $x = 1$.",
+        "final_answer": "$x = 1$"
+      },
+      {
+        "label": "b)",
+        "explanation": "Phương trình: $(x - 3)(3x + 5) = (2x - 6)(x + 1)$.\nNhận thấy $2x - 6 = 2(x - 3)$.\nPhương trình trở thành: $(x - 3)(3x + 5) = 2(x - 3)(x + 1)$.\nChuyển vế: $(x - 3)(3x + 5) - 2(x - 3)(x + 1) = 0$.\nNhân tử chung: $(x - 3)[(3x + 5) - 2(x + 1)] = 0$.\nRút gọn: $(x - 3)(3x + 5 - 2x - 2) = 0$.\nTiếp tục: $(x - 3)(x + 3) = 0$.\nPhương trình tích: $x - 3 = 0$ hoặc $x + 3 = 0$.\nGiải: $x = 3$ hoặc $x = -3$.",
+        "final_answer": "$x = 3$ hoặc $x = -3$"
+      },
+      {
+        "label": "c)",
+        "explanation": "Phương trình: $(2x + 5)(x - 3) = (x - 5)(3 - x)$.\nNhận thấy $3 - x = -(x - 3)$.\nPhương trình trở thành: $(2x + 5)(x - 3) = -(x - 5)(x - 3)$.\nChuyển vế: $(2x + 5)(x - 3) + (x - 5)(x - 3) = 0$.\nNhân tử chung: $(x - 3)[(2x + 5) + (x - 5)] = 0$.\nRút gọn: $(x - 3)(2x + 5 + x - 5) = 0$.\nTiếp tục: $(x - 3)(3x) = 0$.\nPhương trình tích: $x - 3 = 0$ hoặc $3x = 0$.\nGiải: $x = 3$ hoặc $x = 0$.",
+        "final_answer": "$x = 3$ hoặc $x = 0$"
+      },
+      {
+        "label": "d)",
+        "explanation": "Phương trình: $9x^2 - 1 = (3x - 1)(x - 2)$.\nNhận thấy $9x^2 - 1 = (3x - 1)(3x + 1)$ (hằng đẳng thức).\nPhương trình trở thành: $(3x - 1)(3x + 1) = (3x - 1)(x - 2)$.\nChuyển vế: $(3x - 1)(3x + 1) - (3x - 1)(x - 2) = 0$.\nNhân tử chung: $(3x - 1)[(3x + 1) - (x - 2)] = 0$.\nRút gọn: $(3x - 1)(3x + 1 - x + 2) = 0$.\nTiếp tục: $(3x - 1)(2x + 3) = 0$.\nPhương trình tích: $3x - 1 = 0$ hoặc $2x + 3 = 0$.\nGiải: $x = \\frac{1}{3}$ hoặc $x = -\\frac{3}{2}$.",
+        "final_answer": "$x = \\frac{1}{3}$ hoặc $x = -\\frac{3}{2}$"
+      },
+      {
+        "label": "e)",
+        "explanation": "Phương trình: $(x - 2)(x^2 - 3x + 1) = x^3 - 8$.\nNhận thấy $x^3 - 8 = (x - 2)(x^2 + 2x + 4)$ (hằng đẳng thức).\nPhương trình trở thành: $(x - 2)(x^2 - 3x + 1) = (x - 2)(x^2 + 2x + 4)$.\nChuyển vế: $(x - 2)(x^2 - 3x + 1) - (x - 2)(x^2 + 2x + 4) = 0$.\nNhân tử chung: $(x - 2)[(x^2 - 3x + 1) - (x^2 + 2x + 4)] = 0$.\nRút gọn: $(x - 2)(x^2 - 3x + 1 - x^2 - 2x - 4) = 0$.\nTiếp tục: $(x - 2)(-5x - 3) = 0$.\nHay: $(x - 2)(5x + 3) = 0$ (nhân với $-1$).\nPhương trình tích: $x - 2 = 0$ hoặc $5x + 3 = 0$.\nGiải: $x = 2$ hoặc $x = -\\frac{3}{5}$.",
+        "final_answer": "$x = 2$ hoặc $x = -\\frac{3}{5}$"
+      },
+      {
+        "label": "g)",
+        "explanation": "Phương trình: $x^3 + 3x^2 + x + 3 = 0$.\nNhóm hạng tử: $(x^3 + 3x^2) + (x + 3) = 0$.\nĐặt nhân tử chung: $x^2(x + 3) + 1(x + 3) = 0$.\nNhân tử chung: $(x + 3)(x^2 + 1) = 0$.\nPhương trình tích: $x + 3 = 0$ hoặc $x^2 + 1 = 0$.\nGiải: $x + 3 = 0$ cho $x = -3$.\nPhương trình $x^2 + 1 = 0$ vô nghiệm vì $x^2 \\ge 0$ với mọi $x$.\nVậy phương trình có nghiệm duy nhất $x = -3$.",
+        "final_answer": "$x = -3$"
+      }
+    ],
+    "correct_index": null,
+    "correct_values": null,
+    "final_answer": "a) $x = 1$\nb) $x = 3$ hoặc $x = -3$\nc) $x = 3$ hoặc $x = 0$\nd) $x = \\frac{1}{3}$ hoặc $x = -\\frac{3}{2}$\ne) $x = 2$ hoặc $x = -\\frac{3}{5}$\ng) $x = -3$",
+    "timestamp": "2026-04-17T08:00:33.789Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "32bbc2bcad1b296464c8b93255060c43dabb1687",
+    "external_answer": null,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "chuyen",
+        "tich"
+      ],
+      "matchedKeywords": [
+        "chuyen",
+        "tich"
+      ],
+      "subpartLabels": [
+        "a)",
+        "b)",
+        "c)",
+        "d)",
+        "e)",
+        "g)"
+      ],
+      "coveredSubparts": [
+        "a)",
+        "b)",
+        "c)",
+        "d)",
+        "e)",
+        "g)"
+      ],
+      "hasSubpartSolutions": true,
+      "responseLength": 5358
+    },
+    "attempts": 1
+  },
+  "mc_0033": {
+    "id": "mc_0033",
+    "type": "multiple_choice",
+    "detailed_explanation": "Xét từng suy luận:\n[0] Nếu a < b và b > c thì a < c.\nVí dụ: a = 1, b = 3, c = 2. Ta có 1 < 3 và 3 > 2, nhưng 1 < 2 đúng. Tuy nhiên, không phải luôn đúng vì có thể lấy a = 1, b = 3, c = 4 thì 1 < 3 và 3 > 4 sai (3 không lớn hơn 4). Điều kiện b > c không đủ để kết luận a < c một cách chắc chắn. Ví dụ khác: a = 5, b = 6, c = 4 thì 5 < 6 và 6 > 4 đúng, nhưng 5 < 4 sai. Suy luận này sai.\n[1] Nếu a < b và b < c thì a < c.\nĐây là tính chất bắc cầu của bất đẳng thức: nếu a < b và b < c thì a < c. Suy luận này đúng.\n[2] Nếu a > b và b < c thì a > c.\nVí dụ: a = 5, b = 3, c = 4 thì 5 > 3 và 3 < 4 đúng, nhưng 5 > 4 đúng. Tuy nhiên, không phải luôn đúng: a = 5, b = 3, c = 10 thì 5 > 3 và 3 < 10 đúng, nhưng 5 > 10 sai. Suy luận này sai.\n[3] Nếu a < b và b < c thì a > c.\nVí dụ: a = 1, b = 2, c = 3 thì 1 < 2 và 2 < 3 đúng, nhưng 1 > 3 sai. Suy luận này sai.\nVậy chỉ có suy luận [1] là đúng.",
+    "subpart_solutions": null,
+    "correct_index": 1,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T08:01:09.552Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "8691887a10a256f46587d20e2f3621a64c93d83a",
+    "external_answer": 1,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "suy",
+        "luan",
+        "dung",
+        "thi"
+      ],
+      "matchedKeywords": [
+        "suy",
+        "luan",
+        "dung",
+        "thi"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 886
+    },
+    "attempts": 1
+  },
+  "mc_0034": {
+    "id": "mc_0034",
+    "type": "multiple_choice",
+    "detailed_explanation": "Cho a < b.\nXét từng lựa chọn:\n[0] 2a - 1 < 2b - 3.\nTừ a < b, nhân hai vế với 2 > 0 được 2a < 2b.\nTrừ hai vế cho 1: 2a - 1 < 2b - 1.\nSo sánh với bất đẳng thức cần xét: 2b - 1 và 2b - 3, ta có 2b - 1 > 2b - 3.\nDo đó từ 2a - 1 < 2b - 1 và 2b - 1 > 2b - 3, không thể suy ra trực tiếp 2a - 1 < 2b - 3.\nTa cần kiểm tra trực tiếp: Từ 2a < 2b, suy ra 2a - 1 < 2b - 1.\nĐể có 2a - 1 < 2b - 3, cần 2b - 1 ≤ 2b - 3? Điều này sai vì -1 > -3.\nVậy không thể khẳng định [0] luôn đúng.\n\n[1] -3a + 2 < -3b + 1.\nTừ a < b, nhân hai vế với -3 < 0, bất đẳng thức đổi chiều: -3a > -3b.\nCộng hai vế với 2: -3a + 2 > -3b + 2.\nSo sánh với -3b + 1, ta có -3b + 2 > -3b + 1.\nDo đó -3a + 2 > -3b + 2 > -3b + 1, suy ra -3a + 2 > -3b + 1.\nVậy bất đẳng thức [1] sai.\n\n[2] 2a + 1 > 2b + 1.\nTừ a < b, nhân hai vế với 2 > 0 được 2a < 2b.\nCộng hai vế với 1: 2a + 1 < 2b + 1.\nVậy bất đẳng thức [2] sai.\n\n[3] 3a - 1 < 3b + 3.\nTừ a < b, nhân hai vế với 3 > 0 được 3a < 3b.\nCộng hai vế cho một số bất kỳ: 3a - 1 < 3b - 1.\nSo sánh với 3b + 3, ta có 3b - 1 < 3b + 3.\nDo đó 3a - 1 < 3b - 1 < 3b + 3.\nVậy 3a - 1 < 3b + 3 luôn đúng với mọi a < b.\n\nKết luận: Chỉ có bất đẳng thức [3] là đúng.\nLưu ý: Cảnh báo từ lần thử trước chỉ ra AI chọn đáp án 3 nhưng answers.json ghi 1. Tuy nhiên, sau khi giải chi tiết, ta thấy đáp án đúng là 3.",
+    "subpart_solutions": null,
+    "correct_index": 3,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T08:03:32.531Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "b2f17c7d57f0e65988e5ea813dd4795e5c853773",
+    "external_answer": 1,
+    "audit": {
+      "ok": false,
+      "suspected": true,
+      "issues": [
+        "AI chọn đáp án 3 nhưng answers.json ghi 1."
+      ],
+      "questionKeywords": [
+        "thuc",
+        "day",
+        "dung"
+      ],
+      "matchedKeywords": [
+        "thuc",
+        "dung"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 1289
+    },
+    "attempts": 2
+  },
+  "mc_0035": {
+    "id": "mc_0035",
+    "type": "multiple_choice",
+    "detailed_explanation": "Ta có: a > 0 và b < 0.\nXét từng bất đẳng thức:\n[0] a² + b² > 0.\nVì a² ≥ 0 với mọi a, b² ≥ 0 với mọi b, và a ≠ 0 hoặc b ≠ 0 (do a > 0 nên a ≠ 0). Do đó tổng a² + b² > 0. Bất đẳng thức này đúng.\n[1] a² - b² > 0.\nTa có b² > 0 (vì b ≠ 0). Nhưng không thể khẳng định a² > b² vì không có thông tin so sánh độ lớn giữa a và b. Ví dụ: a = 1, b = -2 thì a² = 1, b² = 4, suy ra a² - b² = -3 < 0. Do đó bất đẳng thức này không luôn đúng.\n[2] -a² + b² > 0.\nTương tự, bất đẳng thức này tương đương với b² > a², không thể khẳng định được vì không có dữ kiện so sánh. Ví dụ a = 2, b = -1 thì b² = 1, a² = 4, suy ra -a² + b² = -3 < 0. Do đó bất đẳng thức này không luôn đúng.\n[3] -a² - b² > 0.\nVì a² > 0 và b² > 0 nên -a² - b² < 0 với mọi a ≠ 0 hoặc b ≠ 0. Do đó bất đẳng thức này sai.\nVậy chỉ có bất đẳng thức ở lựa chọn [0] là luôn đúng với mọi a > 0, b < 0.",
+    "subpart_solutions": null,
+    "correct_index": 0,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T08:04:43.999Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "b83df0897f39d6b22ee43d5d6c927bd41acfccd2",
+    "external_answer": 1,
+    "audit": {
+      "ok": false,
+      "suspected": true,
+      "issues": [
+        "AI chọn đáp án 0 nhưng answers.json ghi 1."
+      ],
+      "questionKeywords": [
+        "thuc",
+        "day",
+        "dung"
+      ],
+      "matchedKeywords": [
+        "thuc",
+        "dung"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 844
+    },
+    "attempts": 2
+  },
+  "essay_0045": {
+    "id": "essay_0045",
+    "type": "essay",
+    "detailed_explanation": "a) Giải bất phương trình $3x - 6 > 0$.$3x - 6 > 0$$3x > 6$$x > 2$.Vậy tập nghiệm của bất phương trình là $x > 2$.b) Giải bất phương trình $12 - 4x \\leq 0$.$12 - 4x \\leq 0$$-4x \\leq -12$.Nhân cả hai vế với $-1$ (vì $-1 < 0$ nên đổi chiều bất đẳng thức):$4x \\geq 12$$x \\geq 3$.Vậy tập nghiệm của bất phương trình là $x \\geq 3$.c) Giải bất phương trình $7 - \\frac{1}{2}x < 1$.$7 - \\frac{1}{2}x < 1$$-\\frac{1}{2}x < 1 - 7$$-\\frac{1}{2}x < -6$.Nhân cả hai vế với $-2$ (vì $-2 < 0$ nên đổi chiều bất đẳng thức):$x > 12$.Vậy tập nghiệm của bất phương trình là $x > 12$.",
+    "subpart_solutions": [
+      {
+        "label": "a)",
+        "explanation": "Giải bất phương trình $3x - 6 > 0$.$3x - 6 > 0$$3x > 6$$x > 2$.Vậy tập nghiệm của bất phương trình là $x > 2$.",
+        "final_answer": "$x > 2$"
+      },
+      {
+        "label": "b)",
+        "explanation": "Giải bất phương trình $12 - 4x \\leq 0$.$12 - 4x \\leq 0$$-4x \\leq -12$.Nhân cả hai vế với $-1$ (vì $-1 < 0$ nên đổi chiều bất đẳng thức):$4x \\geq 12$$x \\geq 3$.Vậy tập nghiệm của bất phương trình là $x \\geq 3$.",
+        "final_answer": "$x \\geq 3$"
+      },
+      {
+        "label": "c)",
+        "explanation": "Giải bất phương trình $7 - \\frac{1}{2}x < 1$.$7 - \\frac{1}{2}x < 1$$-\\frac{1}{2}x < 1 - 7$$-\\frac{1}{2}x < -6$.Nhân cả hai vế với $-2$ (vì $-2 < 0$ nên đổi chiều bất đẳng thức):$x > 12$.Vậy tập nghiệm của bất phương trình là $x > 12$.",
+        "final_answer": "$x > 12$"
+      }
+    ],
+    "correct_index": null,
+    "correct_values": null,
+    "final_answer": "a) $x > 2$; b) $x \\geq 3$; c) $x > 12$.",
+    "timestamp": "2026-04-17T08:05:43.794Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "c587a3ea5e79df31f522b372cb04cd4b3cdd4229",
+    "external_answer": null,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [],
+      "matchedKeywords": [],
+      "subpartLabels": [
+        "a)",
+        "b)",
+        "c)"
+      ],
+      "coveredSubparts": [
+        "a)",
+        "b)",
+        "c)"
+      ],
+      "hasSubpartSolutions": true,
+      "responseLength": 1195
+    },
+    "attempts": 1
+  },
+  "essay_0046": {
+    "id": "essay_0046",
+    "type": "essay",
+    "detailed_explanation": "a) Giải bất phương trình: $\\frac{3x + 2}{2} - x \\geq 1 + \\frac{x + 3}{3}$.$\\newline$Nhân hai vế với 6 (BCNN của 2 và 3):$\\newline$ $6 \\cdot \\left( \\frac{3x + 2}{2} - x \\right) \\geq 6 \\cdot \\left( 1 + \\frac{x + 3}{3} \\right)$.$\\newline$ $3(3x + 2) - 6x \\geq 6 + 2(x + 3)$.$\\newline$ $9x + 6 - 6x \\geq 6 + 2x + 6$.$\\newline$ $3x + 6 \\geq 2x + 12$.$\\newline$ $3x - 2x \\geq 12 - 6$.$\\newline$ $x \\geq 6$.$\\newline$Vậy tập nghiệm của bất phương trình là $x \\geq 6$.$\\newline$$\\newline$b) Giải bất phương trình: $\\frac{x - 1}{3} - x - 3 \\leq \\frac{-x - 15}{2}$.$\\newline$Nhân hai vế với 6 (BCNN của 3 và 2):$\\newline$ $6 \\cdot \\left( \\frac{x - 1}{3} - x - 3 \\right) \\leq 6 \\cdot \\frac{-x - 15}{2}$.$\\newline$ $2(x - 1) - 6x - 18 \\leq 3(-x - 15)$.$\\newline$ $2x - 2 - 6x - 18 \\leq -3x - 45$.$\\newline$ $-4x - 20 \\leq -3x - 45$.$\\newline$ $-4x + 3x \\leq -45 + 20$.$\\newline$ $-x \\leq -25$.$\\newline$ Nhân hai vế với $-1$ (đổi chiều bất đẳng thức):$\\newline$ $x \\geq 25$.$\\newline$Vậy tập nghiệm của bất phương trình là $x \\geq 25$.$\\newline$$\\newline$c) Giải bất phương trình: $\\frac{x + 1}{3} - \\frac{3x - 4}{4} \\leq \\frac{2x + 1}{6} - \\frac{x + 4}{12}$.$\\newline$Nhân hai vế với 12 (BCNN của 3, 4, 6, 12):$\\newline$ $12 \\cdot \\left( \\frac{x + 1}{3} - \\frac{3x - 4}{4} \\right) \\leq 12 \\cdot \\left( \\frac{2x + 1}{6} - \\frac{x + 4}{12} \\right)$.$\\newline$ $4(x + 1) - 3(3x - 4) \\leq 2(2x + 1) - (x + 4)$.$\\newline$ $4x + 4 - 9x + 12 \\leq 4x + 2 - x - 4$.$\\newline$ $-5x + 16 \\leq 3x - 2$.$\\newline$ $-5x - 3x \\leq -2 - 16$.$\\newline$ $-8x \\leq -18$.$\\newline$ Chia hai vế cho $-8$ (đổi chiều bất đẳng thức):$\\newline$ $x \\geq \\frac{-18}{-8}$.$\\newline$ $x \\geq \\frac{9}{4}$.$\\newline$Vậy tập nghiệm của bất phương trình là $x \\geq \\frac{9}{4}$.",
+    "subpart_solutions": [
+      {
+        "label": "a)",
+        "explanation": "Giải bất phương trình: $\\frac{3x + 2}{2} - x \\geq 1 + \\frac{x + 3}{3}$.$\\newline$Nhân hai vế với 6 (BCNN của 2 và 3):$\\newline$ $6 \\cdot \\left( \\frac{3x + 2}{2} - x \\right) \\geq 6 \\cdot \\left( 1 + \\frac{x + 3}{3} \\right)$.$\\newline$ $3(3x + 2) - 6x \\geq 6 + 2(x + 3)$.$\\newline$ $9x + 6 - 6x \\geq 6 + 2x + 6$.$\\newline$ $3x + 6 \\geq 2x + 12$.$\\newline$ $3x - 2x \\geq 12 - 6$.$\\newline$ $x \\geq 6$.$\\newline$Vậy tập nghiệm của bất phương trình là $x \\geq 6$.",
+        "final_answer": "$x \\geq 6$"
+      },
+      {
+        "label": "b)",
+        "explanation": "Giải bất phương trình: $\\frac{x - 1}{3} - x - 3 \\leq \\frac{-x - 15}{2}$.$\\newline$Nhân hai vế với 6 (BCNN của 3 và 2):$\\newline$ $6 \\cdot \\left( \\frac{x - 1}{3} - x - 3 \\right) \\leq 6 \\cdot \\frac{-x - 15}{2}$.$\\newline$ $2(x - 1) - 6x - 18 \\leq 3(-x - 15)$.$\\newline$ $2x - 2 - 6x - 18 \\leq -3x - 45$.$\\newline$ $-4x - 20 \\leq -3x - 45$.$\\newline$ $-4x + 3x \\leq -45 + 20$.$\\newline$ $-x \\leq -25$.$\\newline$ Nhân hai vế với $-1$ (đổi chiều bất đẳng thức):$\\newline$ $x \\geq 25$.$\\newline$Vậy tập nghiệm của bất phương trình là $x \\geq 25$.",
+        "final_answer": "$x \\geq 25$"
+      },
+      {
+        "label": "c)",
+        "explanation": "Giải bất phương trình: $\\frac{x + 1}{3} - \\frac{3x - 4}{4} \\leq \\frac{2x + 1}{6} - \\frac{x + 4}{12}$.$\\newline$Nhân hai vế với 12 (BCNN của 3, 4, 6, 12):$\\newline$ $12 \\cdot \\left( \\frac{x + 1}{3} - \\frac{3x - 4}{4} \\right) \\leq 12 \\cdot \\left( \\frac{2x + 1}{6} - \\frac{x + 4}{12} \\right)$.$\\newline$ $4(x + 1) - 3(3x - 4) \\leq 2(2x + 1) - (x + 4)$.$\\newline$ $4x + 4 - 9x + 12 \\leq 4x + 2 - x - 4$.$\\newline$ $-5x + 16 \\leq 3x - 2$.$\\newline$ $-5x - 3x \\leq -2 - 16$.$\\newline$ $-8x \\leq -18$.$\\newline$ Chia hai vế cho $-8$ (đổi chiều bất đẳng thức):$\\newline$ $x \\geq \\frac{-18}{-8}$.$\\newline$ $x \\geq \\frac{9}{4}$.$\\newline$Vậy tập nghiệm của bất phương trình là $x \\geq \\frac{9}{4}$.",
+        "final_answer": "$x \\geq \\frac{9}{4}$"
+      }
+    ],
+    "correct_index": null,
+    "correct_values": null,
+    "final_answer": "a) $x \\geq 6$; b) $x \\geq 25$; c) $x \\geq \\frac{9}{4}$.",
+    "timestamp": "2026-04-17T08:08:31.167Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "e33dfce9fc78936dd29aaa8f61039c2268765d76",
+    "external_answer": null,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [],
+      "matchedKeywords": [],
+      "subpartLabels": [
+        "a)",
+        "b)",
+        "c)"
+      ],
+      "coveredSubparts": [
+        "a)",
+        "b)",
+        "c)"
+      ],
+      "hasSubpartSolutions": true,
+      "responseLength": 3533
+    },
+    "attempts": 1
+  },
+  "mc_0062": {
+    "id": "mc_0062",
+    "type": "multiple_choice",
+    "detailed_explanation": "Căn bậc hai số học của một số thực a không âm là số không âm x sao cho x² = a.\nTheo định nghĩa, căn bậc hai số học của 100 là số không âm thỏa mãn bình phương bằng 100.\nTa có: 10² = 100 và 10 ≥ 0.\nDo đó, căn bậc hai số học của 100 là 10.\nLưu ý: -10 cũng có bình phương bằng 100 nhưng là số âm, nên không phải là căn bậc hai số học.\nVậy đáp án đúng là 10.",
+    "subpart_solutions": null,
+    "correct_index": 0,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T08:09:02.754Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "e55fc1610d43eb7fbdee1bfcdc6e54bc0de656fe",
+    "external_answer": 2,
+    "audit": {
+      "ok": false,
+      "suspected": true,
+      "issues": [
+        "AI chọn đáp án 0 nhưng answers.json ghi 2."
+      ],
+      "questionKeywords": [
+        "can",
+        "bac",
+        "hoc",
+        "100"
+      ],
+      "matchedKeywords": [
+        "can",
+        "bac",
+        "hoc",
+        "100"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 354
+    },
+    "attempts": 2
+  },
+  "mc_0063": {
+    "id": "mc_0063",
+    "type": "multiple_choice",
+    "detailed_explanation": "Biểu thức $\\sqrt{2x - 4}$ xác định khi và chỉ khi biểu thức dưới dấu căn không âm, tức là $2x - 4 \\geq 0$.\nGiải bất phương trình: $2x - 4 \\geq 0 \\Leftrightarrow 2x \\geq 4 \\Leftrightarrow x \\geq 2$.\nVậy điều kiện xác định là $x \\geq 2$.\nSo sánh với các lựa chọn:\n[0] $x = 2$: Sai vì chỉ đúng tại một điểm, trong khi điều kiện là $x \\geq 2$.\n[1] $x > 2$: Sai vì thiếu điểm $x = 2$.\n[2] $x \\leq 2$: Sai vì ngược với điều kiện.\n[3] $x \\geq 2$: Đúng.\nDo đó đáp án đúng là lựa chọn [3].",
+    "subpart_solutions": null,
+    "correct_index": 3,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T08:09:21.945Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "e848c319853459e55c225702103ffa0b50d9c26a",
+    "external_answer": 3,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "dieu",
+        "kien",
+        "xac",
+        "dinh",
+        "bieu",
+        "thuc"
+      ],
+      "matchedKeywords": [
+        "dieu",
+        "kien",
+        "xac",
+        "dinh",
+        "bieu",
+        "thuc"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 480
+    },
+    "attempts": 1
+  },
+  "mc_0064": {
+    "id": "mc_0064",
+    "type": "multiple_choice",
+    "detailed_explanation": "Đề bài cho công thức: v = 5√l, trong đó l là độ dài đường sóng nước để lại sau đuôi ca nô (đơn vị mét).\nCa nô để lại đường sóng nước dài l = 36 m.\nThay l = 36 vào công thức: v = 5√36 = 5 × 6 = 30.\nVậy vận tốc của ca nô là 30 m/s.\nĐối chiếu với các lựa chọn:\n[0] 30 m/giây → Đúng.\n[1] 180 m/giây → Sai.\n[2] 90 m/giây → Sai.\n[3] 40 m/giây → Sai.",
+    "subpart_solutions": null,
+    "correct_index": 0,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T08:09:58.932Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "11fb0df2698ea2346e344199656e8af22b2184f0",
+    "external_answer": 3,
+    "audit": {
+      "ok": false,
+      "suspected": true,
+      "issues": [
+        "AI chọn đáp án 0 nhưng answers.json ghi 3."
+      ],
+      "questionKeywords": [
+        "toc",
+        "chiec",
+        "dai",
+        "duong",
+        "song",
+        "nuoc",
+        "lai",
+        "boi",
+        "cong",
+        "thuc",
+        "cang",
+        "tien"
+      ],
+      "matchedKeywords": [
+        "toc",
+        "dai",
+        "duong",
+        "song",
+        "nuoc",
+        "lai",
+        "cong",
+        "thuc"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 343
+    },
+    "attempts": 2
+  },
+  "essay_0074": {
+    "id": "essay_0074",
+    "type": "essay",
+    "detailed_explanation": "a) $2\\sqrt{50} = 10\\sqrt{2}$, $4\\sqrt{32} = 16\\sqrt{2}$, $\\frac{\\sqrt{22}}{\\sqrt{11}} = \\sqrt{2}$. Biểu thức trong ngoặc: $10\\sqrt{2} - 16\\sqrt{2} + \\sqrt{2} = -5\\sqrt{2}$. Chia cho $\\frac{\\sqrt{2}}{5}$: $(-5\\sqrt{2}) : \\frac{\\sqrt{2}}{5} = -25$.\nb) $\\sqrt{5+2\\sqrt{6}} = \\sqrt{(\\sqrt{3}+\\sqrt{2})^2} = \\sqrt{3}+\\sqrt{2}$, $\\sqrt{5-2\\sqrt{6}} = \\sqrt{(\\sqrt{3}-\\sqrt{2})^2} = \\sqrt{3}-\\sqrt{2}$. Hiệu: $(\\sqrt{3}+\\sqrt{2}) - (\\sqrt{3}-\\sqrt{2}) = 2\\sqrt{2}$.\nc) $\\sqrt{80}=4\\sqrt{5}$, $\\sqrt{45}=3\\sqrt{5}$, $\\sqrt{125}=5\\sqrt{5}$, $\\sqrt{180}=6\\sqrt{5}$. Tử số: $4\\sqrt{5}+3\\sqrt{5}-5\\sqrt{5}+6\\sqrt{5}=8\\sqrt{5}$. Mẫu: $7\\sqrt{5}$. Kết quả: $\\frac{8}{7}$.\nd) $\\sqrt{20}=2\\sqrt{5}$. $\\frac{6}{\\sqrt{5}-2} = \\frac{6(\\sqrt{5}+2)}{5-4}=6\\sqrt{5}+12$. Biểu thức: $2\\sqrt{5} - (6\\sqrt{5}+12) = -4\\sqrt{5}-12$.\ne) $\\sqrt[3]{64}=4$, $\\sqrt[3]{-216}=-6$. Hiệu: $4-(-6)=10$. $\\frac{1}{\\sqrt{125}} = \\frac{1}{5\\sqrt{5}} = \\frac{\\sqrt{5}}{25}$. Tích: $10 \\cdot \\frac{\\sqrt{5}}{25} = \\frac{2\\sqrt{5}}{5}$.\nf) $\\frac{1}{\\sqrt{27}} = \\frac{\\sqrt{3}}{9}$, $23\\sqrt{\\frac{1}{216}} = \\frac{23\\sqrt{6}}{36}$, $14\\sqrt{0,125} = \\frac{7\\sqrt{2}}{2}$. Tổng: $\\frac{4\\sqrt{3}}{36} - \\frac{23\\sqrt{6}}{36} + \\frac{126\\sqrt{2}}{36} = \\frac{4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2}}{36}$. Nhân với $\\frac{-8}{\\sqrt{343}} = \\frac{-8\\sqrt{7}}{49}$: $\\frac{(4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2})(-8\\sqrt{7})}{1764} = \\frac{-32\\sqrt{21} + 184\\sqrt{42} - 1008\\sqrt{14}}{1764} = \\frac{-8\\sqrt{21} + 46\\sqrt{42} - 252\\sqrt{14}}{441}$.",
+    "subpart_solutions": [
+      {
+        "label": "a)",
+        "explanation": "Ta có: $2\\sqrt{50} = 2\\sqrt{25\\cdot2} = 2\\cdot5\\sqrt{2} = 10\\sqrt{2}$.\n$4\\sqrt{32} = 4\\sqrt{16\\cdot2} = 4\\cdot4\\sqrt{2} = 16\\sqrt{2}$.\n$\\frac{\\sqrt{22}}{\\sqrt{11}} = \\sqrt{\\frac{22}{11}} = \\sqrt{2}$.\nBiểu thức trong ngoặc: $10\\sqrt{2} - 16\\sqrt{2} + \\sqrt{2} = (10-16+1)\\sqrt{2} = -5\\sqrt{2}$.\nChia cho $\\frac{\\sqrt{2}}{5}$: $(-5\\sqrt{2}) : \\frac{\\sqrt{2}}{5} = (-5\\sqrt{2}) \\cdot \\frac{5}{\\sqrt{2}} = -5 \\cdot 5 = -25$.",
+        "final_answer": "$-25$"
+      },
+      {
+        "label": "b)",
+        "explanation": "Nhận thấy: $5+2\\sqrt{6} = (\\sqrt{3}+\\sqrt{2})^2$ vì $(\\sqrt{3}+\\sqrt{2})^2 = 3+2\\sqrt{6}+2 = 5+2\\sqrt{6}$.\nTương tự: $5-2\\sqrt{6} = (\\sqrt{3}-\\sqrt{2})^2$ vì $(\\sqrt{3}-\\sqrt{2})^2 = 3-2\\sqrt{6}+2 = 5-2\\sqrt{6}$.\nDo đó: $\\sqrt{5+2\\sqrt{6}} = \\sqrt{(\\sqrt{3}+\\sqrt{2})^2} = |\\sqrt{3}+\\sqrt{2}| = \\sqrt{3}+\\sqrt{2}$ (vì $\\sqrt{3}+\\sqrt{2}>0$).\n$\\sqrt{5-2\\sqrt{6}} = \\sqrt{(\\sqrt{3}-\\sqrt{2})^2} = |\\sqrt{3}-\\sqrt{2}| = \\sqrt{3}-\\sqrt{2}$ (vì $\\sqrt{3}>\\sqrt{2}$ nên $\\sqrt{3}-\\sqrt{2}>0$).\nVậy: $\\sqrt{5+2\\sqrt{6}} - \\sqrt{5-2\\sqrt{6}} = (\\sqrt{3}+\\sqrt{2}) - (\\sqrt{3}-\\sqrt{2}) = \\sqrt{3}+\\sqrt{2} - \\sqrt{3} + \\sqrt{2} = 2\\sqrt{2}$.",
+        "final_answer": "$2\\sqrt{2}$"
+      },
+      {
+        "label": "c)",
+        "explanation": "Rút gọn tử số:\n$\\sqrt{80} = \\sqrt{16\\cdot5} = 4\\sqrt{5}$.\n$\\sqrt{45} = \\sqrt{9\\cdot5} = 3\\sqrt{5}$.\n$\\sqrt{125} = \\sqrt{25\\cdot5} = 5\\sqrt{5}$.\n$\\sqrt{180} = \\sqrt{36\\cdot5} = 6\\sqrt{5}$.\nTử số: $4\\sqrt{5} + 3\\sqrt{5} - 5\\sqrt{5} + 6\\sqrt{5} = (4+3-5+6)\\sqrt{5} = 8\\sqrt{5}$.\nMẫu số: $7\\sqrt{5}$.\nVậy biểu thức: $\\frac{8\\sqrt{5}}{7\\sqrt{5}} = \\frac{8}{7}$.",
+        "final_answer": "$\\frac{8}{7}$"
+      },
+      {
+        "label": "d)",
+        "explanation": "Ta có: $\\sqrt{20} = \\sqrt{4\\cdot5} = 2\\sqrt{5}$.\n$\\frac{6}{\\sqrt{5}-2}$ nhân liên hợp: $\\frac{6}{\\sqrt{5}-2} = \\frac{6(\\sqrt{5}+2)}{(\\sqrt{5}-2)(\\sqrt{5}+2)} = \\frac{6(\\sqrt{5}+2)}{5-4} = \\frac{6(\\sqrt{5}+2)}{1} = 6\\sqrt{5}+12$.\nBiểu thức: $2\\sqrt{5} - (6\\sqrt{5}+12) = 2\\sqrt{5} - 6\\sqrt{5} - 12 = -4\\sqrt{5} - 12$.",
+        "final_answer": "$-4\\sqrt{5} - 12$"
+      },
+      {
+        "label": "e)",
+        "explanation": "Tính: $\\sqrt[3]{64} = 4$ vì $4^3=64$.\n$\\sqrt[3]{-216} = -6$ vì $(-6)^3 = -216$.\nDo đó: $\\sqrt[3]{64} - \\sqrt[3]{-216} = 4 - (-6) = 4+6=10$.\n$\\frac{1}{\\sqrt{125}} = \\frac{1}{\\sqrt{25\\cdot5}} = \\frac{1}{5\\sqrt{5}} = \\frac{\\sqrt{5}}{5\\cdot5} = \\frac{\\sqrt{5}}{25}$ (sau khi nhân tử và mẫu với $\\sqrt{5}$).\nVậy: $10 \\cdot \\frac{\\sqrt{5}}{25} = \\frac{10\\sqrt{5}}{25} = \\frac{2\\sqrt{5}}{5}$.",
+        "final_answer": "$\\frac{2\\sqrt{5}}{5}$"
+      },
+      {
+        "label": "f)",
+        "explanation": "Tính từng số hạng trong ngoặc:\n$\\frac{1}{\\sqrt{27}} = \\frac{1}{\\sqrt{9\\cdot3}} = \\frac{1}{3\\sqrt{3}} = \\frac{\\sqrt{3}}{9}$.\n$23\\sqrt{\\frac{1}{216}} = 23 \\cdot \\frac{1}{\\sqrt{216}} = 23 \\cdot \\frac{1}{\\sqrt{36\\cdot6}} = 23 \\cdot \\frac{1}{6\\sqrt{6}} = \\frac{23}{6\\sqrt{6}} = \\frac{23\\sqrt{6}}{36}$.\n$14\\sqrt{0,125} = 14\\sqrt{\\frac{1}{8}} = 14 \\cdot \\frac{1}{\\sqrt{8}} = 14 \\cdot \\frac{1}{2\\sqrt{2}} = \\frac{14}{2\\sqrt{2}} = \\frac{7}{\\sqrt{2}} = \\frac{7\\sqrt{2}}{2}$.\nBiểu thức trong ngoặc: $\\frac{\\sqrt{3}}{9} - \\frac{23\\sqrt{6}}{36} + \\frac{7\\sqrt{2}}{2}$.\nQuy đồng mẫu số chung là 36:\n$\\frac{\\sqrt{3}}{9} = \\frac{4\\sqrt{3}}{36}$.\n$\\frac{7\\sqrt{2}}{2} = \\frac{126\\sqrt{2}}{36}$.\nVậy: $\\frac{4\\sqrt{3}}{36} - \\frac{23\\sqrt{6}}{36} + \\frac{126\\sqrt{2}}{36} = \\frac{4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2}}{36}$.\nNhân với $\\frac{-8}{\\sqrt{343}}$: $\\frac{-8}{\\sqrt{343}} = \\frac{-8}{\\sqrt{7^3}} = \\frac{-8}{7\\sqrt{7}} = \\frac{-8\\sqrt{7}}{49}$.\nKết quả: $\\frac{4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2}}{36} \\cdot \\frac{-8\\sqrt{7}}{49} = \\frac{(4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2})(-8\\sqrt{7})}{36 \\cdot 49}$.\n$36\\cdot49 = 1764$.\nVậy: $\\frac{-8\\sqrt{7}(4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2})}{1764} = \\frac{-32\\sqrt{21} + 184\\sqrt{42} - 1008\\sqrt{14}}{1764}$.\nRút gọn phân số bằng cách chia tử và mẫu cho 4: $\\frac{-8\\sqrt{21} + 46\\sqrt{42} - 252\\sqrt{14}}{441}$.",
+        "final_answer": "$\\frac{-8\\sqrt{21} + 46\\sqrt{42} - 252\\sqrt{14}}{441}$"
+      }
+    ],
+    "correct_index": null,
+    "correct_values": null,
+    "final_answer": "a) $-25$; b) $2\\sqrt{2}$; c) $\\frac{8}{7}$; d) $-4\\sqrt{5} - 12$; e) $\\frac{2\\sqrt{5}}{5}$; f) $\\frac{-8\\sqrt{21} + 46\\sqrt{42} - 252\\sqrt{14}}{441}$.",
+    "timestamp": "2026-04-17T08:18:59.266Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "b549cd98ac3b8f225e8c69c3af2db95e27db4207",
+    "external_answer": null,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "bieu",
+        "thuc"
+      ],
+      "matchedKeywords": [
+        "bieu",
+        "thuc"
+      ],
+      "subpartLabels": [
+        "a)",
+        "b)",
+        "c)",
+        "d)",
+        "e)",
+        "f)"
+      ],
+      "coveredSubparts": [
+        "a)",
+        "b)",
+        "c)",
+        "d)",
+        "e)",
+        "f)"
+      ],
+      "hasSubpartSolutions": true,
+      "responseLength": 5260
+    },
+    "attempts": 1
+  },
+  "essay_0075": {
+    "id": "essay_0075",
+    "type": "essay",
+    "detailed_explanation": "a) Xét $√{10} + √{13} < √{11} + √{12}$.\nBình phương hai vế (vì cả hai vế đều dương):\n$(\\sqrt{10} + \\sqrt{13})^2 = 10 + 13 + 2\\sqrt{130} = 23 + 2\\sqrt{130}$.\n$(\\sqrt{11} + \\sqrt{12})^2 = 11 + 12 + 2\\sqrt{132} = 23 + 2\\sqrt{132}$.\nSo sánh $2\\sqrt{130}$ và $2\\sqrt{132}$, ta có $\\sqrt{130} < \\sqrt{132}$ nên $23 + 2\\sqrt{130} < 23 + 2\\sqrt{132}$.\nDo đó $(\\sqrt{10} + \\sqrt{13})^2 < (\\sqrt{11} + \\sqrt{12})^2$.\nSuy ra $\\sqrt{10} + \\sqrt{13} < \\sqrt{11} + \\sqrt{12}$.\n\nb) Với $x \\ge 0$, $y \\ge 0$, ta cần chứng minh $\\sqrt{x + y} < \\sqrt{x} + \\sqrt{y}$ (với $x, y > 0$ thì bất đẳng thức là chặt, nếu một trong hai bằng 0 thì đẳng thức xảy ra).\nBình phương hai vế (vì cả hai vế đều không âm):\n$(\\sqrt{x + y})^2 = x + y$.\n$(\\sqrt{x} + \\sqrt{y})^2 = x + y + 2\\sqrt{xy}$.\nVì $2\\sqrt{xy} > 0$ khi $x > 0$ và $y > 0$, nên $x + y < x + y + 2\\sqrt{xy}$.\nDo đó $(\\sqrt{x + y})^2 < (\\sqrt{x} + \\sqrt{y})^2$.\nSuy ra $\\sqrt{x + y} < \\sqrt{x} + \\sqrt{y}$ với $x > 0$, $y > 0$.\nNếu $x = 0$ hoặc $y = 0$ thì $\\sqrt{x + y} = \\sqrt{x} + \\sqrt{y}$.",
+    "subpart_solutions": [
+      {
+        "label": "a)",
+        "explanation": "Xét $√{10} + √{13} < √{11} + √{12}$.\nBình phương hai vế (vì cả hai vế đều dương):\n$(\\sqrt{10} + \\sqrt{13})^2 = 10 + 13 + 2\\sqrt{130} = 23 + 2\\sqrt{130}$.\n$(\\sqrt{11} + \\sqrt{12})^2 = 11 + 12 + 2\\sqrt{132} = 23 + 2\\sqrt{132}$.\nSo sánh $2\\sqrt{130}$ và $2\\sqrt{132}$, ta có $\\sqrt{130} < \\sqrt{132}$ nên $23 + 2\\sqrt{130} < 23 + 2\\sqrt{132}$.\nDo đó $(\\sqrt{10} + \\sqrt{13})^2 < (\\sqrt{11} + \\sqrt{12})^2$.\nSuy ra $\\sqrt{10} + \\sqrt{13} < \\sqrt{11} + \\sqrt{12}$.",
+        "final_answer": "$\\sqrt{10} + \\sqrt{13} < \\sqrt{11} + \\sqrt{12}$"
+      },
+      {
+        "label": "b)",
+        "explanation": "Với $x \\ge 0$, $y \\ge 0$, ta cần chứng minh $\\sqrt{x + y} < \\sqrt{x} + \\sqrt{y}$ (với $x, y > 0$ thì bất đẳng thức là chặt, nếu một trong hai bằng 0 thì đẳng thức xảy ra).\nBình phương hai vế (vì cả hai vế đều không âm):\n$(\\sqrt{x + y})^2 = x + y$.\n$(\\sqrt{x} + \\sqrt{y})^2 = x + y + 2\\sqrt{xy}$.\nVì $2\\sqrt{xy} > 0$ khi $x > 0$ và $y > 0$, nên $x + y < x + y + 2\\sqrt{xy}$.\nDo đó $(\\sqrt{x + y})^2 < (\\sqrt{x} + \\sqrt{y})^2$.\nSuy ra $\\sqrt{x + y} < \\sqrt{x} + \\sqrt{y}$ với $x > 0$, $y > 0$.\nNếu $x = 0$ hoặc $y = 0$ thì $\\sqrt{x + y} = \\sqrt{x} + \\sqrt{y}$.",
+        "final_answer": "$\\sqrt{x + y} < \\sqrt{x} + \\sqrt{y}$ với $x > 0$, $y > 0$; nếu một biến bằng 0 thì đẳng thức xảy ra."
+      }
+    ],
+    "correct_index": null,
+    "correct_values": null,
+    "final_answer": "a) $√{10} + √{13} < √{11} + √{12}$.\nb) $√{x + y} < √{x} + √{y}$ với $x > 0$, $y > 0$; nếu một biến bằng 0 thì đẳng thức xảy ra.",
+    "timestamp": "2026-04-17T08:21:04.311Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "8c59b9232dbf8d736de55900ca91c9c74f8cf9c9",
+    "external_answer": null,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "khong",
+        "dung",
+        "may",
+        "cam",
+        "tay",
+        "chung"
+      ],
+      "matchedKeywords": [
+        "khong",
+        "chung"
+      ],
+      "subpartLabels": [
+        "a)",
+        "b)"
+      ],
+      "coveredSubparts": [
+        "a)",
+        "b)"
+      ],
+      "hasSubpartSolutions": true,
+      "responseLength": 2327
+    },
+    "attempts": 1
+  },
+  "mc_0119": {
+    "id": "mc_0119",
+    "type": "multiple_choice",
+    "detailed_explanation": "Phương trình đã cho là: 3x² - 4x + 1 = 0.\nTa tính biệt thức Δ (delta): Δ = b² - 4ac.\nVới a = 3, b = -4, c = 1.\nΔ = (-4)² - 4 * 3 * 1 = 16 - 12 = 4.\nVì Δ = 4 > 0, nên phương trình có hai nghiệm phân biệt.\nDo đó, kết luận đúng là: Phương trình có hai nghiệm phân biệt.\nĐối chiếu với các lựa chọn:\n[0] Phương trình vô nghiệm. (Sai)\n[1] Phương trình có nghiệm kép. (Sai)\n[2] Phương trình có hai nghiệm phân biệt. (Đúng)\n[3] Phương trình vô số nghiệm. (Sai)\nVậy đáp án đúng là lựa chọn [2].",
+    "subpart_solutions": null,
+    "correct_index": 2,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T08:21:27.262Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "0f79221b9b996cca05b28eff0c6bb95ab0ccd221",
+    "external_answer": 2,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "ket",
+        "luan",
+        "day",
+        "dung",
+        "nghiem",
+        "kep",
+        "phan",
+        "biet"
+      ],
+      "matchedKeywords": [
+        "ket",
+        "luan",
+        "dung",
+        "nghiem",
+        "kep",
+        "phan",
+        "biet"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 485
+    },
+    "attempts": 1
+  },
+  "mc_0120": {
+    "id": "mc_0120",
+    "type": "multiple_choice",
+    "detailed_explanation": "Phương trình đã cho là: $x^2 + mx + 6 = 0$.\nTheo đề bài, phương trình nhận $x = 2$ là nghiệm. Thay $x = 2$ vào phương trình ta được:\n$(2)^2 + m \\cdot 2 + 6 = 0$\n$4 + 2m + 6 = 0$\n$2m + 10 = 0$\n$2m = -10$\n$m = -5$.\nVậy giá trị của m là $-5$.",
+    "subpart_solutions": null,
+    "correct_index": 3,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T08:21:57.442Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "70444cdb3bd8065e34e80e4de8721b1ffce1a4d8",
+    "external_answer": 1,
+    "audit": {
+      "ok": false,
+      "suspected": true,
+      "issues": [
+        "AI chọn đáp án 3 nhưng answers.json ghi 1."
+      ],
+      "questionKeywords": [
+        "tham",
+        "nhan",
+        "nghiem",
+        "thi"
+      ],
+      "matchedKeywords": [
+        "nhan",
+        "nghiem"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 239
+    },
+    "attempts": 2
+  },
+  "mc_0121": {
+    "id": "mc_0121",
+    "type": "multiple_choice",
+    "detailed_explanation": "Phương trình đã cho là: x² + 2mx + m² - m = 0.\nĐây là phương trình bậc hai một ẩn với hệ số: a = 1, b = 2m, c = m² - m.\nĐể phương trình có hai nghiệm phân biệt thì biệt thức Δ' (do hệ số b chẵn) phải lớn hơn 0.\nTa tính Δ' = (b')² - ac, với b' = m.\nΔ' = m² - 1*(m² - m) = m² - m² + m = m.\nVậy Δ' = m.\nĐiều kiện để phương trình có hai nghiệm phân biệt là Δ' > 0 ⇔ m > 0.\nTuy nhiên, trong các lựa chọn, chỉ có [2] là m > 0. Nhưng ta cần kiểm tra lại đề bài và các lựa chọn.\nLưu ý: Đề bài yêu cầu \"Điều kiện của tham số m để phương trình có hai nghiệm phân biệt\".\nVới Δ' = m, điều kiện đúng là m > 0.\nNhưng các lựa chọn là:\n[0] m ≥ 0\n[1] m ≤ 0\n[2] m > 0\n[3] m < 0\nSo sánh: Điều kiện m > 0 trùng với lựa chọn [2].\nTuy nhiên, cần xem xét kỹ: Nếu m = 0 thì Δ' = 0, phương trình có nghiệm kép, không thỏa mãn hai nghiệm phân biệt.\nVậy chỉ có m > 0 mới thỏa mãn.\nDo đó, đáp án đúng là lựa chọn [2].\nNhưng trong yêu cầu JSON, correct_index phải là số nguyên từ 0 đến 3. Vậy correct_index = 2.\nTuy nhiên, tôi kiểm tra lại: Có thể đề bài có sai sót trong các lựa chọn? Hoặc có thể tôi đã tính sai Δ'?\nTính lại Δ (không dùng Δ'): Δ = b² - 4ac = (2m)² - 4*1*(m² - m) = 4m² - 4(m² - m) = 4m² - 4m² + 4m = 4m.\nĐiều kiện hai nghiệm phân biệt: Δ > 0 ⇔ 4m > 0 ⇔ m > 0.\nVẫn ra m > 0.\nVậy đáp án là m > 0, tương ứng với lựa chọn [2].\nKết luận: correct_index = 2.",
+    "subpart_solutions": null,
+    "correct_index": 2,
+    "correct_values": null,
+    "final_answer": null,
+    "timestamp": "2026-04-17T08:22:46.438Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "7d1d3d313f2550970fb98ac9d5738bf5aa207dc0",
+    "external_answer": 2,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "dieu",
+        "kien",
+        "tham",
+        "nghiem",
+        "phan",
+        "biet"
+      ],
+      "matchedKeywords": [
+        "dieu",
+        "kien",
+        "tham",
+        "nghiem",
+        "phan",
+        "biet"
+      ],
+      "subpartLabels": [],
+      "coveredSubparts": [],
+      "hasSubpartSolutions": false,
+      "responseLength": 1341
+    },
+    "attempts": 1
+  },
+  "essay_0131": {
+    "id": "essay_0131",
+    "type": "essay",
+    "detailed_explanation": "a) Phương trình: $x^2 - 3x + 7 = 0$ có $a=1$, $b=-3$, $c=7$. Tính biệt thức: $\\Delta = b^2 - 4ac = (-3)^2 - 4 \\cdot 1 \\cdot 7 = 9 - 28 = -19$. Vì $\\Delta < 0$ nên phương trình vô nghiệm.\nb) Phương trình: $3x^2 + 11x - 34 = 0$ có $a=3$, $b=11$, $c=-34$. Tính biệt thức: $\\Delta = b^2 - 4ac = 11^2 - 4 \\cdot 3 \\cdot (-34) = 121 + 408 = 529$. $\\sqrt{\\Delta} = \\sqrt{529} = 23$. Nghiệm: $x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a} = \\frac{-11 \\pm 23}{6}$. Vậy $x_1 = \\frac{-11 + 23}{6} = \\frac{12}{6} = 2$, $x_2 = \\frac{-11 - 23}{6} = \\frac{-34}{6} = -\\frac{17}{3}$.\nc) Phương trình: $-10x^2 - 11x + 6 = 0$ có $a=-10$, $b=-11$, $c=6$. Tính biệt thức: $\\Delta = b^2 - 4ac = (-11)^2 - 4 \\cdot (-10) \\cdot 6 = 121 + 240 = 361$. $\\sqrt{\\Delta} = \\sqrt{361} = 19$. Nghiệm: $x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a} = \\frac{11 \\pm 19}{-20}$. Vậy $x_1 = \\frac{11 + 19}{-20} = \\frac{30}{-20} = -\\frac{3}{2}$, $x_2 = \\frac{11 - 19}{-20} = \\frac{-8}{-20} = \\frac{2}{5}$.\nd) Phương trình: $9x^2 - 30x + 25 = 0$ có $a=9$, $b=-30$, $c=25$. Tính biệt thức: $\\Delta = b^2 - 4ac = (-30)^2 - 4 \\cdot 9 \\cdot 25 = 900 - 900 = 0$. Phương trình có nghiệm kép: $x = \\frac{-b}{2a} = \\frac{30}{2 \\cdot 9} = \\frac{30}{18} = \\frac{5}{3}$.\ne) Phương trình: $x^2 - 2\\sqrt{2}x + 2 = 0$ có $a=1$, $b=-2\\sqrt{2}$, $c=2$. Tính biệt thức: $\\Delta = b^2 - 4ac = (-2\\sqrt{2})^2 - 4 \\cdot 1 \\cdot 2 = 4 \\cdot 2 - 8 = 8 - 8 = 0$. Phương trình có nghiệm kép: $x = \\frac{-b}{2a} = \\frac{2\\sqrt{2}}{2 \\cdot 1} = \\sqrt{2}$.\ng) Phương trình: $1,2x^2 + 0,75x + 2,5 = 0$. Đổi thành phân số hoặc số thập phân chính xác: $a=1.2$, $b=0.75$, $c=2.5$. Tính biệt thức: $\\Delta = b^2 - 4ac = (0.75)^2 - 4 \\cdot 1.2 \\cdot 2.5 = 0.5625 - 12 = -11.4375$. Vì $\\Delta < 0$ nên phương trình vô nghiệm.",
+    "subpart_solutions": [
+      {
+        "label": "a)",
+        "explanation": "Phương trình: $x^2 - 3x + 7 = 0$ có $a=1$, $b=-3$, $c=7$. Tính biệt thức: $\\Delta = b^2 - 4ac = (-3)^2 - 4 \\cdot 1 \\cdot 7 = 9 - 28 = -19$. Vì $\\Delta < 0$ nên phương trình vô nghiệm.",
+        "final_answer": "Phương trình vô nghiệm."
+      },
+      {
+        "label": "b)",
+        "explanation": "Phương trình: $3x^2 + 11x - 34 = 0$ có $a=3$, $b=11$, $c=-34$. Tính biệt thức: $\\Delta = b^2 - 4ac = 11^2 - 4 \\cdot 3 \\cdot (-34) = 121 + 408 = 529$. $\\sqrt{\\Delta} = \\sqrt{529} = 23$. Nghiệm: $x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a} = \\frac{-11 \\pm 23}{6}$. Vậy $x_1 = \\frac{-11 + 23}{6} = \\frac{12}{6} = 2$, $x_2 = \\frac{-11 - 23}{6} = \\frac{-34}{6} = -\\frac{17}{3}$.",
+        "final_answer": "$x_1 = 2$, $x_2 = -\\frac{17}{3}$."
+      },
+      {
+        "label": "c)",
+        "explanation": "Phương trình: $-10x^2 - 11x + 6 = 0$ có $a=-10$, $b=-11$, $c=6$. Tính biệt thức: $\\Delta = b^2 - 4ac = (-11)^2 - 4 \\cdot (-10) \\cdot 6 = 121 + 240 = 361$. $\\sqrt{\\Delta} = \\sqrt{361} = 19$. Nghiệm: $x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a} = \\frac{11 \\pm 19}{-20}$. Vậy $x_1 = \\frac{11 + 19}{-20} = \\frac{30}{-20} = -\\frac{3}{2}$, $x_2 = \\frac{11 - 19}{-20} = \\frac{-8}{-20} = \\frac{2}{5}$.",
+        "final_answer": "$x_1 = -\\frac{3}{2}$, $x_2 = \\frac{2}{5}$."
+      },
+      {
+        "label": "d)",
+        "explanation": "Phương trình: $9x^2 - 30x + 25 = 0$ có $a=9$, $b=-30$, $c=25$. Tính biệt thức: $\\Delta = b^2 - 4ac = (-30)^2 - 4 \\cdot 9 \\cdot 25 = 900 - 900 = 0$. Phương trình có nghiệm kép: $x = \\frac{-b}{2a} = \\frac{30}{2 \\cdot 9} = \\frac{30}{18} = \\frac{5}{3}$.",
+        "final_answer": "Nghiệm kép $x = \\frac{5}{3}$."
+      },
+      {
+        "label": "e)",
+        "explanation": "Phương trình: $x^2 - 2\\sqrt{2}x + 2 = 0$ có $a=1$, $b=-2\\sqrt{2}$, $c=2$. Tính biệt thức: $\\Delta = b^2 - 4ac = (-2\\sqrt{2})^2 - 4 \\cdot 1 \\cdot 2 = 4 \\cdot 2 - 8 = 8 - 8 = 0$. Phương trình có nghiệm kép: $x = \\frac{-b}{2a} = \\frac{2\\sqrt{2}}{2 \\cdot 1} = \\sqrt{2}$.",
+        "final_answer": "Nghiệm kép $x = \\sqrt{2}$."
+      },
+      {
+        "label": "g)",
+        "explanation": "Phương trình: $1,2x^2 + 0,75x + 2,5 = 0$. Đổi thành phân số hoặc số thập phân chính xác: $a=1.2$, $b=0.75$, $c=2.5$. Tính biệt thức: $\\Delta = b^2 - 4ac = (0.75)^2 - 4 \\cdot 1.2 \\cdot 2.5 = 0.5625 - 12 = -11.4375$. Vì $\\Delta < 0$ nên phương trình vô nghiệm.",
+        "final_answer": "Phương trình vô nghiệm."
+      }
+    ],
+    "correct_index": null,
+    "correct_values": null,
+    "final_answer": "a) Phương trình vô nghiệm.\nb) $x_1 = 2$, $x_2 = -\\frac{17}{3}$.\nc) $x_1 = -\\frac{3}{2}$, $x_2 = \\frac{2}{5}$.\nd) Nghiệm kép $x = \\frac{5}{3}$.\ne) Nghiệm kép $x = \\sqrt{2}$.\ng) Phương trình vô nghiệm.",
+    "timestamp": "2026-04-17T08:25:23.518Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "8773787613ba5a749e5b116a00294ada7cee6813",
+    "external_answer": null,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "dung",
+        "cong",
+        "thuc",
+        "nghiem",
+        "bac"
+      ],
+      "matchedKeywords": [
+        "thuc",
+        "nghiem"
+      ],
+      "subpartLabels": [
+        "a)",
+        "b)",
+        "c)",
+        "d)",
+        "e)",
+        "g)"
+      ],
+      "coveredSubparts": [
+        "a)",
+        "b)",
+        "c)",
+        "d)",
+        "e)",
+        "g)"
+      ],
+      "hasSubpartSolutions": true,
+      "responseLength": 3841
+    },
+    "attempts": 1
+  },
+  "essay_0132": {
+    "id": "essay_0132",
+    "type": "essay",
+    "detailed_explanation": "a) Phương trình đã cho là: $-6x^2 - mx + m^2 = 0$.\nĐể phương trình có nghiệm $x = 2$, thay $x = 2$ vào phương trình:\n$-6 \\cdot 2^2 - m \\cdot 2 + m^2 = 0$\n$\\Rightarrow -6 \\cdot 4 - 2m + m^2 = 0$\n$\\Rightarrow -24 - 2m + m^2 = 0$\n$\\Rightarrow m^2 - 2m - 24 = 0$\nGiải phương trình bậc hai theo $m$:\n$\\Delta' = (-1)^2 - 1 \\cdot (-24) = 1 + 24 = 25$\n$\\Rightarrow \\sqrt{\\Delta'} = 5$\n$\\Rightarrow m_1 = 1 + 5 = 6$, $m_2 = 1 - 5 = -4$\nVậy các giá trị của $m$ để phương trình có nghiệm $x = 2$ là $m = 6$ hoặc $m = -4$.\n\nb) Phương trình: $-6x^2 - mx + m^2 = 0$ ($a = -6, b = -m, c = m^2$).\nĐiều kiện để phương trình có nghiệm kép là $\\Delta = 0$.\nTính $\\Delta = b^2 - 4ac = (-m)^2 - 4 \\cdot (-6) \\cdot m^2$\n$\\Delta = m^2 + 24 m^2 = 25 m^2$\nPhương trình có nghiệm kép khi $\\Delta = 0 \\Leftrightarrow 25 m^2 = 0 \\Leftrightarrow m^2 = 0 \\Leftrightarrow m = 0$.\nVậy $m = 0$ thì phương trình có nghiệm kép.",
+    "subpart_solutions": [
+      {
+        "label": "a)",
+        "explanation": "Phương trình đã cho là: $-6x^2 - mx + m^2 = 0$.\nĐể phương trình có nghiệm $x = 2$, thay $x = 2$ vào phương trình:\n$-6 \\cdot 2^2 - m \\cdot 2 + m^2 = 0$\n$\\Rightarrow -6 \\cdot 4 - 2m + m^2 = 0$\n$\\Rightarrow -24 - 2m + m^2 = 0$\n$\\Rightarrow m^2 - 2m - 24 = 0$\nGiải phương trình bậc hai theo $m$:\n$\\Delta' = (-1)^2 - 1 \\cdot (-24) = 1 + 24 = 25$\n$\\Rightarrow \\sqrt{\\Delta'} = 5$\n$\\Rightarrow m_1 = 1 + 5 = 6$, $m_2 = 1 - 5 = -4$\nVậy các giá trị của $m$ để phương trình có nghiệm $x = 2$ là $m = 6$ hoặc $m = -4$.",
+        "final_answer": "$m = 6$ hoặc $m = -4$"
+      },
+      {
+        "label": "b)",
+        "explanation": "Phương trình: $-6x^2 - mx + m^2 = 0$ ($a = -6, b = -m, c = m^2$).\nĐiều kiện để phương trình có nghiệm kép là $\\Delta = 0$.\nTính $\\Delta = b^2 - 4ac = (-m)^2 - 4 \\cdot (-6) \\cdot m^2$\n$\\Delta = m^2 + 24 m^2 = 25 m^2$\nPhương trình có nghiệm kép khi $\\Delta = 0 \\Leftrightarrow 25 m^2 = 0 \\Leftrightarrow m^2 = 0 \\Leftrightarrow m = 0$.\nVậy $m = 0$ thì phương trình có nghiệm kép.",
+        "final_answer": "$m = 0$"
+      }
+    ],
+    "correct_index": null,
+    "correct_values": null,
+    "final_answer": "a) $m = 6$ hoặc $m = -4$\nb) $m = 0$",
+    "timestamp": "2026-04-17T08:26:25.620Z",
+    "cache_version": "3",
+    "prompt_version": "2026-04-17-v3",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "chunk_signature": "c1bb3cbc23218eb75cd203e1363c172545308837",
+    "external_answer": null,
+    "audit": {
+      "ok": true,
+      "suspected": false,
+      "issues": [],
+      "questionKeywords": [
+        "tim",
+        "nghiem",
+        "kep"
+      ],
+      "matchedKeywords": [
+        "nghiem",
+        "kep"
+      ],
+      "subpartLabels": [
+        "a)",
+        "b)"
+      ],
+      "coveredSubparts": [
+        "a)",
+        "b)"
+      ],
+      "hasSubpartSolutions": true,
+      "responseLength": 1850
+    },
+    "attempts": 1
+  }
+}

@@ -72,11 +72,47 @@ from sympy.parsing.sympy_parser import parse_expr, standard_transformations, imp
 
 _TRANS = standard_transformations + (implicit_multiplication_application, convert_xor)
 
+_FUNC_DICT = {
+    'ln': sp.log, 'log': sp.log, 'log10': lambda a: sp.log(a, 10),
+    'sqrt': sp.sqrt, 'abs': sp.Abs, 'Abs': sp.Abs, 'exp': sp.exp,
+    'pi': sp.pi, 'Pi': sp.pi, 'e': sp.E, 'E': sp.E,
+    'sin': sp.sin, 'cos': sp.cos, 'tan': sp.tan, 'cot': sp.cot, 'sec': sp.sec, 'csc': sp.csc,
+    'asin': sp.asin, 'acos': sp.acos, 'atan': sp.atan,
+    'arcsin': sp.asin, 'arccos': sp.acos, 'arctan': sp.atan,
+    'sinh': sp.sinh, 'cosh': sp.cosh, 'tanh': sp.tanh,
+}
+
 def _parse(expr_s, var):
     x = sp.Symbol(var, real=True)
-    local = {var: x, 'ln': sp.log, 'log': sp.log, 'sqrt': sp.sqrt, 'abs': sp.Abs, 'exp': sp.exp, 'pi': sp.pi, 'e': sp.E}
+    local = dict(_FUNC_DICT)
+    local[var] = x
     expr = parse_expr(expr_s, local_dict=local, transformations=_TRANS, evaluate=True)
     return expr, x
+
+def _parse_at(at_s, var, x):
+    # Re-parse a symbolic "at" expression in the same symbol universe.
+    local = dict(_FUNC_DICT)
+    local[var] = x
+    return parse_expr(str(at_s), local_dict=local, transformations=_TRANS, evaluate=True)
+
+def _latex_of(val):
+    try:
+        if val is sp.oo: return r'+\\infty'
+        if val is -sp.oo: return r'-\\infty'
+        return sp.latex(val)
+    except Exception:
+        return ''
+
+def _to_float_or_none(val):
+    try:
+        if val is sp.oo: return float('inf')
+        if val is -sp.oo: return float('-inf')
+        n = sp.N(val)
+        if n.is_real:
+            return float(n)
+    except Exception:
+        pass
+    return None
 
 def roots_real(expr_s, var):
     try:
@@ -140,6 +176,39 @@ def roots_real_latex(expr_s, var):
             pass
     return out
 
+def roots_real_latex_ex(expr_s, var):
+    # Like roots_real_latex but also returns a sympy-parseable string (sstr)
+    # so JS can pass the exact root back to Python for symbolic eval / limits.
+    try:
+        expr, x = _parse(expr_s, var)
+    except Exception:
+        return []
+    sols = []
+    try:
+        sol = sp.solveset(expr, x, domain=sp.S.Reals)
+        if isinstance(sol, sp.FiniteSet):
+            sols = list(sol)
+    except Exception:
+        sols = []
+    if not sols:
+        try:
+            expr2 = sp.together(expr)
+            num, den = sp.fraction(expr2)
+            sol2 = sp.solveset(num, x, domain=sp.S.Reals)
+            if isinstance(sol2, sp.FiniteSet):
+                sols = list(sol2)
+        except Exception:
+            sols = []
+    out = []
+    for r in sols:
+        try:
+            rr = sp.N(r)
+            if rr.is_real:
+                out.append([float(rr), sp.latex(r), sp.sstr(r)])
+        except Exception:
+            pass
+    return out
+
 def denom_roots_real(expr_s, var):
     try:
         expr, x = _parse(expr_s, var)
@@ -174,6 +243,25 @@ def denom_roots_real_latex(expr_s, var):
             rr = sp.N(r)
             if rr.is_real:
                 out.append([float(rr), sp.latex(r)])
+        except Exception:
+            pass
+    return out
+
+def denom_roots_real_latex_ex(expr_s, var):
+    try:
+        expr, x = _parse(expr_s, var)
+        expr2 = sp.together(expr)
+        num, den = sp.fraction(expr2)
+        sol = sp.solveset(den, x, domain=sp.S.Reals)
+        sols = list(sol) if isinstance(sol, sp.FiniteSet) else []
+    except Exception:
+        sols = []
+    out = []
+    for r in sols:
+        try:
+            rr = sp.N(r)
+            if rr.is_real:
+                out.append([float(rr), sp.latex(r), sp.sstr(r)])
         except Exception:
             pass
     return out
@@ -241,6 +329,40 @@ def derivative_expr(expr_s, var):
         return str(sp.simplify(d))
     except Exception:
         return ''
+
+def eval_at_sym(expr_s, var, at_s):
+    # Evaluate expr at a symbolic 'at' point (e.g. "1 - sqrt(2)").
+    # Returns [num_or_none, latex].
+    try:
+        expr, x = _parse(expr_s, var)
+        ax = _parse_at(at_s, var, x)
+        val = expr.subs(x, ax)
+        try:
+            val = sp.simplify(val)
+        except Exception:
+            pass
+        return [_to_float_or_none(val), _latex_of(val)]
+    except Exception:
+        return [None, '']
+
+def limit_at_sym(expr_s, var, at_s, direction):
+    try:
+        expr, x = _parse(expr_s, var)
+        ax = _parse_at(at_s, var, x)
+        d = '-' if direction == '-' else '+'
+        v = sp.limit(expr, x, ax, dir=d)
+        return [_to_float_or_none(v), _latex_of(v)]
+    except Exception:
+        return [None, '']
+
+def limit_inf_latex(expr_s, var, which):
+    try:
+        expr, x = _parse(expr_s, var)
+        target = sp.oo if which == '+' else -sp.oo
+        v = sp.limit(expr, x, target)
+        return [_to_float_or_none(v), _latex_of(v)]
+    except Exception:
+        return [None, '']
 `;
 
         state.sympyLoading = (async () => {
@@ -280,11 +402,16 @@ def derivative_expr(expr_s, var):
         state.sympyFns = {
             rootsRealLatex: g.get('roots_real_latex'),
             denomRootsRealLatex: g.get('denom_roots_real_latex'),
+            rootsRealLatexEx: g.get('roots_real_latex_ex'),
+            denomRootsRealLatexEx: g.get('denom_roots_real_latex_ex'),
             signAt: g.get('sign_at'),
             evalAt: g.get('eval_at'),
             limitAt: g.get('limit_at'),
             limitInf: g.get('limit_inf'),
-            derivativeExpr: g.get('derivative_expr')
+            derivativeExpr: g.get('derivative_expr'),
+            evalAtSym: g.get('eval_at_sym'),
+            limitAtSym: g.get('limit_at_sym'),
+            limitInfLatex: g.get('limit_inf_latex')
         };
 
         return state.sympyFns;
@@ -307,6 +434,34 @@ def derivative_expr(expr_s, var):
         return out
             .filter(p => Array.isArray(p) && p.length >= 2 && typeof p[0] === 'number')
             .map(p => ({ x: p[0], label: typeof p[1] === 'string' ? p[1] : '' }))
+            .filter(p => Number.isFinite(p.x));
+    }
+
+    async function sympyRootsRealLatexEx(exprStr, variable) {
+        const fns = await ensureSympyFns();
+        const out = toJsAndDestroy(fns.rootsRealLatexEx(exprStr, variable));
+        if (!Array.isArray(out)) return [];
+        return out
+            .filter(p => Array.isArray(p) && p.length >= 2 && typeof p[0] === 'number')
+            .map(p => ({
+                x: p[0],
+                label: typeof p[1] === 'string' ? p[1] : '',
+                sstr: typeof p[2] === 'string' ? p[2] : ''
+            }))
+            .filter(p => Number.isFinite(p.x));
+    }
+
+    async function sympyDenomRootsRealLatexEx(exprStr, variable) {
+        const fns = await ensureSympyFns();
+        const out = toJsAndDestroy(fns.denomRootsRealLatexEx(exprStr, variable));
+        if (!Array.isArray(out)) return [];
+        return out
+            .filter(p => Array.isArray(p) && p.length >= 2 && typeof p[0] === 'number')
+            .map(p => ({
+                x: p[0],
+                label: typeof p[1] === 'string' ? p[1] : '',
+                sstr: typeof p[2] === 'string' ? p[2] : ''
+            }))
             .filter(p => Number.isFinite(p.x));
     }
 
@@ -499,6 +654,33 @@ def derivative_expr(expr_s, var):
         const out = toJsAndDestroy(fns.limitInf(exprStr, variable, which));
         if (typeof out !== 'number') return null;
         return out;
+    }
+
+    function _unpackNumLatex(out) {
+        if (!Array.isArray(out) || out.length < 2) return { num: null, latex: '' };
+        const num = (typeof out[0] === 'number' && Number.isFinite(out[0])) ? out[0]
+            : (out[0] === Infinity || out[0] === -Infinity) ? out[0]
+                : null;
+        const latex = typeof out[1] === 'string' ? out[1] : '';
+        return { num, latex };
+    }
+
+    async function sympyEvalAtSym(exprStr, variable, atStr) {
+        const fns = await ensureSympyFns();
+        const out = toJsAndDestroy(fns.evalAtSym(exprStr, variable, atStr));
+        return _unpackNumLatex(out);
+    }
+
+    async function sympyLimitAtSym(exprStr, variable, atStr, dir) {
+        const fns = await ensureSympyFns();
+        const out = toJsAndDestroy(fns.limitAtSym(exprStr, variable, atStr, dir));
+        return _unpackNumLatex(out);
+    }
+
+    async function sympyLimitInfLatex(exprStr, variable, which) {
+        const fns = await ensureSympyFns();
+        const out = toJsAndDestroy(fns.limitInfLatex(exprStr, variable, which));
+        return _unpackNumLatex(out);
     }
 
     function decodeSpec(raw) {
@@ -2833,6 +3015,65 @@ def derivative_expr(expr_s, var):
         return null;
     }
 
+    // Synchronous, best-effort layout data for the sign-table preset. It is
+    // only used by `renderOne` to pre-size the container pixel box BEFORE the
+    // board is initialised — this prevents the "continuous horizontal stretch"
+    // effect caused by an under-sized container + MathJax re-layout bursts.
+    // Falls back to null when we cannot guess the table shape without async.
+    function buildSignTableLayoutDataForSize(spec, variable) {
+        if (spec.preset !== 'signTable') return null;
+        if (!bool(spec.auto, false)) {
+            return buildSignTableManualData(spec, variable);
+        }
+        const expressions = Array.isArray(spec.expressions) ? spec.expressions : [];
+        const intervalMin = typeof spec.intervalMin === 'number' ? spec.intervalMin : -Infinity;
+        const intervalMax = typeof spec.intervalMax === 'number' ? spec.intervalMax : Infinity;
+        const finalLabel = typeof spec.finalLabel === 'string' ? spec.finalLabel : `f(${variable})`;
+        const kind = typeof spec.kind === 'string' ? spec.kind : '';
+        const allowAutoVariation = bool(spec.autoAllowVariation, false);
+
+        try {
+            if (kind === 'variation' && allowAutoVariation) {
+                // Mirror the auto-derivative logic in presetVariationTableAuto
+                // so the pre-computed size matches the final render.
+                const fExpr = typeof spec.f === 'string' ? spec.f : (typeof spec.function === 'string' ? spec.function : '');
+                let derivativeFactors = Array.isArray(spec.derivativeFactors) ? Array.from(spec.derivativeFactors)
+                    : (Array.isArray(spec.fpFactors) ? Array.from(spec.fpFactors)
+                        : (Array.isArray(spec.derivativeExpressions) ? Array.from(spec.derivativeExpressions) : []));
+                const forbiddenValues = Array.isArray(spec.forbiddenValues)
+                    ? Array.from(spec.forbiddenValues)
+                    : (Array.isArray(spec.forbidden) ? Array.from(spec.forbidden) : []);
+                const showDerivativeFactors = bool(spec.showDerivativeFactors, false);
+                const derivativeLabel = typeof spec.derivativeLabel === 'string' ? spec.derivativeLabel : `f'(${variable})`;
+                const functionLabel = typeof spec.functionLabel === 'string' ? spec.functionLabel : `f(${variable})`;
+                if (fExpr && derivativeFactors.length === 0) {
+                    const cls = classifyExpression(fExpr, variable);
+                    if (cls && cls.kind === 'poly') {
+                        const dp = polyDerivCoeffs(cls.coeffs);
+                        derivativeFactors = [{ expr: polyCoeffsToString(dp, variable), label: derivativeLabel }];
+                    } else if (cls && cls.kind === 'rational') {
+                        const numDeriv = rationalDerivativeNumerator(cls.num, cls.den);
+                        derivativeFactors = [{ expr: polyCoeffsToString(numDeriv, variable), label: derivativeLabel }];
+                        for (const r of polyRealRoots(cls.den)) {
+                            if (!forbiddenValues.some(v => Number.isFinite(Number(v)) && Math.abs(Number(v) - r) < 1e-8)) {
+                                forbiddenValues.push(r);
+                            }
+                        }
+                    }
+                }
+                if (fExpr && derivativeFactors.length > 0) {
+                    return computeVariationTableAutoData(
+                        fExpr, derivativeFactors, variable, intervalMin, intervalMax,
+                        forbiddenValues, showDerivativeFactors, derivativeLabel, functionLabel
+                    );
+                }
+            }
+            return computeSignTableAutoData(expressions, variable, intervalMin, intervalMax, finalLabel);
+        } catch (err) {
+            return null;
+        }
+    }
+
     function computeSignTableLayout(spec, variable, data) {
         const labels = Array.isArray(data && data.labels) ? data.labels : [];
         const rows = Array.isArray(data && data.rows) ? data.rows : [];
@@ -2845,7 +3086,7 @@ def derivative_expr(expr_s, var):
         );
         const maxHeaderTextLen = Math.max(1, ...labels.map((v) => String(v || '').length));
 
-        const inferredLeftColW = Math.max(1.2, Math.min(2.6, 1.05 + maxLeftTextLen * 0.12));
+        const inferredLeftColW = Math.max(0.85, Math.min(1.9, 0.7 + maxLeftTextLen * 0.09));
         const inferredCellW = Math.max(1.45, Math.min(2.7, 1.45 + maxHeaderTextLen * 0.05));
         const inferredCellH = 0.9;
         const inferredHeaderH = 0.95;
@@ -2855,12 +3096,49 @@ def derivative_expr(expr_s, var):
         const leftColW = typeof spec.leftColumnWidth === 'number' ? spec.leftColumnWidth : inferredLeftColW;
         const headerH = typeof spec.headerHeight === 'number' ? spec.headerHeight : inferredHeaderH;
 
+        // Per-row heights. Variation rows are given extra height so that the
+        // tiered f(x) values have breathing room (matches classical BBT
+        // proportions like \tkzTabInit[lgt=1.5]{...,$f(x)$ /2.5}).
+        function variationRowScale(row) {
+            if (!row || row.type !== 'variation') return 1;
+            if (typeof spec.variationRowScale === 'number') return Math.max(1, spec.variationRowScale);
+            // Flat layout uses only two tiers (top/bottom) so it needs just
+            // enough height for a clear zig-zag, not the full tiered scaling.
+            const layoutMode = row.layout || spec.variationLayout || 'tiered';
+            if (layoutMode === 'flat') return 2;
+            // Count unique numeric tiers present in the row to scale proportionally.
+            const nums = [];
+            for (const v of (row.values || [])) {
+                if (!v) continue;
+                if (v.type === 'forbidden') {
+                    const L = (v.leftNum != null) ? v.leftNum : v.left;
+                    const R = (v.rightNum != null) ? v.rightNum : v.right;
+                    if (L != null && L !== '') nums.push(L);
+                    if (R != null && R !== '') nums.push(R);
+                } else {
+                    const n = (v.num != null) ? v.num : v.text;
+                    if (n != null && n !== '') nums.push(n);
+                }
+            }
+            const uniq = new Set();
+            for (const n of nums) uniq.add(typeof n === 'number' ? Math.round(n * 1e6) / 1e6 : String(n));
+            // 2 tiers → 1×, 3 → 1.4×, 4 → 1.8×, 5+ → 2×.
+            const t = uniq.size;
+            if (t <= 2) return 1.2;
+            if (t === 3) return 1.5;
+            if (t === 4) return 1.9;
+            return 2.1;
+        }
+        const rowHeights = rows.map(r => cellH * variationRowScale(r));
+        const totalRowsH = rowHeights.reduce((a, b) => a + b, 0) || cellH;
+
         const tableW = leftColW + nIntervals * cellW;
-        const tableH = headerH + rowCount * cellH;
+        const tableH = headerH + totalRowsH;
 
         return {
             labels,
             rows,
+            rowHeights,
             nIntervals,
             cellW,
             cellH,
@@ -2882,6 +3160,17 @@ def derivative_expr(expr_s, var):
         const borderWidth = typeof spec.borderWidth === 'number' ? spec.borderWidth : 1.2;
         const innerLineWidth = typeof spec.innerLineWidth === 'number' ? spec.innerLineWidth : 1;
         const textSize = typeof spec.textSize === 'number' ? spec.textSize : 20;
+        const varValueSize = typeof spec.valueTextSize === 'number' ? spec.valueTextSize : (textSize - 2);
+
+        // Uniform padding used for every anchored text at cell edges — scales with cell width
+        // so narrow-cell tables still keep content visually centred without overlapping borders.
+        const edgePad = Math.max(0.06, Math.min(0.18, cellW * 0.09));
+        // Distance from cell mid-line for "top" and "bottom" variation positions.
+        const posDy = cellH * 0.30;
+        // Horizontal inset for variation arrows.
+        const arrowInset = Math.max(cellW * 0.20, 0.22);
+        // Vertical reach of variation arrows (slightly less than posDy so text has air).
+        const arrowDy = cellH * 0.24;
 
         const labels = layout.labels;
         const rows = layout.rows;
@@ -2903,12 +3192,13 @@ def derivative_expr(expr_s, var):
             const size = (opts && opts.size) || textSize;
             const anchor = (opts && opts.anchor) || 'middle';
             const raw = String(content === null || content === undefined ? '' : content).trim();
+            if (!raw) return;
 
             let display = raw;
             const hasMathDelimiters = /\\\(|\\\[|\$/.test(raw);
             const keepPlain = /^[A-Za-z]\.$/.test(raw) || (/\s/.test(raw) && !/[\\^_{}]/.test(raw));
 
-            if (!hasMathDelimiters && raw && !keepPlain) {
+            if (!hasMathDelimiters && !keepPlain) {
                 display = raw.replace(/∞/g, '\\infty');
                 display = `\\(${display}\\)`;
             }
@@ -2921,7 +3211,7 @@ def derivative_expr(expr_s, var):
                 anchorY: 'middle',
                 strokeColor: '#000000',
                 useMathJax: true,
-                cssStyle: 'font-family: Times New Roman; font-weight: normal;'
+                cssStyle: 'font-family: "Times New Roman", Times, serif; font-weight: normal; line-height: 1;'
             });
         }
 
@@ -2953,24 +3243,42 @@ def derivative_expr(expr_s, var):
             }
         }
 
+        // Compute the y-coordinate (top edge) of each row using per-row heights
+        // so that variation rows can be taller than sign rows.
+        const rowHeights = layout.rowHeights || rows.map(() => cellH);
+        const rowTops = [];
+        let acc = y0 - headerH;
         for (let r = 0; r < rows.length; r++) {
-            const ly = y0 - headerH - (r + 1) * cellH;
+            rowTops.push(acc);
+            acc -= rowHeights[r];
+        }
+        const rowBottoms = rowTops.map((top, r) => top - rowHeights[r]);
+
+        for (let r = 0; r < rows.length; r++) {
+            const ly = rowBottoms[r];
             line(x0, ly, x0 + tableW, ly, r === rows.length - 1 ? borderWidth : innerLineWidth);
         }
 
+        // Draw forbidden bars only through the body rows (f'(x), f(x), …),
+        // NOT through the header "x" row. This matches the classical TkzTab
+        // style where the header label (e.g. "1") appears as a regular
+        // breakpoint label while the vertical bar marks the discontinuity
+        // only below.
+        const barTopY = y0 - headerH;
+        const barBottomY = y0 - tableH;
         if (Array.isArray(data.forbiddenIdx)) {
             for (const j of data.forbiddenIdx) {
                 const xB = x0 + leftColW + j * cellW;
-                const dx = Math.min(0.08, cellW * 0.08);
-                line(xB - dx, y0, xB - dx, y0 - tableH, 2);
-                line(xB + dx, y0, xB + dx, y0 - tableH, 2);
+                const dx = Math.min(0.045, cellW * 0.035);
+                line(xB - dx, barTopY, xB - dx, barBottomY, 2);
+                line(xB + dx, barTopY, xB + dx, barBottomY, 2);
             }
         }
 
         if (Array.isArray(data.singleBarIdx)) {
             for (const j of data.singleBarIdx) {
                 const xB = x0 + leftColW + j * cellW;
-                line(xB, y0, xB, y0 - tableH, 2);
+                line(xB, barTopY, xB, barBottomY, 2);
             }
         }
 
@@ -2986,23 +3294,24 @@ def derivative_expr(expr_s, var):
             const xB = x0 + leftColW + i * cellW;
             const lab = labels[i];
             if (i === 0) {
-                txt(xB + 0.12, y0 - headerH / 2, lab, { size: textSize, anchor: 'left' });
+                txt(xB + edgePad, y0 - headerH / 2, lab, { size: textSize, anchor: 'left' });
             } else if (i === labels.length - 1) {
-                txt(xB - 0.12, y0 - headerH / 2, lab, { size: textSize, anchor: 'right' });
+                txt(xB - edgePad, y0 - headerH / 2, lab, { size: textSize, anchor: 'right' });
             } else {
                 txt(xB, y0 - headerH / 2, lab, { size: textSize, anchor: 'middle' });
             }
         }
 
         function yForPos(rowY, pos) {
-            if (pos === 'top') return rowY + cellH * 0.25;
-            if (pos === 'bottom') return rowY - cellH * 0.25;
+            if (pos === 'top') return rowY + posDy;
+            if (pos === 'bottom') return rowY - posDy;
             return rowY;
         }
 
         for (let r = 0; r < rows.length; r++) {
             const row = rows[r];
-            const rowY = y0 - headerH - (r + 0.5) * cellH;
+            const rowH = rowHeights[r];
+            const rowY = rowTops[r] - rowH / 2;
             txt(x0 + leftColW / 2, rowY, row.label || '', { size: textSize });
 
             if (row.type === 'sign') {
@@ -3018,61 +3327,264 @@ def derivative_expr(expr_s, var):
             }
 
             if (row.type === 'variation') {
-                for (let i = 0; i < nIntervals; i++) {
-                    const dir = row.arrows ? row.arrows[i] : null;
-                    if (!dir) continue;
-                    const xL = x0 + leftColW + i * cellW;
-                    const xR = x0 + leftColW + (i + 1) * cellW;
-                    const margin = cellW * 0.18;
-                    const ax = xL + margin;
-                    const bx = xR - margin;
+                drawVariationRow(row, rowY, rowH);
+            }
+        }
 
-                    let from = 'mid';
-                    let to = 'mid';
-                    if (typeof dir === 'string') {
-                        if (dir === 'up') { from = 'bottom'; to = 'top'; }
-                        else if (dir === 'down') { from = 'top'; to = 'bottom'; }
-                        else if (dir === 'flat') { from = 'mid'; to = 'mid'; }
-                        else continue;
-                    } else if (typeof dir === 'object') {
-                        from = dir.from || 'mid';
-                        to = dir.to || 'mid';
+        // -----------------------------------------------------------------
+        // Tier-based variation-row drawing
+        // -----------------------------------------------------------------
+        //
+        // Classical BBT style (TkzTab) arranges f(x) values on the bottom row
+        // at heights that reflect their magnitude ordering: −∞ at the floor,
+        // +∞ at the ceiling, intermediate values on in-between tiers. Arrows
+        // start at the right edge of one label and end at the left edge of
+        // the next, producing a clean zig-zag.
+        //
+        // We accept either numeric annotations (`v.num`, `v.leftNum`,
+        // `v.rightNum`) or legacy `pos: 'top'|'mid'|'bottom'` as a hint. If
+        // numeric values are present they drive the tier assignment.
+        function drawVariationRow(row, rowY, rowH) {
+            const vals = row.values || [];
+            const effectiveRowH = typeof rowH === 'number' && rowH > 0 ? rowH : cellH;
+
+            // Layout mode: 'tiered' (default, classical BBT — heights reflect
+            // magnitude order) or 'flat' (two-level top/bottom decided by the
+            // adjacent arrow directions — keeps zig-zag visual without
+            // sorting by magnitude).
+            const layoutMode = (row.layout || spec.variationLayout || 'tiered');
+            const flat = layoutMode === 'flat';
+            const rowArrows = Array.isArray(row.arrows) ? row.arrows : [];
+            const nAnchors = rowArrows.length; // = nIntervals
+            function flatTierFor(a) {
+                if (a.side === 'left') {
+                    const inArr = rowArrows[a.j - 1];
+                    if (inArr === 'up') return 'top';
+                    if (inArr === 'down') return 'bottom';
+                    return 'mid';
+                }
+                if (a.side === 'right') {
+                    const outArr = rowArrows[a.j];
+                    if (outArr === 'up') return 'bottom';
+                    if (outArr === 'down') return 'top';
+                    return 'mid';
+                }
+                // middle value at breakpoint j
+                if (a.j === 0) {
+                    const out0 = rowArrows[0];
+                    if (out0 === 'up') return 'bottom';
+                    if (out0 === 'down') return 'top';
+                    return 'mid';
+                }
+                if (a.j === nAnchors) {
+                    const inLast = rowArrows[nAnchors - 1];
+                    if (inLast === 'up') return 'top';
+                    if (inLast === 'down') return 'bottom';
+                    return 'mid';
+                }
+                const inArr = rowArrows[a.j - 1];
+                const outArr = rowArrows[a.j];
+                if (inArr === 'up' && outArr === 'down') return 'top';
+                if (inArr === 'down' && outArr === 'up') return 'bottom';
+                if (inArr === 'up') return 'top';
+                if (inArr === 'down') return 'bottom';
+                if (outArr === 'up') return 'bottom';
+                if (outArr === 'down') return 'top';
+                return 'mid';
+            }
+
+            // Inner height of the variation row available for tiers — keep
+            // padding so labels stay clear of the top/bottom grid lines.
+            const tierRowHalf = effectiveRowH * 0.38;
+            const tierTop = rowY + tierRowHalf;
+            const tierBottom = rowY - tierRowHalf;
+
+            // Build the linear list of text anchors (breakpoint sub-values).
+            const anchors = [];
+            for (let j = 0; j < vals.length; j++) {
+                const v = vals[j];
+                if (!v) continue;
+                const xB = x0 + leftColW + j * cellW;
+
+                if (v.type === 'forbidden') {
+                    if (v.left) {
+                        anchors.push({
+                            j, side: 'left', text: v.left, num: parseVarNumeric(v.leftNum != null ? v.leftNum : v.left),
+                            xAnchor: xB - edgePad, textAnchor: 'right'
+                        });
                     }
-
-                    const ay = yForPos(rowY, from);
-                    const by = yForPos(rowY, to);
-
-                    const A = board.create('point', [ax, ay], { visible: false, fixed: true });
-                    const B = board.create('point', [bx, by], { visible: false, fixed: true });
-                    board.create('arrow', [A, B], { strokeColor: borderColor, strokeWidth: 2, highlight: false, fixed: true });
+                    if (v.right) {
+                        anchors.push({
+                            j, side: 'right', text: v.right, num: parseVarNumeric(v.rightNum != null ? v.rightNum : v.right),
+                            xAnchor: xB + edgePad, textAnchor: 'left'
+                        });
+                    }
+                    continue;
                 }
 
-                for (let j = 0; j < labels.length; j++) {
-                    const xB = x0 + leftColW + j * cellW;
-                    const v = row.values ? row.values[j] : null;
-                    if (!v) continue;
+                if (!v.text) continue;
+                let xAnchor, textAnchor;
+                if (j === 0) { xAnchor = xB + edgePad; textAnchor = 'left'; }
+                else if (j === labels.length - 1) { xAnchor = xB - edgePad; textAnchor = 'right'; }
+                else { xAnchor = xB; textAnchor = 'middle'; }
+                anchors.push({
+                    j, side: 'mid', text: v.text,
+                    num: parseVarNumeric(v.num != null ? v.num : v.text),
+                    xAnchor, textAnchor, pos: v.pos
+                });
+            }
 
-                    if (v.type === 'forbidden') {
-                        const leftDy = v.leftPos === 'top' ? (cellH * 0.28) : (v.leftPos === 'bottom' ? (-cellH * 0.28) : 0);
-                        const rightDy = v.rightPos === 'top' ? (cellH * 0.28) : (v.rightPos === 'bottom' ? (-cellH * 0.28) : 0);
-                        if (v.left) txt(xB - 0.12, rowY + leftDy, v.left, { size: textSize - 2, anchor: 'right' });
-                        if (v.right) txt(xB + 0.12, rowY + rightDy, v.right, { size: textSize - 2, anchor: 'left' });
-                        continue;
-                    }
-
-                    const pos = v.pos || 'mid';
-                    const dy = pos === 'top' ? (cellH * 0.28) : (pos === 'bottom' ? (-cellH * 0.28) : 0);
-                    const side = v.side || 'mid';
-                    if (side === 'left') txt(xB - 0.12, rowY + dy, v.text, { size: textSize - 2, anchor: 'right' });
-                    else if (side === 'right') txt(xB + 0.12, rowY + dy, v.text, { size: textSize - 2, anchor: 'left' });
-                    else if (j === 0) txt(xB + 0.12, rowY + dy, v.text, { size: textSize - 2, anchor: 'left' });
-                    else if (j === labels.length - 1) txt(xB - 0.12, rowY + dy, v.text, { size: textSize - 2, anchor: 'right' });
-                    else txt(xB, rowY + dy, v.text, { size: textSize - 2, anchor: 'middle' });
+            // Tier assignment. Collect numeric values; rank unique heights.
+            const uniq = [];
+            for (const a of anchors) {
+                if (a.num == null) continue;
+                if (!uniq.some(u => u === a.num || (Number.isFinite(u) && Number.isFinite(a.num) && Math.abs(u - a.num) < 1e-9))) {
+                    uniq.push(a.num);
                 }
+            }
+            uniq.sort((a, b) => (a === b ? 0 : (a < b ? -1 : 1)));
+
+            function yForAnchor(a) {
+                if (flat) {
+                    const t = flatTierFor(a);
+                    if (t === 'top') return tierTop;
+                    if (t === 'bottom') return tierBottom;
+                    return rowY;
+                }
+                if (a.num != null && uniq.length > 0) {
+                    if (uniq.length === 1) return rowY;
+                    const idx = uniq.findIndex(u => u === a.num || (Number.isFinite(u) && Number.isFinite(a.num) && Math.abs(u - a.num) < 1e-9));
+                    if (idx < 0) return rowY;
+                    const frac = idx / (uniq.length - 1); // 0..1
+                    return tierBottom + frac * (tierTop - tierBottom);
+                }
+                // Fallback to coarse hint.
+                if (a.pos === 'top') return tierTop;
+                if (a.pos === 'bottom') return tierBottom;
+                return rowY;
+            }
+
+            // Resolve y coordinates and estimated text widths.
+            for (const a of anchors) {
+                a.y = yForAnchor(a);
+                a.w = estimateVarTextWidth(a.text, cellW);
+                if (a.textAnchor === 'left') {
+                    a.leftEdge = a.xAnchor;
+                    a.rightEdge = a.xAnchor + a.w;
+                } else if (a.textAnchor === 'right') {
+                    a.leftEdge = a.xAnchor - a.w;
+                    a.rightEdge = a.xAnchor;
+                } else {
+                    a.leftEdge = a.xAnchor - a.w / 2;
+                    a.rightEdge = a.xAnchor + a.w / 2;
+                }
+            }
+
+            // Draw the text labels.
+            for (const a of anchors) {
+                txt(a.xAnchor, a.y, a.text, { size: varValueSize, anchor: a.textAnchor });
+            }
+
+            // Order anchors left-to-right: at forbidden columns left comes
+            // before right, otherwise mid only.
+            anchors.sort((a, b) => {
+                if (a.j !== b.j) return a.j - b.j;
+                const sideOrder = { left: 0, mid: 1, right: 2 };
+                return (sideOrder[a.side] || 1) - (sideOrder[b.side] || 1);
+            });
+
+            // Draw arrows between consecutive anchors, skipping transitions
+            // that cross a forbidden bar (same j, left → right).
+            const arrowGap = Math.min(0.12, cellW * 0.06);
+            for (let i = 0; i < anchors.length - 1; i++) {
+                const A = anchors[i];
+                const B = anchors[i + 1];
+                if (A.j === B.j && A.side === 'left' && B.side === 'right') continue;
+
+                const ax = A.rightEdge + arrowGap;
+                const bx = B.leftEdge - arrowGap;
+                if (bx - ax < 0.08) continue;
+
+                const ay = A.y;
+                const by = B.y;
+
+                const P1 = board.create('point', [ax, ay], { visible: false, fixed: true });
+                const P2 = board.create('point', [bx, by], { visible: false, fixed: true });
+                board.create('arrow', [P1, P2], {
+                    strokeColor: borderColor,
+                    strokeWidth: 1.4,
+                    highlight: false,
+                    fixed: true,
+                    lastArrow: { type: 1, size: 6 }
+                });
             }
         }
 
         return { tableW, tableH };
+    }
+
+    // Approximate the rendered width (in world units) of a MathJax-typeset
+    // value. MathJax text measurements are only available asynchronously, so
+    // we fall back to a character-count heuristic after stripping LaTeX
+    // control sequences to get a realistic glyph count.
+    function estimateVarTextWidth(text, cellW) {
+        const raw = String(text == null ? '' : text).trim();
+        if (!raw) return 0;
+        const stripped = raw
+            .replace(/\\infty/g, 'MM')
+            .replace(/\\sqrt\{[^}]*\}/g, 'MMM')
+            .replace(/\\sqrt/g, 'MM')
+            .replace(/\\frac\{[^}]*\}\{[^}]*\}/g, 'M/M')
+            .replace(/\\pm|\\mp/g, 'M')
+            .replace(/\\cdot|\\times|\\div/g, 'M')
+            .replace(/\\[a-zA-Z]+/g, '')
+            .replace(/[\{\}]/g, '')
+            .replace(/\s+/g, '');
+        const n = Math.max(1, stripped.length);
+        // ~0.12 world units per glyph is a good fit for the default 18px font;
+        // we cap at half the column width so labels can't visually overflow.
+        const w = Math.min(cellW * 0.45, 0.10 + n * 0.12);
+        return Math.max(0.18, w);
+    }
+
+    // Parse a possibly-LaTeX numeric expression (e.g. "−2√2", "2-2\\sqrt{2}")
+    // into a JavaScript number. Returns null when unparseable.
+    function parseVarNumeric(value) {
+        if (typeof value === 'number') return value;
+        if (value === Infinity || value === -Infinity) return value;
+        if (typeof value !== 'string') return null;
+        const s = value.trim();
+        if (!s) return null;
+        if (s === '-\\infty' || s === '-∞') return -Infinity;
+        if (s === '+\\infty' || s === '\\infty' || s === '+∞' || s === '∞') return Infinity;
+        if (s === '?') return null;
+
+        // Translate the subset of LaTeX we care about into plain arithmetic.
+        let e = s
+            .replace(/\\infty/g, 'Infinity')
+            .replace(/\\sqrt\{([^}]+)\}/g, 'sqrt($1)')
+            .replace(/\\sqrt\s*\(([^)]+)\)/g, 'sqrt($1)')
+            .replace(/\\sqrt\s*([0-9.]+)/g, 'sqrt($1)')
+            .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '(($1)/($2))')
+            .replace(/\\cdot|\\times/g, '*')
+            .replace(/\\div/g, '/')
+            .replace(/\\pi/g, 'PI')
+            .replace(/\\[a-zA-Z]+/g, '')
+            .replace(/[{}]/g, '')
+            .replace(/−/g, '-')
+            .replace(/\s+/g, '');
+        // Insert implicit multiplication: 2sqrt(2) → 2*sqrt(2), 2( → 2*(.
+        e = e.replace(/(\d|\))([a-zA-Z(])/g, '$1*$2');
+        // Safety: only allow alphanumerics, operators and parens.
+        if (!/^[-+*/().0-9a-zA-Z_]+$/.test(e)) return null;
+        try {
+            // eslint-disable-next-line no-new-func
+            const val = Function(`"use strict"; with(Math){return ${e}}`)();
+            if (val === Infinity || val === -Infinity) return val;
+            return Number.isFinite(val) ? val : null;
+        } catch (e2) {
+            return null;
+        }
     }
 
     async function presetSignTable(board, spec) {
@@ -3121,20 +3633,34 @@ def derivative_expr(expr_s, var):
 
         const internal = [];
         const exactLabels = [];
-        function addInternal(x, label) {
+        const exactSstr = [];
+        function addInternal(x, label, sstr) {
             if (!Number.isFinite(x)) return;
             for (let i = 0; i < internal.length; i++) {
                 if (Math.abs(internal[i] - x) < 1e-8) {
-                    if (label && !exactLabels.some(p => Math.abs(p.x - internal[i]) < 1e-8)) exactLabels.push({ x: internal[i], label });
+                    const ax = internal[i];
+                    if (label && !exactLabels.some(p => Math.abs(p.x - ax) < 1e-8)) {
+                        exactLabels.push({ x: ax, label });
+                    }
+                    if (sstr && !exactSstr.some(p => Math.abs(p.x - ax) < 1e-8)) {
+                        exactSstr.push({ x: ax, sstr });
+                    }
                     return;
                 }
             }
             internal.push(x);
             if (label) exactLabels.push({ x, label });
+            if (sstr) exactSstr.push({ x, sstr });
         }
         function labelForX(x) {
             for (const p of exactLabels) {
                 if (Math.abs(p.x - x) < 1e-7) return p.label;
+            }
+            return '';
+        }
+        function sstrForX(x) {
+            for (const p of exactSstr) {
+                if (Math.abs(p.x - x) < 1e-7) return p.sstr;
             }
             return '';
         }
@@ -3143,16 +3669,16 @@ def derivative_expr(expr_s, var):
 
         const factorRoots = [];
         for (let i = 0; i < parsedFactors.length; i++) {
-            const roots = await sympyRootsRealLatex(parsedFactors[i].expr, variable);
+            const roots = await sympyRootsRealLatexEx(parsedFactors[i].expr, variable);
             const nums = [];
             for (const r of roots) {
                 nums.push(r.x);
-                if (r.x > intervalMin && r.x < intervalMax) addInternal(r.x, r.label);
+                if (r.x > intervalMin && r.x < intervalMax) addInternal(r.x, r.label, r.sstr);
             }
-            const denom = await sympyDenomRootsRealLatex(parsedFactors[i].expr, variable);
+            const denom = await sympyDenomRootsRealLatexEx(parsedFactors[i].expr, variable);
             for (const r of denom) {
                 allForbidden.push(r.x);
-                if (r.x > intervalMin && r.x < intervalMax) addInternal(r.x, r.label);
+                if (r.x > intervalMin && r.x < intervalMax) addInternal(r.x, r.label, r.sstr);
             }
             nums.sort((a, b) => a - b);
             factorRoots.push(nums);
@@ -3161,13 +3687,13 @@ def derivative_expr(expr_s, var):
             const x = Number(fv);
             if (!Number.isFinite(x)) continue;
             allForbidden.push(x);
-            if (x > intervalMin && x < intervalMax) addInternal(x, '');
+            if (x > intervalMin && x < intervalMax) addInternal(x, '', '');
         }
 
-        const denomRoots = await sympyDenomRootsRealLatex(fExpr, variable);
+        const denomRoots = await sympyDenomRootsRealLatexEx(fExpr, variable);
         for (const r of denomRoots) {
             allForbidden.push(r.x);
-            if (r.x > intervalMin && r.x < intervalMax) addInternal(r.x, r.label);
+            if (r.x > intervalMin && r.x < intervalMax) addInternal(r.x, r.label, r.sstr);
         }
 
         internal.sort((a, b) => a - b);
@@ -3259,54 +3785,59 @@ def derivative_expr(expr_s, var):
         rows.push({ type: 'sign', label: derivativeLabel || `f'(${variable})`, intervalSigns: fpSigns, pointMarks: fpMarks });
 
         function fmtVal(v) {
-            if (v === null) return '?';
+            if (v === null || v === undefined) return '?';
             if (v === Infinity) return '+\\infty';
             if (v === -Infinity) return '-\\infty';
             if (!Number.isFinite(v)) return '?';
-            if (Math.abs(v) > 1e6) return v > 0 ? '+\\infty' : '-\\infty';
+            if (Math.abs(v) > 1e9) return v > 0 ? '+\\infty' : '-\\infty';
             return formatNumber(v);
+        }
+
+        function pickText(latex, num) {
+            const l = typeof latex === 'string' ? latex.trim() : '';
+            if (l) return l;
+            return fmtVal(num);
         }
 
         const values = Array(labels.length).fill(null);
         for (let j = 0; j < breakpoints.length; j++) {
             const x0 = breakpoints[j];
             const mk = j > 0 && j < breakpoints.length - 1 ? (fpMarks[j] || '') : '';
+            const sstr = Number.isFinite(x0) ? sstrForX(x0) : '';
+            const atStr = sstr || (Number.isFinite(x0) ? String(x0) : '');
 
             if (mk === '||') {
-                const leftV = await sympyLimitAt(fExpr, variable, x0, '-');
-                const rightV = await sympyLimitAt(fExpr, variable, x0, '+');
+                let leftRes = atStr ? await sympyLimitAtSym(fExpr, variable, atStr, '-') : { num: null, latex: '' };
+                let rightRes = atStr ? await sympyLimitAtSym(fExpr, variable, atStr, '+') : { num: null, latex: '' };
+                if (leftRes.num === null && Number.isFinite(x0)) leftRes.num = await sympyLimitAt(fExpr, variable, x0, '-');
+                if (rightRes.num === null && Number.isFinite(x0)) rightRes.num = await sympyLimitAt(fExpr, variable, x0, '+');
                 values[j] = {
                     type: 'forbidden',
-                    left: fmtVal(leftV),
-                    right: fmtVal(rightV),
-                    leftPos: 'mid',
-                    rightPos: 'mid'
+                    left: pickText(leftRes.latex, leftRes.num),
+                    right: pickText(rightRes.latex, rightRes.num),
+                    leftNum: leftRes.num,
+                    rightNum: rightRes.num
                 };
                 continue;
             }
 
             if (x0 === -Infinity) {
-                const v = await sympyLimitInf(fExpr, variable, '-');
-                values[j] = { type: 'finite', text: fmtVal(v), pos: 'mid' };
+                const res = await sympyLimitInfLatex(fExpr, variable, '-');
+                values[j] = { type: 'finite', text: pickText(res.latex, res.num), num: res.num };
                 continue;
             }
             if (x0 === Infinity) {
-                const v = await sympyLimitInf(fExpr, variable, '+');
-                values[j] = { type: 'finite', text: fmtVal(v), pos: 'mid' };
+                const res = await sympyLimitInfLatex(fExpr, variable, '+');
+                values[j] = { type: 'finite', text: pickText(res.latex, res.num), num: res.num };
                 continue;
             }
 
-            const v = await sympyEvalAt(fExpr, variable, x0);
-            values[j] = { type: 'finite', text: fmtVal(v), pos: 'mid' };
-        }
-
-        for (let j = 1; j < breakpoints.length - 1; j++) {
-            const left = fpSigns[j - 1];
-            const right = fpSigns[j];
-            if (values[j] && values[j].type === 'finite') {
-                if (left === '+' && right === '-') values[j].pos = 'top';
-                else if (left === '-' && right === '+') values[j].pos = 'bottom';
+            let res = atStr ? await sympyEvalAtSym(fExpr, variable, atStr) : { num: null, latex: '' };
+            if (res.num === null && res.latex === '') {
+                const v = await sympyEvalAt(fExpr, variable, x0);
+                res = { num: v, latex: '' };
             }
+            values[j] = { type: 'finite', text: pickText(res.latex, res.num), num: res.num };
         }
 
         const arrows = [];
@@ -3323,19 +3854,81 @@ def derivative_expr(expr_s, var):
 
     async function presetVariationTableAuto(board, spec, variable, intervalMin, intervalMax) {
         const fExpr = typeof spec.f === 'string' ? spec.f : (typeof spec.function === 'string' ? spec.function : '');
-        const derivativeFactors = Array.isArray(spec.derivativeFactors) ? spec.derivativeFactors
-            : (Array.isArray(spec.fpFactors) ? spec.fpFactors
-                : (Array.isArray(spec.derivativeExpressions) ? spec.derivativeExpressions : []));
+        let derivativeFactors = Array.isArray(spec.derivativeFactors) ? Array.from(spec.derivativeFactors)
+            : (Array.isArray(spec.fpFactors) ? Array.from(spec.fpFactors)
+                : (Array.isArray(spec.derivativeExpressions) ? Array.from(spec.derivativeExpressions) : []));
 
         const showDerivativeFactors = bool(spec.showDerivativeFactors, false);
-        const forbiddenValues = Array.isArray(spec.forbiddenValues) ? spec.forbiddenValues : (Array.isArray(spec.forbidden) ? spec.forbidden : []);
+        const forbiddenValues = Array.isArray(spec.forbiddenValues)
+            ? Array.from(spec.forbiddenValues)
+            : (Array.isArray(spec.forbidden) ? Array.from(spec.forbidden) : []);
+
+        const derivativeLabel = typeof spec.derivativeLabel === 'string' ? spec.derivativeLabel : `f'(${variable})`;
+        const functionLabel = typeof spec.functionLabel === 'string' ? spec.functionLabel : `f(${variable})`;
+
+        // Auto-derive f' if user only supplied f and the function classifies
+        // as polynomial or simple rational (exact in pure JS, no SymPy load).
+        let fCls = null;
+        let derivNumCoeffs = null;
+        let denRootsSurd = null;
+        if (fExpr && derivativeFactors.length === 0) {
+            try {
+                fCls = classifyExpression(fExpr, variable);
+                if (fCls.kind === 'poly') {
+                    derivNumCoeffs = polyDerivCoeffs(fCls.coeffs);
+                    derivativeFactors = [{ expr: polyCoeffsToString(derivNumCoeffs, variable), label: derivativeLabel }];
+                } else if (fCls.kind === 'rational') {
+                    // sign(f') = sign(N' * D − N * D') anywhere D ≠ 0.
+                    derivNumCoeffs = rationalDerivativeNumerator(fCls.num, fCls.den);
+                    derivativeFactors = [{ expr: polyCoeffsToString(derivNumCoeffs, variable), label: derivativeLabel }];
+                    // Record symbolic den-roots so forbidden x labels can be
+                    // rendered as fractions / surds when possible.
+                    const denSym = symbolicRootsAndFValues(fCls, fCls.den);
+                    if (denSym && Array.isArray(denSym.roots)) denRootsSurd = denSym.roots;
+                    const denRoots = polyRealRoots(fCls.den);
+                    for (const r of denRoots) {
+                        if (!forbiddenValues.some(v => Number.isFinite(Number(v)) && Math.abs(Number(v) - r) < 1e-8)) {
+                            forbiddenValues.push(r);
+                        }
+                    }
+                }
+            } catch (e) {
+                console.warn('[variationTable] auto-derivative failed, caller must supply derivativeFactors.', e);
+            }
+        }
 
         if (!fExpr || derivativeFactors.length === 0) {
             return await presetSignTableAuto(board, spec, variable, derivativeFactors, intervalMin, intervalMax);
         }
 
-        const derivativeLabel = typeof spec.derivativeLabel === 'string' ? spec.derivativeLabel : `f'(${variable})`;
-        const functionLabel = typeof spec.functionLabel === 'string' ? spec.functionLabel : `f(${variable})`;
+        // Build symbolic hints for the JS fast-path: exact LaTeX labels for
+        // breakpoints (den roots + derivative-numerator roots) and exact LaTeX
+        // f(x) values at derivative-numerator roots (only valid when f is
+        // poly/rational and the roots live in a single Q(√m) extension).
+        const symbolicHints = { labelByX: [], fValueByX: [] };
+        function _pushHint(arr, x, latex) {
+            if (!Number.isFinite(x) || !latex) return;
+            if (arr.some(p => Math.abs(p.x - x) < 1e-7)) return;
+            arr.push({ x, latex });
+        }
+        if (denRootsSurd) {
+            for (const r of denRootsSurd) {
+                _pushHint(symbolicHints.labelByX, surdToNumber(r), surdToLatex(r));
+            }
+        }
+        if (fCls && derivNumCoeffs) {
+            try {
+                const sym = symbolicRootsAndFValues(fCls, derivNumCoeffs);
+                if (sym && Array.isArray(sym.roots)) {
+                    for (const r of sym.roots) {
+                        const rn = surdToNumber(r);
+                        _pushHint(symbolicHints.labelByX, rn, surdToLatex(r));
+                        const fv = evalFAtSurd(fCls, r);
+                        if (fv) _pushHint(symbolicHints.fValueByX, rn, surdToLatex(fv));
+                    }
+                }
+            } catch (e) { /* non-fatal — hints are optional */ }
+        }
 
         const engine = typeof spec.engine === 'string' ? spec.engine : '';
         let data = null;
@@ -3367,150 +3960,17 @@ def derivative_expr(expr_s, var):
                 forbiddenValues,
                 showDerivativeFactors,
                 derivativeLabel,
-                functionLabel
+                functionLabel,
+                symbolicHints
             );
         }
 
-        const cellW = typeof spec.cellWidth === 'number' ? spec.cellWidth : 1.2;
-        const cellH = typeof spec.cellHeight === 'number' ? spec.cellHeight : 0.8;
-        const leftColW = typeof spec.leftColumnWidth === 'number' ? spec.leftColumnWidth : 1.8;
-        const headerH = typeof spec.headerHeight === 'number' ? spec.headerHeight : 0.9;
-
-        const borderColor = typeof spec.borderColor === 'string' ? spec.borderColor : '#000000';
-        const borderWidth = typeof spec.borderWidth === 'number' ? spec.borderWidth : 2;
-        const textSize = typeof spec.textSize === 'number' ? spec.textSize : 16;
-
-        const breakpoints = data.breakpoints;
-        const labels = data.labels;
-        const nIntervals = Math.max(1, breakpoints.length - 1);
-        const rows = data.rows;
-
-        const tableW = leftColW + nIntervals * cellW;
-        const tableH = headerH + rows.length * cellH;
-
-        const x0 = 0;
-        const y0 = 0;
-
-        function line(x1, y1, x2, y2, w) {
-            const A = board.create('point', [x1, y1], { visible: false, fixed: true });
-            const B = board.create('point', [x2, y2], { visible: false, fixed: true });
-            board.create('segment', [A, B], { strokeColor: borderColor, strokeWidth: w || borderWidth, highlight: false, fixed: true });
-        }
-
-        function txt(x, y, content, opts) {
-            const size = (opts && opts.size) || textSize;
-            const anchor = (opts && opts.anchor) || 'middle';
-            board.create('text', [x, y, content], {
-                fontSize: size,
-                fixed: true,
-                highlight: false,
-                anchorX: anchor,
-                anchorY: 'middle',
-                strokeColor: '#000000'
-            });
-        }
-
-        function drawPointMark(x, y, mark) {
-            if (!mark) return;
-            if (mark === '0') {
-                txt(x, y, '0', { size: textSize });
-                return;
-            }
-            if (mark === '||') {
-                const dx = Math.min(0.08, cellW * 0.08);
-                line(x - dx, y - cellH * 0.3, x - dx, y + cellH * 0.3, 2);
-                line(x + dx, y - cellH * 0.3, x + dx, y + cellH * 0.3, 2);
-            }
-        }
-
-        line(x0, y0, x0 + tableW, y0, borderWidth);
-        line(x0, y0, x0, y0 - tableH, borderWidth);
-        line(x0 + tableW, y0, x0 + tableW, y0 - tableH, borderWidth);
-        line(x0, y0 - tableH, x0 + tableW, y0 - tableH, borderWidth);
-
-        line(x0 + leftColW, y0, x0 + leftColW, y0 - tableH, borderWidth);
-        line(x0, y0 - headerH, x0 + tableW, y0 - headerH, borderWidth);
-
-        for (let i = 0; i <= nIntervals; i++) {
-            const lx = x0 + leftColW + i * cellW;
-            line(lx, y0, lx, y0 - tableH, i === 0 || i === nIntervals ? borderWidth : 1);
-        }
-
-        for (let r = 0; r < rows.length; r++) {
-            const ly = y0 - headerH - (r + 1) * cellH;
-            line(x0, ly, x0 + tableW, ly, r === rows.length - 1 ? borderWidth : 1);
-        }
-
-        txt(x0 + leftColW / 2, y0 - headerH / 2, variable, { size: textSize + 2 });
-
-        for (let i = 0; i < labels.length; i++) {
-            const xB = x0 + leftColW + i * cellW;
-            const lab = labels[i];
-            if (i === 0) {
-                txt(xB + 0.12, y0 - headerH / 2, lab, { size: textSize, anchor: 'left' });
-            } else if (i === labels.length - 1) {
-                txt(xB - 0.12, y0 - headerH / 2, lab, { size: textSize, anchor: 'right' });
-            } else {
-                txt(xB, y0 - headerH / 2, lab, { size: textSize, anchor: 'middle' });
-            }
-        }
-
-        for (let r = 0; r < rows.length; r++) {
-            const row = rows[r];
-            const rowY = y0 - headerH - (r + 0.5) * cellH;
-            txt(x0 + leftColW / 2, rowY, row.label || '', { size: textSize });
-
-            if (row.type === 'sign') {
-                for (let i = 0; i < nIntervals; i++) {
-                    const cx = x0 + leftColW + (i + 0.5) * cellW;
-                    txt(cx, rowY, row.intervalSigns[i] || '', { size: textSize });
-                }
-                for (let i = 1; i < nIntervals; i++) {
-                    const xB = x0 + leftColW + i * cellW;
-                    drawPointMark(xB, rowY, (row.pointMarks && row.pointMarks[i]) || '');
-                }
-                continue;
-            }
-
-            if (row.type === 'variation') {
-                for (let i = 0; i < nIntervals; i++) {
-                    const dir = row.arrows[i];
-                    if (!dir) continue;
-                    const xL = x0 + leftColW + i * cellW;
-                    const xR = x0 + leftColW + (i + 1) * cellW;
-                    const margin = cellW * 0.18;
-                    const ax = xL + margin;
-                    const bx = xR - margin;
-                    const ay = dir === 'up' ? (rowY - cellH * 0.18) : (rowY + cellH * 0.18);
-                    const by = dir === 'up' ? (rowY + cellH * 0.18) : (rowY - cellH * 0.18);
-                    const A = board.create('point', [ax, ay], { visible: false, fixed: true });
-                    const B = board.create('point', [bx, by], { visible: false, fixed: true });
-                    board.create('arrow', [A, B], { strokeColor: borderColor, strokeWidth: 2, highlight: false, fixed: true });
-                }
-
-                for (let j = 0; j < labels.length; j++) {
-                    const xB = x0 + leftColW + j * cellW;
-                    const v = row.values[j];
-                    if (!v) continue;
-
-                    if (v.type === 'forbidden') {
-                        if (v.left) txt(xB - 0.12, rowY + (v.leftPos === 'top' ? (cellH * 0.28) : (v.leftPos === 'bottom' ? (-cellH * 0.28) : 0)), v.left, { size: textSize - 2, anchor: 'right' });
-                        if (v.right) txt(xB + 0.12, rowY + (v.rightPos === 'top' ? (cellH * 0.28) : (v.rightPos === 'bottom' ? (-cellH * 0.28) : 0)), v.right, { size: textSize - 2, anchor: 'left' });
-                        continue;
-                    }
-
-                    const dy = v.pos === 'top' ? (cellH * 0.28) : (v.pos === 'bottom' ? (-cellH * 0.28) : 0);
-                    if (j === 0) txt(xB + 0.12, rowY + dy, v.text, { size: textSize - 2, anchor: 'left' });
-                    else if (j === labels.length - 1) txt(xB - 0.12, rowY + dy, v.text, { size: textSize - 2, anchor: 'right' });
-                    else txt(xB, rowY + dy, v.text, { size: textSize - 2, anchor: 'middle' });
-                }
-            }
-        }
-
-        return { tableW, tableH };
+        // Route through the shared drawer (same pipeline as the manual BBT).
+        const adapted = adaptAutoDataForUnifiedDraw(data);
+        return drawVariationTableFromData(board, spec, variable, adapted);
     }
 
-    function computeVariationTableAutoData(fExpr, derivativeFactors, variable, intervalMin, intervalMax, forbiddenValues, showDerivativeFactors, derivativeLabel, functionLabel) {
+    function computeVariationTableAutoData(fExpr, derivativeFactors, variable, intervalMin, intervalMax, forbiddenValues, showDerivativeFactors, derivativeLabel, functionLabel, symbolicHints) {
         const parsedFactors = [];
         for (const e of derivativeFactors) {
             if (!e) continue;
@@ -3520,6 +3980,21 @@ def derivative_expr(expr_s, var):
                 if (!exprStr) continue;
                 parsedFactors.push({ expr: exprStr, label: e.label || exprStr, forbidden: bool(e.forbidden, false) });
             }
+        }
+
+        // symbolicHints: { labelByX: [{x, latex}], fValueByX: [{x, latex}] }
+        // both arrays indexed by approximate numeric x — looked up with
+        // lookupLatex(x, arr). Falsy / empty hints just let the numeric
+        // fallback run.
+        const hintLabels = (symbolicHints && Array.isArray(symbolicHints.labelByX)) ? symbolicHints.labelByX : [];
+        const hintValues = (symbolicHints && Array.isArray(symbolicHints.fValueByX)) ? symbolicHints.fValueByX : [];
+        function lookupLatex(x, arr) {
+            if (!Array.isArray(arr)) return '';
+            for (const p of arr) {
+                if (!p || !Number.isFinite(p.x)) continue;
+                if (Math.abs(p.x - x) < 1e-7) return p.latex || '';
+            }
+            return '';
         }
 
         const internal = [];
@@ -3542,6 +4017,8 @@ def derivative_expr(expr_s, var):
         const labels = breakpoints.map(v => {
             if (v === -Infinity) return '-\\infty';
             if (v === Infinity) return '+\\infty';
+            const hl = lookupLatex(v, hintLabels);
+            if (hl) return hl;
             return formatNumber(v);
         });
 
@@ -3625,60 +4102,107 @@ def derivative_expr(expr_s, var):
         }
 
         function fmtVal(v) {
-            if (v === null) return '?';
+            if (v === null || v === undefined) return '?';
             if (v === Infinity) return '+\\infty';
             if (v === -Infinity) return '-\\infty';
             if (!Number.isFinite(v)) return '?';
-            if (Math.abs(v) > 1e6) return v > 0 ? '+\\infty' : '-\\infty';
+            if (Math.abs(v) > 1e9) return v > 0 ? '+\\infty' : '-\\infty';
             return formatNumber(v);
         }
 
+        // Classify f once up-front so forbidden-point limits can be computed
+        // analytically for rational functions instead of relying on ε-evaluations
+        // that leak large finite numbers like −19998.
+        let fCls = null;
+        try { fCls = classifyExpression(fExpr, variable); } catch (e) { fCls = null; }
+
+        function divergenceEstimate(v1, v2) {
+            if (v1 === null && v2 === null) return null;
+            if (v1 === null) return v2;
+            if (v2 === null) return v1;
+            // Unbounded behaviour: |v2| much larger than |v1| and both large.
+            if (Math.abs(v2) > 10 * Math.abs(v1) && Math.abs(v2) > 1e3) {
+                return v2 > 0 ? Infinity : -Infinity;
+            }
+            if (Math.abs(v2) > 1e8) return v2 > 0 ? Infinity : -Infinity;
+            return v2;
+        }
+
+        function limitsAtDiscontinuity(x0) {
+            if (fCls && fCls.kind === 'rational' && Number.isFinite(x0)) {
+                const P = fCls.num, Q = fCls.den;
+                const pVal = polyEval(P, x0);
+                const qVal = polyEval(Q, x0);
+                if (Math.abs(pVal) < 1e-10 && Math.abs(qVal) < 1e-10) {
+                    // Removable singularity — L'Hôpital once.
+                    const pp = polyEval(polyDerivCoeffs(P), x0);
+                    const qp = polyEval(polyDerivCoeffs(Q), x0);
+                    if (Math.abs(qp) > 1e-10) {
+                        const lim = pp / qp;
+                        return { left: lim, right: lim };
+                    }
+                    // Fall through to heuristic.
+                } else if (Math.abs(qVal) < 1e-10) {
+                    // True pole: Q(x₀) = 0 but P(x₀) ≠ 0. Probe Q's sign on
+                    // either side with a tiny step — this correctly handles
+                    // poles of any multiplicity (e.g. Q = (x-1)² gives same
+                    // sign on both sides → same infinity on both sides).
+                    const eps = 1e-6 * Math.max(1, Math.abs(x0));
+                    const qLeft = polyEval(Q, x0 - eps);
+                    const qRight = polyEval(Q, x0 + eps);
+                    const pSign = pVal > 0 ? 1 : -1;
+                    const leftSign = pSign * (qLeft >= 0 ? 1 : -1);
+                    const rightSign = pSign * (qRight >= 0 ? 1 : -1);
+                    return {
+                        left: leftSign > 0 ? Infinity : -Infinity,
+                        right: rightSign > 0 ? Infinity : -Infinity
+                    };
+                }
+            }
+            // Heuristic for non-rational or edge cases.
+            const eps1 = 1e-3 * Math.max(1, Math.abs(x0));
+            const eps2 = eps1 * 1e-2;
+            const L1 = safeEval(fExpr, x0 - eps1);
+            const L2 = safeEval(fExpr, x0 - eps2);
+            const R1 = safeEval(fExpr, x0 + eps1);
+            const R2 = safeEval(fExpr, x0 + eps2);
+            return { left: divergenceEstimate(L1, L2), right: divergenceEstimate(R1, R2) };
+        }
+
         const values = Array(labels.length).fill(null);
-        const epsBase = 1e-4;
-        const big = 100;
+        const big = 1e4;
 
         for (let j = 0; j < breakpoints.length; j++) {
             const x0 = breakpoints[j];
             const mk = j > 0 && j < breakpoints.length - 1 ? (fpMarks[j] || '') : '';
             if (mk === '||') {
-                const x = x0;
-                const eps = epsBase * Math.max(1, Math.abs(x));
-                const leftV = safeEval(fExpr, x - eps);
-                const rightV = safeEval(fExpr, x + eps);
+                const lim = limitsAtDiscontinuity(x0);
                 values[j] = {
                     type: 'forbidden',
-                    left: fmtVal(leftV),
-                    right: fmtVal(rightV),
-                    leftPos: 'mid',
-                    rightPos: 'mid'
+                    left: fmtVal(lim.left),
+                    right: fmtVal(lim.right),
+                    leftNum: lim.left,
+                    rightNum: lim.right
                 };
                 continue;
             }
 
             if (x0 === -Infinity) {
                 const v = safeEval(fExpr, -big);
-                if (v === null) values[j] = { type: 'finite', text: '?', pos: 'mid' };
-                else values[j] = { type: 'finite', text: (v > 0 ? '+\\infty' : '-\\infty'), pos: 'mid' };
+                const num = (v === null) ? null : (v > 0 ? Infinity : -Infinity);
+                values[j] = { type: 'finite', text: fmtVal(num), num };
                 continue;
             }
             if (x0 === Infinity) {
                 const v = safeEval(fExpr, big);
-                if (v === null) values[j] = { type: 'finite', text: '?', pos: 'mid' };
-                else values[j] = { type: 'finite', text: (v > 0 ? '+\\infty' : '-\\infty'), pos: 'mid' };
+                const num = (v === null) ? null : (v > 0 ? Infinity : -Infinity);
+                values[j] = { type: 'finite', text: fmtVal(num), num };
                 continue;
             }
 
             const v = safeEval(fExpr, x0);
-            values[j] = { type: 'finite', text: fmtVal(v), pos: 'mid' };
-        }
-
-        for (let j = 1; j < breakpoints.length - 1; j++) {
-            const left = fpSigns[j - 1];
-            const right = fpSigns[j];
-            if (values[j] && values[j].type === 'finite') {
-                if (left === '+' && right === '-') values[j].pos = 'top';
-                else if (left === '-' && right === '+') values[j].pos = 'bottom';
-            }
+            const hv = lookupLatex(x0, hintValues);
+            values[j] = { type: 'finite', text: hv || fmtVal(v), num: v };
         }
 
         const arrows = [];
@@ -3813,7 +4337,10 @@ def derivative_expr(expr_s, var):
             rows.push({ label: ed.label, intervalSigns, pointMarks, forbidden: ed.forbidden });
         }
 
-        if (rows.length > 0) {
+        // Only emit a combined conclusion row when there is more than one
+        // individual factor — otherwise the combined row would duplicate the
+        // single factor row (often with an identical label).
+        if (rows.length > 1) {
             const intervalSigns = Array(nIntervals).fill('+');
             const pointMarks = {};
             for (let k = 0; k < nIntervals; k++) {
@@ -3853,113 +4380,49 @@ def derivative_expr(expr_s, var):
         if (!data) {
             data = computeSignTableAutoData(expressions, variable, intervalMin, intervalMax, finalLabel);
         }
-        const breakpoints = data.breakpoints;
-        const rows = data.rows;
 
-        const cellW = typeof spec.cellWidth === 'number' ? spec.cellWidth : 1.2;
-        const cellH = typeof spec.cellHeight === 'number' ? spec.cellHeight : 0.8;
-        const leftColW = typeof spec.leftColumnWidth === 'number' ? spec.leftColumnWidth : 1.8;
-        const headerH = typeof spec.headerHeight === 'number' ? spec.headerHeight : 0.9;
+        // Route through the shared drawer so auto-mode shares the polished
+        // layout (auto text-aware sizing, MathJax typesetting, bbox autoFit).
+        const adapted = adaptAutoDataForUnifiedDraw(data, { implicitSignType: true });
+        return drawVariationTableFromData(board, spec, variable, adapted);
+    }
 
-        const borderColor = typeof spec.borderColor === 'string' ? spec.borderColor : '#000000';
-        const borderWidth = typeof spec.borderWidth === 'number' ? spec.borderWidth : 2;
-        const textSize = typeof spec.textSize === 'number' ? spec.textSize : 16;
+    // Normalizes output from computeSignTableAuto* / computeVariationTableAuto* so that
+    // rows have {type: 'sign'|'variation'} and forbidden / single-bar column indices are
+    // collected (the shared drawer uses them to draw full-height bars).
+    function adaptAutoDataForUnifiedDraw(data, opts) {
+        const implicitSignType = !!(opts && opts.implicitSignType);
+        const forbiddenIdx = new Set();
+        const singleBarIdx = new Set();
 
-        const nIntervals = Math.max(1, breakpoints.length - 1);
-        const numRows = rows.length;
-
-        const tableW = leftColW + nIntervals * cellW;
-        const tableH = headerH + numRows * cellH;
-
-        const x0 = 0;
-        const y0 = 0;
-
-        function line(x1, y1, x2, y2, w) {
-            const A = board.create('point', [x1, y1], { visible: false, fixed: true });
-            const B = board.create('point', [x2, y2], { visible: false, fixed: true });
-            board.create('segment', [A, B], { strokeColor: borderColor, strokeWidth: w || borderWidth, highlight: false, fixed: true });
-        }
-
-        function txt(x, y, content, opts) {
-            const size = (opts && opts.size) || textSize;
-            const anchor = (opts && opts.anchor) || 'middle';
-            board.create('text', [x, y, content], {
-                fontSize: size,
-                fixed: true,
-                highlight: false,
-                anchorX: anchor,
-                anchorY: 'middle',
-                strokeColor: '#000000'
-            });
-        }
-
-        function drawPointMark(x, y, mark) {
-            if (!mark) return;
-            if (mark === '0') {
-                txt(x, y, '0', { size: textSize });
-                return;
+        const rows = (data && Array.isArray(data.rows) ? data.rows : []).map(row => {
+            const normalized = Object.assign({}, row);
+            if (!normalized.type) normalized.type = implicitSignType ? 'sign' : (Array.isArray(row.arrows) ? 'variation' : 'sign');
+            const pm = normalized.pointMarks && typeof normalized.pointMarks === 'object' ? normalized.pointMarks : null;
+            if (pm) {
+                // Clone pointMarks so we can strip the bar glyphs (they are
+                // rendered once as a full-body-height bar instead of once per
+                // row, avoiding visual double-strokes).
+                const cleaned = {};
+                for (const [k, v] of Object.entries(pm)) {
+                    const idx = Number(k);
+                    if (!Number.isInteger(idx)) { cleaned[k] = v; continue; }
+                    if (v === '||') { forbiddenIdx.add(idx); continue; }
+                    if (v === '|') { singleBarIdx.add(idx); continue; }
+                    cleaned[k] = v;
+                }
+                normalized.pointMarks = cleaned;
             }
-            if (mark === '||') {
-                const dx = Math.min(0.08, cellW * 0.08);
-                line(x - dx, y - cellH * 0.3, x - dx, y + cellH * 0.3, 2);
-                line(x + dx, y - cellH * 0.3, x + dx, y + cellH * 0.3, 2);
-            }
-        }
+            return normalized;
+        });
 
-        line(x0, y0, x0 + tableW, y0, borderWidth);
-        line(x0, y0, x0, y0 - tableH, borderWidth);
-        line(x0 + tableW, y0, x0 + tableW, y0 - tableH, borderWidth);
-        line(x0, y0 - tableH, x0 + tableW, y0 - tableH, borderWidth);
-
-        line(x0 + leftColW, y0, x0 + leftColW, y0 - tableH, borderWidth);
-        line(x0, y0 - headerH, x0 + tableW, y0 - headerH, borderWidth);
-
-        for (let i = 0; i <= nIntervals; i++) {
-            const lx = x0 + leftColW + i * cellW;
-            line(lx, y0, lx, y0 - tableH, i === 0 || i === nIntervals ? borderWidth : 1);
-        }
-
-        for (let r = 0; r < numRows; r++) {
-            const ly = y0 - headerH - (r + 1) * cellH;
-            line(x0, ly, x0 + tableW, ly, r === numRows - 1 ? borderWidth : 1);
-        }
-
-        txt(x0 + leftColW / 2, y0 - headerH / 2, variable, { size: textSize + 2 });
-
-        const labels = data.labels;
-        for (let i = 0; i < labels.length; i++) {
-            const xB = x0 + leftColW + i * cellW;
-            const lab = labels[i];
-            if (i === 0) {
-                txt(xB + 0.12, y0 - headerH / 2, lab, { size: textSize, anchor: 'left' });
-            } else if (i === labels.length - 1) {
-                txt(xB - 0.12, y0 - headerH / 2, lab, { size: textSize, anchor: 'right' });
-            } else {
-                txt(xB, y0 - headerH / 2, lab, { size: textSize, anchor: 'middle' });
-            }
-        }
-
-        for (let r = 0; r < rows.length; r++) {
-            const row = rows[r];
-            const rowY = y0 - headerH - (r + 0.5) * cellH;
-            txt(x0 + leftColW / 2, rowY, row.label || '', { size: textSize });
-
-            const intervalSigns = Array.isArray(row.intervalSigns) ? row.intervalSigns : [];
-            for (let i = 0; i < nIntervals; i++) {
-                const cx = x0 + leftColW + (i + 0.5) * cellW;
-                const sign = intervalSigns[i] || '';
-                txt(cx, rowY, sign, { size: textSize });
-            }
-
-            const pointMarks = row.pointMarks || {};
-            for (let i = 1; i < nIntervals; i++) {
-                const xB = x0 + leftColW + i * cellW;
-                const mk = pointMarks[i] || '';
-                drawPointMark(xB, rowY, mk);
-            }
-        }
-
-        return { tableW, tableH };
+        return {
+            breakpoints: data && data.breakpoints,
+            labels: data && data.labels,
+            rows,
+            forbiddenIdx: Array.from(forbiddenIdx).sort((a, b) => a - b),
+            singleBarIdx: Array.from(singleBarIdx).sort((a, b) => a - b)
+        };
     }
 
     function computeSignTableAutoData(expressions, variable, intervalMin, intervalMax, finalLabel) {
@@ -4038,7 +4501,8 @@ def derivative_expr(expr_s, var):
             rows.push({ label: ed.label, intervalSigns, pointMarks, forbidden: ed.forbidden });
         }
 
-        if (rows.length > 0) {
+        // Single-factor case: the combined row would just duplicate it, so skip.
+        if (rows.length > 1) {
             const intervalSigns = Array(nIntervals).fill('+');
             const pointMarks = {};
             for (let k = 0; k < nIntervals; k++) {
@@ -4168,7 +4632,556 @@ def derivative_expr(expr_s, var):
         return { intervals, rows };
     }
 
+    // =========================================================================
+    // Polynomial / rational fast-path for auto sign tables.
+    // ------------------------------------------------------------------------
+    // When an expression classifies as a polynomial or a simple rational P(x)/Q(x)
+    // (each polynomial), we can compute the exact real roots and a symbolic
+    // derivative without loading SymPy. Everything else falls back to the
+    // existing numeric/Sympy path.
+    // =========================================================================
+
+    // Given a numeric function `fn`, try to recover polynomial coefficients
+    // (lowest index = constant term) by solving the Vandermonde system on
+    // (maxDeg+1) well-spaced points, then verify at additional points.
+    function polyCoeffsFromFn(fn, maxDeg) {
+        if (typeof fn !== 'function') return null;
+        const maxD = Math.max(0, Math.min(10, maxDeg | 0 || 8));
+        const n = maxD + 1;
+
+        // Chebyshev-like spacing on [-1, 1] improves Vandermonde conditioning.
+        const xs = [];
+        for (let i = 0; i <= maxD; i++) {
+            const t = maxD === 0 ? 0 : (i + 0.5) * Math.PI / n;
+            xs.push(Math.cos(t));
+        }
+        const ys = [];
+        for (const x of xs) {
+            const y = fn(x);
+            if (!Number.isFinite(y)) return null;
+            ys.push(y);
+        }
+
+        // Augmented Vandermonde matrix. Gaussian elimination with partial pivoting.
+        const M = [];
+        for (let i = 0; i < n; i++) {
+            const row = new Array(n + 1);
+            let p = 1;
+            for (let k = 0; k < n; k++) { row[k] = p; p *= xs[i]; }
+            row[n] = ys[i];
+            M.push(row);
+        }
+        for (let i = 0; i < n; i++) {
+            let best = i;
+            for (let r = i + 1; r < n; r++) {
+                if (Math.abs(M[r][i]) > Math.abs(M[best][i])) best = r;
+            }
+            if (best !== i) { const t = M[i]; M[i] = M[best]; M[best] = t; }
+            if (Math.abs(M[i][i]) < 1e-12) return null;
+            for (let r = i + 1; r < n; r++) {
+                const f = M[r][i] / M[i][i];
+                if (f !== 0) {
+                    for (let c = i; c <= n; c++) M[r][c] -= f * M[i][c];
+                }
+            }
+        }
+        const coeffs = new Array(n).fill(0);
+        for (let i = n - 1; i >= 0; i--) {
+            let s = M[i][n];
+            for (let j = i + 1; j < n; j++) s -= M[i][j] * coeffs[j];
+            coeffs[i] = s / M[i][i];
+        }
+
+        // Trim numerically-zero high coefficients.
+        const scale = Math.max(1, ...coeffs.map(Math.abs));
+        while (coeffs.length > 1 && Math.abs(coeffs[coeffs.length - 1]) < 1e-9 * scale) coeffs.pop();
+
+        // Verify the polynomial hypothesis at 3 fresh unrelated points.
+        const testX = [0.173, -2.351, 1.61803];
+        for (const x of testX) {
+            const actual = fn(x);
+            if (!Number.isFinite(actual)) return null;
+            let predicted = 0;
+            for (let k = coeffs.length - 1; k >= 0; k--) predicted = predicted * x + coeffs[k];
+            const tol = 1e-6 * (1 + Math.abs(actual));
+            if (Math.abs(predicted - actual) > tol) return null;
+        }
+
+        // Clean up tiny coefficients + snap near-integer values.
+        for (let i = 0; i < coeffs.length; i++) {
+            if (Math.abs(coeffs[i]) < 1e-10 * scale) coeffs[i] = 0;
+            else if (Math.abs(coeffs[i] - Math.round(coeffs[i])) < 1e-9) coeffs[i] = Math.round(coeffs[i]);
+        }
+        return coeffs;
+    }
+
+    function polyFromExpr(exprStr, variable) {
+        const fn = compileExpr(String(exprStr || '').replace(new RegExp(`\\b${variable}\\b`, 'g'), 'x'));
+        if (!fn) return null;
+        return polyCoeffsFromFn(fn, 8);
+    }
+
+    // Split `exprStr` at a top-level `/` if (and only if) there is exactly one.
+    // Returns {num, den} or null. Paren-aware.
+    function splitTopLevelRational(exprStr) {
+        const s = String(exprStr || '').trim();
+        if (!s) return null;
+        let depth = 0;
+        const slashPos = [];
+        for (let i = 0; i < s.length; i++) {
+            const c = s[i];
+            if (c === '(' || c === '[') depth++;
+            else if (c === ')' || c === ']') depth--;
+            else if (c === '/' && depth === 0) slashPos.push(i);
+        }
+        if (slashPos.length !== 1) return null;
+        const idx = slashPos[0];
+        let num = s.slice(0, idx).trim();
+        let den = s.slice(idx + 1).trim();
+        num = num.replace(/^\(\s*([\s\S]*)\s*\)$/, '$1');
+        den = den.replace(/^\(\s*([\s\S]*)\s*\)$/, '$1');
+        if (!num || !den) return null;
+        return { num, den };
+    }
+
+    function classifyExpression(exprStr, variable) {
+        if (typeof exprStr !== 'string' || !exprStr.trim()) return { kind: 'invalid' };
+        const coeffs = polyFromExpr(exprStr, variable);
+        if (coeffs) return { kind: 'poly', coeffs };
+        const parts = splitTopLevelRational(exprStr);
+        if (parts) {
+            const num = polyFromExpr(parts.num, variable);
+            const den = polyFromExpr(parts.den, variable);
+            if (num && den) return { kind: 'rational', num, den, numExpr: parts.num, denExpr: parts.den };
+        }
+        return { kind: 'other' };
+    }
+
+    // ---------------------------------------------------------------------------
+    // Polynomial operations (coefficients are lowest-index first: c0 + c1 x + ...)
+    // ---------------------------------------------------------------------------
+    function polyTrim(c) {
+        const out = Array.isArray(c) ? c.slice() : [0];
+        while (out.length > 1 && Math.abs(out[out.length - 1]) < 1e-12) out.pop();
+        return out;
+    }
+    function polyDegree(c) { return polyTrim(c).length - 1; }
+    function polyEval(c, x) {
+        let v = 0;
+        for (let k = c.length - 1; k >= 0; k--) v = v * x + c[k];
+        return v;
+    }
+    function polyAdd(a, b) {
+        const n = Math.max(a.length, b.length);
+        const out = new Array(n).fill(0);
+        for (let i = 0; i < n; i++) out[i] = (a[i] || 0) + (b[i] || 0);
+        return polyTrim(out);
+    }
+    function polySub(a, b) {
+        const n = Math.max(a.length, b.length);
+        const out = new Array(n).fill(0);
+        for (let i = 0; i < n; i++) out[i] = (a[i] || 0) - (b[i] || 0);
+        return polyTrim(out);
+    }
+    function polyMul(a, b) {
+        if (!a.length || !b.length) return [0];
+        const out = new Array(a.length + b.length - 1).fill(0);
+        for (let i = 0; i < a.length; i++) {
+            for (let j = 0; j < b.length; j++) {
+                out[i + j] += a[i] * b[j];
+            }
+        }
+        return polyTrim(out);
+    }
+    function polyDerivCoeffs(c) {
+        if (c.length <= 1) return [0];
+        const out = new Array(c.length - 1);
+        for (let k = 1; k < c.length; k++) out[k - 1] = k * c[k];
+        return polyTrim(out);
+    }
+
+    function polyCoeffsToString(c, variable) {
+        const coeffs = polyTrim(c);
+        if (coeffs.length === 1) return formatPolyCoeff(coeffs[0]);
+        const parts = [];
+        for (let k = coeffs.length - 1; k >= 0; k--) {
+            const a = coeffs[k];
+            if (Math.abs(a) < 1e-12) continue;
+            const absA = Math.abs(a);
+            const sign = a < 0 ? '-' : (parts.length ? '+' : '');
+            let term = '';
+            if (k === 0) term = formatPolyCoeff(absA);
+            else if (Math.abs(absA - 1) < 1e-12) term = '';
+            else term = formatPolyCoeff(absA) + '*';
+            if (k >= 1) {
+                term += variable;
+                if (k >= 2) term += '^' + k;
+            }
+            parts.push(sign + term);
+        }
+        return parts.length ? parts.join('') : '0';
+    }
+    function formatPolyCoeff(v) {
+        if (Math.abs(v - Math.round(v)) < 1e-9) return String(Math.round(v));
+        return String(Math.round(v * 1e6) / 1e6);
+    }
+
+    // ---------------------------------------------------------------------------
+    // Real roots of a polynomial.
+    //   degree 1,2: closed form · degree 3: Cardano/trig · degree ≥ 4: Durand–Kerner
+    //   followed by Newton polishing + dedup.
+    // ---------------------------------------------------------------------------
+    function polyRealRoots(coeffs) {
+        const c = polyTrim(coeffs);
+        const n = c.length - 1;
+        if (n <= 0) return [];
+        if (n === 1) return [-c[0] / c[1]];
+        if (n === 2) {
+            const a = c[2], b = c[1], d = c[0];
+            const disc = b * b - 4 * a * d;
+            if (disc < -1e-10 * (b * b + Math.abs(a * d) + 1)) return [];
+            if (Math.abs(disc) < 1e-10 * (b * b + Math.abs(a * d) + 1)) return [-b / (2 * a)];
+            const sq = Math.sqrt(disc);
+            return [(-b - sq) / (2 * a), (-b + sq) / (2 * a)].sort((x, y) => x - y);
+        }
+        if (n === 3) return polyPolish(cubicRealRootsRaw(c), c);
+        return polyPolish(durandKernerRealRoots(c), c);
+    }
+
+    function cubicRealRootsRaw(c) {
+        const a = c[3], b = c[2], cc = c[1], d = c[0];
+        // Depress: x = t - b/(3a); get t^3 + p*t + q = 0
+        const p = (3 * a * cc - b * b) / (3 * a * a);
+        const q = (2 * b * b * b - 9 * a * b * cc + 27 * a * a * d) / (27 * a * a * a);
+        const shift = -b / (3 * a);
+        const disc = (q * q) / 4 + (p * p * p) / 27;
+        const roots = [];
+        if (disc > 1e-10) {
+            const sqD = Math.sqrt(disc);
+            const u = Math.cbrt(-q / 2 + sqD);
+            const v = Math.cbrt(-q / 2 - sqD);
+            roots.push(u + v + shift);
+        } else if (Math.abs(disc) <= 1e-10) {
+            const u = Math.cbrt(-q / 2);
+            roots.push(2 * u + shift);
+            roots.push(-u + shift);
+        } else {
+            const r = Math.sqrt(-p * p * p / 27);
+            const phi = Math.acos(Math.max(-1, Math.min(1, -q / (2 * r))));
+            const rCbrt = 2 * Math.cbrt(r);
+            for (let k = 0; k < 3; k++) {
+                roots.push(rCbrt * Math.cos((phi + 2 * Math.PI * k) / 3) + shift);
+            }
+        }
+        return roots;
+    }
+
+    function durandKernerRealRoots(c) {
+        const n = c.length - 1;
+        const lead = c[n];
+        if (Math.abs(lead) < 1e-14) return [];
+        const monic = c.map(v => v / lead);
+        // Cauchy's bound for root radius
+        const R = 1 + Math.max(0, ...monic.slice(0, n).map(Math.abs));
+
+        const zs = [];
+        for (let k = 0; k < n; k++) {
+            const ang = (2 * Math.PI * k) / n + Math.PI / 5;
+            zs.push({ re: 0.85 * R * Math.cos(ang), im: 0.85 * R * Math.sin(ang) });
+        }
+        for (let iter = 0; iter < 300; iter++) {
+            let delta = 0;
+            for (let i = 0; i < n; i++) {
+                const fi = cPolyEval(monic, zs[i]);
+                let denom = { re: 1, im: 0 };
+                for (let j = 0; j < n; j++) {
+                    if (j === i) continue;
+                    denom = cMul(denom, cSub(zs[i], zs[j]));
+                }
+                const magD = Math.abs(denom.re) + Math.abs(denom.im);
+                if (magD < 1e-18) continue;
+                const corr = cDiv(fi, denom);
+                zs[i] = cSub(zs[i], corr);
+                delta += Math.abs(corr.re) + Math.abs(corr.im);
+            }
+            if (delta < 1e-13) break;
+        }
+        const out = [];
+        for (const z of zs) {
+            // Discriminate real vs complex
+            if (Math.abs(z.im) < 1e-4 * (1 + Math.abs(z.re))) out.push(z.re);
+        }
+        return out;
+    }
+
+    function polyPolish(roots, c) {
+        const cp = polyDerivCoeffs(c);
+        const polished = [];
+        for (let r of roots) {
+            if (!Number.isFinite(r)) continue;
+            for (let i = 0; i < 40; i++) {
+                const f = polyEval(c, r);
+                const fp = polyEval(cp, r);
+                if (!Number.isFinite(f) || !Number.isFinite(fp)) break;
+                if (Math.abs(fp) < 1e-14) break;
+                const dx = f / fp;
+                if (!Number.isFinite(dx)) break;
+                r -= dx;
+                if (Math.abs(dx) < 1e-13 * (1 + Math.abs(r))) break;
+            }
+            if (!Number.isFinite(r)) continue;
+            const residual = Math.abs(polyEval(c, r));
+            const tol = 1e-5 * (1 + Math.abs(r)) * (1 + Math.max(...c.map(Math.abs)));
+            if (residual > tol) continue;
+            // Snap near-integers and simple fractions.
+            if (Math.abs(r - Math.round(r)) < 1e-9) r = Math.round(r);
+            else {
+                const denomCandidates = [2, 3, 4, 5, 6, 8, 10];
+                for (const dq of denomCandidates) {
+                    const k = Math.round(r * dq);
+                    if (Math.abs(r - k / dq) < 1e-9) { r = k / dq; break; }
+                }
+            }
+            polished.push(r);
+        }
+        polished.sort((a, b) => a - b);
+        const dedup = [];
+        for (const x of polished) {
+            if (!dedup.length || Math.abs(x - dedup[dedup.length - 1]) > 1e-6 * (1 + Math.abs(x))) dedup.push(x);
+        }
+        return dedup;
+    }
+
+    // Complex helpers.
+    function cMul(a, b) { return { re: a.re * b.re - a.im * b.im, im: a.re * b.im + a.im * b.re }; }
+    function cSub(a, b) { return { re: a.re - b.re, im: a.im - b.im }; }
+    function cDiv(a, b) {
+        const d = b.re * b.re + b.im * b.im;
+        return { re: (a.re * b.re + a.im * b.im) / d, im: (a.im * b.re - a.re * b.im) / d };
+    }
+    function cPolyEval(coeffs, z) {
+        let v = { re: 0, im: 0 };
+        for (let k = coeffs.length - 1; k >= 0; k--) {
+            v = cMul(v, z);
+            v = { re: v.re + coeffs[k], im: v.im };
+        }
+        return v;
+    }
+
+    // Given a rational {num, den} (both polynomial coeffs), compute the
+    // coefficients of the numerator of f' = (num' * den - num * den') / den^2.
+    // Sign of f' equals sign of that numerator everywhere den ≠ 0.
+    function rationalDerivativeNumerator(num, den) {
+        return polySub(polyMul(polyDerivCoeffs(num), den), polyMul(num, polyDerivCoeffs(den)));
+    }
+
+    // ------------------------------------------------------------------
+    // Surd arithmetic over Q(√m): represent (p + q·√s)/r with integer p,q,r,s,
+    // r > 0, s > 0 squarefree. When q === 0 the number is a plain rational and
+    // we use s = 1 by convention. This lets us propagate exact algebraic
+    // values (e.g. 1 ± √2) through polynomial evaluation so BBT labels and
+    // f(x) extremes can be printed in symbolic LaTeX without SymPy.
+    // ------------------------------------------------------------------
+    function _sgcd(a, b) {
+        a = Math.abs(Math.trunc(a)); b = Math.abs(Math.trunc(b));
+        while (b) { const t = a % b; a = b; b = t; }
+        return a || 1;
+    }
+    function _squarefreeDecomp(n) {
+        // n >= 0 integer; returns { k, m } with n = k^2 * m, m squarefree.
+        n = Math.abs(Math.trunc(n));
+        if (n === 0) return { k: 0, m: 1 };
+        let k = 1, m = n;
+        let p = 2;
+        while (p * p <= m) {
+            while (m % (p * p) === 0) { k *= p; m /= (p * p); }
+            p++;
+        }
+        return { k, m };
+    }
+
+    function normSurd(p, q, r, s) {
+        p = Math.trunc(p); q = Math.trunc(q); r = Math.trunc(r); s = Math.trunc(s);
+        if (!Number.isFinite(p) || !Number.isFinite(q) || !Number.isFinite(r) || !Number.isFinite(s)) {
+            return null;
+        }
+        if (r === 0) return null;
+        if (r < 0) { p = -p; q = -q; r = -r; }
+        if (s <= 0) s = 1;
+        if (q !== 0 && s > 1) {
+            const sf = _squarefreeDecomp(s);
+            q *= sf.k;
+            s = sf.m;
+        }
+        if (q === 0 || s === 1) {
+            // rational: value = (p + q) / r when s=1, else (p)/r when q=0
+            const P = q === 0 ? p : (p + q);
+            const g = _sgcd(Math.abs(P), r);
+            return { p: P / g, q: 0, r: r / g, s: 1 };
+        }
+        const g1 = _sgcd(_sgcd(Math.abs(p), Math.abs(q)), r);
+        return { p: p / g1, q: q / g1, r: r / g1, s };
+    }
+
+    function surdFromInt(n) { return normSurd(Math.trunc(n), 0, 1, 1); }
+    function surdFromRat(num, den) { return normSurd(num, 0, den, 1); }
+    function surdIsRational(a) { return a && a.q === 0; }
+    function surdIsZero(a) { return a && a.p === 0 && a.q === 0; }
+    function surdNeg(a) { return { p: -a.p, q: -a.q, r: a.r, s: a.s }; }
+
+    function _surdShareExtension(a, b) {
+        // Returns the common extension s, or null if incompatible.
+        if (a.q === 0) return b.s;
+        if (b.q === 0) return a.s;
+        return a.s === b.s ? a.s : null;
+    }
+
+    function surdAdd(a, b) {
+        const s = _surdShareExtension(a, b);
+        if (s == null) return null;
+        const r = a.r * b.r;
+        const p = a.p * b.r + b.p * a.r;
+        const q = a.q * b.r + b.q * a.r;
+        return normSurd(p, q, r, s);
+    }
+    function surdSub(a, b) { return surdAdd(a, surdNeg(b)); }
+    function surdMul(a, b) {
+        const s = _surdShareExtension(a, b);
+        if (s == null) return null;
+        // (p1 + q1√s)(p2 + q2√s) = (p1 p2 + q1 q2 s) + (p1 q2 + p2 q1) √s
+        const p = a.p * b.p + a.q * b.q * s;
+        const q = a.p * b.q + b.p * a.q;
+        const r = a.r * b.r;
+        return normSurd(p, q, r, s);
+    }
+    function surdDiv(a, b) {
+        if (!b || surdIsZero(b)) return null;
+        const s = _surdShareExtension(a, b);
+        if (s == null) return null;
+        // a/b = [(a.p + a.q√s)·b.r] / [(b.p + b.q√s)·a.r]
+        // Rationalize with conjugate (b.p - b.q√s):
+        //   num  = b.r·[(a.p b.p − a.q b.q s) + (a.q b.p − a.p b.q)√s]
+        //   den  = a.r·(b.p² − b.q² s)
+        const NP = b.r * (a.p * b.p - a.q * b.q * s);
+        const NQ = b.r * (a.q * b.p - a.p * b.q);
+        const DR = (b.p * b.p - b.q * b.q * s) * a.r;
+        if (DR === 0) return null;
+        return normSurd(NP, NQ, DR, s);
+    }
+    function surdToNumber(a) {
+        if (!a) return NaN;
+        return (a.p + a.q * Math.sqrt(a.s)) / a.r;
+    }
+    function surdToLatex(a) {
+        if (!a) return '';
+        const { p, q, r, s } = a;
+        function wrapFrac(numStr, den) {
+            if (den === 1) return numStr;
+            return `\\dfrac{${numStr}}{${den}}`;
+        }
+        if (q === 0) {
+            if (r === 1) return String(p);
+            // negative sign outside
+            if (p < 0) return `-\\dfrac{${-p}}{${r}}`;
+            return `\\dfrac{${p}}{${r}}`;
+        }
+        // surd term
+        const absQ = Math.abs(q);
+        const surdBody = (absQ === 1 ? '' : String(absQ)) + `\\sqrt{${s}}`;
+        if (p === 0) {
+            const core = (q < 0 ? '-' : '') + surdBody;
+            return wrapFrac(core, r);
+        }
+        const sign = q > 0 ? ' + ' : ' - ';
+        const core = `${p}${sign}${surdBody}`;
+        return wrapFrac(core, r);
+    }
+
+    // Evaluate a polynomial (integer-coefficient array, ascending order) at
+    // a Surd value via Horner. Non-integer coeffs are rounded — acceptable for
+    // poly/rational functions entered with integer coefficients (the common
+    // high-school case).
+    function polyEvalSurd(coeffs, x) {
+        let acc = surdFromInt(0);
+        for (let i = coeffs.length - 1; i >= 0; i--) {
+            const step = surdMul(acc, x);
+            if (!step) return null;
+            const added = surdAdd(step, surdFromInt(Math.round(coeffs[i])));
+            if (!added) return null;
+            acc = added;
+        }
+        return acc;
+    }
+
+    // Solve a·x² + b·x + c = 0 with integer coeffs. Returns an array of Surd
+    // objects for all real roots (0, 1, or 2 items). Returns null if coeffs
+    // aren't integer-like or the equation isn't genuinely quadratic.
+    function quadRootsSurd(a, b, c) {
+        const ai = Math.round(a), bi = Math.round(b), ci = Math.round(c);
+        if (!Number.isFinite(ai) || !Number.isFinite(bi) || !Number.isFinite(ci)) return null;
+        if (Math.abs(a - ai) > 1e-6 || Math.abs(b - bi) > 1e-6 || Math.abs(c - ci) > 1e-6) return null;
+        if (ai === 0) return null;
+        const disc = bi * bi - 4 * ai * ci;
+        if (disc < 0) return [];
+        if (disc === 0) {
+            // (-b) / (2a)
+            const r = normSurd(-bi, 0, 2 * ai, 1);
+            return r ? [r] : null;
+        }
+        const sf = _squarefreeDecomp(disc);
+        // roots = (-b ± k√m) / (2a)
+        const r1 = normSurd(-bi, -sf.k, 2 * ai, sf.m);
+        const r2 = normSurd(-bi, sf.k, 2 * ai, sf.m);
+        if (!r1 || !r2) return null;
+        return [r1, r2];
+    }
+
+    // Compute exact symbolic roots + derivative-at-root / f-at-root LaTeX for
+    // f = P/Q (or f = P) when the derivative's numerator is ≤ degree 2. Returns
+    // { roots: [{num, labelLatex, fLatex}], ok: true } or null if not applicable.
+    function symbolicRootsAndFValues(fCls, derivNumCoeffs) {
+        if (!fCls || (fCls.kind !== 'poly' && fCls.kind !== 'rational')) return null;
+        const deg = polyDegree(derivNumCoeffs);
+        if (deg <= 0) return { roots: [] };
+        if (deg === 1) {
+            // c0 + c1·x = 0 → x = -c0/c1
+            const c0 = derivNumCoeffs[0], c1 = derivNumCoeffs[1];
+            const r = normSurd(-Math.round(c0), 0, Math.round(c1), 1);
+            if (!r) return null;
+            return { roots: [r] };
+        }
+        if (deg === 2) {
+            const a = derivNumCoeffs[2], b = derivNumCoeffs[1], c = derivNumCoeffs[0];
+            const rr = quadRootsSurd(a, b, c);
+            if (!rr) return null;
+            return { roots: rr };
+        }
+        return null; // higher degree not handled here
+    }
+
+    function evalFAtSurd(fCls, r) {
+        // f(r) where r is a Surd. Returns Surd or null.
+        if (!fCls) return null;
+        if (fCls.kind === 'poly') return polyEvalSurd(fCls.coeffs, r);
+        if (fCls.kind === 'rational') {
+            const Pv = polyEvalSurd(fCls.num, r);
+            const Qv = polyEvalSurd(fCls.den, r);
+            if (!Pv || !Qv) return null;
+            return surdDiv(Pv, Qv);
+        }
+        return null;
+    }
+
     function findRoots(exprStr, variable) {
+        // Fast path: if the expression is a polynomial (or simple rational),
+        // use exact closed-form / Durand–Kerner; this catches double roots and
+        // roots far outside the sampling window the numeric sweep uses.
+        try {
+            const cls = classifyExpression(exprStr, variable);
+            if (cls.kind === 'poly') return polyRealRoots(cls.coeffs);
+            if (cls.kind === 'rational') return polyRealRoots(cls.num);
+        } catch (e) { /* fall through to numeric sweep */ }
+
         const roots = [];
         try {
             const cleaned = exprStr.replace(/\s/g, '');
@@ -4283,10 +5296,275 @@ def derivative_expr(expr_s, var):
         return num.toFixed(3);
     }
 
+    function presetMultiGraph(board, spec) {
+        const nodesInput = spec.nodes;
+        const edges = Array.isArray(spec.edges) ? spec.edges : [];
+        const amplitude = typeof spec.amplitude === 'number' ? spec.amplitude : 0.9;
+        const nodeColor = spec.nodeColor || '#0f172a';
+        const edgeColor = spec.edgeColor || '#0f172a';
+        const textColor = spec.textColor || nodeColor;
+        const fillColor = spec.nodeFill || '#ffffff';
+        const strokeWidth = typeof spec.strokeWidth === 'number' ? spec.strokeWidth : 2;
+        const nodeRadius = typeof spec.nodeRadius === 'number' ? spec.nodeRadius : 0.5;
+        const fontSize = typeof spec.fontSize === 'number' ? spec.fontSize : 16;
+
+        const nodes = {};
+        if (Array.isArray(nodesInput)) {
+            for (const n of nodesInput) {
+                if (!n || typeof n !== 'object') continue;
+                const id = n.id || n.name;
+                if (!id) continue;
+                nodes[id] = { x: Number(n.x), y: Number(n.y), label: n.label || id };
+            }
+        } else if (nodesInput && typeof nodesInput === 'object') {
+            for (const id of Object.keys(nodesInput)) {
+                const v = nodesInput[id];
+                if (Array.isArray(v) && v.length >= 2) {
+                    nodes[id] = { x: Number(v[0]), y: Number(v[1]), label: v[2] || id };
+                } else if (v && typeof v === 'object') {
+                    nodes[id] = { x: Number(v.x), y: Number(v.y), label: v.label || id };
+                }
+            }
+        }
+
+        // Draw parallel edges as sine-bulged curves from one node boundary to the other
+        for (const e of edges) {
+            if (!e || !nodes[e.from] || !nodes[e.to]) continue;
+            const A = nodes[e.from];
+            const B = nodes[e.to];
+            const count = Math.max(1, Math.floor(e.count || 1));
+            const color = e.color || edgeColor;
+            const amp = typeof e.amplitude === 'number' ? e.amplitude : amplitude;
+
+            const dx = B.x - A.x;
+            const dy = B.y - A.y;
+            const len = Math.sqrt(dx * dx + dy * dy);
+            if (len < 1e-9) continue;
+            const ux = dx / len, uy = dy / len;
+            const px = -uy, py = ux;
+
+            const startX = A.x + ux * nodeRadius;
+            const startY = A.y + uy * nodeRadius;
+            const endX = B.x - ux * nodeRadius;
+            const endY = B.y - uy * nodeRadius;
+
+            for (let i = 0; i < count; i++) {
+                const t = count === 1 ? 0 : (-1 + (2 * i) / (count - 1));
+                const aOff = amp * t;
+                const xFn = (s) => startX + (endX - startX) * s + px * aOff * Math.sin(Math.PI * s);
+                const yFn = (s) => startY + (endY - startY) * s + py * aOff * Math.sin(Math.PI * s);
+                board.create('curve', [xFn, yFn, 0, 1], {
+                    strokeColor: color, strokeWidth, highlight: false
+                });
+            }
+        }
+
+        // Draw node circles on top
+        const drawn = {};
+        for (const id of Object.keys(nodes)) {
+            const n = nodes[id];
+            const center = board.create('point', [n.x, n.y], { visible: false, fixed: true, highlight: false });
+            const edgePt = board.create('point', [n.x + nodeRadius, n.y], { visible: false, fixed: true, highlight: false });
+            board.create('circle', [center, edgePt], {
+                strokeColor: nodeColor, strokeWidth,
+                fillColor, fillOpacity: 1, highlight: false
+            });
+            board.create('text', [n.x, n.y, n.label], {
+                anchorX: 'middle', anchorY: 'middle',
+                fontSize, strokeColor: textColor,
+                cssStyle: 'font-weight:700;pointer-events:none;user-select:none;'
+            });
+            drawn[id] = center;
+        }
+
+        return { nodes: drawn };
+    }
+
+    function presetSemicircleRectangle(board, spec) {
+        const R = typeof spec.R === 'number' ? spec.R
+            : (typeof spec.diameter === 'number' ? spec.diameter / 2 : 5);
+        const a = typeof spec.a === 'number' ? spec.a : 4.8;
+        const color = spec.color || '#0f172a';
+        const arcColor = spec.arcColor || color;
+        const rectColor = spec.rectColor || '#2563eb';
+        const diagColor = spec.diagonalColor || rectColor;
+        const strokeWidth = typeof spec.strokeWidth === 'number' ? spec.strokeWidth : 2;
+        const showDiagonal = bool(spec.showDiagonal, true);
+        const showCenterLine = bool(spec.showCenterLine, true);
+        const showLabels = bool(spec.showLabels, true);
+        const showRectFill = bool(spec.showRectFill, false);
+
+        const yB = Math.sqrt(Math.max(0, R * R - a * a));
+
+        // Semicircle arc (upper half)
+        board.create('curve', [
+            (t) => R * Math.cos(t),
+            (t) => R * Math.sin(t),
+            0, Math.PI
+        ], { strokeColor: arcColor, strokeWidth, highlight: false });
+
+        // Diameter MN
+        board.create('segment', [[-R, 0], [R, 0]], {
+            strokeColor: color, strokeWidth, highlight: false
+        });
+
+        // Rectangle ABCD: A=(-a,0), B=(-a,yB), C=(a,yB), D=(a,0)
+        const mkHidden = (x, y) => board.create('point', [x, y], { visible: false, fixed: true, highlight: false });
+        const rA = mkHidden(-a, 0), rB = mkHidden(-a, yB), rC = mkHidden(a, yB), rD = mkHidden(a, 0);
+        board.create('polygon', [rA, rB, rC, rD], {
+            borders: { strokeColor: rectColor, strokeWidth, highlight: false },
+            fillColor: rectColor, fillOpacity: showRectFill ? 0.08 : 0,
+            withLines: true, highlight: false
+        });
+
+        if (showDiagonal) {
+            board.create('segment', [[-a, yB], [a, 0]], {
+                strokeColor: diagColor, strokeWidth: strokeWidth, highlight: false
+            });
+        }
+        if (showCenterLine) {
+            board.create('segment', [[-a, yB], [0, 0]], {
+                strokeColor: diagColor, strokeWidth: 1.4, dash: 2, highlight: false
+            });
+        }
+
+        if (showLabels) {
+            const mk = (x, y, name, offset) => board.create('point', [x, y], {
+                name, size: 2,
+                strokeColor: color, fillColor: color,
+                fixed: true, highlight: false,
+                label: { offset: offset || [0, -14], fontSize: 14, strokeColor: color }
+            });
+            mk(-R, 0, 'M', [-6, -14]);
+            mk(-a, 0, 'A', [-2, -16]);
+            mk(0, 0, 'O', [-3, -16]);
+            mk(a, 0, 'D', [2, -16]);
+            mk(R, 0, 'N', [8, -14]);
+            mk(-a, yB, 'B', [-14, 4]);
+            mk(a, yB, 'C', [6, 4]);
+        }
+
+        return { R, a, yB };
+    }
+
+    function presetParabolicReflector(board, spec) {
+        const depth = typeof spec.depth === 'number' ? spec.depth : 15;
+        const mouth = typeof spec.mouthDiameter === 'number' ? spec.mouthDiameter : 20;
+        const color = spec.color || '#0f172a';
+        const parabColor = spec.parabolaColor || '#7c3aed';
+        const focusColor = spec.focusColor || '#dc2626';
+        const rayColor = spec.rayColor || '#f59e0b';
+        const labelColor = spec.labelColor || '#475569';
+        const strokeWidth = typeof spec.strokeWidth === 'number' ? spec.strokeWidth : 2;
+        const showRays = bool(spec.showRays, true);
+        const showMouth = bool(spec.showMouth, true);
+        const showFocus = bool(spec.showFocus, true);
+        const showFilamentBox = bool(spec.showFilamentBox, true);
+        const showMeasurements = bool(spec.showMeasurements, true);
+        const showFocusQuery = bool(spec.showFocusQuery, true);
+
+        const ymax = mouth / 2;
+        const p = (ymax * ymax) / (2 * depth);
+        const focus = p / 2;
+
+        // Parabola: x = y^2 / (2p), parameterized by y
+        board.create('curve', [
+            (y) => (y * y) / (2 * p),
+            (y) => y,
+            -ymax, ymax
+        ], { strokeColor: parabColor, strokeWidth: strokeWidth + 0.5, highlight: false });
+
+        // Mouth opening (dashed vertical at x=depth)
+        if (showMouth) {
+            board.create('segment', [[depth, -ymax], [depth, ymax]], {
+                strokeColor: color, strokeWidth, dash: 2, highlight: false
+            });
+            // Double-arrow style for mouth diameter
+            board.create('arrow', [[depth + depth * 0.04, -ymax], [depth + depth * 0.04, ymax]], {
+                strokeColor: labelColor, strokeWidth: 1, firstArrow: { size: 6 }, lastArrow: { size: 6 }, highlight: false
+            });
+        }
+
+        if (showRays) {
+            const rayYs = Array.isArray(spec.rayYs) ? spec.rayYs
+                : [-ymax * 0.85, -ymax * 0.45, 0, ymax * 0.45, ymax * 0.85];
+            const rayExtend = typeof spec.rayExtend === 'number' ? spec.rayExtend : depth * 0.35;
+            for (const yy of rayYs) {
+                const xStart = (yy * yy) / (2 * p);
+                board.create('arrow', [[xStart, yy], [depth + rayExtend, yy]], {
+                    strokeColor: rayColor, strokeWidth: 1.5,
+                    lastArrow: { size: 6 }, highlight: false
+                });
+            }
+        }
+
+        if (showFocus) {
+            board.create('point', [focus, 0], {
+                name: spec.focusLabel || 'F', size: 3,
+                strokeColor: focusColor, fillColor: focusColor,
+                fixed: true, highlight: false,
+                label: { offset: [-14, 10], fontSize: 14, strokeColor: focusColor }
+            });
+            if (showFilamentBox) {
+                const boxW = Math.max(0.45, depth * 0.03);
+                const mkH = (x, y) => board.create('point', [x, y], { visible: false, fixed: true, highlight: false });
+                const fb1 = mkH(focus - boxW, -boxW), fb2 = mkH(focus + boxW, -boxW),
+                      fb3 = mkH(focus + boxW, boxW), fb4 = mkH(focus - boxW, boxW);
+                board.create('polygon', [fb1, fb2, fb3, fb4], {
+                    borders: { strokeColor: focusColor, strokeWidth: 1.2, highlight: false },
+                    fillColor: focusColor, fillOpacity: 0.15,
+                    withLines: true, highlight: false
+                });
+            }
+        }
+
+        if (showMeasurements) {
+            const yBot = -ymax - ymax * 0.25;
+            // Dashed drops from vertex and mouth for depth bracket
+            board.create('segment', [[0, -ymax * 0.05], [0, yBot + ymax * 0.08]], {
+                strokeColor: labelColor, strokeWidth: 1, dash: 2, highlight: false
+            });
+            board.create('segment', [[depth, -ymax * 0.05], [depth, yBot + ymax * 0.08]], {
+                strokeColor: labelColor, strokeWidth: 1, dash: 2, highlight: false
+            });
+            board.create('arrow', [[0, yBot + ymax * 0.05], [depth, yBot + ymax * 0.05]], {
+                strokeColor: labelColor, strokeWidth: 1,
+                firstArrow: { size: 6 }, lastArrow: { size: 6 }, highlight: false
+            });
+            board.create('text', [depth / 2, yBot - ymax * 0.02, `${depth} cm`], {
+                anchorX: 'middle', fontSize: 13, strokeColor: labelColor,
+                cssStyle: 'font-weight:700;'
+            });
+            board.create('text', [depth + depth * 0.12, 0, `${mouth} cm`], {
+                anchorX: 'left', anchorY: 'middle', fontSize: 13, strokeColor: labelColor,
+                cssStyle: 'font-weight:700;'
+            });
+            if (showFocusQuery) {
+                // "?" bracket below focus
+                board.create('segment', [[0, yBot - ymax * 0.15], [focus, yBot - ymax * 0.15]], {
+                    strokeColor: focusColor, strokeWidth: 1, highlight: false
+                });
+                board.create('segment', [[0, yBot - ymax * 0.12], [0, yBot - ymax * 0.18]], {
+                    strokeColor: focusColor, strokeWidth: 1, highlight: false
+                });
+                board.create('segment', [[focus, yBot - ymax * 0.12], [focus, yBot - ymax * 0.18]], {
+                    strokeColor: focusColor, strokeWidth: 1, highlight: false
+                });
+                board.create('text', [focus / 2, yBot - ymax * 0.28, '?'], {
+                    anchorX: 'middle', fontSize: 16, strokeColor: focusColor,
+                    cssStyle: 'font-weight:700;'
+                });
+            }
+        }
+
+        return { p, focus, depth, mouthDiameter: mouth };
+    }
+
     async function applyPreset(board, spec, opts) {
         const preset = spec.preset || 'axes';
 
-        const shouldDefaultAxes = !(preset === 'roadParabolaDrainage' || preset === 'roadParabola');
+        const shouldDefaultAxes = !(preset === 'roadParabolaDrainage' || preset === 'roadParabola'
+            || preset === 'multiGraph' || preset === 'semicircleRectangle' || preset === 'parabolicReflector');
 
         if (bool(spec.axes, shouldDefaultAxes)) {
             presetAxes(board, spec);
@@ -4314,6 +5592,9 @@ def derivative_expr(expr_s, var):
         if (preset === 'signTable') return await presetSignTable(board, spec);
         if (preset === 'scene') return presetScene(board, spec);
         if (preset === 'geometry') return presetGeometry(board, spec);
+        if (preset === 'multiGraph') return presetMultiGraph(board, spec);
+        if (preset === 'semicircleRectangle') return presetSemicircleRectangle(board, spec);
+        if (preset === 'parabolicReflector') return presetParabolicReflector(board, spec);
     }
 
     async function waitForNonZeroSize(el) {
@@ -4347,7 +5628,7 @@ def derivative_expr(expr_s, var):
         const bb = getBBox(spec);
         const variable = typeof spec.variable === 'string' ? spec.variable : 'x';
         const isSignTable = spec.preset === 'signTable';
-        const signDataForSize = isSignTable ? buildSignTableManualData(spec, variable) : null;
+        const signDataForSize = isSignTable ? buildSignTableLayoutDataForSize(spec, variable) : null;
         const signLayoutForSize = signDataForSize ? computeSignTableLayout(spec, variable, signDataForSize) : null;
 
         await ensureJsxGraph();

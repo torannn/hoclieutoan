@@ -1,0 +1,269 @@
+{
+  "duration": 5400,
+  "questions": [
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_1",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Phương trình đường thẳng đi qua hai điểm \\(A(0;4)\\), \\(B(-6;0)\\) là:",
+      "options": [
+        "\\(\\frac{-x}{6}+\\frac{y}{4}=1\\)",
+        "\\(\\frac{-x}{4}+\\frac{y}{-6}=1\\)",
+        "\\(\\frac{x}{4}+\\frac{y}{-6}=1\\)",
+        "\\(\\frac{x}{-6}+\\frac{y}{4}=-1\\)"
+      ],
+      "correct_index": 0,
+      "detailed_explanation": "Đáp án đúng: A. \\(\\frac{-x}{6}+\\frac{y}{4}=1\\)\n\nPhân tích: Điểm \\(A(0;4)\\) thuộc trục tung, điểm \\(B(-6;0)\\) thuộc trục hoành. Áp dụng phương trình đường thẳng theo đoạn chắn, ta có phương trình: \\(\\frac{x}{-6} + \\frac{y}{4} = 1\\). Phương trình này tương đương với \\(\\frac{-x}{6} + \\frac{y}{4} = 1\\)."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_2",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Tập nghiệm của phương trình \\(\\sqrt{4x^2+17x+6}=\\sqrt{x^2+7x+3}\\) là",
+      "options": [
+        "\\(S=\\{3\\}\\)",
+        "\\(S=\\emptyset\\)",
+        "\\(S=\\{-\\frac{1}{3}\\}\\)",
+        "\\(S=\\{-3;\\frac{-1}{3}\\}\\)"
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. \\(S=\\{-\\frac{1}{3}\\}\\)\n\nPhân tích: Bình phương hai vế phương trình, ta được: \\(4x^2+17x+6 = x^2+7x+3 \\Leftrightarrow 3x^2+10x+3=0\\). Phương trình này có 2 nghiệm là \\(x=-3\\) và \\(x=-\\frac{1}{3}\\).\nThử lại vào điều kiện \\(x^2+7x+3 \\ge 0\\):\n- Với \\(x=-3\\): \\((-3)^2+7(-3)+3 = -9 < 0\\) (Loại).\n- Với \\(x=-\\frac{1}{3}\\): \\((-\\frac{1}{3})^2+7(-\\frac{1}{3})+3 = \\frac{7}{9} \\ge 0\\) (Nhận).\nVậy tập nghiệm là \\(S=\\{-\\frac{1}{3}\\}\\)."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_3",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Tập xác định của hàm số \\(y=\\sqrt{-1+4x-3x^2}\\) là",
+      "options": [
+        "\\([1;3]\\)",
+        "\\([\\frac{1}{3};1]\\)",
+        "\\((-\\infty;1]\\cup[3;+\\infty)\\)",
+        "\\((-\\infty;\\frac{1}{3}]\\cup[1;+\\infty)\\)"
+      ],
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. \\([\\frac{1}{3};1]\\)\n\nPhân tích: Hàm số xác định khi biểu thức dưới dấu căn không âm: \\(-3x^2+4x-1 \\ge 0 \\Leftrightarrow 3x^2-4x+1 \\le 0\\). Tam thức có hai nghiệm là \\(x=\\frac{1}{3}\\) và \\(x=1\\). Trong khoảng hai nghiệm, tam thức mang dấu âm (trái dấu với \\(a=3\\)), nên tập nghiệm là \\([\\frac{1}{3}; 1]\\)."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_4",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Phương trình nào dưới đây là phương trình chính tắc của đường elip?",
+      "options": [
+        "\\(\\frac{x^2}{25}+\\frac{y^2}{16}=1.\\)",
+        "\\(\\frac{x^2}{16}+\\frac{y^2}{25}=1.\\)",
+        "\\(\\frac{x^2}{25}+\\frac{y^2}{16}=-1.\\)",
+        "\\(\\frac{x^2}{25}-\\frac{y^2}{16}=1\\)"
+      ],
+      "correct_index": 0,
+      "detailed_explanation": "Đáp án đúng: A. \\(\\frac{x^2}{25}+\\frac{y^2}{16}=1.\\)\n\nPhân tích: Phương trình chính tắc của elip có dạng \\(\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1\\) với \\(a > b > 0\\). Chỉ có phương án A thỏa mãn dạng này với \\(a=5\\) và \\(b=4\\)."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_5",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Xét phép thử gieo một con xúc xắc cân đối và đồng chất hai lần. Xét biến cố A: “Số chấm xuất hiện ở cả hai lần gieo đều là số lẻ”. Khẳng định nào sau đây đúng?",
+      "options": [
+        "\\(n(A)=15\\).",
+        "\\(n(A)=9\\).",
+        "\\(n(A)=6\\).",
+        "\\(n(A)=12\\)."
+      ],
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. \\(n(A)=9\\).\n\nPhân tích: Các mặt có số chấm lẻ là 1, 3, 5 (có 3 khả năng). Ở mỗi lần gieo có 3 cách để xuất hiện mặt lẻ. Vì gieo hai lần nên số phần tử của biến cố A là: \\(n(A) = 3 \\times 3 = 9\\)."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_6",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Tìm tọa độ tâm I và bán kính R của đường tròn \\((C)\\): \\((x+1)^2+(y-2)^2=16\\).",
+      "options": [
+        "\\(I(1;-2)\\); \\(R=4\\).",
+        "\\(I(-1;2)\\); \\(R=8\\).",
+        "\\(I(-1;2)\\); \\(R=4\\).",
+        "\\(I(-1;2)\\); \\(R=\\sqrt{5}\\)."
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. \\(I(-1;2)\\); \\(R=4\\).\n\nPhân tích: Phương trình đường tròn dạng \\((x-a)^2 + (y-b)^2 = R^2\\) có tâm \\(I(a;b)\\) và bán kính \\(R\\). Đối chiếu phương trình đã cho, ta suy ra tâm \\(I(-1; 2)\\) và bán kính \\(R = \\sqrt{16} = 4\\)."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_7",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Bảng xét dấu có hai nghiệm \\(x=1\\) và \\(x=4\\), dấu của \\(f(x)\\) là dương ngoài khoảng hai nghiệm, âm trong khoảng hai nghiệm là của biểu thức nào?",
+      "options": [
+        "\\(f(x)=x^2-5x+4\\)",
+        "\\(f(x)=x^2-6x+5.\\)",
+        "\\(f(x)=-x^2+5x-4\\)",
+        "\\(f(x)=x^2-4x+3.\\)"
+      ],
+      "correct_index": 0,
+      "detailed_explanation": "Đáp án đúng: A. \\(f(x)=x^2-5x+4\\)\n\nPhân tích: Từ bảng xét dấu ta thấy tam thức có hai nghiệm là 1 và 4. Hơn nữa, ngoài khoảng hai nghiệm \\(f(x)\\) mang dấu dương, suy ra hệ số \\(a > 0\\). Ta có phương trình: \\(a(x-1)(x-4) = a(x^2-5x+4)\\). Thử với \\(a=1>0\\), ta được \\(f(x) = x^2-5x+4\\)."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_8",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng Oxy, cho hai điểm \\(B(-1;3)\\) và \\(C(3;1)\\). Độ dài vectơ \\(\\vec{BC}\\) bằng",
+      "options": [
+        "6.",
+        "2.",
+        "\\(2\\sqrt{5}\\).",
+        "\\(\\sqrt{5}\\)"
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. \\(2\\sqrt{5}\\).\n\nPhân tích: Ta có vectơ \\(\\vec{BC} = (3 - (-1); 1 - 3) = (4; -2)\\). Độ dài vectơ là \\(|\\vec{BC}| = \\sqrt{4^2 + (-2)^2} = \\sqrt{16+4} = \\sqrt{20} = 2\\sqrt{5}\\)."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_9",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Có bao nhiêu cách xếp 5 bạn A, B, C, D, E vào 1 chiếc ghế dài sao cho bạn A ngồi ngoài cùng?",
+      "options": [
+        "120.",
+        "48.",
+        "256.",
+        "24."
+      ],
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. 48.\n\nPhân tích: Bạn A ngồi ngoài cùng có thể ngồi ở đầu bên trái hoặc đầu bên phải của chiếc ghế (có 2 cách). 4 bạn còn lại sẽ được xếp vào 4 vị trí còn lại (có \\(4! = 24\\) cách). Tổng số cách xếp là: \\(2 \\times 24 = 48\\) cách."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_10",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Có bao nhiêu số tự nhiên có hai chữ số mà cả hai chữ số đó đều lẻ?",
+      "options": [
+        "20.",
+        "50.",
+        "25.",
+        "45."
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. 25.\n\nPhân tích: Tập hợp các chữ số lẻ là \\(\\{1, 3, 5, 7, 9\\}\\) (có 5 chữ số).\nĐể lập số có hai chữ số mà cả hai chữ số đều lẻ:\n- Chữ số hàng chục có 5 cách chọn.\n- Chữ số hàng đơn vị có 5 cách chọn.\nTổng cộng có: \\(5 \\times 5 = 25\\) số."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_11",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Tìm số hạng chứa \\(x^2\\) trong khai triển của biểu thức \\((3x-2)^5\\)",
+      "options": [
+        "-720.",
+        "\\(720x^2.\\)",
+        "720.",
+        "\\(-720x^2\\)"
+      ],
+      "correct_index": 3,
+      "detailed_explanation": "Đáp án đúng: D. \\(-720x^2\\)\n\nPhân tích: Số hạng tổng quát trong khai triển nhị thức Newton của \\((3x-2)^5\\) là: \\(T_{k+1} = C_5^k (3x)^{5-k} (-2)^k\\). Để có số hạng chứa \\(x^2\\) thì \\(5-k = 2 \\Rightarrow k = 3\\). Số hạng đó là: \\(C_5^3 (3x)^2 (-2)^3 = 10 \\cdot 9x^2 \\cdot (-8) = -720x^2\\)."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tn_12",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Một hộp chứa 11 quả cầu gồm 5 quả màu xanh và 6 quả cầu màu đỏ. Chọn ngẫu nhiên đồng thời 2 quả cầu từ hộp đó. Xác suất để 2 quả cầu chọn ra khác màu bằng",
+      "options": [
+        "\\(\\frac{5}{11}.\\)",
+        "\\(\\frac{8}{11}\\)",
+        "\\(\\frac{6}{11}.\\)",
+        "\\(\\frac{5}{22}.\\)"
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. \\(\\frac{6}{11}.\\)\n\nPhân tích: Số cách chọn ngẫu nhiên 2 quả cầu từ 11 quả cầu là: \\(C_{11}^2 = 55\\).\nĐể chọn 2 quả khác màu, ta phải chọn 1 quả xanh và 1 quả đỏ. Số cách chọn là: \\(C_5^1 \\times C_6^1 = 5 \\times 6 = 30\\).\nXác suất là: \\(P = \\frac{30}{55} = \\frac{6}{11}\\)."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_ds_1",
+      "section": "PHẦN II. Câu trắc nghiệm đúng sai.",
+      "type": "true_false",
+      "stem": "Một trường THPT có 30 lớp gồm 3 khối, mỗi khối có 10 lớp. Nhà trường muốn chọn 4 lớp đi tham dự đoàn chào mừng các đại biểu tại ga Biên Hòa. Để đảm bảo tính công bằng và khuyến khích sự tham gia của các lớp, Bí thư Đoàn quyết định rút thăm ngẫu nhiên 4 lớp.",
+      "statements": [
+        "Số phần tử của không gian mẫu là \\(n(\\Omega)=27405\\).",
+        "Gọi biến cố A: \"4 lớp được chọn có đủ 3 khối\" suy ra số phần tử của biến cố A là \\(n(A)=4500\\).",
+        "Xác suất của biến cố A là \\(P(A)=\\frac{100}{203}\\).",
+        "Xác suất của biến cố B: \"4 lớp được chọn có đúng 1 lớp 12\" là \\(\\frac{760}{1827}\\)."
+      ],
+      "correct_values": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "detailed_explanation": "a) Đúng. Rút thăm ngẫu nhiên 4 lớp từ 30 lớp, số phần tử của không gian mẫu là \\(n(\\Omega) = C_{30}^4 = 27405\\).\n\nb) Sai. 4 lớp được chọn có đủ 3 khối thì phân bố số lớp theo khối sẽ rơi vào các trường hợp: (2 khối 10, 1 khối 11, 1 khối 12), (1 khối 10, 2 khối 11, 1 khối 12) hoặc (1 khối 10, 1 khối 11, 2 khối 12). \nSố cách chọn cho mỗi trường hợp là \\(C_{10}^2 \\times C_{10}^1 \\times C_{10}^1 = 45 \\times 10 \\times 10 = 4500\\).\nDo có 3 trường hợp nên số phần tử của biến cố A là: \\(n(A) = 3 \\times 4500 = 13500\\).\n\nc) Đúng. Xác suất của biến cố A là \\(P(A) = \\frac{13500}{27405} = \\frac{900}{1827} = \\frac{100}{203}\\).\n\nd) Đúng. Để chọn đúng 1 lớp 12, ta chọn 1 lớp từ khối 12 (có 10 cách) và chọn 3 lớp từ 20 lớp của khối 10 và 11 (có \\(C_{20}^3 = 1140\\) cách). Số phần tử biến cố B là \\(10 \\times 1140 = 11400\\).\nXác suất là \\(P(B) = \\frac{11400}{27405} = \\frac{760}{1827}\\)."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_ds_2",
+      "section": "PHẦN II. Câu trắc nghiệm đúng sai.",
+      "type": "true_false",
+      "stem": "Cho hypebol (H): \\(\\frac{x^2}{64}-\\frac{y^2}{25}=1\\). Khi đó:",
+      "statements": [
+        "Độ dài trục thực là \\(2a=10\\).",
+        "Tiêu cự bằng 20.",
+        "Điểm \\(A(8\\sqrt{2};-5)\\in(H)\\).",
+        "Hypebol (H) cắt trục tung tại hai điểm phân biệt."
+      ],
+      "correct_values": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "detailed_explanation": "Từ phương trình (H), ta có \\(a^2=64 \\Rightarrow a=8\\) và \\(b^2=25 \\Rightarrow b=5\\). Tính \\(c = \\sqrt{a^2+b^2} = \\sqrt{64+25} = \\sqrt{89}\\).\n\na) Sai. Độ dài trục thực là \\(2a = 2 \\times 8 = 16\\), không phải 10.\n\nb) Sai. Tiêu cự là \\(2c = 2\\sqrt{89}\\), không phải 20.\n\nc) Đúng. Thay tọa độ điểm A vào phương trình: \\(\\frac{(8\\sqrt{2})^2}{64} - \\frac{(-5)^2}{25} = \\frac{128}{64} - \\frac{25}{25} = 2 - 1 = 1\\). Suy ra điểm A thuộc (H).\n\nd) Sai. Phương trình trục tung là \\(x=0\\). Thay vào phương trình (H) ta được \\(-\\frac{y^2}{25} = 1 \\Leftrightarrow y^2 = -25\\) (vô nghiệm). Vậy hypebol không cắt trục tung."
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tl_group_1",
+      "section": "PHẦN III. Câu trắc nghiệm trả lời ngắn.",
+      "type": "short",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "hk2_toan10_ngoquyen_101_tl_1",
+          "question_text": "Tìm hạng tử không chứa x trong khai triển nhị thức \\((x^3+\\frac{2}{x^2})^6\\)",
+          "final_answer": "0",
+          "detailed_explanation": "Số hạng tổng quát của khai triển là \\(T_{k+1} = C_6^k (x^3)^{6-k} (2x^{-2})^k = C_6^k 2^k x^{18-3k-2k} = C_6^k 2^k x^{18-5k}\\) (với \\(0 \\le k \\le 6, k \\in \\mathbb{N}\\)).\nĐể tìm hạng tử không chứa x, ta cần \\(18-5k = 0 \\Leftrightarrow k = \\frac{18}{5}\\) (không là số tự nhiên, loại).\nDo không có giá trị \\(k\\) nào thỏa mãn nên trong khai triển không tồn tại hạng tử không chứa \\(x\\) (hay nói cách khác, hệ số của nó bằng 0)."
+        },
+        {
+          "q_id": "hk2_toan10_ngoquyen_101_tl_2",
+          "question_text": "Ăng ten vệ tinh ở hình vẽ có hình là parabol, đầu thu đặt tại tiêu điểm F, đường kính miệng ăng ten là 300 cm, khoảng cách từ vị trí đặt đầu thu tới miệng ăng ten là 150 cm. Tính khoảng cách từ vị trí đặt đầu thu tới đỉnh ăng ten (parabol)? (kết quả làm tròn đến hàng đơn vị)",
+          "final_answer": "75",
+          "detailed_explanation": "Chọn hệ tọa độ Oxy sao cho đỉnh parabol trùng với gốc tọa độ O, trục đối xứng của parabol là trục Ox. Phương trình parabol có dạng \\(y^2 = 2px\\) (với \\(p > 0\\)).\nTiêu điểm (đầu thu) là \\(F(\\frac{p}{2}; 0)\\).\nĐường kính miệng ăng ten là 300 cm nên các điểm ở rìa miệng ăng ten sẽ có tung độ là \\(y = \\pm 150\\). Xét điểm \\(M(x_0; 150)\\) thuộc đường parabol.\nKhoảng cách từ tiêu điểm F tới điểm ở miệng ăng ten M chính là 150 cm (theo tính chất, khoảng cách từ F đến M là \\(FM = x_0 + \\frac{p}{2}\\)). Do đó: \\(x_0 + \\frac{p}{2} = 150\\).\nMặt khác, M thuộc parabol nên \\(150^2 = 2px_0\\).\nThay \\(x_0 = 150 - \\frac{p}{2}\\) vào phương trình trên ta được:\n\\(22500 = 2p(150 - \\frac{p}{2}) \\Leftrightarrow p^2 - 300p + 22500 = 0 \\Leftrightarrow (p-150)^2 = 0 \\Leftrightarrow p = 150\\).\nKhoảng cách từ vị trí đầu thu tới đỉnh ăng ten chính là khoảng cách OF = \\(\\frac{p}{2} = \\frac{150}{2} = 75\\) cm."
+        },
+        {
+          "q_id": "hk2_toan10_ngoquyen_101_tl_3",
+          "question_text": "Một tổ có 5 nam và 3 nữ. Gọi biến cố A: “Chọn 3 bạn trực nhật tuần trong đó có 2 nam và 1 nữ”. Tính số phần tử của biến cố A?",
+          "final_answer": "30",
+          "detailed_explanation": "Để chọn được 2 nam và 1 nữ từ 5 nam và 3 nữ, ta thực hiện hai bước:\n- Bước 1: Chọn 2 nam từ 5 nam (có \\(C_5^2 = 10\\) cách).\n- Bước 2: Chọn 1 nữ từ 3 nữ (có \\(C_3^1 = 3\\) cách).\nTheo quy tắc nhân, số phần tử của biến cố A là: \\(n(A) = 10 \\times 3 = 30\\)."
+        },
+        {
+          "q_id": "hk2_toan10_ngoquyen_101_tl_4",
+          "question_text": "Gieo một con xúc xắc cân đối và đồng chất 2 lần. Tính xác suất của biến cố \"Tích các số chấm xuất hiện trên cả 2 lần là một số chia hết cho 5\". Kết quả làm tròn đến hàng phần trăm.",
+          "final_answer": "0.31",
+          "detailed_explanation": "Không gian mẫu của phép gieo 2 lần là \\(n(\\Omega) = 6 \\times 6 = 36\\).\nĐể tích các số chấm chia hết cho 5 thì phải có ít nhất một lần gieo xuất hiện mặt 5 chấm.\nGọi biến cố đối \\(\\overline{A}\\): \"Không có lần gieo nào xuất hiện mặt 5 chấm\". Số phần tử của \\(\\overline{A}\\) (mỗi lần gieo có 5 khả năng: 1, 2, 3, 4, 6) là: \\(n(\\overline{A}) = 5 \\times 5 = 25\\).\nSố phần tử của biến cố A là: \\(n(A) = 36 - 25 = 11\\).\nXác suất của biến cố A là: \\(P(A) = \\frac{11}{36} \\approx 0.3055\\).\nLàm tròn đến hàng phần trăm, ta được kết quả là 0.31."
+        }
+      ]
+    },
+    {
+      "q_id": "hk2_toan10_ngoquyen_101_tl_group_2",
+      "section": "PHẦN IV. Tự luận.",
+      "type": "short",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "hk2_toan10_ngoquyen_101_tl_5",
+          "question_text": "Từ các số 1;2;3;4;5;6;7;8;9 có thể lập được bao nhiêu số tự nhiên có 6 chữ số đôi một khác nhau mà trong số này luôn có số 1 và số 2?",
+          "final_answer": "25200",
+          "detailed_explanation": "Số có 6 chữ số khác nhau và luôn chứa hai chữ số 1 và 2.\n- Cần chọn thêm 4 chữ số từ 7 chữ số còn lại (từ 3 đến 9). Số cách chọn là: \\(C_7^4 = 35\\) cách.\n- Đem 6 chữ số vừa được chọn đi sắp xếp vào 6 vị trí. Số cách sắp xếp là: \\(6! = 720\\) cách.\nTheo quy tắc nhân, tổng số các số lập được là: \\(35 \\times 720 = 25200\\) (số)."
+        },
+        {
+          "q_id": "hk2_toan10_ngoquyen_101_tl_6",
+          "question_text": "Trong mặt phẳng Oxy, cho đường thẳng \\(\\Delta:\\begin{cases}x=1+3t\\\\ y=4-t\\end{cases}\\) và điểm \\(M(2;7)\\). Viết phương trình đường tròn \\((C)\\) có tâm M và tiếp xúc với đường thẳng \\(\\Delta\\).",
+          "final_answer": "(x-2)^2+(y-7)^2=10",
+          "detailed_explanation": "Phương trình tham số của đường thẳng \\(\\Delta\\) có vectơ chỉ phương \\(\\vec{u}=(3;-1)\\), do đó có vectơ pháp tuyến là \\(\\vec{n}=(1;3)\\).\nPhương trình tổng quát của đường thẳng \\(\\Delta\\) đi qua điểm \\((1;4)\\) là: \\(1(x-1) + 3(y-4) = 0 \\Leftrightarrow x + 3y - 13 = 0\\).\nVì đường tròn (C) tâm \\(M(2;7)\\) tiếp xúc với đường thẳng \\(\\Delta\\) nên bán kính của đường tròn là khoảng cách từ M đến \\(\\Delta\\):\n\\(R = d(M,\\Delta) = \\frac{|2 + 3(7) - 13|}{\\sqrt{1^2 + 3^2}} = \\frac{|2 + 21 - 13|}{\\sqrt{10}} = \\frac{10}{\\sqrt{10}} = \\sqrt{10}\\).\nVậy phương trình đường tròn \\((C)\\) là: \\((x-2)^2 + (y-7)^2 = 10\\)."
+        },
+        {
+          "q_id": "hk2_toan10_ngoquyen_101_tl_7",
+          "question_text": "Một lô hàng gồm 30 sản phẩm trong đó có 8 phế phẩm. Người ta kiểm tra ngẫu nhiên 20 sản phẩm. Tính xác suất để trong số các sản phẩm được kiểm tra có nhiều nhất 1 phế phẩm.",
+          "final_answer": "\\frac{163}{390195}",
+          "detailed_explanation": "Chọn ngẫu nhiên 20 sản phẩm từ 30 sản phẩm, số phần tử của không gian mẫu là: \\(n(\\Omega) = C_{30}^{20} = 30045015\\).\nLô hàng có 8 phế phẩm và 22 sản phẩm chuẩn.\nGọi A là biến cố: \"Trong 20 sản phẩm được chọn có nhiều nhất 1 phế phẩm\". Biến cố A có hai trường hợp:\n- TH1: Cả 20 sản phẩm đều là sản phẩm chuẩn (0 phế phẩm). Số cách chọn là: \\(C_8^0 \\times C_{22}^{20} = 231\\) cách.\n- TH2: Chọn 1 phế phẩm và 19 sản phẩm chuẩn. Số cách chọn là: \\(C_8^1 \\times C_{22}^{19} = 8 \\times 1540 = 12320\\) cách.\nSố phần tử của biến cố A là: \\(n(A) = 231 + 12320 = 12551\\).\nXác suất cần tìm là: \\(P(A) = \\frac{12551}{30045015} = \\frac{163}{390195}\\)."
+        }
+      ]
+    }
+  ]
+}

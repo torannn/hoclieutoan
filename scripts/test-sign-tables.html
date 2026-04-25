@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Test bảng xét dấu / biến thiên — auto + manual</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:1000px;margin:24px auto;padding:0 16px;color:#0f172a}
+  h1{margin:0 0 8px;font-size:22px}
+  h2{margin-top:28px;border-bottom:2px solid #2563eb;padding-bottom:4px;font-size:18px}
+  h3{margin-top:14px;font-size:15px;color:#334155}
+  .desc{color:#475569;font-size:14px;margin:6px 0}
+  code{background:#f1f5f9;padding:1px 5px;border-radius:3px;font-size:13px}
+  .diagram-wrap{border:1px solid #e2e8f0;border-radius:6px;padding:8px;margin:8px 0;background:#fff}
+  .note{font-size:13px;color:#64748b;margin:4px 0 0 6px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:900px){.two-col{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h1>Test bảng xét dấu / biến thiên</h1>
+<p class="desc">
+So sánh 3 path: (a) manual TkzTab-like, (b) auto sign-table với mảng <code>expressions</code>,
+(c) auto variation-table với chỉ <code>f</code> (classifier JS tự tính <code>f'</code> + nghiệm).
+Tất cả đều đi qua <code>drawVariationTableFromData</code> → style đồng nhất.
+</p>
+
+<h2>A. Manual — bảng xét dấu 1 dòng</h2>
+
+<h3>A1. <code>f(x) = x² − 4x + 3</code></h3>
+<div class="diagram-wrap">
+  <div class="jxg-diagram" data-jxg='{"preset":"signTable","kind":"variation","variable":"x","xValues":["-\\infty","1","3","+\\infty"],"derivative":{"label":"f(x)","intervalSigns":["+","-","+"],"pointMarks":{"1":"0","2":"0"}},"bbox":[-0.5,1.5,8,-1],"height":180,"axes":false}'></div>
+</div>
+
+<h3>A2. BBT cổ điển — <code>f'(x), f(x)</code> 2 dòng</h3>
+<div class="diagram-wrap">
+  <div class="jxg-diagram" data-jxg='{"preset":"signTable","kind":"variation","variable":"x","xValues":["-\\infty","-1","1","+\\infty"],"derivative":{"label":"f\u0027(x)","intervalSigns":["+","-","+"],"pointMarks":{"1":"0","2":"0"}},"tkzTabVar":"-/-\\infty, +/4, -/0, +/+\\infty","bbox":[-0.5,2,8,-3],"height":240,"axes":false}'></div>
+  <div class="note">
+    Kỳ vọng: style đều chữ (Times, MathJax), padding cạnh scale theo cellW,
+    arrow inset thoáng hơn, giá trị cực đại/cực tiểu không đè arrow.
+  </div>
+</div>
+
+<h2>B. Auto — bảng xét dấu (<code>auto: true</code>, <code>expressions</code>)</h2>
+
+<div class="two-col">
+  <div>
+    <h3>B1. Tam thức <code>x² − 4x + 3</code></h3>
+    <div class="diagram-wrap">
+      <div class="jxg-diagram" data-jxg='{"preset":"signTable","auto":true,"expressions":[{"expr":"x^2 - 4*x + 3","label":"f(x)"}],"variable":"x","height":180,"axes":false}'></div>
+    </div>
+  </div>
+  <div>
+    <h3>B2. Phân tử × mẫu số</h3>
+    <div class="diagram-wrap">
+      <div class="jxg-diagram" data-jxg='{"preset":"signTable","auto":true,"expressions":[{"expr":"x-1","label":"x-1"},{"expr":"x+2","label":"x+2","forbidden":true}],"variable":"x","height":220,"axes":false}'></div>
+    </div>
+    <div class="note">Nhân tử mẫu (<code>forbidden</code>) được đánh dấu double-bar.</div>
+  </div>
+</div>
+
+<h3>B3. Đa thức có nghiệm kép — <code>x³ − 3x + 2 = (x−1)²(x+2)</code></h3>
+<div class="diagram-wrap">
+  <div class="jxg-diagram" data-jxg='{"preset":"signTable","auto":true,"expressions":[{"expr":"x^3 - 3*x + 2","label":"f(x)"}],"variable":"x","height":180,"axes":false}'></div>
+</div>
+<div class="note">Kỳ vọng: tìm đúng nghiệm kép tại x=1 và nghiệm đơn x=−2 (bisection cũ hay bỏ lỡ nghiệm kép).</div>
+
+<h3>B4. Đa thức bậc 5 — <code>x⁵ − x = x(x²−1)(x²+1) = x(x−1)(x+1)(x²+1)</code></h3>
+<div class="diagram-wrap">
+  <div class="jxg-diagram" data-jxg='{"preset":"signTable","auto":true,"expressions":[{"expr":"x^5 - x","label":"f(x)"}],"variable":"x","height":180,"axes":false}'></div>
+</div>
+<div class="note">Durand–Kerner tìm 3 nghiệm thực {−1, 0, 1}, lọc 2 nghiệm phức.</div>
+
+<h2>C. Auto — bảng biến thiên (<code>kind: variation</code>, chỉ cho <code>f</code>)</h2>
+
+<h3>C1. <code>f(x) = x³ − 3x + 2</code></h3>
+<div class="diagram-wrap">
+  <div class="jxg-diagram" data-jxg='{"preset":"signTable","kind":"variation","auto":true,"autoAllowVariation":true,"f":"x^3 - 3*x + 2","variable":"x","height":260,"axes":false}'></div>
+</div>
+<div class="note">Classifier nhận dạng đa thức → <code>f'(x) = 3x² − 3</code> → nghiệm ±1 → BBT đầy đủ với arrow + cực trị.</div>
+
+<h3>C2. <code>f(x) = x⁴ − 2x²</code></h3>
+<div class="diagram-wrap">
+  <div class="jxg-diagram" data-jxg='{"preset":"signTable","kind":"variation","auto":true,"autoAllowVariation":true,"f":"x^4 - 2*x^2","variable":"x","height":260,"axes":false}'></div>
+</div>
+
+<h3>C3. Hàm phân thức — <code>f(x) = (x² + 1)/(x − 1)</code></h3>
+<div class="diagram-wrap">
+  <div class="jxg-diagram" data-jxg='{"preset":"signTable","kind":"variation","auto":true,"autoAllowVariation":true,"f":"(x^2 + 1)/(x - 1)","variable":"x","height":280,"axes":false}'></div>
+</div>
+<div class="note">
+  Classifier split <code>P/Q</code> → <code>f' = (2x(x−1) − (x²+1))/(x−1)² = (x²−2x−1)/(x−1)²</code>.
+  Tử <code>f'</code> có nghiệm <code>x = 1 ± √2</code>; mẫu <code>Q</code> thêm <code>x=1</code> vào <code>forbiddenValues</code>.
+  Kỳ vọng: 4 cột (−∞, 1−√2, 1, 1+√2, +∞) với bar kép tại x=1.
+</div>
+
+<h3>C4. Phân thức bậc 2/bậc 1 khác — <code>f(x) = (x² − 4)/(x + 1)</code></h3>
+<div class="diagram-wrap">
+  <div class="jxg-diagram" data-jxg='{"preset":"signTable","kind":"variation","auto":true,"autoAllowVariation":true,"f":"(x^2 - 4)/(x + 1)","variable":"x","height":280,"axes":false}'></div>
+</div>
+
+<h2>D. Khi cần SymPy — hàm transcendental &amp; nghiệm symbolic</h2>
+
+<h3>D1. <code>f(x) = sin(x) − x/2</code> trên [−5, 5]</h3>
+<div class="diagram-wrap">
+  <div class="jxg-diagram" data-jxg='{"preset":"signTable","auto":true,"engine":"sympy","expressions":[{"expr":"sin(x) - x/2","label":"f(x)"}],"variable":"x","intervalMin":-5,"intervalMax":5,"height":180,"axes":false}'></div>
+</div>
+<div class="note">Classifier fail (không phải poly/rational) → auto fallback qua SymPy (Pyodide) nếu <code>engine:"sympy"</code>; bỏ trống <code>engine</code> thì dùng bisection numeric thuần JS.</div>
+
+<h3>D2. BBT với nghiệm vô tỉ — <code>f(x) = (x²+1)/(x−1)</code> (SymPy)</h3>
+<div class="diagram-wrap">
+  <div class="jxg-diagram" data-jxg='{"preset":"signTable","kind":"variation","auto":true,"autoAllowVariation":true,"engine":"sympy","f":"(x^2+1)/(x-1)","variable":"x","height":300,"axes":false}'></div>
+</div>
+<div class="note">
+  Kỳ vọng: nhãn x hiển thị <code>1-\sqrt{2}</code>, <code>1+\sqrt{2}</code>;
+  cực đại/cực tiểu f(x) hiện <code>2-2\sqrt{2}</code>, <code>2+2\sqrt{2}</code>
+  (thay vì xấp xỉ thập phân). So sánh với C3 đi bằng JS fast-path.
+</div>
+
+<h3>D3. BBT transcendental — <code>f(x) = e^(−x²)</code></h3>
+<div class="diagram-wrap">
+  <div class="jxg-diagram" data-jxg='{"preset":"signTable","kind":"variation","auto":true,"autoAllowVariation":true,"engine":"sympy","f":"exp(-x^2)","derivativeFactors":[{"expr":"-2*x*exp(-x^2)","label":"f\u0027(x)"}],"variable":"x","height":260,"axes":false}'></div>
+</div>
+<div class="note">
+  Giới hạn ở ±∞ = 0, cực đại tại x=0, f(0)=1. SymPy trả LaTeX đúng cho cả
+  giá trị hữu hạn lẫn giới hạn.
+</div>
+
+<h2>E. Option layout — flat vs tiered</h2>
+
+<div class="two-col">
+  <div>
+    <h3>E1. Tiered (mặc định) — C1</h3>
+    <div class="diagram-wrap">
+      <div class="jxg-diagram" data-jxg='{"preset":"signTable","kind":"variation","auto":true,"autoAllowVariation":true,"f":"x^3 - 3*x + 2","variable":"x","variationLayout":"tiered","height":260,"axes":false}'></div>
+    </div>
+    <div class="note">Độ cao giá trị phản ánh thứ tự độ lớn.</div>
+  </div>
+  <div>
+    <h3>E2. Flat — cùng dữ liệu</h3>
+    <div class="diagram-wrap">
+      <div class="jxg-diagram" data-jxg='{"preset":"signTable","kind":"variation","auto":true,"autoAllowVariation":true,"f":"x^3 - 3*x + 2","variable":"x","variationLayout":"flat","height":220,"axes":false}'></div>
+    </div>
+    <div class="note">Tất cả giá trị trên đường midline — hàng variation gọn hơn.</div>
+  </div>
+</div>
+
+<script src="../assets/js/diagrams.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (window.Diagrams && Diagrams.renderAll) Diagrams.renderAll(document);
+  });
+</script>
+</body>
+</html>

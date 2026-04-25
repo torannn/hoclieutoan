@@ -2623,6 +2623,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         e.returnValue = '';
     });
 
+    const exportPdfBtn = document.getElementById('export-pdf-btn');
+    if (exportPdfBtn) {
+        exportPdfBtn.addEventListener('click', () => {
+            if (!currentExamData) {
+                alert('Chưa có dữ liệu đề. Vui lòng chọn đề trước khi xuất PDF.');
+                return;
+            }
+            if (typeof window.exportExamPdf !== 'function') {
+                alert('Chức năng xuất PDF chưa sẵn sàng (assets/js/exam-pdf.js chưa được nạp).');
+                return;
+            }
+            const title = (currentExamMeta && currentExamMeta.title) || currentExamData.title || 'Đề kiểm tra';
+            window.exportExamPdf(currentExamData, title);
+        });
+    }
+
     submitExamBtn.addEventListener('click', () => {
         if (!currentExamData) {
             console.warn('No currentExamData. Did the exam load correctly?');

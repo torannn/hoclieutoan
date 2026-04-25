@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Test 4 diagrams — đề 7</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:900px;margin:24px auto;padding:0 16px}
+  h2{margin-top:32px;border-bottom:2px solid #2563eb;padding-bottom:4px}
+  .desc{color:#475569;font-size:14px;margin:8px 0}
+</style>
+</head>
+<body>
+<h1>Test các preset diagram mới (đề-on-tap-7)</h1>
+
+<h2>1) Parabola đỉnh (2,1) — preset=parabola</h2>
+<div class="desc">Hàm số \(y=-x^2+4x-3\), đỉnh \((2;1)\), qua \((1;0), (3;0), (0;-3)\).</div>
+<div class="jxg-diagram" data-jxg='{"preset":"parabola","a":-1,"h":2,"k":1,"showVertex":true,"bbox":[-1.5,2.5,5,-4.5],"height":260,"grid":true}'></div>
+
+<h2>2) Multi-graph A-B-C-D — preset=multiGraph</h2>
+<div class="desc">3 đường A→B, 4 đường B→C, 2 đường C→D.</div>
+<div class="jxg-diagram" data-jxg='{"preset":"multiGraph","bbox":[-1.5,2.8,16.5,-2.8],"height":200,"keepAspectRatio":false,"nodes":{"A":[0,0],"B":[5,0],"C":[10,0],"D":[15,0]},"edges":[{"from":"A","to":"B","count":3},{"from":"B","to":"C","count":4},{"from":"C","to":"D","count":2}],"amplitude":1.3,"nodeRadius":0.7}'></div>
+
+<h2>3) Nửa đường tròn + hình chữ nhật nội tiếp — preset=semicircleRectangle</h2>
+<div class="desc">\(R=5\), \(|IA|=a=4\), \(y_B=\sqrt{R^2-a^2}=1.4\).</div>
+<div class="jxg-diagram" data-jxg='{"preset":"semicircleRectangle","R":5,"a":4.8,"bbox":[-6,6,6,-1.4],"height":240}'></div>
+
+<h2>4) Chụp đèn parabol — preset=parabolicReflector</h2>
+<div class="desc">Sâu 15 cm, miệng 20 cm, tiêu điểm \(F=(p/2,0)\) với \(p=10/3\).</div>
+<div class="jxg-diagram" data-jxg='{"preset":"parabolicReflector","depth":15,"mouthDiameter":20,"bbox":[-4,15,26,-16],"height":300}'></div>
+
+<script src="../assets/js/diagrams.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (window.Diagrams && Diagrams.renderAll) Diagrams.renderAll(document);
+  });
+</script>
+</body>
+</html>

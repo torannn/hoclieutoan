@@ -1,0 +1,263 @@
+{
+  "duration": 5400,
+  "questions": [
+    {
+      "q_id": "hk2_toan10_001_tn_1",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Cho 12 điểm phân biệt nằm trên một đường tròn. Hỏi có bao nhiêu tam giác được tạo thành, biết các đỉnh của tam giác lấy từ 12 điểm đó?",
+      "options": [
+        "36.",
+        "1320.",
+        "220.",
+        "6."
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. 220.\n\nPhân tích: Mỗi tam giác được tạo thành tương ứng với việc chọn 3 điểm từ 12 điểm phân biệt (không phân biệt thứ tự). Số tam giác là số tổ hợp chập 3 của 12: \\(C_{12}^3 = 220\\)."
+    },
+    {
+      "q_id": "hk2_toan10_001_tn_2",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ Oxy, cho đường tròn \\((C):x^2+y^2-4x+6y-12=0\\). Phương trình tiếp tuyến của đường tròn (C) tại tiếp điểm \\(M(5;1)\\) là",
+      "options": [
+        "\\(3x+4y-19=0\\).",
+        "\\(3x+4y+6=0\\).",
+        "\\(4x+3y-23=0\\).",
+        "\\(3x+4y-11=0\\)."
+      ],
+      "correct_index": 0,
+      "detailed_explanation": "Đáp án đúng: A. \\(3x+4y-19=0\\).\n\nPhân tích: Đường tròn (C) có tâm \\(I(2;-3)\\). Tiếp tuyến tại điểm \\(M(5;1)\\) có vectơ pháp tuyến là \\(\\overrightarrow{IM} = (5-2; 1 - (-3)) = (3;4)\\). Phương trình tiếp tuyến: \\(3(x-5) + 4(y-1) = 0 \\Leftrightarrow 3x+4y-19=0\\)."
+    },
+    {
+      "q_id": "hk2_toan10_001_tn_3",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ Oxy, phương trình đường tròn (C) có tâm \\(I(0;-2)\\) và bán kính \\(R=2\\) là",
+      "options": [
+        "\\((C):x^2+(y+2)^2=4\\).",
+        "\\((C):x^2+(y-2)^2=\\sqrt{2}\\).",
+        "\\((C):x^2+(y+2)^2=2\\).",
+        "\\((C):x^2+(y-2)^2=4\\)."
+      ],
+      "correct_index": 0,
+      "detailed_explanation": "Đáp án đúng: A. \\((C):x^2+(y+2)^2=4\\).\n\nPhân tích: Phương trình đường tròn có tâm \\(I(0;-2)\\) và bán kính \\(R=2\\) được viết dước dạng: \\((x-0)^2 + (y - (-2))^2 = 2^2 \\Leftrightarrow x^2 + (y+2)^2 = 4\\)."
+    },
+    {
+      "q_id": "hk2_toan10_001_tn_4",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Hàm số nào sau đây có đồ thị như hình vẽ bên? <div class=\"jxg-diagram\" data-jxg='{\"preset\":\"parabola\",\"a\":-1,\"h\":2,\"k\":1,\"showVertex\":true,\"bbox\":[-1.5,2.5,5,-4.5],\"height\":260,\"grid\":true}'></div>",
+      "options": [
+        "\\(y=-x^2+2x-3\\).",
+        "\\(y=-x^2+4x-3\\).",
+        "\\(y=-x^2-4x-3\\).",
+        "\\(y=x^2-2x-3\\)."
+      ],
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. \\(y=-x^2+4x-3\\).\n\nPhân tích: Từ đồ thị ta thấy parabol có đỉnh \\(I(2;1)\\) và cắt trục hoành tại \\(x=1\\), \\(x=3\\). Phương trình có dạng \\(y = a(x-2)^2 + 1\\). Vì đi qua \\((1;0)\\) nên \\(0 = a(1-2)^2 + 1 \\Rightarrow a = -1\\). Vậy \\(y = -(x-2)^2 + 1 = -x^2 + 4x - 3\\)."
+    },
+    {
+      "q_id": "hk2_toan10_001_tn_5",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Hàm số \\(y=x^2-4x+11\\) đồng biến trên khoảng nào trong các khoảng sau đây?",
+      "options": [
+        "\\((-2;+\\infty)\\).",
+        "\\((2;+\\infty)\\).",
+        "\\((-\\infty;2)\\).",
+        "\\((-\\infty;+\\infty)\\)."
+      ],
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. \\((2;+\\infty)\\).\n\nPhân tích: Hàm số bậc hai \\(y=ax^2+bx+c\\) có \\(a=1>0\\) nên đồ thị là parabol có bề lõm hướng lên. Hoành độ đỉnh là \\(x = -\\frac{b}{2a} = -\\frac{-4}{2} = 2\\). Hàm số đồng biến trên khoảng \\((2;+\\infty)\\)."
+    },
+    {
+      "q_id": "hk2_toan10_001_tn_6",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Hệ số của số hạng chứa \\(x^3\\) trong khai triển \\((3x-2)^5\\) là",
+      "options": [
+        "240.",
+        "-720.",
+        "-1080.",
+        "1080."
+      ],
+      "correct_index": 3,
+      "detailed_explanation": "Đáp án đúng: D. 1080.\n\nPhân tích: Số hạng tổng quát của khai triển là \\(C_5^k (3x)^{5-k} (-2)^k = C_5^k 3^{5-k} (-2)^k x^{5-k}\\). Để có \\(x^3\\) thì \\(5-k=3 \\Rightarrow k=2\\). Hệ số tương ứng là \\(C_5^2 \\cdot 3^3 \\cdot (-2)^2 = 10 \\cdot 27 \\cdot 4 = 1080\\)."
+    },
+    {
+      "q_id": "hk2_toan10_001_tn_7",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Đường Elip \\((E):\\frac{x^2}{9}+\\frac{y^2}{6}=1\\) có tiêu cự bằng",
+      "options": [
+        "6.",
+        "3.",
+        "\\(\\sqrt{3}\\).",
+        "\\(2\\sqrt{3}\\)."
+      ],
+      "correct_index": 3,
+      "detailed_explanation": "Đáp án đúng: D. \\(2\\sqrt{3}\\).\n\nPhân tích: Từ phương trình chính tắc của elip, ta có \\(a^2=9\\) và \\(b^2=6\\). Suy ra \\(c^2 = a^2 - b^2 = 9 - 6 = 3 \\Rightarrow c = \\sqrt{3}\\). Tiêu cự của elip là \\(2c = 2\\sqrt{3}\\)."
+    },
+    {
+      "q_id": "hk2_toan10_001_tn_8",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Nghiệm của phương trình \\(\\sqrt{x^2-5}=x-1\\) là",
+      "options": [
+        "\\(x=4\\).",
+        "\\(x=2\\).",
+        "\\(x=3\\).",
+        "\\(x=1\\)."
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. \\(x=3\\).\n\nPhân tích: Phương trình tương đương với hệ điều kiện: \\(\\begin{cases}x-1 \\ge 0\\\\ x^2-5 = (x-1)^2\\end{cases} \\Leftrightarrow \\begin{cases}x \\ge 1\\\\ x^2-5 = x^2-2x+1\\end{cases} \\Leftrightarrow \\begin{cases}x \\ge 1\\\\ 2x = 6\\end{cases} \\Leftrightarrow x = 3\\). Nghiệm thỏa mãn điều kiện."
+    },
+    {
+      "q_id": "hk2_toan10_001_tn_9",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Tập nghiệm của bất phương trình: \\(x^2+5<6x\\) là",
+      "options": [
+        "\\((-5;-1)\\).",
+        "\\((-\\infty;1)\\cup(5;+\\infty)\\).",
+        "\\((1;5)\\).",
+        "\\((-\\infty;-5)\\cup(-1;+\\infty)\\)."
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. \\((1;5)\\).\n\nPhân tích: Biến đổi bất phương trình ta được: \\(x^2 - 6x + 5 < 0\\). Tam thức có hai nghiệm là \\(x=1\\) và \\(x=5\\). Trong khoảng hai nghiệm tam thức mang dấu âm (trái dấu với \\(a=1\\)), do đó tập nghiệm là \\(S=(1;5)\\)."
+    },
+    {
+      "q_id": "hk2_toan10_001_tn_10",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Các thành phố A, B, C, D được nối với nhau như hình vẽ. Giả sử có 3 con đường từ thành phố A đến B, 4 con đường từ B đến C và 2 con đường từ C đến D. Hỏi có bao nhiêu cách đi từ A đến D mà qua B và C chỉ một lần? <div class=\"jxg-diagram\" data-jxg='{\"preset\":\"multiGraph\",\"bbox\":[-1.5,2.8,16.5,-2.8],\"height\":190,\"keepAspectRatio\":false,\"nodes\":{\"A\":[0,0],\"B\":[5,0],\"C\":[10,0],\"D\":[15,0]},\"edges\":[{\"from\":\"A\",\"to\":\"B\",\"count\":3},{\"from\":\"B\",\"to\":\"C\",\"count\":4},{\"from\":\"C\",\"to\":\"D\",\"count\":2}],\"amplitude\":1.3,\"nodeRadius\":0.7}'></div>",
+      "options": [
+        "3.",
+        "24.",
+        "1.",
+        "9."
+      ],
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. 24.\n\nPhân tích: Áp dụng quy tắc nhân, để đi từ A đến D phải thực hiện liên tiếp 3 hành động: đi từ A đến B (3 cách), từ B đến C (4 cách) và từ C đến D (2 cách). Số cách đi là: \\(3 \\times 4 \\times 2 = 24\\) cách."
+    },
+    {
+      "q_id": "hk2_toan10_001_tn_11",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Hypebol (H) có một tiêu điểm là \\(F_2(6;0)\\) và đi qua điểm \\(M(4;0)\\). Phương trình chính tắc của hypebol (H) là",
+      "options": [
+        "\\(\\frac{x^2}{16}-\\frac{y^2}{9}=1\\).",
+        "\\(\\frac{x^2}{16}-\\frac{y^2}{20}=1\\).",
+        "\\(\\frac{x^2}{4}-\\frac{y^2}{25}=1\\).",
+        "\\(\\frac{x^2}{16}+\\frac{y^2}{20}=1\\)."
+      ],
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. \\(\\frac{x^2}{16}-\\frac{y^2}{20}=1\\).\n\nPhân tích: Tiêu điểm \\(F_2(6;0) \\Rightarrow c=6\\). Điểm \\(M(4;0)\\) nằm trên trục hoành và thuộc Hypebol nên đó chính là một đỉnh của Hypebol, suy ra \\(a=4\\). Ta có \\(b^2 = c^2 - a^2 = 36 - 16 = 20\\). Phương trình chính tắc: \\(\\frac{x^2}{16} - \\frac{y^2}{20} = 1\\)."
+    },
+    {
+      "q_id": "hk2_toan10_001_tn_12",
+      "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
+      "type": "multiple_choice",
+      "stem": "Có bao nhiêu số tự nhiên có 5 chữ số, các chữ số khác 0 và đôi một khác nhau?",
+      "options": [
+        "5!.",
+        "\\(9^5\\).",
+        "\\(A_9^5\\).",
+        "\\(C_9^5\\)."
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. \\(A_9^5\\).\n\nPhân tích: Có 9 chữ số khác 0 (từ 1 đến 9). Việc lập một số tự nhiên có 5 chữ số phân biệt từ 9 chữ số này tương đương với việc chọn 5 chữ số từ 9 chữ số và sắp xếp chúng. Số cách là chỉnh hợp chập 5 của 9: \\(A_9^5\\)."
+    },
+    {
+      "q_id": "hk2_toan10_001_ds_1",
+      "section": "PHẦN II. Câu trắc nghiệm đúng sai.",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng Oxy, cho đường tròn \\((C): (x+\\frac{1}{2})^2+(y-\\frac{1}{2})^2=R^2\\) và điểm \\(A(-\\frac{1}{2};0)\\) nằm trên đường tròn (C).",
+      "statements": [
+        "Bán kính của đường tròn (C) là \\(R=\\frac{1}{2}\\)",
+        "Đường tròn (C) tiếp xúc với trục hoành Ox.",
+        "Đường tròn (C) có tâm là \\(I(\\frac{1}{2};-\\frac{1}{2})\\).",
+        "Từ điểm B nằm trên trục tung Oy (B không trùng với gốc tọa độ O), ta kẻ được hai tiếp tuyến vuông góc với nhau tới đường tròn (C). Khi đó, \\(OB=\\frac{\\sqrt{3}}{2}\\)"
+      ],
+      "correct_values": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "detailed_explanation": "a) Đúng. Do A thuộc (C) nên \\(R^2 = I A^2 = \\left(-\\frac{1}{2} - \\left(-\\frac{1}{2}\\right)\\right)^2 + \\left(0 - \\frac{1}{2}\\right)^2 = \\frac{1}{4}\\). Suy ra \\(R = \\frac{1}{2}\\).\nb) Đúng. Tâm của đường tròn là \\(I(-\\frac{1}{2};\\frac{1}{2})\\). Khoảng cách từ I đến trục hoành Ox (y=0) là \\(|\\frac{1}{2}| = \\frac{1}{2} = R\\). Vậy (C) tiếp xúc với Ox.\nc) Sai. Từ phương trình \\((x+\\frac{1}{2})^2+(y-\\frac{1}{2})^2=R^2\\), tọa độ tâm I phải là \\(-\\frac{1}{2}\\) và \\(\\frac{1}{2}\\), tức là \\(I(-\\frac{1}{2}; \\frac{1}{2})\\).\nd) Sai. Gọi \\(B(0;y)\\) thuộc trục tung. Do hai tiếp tuyến từ B vuông góc nên tứ giác tạo bởi hai tiếp điểm, tâm I và B là hình vuông, suy ra \\(IB = R\\sqrt{2} = \\frac{\\sqrt{2}}{2}\\). Ta có \\(IB^2 = \\frac{1}{4} + (y-\\frac{1}{2})^2 = \\frac{1}{2} \\Leftrightarrow (y-\\frac{1}{2})^2 = \\frac{1}{4}\\). Giải ra \\(y=1\\) hoặc \\(y=0\\). Do B không trùng O nên \\(y=1\\), suy ra \\(B(0;1)\\) và độ dài \\(OB=1\\) chứ không phải \\(\\frac{\\sqrt{3}}{2}\\)."
+    },
+    {
+      "q_id": "hk2_toan10_001_ds_2",
+      "section": "PHẦN II. Câu trắc nghiệm đúng sai.",
+      "type": "true_false",
+      "stem": "Một nhóm có 14 bạn học sinh, trong đó có hai bạn tên An và Bình. Thầy giáo cần chọn 6 bạn học sinh đi dự hội thảo.",
+      "statements": [
+        "Có 3003 cách chọn 6 bạn bất kỳ.",
+        "Có 2574 cách chọn 6 bạn trong đó có đúng một trong hai bạn An và Bình.",
+        "Có 924 cách chọn 6 bạn trong đó cả hai bạn An và Bình đều không có mặt.",
+        "Có 1848 cách chọn 6 bạn trong đó có cả hai bạn An và Bình."
+      ],
+      "correct_values": [
+        true,
+        false,
+        true,
+        false
+      ],
+      "detailed_explanation": "a) Đúng. Số cách chọn 6 bạn bất kỳ từ 14 bạn là \\(C_{14}^6 = 3003\\) cách.\nb) Sai. Số cách chọn có đúng 1 trong 2 bạn An và Bình: Chọn 1 trong 2 bạn (có \\(C_2^1 = 2\\) cách), sau đó chọn 5 bạn từ 12 bạn còn lại (có \\(C_{12}^5 = 792\\) cách). Tổng số cách là \\(2 \\times 792 = 1584\\) cách, không phải 2574.\nc) Đúng. Số cách chọn 6 bạn không có cả An và Bình (nghĩa là chọn 6 từ 12 bạn còn lại) là \\(C_{12}^6 = 924\\) cách.\nd) Sai. Số cách chọn 6 bạn có cả An và Bình (nghĩa là chọn thêm 4 từ 12 bạn còn lại) là \\(C_{12}^4 = 495\\) cách, không phải 1848."
+    },
+    {
+      "q_id": "hk2_toan10_001_tl_group_1",
+      "section": "PHẦN III. Câu trắc nghiệm trả lời ngắn.",
+      "type": "short",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "hk2_toan10_001_tl_1",
+          "question_text": "Một lớp bồi dưỡng có 20 học sinh trong đó có 14 nam, 6 nữ. Hỏi có bao nhiêu cách lập một nhóm gồm 4 học sinh, trong đó số nam và số nữ bằng nhau?",
+          "final_answer": "1365",
+          "detailed_explanation": "Để số nam và số nữ bằng nhau trong nhóm 4 học sinh, ta phải chọn 2 nam và 2 nữ.\nSố cách chọn 2 nam từ 14 nam là \\(C_{14}^2 = 91\\).\nSố cách chọn 2 nữ từ 6 nữ là \\(C_6^2 = 15\\).\nÁp dụng quy tắc nhân, số cách lập nhóm là: \\(91 \\times 15 = 1365\\) (cách)."
+        },
+        {
+          "q_id": "hk2_toan10_001_tl_2",
+          "question_text": "Trong mặt phẳng tọa độ Oxy, cho điểm M di động luôn cách điểm \\(I(3;3)\\) một khoảng bằng 2 và điểm N đi động trên một đường thẳng đi qua điểm \\(A(-3;2)\\) và điểm \\(B(2;7)\\). Giá trị nhỏ nhất của độ dài đoạn thẳng MN bằng bao nhiêu? (Kết quả quy tròn đến hàng phần mười)",
+          "final_answer": "1.5",
+          "detailed_explanation": "Điểm M nằm trên đường tròn (C) tâm \\(I(3;3)\\), bán kính \\(R=2\\). Điểm N nằm trên đường thẳng d đi qua A và B.\nTa có \\(\\overrightarrow{AB} = (5;5)\\), chọn vectơ pháp tuyến của d là \\(\\vec{n} = (1;-1)\\). Phương trình d: \\(1(x+3) - 1(y-2) = 0 \\Leftrightarrow x - y + 5 = 0\\).\nKhoảng cách từ tâm I đến đường thẳng d là: \\(d(I, d) = \\frac{|3-3+5|}{\\sqrt{1^2+(-1)^2}} = \\frac{5}{\\sqrt{2}} \\approx 3.535\\).\nKhoảng cách ngắn nhất từ đường tròn (C) đến đường thẳng d là \\(MN_{min} = d(I, d) - R = \\frac{5}{\\sqrt{2}} - 2 \\approx 1.535\\).\nLàm tròn đến hàng phần mười ta được kết quả là 1.5."
+        },
+        {
+          "q_id": "hk2_toan10_001_tl_3",
+          "question_text": "Xét nửa đường tròn đường kính \\(MN=10\\) cm. Xét điểm B (không trùng hai điểm M,N) di động trên nửa đường tròn và hình chiếu của B trên đoạn MN là điểm A, vẽ hình chữ nhật ABCD với C cũng thuộc nửa đường tròn và D thuộc MN. Biết rằng chu vi hình chữ nhật ABCD bằng 22 cm và độ dài đoạn thẳng nối từ tâm của nửa đường tròn đến A là một giá trị không nguyên. Khoảng cách đó là bao nhiêu cm? (Kết quả quy tròn đến hàng phần mười) <div class=\"jxg-diagram\" data-jxg='{\"preset\":\"semicircleRectangle\",\"R\":5,\"a\":4,\"bbox\":[-6,6,6,-1.4],\"height\":240}'></div>",
+          "final_answer": "4.8",
+          "detailed_explanation": "Gắn hệ tọa độ Oxy với gốc O là trung điểm MN, đường kính MN nằm trên trục Ox. Bán kính \\(R = 5\\) cm.\nVì ABCD là hình chữ nhật nội tiếp nửa đường tròn với D, A nằm trên đường kính nên nó nhận trục Oy làm trục đối xứng. Gọi \\(B(x;y)\\) với \\(x>0, y>0\\).\nĐộ dài cạnh \\(AB = y\\) và \\(AD = 2x\\). Khoảng cách từ tâm O đến A chính là \\(x\\).\nChu vi hình chữ nhật: \\(2(2x + y) = 22 \\Rightarrow 2x + y = 11 \\Rightarrow y = 11 - 2x\\).\nĐiểm B thuộc đường tròn nên \\(x^2 + y^2 = 25\\). Thay y vào ta có:\n\\(x^2 + (11 - 2x)^2 = 25 \\Leftrightarrow 5x^2 - 44x + 96 = 0\\).\nGiải phương trình bậc hai ta thu được hai nghiệm: \\(x = 4\\) hoặc \\(x = 4.8\\).\nTheo đề bài, khoảng cách này là một giá trị không nguyên nên \\(x = 4.8\\).\nKết quả làm tròn đến phần mười là 4.8."
+        },
+        {
+          "q_id": "hk2_toan10_001_tl_4",
+          "question_text": "Cho một cái đèn với chụp bóng đèn có mặt cắt qua trục là parabol. Biết rằng khoảng cách từ đỉnh của parabol đến mặt cắt ngang của miệng đèn là 15 cm và đường kính của mặt cắt ngang là 20 cm. Giả sử xem dây tóc bóng đèn là một điểm và được đặt ở vị trí tiêu điểm của parabol. Tính khoảng cách từ dây tóc bóng đèn tới đỉnh của chụp bóng đèn. (Kết quả quy tròn đến hàng phần trăm) <div class=\"jxg-diagram\" data-jxg='{\"preset\":\"parabolicReflector\",\"depth\":15,\"mouthDiameter\":20,\"bbox\":[-4,15,26,-16],\"height\":300}'></div>",
+          "final_answer": "1.67",
+          "detailed_explanation": "Chọn hệ trục tọa độ với gốc O tại đỉnh parabol, trục đối xứng của đèn là trục Ox. Phương trình parabol có dạng \\(y^2 = 2px\\).\nTại khoảng cách 15 cm từ đỉnh (tức \\(x = 15\\)), bán kính mặt cắt ngang là \\(20 / 2 = 10\\) cm, điểm \\((15; 10)\\) thuộc parabol.\nThay vào phương trình: \\(10^2 = 2p \\cdot 15 \\Rightarrow 100 = 30p \\Rightarrow p = \\frac{10}{3}\\).\nKhoảng cách từ tiêu điểm (dây tóc) đến đỉnh parabol là \\(\\frac{p}{2} = \\frac{10/3}{2} = \\frac{5}{3} \\approx 1.666...\\)\nLàm tròn kết quả đến hàng phần trăm ta được 1.67."
+        }
+      ]
+    },
+    {
+      "q_id": "hk2_toan10_001_tl_group_2",
+      "section": "PHẦN IV. Tự luận.",
+      "type": "short",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "hk2_toan10_001_tl_5",
+          "question_text": "Trong mặt phẳng Oxy, cho đường tròn \\((C):x^2+y^2+4x+2y-4=0\\). a) Xác định tọa độ tâm và tính bán kính của đường tròn (C). b) Viết phương trình tổng quát của đường thẳng đi qua tâm đường tròn (C) và gốc tọa độ O. c) Viết phương trình đường thẳng \\(\\Delta\\) đi qua gốc tọa độ O và cắt đường tròn (C) tại hai điểm A, B sao cho \\(AB=4\\).",
+          "final_answer": "a) Tâm I(-2;-1), R=3. b) x-2y=0. c) 2x+y=0.",
+          "detailed_explanation": "a) Tâm \\(I(-2;-1)\\), bán kính \\(R = \\sqrt{(-2)^2+(-1)^2 - (-4)} = \\sqrt{9} = 3\\).\nb) Đường thẳng đi qua \\(O(0;0)\\) và \\(I(-2;-1)\\) có vectơ chỉ phương là \\(\\overrightarrow{OI} = (-2;-1)\\), do đó nhận \\(\\vec{n} = (1;-2)\\) làm vectơ pháp tuyến. Phương trình tổng quát: \\(1(x-0) - 2(y-0) = 0 \\Leftrightarrow x - 2y = 0\\).\nc) Đường thẳng \\(\\Delta\\) đi qua O nên có dạng \\(ax + by = 0\\) \\((a^2+b^2>0)\\). Dây cung \\(AB = 4\\), suy ra khoảng cách từ tâm I đến \\(\\Delta\\) là \\(d = \\sqrt{R^2 - \\left(\\frac{AB}{2}\\right)^2} = \\sqrt{3^2 - 2^2} = \\sqrt{5}\\).\nTa có \\(d(I,\\Delta) = \\frac{|-2a - b|}{\\sqrt{a^2+b^2}} = \\sqrt{5} \\Leftrightarrow (2a+b)^2 = 5(a^2+b^2) \\Leftrightarrow 4a^2+4ab+b^2 = 5a^2+5b^2 \\Leftrightarrow a^2 - 4ab + 4b^2 = 0 \\Leftrightarrow (a-2b)^2 = 0 \\Leftrightarrow a = 2b\\).\nChọn \\(b=1\\), ta có \\(a=2\\). Phương trình \\(\\Delta\\): \\(2x + y = 0\\)."
+        },
+        {
+          "q_id": "hk2_toan10_001_tl_6",
+          "question_text": "Cho tập hợp \\(A=\\{2,3,5,7,9\\}\\). a) Từ các phần tử của tập hợp A, có thể lập nên bao nhiêu số tự nhiên gồm ba chữ số? b) Từ các phần tử của tập hợp A, có thể lập nên bao nhiêu số tự nhiên gồm bảy chữ số trong đó có hai chữ số 2, ba chữ số 3 và các chữ số còn lại có mặt không quá một lần?",
+          "final_answer": "a) 125. b) 1260.",
+          "detailed_explanation": "a) Mỗi chữ số có 5 cách chọn từ tập A. Số các số tự nhiên có 3 chữ số là: \\(5 \\times 5 \\times 5 = 125\\) (số).\nb) Một số gồm 7 chữ số thỏa mãn cần có hai chữ số 2, ba chữ số 3 và 2 chữ số khác chọn từ tập con \\(\\{5,7,9\\}\\). Số cách chọn 2 chữ số còn lại là: \\(C_3^2 = 3\\) (cách).\nVới mỗi tập gồm 7 chữ số (gồm hai số 2, ba số 3 và hai số phân biệt kia), số hoán vị là: \\(\\frac{7!}{2! \\cdot 3! \\cdot 1! \\cdot 1!} = \\frac{5040}{2 \\cdot 6} = 420\\) (số).\nTổng cộng có thể lập được: \\(3 \\times 420 = 1260\\) (số)."
+        }
+      ]
+    }
+  ]
+}

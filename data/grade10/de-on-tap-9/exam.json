@@ -1,0 +1,269 @@
+{
+  "duration": 5400,
+  "questions": [
+    {
+      "q_id": "hk2_toan10_tb_003_tn_1",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Tập xác định của hàm số $y=\\sqrt{2x-4}$ là",
+      "options": [
+        "$D=(-\\infty;2]$.",
+        "$D=[2;+\\infty)$.",
+        "$D=(-\\infty;-2]$.",
+        "$D=[-2;+\\infty)$."
+      ],
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. $D=[2;+\\infty)$.\n\nPhân tích: Hàm số xác định khi biểu thức dưới dấu căn không âm, tức là $2x - 4 \\ge 0 \\Leftrightarrow 2x \\ge 4 \\Leftrightarrow x \\ge 2$. Vậy tập xác định là $D=[2;+\\infty)$."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tn_2",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$ phương trình nào dưới đây là phương trình của một đường tròn?",
+      "options": [
+        "$x^2+y^2-10x+6y-1=0$.",
+        "$x^2+y^2-x+y+14=0$.",
+        "$x^2+y^2=-5$.",
+        "$x^2+y^2-4x+2y+16=0$."
+      ],
+      "correct_index": 0,
+      "detailed_explanation": "Đáp án đúng: A. $x^2+y^2-10x+6y-1=0$.\n\nPhân tích: Xét phương trình dạng $x^2+y^2-2ax-2by+c=0$, điều kiện để là phương trình đường tròn là $a^2+b^2-c > 0$.\n- A: $a=5, b=-3, c=-1 \\Rightarrow a^2+b^2-c = 25+9+1 = 35 > 0$ (Là đường tròn).\n- B: $a=1/2, b=-1/2, c=14 \\Rightarrow 1/4+1/4-14 < 0$ (Không phải).\n- C: $x^2+y^2 = -5 < 0$ (Không phải).\n- D: $a=2, b=-1, c=16 \\Rightarrow 4+1-16 < 0$ (Không phải)."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tn_3",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Tập nghiệm của phương trình $\\sqrt{2x^2-9x-9}=3-x$ là",
+      "options": [
+        "$S=\\emptyset$.",
+        "$S=\\{6\\}$.",
+        "$S=\\{-3;6\\}$.",
+        "$S=\\{-3\\}$."
+      ],
+      "correct_index": 3,
+      "detailed_explanation": "Đáp án đúng: D. $S=\\{-3\\}$.\n\nPhân tích: Phương trình tương đương với hệ:\n$$\\begin{cases} 3-x \\ge 0 \\\\ 2x^2-9x-9 = (3-x)^2 \\end{cases}$$\n$$\\Leftrightarrow \\begin{cases} x \\le 3 \\\\ 2x^2-9x-9 = x^2-6x+9 \\end{cases}$$\n$$\\Leftrightarrow \\begin{cases} x \\le 3 \\\\ x^2-3x-18 = 0 \\end{cases}$$\nPhương trình $x^2-3x-18 = 0$ có hai nghiệm $x=6$ và $x=-3$. Đối chiếu điều kiện $x \\le 3$, ta chỉ nhận nghiệm $x=-3$. Vậy tập nghiệm là $S=\\{-3\\}$."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tn_4",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho hàm số $y=x^2-6x+12$. Khẳng định nào dưới đây đúng?",
+      "options": [
+        "Hàm số đồng biến trên khoảng $(-3;+\\infty)$ và nghịch biến trên khoảng $(-\\infty;-3)$.",
+        "Hàm số đồng biến trên khoảng $(-3;+\\infty)$ và nghịch biến trên khoảng $(-\\infty;3)$.",
+        "Hàm số nghịch biến trên khoảng $(3;+\\infty)$ và đồng biến trên khoảng $(-\\infty;3)$.",
+        "Hàm số đồng biến trên khoảng $(3;+\\infty)$ và nghịch biến trên khoảng $(-\\infty;3)$."
+      ],
+      "correct_index": 3,
+      "detailed_explanation": "Đáp án đúng: D. Hàm số đồng biến trên khoảng $(3;+\\infty)$ và nghịch biến trên khoảng $(-\\infty;3)$.\n\nPhân tích: Đây là hàm số bậc hai có đồ thị là parabol với bề lõm hướng lên ($a=1>0$). Hoành độ đỉnh của parabol là $x_I = -\\frac{b}{2a} = -\\frac{-6}{2} = 3$. Do đó, hàm số nghịch biến trên $(-\\infty;3)$ và đồng biến trên $(3;+\\infty)$."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tn_5",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho hypebol có phương trình chính tắc $\\frac{x^2}{16}-\\frac{y^2}{9}=1$. Tiêu cự của hypebol đó là",
+      "options": [
+        "$F_1F_2=2\\sqrt{7}$.",
+        "$F_1F_2=10$.",
+        "$F_1F_2=\\sqrt{7}$.",
+        "$F_1F_2=5$."
+      ],
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. $F_1F_2=10$.\n\nPhân tích: Từ phương trình chính tắc của hypebol ta có $a^2=16$ và $b^2=9$. Ta có hệ thức $c^2 = a^2+b^2 = 16+9=25 \\Rightarrow c=5$. Tiêu cự của hypebol là $2c = 2 \\times 5 = 10$."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tn_6",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho các số tự nhiên k, n thỏa mãn $0 \\le k \\le n$. Khẳng định nào sau đây đúng?",
+      "options": [
+        "$C_n^k=\\frac{n!}{k!(n+k)!}$.",
+        "$C_n^k=\\frac{n!}{k(n-k)!}$.",
+        "$C_n^k=\\frac{n!}{k!(n-k)!}$.",
+        "$C_n^k=\\frac{n!}{(n-k)!}$."
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. $C_n^k=\\frac{n!}{k!(n-k)!}$.\n\nPhân tích: Công thức tính số tổ hợp chập k của n phần tử là $C_n^k = \\frac{n!}{k!(n-k)!}$."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tn_7",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Hệ số của $x^3$ trong khai triển nhị thức $(x-5)^4$ là",
+      "options": [
+        "$5C_4^1$.",
+        "$25C_4^2$.",
+        "$-5C_4^1$.",
+        "$-125C_4^3$."
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. $-5C_4^1$.\n\nPhân tích: Số hạng tổng quát của khai triển là $C_4^k x^{4-k} (-5)^k$. Để có chứa $x^3$ thì $4-k = 3 \\Leftrightarrow k=1$. Hệ số của số hạng này là $C_4^1 \\cdot (-5)^1 = -5C_4^1$."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tn_8",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Số cách sắp xếp 12 học sinh thành một hàng dọc là",
+      "options": [
+        "$12^{12}$.",
+        "$A_{12}^1$.",
+        "$C_{12}^1$.",
+        "12!."
+      ],
+      "correct_index": 3,
+      "detailed_explanation": "Đáp án đúng: D. 12!.\n\nPhân tích: Mỗi cách sắp xếp 12 học sinh thành một hàng dọc là một hoán vị của 12 phần tử. Số cách là $P_{12} = 12!$."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tn_9",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Bạn Huy cần đi từ nhà đến một hiệu sách. Biết rằng từ nhà bạn Huy có hai hướng đi: theo hướng thứ nhất có 2 hiệu sách, theo hướng thứ hai có 3 hiệu sách. Bạn Huy có bao nhiêu cách chọn một hiệu sách để đến?",
+      "options": [
+        "5.",
+        "3.",
+        "2.",
+        "6."
+      ],
+      "correct_index": 0,
+      "detailed_explanation": "Đáp án đúng: A. 5.\n\nPhân tích: Có 2 phương án chọn: đi theo hướng thứ nhất có 2 lựa chọn, đi theo hướng thứ hai có 3 lựa chọn. Áp dụng quy tắc cộng, số cách chọn hiệu sách là $2+3=5$ cách."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tn_10",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Cho tam thức bậc hai $f(x)=ax^2+bx+c(a \\ne 0)$. Trong các phát biểu sau, phát biểu nào đúng?",
+      "options": [
+        "$f(x)<0$ với mọi $x \\in \\mathbb{R}$ khi và chỉ khi $a<0$ và $\\Delta<0$.",
+        "$f(x)\\le 0$ với mọi $x \\in \\mathbb{R}$ khi và chỉ khi $a>0$ và $\\Delta<0$.",
+        "$f(x)\\le 0$ với mọi $x \\in \\mathbb{R}$ khi và chỉ khi $a>0$ và $\\Delta\\le 0$.",
+        "$f(x)<0$ với mọi $x \\in \\mathbb{R}$ khi và chỉ khi $a<0$ và $\\Delta\\le 0$."
+      ],
+      "correct_index": 0,
+      "detailed_explanation": "Đáp án đúng: A. $f(x)<0$ với mọi $x \\in \\mathbb{R}$ khi và chỉ khi $a<0$ và $\\Delta<0$.\n\nPhân tích: Theo định lí về dấu của tam thức bậc hai, để $f(x) < 0 \\forall x \\in \\mathbb{R}$ thì đồ thị hàm số phải là một parabol có bề lõm hướng xuống ($a<0$) và nằm hoàn toàn dưới trục hoành (phương trình $f(x)=0$ vô nghiệm $\\Leftrightarrow \\Delta < 0$)."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tn_11",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, góc giữa hai đường thẳng $d:x-\\sqrt{3}y-5=0$ và $d':x+\\sqrt{3}y+1=0$ bằng",
+      "options": [
+        "135°.",
+        "60°.",
+        "120°.",
+        "45°."
+      ],
+      "correct_index": 1,
+      "detailed_explanation": "Đáp án đúng: B. 60°.\n\nPhân tích: Vectơ pháp tuyến của d và d' lần lượt là $\\vec{n_1}=(1; -\\sqrt{3})$ và $\\vec{n_2}=(1; \\sqrt{3})$. Gọi $\\alpha$ là góc giữa hai đường thẳng, ta có:\n$\\cos\\alpha = \\frac{|\\vec{n_1} \\cdot \\vec{n_2}|}{|\\vec{n_1}| \\cdot |\\vec{n_2}|} = \\frac{|1 \\cdot 1 + (-\\sqrt{3}) \\cdot \\sqrt{3}|}{\\sqrt{1^2+(-\\sqrt{3})^2} \\cdot \\sqrt{1^2+(\\sqrt{3})^2}} = \\frac{|1-3|}{2 \\cdot 2} = \\frac{2}{4} = \\frac{1}{2}$.\nSuy ra góc $\\alpha = 60^\\circ$."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tn_12",
+      "section": "PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN",
+      "type": "multiple_choice",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, một vectơ chỉ phương của đường thẳng $d: \\begin{cases}x=1+3t\\\\ y=1-5t\\end{cases}$ là",
+      "options": [
+        "$\\vec{u}=(-3;-5)$.",
+        "$\\vec{u}=(5;3)$.",
+        "$\\vec{u}=(3;-5)$.",
+        "$\\vec{u}=(-5;3)$."
+      ],
+      "correct_index": 2,
+      "detailed_explanation": "Đáp án đúng: C. $\\vec{u}=(3;-5)$.\n\nPhân tích: Từ phương trình tham số của đường thẳng, các hệ số của t chính là tọa độ của vectơ chỉ phương. Do đó $\\vec{u}=(3; -5)$."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_ds_1",
+      "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Một lớp học có 40 học sinh, trong đó có 15 học sinh nam và 25 học sinh nữ.",
+      "statements": [
+        "Số cách chọn 4 học sinh bất kì của lớp đó đi lao động là 91390 (cách).",
+        "Số cách chọn 4 học sinh nam bất kì của lớp đó đi lao động là 1356 (cách).",
+        "Số cách chọn một đội văn nghệ gồm 5 thành viên có đủ cả nam và nữ là 639501 (cách).",
+        "Số cách thành lập một ban quản lí lớp gồm 1 trưởng ban, 1 phó ban và 2 thành viên là 1096680 (cách)."
+      ],
+      "correct_values": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "detailed_explanation": "a) Đúng. Chọn 4 học sinh từ 40 học sinh: $C_{40}^4 = 91390$ (cách).\n\nb) Sai. Chọn 4 học sinh nam từ 15 học sinh nam: $C_{15}^4 = 1365$ (cách), không phải 1356.\n\nc) Sai. Số cách chọn 5 thành viên bất kỳ là $C_{40}^5 = 658008$. Số cách chọn 5 thành viên chỉ toàn nam là $C_{15}^5 = 3003$. Số cách chọn 5 thành viên chỉ toàn nữ là $C_{25}^5 = 53130$. Số cách chọn 5 thành viên có đủ nam và nữ là phần bù: $658008 - 3003 - 53130 = 601875$ (cách). (Đề bài cho 639501 là sai).\n\nd) Đúng. Chọn 1 trưởng ban, 1 phó ban (chọn 2 người có sắp xếp thứ tự từ 40 người) có $A_{40}^2 = 1560$ cách. Sau đó chọn thêm 2 thành viên từ 38 người còn lại có $C_{38}^2 = 703$ cách. Tổng số cách: $1560 \\times 703 = 1096680$ (cách)."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_ds_2",
+      "section": "PHẦN II. TRẮC NGHIỆM ĐÚNG SAI",
+      "type": "true_false",
+      "stem": "Trong mặt phẳng tọa độ $Oxy$, cho đường tròn $(C): x^2+y^2-4x+6y-12=0$ và điểm $M(5;1)$.",
+      "statements": [
+        "Điểm M thuộc đường tròn (C).",
+        "Đường tròn (C) có tâm $I(2;-3)$ và bán kính $R=5$.",
+        "Tiếp tuyến của đường tròn (C) tại điểm M có vectơ chỉ phương là $\\vec{u}=(3;4)$.",
+        "Đường thẳng d đi qua điểm $A(1;2)$ và song song với tiếp tuyến của đường tròn (C) tại M có phương trình là $3x+4y-11=0$."
+      ],
+      "correct_values": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "detailed_explanation": "a) Đúng. Thay tọa độ $M(5;1)$ vào vế trái (C): $5^2+1^2-4(5)+6(1)-12 = 25+1-20+6-12 = 0$. Suy ra M thuộc đường tròn (C).\n\nb) Đúng. Từ phương trình đường tròn có dạng tổng quát $x^2+y^2-2ax-2by+c=0$, ta có $a=2, b=-3, c=-12$. Tâm $I(2;-3)$, bán kính $R=\\sqrt{a^2+b^2-c} = \\sqrt{2^2+(-3)^2-(-12)} = \\sqrt{25} = 5$.\n\nc) Sai. Tiếp tuyến của (C) tại M vuông góc với bán kính IM. Vectơ $\\overrightarrow{IM} = (5-2; 1-(-3)) = (3;4)$ là vectơ pháp tuyến của tiếp tuyến. Vectơ chỉ phương của tiếp tuyến phải vuông góc với $\\overrightarrow{IM}$, ví dụ $\\vec{u}=(-4;3)$ hoặc $\\vec{u}=(4;-3)$, chứ không phải là $(3;4)$.\n\nd) Đúng. Vì $d$ song song với tiếp tuyến tại M nên $d$ nhận $\\vec{n}=\\overrightarrow{IM}=(3;4)$ làm vectơ pháp tuyến, do đó $d$ có dạng $3x+4y+c=0$. Điểm $A(1;2)$ thuộc $d$ nên $3(1)+4(2)+c=0 \\Rightarrow c=-11$. Phương trình $d: 3x+4y-11=0$."
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tl_group_1",
+      "section": "PHẦN III. TRẮC NGHIỆM TRẢ LỜI NGẮN",
+      "type": "short",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "hk2_toan10_tb_003_tl_1",
+          "question_text": "Cổng của một ngôi trường có dạng một parabol. Để đo chiều cao h của cổng, một người đo khoảng cách giữa hai chân cổng được 9 m. Người đó thấy rằng nếu đứng cách chân cổng 0,5 m thì đầu chạm cổng. Biết người này cao 1,6 m, hãy tính chiều cao của cổng (làm tròn kết quả đến hàng phần trăm theo đơn vị mét).",
+          "final_answer": "7.62",
+          "detailed_explanation": "Chọn hệ trục tọa độ Oxy sao cho gốc tọa độ O nằm trên mặt đất và là trung điểm của khoảng cách giữa hai chân cổng. Trục Oy chứa đỉnh của cổng parabol, trục Ox nằm trên mặt đất.\nKhoảng cách 2 chân cổng là 9m nên 2 chân cổng có tọa độ là $(-4.5; 0)$ và $(4.5; 0)$.\nPhương trình cổng parabol có dạng $y = ax^2 + h$, với $h$ là chiều cao cổng.\nVì cổng đi qua điểm $(4.5; 0)$ nên: $0 = a(4.5)^2 + h \\Rightarrow a = -\\frac{h}{20.25}$.\nNgười đó đứng cách chân cổng 0.5m, tức là cách gốc O một khoảng là $4.5 - 0.5 = 4m$. Vị trí đỉnh đầu của người là điểm có hoành độ $x=4$ và tung độ $y=1.6$.\nĐiểm này nằm trên parabol nên: $1.6 = a(4)^2 + h$.\nThay $a = -\\frac{h}{20.25}$ vào, ta được: $1.6 = 16\\left(-\\frac{h}{20.25}\\right) + h \\Leftrightarrow 1.6 = h\\left(1 - \\frac{16}{20.25}\\right) \\Leftrightarrow 1.6 = h \\cdot \\frac{4.25}{20.25} \\Leftrightarrow 1.6 = h \\cdot \\frac{17}{81}$.\nSuy ra $h = \\frac{1.6 \\times 81}{17} = \\frac{129.6}{17} \\approx 7.6235$ (m).\nLàm tròn đến hàng phần trăm, chiều cao cổng là 7.62 m."
+        },
+        {
+          "q_id": "hk2_toan10_tb_003_tl_2",
+          "question_text": "Một cơ sở sản xuất cho biết, tổng chi phí P (đơn vị: nghìn đồng) để sản xuất x sản phẩm được cho bởi biểu thức $P=x^2+30x+1416$; giá bán của một sản phẩm là 160 nghìn đồng. Tìm số sản phẩm tối thiểu cần được sản xuất để đảm bảo cơ sở sản xuất đó không bị lỗ (giả thiết các sản phẩm được bán hết).",
+          "final_answer": "12",
+          "detailed_explanation": "Doanh thu khi bán được x sản phẩm là $D = 160x$ (nghìn đồng).\nĐể cơ sở không bị lỗ thì doanh thu phải lớn hơn hoặc bằng chi phí:\n$D \\ge P \\Leftrightarrow 160x \\ge x^2 + 30x + 1416 \\Leftrightarrow x^2 - 130x + 1416 \\le 0$.\nXét phương trình $x^2 - 130x + 1416 = 0$. $\\Delta' = 65^2 - 1416 = 4225 - 1416 = 2809 = 53^2$.\nPhương trình có 2 nghiệm: $x_1 = 65 - 53 = 12$ và $x_2 = 65 + 53 = 118$.\nDo đó, tập nghiệm của bất phương trình là $12 \\le x \\le 118$.\nVậy số sản phẩm tối thiểu cần sản xuất để không bị lỗ là 12 sản phẩm."
+        },
+        {
+          "q_id": "hk2_toan10_tb_003_tl_3",
+          "question_text": "Hai xe ô tô xuất phát tại cùng một thời điểm với vận tốc trung bình như nhau là 40 km/h từ hai vị trí A và B, theo hai hướng vuông góc với nhau để cùng đi về bến cuối C. Vị trí A cách bến C 8 km và vị trí B cách bến C 7 km. Gọi x (giờ) là thời gian tính từ lúc hai xe bắt đầu chạy cho tới khi chúng cách nhau 5 km. Tìm x.",
+          "final_answer": "0.1",
+          "detailed_explanation": "Chọn hệ tọa độ Oxy với gốc O tại C. Trục Cx trùng với tia CB, trục Cy trùng với tia CA.\nTọa độ vị trí xuất phát của 2 xe là $A(0; 8)$ và $B(7; 0)$.\nHai xe cùng vận tốc 40km/h đi về C, nên sau thời gian x (giờ), quãng đường mỗi xe đi được là $40x$.\nKhi đó vị trí của 2 xe lần lượt là $A'(0; 8 - 40x)$ và $B'(7 - 40x; 0)$.\nKhoảng cách giữa hai xe là 5 km, tức là $(A'B')^2 = 5^2$:\n$(7 - 40x)^2 + (8 - 40x)^2 = 25$\n$\\Leftrightarrow 49 - 560x + 1600x^2 + 64 - 640x + 1600x^2 = 25$\n$\\Leftrightarrow 3200x^2 - 1200x + 88 = 0$\nChia cả 2 vế cho 8, ta được: $400x^2 - 150x + 11 = 0$.\n$\\Delta = 150^2 - 4(400)(11) = 22500 - 17600 = 4900 = 70^2$.\nGiải ra ta được 2 nghiệm: $x_1 = \\frac{150-70}{800} = \\frac{80}{800} = 0.1$ và $x_2 = \\frac{150+70}{800} = \\frac{220}{800} = 0.275$.\nTại thời điểm $x=0.1$ (6 phút), xe A cách C là $8-4=4$ km, xe B cách C là $7-4=3$ km. Chúng đều chưa đến bến C và khoảng cách giữa chúng đúng bằng $\\sqrt{3^2+4^2}=5$ km.\nThời gian x tính từ lúc xuất phát cho tới khi đạt điều kiện (lần đầu tiên) là $x = 0.1$ (giờ)."
+        },
+        {
+          "q_id": "hk2_toan10_tb_003_tl_4",
+          "question_text": "Số điện thoại cho mỗi thuê bao của một nhà mạng có 10 chữ số và có các đầu số là 081, 082, 083, 084, 085, 088, 091 hoặc 094. Giả sử hiện tại, nhà mạng đã cấp số cho tổng số 38 triệu thuê bao. Hỏi, nếu không có thêm các đầu số mới và không thu hồi các đầu số đã cấp thì nhà mạng đó còn có thể cung cấp bao nhiêu triệu thuê bao nữa?",
+          "final_answer": "42",
+          "detailed_explanation": "Nhà mạng có tất cả 8 đầu số (081, 082, 083, 084, 085, 088, 091, 094).\nMỗi số điện thoại gồm 10 chữ số, trong đó 3 chữ số đầu là đầu số. Vậy còn lại 7 chữ số tự do ở phía sau.\nMỗi đầu số sẽ có tương ứng với $10^7$ (tức 10 triệu) cách chọn 7 chữ số phía sau, từ đó tạo ra 10 triệu số điện thoại.\nVới 8 đầu số, tổng dung lượng thuê bao tối đa mà nhà mạng có thể cung cấp là: $8 \\times 10 = 80$ (triệu thuê bao).\nHiện tại nhà mạng đã cấp 38 triệu thuê bao.\nSố lượng thuê bao còn có thể cung cấp thêm là: $80 - 38 = 42$ (triệu thuê bao)."
+        }
+      ]
+    },
+    {
+      "q_id": "hk2_toan10_tb_003_tl_group_2",
+      "section": "PHẦN IV. TỰ LUẬN",
+      "type": "short",
+      "is_group": true,
+      "sub_questions": [
+        {
+          "q_id": "hk2_toan10_tb_003_tl_5",
+          "question_text": "BÀI 1.\na) Khai triển biểu thức $(3x+y)^4$.\nb) Giả sử $(x-1)^5=a_5x^5+a_4x^4+a_3x^3+a_2x^2+a_1x+a_0$, với $a_0,a_1,a_2,a_3,a_4,a_5$ là các số nguyên. Tính tổng $S = a_5+a_4+a_3+a_2+a_1+a_0$.",
+          "final_answer": "a) 81x^4+108x^3y+54x^2y^2+12xy^3+y^4. b) 0",
+          "detailed_explanation": "a) Khai triển biểu thức bằng nhị thức Newton:\n$(3x+y)^4 = C_4^0(3x)^4 + C_4^1(3x)^3y + C_4^2(3x)^2y^2 + C_4^3(3x)y^3 + C_4^4y^4$\n$= 1(81x^4) + 4(27x^3)y + 6(9x^2)y^2 + 4(3x)y^3 + 1(y^4)$\n$= 81x^4 + 108x^3y + 54x^2y^2 + 12xy^3 + y^4$.\n\nb) Xét đồng nhất thức: $(x-1)^5 = a_5x^5+a_4x^4+a_3x^3+a_2x^2+a_1x+a_0$.\nĐể tính tổng tất cả các hệ số $S = a_5+a_4+a_3+a_2+a_1+a_0$, ta chỉ cần thay $x=1$ vào cả hai vế của đồng nhất thức:\n$S = (1-1)^5 = 0^5 = 0$."
+        },
+        {
+          "q_id": "hk2_toan10_tb_003_tl_6",
+          "question_text": "BÀI 2.\na) Từ các chữ số 1, 2, 3, 4, 5, 6, có thể lập được bao nhiêu số tự nhiên có bốn chữ số khác nhau?\nb) Từ các chữ số 0, 1, 2, 3, 4, 5, có thể lập được bao nhiêu số tự nhiên có bốn chữ số khác nhau và chia hết cho 5?",
+          "final_answer": "a) 360. b) 108",
+          "detailed_explanation": "a) Có 6 chữ số: {1, 2, 3, 4, 5, 6}. Việc lập số tự nhiên có bốn chữ số khác nhau từ 6 chữ số này là chỉnh hợp chập 4 của 6. Số lượng số lập được là: $A_6^4 = 6 \\times 5 \\times 4 \\times 3 = 360$ (số).\n\nb) Có 6 chữ số: {0, 1, 2, 3, 4, 5}. Gọi số cần tìm có dạng $\\overline{abcd}$. Vì số chia hết cho 5 nên chữ số tận cùng $d$ phải là 0 hoặc 5.\n- Trường hợp 1: $d=0$. 3 chữ số $a, b, c$ được chọn và xếp thứ tự từ 5 chữ số còn lại {1, 2, 3, 4, 5}. Số cách là $A_5^3 = 60$ (số).\n- Trường hợp 2: $d=5$. Chữ số a có 4 cách chọn (khác 0 và khác 5). Các chữ số $b, c$ được chọn từ 4 chữ số còn lại. Số cách là $4 \\times A_4^2 = 4 \\times 12 = 48$ (số).\nVậy tổng số lập được là: $60 + 48 = 108$ (số)."
+        },
+        {
+          "q_id": "hk2_toan10_tb_003_tl_7",
+          "question_text": "BÀI 3. Trong mặt phẳng tọa độ Oxy, cho hai điểm $F_1(-4;0)$ và $F_2(4;0)$.\na) Lập phương trình đường tròn có đường kính $F_1F_2$.\nb) Tập hợp các điểm M trong mặt phẳng tọa độ thỏa mãn $MF_1+MF_2=12$ là một đường elip (E). Viết phương trình chính tắc của elip (E).",
+          "final_answer": "a) x^2+y^2=16. b) \\frac{x^2}{36} + \\frac{y^2}{20} = 1",
+          "detailed_explanation": "a) Đường tròn có đường kính $F_1F_2$ sẽ nhận trung điểm của $F_1F_2$ làm tâm và nửa độ dài đoạn $F_1F_2$ làm bán kính.\nTâm I của đường tròn là gốc tọa độ $O(0;0)$.\nĐộ dài $F_1F_2 = \\sqrt{(4 - (-4))^2 + (0-0)^2} = 8$. Bán kính $R = \\frac{F_1F_2}{2} = 4$.\nPhương trình đường tròn là: $(x-0)^2 + (y-0)^2 = 4^2 \\Leftrightarrow x^2 + y^2 = 16$.\n\nb) Theo định nghĩa elip, tập hợp điểm M thỏa mãn $MF_1 + MF_2 = 2a = 12 \\Rightarrow a = 6$.\nTiêu điểm là $F_1(-4;0), F_2(4;0)$ nên bán tiêu cự là $c = 4$.\nTa có $b^2 = a^2 - c^2 = 6^2 - 4^2 = 36 - 16 = 20$.\nVậy phương trình chính tắc của elip (E) là: $\\frac{x^2}{36} + \\frac{y^2}{20} = 1$."
+        }
+      ]
+    }
+  ]
+}

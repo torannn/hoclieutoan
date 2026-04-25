@@ -84,6 +84,20 @@
               "path": "data/grade10/de-on-tap-6/"
             },
             {
+              "id": "lop10_ontap_7",
+              "title": "Đề HK2 Toán 10 — THPT Việt Đức (Hà Nội) 2025–2026",
+              "type": "exam",
+              "description": "Đề học kỳ 2 Toán 10 năm 2025–2026 trường THPT Việt Đức – Hà Nội: Tổ hợp – Xác suất, Phương pháp toạ độ, Elip/Hypebol, Bất phương trình bậc hai, Phương trình chứa căn, và 2 bài tự luận.",
+              "path": "data/grade10/de-on-tap-7/"
+            },
+            {
+              "id": "lop10_ontap_8",
+              "title": "Đề CK2 Toán 10 — THPT Phạm Hồng Thái (Hà Nội) 2025–2026",
+              "type": "exam",
+              "description": "Đề cuối kỳ 2 Toán 10 năm 2025–2026 trường THPT Phạm Hồng Thái – Hà Nội: Đường thẳng – Đường tròn, Conic, Tổ hợp – Xác suất, Tam thức bậc hai, và 3 bài tự luận ứng dụng.",
+              "path": "data/grade10/de-on-tap-8/"
+            },
+            {
               "id": "lop10_tonghop_chuong1_5_goc",
               "title": "Đề kiểm tra Chương 1 & 5",
               "type": "exam",
@@ -119,6 +133,13 @@
               "type": "tool",
               "description": "Dán mã Asymptote (GeoGebra export) và chuyển thành preset=scene để nhúng JSXGraph + xem trước.",
               "url": "cong-cu-chuyen-asy-sang-jsxgraph.html"
+            },
+            {
+              "id": "cong-cu-jsx-editor",
+              "title": "🎨 JSXGraph Editor — Vẽ hình dựng hình",
+              "type": "tool",
+              "description": "Công cụ GeoGebra-style: chọn công cụ (Điểm, Đoạn, Đường, Đa giác, Đường tròn, Trung điểm, Vuông góc, Song song, Giao điểm, Tiếp tuyến), click trên board để vẽ. Xuất ra scene JSON, JSXGraph code thô hoặc HTML snippet. Undo/redo + quản lý style.",
+              "url": "cong-cu-jsx-editor.html"
             },
             {
               "id": "cong-cu-bieu-dien-tap-hop",

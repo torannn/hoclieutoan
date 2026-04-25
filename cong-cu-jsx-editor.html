@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JSXGraph Editor — Vẽ hình dựng hình</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="assets/vendor/jsxgraph/jsxgraph.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+<style>
+  :root { --brand: #2563eb; --brand-dark: #1d4ed8; --muted:#64748b; }
+  html, body { height: 100%; }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial; background:#f8fafc; }
+  .tool-btn {
+    display:flex; align-items:center; gap:8px;
+    padding: 7px 10px; border:1px solid #e2e8f0; border-radius:8px;
+    background:#fff; cursor:pointer; font-size: 13px; color:#0f172a;
+    transition: all .12s ease;
+    width:100%;
+  }
+  .tool-btn:hover { background:#f1f5f9; border-color:#cbd5e1; }
+  .tool-btn.active { background: var(--brand); color:#fff; border-color: var(--brand-dark); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .tool-btn.active .tool-icon { color:#fff; }
+  .tool-icon { font-size:16px; width:22px; text-align:center; color:#475569; flex-shrink:0; }
+  .tool-sep { height: 1px; background:#e2e8f0; margin: 8px 2px; }
+
+  .top-btn { padding: 6px 12px; border-radius: 6px; font-size: 13px; border:1px solid #e2e8f0; background:#fff; cursor:pointer; }
+  .top-btn:hover { background:#f1f5f9; }
+  .top-btn.primary { background: var(--brand); color:#fff; border-color: var(--brand-dark); }
+  .top-btn.primary:hover { background: var(--brand-dark); }
+  .top-btn[disabled] { opacity:.4; cursor:not-allowed; }
+
+  #board { width: 100%; height: 100%; touch-action: none; background:#fff; border-radius: 8px; }
+  .panel { background:#fff; border:1px solid #e2e8f0; border-radius: 10px; }
+
+  .tab-btn { padding: 6px 10px; font-size: 12px; border-radius: 6px 6px 0 0; border:1px solid transparent; border-bottom:none; cursor:pointer; color:#64748b; background:#f1f5f9; }
+  .tab-btn.active { background:#fff; color:#0f172a; border-color:#e2e8f0; font-weight:600; }
+
+  textarea.output { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; padding: 8px; border:1px solid #e2e8f0; border-radius:0 0 8px 8px; width:100%; resize:none; background:#0f172a; color:#e2e8f0; }
+
+  .log-list { font-family: ui-monospace, monospace; font-size: 11px; line-height: 1.55; max-height: 180px; overflow:auto; }
+  .log-row { display:flex; justify-content: space-between; gap:6px; padding: 2px 6px; border-radius:4px; }
+  .log-row:hover { background:#f1f5f9; }
+  .log-row.selected { background:#dbeafe; }
+  .log-row button { color:#dc2626; font-size: 10px; opacity:.6; }
+  .log-row button:hover { opacity: 1; }
+
+  .hint-bar {
+    position:absolute; left:0; right:0; bottom: 8px; margin: 0 auto; max-width:500px;
+    background: rgba(15, 23, 42, .9); color:#fff; padding: 6px 14px; border-radius:99px;
+    font-size: 12.5px; text-align:center; pointer-events:none;
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  }
+
+  .kbd { font-family: ui-monospace, monospace; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:3px; padding: 0 4px; font-size: 11px; }
+
+  /* highlight the hovered JSXGraph element */
+  .picking .jxgpoint, .picking .jxgline, .picking .jxgcircle { cursor: pointer !important; }
+
+  .style-row { display:flex; align-items:center; gap:6px; font-size: 12px; color:#334155; }
+  .style-row label { min-width: 68px; color:#475569; }
+  .style-row input[type=color] { width:28px; height: 22px; padding:0; border:1px solid #e2e8f0; border-radius:4px; background:none; }
+  .style-row input[type=number] { width: 54px; padding: 2px 4px; border:1px solid #e2e8f0; border-radius:4px; font-size: 12px; }
+  .style-row input[type=text] { width: 80px; padding: 2px 6px; border:1px solid #e2e8f0; border-radius:4px; font-size: 12px; }
+  .style-row select { font-size: 12px; padding: 2px; border:1px solid #e2e8f0; border-radius:4px; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<div class="max-w-[1600px] mx-auto p-3">
+
+  <!-- Top bar -->
+  <div class="flex items-center justify-between gap-3 mb-3">
+    <div class="flex items-center gap-2">
+      <button onclick="window.history.back()" class="top-btn">← Quay lại</button>
+      <h1 class="text-lg font-semibold text-slate-900">🎨 JSXGraph Editor</h1>
+      <span class="text-xs text-slate-500 ml-2">Vẽ hình dựng hình tương tác, xuất mã JSXGraph / scene JSON</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="btn-undo" class="top-btn" title="Ctrl+Z">↶ Undo</button>
+      <button id="btn-redo" class="top-btn" title="Ctrl+Y">↷ Redo</button>
+      <button id="btn-clear" class="top-btn" title="Xoá toàn bộ">🗑 Xoá hết</button>
+      <button id="btn-load-sample" class="top-btn">📂 Ví dụ</button>
+    </div>
+  </div>
+
+  <!-- Main 3-col layout -->
+  <div class="grid grid-cols-12 gap-3">
+
+    <!-- LEFT: Toolbar -->
+    <aside class="col-span-2 panel p-2 space-y-1 self-start" style="min-height: 540px">
+      <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider px-2 pt-1 pb-1">Công cụ cơ bản</div>
+      <button class="tool-btn" data-tool="move" title="Di chuyển, kéo điểm tự do">
+        <span class="tool-icon">✥</span> Di chuyển
+      </button>
+      <button class="tool-btn" data-tool="point" title="Tạo điểm tự do">
+        <span class="tool-icon">•</span> Điểm
+      </button>
+      <button class="tool-btn" data-tool="segment" title="Đoạn thẳng qua 2 điểm">
+        <span class="tool-icon">╱</span> Đoạn thẳng
+      </button>
+      <button class="tool-btn" data-tool="line" title="Đường thẳng qua 2 điểm">
+        <span class="tool-icon">⟍</span> Đường thẳng
+      </button>
+      <button class="tool-btn" data-tool="ray" title="Tia từ A qua B">
+        <span class="tool-icon">⇢</span> Tia
+      </button>
+      <button class="tool-btn" data-tool="polygon" title="Đa giác (click các đỉnh, click đỉnh đầu để đóng)">
+        <span class="tool-icon">△</span> Đa giác
+      </button>
+      <button class="tool-btn" data-tool="circle" title="Đường tròn tâm C qua P">
+        <span class="tool-icon">○</span> Đường tròn
+      </button>
+
+      <div class="tool-sep"></div>
+      <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider px-2 pb-1">Dựng hình</div>
+      <button class="tool-btn" data-tool="midpoint" title="Trung điểm của đoạn / 2 điểm">
+        <span class="tool-icon">⋅</span> Trung điểm
+      </button>
+      <button class="tool-btn" data-tool="perpendicular" title="Đường ⊥ qua 1 điểm">
+        <span class="tool-icon">⊥</span> Vuông góc
+      </button>
+      <button class="tool-btn" data-tool="parallel" title="Đường ∥ qua 1 điểm">
+        <span class="tool-icon">∥</span> Song song
+      </button>
+      <button class="tool-btn" data-tool="intersect" title="Giao điểm 2 đối tượng">
+        <span class="tool-icon">✕</span> Giao điểm
+      </button>
+      <button class="tool-btn" data-tool="tangent" title="Tiếp tuyến từ điểm tới đường tròn">
+        <span class="tool-icon">⌯</span> Tiếp tuyến
+      </button>
+
+      <div class="tool-sep"></div>
+      <button class="tool-btn" data-tool="delete" title="Xoá (có xoá kéo theo đối tượng phụ thuộc)">
+        <span class="tool-icon">🗑</span> Xoá
+      </button>
+
+      <div class="tool-sep"></div>
+      <div class="text-xs text-slate-500 px-2 leading-relaxed">
+        <div><span class="kbd">Esc</span> huỷ thao tác</div>
+        <div><span class="kbd">Del</span> xoá chọn</div>
+      </div>
+    </aside>
+
+    <!-- CENTER: Board + bbox controls -->
+    <section class="col-span-6">
+      <div class="panel p-3" style="height: 560px; position: relative;">
+        <div id="board-wrap" style="width:100%; height: 100%; position: relative;">
+          <div id="board"></div>
+          <div id="hint-bar" class="hint-bar" style="display:none">Chọn một công cụ</div>
+        </div>
+      </div>
+
+      <!-- Bbox + board options -->
+      <div class="panel p-2 mt-2 flex flex-wrap items-center gap-3 text-sm">
+        <div class="flex items-center gap-2">
+          <label class="text-slate-600 text-xs">Bbox</label>
+          <input id="bbox-input" class="px-2 py-1 border border-slate-200 rounded text-xs font-mono w-40" value="-5, 5, 5, -5" />
+        </div>
+        <div class="flex items-center gap-2">
+          <label class="text-slate-600 text-xs">Height</label>
+          <input id="height-input" type="number" class="px-2 py-1 border border-slate-200 rounded text-xs w-16" value="260" />
+        </div>
+        <label class="flex items-center gap-1 text-xs text-slate-700"><input id="chk-grid" type="checkbox" checked> Grid</label>
+        <label class="flex items-center gap-1 text-xs text-slate-700"><input id="chk-axes" type="checkbox" checked> Axes</label>
+        <label class="flex items-center gap-1 text-xs text-slate-700"><input id="chk-aspect" type="checkbox" checked> keepAspectRatio</label>
+        <button id="btn-apply-board" class="top-btn text-xs">Áp dụng</button>
+      </div>
+
+      <!-- Style inspector -->
+      <div class="panel p-3 mt-2" id="style-panel">
+        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Thuộc tính đối tượng đang chọn <span id="sel-label" class="text-slate-400 font-normal normal-case">(chưa chọn)</span></div>
+        <div id="style-controls" class="flex flex-wrap gap-x-4 gap-y-2">
+          <div class="text-xs text-slate-400 italic">Click vào một đối tượng trong log hoặc trên board để chỉnh thuộc tính.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Output + log -->
+    <aside class="col-span-4 space-y-3">
+      <!-- Log viewer -->
+      <div class="panel p-3">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Command log</div>
+          <div class="text-xs text-slate-400"><span id="log-count">0</span> lệnh</div>
+        </div>
+        <div id="log-list" class="log-list"></div>
+      </div>
+
+      <!-- Output tabs -->
+      <div class="panel p-0">
+        <div class="flex items-end gap-1 px-3 pt-3 border-b border-slate-200">
+          <button class="tab-btn active" data-tab="scene">Scene JSON</button>
+          <button class="tab-btn" data-tab="code">JSXGraph code</button>
+          <button class="tab-btn" data-tab="snippet">HTML snippet</button>
+        </div>
+        <div class="p-3">
+          <textarea id="output" class="output" rows="16" readonly spellcheck="false"></textarea>
+          <div id="output-note" class="text-xs text-slate-500 mt-2"></div>
+          <div class="flex gap-2 mt-2">
+            <button id="btn-copy" class="top-btn text-xs flex-1">📋 Copy</button>
+            <button id="btn-download" class="top-btn text-xs">💾 Tải file</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- JS bundle: core → tools → export → app -->
+<script src="assets/js/jsx-editor/core.js"></script>
+<script src="assets/js/jsx-editor/tools.js"></script>
+<script src="assets/js/jsx-editor/export.js"></script>
+<script src="assets/js/jsx-editor/app.js"></script>
+
+</body>
+</html>

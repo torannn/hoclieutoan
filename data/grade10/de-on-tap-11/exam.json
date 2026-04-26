@@ -89,7 +89,7 @@
       "q_id": "hk2_toan10_ngoquyen_101_tn_7",
       "section": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.",
       "type": "multiple_choice",
-      "stem": "Bảng xét dấu có hai nghiệm \\(x=1\\) và \\(x=4\\), dấu của \\(f(x)\\) là dương ngoài khoảng hai nghiệm, âm trong khoảng hai nghiệm là của biểu thức nào?",
+      "stem": "Bảng xét dấu ở hình dưới đây có thể là bảng xét dấu của biểu thức nào?<div class=\"jxg-diagram\" data-jxg='{\"preset\":\"signTable\",\"auto\":true,\"expressions\":[{\"expr\":\"x^2 - 5*x + 4\",\"label\":\"f(x)\"}],\"variable\":\"x\",\"height\":220}'></div>",
       "options": [
         "\\(f(x)=x^2-5x+4\\)",
         "\\(f(x)=x^2-6x+5.\\)",
@@ -215,13 +215,13 @@
       "sub_questions": [
         {
           "q_id": "hk2_toan10_ngoquyen_101_tl_1",
-          "question_text": "Tìm hạng tử không chứa x trong khai triển nhị thức \\((x^3+\\frac{2}{x^2})^6\\)",
-          "final_answer": "0",
-          "detailed_explanation": "Số hạng tổng quát của khai triển là \\(T_{k+1} = C_6^k (x^3)^{6-k} (2x^{-2})^k = C_6^k 2^k x^{18-3k-2k} = C_6^k 2^k x^{18-5k}\\) (với \\(0 \\le k \\le 6, k \\in \\mathbb{N}\\)).\nĐể tìm hạng tử không chứa x, ta cần \\(18-5k = 0 \\Leftrightarrow k = \\frac{18}{5}\\) (không là số tự nhiên, loại).\nDo không có giá trị \\(k\\) nào thỏa mãn nên trong khai triển không tồn tại hạng tử không chứa \\(x\\) (hay nói cách khác, hệ số của nó bằng 0)."
+          "question_text": "Tìm hạng tử không chứa x trong khai triển nhị thức \\((x^3+\\frac{2}{x^2})^5\\)",
+          "final_answer": "80",
+          "detailed_explanation": "Cách 1. Khai triển trực tiếp biểu thức. Áp dụng công thức khai triển nhị thức Newton bậc 5:\n\\((A + B)^5 = A^5 + 5A^4B + 10A^3B^2 + 10A^2B^3 + 5AB^4 + B^5\\)\n\nVới \\(A = x^3\\) và \\(B = \\frac{2}{x^2}\\), ta có khai triển chi tiết như sau:\n\n\\((x^3 + \\frac{2}{x^2})^5 = (x^3)^5 + 5(x^3)^4\\left(\\frac{2}{x^2}\\right) + 10(x^3)^3\\left(\\frac{2}{x^2}\\right)^2 + 10(x^3)^2\\left(\\frac{2}{x^2}\\right)^3 + 5(x^3)\\left(\\frac{2}{x^2}\\right)^4 + \\left(\\frac{2}{x^2}\\right)^5\\)\n\nTa thấy rằng chỉ có hạng tử thứ 4 là không chứa $x$, vậy hạng tử cần tìm là \\(10 \\cdot x^6 \\cdot \\frac{8}{x^6} = 80\\)"
         },
         {
           "q_id": "hk2_toan10_ngoquyen_101_tl_2",
-          "question_text": "Ăng ten vệ tinh ở hình vẽ có hình là parabol, đầu thu đặt tại tiêu điểm F, đường kính miệng ăng ten là 300 cm, khoảng cách từ vị trí đặt đầu thu tới miệng ăng ten là 150 cm. Tính khoảng cách từ vị trí đặt đầu thu tới đỉnh ăng ten (parabol)? (kết quả làm tròn đến hàng đơn vị)",
+          "question_text": "Ăng ten vệ tinh ở hình vẽ có hình là parabol, đầu thu đặt tại tiêu điểm F, đường kính miệng ăng ten là 300 cm, khoảng cách từ vị trí đặt đầu thu tới miệng ăng ten là 150 cm. Tính khoảng cách từ vị trí đặt đầu thu tới đỉnh ăng ten (parabol)? (kết quả làm tròn đến hàng đơn vị)<br><div class=\"jxg-diagram\" data-jxg='{\"preset\":\"scene\",\"axes\":false,\"grid\":false,\"bbox\":[-30,230,210,-230],\"height\":300,\"color\":\"#0f172a\",\"curves\":[{\"fnX\":\"(t*t)/300\",\"fnY\":\"t\",\"tMin\":-150,\"tMax\":150,\"color\":\"#7c3aed\",\"strokeWidth\":2.6}],\"points\":{\"O\":{\"xy\":[0,0],\"name\":\"O\",\"label\":{\"offset\":[-14,-4],\"fontSize\":14}},\"F\":{\"xy\":[75,0],\"name\":\"F\",\"color\":\"#dc2626\",\"size\":3,\"label\":{\"offset\":[-16,14],\"fontSize\":14,\"color\":\"#dc2626\"}},\"M\":{\"xy\":[75,150],\"name\":\"M\",\"label\":{\"offset\":[8,6],\"fontSize\":14}},\"Mp\":{\"xy\":[75,-150],\"name\":\"M\\u2032\",\"label\":{\"offset\":[8,-12],\"fontSize\":14}}},\"segments\":[{\"p1\":\"M\",\"p2\":\"Mp\",\"strokeWidth\":1.4,\"dash\":2,\"color\":\"#64748b\"},{\"p1\":\"F\",\"p2\":\"M\",\"strokeWidth\":1.6,\"color\":\"#0f172a\"}],\"arrows\":[{\"p1\":[120,-150],\"p2\":[120,150],\"doubleArrow\":true,\"strokeWidth\":1,\"color\":\"#475569\"},{\"p1\":[0,-180],\"p2\":[75,-180],\"doubleArrow\":true,\"strokeWidth\":1,\"color\":\"#dc2626\"}],\"texts\":[{\"xy\":[140,0],\"text\":\"300 cm\",\"color\":\"#475569\",\"bold\":true,\"anchorX\":\"left\",\"fontSize\":13},{\"xy\":[82,75],\"text\":\"150 cm\",\"color\":\"#0f172a\",\"bold\":true,\"anchorX\":\"left\",\"fontSize\":13},{\"xy\":[37.5,-205],\"text\":\"?\",\"color\":\"#dc2626\",\"bold\":true,\"fontSize\":18}]}'></div>",
           "final_answer": "75",
           "detailed_explanation": "Chọn hệ tọa độ Oxy sao cho đỉnh parabol trùng với gốc tọa độ O, trục đối xứng của parabol là trục Ox. Phương trình parabol có dạng \\(y^2 = 2px\\) (với \\(p > 0\\)).\nTiêu điểm (đầu thu) là \\(F(\\frac{p}{2}; 0)\\).\nĐường kính miệng ăng ten là 300 cm nên các điểm ở rìa miệng ăng ten sẽ có tung độ là \\(y = \\pm 150\\). Xét điểm \\(M(x_0; 150)\\) thuộc đường parabol.\nKhoảng cách từ tiêu điểm F tới điểm ở miệng ăng ten M chính là 150 cm (theo tính chất, khoảng cách từ F đến M là \\(FM = x_0 + \\frac{p}{2}\\)). Do đó: \\(x_0 + \\frac{p}{2} = 150\\).\nMặt khác, M thuộc parabol nên \\(150^2 = 2px_0\\).\nThay \\(x_0 = 150 - \\frac{p}{2}\\) vào phương trình trên ta được:\n\\(22500 = 2p(150 - \\frac{p}{2}) \\Leftrightarrow p^2 - 300p + 22500 = 0 \\Leftrightarrow (p-150)^2 = 0 \\Leftrightarrow p = 150\\).\nKhoảng cách từ vị trí đầu thu tới đỉnh ăng ten chính là khoảng cách OF = \\(\\frac{p}{2} = \\frac{150}{2} = 75\\) cm."
         },

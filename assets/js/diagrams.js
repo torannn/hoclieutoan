@@ -2199,6 +2199,109 @@ def limit_inf_latex(expr_s, var, which):
             void circle;
         }
 
+        // Optional curves: each item is either
+        //   { expr: 'sin(x)', xMin: -5, xMax: 5, ... }            // y = f(x)
+        //   { fn: '(y*y)/300', variable: 'y', tMin: -150, tMax: 150 }  // x = g(y)
+        //   { fnX: 't*cos(t)', fnY: 't*sin(t)', tMin: 0, tMax: 6.28 }  // parametric
+        const curvesSpec = Array.isArray(spec.curves) ? spec.curves : [];
+        for (const cv of curvesSpec) {
+            if (!cv) continue;
+            const cColor = cv.color || spec.curveColor || spec.color || '#7c3aed';
+            const cWidth = typeof cv.strokeWidth === 'number' ? cv.strokeWidth : 2.2;
+            const dash = typeof cv.dash === 'number' ? cv.dash : 0;
+            try {
+                if (typeof cv.fnX === 'string' && typeof cv.fnY === 'string') {
+                    const fX = compileExpr(cv.fnX.replace(/\bt\b/g, 'x'));
+                    const fY = compileExpr(cv.fnY.replace(/\bt\b/g, 'x'));
+                    if (!fX || !fY) continue;
+                    board.create('curve', [
+                        (t) => fX(t), (t) => fY(t),
+                        typeof cv.tMin === 'number' ? cv.tMin : -10,
+                        typeof cv.tMax === 'number' ? cv.tMax : 10
+                    ], { strokeColor: cColor, strokeWidth: cWidth, dash, highlight: false });
+                } else if (typeof cv.fn === 'string' && (cv.variable === 'y' || cv.parameterIsY)) {
+                    const f = compileExpr(cv.fn.replace(/\by\b/g, 'x'));
+                    if (!f) continue;
+                    board.create('curve', [
+                        (t) => f(t), (t) => t,
+                        typeof cv.tMin === 'number' ? cv.tMin : -10,
+                        typeof cv.tMax === 'number' ? cv.tMax : 10
+                    ], { strokeColor: cColor, strokeWidth: cWidth, dash, highlight: false });
+                } else if (typeof cv.expr === 'string' || typeof cv.fn === 'string') {
+                    const f = compileExpr(cv.expr || cv.fn);
+                    if (!f) continue;
+                    board.create('functiongraph', [
+                        f,
+                        typeof cv.xMin === 'number' ? cv.xMin : -10,
+                        typeof cv.xMax === 'number' ? cv.xMax : 10
+                    ], { strokeColor: cColor, strokeWidth: cWidth, dash, highlight: false });
+                }
+            } catch (e) { /* skip bad curve spec */ }
+        }
+
+        // Optional arrows: { p1, p2, color, strokeWidth, dash, doubleArrow, lastArrowSize }
+        const arrowsSpec = Array.isArray(spec.arrows) ? spec.arrows : [];
+        for (const ar of arrowsSpec) {
+            if (!ar) continue;
+            const A = resolvePointRef(ar.p1 || ar.A);
+            const B = resolvePointRef(ar.p2 || ar.B);
+            if (!A || !B) continue;
+            const aColor = ar.color || spec.color || '#0f172a';
+            const aWidth = typeof ar.strokeWidth === 'number' ? ar.strokeWidth : 1.5;
+            const aDash = typeof ar.dash === 'number' ? ar.dash : 0;
+            const arrowSize = typeof ar.arrowSize === 'number' ? ar.arrowSize : 6;
+            const opts = {
+                strokeColor: aColor, strokeWidth: aWidth, dash: aDash, highlight: false,
+                lastArrow: { size: arrowSize }
+            };
+            if (ar.doubleArrow) opts.firstArrow = { size: arrowSize };
+            board.create('arrow', [A, B], opts);
+        }
+
+        // Optional texts: { xy:[x,y], text, color, fontSize, anchorX, anchorY, bold }
+        const textsSpec = Array.isArray(spec.texts) ? spec.texts : [];
+        for (const t of textsSpec) {
+            if (!t || typeof t.text !== 'string') continue;
+            const xy = Array.isArray(t.xy) ? t.xy : (typeof t.x === 'number' && typeof t.y === 'number' ? [t.x, t.y] : null);
+            if (!xy) continue;
+            const css = (t.bold ? 'font-weight:700;' : '') + (typeof t.cssStyle === 'string' ? t.cssStyle : '');
+            board.create('text', [xy[0], xy[1], t.text], {
+                anchorX: t.anchorX || 'middle',
+                anchorY: t.anchorY || 'middle',
+                fontSize: typeof t.fontSize === 'number' ? t.fontSize : 14,
+                strokeColor: t.color || spec.labelColor || '#0f172a',
+                cssStyle: css,
+                highlight: false
+            });
+        }
+
+        // Optional right-angle markers: { at, p1, p2, size, color }
+        const rightAnglesSpec = Array.isArray(spec.rightAngles) ? spec.rightAngles : [];
+        for (const ra of rightAnglesSpec) {
+            if (!ra) continue;
+            const At = resolvePointRef(ra.at || ra.vertex);
+            const P1 = resolvePointRef(ra.p1 || ra.A);
+            const P2 = resolvePointRef(ra.p2 || ra.B);
+            if (!At || !P1 || !P2) continue;
+            const Ax = At.X(), Ay = At.Y();
+            const v1x = P1.X() - Ax, v1y = P1.Y() - Ay;
+            const v2x = P2.X() - Ax, v2y = P2.Y() - Ay;
+            const n1 = Math.hypot(v1x, v1y) || 1;
+            const n2 = Math.hypot(v2x, v2y) || 1;
+            const sz = typeof ra.size === 'number' ? ra.size : 0.3;
+            const u1x = v1x / n1 * sz, u1y = v1y / n1 * sz;
+            const u2x = v2x / n2 * sz, u2y = v2y / n2 * sz;
+            const corner = [Ax + u1x + u2x, Ay + u1y + u2y];
+            const raColor = ra.color || spec.color || '#0f172a';
+            const raWidth = typeof ra.strokeWidth === 'number' ? ra.strokeWidth : 1.2;
+            board.create('segment', [[Ax + u1x, Ay + u1y], corner], {
+                strokeColor: raColor, strokeWidth: raWidth, highlight: false
+            });
+            board.create('segment', [corner, [Ax + u2x, Ay + u2y]], {
+                strokeColor: raColor, strokeWidth: raWidth, highlight: false
+            });
+        }
+
         return { points };
     }
 

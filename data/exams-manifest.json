@@ -98,6 +98,27 @@
               "path": "data/grade10/de-on-tap-8/"
             },
             {
+              "id": "lop10_ontap_9",
+              "title": "Đề HK2 Toán 10 — THPT Trấn Biên 2024–2025",
+              "type": "exam",
+              "description": "Đề kiểm tra cuối học kì 2 môn Toán lớp 10 trường THPT Trấn Biên năm học 2024–2025: trắc nghiệm nhiều phương án, đúng/sai, trắc nghiệm trả lời ngắn (gồm bài cổng parabol và bài hai xe ô tô) và 3 bài tự luận.",
+              "path": "data/grade10/de-on-tap-9/"
+            },
+            {
+              "id": "lop10_ontap_10",
+              "title": "Đề HK2 Toán 10 — Chuyên Lương Thế Vinh 2024–2025",
+              "type": "exam",
+              "description": "Đề kiểm tra cuối học kỳ II môn Toán lớp 10 chuyên Lương Thế Vinh năm học 2024–2025: Phương pháp toạ độ trong mặt phẳng, conic, tổ hợp – xác suất và tự luận ứng dụng.",
+              "path": "data/grade10/de-on-tap-10/"
+            },
+            {
+              "id": "lop10_ontap_11",
+              "title": "Đề HK2 Toán 10 — THPT Ngô Quyền 2024–2025",
+              "type": "exam",
+              "description": "Đề kiểm tra học kì II môn Toán khối lớp 10 trường THPT Ngô Quyền năm học 2024–2025: nhị thức Newton, conic (parabol – ăng-ten vệ tinh), tổ hợp – xác suất và tự luận.",
+              "path": "data/grade10/de-on-tap-11/"
+            },
+            {
               "id": "lop10_tonghop_chuong1_5_goc",
               "title": "Đề kiểm tra Chương 1 & 5",
               "type": "exam",

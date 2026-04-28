@@ -5550,6 +5550,335 @@ def limit_inf_latex(expr_s, var, which):
         return { R, a, yB };
     }
 
+    function presetSatelliteDish(board, spec) {
+        const mouthDiameter = typeof spec.mouthDiameter === 'number' ? spec.mouthDiameter : 300;
+        const focusDistance = typeof spec.focusDistance === 'number' ? spec.focusDistance : 75;
+        const mouthLabel = typeof spec.mouthLabel === 'string' ? spec.mouthLabel : `${mouthDiameter} cm`;
+        const mouthGapLabel = typeof spec.mouthGapLabel === 'string' ? spec.mouthGapLabel : '150 cm';
+        const questionLabel = typeof spec.questionLabel === 'string' ? spec.questionLabel : '?';
+        const vertexLabel = typeof spec.vertexLabel === 'string' ? spec.vertexLabel : 'O';
+        const focusLabel = typeof spec.focusLabel === 'string' ? spec.focusLabel : 'F';
+        const rotationDeg = typeof spec.rotationDeg === 'number' ? spec.rotationDeg : 35;
+        const rotation = rotationDeg * Math.PI / 180;
+        const halfMouth = typeof spec.halfMouth === 'number' ? spec.halfMouth : 3;
+        const visualDepth = typeof spec.visualDepth === 'number' ? spec.visualDepth : 3.6;
+        const lipRadius = typeof spec.lipRadius === 'number' ? spec.lipRadius : 0.6;
+        const unit = mouthDiameter / Math.max(2 * halfMouth, 0.001);
+        const focusX = typeof spec.focusX === 'number' ? spec.focusX : focusDistance / unit;
+        const receiverTipX = typeof spec.receiverTipX === 'number' ? spec.receiverTipX : 2.4;
+        const pivot = Array.isArray(spec.pivot) && spec.pivot.length >= 2 ? spec.pivot : [0, 4.5];
+        const color = spec.color || '#0f172a';
+        const dishStroke = spec.dishStroke || '#0f766e';
+        const dishFill = spec.dishFill || '#d7f3ff';
+        const dishTintFill = spec.dishTintFill || '#c7f0ff';
+        const frameFill = spec.frameFill || '#0f766e';
+        const frameDarkFill = spec.frameDarkFill || '#115e59';
+        const groundFill = spec.groundFill || '#d6a46b';
+        const receiverFill = spec.receiverFill || '#dbe4ea';
+        const receiverDarkFill = spec.receiverDarkFill || '#c3d1da';
+        const focusColor = spec.focusColor || '#dc2626';
+        const guideColor = spec.guideColor || '#64748b';
+        const strokeWidth = typeof spec.strokeWidth === 'number' ? spec.strokeWidth : 2;
+        const showStand = bool(spec.showStand, true);
+        const showReceiver = bool(spec.showReceiver, true);
+        const showMeasurements = bool(spec.showMeasurements, true);
+        const showFocus = bool(spec.showFocus, true);
+        const showVertex = bool(spec.showVertex, true);
+        const showQuestion = bool(spec.showQuestion, true);
+        const cosA = Math.cos(rotation);
+        const sinA = Math.sin(rotation);
+
+        function mapLocal(pt) {
+            return [pivot[0] + cosA * pt[0] - sinA * pt[1], pivot[1] + sinA * pt[0] + cosA * pt[1]];
+        }
+
+        function mkHidden(xy) {
+            return board.create('point', [xy[0], xy[1]], { visible: false, fixed: true, highlight: false });
+        }
+
+        function makeWorldPolygon(worldPts, opts) {
+            const o = opts || {};
+            const pts = worldPts.map(mkHidden);
+            return board.create('polygon', pts, {
+                borders: {
+                    strokeColor: o.strokeColor || color,
+                    strokeWidth: typeof o.strokeWidth === 'number' ? o.strokeWidth : strokeWidth,
+                    highlight: false
+                },
+                fillColor: o.fillColor || '#ffffff',
+                fillOpacity: typeof o.fillOpacity === 'number' ? o.fillOpacity : 0,
+                withLines: true,
+                highlight: false
+            });
+        }
+
+        function makeLocalPolygon(localPts, opts) {
+            return makeWorldPolygon(localPts.map(mapLocal), opts);
+        }
+
+        function makePoint(xy, name, strokeColor, offset, size) {
+            return board.create('point', [xy[0], xy[1]], {
+                name,
+                size: typeof size === 'number' ? size : 3,
+                strokeColor,
+                fillColor: strokeColor,
+                fixed: true,
+                highlight: false,
+                label: {
+                    offset: offset || [8, 8],
+                    fontSize: 14,
+                    strokeColor
+                }
+            });
+        }
+
+        function makeText(xy, text, strokeColor, fontSize, cssStyle) {
+            return board.create('text', [xy[0], xy[1], text], {
+                anchorX: 'middle',
+                anchorY: 'middle',
+                fontSize: typeof fontSize === 'number' ? fontSize : 14,
+                strokeColor: strokeColor || color,
+                cssStyle: cssStyle || '',
+                highlight: false
+            });
+        }
+
+        function sampleParabola(count, fromTop) {
+            const pts = [];
+            for (let i = 0; i <= count; i += 1) {
+                const ratio = i / count;
+                const y = fromTop ? halfMouth - 2 * halfMouth * ratio : -halfMouth + 2 * halfMouth * ratio;
+                pts.push([visualDepth * (y * y) / (halfMouth * halfMouth), y]);
+            }
+            return pts;
+        }
+
+        function sampleEllipse(count, leftHalfOnly) {
+            const pts = [];
+            const tMin = leftHalfOnly ? -Math.PI / 2 : 0;
+            const tMax = leftHalfOnly ? Math.PI / 2 : 2 * Math.PI;
+            for (let i = 0; i <= count; i += 1) {
+                const t = tMin + (tMax - tMin) * (i / count);
+                const x = leftHalfOnly ? visualDepth - lipRadius * Math.cos(t) : visualDepth + lipRadius * Math.cos(t);
+                const y = halfMouth * Math.sin(t);
+                pts.push([x, y]);
+            }
+            return pts;
+        }
+
+        if (showStand) {
+            makeWorldPolygon([[-3.5, 0], [3.5, 0], [3.5, -0.2], [-3.5, -0.2]], {
+                strokeColor: color,
+                strokeWidth: 1.6,
+                fillColor: groundFill,
+                fillOpacity: 0.65
+            });
+            makeWorldPolygon([[-1.2, 0], [1.2, 0], [1.2, 0.3], [-1.2, 0.3]], {
+                strokeColor: color,
+                strokeWidth: 1.8,
+                fillColor: frameFill,
+                fillOpacity: 0.9
+            });
+            makeWorldPolygon([[-0.4, 0.3], [0.4, 0.3], [0.4, 4], [-0.4, 4]], {
+                strokeColor: color,
+                strokeWidth: 1.8,
+                fillColor: frameDarkFill,
+                fillOpacity: 0.92
+            });
+            makeWorldPolygon([[-0.7, 3.8], [0.7, 3.8], [0.7, 4.5], [-0.7, 4.5]], {
+                strokeColor: color,
+                strokeWidth: 1.8,
+                fillColor: frameFill,
+                fillOpacity: 0.92
+            });
+
+            const pivotCenter = mkHidden(pivot);
+            const pivotOuter = mkHidden([pivot[0] + 0.5, pivot[1]]);
+            const pivotInner = mkHidden([pivot[0] + 0.2, pivot[1]]);
+            const pivotDot = mkHidden([pivot[0] + 0.1, pivot[1]]);
+
+            board.create('circle', [pivotCenter, pivotOuter], {
+                strokeColor: color,
+                strokeWidth: 1.8,
+                fillColor: frameFill,
+                fillOpacity: 0.4,
+                highlight: false
+            });
+            board.create('circle', [pivotCenter, pivotInner], {
+                strokeColor: color,
+                strokeWidth: 1.5,
+                fillColor: '#ffffff',
+                fillOpacity: 1,
+                highlight: false
+            });
+            board.create('circle', [pivotCenter, pivotDot], {
+                strokeColor: frameDarkFill,
+                strokeWidth: 1.2,
+                fillColor: frameDarkFill,
+                fillOpacity: 1,
+                highlight: false
+            });
+        }
+
+        makeLocalPolygon([[-0.4, -0.8], [0.1, -1.2], [0.1, 1.2], [-0.4, 0.8]], {
+            strokeColor: color,
+            strokeWidth: 1.7,
+            fillColor: frameFill,
+            fillOpacity: 0.88
+        });
+
+        makeLocalPolygon(sampleParabola(64, true).concat(sampleEllipse(40, true)), {
+            strokeColor: dishStroke,
+            strokeWidth: 1.6,
+            fillColor: dishFill,
+            fillOpacity: 0.46
+        });
+
+        makeLocalPolygon(sampleEllipse(64, false), {
+            strokeColor: dishStroke,
+            strokeWidth: 1,
+            fillColor: dishTintFill,
+            fillOpacity: 0.22
+        });
+
+        if (showReceiver) {
+            makeLocalPolygon([[0, -0.12], [1.8, -0.12], [1.8, 0.12], [0, 0.12]], {
+                strokeColor: color,
+                strokeWidth: 1.5,
+                fillColor: receiverFill,
+                fillOpacity: 0.9
+            });
+            makeLocalPolygon([[1.8, -0.25], [2.2, -0.25], [2.2, 0.25], [1.8, 0.25]], {
+                strokeColor: color,
+                strokeWidth: 1.5,
+                fillColor: receiverDarkFill,
+                fillOpacity: 0.92
+            });
+            makeLocalPolygon([[2.2, -0.35], [2.4, -0.35], [2.4, 0.35], [2.2, 0.35]], {
+                strokeColor: color,
+                strokeWidth: 1.5,
+                fillColor: receiverFill,
+                fillOpacity: 0.92
+            });
+            makeLocalPolygon((() => {
+                const pts = [];
+                for (let i = 0; i <= 40; i += 1) {
+                    const t = 2 * Math.PI * (i / 40);
+                    pts.push([2.4 + 0.1 * Math.cos(t), 0.35 * Math.sin(t)]);
+                }
+                return pts;
+            })(), {
+                strokeColor: color,
+                strokeWidth: 1.4,
+                fillColor: '#eef5f8',
+                fillOpacity: 0.92
+            });
+        }
+
+        board.create('curve', [
+            (t) => mapLocal([visualDepth * (t * t) / (halfMouth * halfMouth), t])[0],
+            (t) => mapLocal([visualDepth * (t * t) / (halfMouth * halfMouth), t])[1],
+            -halfMouth,
+            halfMouth
+        ], {
+            strokeColor: dishStroke,
+            strokeWidth: strokeWidth,
+            highlight: false
+        });
+
+        board.create('curve', [
+            (t) => mapLocal([visualDepth + lipRadius * Math.cos(t), halfMouth * Math.sin(t)])[0],
+            (t) => mapLocal([visualDepth + lipRadius * Math.cos(t), halfMouth * Math.sin(t)])[1],
+            0,
+            2 * Math.PI
+        ], {
+            strokeColor: dishStroke,
+            strokeWidth: strokeWidth,
+            highlight: false
+        });
+
+        if (showMeasurements) {
+            const widthGuideTop1 = mapLocal([visualDepth + 0.1, halfMouth]);
+            const widthGuideTop2 = mapLocal([visualDepth + 1.2, halfMouth]);
+            const widthGuideBot1 = mapLocal([visualDepth + 0.1, -halfMouth]);
+            const widthGuideBot2 = mapLocal([visualDepth + 1.2, -halfMouth]);
+            const widthDim1 = mapLocal([visualDepth + 0.8, -halfMouth]);
+            const widthDim2 = mapLocal([visualDepth + 0.8, halfMouth]);
+            const dimY = -halfMouth - 1.5;
+            const gapGuide1a = mapLocal([receiverTipX, 0]);
+            const gapGuide1b = mapLocal([receiverTipX, dimY + 0.3]);
+            const gapGuide2a = mapLocal([visualDepth, 0]);
+            const gapGuide2b = mapLocal([visualDepth, dimY + 0.3]);
+            const gapDim1 = mapLocal([receiverTipX, dimY]);
+            const gapDim2 = mapLocal([visualDepth, dimY]);
+
+            board.create('segment', [widthGuideTop1, widthGuideTop2], {
+                strokeColor: guideColor,
+                strokeWidth: 1,
+                dash: 2,
+                highlight: false
+            });
+            board.create('segment', [widthGuideBot1, widthGuideBot2], {
+                strokeColor: guideColor,
+                strokeWidth: 1,
+                dash: 2,
+                highlight: false
+            });
+            board.create('arrow', [widthDim1, widthDim2], {
+                strokeColor: color,
+                strokeWidth: 1.4,
+                firstArrow: { size: 6 },
+                lastArrow: { size: 6 },
+                highlight: false
+            });
+            board.create('segment', [gapGuide1a, gapGuide1b], {
+                strokeColor: guideColor,
+                strokeWidth: 1,
+                dash: 2,
+                highlight: false
+            });
+            board.create('segment', [gapGuide2a, gapGuide2b], {
+                strokeColor: guideColor,
+                strokeWidth: 1,
+                dash: 2,
+                highlight: false
+            });
+            board.create('arrow', [gapDim1, gapDim2], {
+                strokeColor: color,
+                strokeWidth: 1.4,
+                firstArrow: { size: 6 },
+                lastArrow: { size: 6 },
+                highlight: false
+            });
+
+            makeText(mapLocal([visualDepth + 1.15, 0]), mouthLabel, color, 13, 'font-weight:700;');
+            makeText(mapLocal([(receiverTipX + visualDepth) / 2, dimY - 0.32]), mouthGapLabel, color, 13, 'font-weight:700;');
+        }
+
+        const vertex = mapLocal([0, 0]);
+        const focus = mapLocal([focusX, 0]);
+
+        if (showQuestion) {
+            board.create('segment', [vertex, focus], {
+                strokeColor: focusColor,
+                strokeWidth: 1.4,
+                dash: 2,
+                highlight: false
+            });
+            makeText(mapLocal([focusX / 2, 0.55]), questionLabel, focusColor, 20, 'font-weight:700;');
+        }
+
+        if (showVertex) {
+            makePoint(vertex, vertexLabel, color, [-16, 10], 3);
+        }
+
+        if (showFocus) {
+            makePoint(focus, focusLabel, focusColor, [12, 10], 4);
+        }
+
+        return { mouthDiameter, focusDistance, focusX, visualDepth };
+    }
+
     function presetParabolicReflector(board, spec) {
         const depth = typeof spec.depth === 'number' ? spec.depth : 15;
         const mouth = typeof spec.mouthDiameter === 'number' ? spec.mouthDiameter : 20;
@@ -5667,7 +5996,8 @@ def limit_inf_latex(expr_s, var, which):
         const preset = spec.preset || 'axes';
 
         const shouldDefaultAxes = !(preset === 'roadParabolaDrainage' || preset === 'roadParabola'
-            || preset === 'multiGraph' || preset === 'semicircleRectangle' || preset === 'parabolicReflector');
+            || preset === 'multiGraph' || preset === 'semicircleRectangle' || preset === 'parabolicReflector'
+            || preset === 'satelliteDish');
 
         if (bool(spec.axes, shouldDefaultAxes)) {
             presetAxes(board, spec);
@@ -5698,6 +6028,7 @@ def limit_inf_latex(expr_s, var, which):
         if (preset === 'multiGraph') return presetMultiGraph(board, spec);
         if (preset === 'semicircleRectangle') return presetSemicircleRectangle(board, spec);
         if (preset === 'parabolicReflector') return presetParabolicReflector(board, spec);
+        if (preset === 'satelliteDish') return presetSatelliteDish(board, spec);
     }
 
     async function waitForNonZeroSize(el) {

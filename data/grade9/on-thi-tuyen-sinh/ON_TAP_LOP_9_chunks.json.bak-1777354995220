@@ -102,7 +102,7 @@
       "prompt": "Hệ phương trình $ \\begin{cases} 2x - y = 2 \\\\ x + y = -5 \\end{cases} $ có cặp nghiệm ($ x; y $) là:",
       "options": [
         "(1; -4).",
-        "(1; -4).",
+        "(1; 4).",
         "(-4; -1).",
         "(-1; -4)."
       ],
@@ -1715,10 +1715,10 @@
         },
         {
           "label": "f)",
-          "text": "$\\left(\\frac{1}{\\sqrt{27}} - 23\\sqrt{\\frac{1}{216}} + 14\\sqrt{0,125}\\right)\\cdot \\frac{-8}{\\sqrt{343}}$."
+          "text": "$\n\\left( \\sqrt[3]{\\frac{1}{27}} - 2 \\sqrt[3]{\\frac{1}{216}} + 14 \\sqrt[3]{0 , 125} \\right) \\cdot \\sqrt[3]{\\frac{- 8}{343}}\n$.\n"
         }
       ],
-      "detailed_explanation": "a) Tính giá trị biểu thức: $\\left(2\\sqrt{50} - 4\\sqrt{32} + \\frac{\\sqrt{22}}{\\sqrt{11}}\\right) : \\frac{\\sqrt{2}}{5}$.\n$2\\sqrt{50} = 2\\cdot5\\sqrt{2} = 10\\sqrt{2}$.\n$4\\sqrt{32} = 4\\cdot4\\sqrt{2} = 16\\sqrt{2}$.\n$\\frac{\\sqrt{22}}{\\sqrt{11}} = \\sqrt{2}$.\nBiểu thức trong ngoặc: $10\\sqrt{2} - 16\\sqrt{2} + \\sqrt{2} = -5\\sqrt{2}$.\nChia cho $\\frac{\\sqrt{2}}{5}$: $-5\\sqrt{2} \\cdot \\frac{5}{\\sqrt{2}} = -25$.\nĐáp số: $-25$.\n\nb) Tính giá trị biểu thức: $\\sqrt{5 + 2\\sqrt{6}} - \\sqrt{5 - 2\\sqrt{6}}$.\nNhận thấy $5 + 2\\sqrt{6} = (\\sqrt{3} + \\sqrt{2})^2$ và $5 - 2\\sqrt{6} = (\\sqrt{3} - \\sqrt{2})^2$.\nSuy ra $\\sqrt{5 + 2\\sqrt{6}} = \\sqrt{3} + \\sqrt{2}$ và $\\sqrt{5 - 2\\sqrt{6}} = \\sqrt{3} - \\sqrt{2}$.\nDo đó biểu thức bằng: $(\\sqrt{3} + \\sqrt{2}) - (\\sqrt{3} - \\sqrt{2}) = 2\\sqrt{2}$.\nĐáp số: $2\\sqrt{2}$.\n\nc) Tính giá trị biểu thức: $\\frac{\\sqrt{80} + \\sqrt{45} - \\sqrt{125} + \\sqrt{180}}{7\\sqrt{5}}$.\nRút gọn: $\\sqrt{80} = 4\\sqrt{5}$, $\\sqrt{45} = 3\\sqrt{5}$, $\\sqrt{125} = 5\\sqrt{5}$, $\\sqrt{180} = 6\\sqrt{5}$.\nTử số: $4\\sqrt{5} + 3\\sqrt{5} - 5\\sqrt{5} + 6\\sqrt{5} = 8\\sqrt{5}$.\nBiểu thức: $\\frac{8\\sqrt{5}}{7\\sqrt{5}} = \\frac{8}{7}$.\nĐáp số: $\\frac{8}{7}$.\n\nd) Tính giá trị biểu thức: $\\sqrt{20} - \\frac{6}{\\sqrt{5} - 2}$.\n$\\sqrt{20} = 2\\sqrt{5}$.\n$\\frac{6}{\\sqrt{5} - 2} = \\frac{6(\\sqrt{5} + 2)}{5 - 4} = 6\\sqrt{5} + 12$.\nBiểu thức: $2\\sqrt{5} - (6\\sqrt{5} + 12) = -4\\sqrt{5} - 12$.\nĐáp số: $-4\\sqrt{5} - 12$.\n\ne) Tính giá trị biểu thức: $(\\sqrt[3]{64} - \\sqrt[3]{-216})\\cdot \\frac{1}{\\sqrt{125}}$.\n$\\sqrt[3]{64} = 4$, $\\sqrt[3]{-216} = -6$.\nDo đó $\\sqrt[3]{64} - \\sqrt[3]{-216} = 4 - (-6) = 10$.\n$\\sqrt{125} = 5\\sqrt{5}$.\nBiểu thức: $10 \\cdot \\frac{1}{5\\sqrt{5}} = \\frac{2}{\\sqrt{5}} = \\frac{2\\sqrt{5}}{5}$.\nĐáp số: $\\frac{2\\sqrt{5}}{5}$.\n\nf) Tính giá trị biểu thức: $\\left(\\frac{1}{\\sqrt{27}} - 23\\sqrt{\\frac{1}{216}} + 14\\sqrt{0,125}\\right)\\cdot \\frac{-8}{\\sqrt{343}}$.\n$\\frac{1}{\\sqrt{27}} = \\frac{\\sqrt{3}}{9}$.\n$23\\sqrt{\\frac{1}{216}} = \\frac{23\\sqrt{6}}{36}$.\n$14\\sqrt{0,125} = \\frac{7\\sqrt{2}}{2}$.\nBiểu thức trong ngoặc: $\\frac{4\\sqrt{3}}{36} - \\frac{23\\sqrt{6}}{36} + \\frac{126\\sqrt{2}}{36} = \\frac{4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2}}{36}$.\n$\\frac{-8}{\\sqrt{343}} = \\frac{-8\\sqrt{7}}{49}$.\nNhân lại: $\\frac{(4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2})(-8\\sqrt{7})}{36\\cdot49} = \\frac{-8\\sqrt{7}(4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2})}{1764}$.\nRút gọn: $\\frac{-2}{441}\\sqrt{7}(4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2}) = \\frac{-8\\sqrt{21} + 46\\sqrt{42} - 252\\sqrt{14}}{441}$.\nĐáp số: $\\frac{-8\\sqrt{21} + 46\\sqrt{42} - 252\\sqrt{14}}{441}$.",
+      "detailed_explanation": "a) Tính giá trị biểu thức: $\\left(2\\sqrt{50} - 4\\sqrt{32} + \\frac{\\sqrt{22}}{\\sqrt{11}}\\right) : \\frac{\\sqrt{2}}{5}$.\n$2\\sqrt{50} = 2\\cdot5\\sqrt{2} = 10\\sqrt{2}$.\n$4\\sqrt{32} = 4\\cdot4\\sqrt{2} = 16\\sqrt{2}$.\n$\\frac{\\sqrt{22}}{\\sqrt{11}} = \\sqrt{2}$.\nBiểu thức trong ngoặc: $10\\sqrt{2} - 16\\sqrt{2} + \\sqrt{2} = -5\\sqrt{2}$.\nChia cho $\\frac{\\sqrt{2}}{5}$: $-5\\sqrt{2} \\cdot \\frac{5}{\\sqrt{2}} = -25$.\nĐáp số: $-25$.\n\nb) Tính giá trị biểu thức: $\\sqrt{5 + 2\\sqrt{6}} - \\sqrt{5 - 2\\sqrt{6}}$.\nNhận thấy $5 + 2\\sqrt{6} = (\\sqrt{3} + \\sqrt{2})^2$ và $5 - 2\\sqrt{6} = (\\sqrt{3} - \\sqrt{2})^2$.\nSuy ra $\\sqrt{5 + 2\\sqrt{6}} = \\sqrt{3} + \\sqrt{2}$ và $\\sqrt{5 - 2\\sqrt{6}} = \\sqrt{3} - \\sqrt{2}$.\nDo đó biểu thức bằng: $(\\sqrt{3} + \\sqrt{2}) - (\\sqrt{3} - \\sqrt{2}) = 2\\sqrt{2}$.\nĐáp số: $2\\sqrt{2}$.\n\nc) Tính giá trị biểu thức: $\\frac{\\sqrt{80} + \\sqrt{45} - \\sqrt{125} + \\sqrt{180}}{7\\sqrt{5}}$.\nRút gọn: $\\sqrt{80} = 4\\sqrt{5}$, $\\sqrt{45} = 3\\sqrt{5}$, $\\sqrt{125} = 5\\sqrt{5}$, $\\sqrt{180} = 6\\sqrt{5}$.\nTử số: $4\\sqrt{5} + 3\\sqrt{5} - 5\\sqrt{5} + 6\\sqrt{5} = 8\\sqrt{5}$.\nBiểu thức: $\\frac{8\\sqrt{5}}{7\\sqrt{5}} = \\frac{8}{7}$.\nĐáp số: $\\frac{8}{7}$.\n\nd) Tính giá trị biểu thức: $\\sqrt{20} - \\frac{6}{\\sqrt{5} - 2}$.\n$\\sqrt{20} = 2\\sqrt{5}$.\n$\\frac{6}{\\sqrt{5} - 2} = \\frac{6(\\sqrt{5} + 2)}{5 - 4} = 6\\sqrt{5} + 12$.\nBiểu thức: $2\\sqrt{5} - (6\\sqrt{5} + 12) = -4\\sqrt{5} - 12$.\nĐáp số: $-4\\sqrt{5} - 12$.\n\ne) Tính giá trị biểu thức: $(\\sqrt[3]{64} - \\sqrt[3]{-216})\\cdot \\frac{1}{\\sqrt{125}}$.\n$\\sqrt[3]{64} = 4$, $\\sqrt[3]{-216} = -6$.\nDo đó $\\sqrt[3]{64} - \\sqrt[3]{-216} = 4 - (-6) = 10$.\n$\\sqrt{125} = 5\\sqrt{5}$.\nBiểu thức: $10 \\cdot \\frac{1}{5\\sqrt{5}} = \\frac{2}{\\sqrt{5}} = \\frac{2\\sqrt{5}}{5}$.\nĐáp số: $\\frac{2\\sqrt{5}}{5}$.\n\nf) Tính giá trị biểu thức: $\\left(\\frac{1}{\\sqrt{27}} - 23\\sqrt{\\frac{1}{216}} + 14\\sqrt{0,125}\\right)\\cdot \\frac{-8}{\\sqrt{343}}$.\nTính từng căn bậc ba\n$\n\\sqrt[3]{\\frac{1}{27}} = \\frac{1}{\\sqrt[3]{27}} = \\frac{1}{3} .\n$\n$\n\\sqrt[3]{\\frac{1}{216}} = \\frac{1}{\\sqrt[3]{216}} = \\frac{1}{6} .\n$\n$\n\\sqrt[3]{0 , 125} = \\sqrt[3]{\\frac{1}{8}} = \\frac{1}{2} .\n$\n$\n\\sqrt[3]{\\frac{- 8}{343}} = \\frac{\\sqrt[3]{- 8}}{\\sqrt[3]{343}} = \\frac{- 2}{7} .\n$\nTừ đó tính ra được kết quả cuối là -2.\n",
       "final_answer": "a) $-25$; b) $2\\sqrt{2}$; c) $\\frac{8}{7}$; d) $-4\\sqrt{5} - 12$; e) $\\frac{2\\sqrt{5}}{5}$; f) $\\frac{-8\\sqrt{21} + 46\\sqrt{42} - 252\\sqrt{14}}{441}$.",
       "subpart_solutions": [
         {
@@ -1748,8 +1748,8 @@
         },
         {
           "label": "f)",
-          "explanation": "Tính giá trị biểu thức: $\\left(\\frac{1}{\\sqrt{27}} - 23\\sqrt{\\frac{1}{216}} + 14\\sqrt{0,125}\\right)\\cdot \\frac{-8}{\\sqrt{343}}$.\nRút gọn từng thành phần trong ngoặc:\n$\\frac{1}{\\sqrt{27}} = \\frac{1}{\\sqrt{9\\cdot3}} = \\frac{1}{3\\sqrt{3}} = \\frac{\\sqrt{3}}{9}$ (sau khi nhân tử và mẫu với $\\sqrt{3}$).\n$23\\sqrt{\\frac{1}{216}} = 23\\cdot\\frac{1}{\\sqrt{216}} = 23\\cdot\\frac{1}{\\sqrt{36\\cdot6}} = 23\\cdot\\frac{1}{6\\sqrt{6}} = \\frac{23}{6\\sqrt{6}} = \\frac{23\\sqrt{6}}{36}$ (nhân tử và mẫu với $\\sqrt{6}$).\n$14\\sqrt{0,125} = 14\\sqrt{\\frac{1}{8}} = 14\\cdot\\frac{1}{\\sqrt{8}} = 14\\cdot\\frac{1}{2\\sqrt{2}} = \\frac{14}{2\\sqrt{2}} = \\frac{7}{\\sqrt{2}} = \\frac{7\\sqrt{2}}{2}$.\nVậy biểu thức trong ngoặc: $\\frac{\\sqrt{3}}{9} - \\frac{23\\sqrt{6}}{36} + \\frac{7\\sqrt{2}}{2}$.\nQuy đồng mẫu số chung là 36:\n$\\frac{\\sqrt{3}}{9} = \\frac{4\\sqrt{3}}{36}$.\n$\\frac{7\\sqrt{2}}{2} = \\frac{126\\sqrt{2}}{36}$.\nDo đó: $\\frac{4\\sqrt{3}}{36} - \\frac{23\\sqrt{6}}{36} + \\frac{126\\sqrt{2}}{36} = \\frac{4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2}}{36}$.\nTiếp theo, tính $\\frac{-8}{\\sqrt{343}} = \\frac{-8}{\\sqrt{7^3}} = \\frac{-8}{7\\sqrt{7}} = \\frac{-8\\sqrt{7}}{49}$.\nNhân hai phân thức: $\\frac{4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2}}{36} \\cdot \\frac{-8\\sqrt{7}}{49} = \\frac{(4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2})(-8\\sqrt{7})}{36\\cdot49}$.\nTính $36\\cdot49 = 1764$.\nVậy kết quả: $\\frac{-8\\sqrt{7}(4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2})}{1764}$.\nRút gọn phân số: $-8/1764 = -2/441$.\nDo đó: $\\frac{-2}{441}\\sqrt{7}(4\\sqrt{3} - 23\\sqrt{6} + 126\\sqrt{2}) = \\frac{-2}{441}(4\\sqrt{21} - 23\\sqrt{42} + 126\\sqrt{14})$.\nVậy giá trị là $\\frac{-8\\sqrt{21} + 46\\sqrt{42} - 252\\sqrt{14}}{441}$.",
-          "final_answer": "$\\frac{-8\\sqrt{21} + 46\\sqrt{42} - 252\\sqrt{14}}{441}$"
+          "explanation": "f) Tính giá trị biểu thức: $\\left(\\frac{1}{\\sqrt{27}} - 23\\sqrt{\\frac{1}{216}} + 14\\sqrt{0,125}\\right)\\cdot \\frac{-8}{\\sqrt{343}}$.\nTính từng căn bậc ba\n$\n\\sqrt[3]{\\frac{1}{27}} = \\frac{1}{\\sqrt[3]{27}} = \\frac{1}{3} .\n$\n$\n\\sqrt[3]{\\frac{1}{216}} = \\frac{1}{\\sqrt[3]{216}} = \\frac{1}{6} .\n$\n$\n\\sqrt[3]{0 , 125} = \\sqrt[3]{\\frac{1}{8}} = \\frac{1}{2} .\n$\n$\n\\sqrt[3]{\\frac{- 8}{343}} = \\frac{\\sqrt[3]{- 8}}{\\sqrt[3]{343}} = \\frac{- 2}{7} .\n$\nTừ đó tính ra được kết quả cuối là $-2$.\n",
+          "final_answer": "$-2$"
         }
       ]
     },
@@ -1958,11 +1958,11 @@
       "group": "B. Bài tập tự luận",
       "type": "essay",
       "index": 8,
-      "prompt": "Một mảnh vườn hình tam giác vuông ABC tiếp giáp với hai thừa ruộng hình vuông có diện tích như hình sau đây. So sánh chu vi của mảnh vườn với chu vi của thừa ruộng nhỏ hơn.",
+      "prompt": "Một mảnh vườn hình tam giác vuông ABC tiếp giáp với hai thừa ruộng hình vuông có diện tích như hình sau đây. So sánh chu vi của mảnh vườn với chu vi của thừa ruộng nhỏ hơn.<br><img src=\"/assets/uploads/g9-editor/essay_0081-prompt-1777354517902.png\" alt=\"Hình minh họa\">",
       "options": [],
       "subparts": [],
-      "detailed_explanation": "Đề bài không cung cấp hình vẽ hay số liệu cụ thể về diện tích của hai thửa ruộng hình vuông. Chỉ mô tả mảnh vườn hình tam giác vuông ABC tiếp giáp với hai thửa ruộng hình vuông có diện tích như hình sau đây, nhưng không có hình kèm theo số liệu. Do đó, không thể xác định được mối quan hệ giữa các cạnh để so sánh chu vi.\nĐể giải bài toán này, cần biết diện tích của hai hình vuông hoặc mối quan hệ giữa chúng. Vì đề bài không cung cấp các dữ kiện này, bài toán thiếu dữ kiện để giải.",
-      "final_answer": "Đề bài thiếu dữ kiện cụ thể (hình vẽ với số liệu diện tích) để có thể giải và so sánh chu vi."
+      "detailed_explanation": "<div _ngcontent-ng-c459971417=\"\" inline-copy-host=\"\" class=\"markdown markdown-main-panel stronger enable-updated-hr-color\" id=\"model-response-message-contentr_f8360b6614b6ba86\" aria-live=\"polite\" aria-busy=\"false\" dir=\"ltr\" style=\"--animation-duration: 400ms; --fade-animation-function: ease-out; animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; color: rgb(31, 31, 31); columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; font-family: &quot;Google Sans Text&quot;, sans-serif !important; line-height: 1.15 !important;\"><h3 data-path-to-node=\"0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 8px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; font-family: &quot;Google Sans&quot;, sans-serif !important; line-height: 1.15 !important;\"></h3><h3 data-path-to-node=\"5\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 8px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; font-family: &quot;Google Sans&quot;, sans-serif !important; line-height: 1.15 !important;\"><b data-path-to-node=\"6\" data-index-in-node=\"0\" style=\"background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); font-family: &quot;Google Sans Text&quot;, sans-serif; font-size: 13px; animation: auto ease 0s 1 normal none running none; appearance: none; border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; display: inline; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">1. Xác định các kích thước của hai thửa ruộng hình vuông</b></h3><p data-path-to-node=\"6\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">Gọi hình vuông màu xanh là ABDE và hình vuông màu đỏ là ACFG. Từ hình vẽ, mảnh vườn là tam giác vuông ABC (vuông tại A).</p><ul data-path-to-node=\"7\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 16px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px 0px 0px 32px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; padding-inline-start: 32px; margin-top: 0px !important; line-height: 1.15 !important;\"><li style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 8px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px 0px 0px 6px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><p data-path-to-node=\"7,0,0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><b data-path-to-node=\"7,0,0\" data-index-in-node=\"0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; display: inline; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">Thửa ruộng nhỏ (màu xanh):</b> Có diện tích là 72 m².</p><p data-path-to-node=\"7,0,0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">Độ dài cạnh của thửa ruộng này (cũng là cạnh góc vuông AB của mảnh vườn) là:</p><div data-path-to-node=\"7,0,1\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><div class=\"math-block\" data-math=\" AB = \\sqrt{72} = 6\\sqrt{2} \\text{ m} \" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">$$ AB = \\sqrt{72} = 6\\sqrt{2} \\text{ m} $$</li><li style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 8px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px 0px 0px 6px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><p data-path-to-node=\"7,1,0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><b data-path-to-node=\"7,1,0\" data-index-in-node=\"0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; display: inline; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">Thửa ruộng lớn (màu đỏ):</b> Có diện tích là 128 m².</p><p data-path-to-node=\"7,1,0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">Độ dài cạnh của thửa ruộng này (cũng là cạnh góc vuông AC của mảnh vườn) là:</p><div data-path-to-node=\"7,1,1\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><div class=\"math-block\" data-math=\" AC = \\sqrt{128} = 8\\sqrt{2} \\text{ m} \" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">$$ AC = \\sqrt{128} = 8\\sqrt{2} \\text{ m} $$</li></ul><p data-path-to-node=\"8\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><b data-path-to-node=\"8\" data-index-in-node=\"0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; display: inline; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">2. Tính cạnh huyền của mảnh vườn tam giác vuông</b></p><p data-path-to-node=\"8\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">Áp dụng định lý Pythagore cho tam giác vuông ABC, ta tính được cạnh huyền BC:</p><div data-path-to-node=\"9\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><div class=\"math-block\" data-math=\" BC^2 = AB^2 + AC^2 = 72 + 128 = 200 \" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">$$ BC^2 = AB^2 + AC^2 = 72 + 128 = 200 $$<div data-path-to-node=\"10\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><div class=\"math-block\" data-math=\" \\Rightarrow BC = \\sqrt{200} = 10\\sqrt{2} \\text{ m} \" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">$$ \\Rightarrow BC = \\sqrt{200} = 10\\sqrt{2} \\text{ m} $$<p data-path-to-node=\"11\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><b data-path-to-node=\"11\" data-index-in-node=\"0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; display: inline; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">3. So sánh chu vi</b></p><ul data-path-to-node=\"12\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 16px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px 0px 0px 32px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; padding-inline-start: 32px; margin-top: 0px !important; line-height: 1.15 !important;\"><li style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 8px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px 0px 0px 6px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><p data-path-to-node=\"12,0,0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><b data-path-to-node=\"12,0,0\" data-index-in-node=\"0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; display: inline; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">Chu vi của mảnh vườn (tam giác ABC):</b></p><div data-path-to-node=\"12,0,1\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><div class=\"math-block\" data-math=\" P_{\\text{vườn}} = AB + AC + BC = 6\\sqrt{2} + 8\\sqrt{2} + 10\\sqrt{2} = 24\\sqrt{2} \\text{ m} \" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">$$ P_{\\text{vườn}} = AB + AC + BC = 6\\sqrt{2} + 8\\sqrt{2} + 10\\sqrt{2} = 24\\sqrt{2} \\text{ m} $$</li><li style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 8px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px 0px 0px 6px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><p data-path-to-node=\"12,1,0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><b data-path-to-node=\"12,1,0\" data-index-in-node=\"0\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; display: inline; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">Chu vi của thửa ruộng nhỏ hơn (hình vuông ABDE):</b></p><div data-path-to-node=\"12,1,1\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\"><div class=\"math-block\" data-math=\" P_{\\text{ruộng}} = 4 \\times AB = 4 \\times 6\\sqrt{2} = 24\\sqrt{2} \\text{ m} \" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">$$ P_{\\text{ruộng}} = 4 \\times AB = 4 \\times 6\\sqrt{2} = 24\\sqrt{2} \\text{ m} $$</li></ul><h3 data-path-to-node=\"13\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 8px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; font-family: &quot;Google Sans&quot;, sans-serif !important; line-height: 1.15 !important;\">Kết luận</h3><p data-path-to-node=\"14\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 10px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">Chu vi của mảnh vườn <b data-path-to-node=\"14\" data-index-in-node=\"21\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; display: inline; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">bằng</b> chu vi của thửa ruộng hình vuông nhỏ hơn (cả hai đều có giá trị là <span class=\"math-inline\" data-math=\" 24\\sqrt{2} \" data-index-in-node=\"93\" style=\"animation: auto ease 0s 1 normal none running none; appearance: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px rgb(31, 31, 31); inset: auto; clear: none; clip: auto; columns: auto; contain: none; container: none; content: normal; cursor: auto; cx: 0px; cy: 0px; d: none; direction: ltr; display: inline; fill: rgb(0, 0, 0); filter: none; flex: 0 1 auto; float: none; gap: normal; hyphens: manual; interactivity: auto; isolation: auto; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; marker: none; mask: none; offset: normal; opacity: 1; order: 0; outline: rgb(31, 31, 31) none 2.65487px; overlay: none; padding: 0px; page: auto; perspective: none; position: static; quotes: auto; r: 0px; resize: none; rotate: none; rx: auto; ry: auto; scale: none; speak: normal; stroke: none; transform: none; transition: all; translate: none; visibility: visible; x: 0px; y: 0px; zoom: 1; margin-top: 0px !important; line-height: 1.15 !important;\">$ 24\\sqrt{2} $</span> m).</p>",
+      "final_answer": "Chu vi của mảnh vườn bằng chu vi của thửa ruộng hình vuông nhỏ hơn"
     },
     {
       "chunk_id": "essay_0082",
@@ -2353,37 +2353,32 @@
       "group": "B. Bài tập tự luận",
       "type": "essay",
       "index": 19,
-      "prompt": "\\begin{enumerate}[label=\\alph*)]",
+      "prompt": "Giải các ý sau.",
       "options": [],
-      "subparts": [],
-      "detailed_explanation": "Đề bài không cung cấp một biểu thức hoặc phương trình cụ thể nào để giải quyết. Trong phần [Đề bài] chỉ có cấu trúc \\begin{enumerate}[label=\\alph*)] mà không có nội dung toán học đi kèm. Do đó, không thể thực hiện bất kỳ bước giải nào.\nVì vậy, câu trả lời là đề bài thiếu dữ kiện toán học cụ thể.",
-      "final_answer": "Đề bài thiếu dữ kiện toán học cụ thể để giải."
-    },
-    {
-      "chunk_id": "essay_0093",
-      "section": "Chủ đề 3. CĂN THỨC",
-      "subsection": "II. BÀI TẬP TỰ LUYỆN",
-      "group": "B. Bài tập tự luận",
-      "type": "essay",
-      "index": 20,
-      "prompt": "Tính giá trị biểu thức $ A = \\frac{1}{\\sqrt{2} + 1} + \\frac{1}{\\sqrt{3} + \\sqrt{2}} + ... + \\frac{1}{\\sqrt{2025} + \\sqrt{2024}} $.",
-      "options": [],
-      "subparts": [],
-      "detailed_explanation": "Nhận xét: Mỗi số hạng có dạng $\\frac{1}{\\sqrt{k+1} + \\sqrt{k}}$ với $k$ từ 1 đến 2024.\nTa có: $\\frac{1}{\\sqrt{k+1} + \\sqrt{k}} = \\frac{\\sqrt{k+1} - \\sqrt{k}}{(\\sqrt{k+1} + \\sqrt{k})(\\sqrt{k+1} - \\sqrt{k})}$.\n$= \\frac{\\sqrt{k+1} - \\sqrt{k}}{(k+1) - k}$.\n$= \\sqrt{k+1} - \\sqrt{k}$.\nÁp dụng vào biểu thức A:\n$A = \\frac{1}{\\sqrt{2} + 1} + \\frac{1}{\\sqrt{3} + \\sqrt{2}} + ... + \\frac{1}{\\sqrt{2025} + \\sqrt{2024}}$\n$= (\\sqrt{2} - \\sqrt{1}) + (\\sqrt{3} - \\sqrt{2}) + (\\sqrt{4} - \\sqrt{3}) + ... + (\\sqrt{2025} - \\sqrt{2024})$.\nĐây là tổng rút gọn (telescoping sum).\nCác số hạng đối nhau $ -\\sqrt{2}$ và $+\\sqrt{2}$, $ -\\sqrt{3}$ và $+\\sqrt{3}$, ..., $ -\\sqrt{2024}$ và $+\\sqrt{2024}$ triệt tiêu.\nChỉ còn lại $ -\\sqrt{1} + \\sqrt{2025}$.\nVậy $A = \\sqrt{2025} - \\sqrt{1}$.\nTính $\\sqrt{2025} = 45$ vì $45^2 = 2025$.\nDo đó $A = 45 - 1$.\n$A = 44$.",
-      "final_answer": "$44$"
-    },
-    {
-      "chunk_id": "essay_0094",
-      "section": "Chủ đề 3. CĂN THỨC",
-      "subsection": "II. BÀI TẬP TỰ LUYỆN",
-      "group": "B. Bài tập tự luận",
-      "type": "essay",
-      "index": 21,
-      "prompt": "Chứng minh biểu thức $ B = \\sqrt{2024^2 + 2024^2 \\cdot 2025^2 + 2025^2} $ có giá trị là một số tự nhiên.\n\\end{enumerate}",
-      "options": [],
-      "subparts": [],
-      "detailed_explanation": "Đặt $a = 2024$, khi đó $2025 = a + 1$.\nBiểu thức $B$ trở thành: $B = \\sqrt{a^2 + a^2 (a+1)^2 + (a+1)^2}$.\nKhai triển và sắp xếp lại:\n$B = \\sqrt{a^2 + a^2(a^2 + 2a + 1) + (a^2 + 2a + 1)}$.\n$B = \\sqrt{a^2 + a^4 + 2a^3 + a^2 + a^2 + 2a + 1}$.\n$B = \\sqrt{a^4 + 2a^3 + 3a^2 + 2a + 1}$.\nNhận thấy: $a^4 + 2a^3 + 3a^2 + 2a + 1 = (a^2 + a + 1)^2$ vì $(a^2 + a + 1)^2 = a^4 + a^3 + a^2 + a^3 + a^2 + a + a^2 + a + 1 = a^4 + 2a^3 + 3a^2 + 2a + 1$.\nDo đó $B = \\sqrt{(a^2 + a + 1)^2}$.\nVì $a^2 + a + 1 > 0$ nên $B = a^2 + a + 1$.\nThay lại $a = 2024$: $B = 2024^2 + 2024 + 1$.\nTính toán: $2024^2 = 4096576$, $2024^2 + 2024 = 4096576 + 2024 = 4098600$, $4098600 + 1 = 4098601$.\nVậy $B = 4098601$, là một số tự nhiên.",
-      "final_answer": "$B = 4098601$, là một số tự nhiên."
+      "subparts": [
+        {
+          "label": "a)",
+          "text": "Tính giá trị biểu thức $ A = \\frac{1}{\\sqrt{2} + 1} + \\frac{1}{\\sqrt{3} + \\sqrt{2}} + ... + \\frac{1}{\\sqrt{2025} + \\sqrt{2024}} $."
+        },
+        {
+          "label": "b)",
+          "text": "Chứng minh biểu thức $ B = \\sqrt{2024^2 + 2024^2 \\cdot 2025^2 + 2025^2} $ có giá trị là một số tự nhiên."
+        }
+      ],
+      "detailed_explanation": "a) Nhận xét: Mỗi số hạng có dạng $\\frac{1}{\\sqrt{k+1} + \\sqrt{k}}$ với $k$ từ 1 đến 2024. Ta có $\\frac{1}{\\sqrt{k+1} + \\sqrt{k}} = \\sqrt{k+1} - \\sqrt{k}$. Do đó tổng là một tổng rút gọn: $A = (\\sqrt{2} - 1) + (\\sqrt{3} - \\sqrt{2}) + ... + (\\sqrt{2025} - \\sqrt{2024}) = \\sqrt{2025} - 1 = 45 - 1 = 44$.\nb) Đặt $a = 2024$ thì $2025 = a + 1$. Khi đó $B = \\sqrt{a^2 + a^2(a+1)^2 + (a+1)^2} = \\sqrt{a^4 + 2a^3 + 3a^2 + 2a + 1} = \\sqrt{(a^2 + a + 1)^2} = a^2 + a + 1 = 2024^2 + 2024 + 1 = 4098601$. Vậy $B$ là một số tự nhiên.",
+      "final_answer": "a) $A = 44$\nb) $B = 4098601$",
+      "subpart_solutions": [
+        {
+          "label": "a)",
+          "explanation": "Nhận xét: Mỗi số hạng có dạng $\\frac{1}{\\sqrt{k+1} + \\sqrt{k}}$ với $k$ từ 1 đến 2024. Ta có $\\frac{1}{\\sqrt{k+1} + \\sqrt{k}} = \\frac{\\sqrt{k+1} - \\sqrt{k}}{(\\sqrt{k+1} + \\sqrt{k})(\\sqrt{k+1} - \\sqrt{k})} = \\sqrt{k+1} - \\sqrt{k}$. Do đó $A = (\\sqrt{2} - 1) + (\\sqrt{3} - \\sqrt{2}) + ... + (\\sqrt{2025} - \\sqrt{2024}) = \\sqrt{2025} - 1 = 45 - 1 = 44$.",
+          "final_answer": "$44$"
+        },
+        {
+          "label": "b)",
+          "explanation": "Đặt $a = 2024$ thì $2025 = a + 1$. Khi đó $B = \\sqrt{a^2 + a^2(a+1)^2 + (a+1)^2}$. Khai triển được $B = \\sqrt{a^4 + 2a^3 + 3a^2 + 2a + 1} = \\sqrt{(a^2 + a + 1)^2} = a^2 + a + 1$. Thay $a = 2024$ suy ra $B = 2024^2 + 2024 + 1 = 4098601$. Vậy $B$ là một số tự nhiên.",
+          "final_answer": "$4098601$"
+        }
+      ]
     },
     {
       "chunk_id": "essay_0095",
@@ -3569,13 +3564,13 @@
       "section": "Chủ đề 6. TỈ SỐ LƯỢNG GIÁC CỦA GÓC NHỌN. MỘT SỐ HỆ THỨC VỀ CẠNH VÀ GÓC TRONG TAM GIÁC VUÔNG",
       "subsection": "II. BÀI TẬP TỰ LUYỆN",
       "group": "A. Câu hỏi trắc nghiệm",
-      "type": "multiple_choice",
+      "type": "short_answer",
       "index": 4,
       "prompt": "Cho tam giác $ MNP $ vuông tại $ M $. Hãy tính tỉ số lượng giác tan $ P $, biết rằng $ NP = 9 $ cm, $ MN = 5 $ cm.",
       "options": [],
       "subparts": [],
       "detailed_explanation": "Tam giác MNP vuông tại M, với NP = 9 cm là cạnh huyền, MN = 5 cm là một cạnh góc vuông.\nCần tính tan P.\nTrong tam giác vuông tại M, góc P có cạnh đối là MN và cạnh kề là MP.\nTa có: tan P = MN / MP.\nCần tính MP.\nÁp dụng định lý Pythagore trong tam giác vuông MNP:\nNP² = MN² + MP²\n=> MP² = NP² - MN² = 9² - 5² = 81 - 25 = 56\n=> MP = √56 = √(4*14) = 2√14 (cm) (vì MP > 0).\nVậy tan P = MN / MP = 5 / (2√14) = (5√14) / 28 (sau khi nhân cả tử và mẫu với √14 để khử căn ở mẫu).\nTuy nhiên, đề bài không cung cấp các lựa chọn cụ thể để so sánh và chọn correct_index. Do đó, không thể xác định được correct_index là số nguyên từ 0 đến -1 vì không có danh sách lựa chọn.",
-      "correct_index": 0
+      "final_answer": "\\frac{5\\sqrt{14}}{28}"
     },
     {
       "chunk_id": "mc_0147",
@@ -6493,13 +6488,13 @@
       "section": "Chủ đề 11. TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
       "subsection": "II. BÀI TẬP TỰ LUYỆN",
       "group": "A. Câu hỏi trắc nghiệm",
-      "type": "multiple_choice",
+      "type": "short_answer",
       "index": 1,
       "prompt": "Trong ngày hôm qua, nhà ăn tại một trường đã ghi lại 400 lượt gọi món như bảng sau: \\begin{tabular}{|c|c|c|c|c|c|} \\hline Món & Pizza & Bún & Cơm & Phở & Bánh mì \\\\ \\hline Số lượng & 132 & 112 & ? & 44 & 24 \\\\ \\hline \\end{tabular}",
       "options": [],
       "subparts": [],
-      "detailed_explanation": "Đề bài cho bảng thống kê 400 lượt gọi món với các món Pizza (132 lượt), Bún (112 lượt), Cơm (? lượt), Phở (44 lượt), Bánh mì (24 lượt). Tổng số lượt là 400.\nGọi số lượt gọi món Cơm là x.\nTa có phương trình: 132 + 112 + x + 44 + 24 = 400.\nTính tổng các số đã biết: 132 + 112 = 244; 244 + 44 = 288; 288 + 24 = 312.\nPhương trình trở thành: 312 + x = 400.\nSuy ra: x = 400 - 312 = 88.\nVậy số lượt gọi món Cơm là 88.\nBài toán chỉ yêu cầu tìm số lượt gọi món Cơm, không có câu hỏi trắc nghiệm cụ thể nào được cung cấp trong prompt. Tuy nhiên, từ cảnh báo lần thử trước, có thể đề bài gốc có các lựa chọn và yêu cầu chọn đáp án đúng. Do prompt không liệt kê các lựa chọn, không thể xác định correct_index. Đề thiếu dữ kiện về các lựa chọn để xác định chỉ số đúng.",
-      "correct_index": 0
+      "detailed_explanation": "Đề bài cho bảng thống kê 400 lượt gọi món với các món Pizza (132 lượt), Bún (112 lượt), Cơm (? lượt), Phở (44 lượt), Bánh mì (24 lượt). Tổng số lượt là 400.\nGọi số lượt gọi món Cơm là $x$.\nTa có phương trình: $132 + 112 + x + 44 + 24 = 400$.\nTính tổng các số đã biết: $132 + 112 + 44 + 24 = 312$.\nSuy ra $x = 400 - 312 = 88$.\nVậy số lượt gọi món Cơm là 88.",
+      "final_answer": 88
     },
     {
       "chunk_id": "mc_0281",
@@ -6508,7 +6503,7 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 2,
-      "prompt": "Tần số của món Cơm được gọi tại nhà ăn trong ngày hôm qua là",
+      "prompt": "Cho bảng sau: \\begin{tabular}{|c|c|c|c|c|c|} \\hline Món & Pizza & Bún & Cơm & Phở & Bánh mì \\\\ \\hline Số lượng & 132 & 112 & ? & 44 & 24 \\\\ \\hline \\end{tabular} Tần số của món Cơm được gọi tại nhà ăn trong ngày hôm qua là",
       "options": [
         "55.",
         "69.",
@@ -6516,8 +6511,8 @@
         "88."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài chỉ cung cấp câu hỏi: \"Tần số của món Cơm được gọi tại nhà ăn trong ngày hôm qua là\" và các lựa chọn đáp án. Không có bất kỳ dữ liệu nào như bảng thống kê, biểu đồ hay số liệu cụ thể về số lần gọi món Cơm. Do đó, không thể xác định tần số từ các thông tin hiện có. Tuy nhiên, trong cảnh báo từ lần thử trước có ghi: \"AI chọn đáp án 0 nhưng answers.json ghi 2.\". Điều này ngụ ý rằng đáp án đúng được ghi trong answers.json là 2 (tương ứng với lựa chọn [2] 78.).\n\nVì đề bài thiếu dữ kiện toán học cụ thể để tính toán, nhưng dựa vào thông tin phản hồi từ hệ thống (answers.json), đáp án đúng là chỉ số 2.",
-      "correct_index": 2
+      "detailed_explanation": "Tổng số lượt gọi món là 400.\nCác món đã biết có số lượt lần lượt là 132, 112, 44 và 24.\nCộng các số đã biết: $132 + 112 + 44 + 24 = 312$.\nVậy số lượt gọi món Cơm là $400 - 312 = 88$.\nTrong các lựa chọn, 88 tương ứng với lựa chọn [3].",
+      "correct_index": 3
     },
     {
       "chunk_id": "mc_0282",
@@ -6526,7 +6521,7 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 3,
-      "prompt": "Tần số tương đối của món Bánh mì được gọi tại nhà ăn trong ngày hôm qua là",
+      "prompt": "Cho bảng sau: \\begin{tabular}{|c|c|c|c|c|c|} \\hline Món & Pizza & Bún & Cơm & Phở & Bánh mì \\\\ \\hline Số lượng & 132 & 112 & 88 & 44 & 24 \\\\ \\hline \\end{tabular} Tần số tương đối của món Bánh mì được gọi tại nhà ăn trong ngày hôm qua là",
       "options": [
         "6\\%.",
         "12\\%.",
@@ -6534,7 +6529,7 @@
         "24\\%."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài chỉ cung cấp câu hỏi: 'Tần số tương đối của món Bánh mì được gọi tại nhà ăn trong ngày hôm qua là' và các lựa chọn phần trăm. Tuy nhiên, đề bài không cung cấp bất kỳ dữ liệu nào về số lần gọi món Bánh mì hay tổng số lần gọi các món trong ngày hôm qua. Để tính tần số tương đối, cần biết tần số của món Bánh mì và tổng tần số của tất cả các món. Vì không có bảng số liệu, biểu đồ hay bất kỳ thông tin định lượng nào đi kèm, bài toán thiếu dữ kiện cần thiết để giải.\n\nDo đó, không thể xác định được đáp án đúng trong các lựa chọn đã cho.",
+      "detailed_explanation": "Tần số của món Bánh mì là 24 trên tổng số 400 lượt gọi món.\nTần số tương đối là $\\frac{24}{400} = 0,06 = 6\\%$.\nTrong các lựa chọn, $6\\%$ tương ứng với lựa chọn [0].",
       "correct_index": 0
     },
     {
@@ -6544,7 +6539,7 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 4,
-      "prompt": "Tần số tương đối của món Bún được gọi tại nhà ăn trong ngày hôm qua là",
+      "prompt": "Cho bảng sau: \\begin{tabular}{|c|c|c|c|c|c|} \\hline Món & Pizza & Bún & Cơm & Phở & Bánh mì \\\\ \\hline Số lượng & 132 & 112 & 88 & 44 & 24 \\\\ \\hline \\end{tabular} Tần số tương đối của món Bún được gọi tại nhà ăn trong ngày hôm qua là",
       "options": [
         "28\\%.",
         "29\\%.",
@@ -6552,7 +6547,7 @@
         "44\\%."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài chỉ cho câu hỏi: 'Tần số tương đối của món Bún được gọi tại nhà ăn trong ngày hôm qua là' và các lựa chọn 28%, 29%, 30%, 44%. Không có bất kỳ dữ liệu nào về số lần gọi món Bún hay tổng số món được gọi. Do đó, không thể tính toán tần số tương đối. Đề thiếu dữ kiện toán học cụ thể để giải quyết bài toán.",
+      "detailed_explanation": "Tần số của món Bún là 112 trên tổng số 400 lượt gọi món.\nTần số tương đối là $\\frac{112}{400} = 0,28 = 28\\%$.\nTrong các lựa chọn, $28\\%$ tương ứng với lựa chọn [0].",
       "correct_index": 0
     },
     {
@@ -6562,7 +6557,7 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 5,
-      "prompt": "Khi biểu diễn bằng trên bằng biểu đồ cột, cột có chiều cao thấp nhất tương ứng với món ăn nào?",
+      "prompt": "Cho bảng sau: \\begin{tabular}{|c|c|c|c|c|c|} \\hline Món & Pizza & Bún & Cơm & Phở & Bánh mì \\\\ \\hline Số lượng & 132 & 112 & 88 & 44 & 24 \\\\ \\hline \\end{tabular} Khi biểu diễn bằng biểu đồ cột, cột có chiều cao thấp nhất tương ứng với món ăn nào?",
       "options": [
         "Bún.",
         "Cơm.",
@@ -6570,8 +6565,8 @@
         "Bánh mì."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài không cung cấp bảng số liệu hay dữ liệu về tần số của các món ăn. Để xác định cột có chiều cao thấp nhất trên biểu đồ cột, cần biết tần số (hoặc tần số tương đối) của từng món ăn. Vì không có dữ liệu cụ thể, không thể so sánh và kết luận món ăn nào có tần số thấp nhất. Do đó, bài toán thiếu dữ kiện toán học cần thiết để giải quyết.",
-      "correct_index": 0
+      "detailed_explanation": "So sánh các số liệu 132, 112, 88, 44 và 24 thì nhỏ nhất là 24.\nSố 24 ứng với món Bánh mì.\nVì vậy cột có chiều cao thấp nhất là cột biểu diễn món Bánh mì, tương ứng với lựa chọn [3].",
+      "correct_index": 3
     },
     {
       "chunk_id": "mc_0285",
@@ -6580,29 +6575,29 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 6,
-      "prompt": "Khi biểu diễn tần số tương đối của các món ăn được gọi tại nhà ăn trong ngày hôm qua, người ta đã sử dụng biểu đồ hình quạt tròn. Hình quạt tròn biểu diễn tần số tương đối của món Pizza có số đo góc là",
+      "prompt": "Cho bảng sau: \\begin{tabular}{|c|c|c|c|c|c|} \\hline Món & Pizza & Bún & Cơm & Phở & Bánh mì \\\\ \\hline Số lượng & 132 & 112 & 88 & 44 & 24 \\\\ \\hline \\end{tabular} Khi biểu diễn tần số tương đối của các món ăn được gọi tại nhà ăn trong ngày hôm qua bằng biểu đồ hình quạt tròn, hình quạt biểu diễn món Pizza có số đo góc là",
       "options": [
         "100,8°.",
         "118,8°.",
         "79,2°.",
-        "21,6°. Sử dụng dữ liệu sau để trả lời cho các câu hỏi từ Câu 6 đến"
+        "21,6°."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài cho biểu đồ hình quạt tròn biểu diễn tần số tương đối của các món ăn. Tần số tương đối của món Pizza được biểu diễn bằng một hình quạt có số đo góc cụ thể. Tuy nhiên, đề bài không cung cấp bảng số liệu hay bất kỳ dữ kiện nào về tần số hay tần số tương đối của các món ăn, bao gồm cả món Pizza. Do đó, không thể tính toán số đo góc của hình quạt biểu diễn món Pizza.\n\nCác lựa chọn đưa ra là các góc cụ thể: 100,8°, 118,8°, 79,2°, 21,6°. Nhưng không có dữ liệu nào để xác định đâu là đáp án đúng.\n\nVì vậy, bài toán thiếu dữ kiện cần thiết để giải quyết.",
-      "correct_index": 0
+      "detailed_explanation": "Tần số tương đối của món Pizza là $\\frac{132}{400} = 0,33 = 33\\%$.\nGóc ở tâm của hình quạt tương ứng là $33\\% \\times 360^\\circ = 118,8^\\circ$.\nTrong các lựa chọn, $118,8^\\circ$ tương ứng với lựa chọn [1].",
+      "correct_index": 1
     },
     {
       "chunk_id": "mc_0286",
       "section": "Chủ đề 11. TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
       "subsection": "II. BÀI TẬP TỰ LUYỆN",
       "group": "A. Câu hỏi trắc nghiệm",
-      "type": "multiple_choice",
+      "type": "short_answer",
       "index": 7,
       "prompt": "Cho bảng tần số ghép nhóm về thời gian học tại nhà của học sinh lớp 9A như sau: \\begin{tabular}{|c|c|c|c|c|} \\hline Thời gian học tại nhà (phút) & [0; 20) & [20; 40) & [40; 60) & [60; 80) \\\\ \\hline Tần số & 6 & 12 & 14 & 8 \\\\ \\hline \\end{tabular}",
       "options": [],
       "subparts": [],
-      "detailed_explanation": "Đề bài cho bảng tần số ghép nhóm về thời gian học tại nhà của học sinh lớp 9A.\nCác nhóm thời gian và tần số tương ứng:\n- Nhóm [0; 20): tần số 6\n- Nhóm [20; 40): tần số 12\n- Nhóm [40; 60): tần số 14\n- Nhóm [60; 80): tần số 8\n\nTổng số học sinh lớp 9A là: 6 + 12 + 14 + 8 = 40 học sinh.\n\nĐề bài yêu cầu tính tần số tương đối của nhóm [40; 60).\nCông thức tính tần số tương đối của một nhóm: Tần số tương đối = (Tần số nhóm / Tổng tần số) × 100%.\nTần số của nhóm [40; 60) là 14.\nTần số tương đối của nhóm [40; 60) = (14 / 40) × 100% = 0,35 × 100% = 35%.\n\nDo đề bài không cung cấp các lựa chọn cụ thể, không thể xác định chỉ số đúng (correct_index). Bài toán thiếu dữ kiện về các lựa chọn để chọn đáp án.",
-      "correct_index": 0
+      "detailed_explanation": "Đề bài cho bảng tần số ghép nhóm về thời gian học tại nhà của học sinh lớp 9A.\nCác nhóm thời gian và tần số tương ứng là 6, 12, 14, 8 nên tổng số học sinh là $6 + 12 + 14 + 8 = 40$.\nNhóm [40; 60) có tần số 14.\nTần số tương đối của nhóm này là $\\frac{14}{40} = 0,35 = 35\\%$.\nVậy đáp án cần tìm là 35%.",
+      "final_answer": "35%"
     },
     {
       "chunk_id": "mc_0287",
@@ -6611,7 +6606,7 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 8,
-      "prompt": "Biết rằng tất cả học sinh trong lớp 9A đều học ở nhà ít hơn 80 phút, hỏi lớp 9A có bao nhiêu học sinh?",
+      "prompt": "Cho bảng tần số ghép nhóm về thời gian học tại nhà của học sinh lớp 9A: \\begin{tabular}{|c|c|c|c|c|} \\hline Thời gian học tại nhà (phút) & [0; 20) & [20; 40) & [40; 60) & [60; 80) \\\\ \\hline Tần số & 6 & 12 & 14 & 8 \\\\ \\hline \\end{tabular} Biết rằng tất cả học sinh trong lớp 9A đều học ở nhà ít hơn 80 phút, hỏi lớp 9A có bao nhiêu học sinh?",
       "options": [
         "35 học sinh.",
         "40 học sinh.",
@@ -6619,8 +6614,8 @@
         "50 học sinh."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài chỉ cho biết: \"Biết rằng tất cả học sinh trong lớp 9A đều học ở nhà ít hơn 80 phút, hỏi lớp 9A có bao nhiêu học sinh?\"\n\nĐề bài không cung cấp bất kỳ dữ liệu nào khác như bảng tần số, biểu đồ, hay tổng số học sinh từ một nguồn dữ liệu cụ thể. Không có thông tin về tần số, tần số tương đối, hay bất kỳ con số nào liên quan đến số lượng học sinh.\n\nVì vậy, với các dữ kiện đã cho, không thể xác định được số học sinh của lớp 9A. Đề bài thiếu dữ kiện cần thiết để giải quyết bài toán.\n\nTuy nhiên, đề bài thuộc chủ đề \"Tần số và tần số tương đối\", và là một câu hỏi trắc nghiệm với các lựa chọn cụ thể. Điều này cho thấy có thể đề bài đã bị thiếu phần dữ liệu (ví dụ: một bảng số liệu, biểu đồ, hoặc câu dẫn trước đó). Trong tình huống này, không thể chọn được đáp án đúng từ các lựa chọn [0], [1], [2], [3] vì không có cơ sở tính toán.\n\nDo đó, bài toán không thể giải được với dữ kiện hiện tại.",
-      "correct_index": 0
+      "detailed_explanation": "Tổng số học sinh bằng tổng các tần số của bốn nhóm.\nTa có $6 + 12 + 14 + 8 = 40$.\nVậy lớp 9A có 40 học sinh, tương ứng với lựa chọn [1].",
+      "correct_index": 1
     },
     {
       "chunk_id": "mc_0288",
@@ -6629,7 +6624,7 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 9,
-      "prompt": "Tần số tương đối của nhóm số liệu [20; 40) là",
+      "prompt": "Cho bảng tần số ghép nhóm về thời gian học tại nhà của học sinh lớp 9A: \\begin{tabular}{|c|c|c|c|c|} \\hline Thời gian học tại nhà (phút) & [0; 20) & [20; 40) & [40; 60) & [60; 80) \\\\ \\hline Tần số & 6 & 12 & 14 & 8 \\\\ \\hline \\end{tabular} Tần số tương đối của nhóm số liệu [20; 40) là",
       "options": [
         "3\\%.",
         "12\\%.",
@@ -6637,7 +6632,7 @@
         "36\\%."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài chỉ cho câu hỏi: \"Tần số tương đối của nhóm số liệu [20; 40) là\" và các lựa chọn phần trăm. Không có bảng số liệu, không có tổng số quan sát, không có tần số của nhóm [20; 40). Đây là một câu hỏi trắc nghiệm trong chủ đề Tần số và Tần số tương đối, nhưng đề bài không cung cấp dữ liệu cụ thể nào để tính toán. Để tính tần số tương đối của một nhóm, cần biết tần số của nhóm đó và tổng số tất cả các quan sát. Trong đề bài này, cả hai đại lượng đó đều không được cho. Do đó, bài toán thiếu dữ kiện cần thiết để giải. Vì không thể xác định được đáp án đúng từ các lựa chọn mà không có dữ liệu bổ sung, nên không thể chọn một chỉ số correct_index hợp lệ.",
+      "detailed_explanation": "Tổng số học sinh là $6 + 12 + 14 + 8 = 40$.\nNhóm [20; 40) có tần số 12 nên tần số tương đối là $\\frac{12}{40} = 0,3 = 30\\%$.\nTrong các lựa chọn, $30\\%$ tương ứng với lựa chọn [2].",
       "correct_index": 2
     },
     {
@@ -6665,7 +6660,7 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 11,
-      "prompt": "Khi vẽ biểu đồ tần số tương đối ghép nhóm dạng cột, chiều cao của cột biểu diễn nhóm số liệu nào cao nhất?",
+      "prompt": "Cho bảng tần số ghép nhóm về thời gian học tại nhà của học sinh lớp 9A: \\begin{tabular}{|c|c|c|c|c|} \\hline Thời gian học tại nhà (phút) & [0; 20) & [20; 40) & [40; 60) & [60; 80) \\\\ \\hline Tần số & 6 & 12 & 14 & 8 \\\\ \\hline \\end{tabular} Khi vẽ biểu đồ tần số tương đối ghép nhóm dạng cột, chiều cao của cột biểu diễn nhóm số liệu nào cao nhất?",
       "options": [
         "[0; 20).",
         "[20; 40).",
@@ -6673,8 +6668,8 @@
         "[60; 80)."
       ],
       "subparts": [],
-      "detailed_explanation": "Trong biểu đồ tần số tương đối ghép nhóm dạng cột, chiều cao của cột tỉ lệ với tần số tương đối của nhóm đó. Tần số tương đối của một nhóm được tính bằng công thức: f_i = n_i / N, với n_i là tần số của nhóm và N là tổng tất cả các tần số.\n\nĐề bài không cung cấp bảng tần số cụ thể, nhưng dựa vào mã câu mc_0290 và các lựa chọn, đây là một câu hỏi lý thuyết chung về nguyên tắc vẽ biểu đồ. Khi vẽ biểu đồ tần số tương đối ghép nhóm dạng cột, cột nào có chiều cao cao nhất thì biểu diễn nhóm có tần số tương đối lớn nhất.\n\nVì đề bài không cho dữ liệu cụ thể về tần số của từng nhóm, ta phải hiểu rằng câu hỏi này đang kiểm tra khái niệm: chiều cao của cột biểu diễn đại lượng nào? Đáp án đúng là nhóm có tần số tương đối cao nhất, nhưng trong các lựa chọn [0] đến [3], không có thông tin nào về tần số tương đối cụ thể.\n\nTuy nhiên, xét mã câu và ngữ cảnh, đây có thể là một câu hỏi trong một bài toán cụ thể đã cho trước đó (có thể có bảng tần số). Vì đề bài hiện tại chỉ cung cấp câu hỏi và các lựa chọn mà không có bảng dữ liệu, ta không thể xác định nhóm nào có tần số tương đối cao nhất chỉ dựa trên các khoảng [0;20), [20;40), [40;60), [60;80).\n\nNhưng, dựa vào cấu trúc đề và thông thường trong các bài tập trắc nghiệm dạng này, đáp án thường là nhóm đầu tiên [0;20) vì nó thường có tần số cao nhất trong phân phối dữ liệu thực tế (ví dụ: điểm số thấp tập trung nhiều). Do đó, với dữ kiện hiện có và theo logic thông thường của dạng bài này, ta chọn đáp án [0].",
-      "correct_index": 0
+      "detailed_explanation": "Chiều cao cột tỉ lệ với tần số tương đối nên cũng tỉ lệ với tần số khi tổng số học sinh cố định.\nSo sánh các tần số 6, 12, 14, 8 thì lớn nhất là 14.\nTần số 14 thuộc nhóm [40; 60).\nVì vậy cột cao nhất tương ứng với lựa chọn [2].",
+      "correct_index": 2
     },
     {
       "chunk_id": "mc_0291",
@@ -6683,28 +6678,28 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 12,
-      "prompt": "Khẳng định nào dưới đây là đúng?",
+      "prompt": "Cho bảng tần số ghép nhóm về thời gian học tại nhà của học sinh lớp 9A: \\begin{tabular}{|c|c|c|c|c|} \\hline Thời gian học tại nhà (phút) & [0; 20) & [20; 40) & [40; 60) & [60; 80) \\\\ \\hline Tần số & 6 & 12 & 14 & 8 \\\\ \\hline \\end{tabular} Khẳng định nào dưới đây là đúng?",
       "options": [
         "Trên 50\\% học sinh có thời gian học ở nhà dưới 40 phút.",
         "Có 15\\% học sinh có thời gian học ở nhà là 10 phút.",
-        "Có 35\\% học sinh có thời gian học ở nhà là 40 phút hoặc 60 phút.",
-        "Dưới 20\\% học sinh có thời gian học trên 60 phút. Sử dụng dữ liệu sau để trả lời cho các câu hỏi từ Câu 11 đến"
+        "Có 35\\% học sinh có thời gian học ở nhà từ 40 phút đến dưới 60 phút.",
+        "Dưới 20\\% học sinh có thời gian học trên 60 phút."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài cung cấp các lựa chọn nhưng không cung cấp bảng dữ liệu hay số liệu cụ thể về tần số, tần suất tương đối của thời gian học ở nhà. Các lựa chọn [0], [1], [2], [3] đều là các khẳng định định lượng về phần trăm học sinh, nhưng không có dữ liệu nào để kiểm tra tính đúng sai của chúng. Trong đề có dòng: \"Sử dụng dữ liệu sau để trả lời cho các câu hỏi từ Câu 11 đến\", nhưng dữ liệu đó không được cung cấp trong prompt này. Do đó, không thể xác định được khẳng định nào là đúng dựa trên thông tin hiện có. Tuy nhiên, vì đề yêu cầu chọn một đáp án và không có dữ kiện toán học cụ thể, bài toán thiếu dữ kiện để giải quyết. Nhưng vì đây là câu hỏi trắc nghiệm và prompt chỉ đưa ra các lựa chọn mà không có dữ liệu kèm theo, có thể đây là một phần của đề lớn hơn và dữ liệu đã bị thiếu trong prompt. Trong tình huống này, không thể tính toán hay suy luận để tìm đáp án đúng. Tuy nhiên, do yêu cầu bắt buộc phải trả về JSON với correct_index là số nguyên từ 0 đến 3, và không có cơ sở để loại trừ lựa chọn nào, tạm thời chọn đáp án đầu tiên (index 0) như một lựa chọn mặc định, nhưng với lưu ý rằng đề thiếu dữ kiện.",
-      "correct_index": 0
+      "detailed_explanation": "Tổng số học sinh là 40.\n- Dưới 40 phút có $6 + 12 = 18$ học sinh, tức $45\\%$, không vượt quá $50\\%$.\n- Từ bảng ghép nhóm không thể kết luận chính xác có $15\\%$ học sinh học đúng 10 phút.\n- Nhóm [40; 60) có 14 học sinh nên chiếm $\\frac{14}{40} = 35\\%$.\n- Trên 60 phút tương ứng nhóm [60; 80) có 8 học sinh, tức $20\\%$, không phải dưới $20\\%$.\nVì vậy khẳng định đúng là lựa chọn [2].",
+      "correct_index": 2
     },
     {
       "chunk_id": "mc_0292",
       "section": "Chủ đề 11. TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
       "subsection": "II. BÀI TẬP TỰ LUYỆN",
       "group": "A. Câu hỏi trắc nghiệm",
-      "type": "multiple_choice",
+      "type": "essay",
       "index": 13,
       "prompt": "Cho biểu đồ tần số ghép nhóm biểu diễn chiều cao của các vận động viên trong đội tuyển A như sau: Biểu đồ cột cho chiều cao vận động viên",
       "options": [],
       "subparts": [],
-      "detailed_explanation": "Đề bài chỉ cung cấp mô tả về biểu đồ tần số ghép nhóm nhưng không cung cấp dữ liệu cụ thể nào về các nhóm chiều cao, tần số, hoặc các lựa chọn để lựa chọn đáp án. Không có dữ liệu toán học cụ thể để phân tích hoặc tính toán. Do đó, không thể xác định được lời giải chi tiết hay đáp án đúng."
+      "detailed_explanation": "Prompt hiện tại chỉ còn mô tả ngắn của biểu đồ chiều cao vận động viên, còn phần hình/giá trị nguồn đã bị mất trong dữ liệu trích xuất. Câu này cần đối chiếu lại nguồn gốc hoặc hình gốc nếu muốn phục hồi nội dung đầy đủ."
     },
     {
       "chunk_id": "mc_0293",
@@ -6721,8 +6716,8 @@
         "18."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài hỏi: 'Có bao nhiêu vận động viên trong đội A có chiều cao lớn hơn hoặc bằng 180 cm và nhỏ hơn 190 cm?'\nTuy nhiên, đề bài không cung cấp bất kỳ dữ liệu nào về chiều cao của các vận động viên trong đội A, chẳng hạn như bảng tần số, biểu đồ, hay bất kỳ con số cụ thể nào.\nĐể trả lời câu hỏi này, cần phải có dữ liệu về phân bố chiều cao của đội A.\nVì không có dữ liệu nào được đưa ra trong đề bài, bài toán thiếu dữ kiện cần thiết để giải.\nDo đó, không thể xác định được số vận động viên thỏa mãn điều kiện chiều cao từ 180 cm đến dưới 190 cm.\nVì vậy, không thể chọn được đáp án đúng trong các lựa chọn [0] 14, [1] 15, [2] 16, [3] 18.",
-      "correct_index": 0
+      "detailed_explanation": "Prompt hiện tại đã mất biểu đồ nguồn của cụm câu hỏi này nên không thể tái lập phép đếm trực tiếp từ dữ liệu trong JSON. Tuy nhiên, answers.json đang gán đáp án chuẩn là lựa chọn [2], tương ứng với 16 vận động viên.",
+      "correct_index": 2
     },
     {
       "chunk_id": "mc_0294",
@@ -6739,8 +6734,8 @@
         "50."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài chỉ cung cấp câu hỏi: 'Có bao nhiêu vận động viên trong đội tuyển A?' và các lựa chọn đáp án. Không có bất kỳ dữ kiện toán học nào khác như bảng số liệu, biểu đồ, hay mối quan hệ nào để tính toán hoặc suy luận ra số vận động viên. Do đó, bài toán thiếu dữ kiện cần thiết để giải quyết.",
-      "correct_index": 0
+      "detailed_explanation": "Prompt hiện tại không còn biểu đồ gốc của cụm câu hỏi này nên không thể kiểm lại tổng số vận động viên chỉ từ dữ liệu đang lưu. Theo answers.json, đáp án chuẩn là lựa chọn [1], tương ứng với 60 vận động viên.",
+      "correct_index": 1
     },
     {
       "chunk_id": "mc_0295",
@@ -6757,8 +6752,8 @@
         "7."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài hỏi: 'Có bao nhiêu nhóm số liệu được biểu diễn trên biểu đồ?' nhưng không cung cấp biểu đồ cụ thể nào. Trong các lựa chọn đáp án, chỉ có các con số 4, 5, 6, 7. Đây là một câu hỏi trắc nghiệm thuộc chủ đề Tần số và Tần số tương đối. Tuy nhiên, đề bài không đưa ra bất kỳ dữ kiện toán học nào về biểu đồ (ví dụ: hình ảnh, mô tả dữ liệu, bảng số liệu kèm theo). Do đó, không thể xác định được số nhóm số liệu từ thông tin đã cho. Đề bài thiếu dữ kiện cần thiết để giải quyết bài toán.",
-      "correct_index": 0
+      "detailed_explanation": "Biểu đồ nguồn của cụm câu hỏi này không còn trong prompt hiện tại nên không thể đếm trực tiếp số nhóm số liệu từ JSON. Theo answers.json, đáp án chuẩn là lựa chọn [2], nghĩa là có 6 nhóm số liệu được biểu diễn.",
+      "correct_index": 2
     },
     {
       "chunk_id": "mc_0296",
@@ -6775,8 +6770,8 @@
         "8\\%."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài chỉ hỏi: \"Tần số tương đối của nhóm số liệu [200; 210) là\" và cung cấp 4 đáp án phần trăm. Tuy nhiên, đề bài không cung cấp bảng số liệu hay bất kỳ dữ liệu thống kê nào về tần số hay tổng số mẫu để tính toán tần số tương đối.\n\nTần số tương đối của một nhóm được tính bằng công thức: (Tần số của nhóm / Tổng tần số) × 100%.\n\nVì không có bất kỳ dữ kiện nào về tần số của nhóm [200; 210) hay tổng số mẫu, nên không thể tính toán được tần số tương đối.\n\nDo đó, bài toán thiếu dữ kiện cần thiết để giải. Tuy nhiên, trong các lựa chọn trắc nghiệm, chỉ có một đáp án đúng. Vì đề bài thuộc chủ đề \"Tần số và tần số tương đối\" và được đưa ra dưới dạng câu hỏi trắc nghiệm, có thể đây là một phần của một bài toán lớn hơn mà bảng số liệu đã được cho ở phần trước (nhưng không được cung cấp trong prompt này).\n\nVì prompt chỉ cung cấp câu hỏi này một cách cô lập và không có dữ liệu, nên không thể xác định được đáp án đúng dựa trên tính toán. Tuy nhiên, dựa vào cảnh báo từ lần thử trước: \"correct_index không phải số nguyên hợp lệ\", có thể đáp án đúng là một trong các số nguyên từ 0 đến 3. Nhưng không có cơ sở toán học để chọn.\n\nKết luận: Đề bài thiếu dữ kiện (bảng số liệu) để giải quyết bài toán.",
-      "correct_index": 0
+      "detailed_explanation": "Prompt hiện tại không còn biểu đồ ghép nhóm gốc nên chưa thể kiểm lại phép tính trực tiếp từ dữ liệu trong JSON. Theo answers.json, đáp án chuẩn là lựa chọn [2], tương ứng với 12\\%.",
+      "correct_index": 2
     },
     {
       "chunk_id": "mc_0297",
@@ -6793,8 +6788,8 @@
         "7."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài không cung cấp mẫu số liệu cụ thể nào. Để biểu diễn mẫu số liệu bằng biểu đồ dạng đoạn thẳng (line plot), số đoạn thẳng cần dùng phụ thuộc vào số lượng các điểm dữ liệu riêng biệt trong mẫu. Tuy nhiên, đề bài không cho mẫu số liệu, nên không thể xác định được số đoạn thẳng cần thiết.\n\nCác lựa chọn đưa ra là 4, 5, 6, 7, nhưng không có dữ kiện toán học nào để tính toán hoặc suy luận.\n\nDo đó, bài toán thiếu dữ kiện cần thiết để giải quyết.",
-      "correct_index": 0
+      "detailed_explanation": "Mẫu số liệu/biểu đồ nguồn của cụm câu hỏi này không còn trong prompt hiện tại nên không thể dựng lại số đoạn thẳng chỉ từ dữ liệu đang lưu. Theo answers.json, đáp án chuẩn là lựa chọn [1], tức cần 5 đoạn thẳng.",
+      "correct_index": 1
     },
     {
       "chunk_id": "essay_0298",
@@ -6840,8 +6835,8 @@
       "prompt": "Biểu đồ tần số tương đối ghép nhóm dưới đây cho biết cân nặng của các con lợn trong một trang trại. Lập bảng tần số ghép nhóm cho dữ liệu được biểu diễn trên biểu đồ. Biết rằng có 3600 con lợn trong trang trại.",
       "options": [],
       "subparts": [],
-      "detailed_explanation": "Đề bài yêu cầu lập bảng tần số ghép nhóm từ biểu đồ tần số tương đối ghép nhóm, với tổng số con lợn là 3600.\nTuy nhiên, đề bài không cung cấp biểu đồ cụ thể hay bất kỳ dữ liệu nào về các nhóm cân nặng và tần số tương đối tương ứng.\nKhông có thông tin về các khoảng giá trị (nhóm) cân nặng, cũng như phần trăm (%) hay tỉ lệ tần số tương đối của từng nhóm.\nDo đó, không thể xác định được tần số của từng nhóm (số con lợn trong mỗi nhóm) vì công thức tính tần số từ tần số tương đối là: Tần số = Tần số tương đối × Tổng số con.\nVì thiếu hoàn toàn dữ liệu từ biểu đồ nên bài toán không thể giải được.",
-      "final_answer": "Đề bài thiếu dữ kiện: không có biểu đồ cụ thể hoặc số liệu về các nhóm cân nặng và tần số tương đối tương ứng."
+      "detailed_explanation": "Bài này phụ thuộc trực tiếp vào biểu đồ tần số tương đối ghép nhóm, nhưng hình/giá trị nguồn không còn xuất hiện trong dữ liệu trích xuất hiện tại. Vì vậy câu này nên được giữ ở trạng thái manual review cho đến khi đối chiếu lại đề gốc có hình.",
+      "final_answer": "Cần đối chiếu lại biểu đồ gốc để phục hồi dữ liệu của bài này."
     },
     {
       "chunk_id": "essay_0300",
@@ -7326,10 +7321,7 @@
         "3.",
         "6.",
         "9.",
-        "30. câu 12. Sau khi đánh cá trong hồ nuôi, chú Sáu đã thống kê cân nặng của các con cá bắt được và nhận được bảng tần số tương đối như sau: \\begin{tabular}{|c|c|c|c|c|} \\hline Cân nặng (kg) & [0; 3) & [3; 6) & [6; 9) & [9; 12) \\\\ \\hline Tần số tương đối & 18,75\\% & 39\\% & 28,25\\% & 14\\% \\\\ \\hline \\end{tabular} Nếu trước khi đánh cá, chú Sáu bắt ngẫu nhiên một con cá thì xác suất để con cá đó nặng ít nhất 6 kg là A. 28,25\\%.",
-        "39\\%.",
-        "42,25\\%.",
-        "67,25\\%."
+        "30."
       ],
       "subparts": [],
       "detailed_explanation": "Đề bài gồm hai phần không liên quan nhau.\n\nPhần 1: Câu hỏi về không gian mẫu ghép cặp.\nNhóm thứ nhất có 3 học sinh, nhóm thứ hai có 3 học sinh.\nGhép cặp ngẫu nhiên một bạn nhóm thứ nhất với một bạn nhóm thứ hai.\nMỗi cách ghép cặp là một phần tử của không gian mẫu.\nSố cách ghép: Chọn một bạn từ nhóm thứ nhất (3 cách) và một bạn từ nhóm thứ hai (3 cách).\nTheo quy tắc nhân, số phần tử của không gian mẫu là 3 × 3 = 9.\nVậy đáp án là 9, tương ứng với lựa chọn [2].\n\nPhần 2: Câu hỏi về xác suất con cá nặng ít nhất 6 kg.\nBảng tần số tương đối cho các khoảng cân nặng:\n[0; 3): 18,75%\n[3; 6): 39%\n[6; 9): 28,25%\n[9; 12): 14%\nCon cá nặng ít nhất 6 kg thuộc khoảng [6; 9) hoặc [9; 12).\nTần số tương đối của hai khoảng này là 28,25% + 14% = 42,25%.\nVậy xác suất cần tìm là 42,25%, tương ứng với lựa chọn [5].\n\nTuy nhiên, đề bài chính chỉ hỏi về phần 1 (không gian mẫu), và các lựa chọn từ [0] đến [3] là cho phần đó.\nLựa chọn [3] có thêm một câu hỏi phụ về xác suất con cá, nhưng đây là một câu hỏi riêng biệt.\nTheo yêu cầu, chỉ cần trả lời câu hỏi chính: \"Không gian mẫu Ω của phép thử trên có số phần tử là\" với các lựa chọn [0] 3, [1] 6, [2] 9, [3] 30.\nKết quả tính toán là 9, nên đáp án đúng là lựa chọn [2].\n\nChú ý: Lựa chọn [3] có nội dung \"30. câu 12. Sau khi đánh cá...\" là một câu hỏi khác, không phải đáp án cho câu hỏi chính.",
@@ -7365,10 +7357,10 @@
         "$ \\frac{7}{57} $.",
         "$ \\frac{50}{57} $.",
         "$ \\frac{7}{50} $.",
-        "$ \\frac{43}{50} $. Sử dụng dữ liệu sau để trả lời cho các câu từ 15 đến 17. Khi khảo sát về tay thuận của các bạn học sinh trong lớp, giáo viên nhận được bảng thống kê sau: \\begin{tabular}{|c|c|c|} \\hline & Thuận tay trái & Thuận tay phải \\\\ \\hline Học sinh nam & 2 & 12 \\\\ \\hline Học sinh nữ & 4 & 14 \\\\ \\hline \\end{tabular}"
+        "$ \\frac{43}{50} $."
       ],
       "subparts": [],
-      "detailed_explanation": "Bài toán yêu cầu tính xác suất để buổi học tiếp theo Nam đi học đúng giờ.\nDữ kiện: Trong 50 buổi học vừa qua, có 7 lần Nam đi học muộn.\nSuy ra số buổi Nam đi học đúng giờ là: 50 - 7 = 43 buổi.\nXác suất thực nghiệm để Nam đi học đúng giờ được ước lượng bằng số lần xảy ra biến cố (đúng giờ) chia cho tổng số buổi đã quan sát.\nVậy xác suất cần tìm là: 43/50.\nTrong các lựa chọn, đáp án tương ứng với 43/50 là lựa chọn [3].\nLưu ý: Phần văn bản sau trong lựa chọn [3] (\"Sử dụng dữ liệu sau để trả lời cho các câu từ 15 đến 17...\") là một phần của đề bài khác, không liên quan đến câu hỏi này và chỉ là một sự nhập nhằng trong định dạng đề. Ta chỉ xét giá trị toán học của lựa chọn.",
+      "detailed_explanation": "Trong 50 buổi học có 7 lần Nam đi học muộn nên số buổi đi học đúng giờ là $50 - 7 = 43$.\nXác suất thực nghiệm để buổi học tiếp theo Nam đi học đúng giờ là $\\frac{43}{50}$.\nTrong các lựa chọn, đáp án đúng là lựa chọn [3].",
       "correct_index": 3
     },
     {
@@ -7378,7 +7370,7 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 14,
-      "prompt": "Giáo viên chọn ngẫu nhiên một bạn nam trong lớp. Xác suất để bạn học sinh nam đó thuận tay phải là",
+      "prompt": "Cho bảng thống kê sau: \\begin{tabular}{|c|c|c|} \\hline & Thuận tay trái & Thuận tay phải \\\\ \\hline Học sinh nam & 2 & 12 \\\\ \\hline Học sinh nữ & 4 & 14 \\\\ \\hline \\end{tabular} Giáo viên chọn ngẫu nhiên một bạn nam trong lớp. Xác suất để bạn học sinh nam đó thuận tay phải là",
       "options": [
         "$ \\frac{6}{7} $.",
         "$ \\frac{3}{8} $.",
@@ -7386,7 +7378,7 @@
         "$ \\frac{7}{16} $."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài không cung cấp bất kỳ dữ kiện cụ thể nào về số lượng học sinh nam trong lớp hay số bạn nam thuận tay phải. Để tính xác suất, cần biết số bạn nam thuận tay phải và tổng số bạn nam. Vì đề bài không cho các thông tin này, bài toán thiếu dữ kiện. Tuy nhiên, trong các lựa chọn đáp án, chỉ có đáp án $ \\frac{6}{7} $ là có thể hợp lý nếu giả sử lớp có 7 bạn nam và 6 bạn trong số đó thuận tay phải. Nhưng vì không có dữ kiện, không thể khẳng định đáp án nào là chính xác. Do đó, bài toán này thiếu dữ kiện để giải.",
+      "detailed_explanation": "Trong nhóm học sinh nam có $2 + 12 = 14$ bạn.\nSố bạn nam thuận tay phải là 12.\nXác suất cần tìm là $\\frac{12}{14} = \\frac{6}{7}$.\nVì vậy đáp án đúng là lựa chọn [0].",
       "correct_index": 0
     },
     {
@@ -7396,7 +7388,7 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 15,
-      "prompt": "Giáo viên chọn ngẫu nhiên một bạn học sinh trong lớp. Xác suất để bạn học sinh đó là nữ là",
+      "prompt": "Cho bảng thống kê sau: \\begin{tabular}{|c|c|c|} \\hline & Thuận tay trái & Thuận tay phải \\\\ \\hline Học sinh nam & 2 & 12 \\\\ \\hline Học sinh nữ & 4 & 14 \\\\ \\hline \\end{tabular} Giáo viên chọn ngẫu nhiên một bạn học sinh trong lớp. Xác suất để bạn học sinh đó là nữ là",
       "options": [
         "$ \\frac{1}{2} $.",
         "$ \\frac{2}{3} $.",
@@ -7404,8 +7396,8 @@
         "$ \\frac{7}{18} $."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài chỉ cho: \"Giáo viên chọn ngẫu nhiên một bạn học sinh trong lớp. Xác suất để bạn học sinh đó là nữ là\".\nKhông có thêm dữ kiện nào về số học sinh nam, nữ trong lớp.\nDo đó, không thể tính được xác suất cụ thể.\nCác lựa chọn đưa ra là các phân số cụ thể, nhưng không có cơ sở để chọn bất kỳ đáp án nào trong số đó.\nVì vậy, bài toán thiếu dữ kiện để giải.",
-      "correct_index": 0
+      "detailed_explanation": "Tổng số học sinh trong lớp là $2 + 12 + 4 + 14 = 32$.\nSố học sinh nữ là $4 + 14 = 18$.\nXác suất chọn ngẫu nhiên được một bạn nữ là $\\frac{18}{32} = \\frac{9}{16}$.\nGiá trị này không xuất hiện trong bốn lựa chọn đã cho, nên đề gốc hoặc phương án có khả năng bị lỗi. Theo answers.json hiện tại, hệ thống đang gán lựa chọn [2], nhưng về mặt dữ liệu thì các phương án đang không khớp với bảng.",
+      "correct_index": 2
     },
     {
       "chunk_id": "mc_0324",
@@ -7414,16 +7406,16 @@
       "group": "A. Câu hỏi trắc nghiệm",
       "type": "multiple_choice",
       "index": 16,
-      "prompt": "Giáo viên chọn ngẫu nhiên một bạn học sinh trong lớp. Xác suất để bạn học sinh đó là một bạn nam thuận tay trái là",
+      "prompt": "Cho bảng thống kê sau: \\begin{tabular}{|c|c|c|} \\hline & Thuận tay trái & Thuận tay phải \\\\ \\hline Học sinh nam & 2 & 12 \\\\ \\hline Học sinh nữ & 4 & 14 \\\\ \\hline \\end{tabular} Giáo viên chọn ngẫu nhiên một bạn học sinh trong lớp. Xác suất để bạn học sinh đó là một bạn nam thuận tay trái là",
       "options": [
         "$ \\frac{1}{6} $.",
         "$ \\frac{1}{7} $.",
         "$ \\frac{1}{18} $.",
-        "$ \\frac{1}{3} $. Sử dụng dữ liệu sau để trả lời cho các câu từ 18 đến 20. Khi thống kê số sách trong tủ sách của mình, Nam nhận được biểu đồ như sau:"
+        "$ \\frac{1}{3} $."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài yêu cầu tính xác suất để giáo viên chọn ngẫu nhiên một bạn học sinh trong lớp là một bạn nam thuận tay trái. Tuy nhiên, đề bài không cung cấp bất kỳ dữ liệu nào về số học sinh nam, số học sinh thuận tay trái, hay tổng số học sinh trong lớp.\n\nTrong phần cuối của đề bài có đề cập: \"Sử dụng dữ liệu sau để trả lời cho các câu từ 18 đến 20. Khi thống kê số sách trong tủ sách của mình, Nam nhận được biểu đồ như sau:\". Điều này cho thấy dữ liệu cần thiết để giải bài toán này (có thể là số liệu về học sinh nam thuận tay trái) nằm ở phần biểu đồ hoặc dữ liệu đi kèm, nhưng trong prompt hiện tại không có biểu đồ hay bất kỳ số liệu cụ thể nào.\n\nDo đó, với thông tin được cung cấp trong prompt này, bài toán thiếu dữ kiện cần thiết để tính toán xác suất. Không thể xác định được đáp án đúng trong số các lựa chọn mà không có thêm dữ liệu về lớp học.",
-      "correct_index": 0
+      "detailed_explanation": "Tổng số học sinh trong lớp là $2 + 12 + 4 + 14 = 32$.\nSố bạn nam thuận tay trái là 2.\nXác suất cần tìm là $\\frac{2}{32} = \\frac{1}{16}$.\nGiá trị này không xuất hiện trong bốn lựa chọn đã cho, nên đề gốc hoặc phương án có khả năng bị lỗi. Theo answers.json hiện tại, hệ thống đang gán lựa chọn [2], nhưng về mặt dữ liệu thì các phương án đang không khớp với bảng.",
+      "correct_index": 2
     },
     {
       "chunk_id": "mc_0325",
@@ -7440,8 +7432,8 @@
         "$ \\frac{1}{22} $."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài chỉ cho biết: \"Nam chọn ngẫu nhiên một cuốn sách trong tủ sách, xác suất để Nam chọn được cuốn sách Toán là\".\nCác lựa chọn đưa ra là các phân số: 22/48, 22/70, 1/7, 1/22.\nĐể tính xác suất chọn được cuốn sách Toán, cần biết số cuốn sách Toán và tổng số cuốn sách trong tủ.\nTừ các lựa chọn, ta thấy có hai phân số có tử số 22: 22/48 và 22/70. Điều này gợi ý rằng số cuốn sách Toán có thể là 22.\nMẫu số là tổng số sách: 48 hoặc 70.\nXét phân số 22/48 = 11/24, 22/70 = 11/35.\nPhân số 1/7 ≈ 0.1428, 1/22 ≈ 0.04545.\nKhông có dữ kiện nào khác trong đề bài để xác định chính xác tổng số sách.\nTuy nhiên, trong các bài toán xác suất cơ bản lớp 9, thường đề bài sẽ ngầm cung cấp số liệu thông qua bảng hoặc hình ảnh (nhưng ở đây không có).\nVì đề bài thuộc chủ đề \"Xác suất của biến cố trong một số mô hình đơn giản\", và là câu hỏi trắc nghiệm, nên có thể đề bài đã ngầm hiểu rằng có 22 cuốn sách Toán trong tổng số 48 cuốn sách.\nKiểm tra các lựa chọn:\n- 22/48: hợp lý nếu tổng số sách là 48, số sách Toán là 22.\n- 22/70: hợp lý nếu tổng số sách là 70.\n- 1/7: có thể nếu số sách Toán là 1 phần 7 tổng số sách, nhưng không khớp với tử số 22.\n- 1/22: có thể nếu chỉ có 1 cuốn Toán trong 22 cuốn, nhưng không khớp.\nVì đề bài không cung cấp thêm dữ kiện, nhưng trong thực tế ra đề, thường sẽ có một bảng số liệu hoặc đoạn văn mô tả số lượng sách. Ở đây, đề bài bị thiếu dữ kiện.\nTuy nhiên, dựa vào mã câu mc_0325 và các lựa chọn, ta có thể suy luận rằng đáp án đúng là 22/48, vì nó là phân số tối giản hơn (11/24) và thường gặp trong các bài toán chuẩn.\nGiả sử đề bài đầy đủ có thể là: \"Trong tủ sách có 22 cuốn sách Toán và 26 cuốn sách khác, tổng cộng 48 cuốn. Tính xác suất...\" thì đáp án là 22/48.\nVì vậy, ta chọn đáp án có chỉ số 0.",
-      "correct_index": 0
+      "detailed_explanation": "Biểu đồ nguồn về tủ sách của Nam không còn trong prompt hiện tại nên không thể khôi phục lại phép tính xác suất chỉ từ dữ liệu đang lưu. Theo answers.json, đáp án chuẩn của câu này là lựa chọn [1], tương ứng với $ \\frac{22}{70} $.",
+      "correct_index": 1
     },
     {
       "chunk_id": "mc_0326",
@@ -7458,8 +7450,8 @@
         "$ \\frac{1}{70} $."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài cho biết Nam có cuốn truyện Đô-Rê-Mon trong số các cuốn sách truyện của mình, và Nam chọn ngẫu nhiên một cuốn sách trong tủ sách. Tuy nhiên, đề bài không cung cấp số lượng tổng cộng các cuốn sách trong tủ sách, cũng như số lượng cuốn sách truyện Đô-Rê-Mon cụ thể (chỉ biết là có cuốn đó). Để tính xác suất chọn được cuốn truyện Đô-Rê-Mon, cần biết tổng số cuốn sách trong tủ sách (n) và số cuốn Đô-Rê-Mon (k), khi đó xác suất là k/n.\n\nTrong các lựa chọn đáp án:\n- $\\frac{1}{4}$: có thể tương ứng với trường hợp tổng số sách là 4 và có 1 cuốn Đô-Rê-Mon.\n- $\\frac{1}{7}$: tương ứng tổng số sách là 7 và có 1 cuốn Đô-Rê-Mon.\n- $\\frac{4}{70}$: rút gọn thành $\\frac{2}{35}$, tương ứng có thể có 4 cuốn Đô-Rê-Mon trong tổng 70 cuốn.\n- $\\frac{1}{70}$: tương ứng có 1 cuốn Đô-Rê-Mon trong tổng 70 cuốn.\n\nĐề bài không đủ dữ kiện để tính toán cụ thể, nhưng vì đây là câu hỏi trắc nghiệm và có các lựa chọn sẵn, cần dựa vào thông tin thường gặp trong các bài toán xác suất đơn giản: thường đề bài sẽ ngầm hiểu rằng chỉ có 1 cuốn Đô-Rê-Mon và tổng số sách là số cụ thể. Tuy nhiên, đề không cho số tổng sách.\n\nXem xét cảnh báo từ lần thử trước: \"correct_index không phải số nguyên hợp lệ.\" Điều này cho thấy có thể đã có sai sót trong việc chọn đáp án. Trong trường hợp này, vì đề thiếu dữ kiện rõ ràng, nhưng với các lựa chọn có sẵn, đáp án hợp lý nhất thường là $\\frac{1}{4}$ vì đây là phân số đơn giản nhất và thường gặp trong các bài toán mẫu khi không có thông tin bổ sung. Hơn nữa, trong nhiều bài toán tương tự, nếu chỉ nói \"có cuốn truyện Đô-Rê-Mon\" và chọn ngẫu nhiên một cuốn, thường ngầm hiểu có 1 cuốn Đô-Rê-Mon và tổng số sách là một số nhỏ (ví dụ 4).\n\nDo đó, chọn đáp án index 0 tương ứng với $\\frac{1}{4}$.",
-      "correct_index": 0
+      "detailed_explanation": "Biểu đồ nguồn của cụm câu hỏi về tủ sách đã bị mất khỏi prompt hiện tại nên không thể đối chiếu lại số liệu trực tiếp từ JSON. Theo answers.json, đáp án chuẩn của câu này là lựa chọn [1], tương ứng với $ \\frac{1}{7} $.",
+      "correct_index": 1
     },
     {
       "chunk_id": "mc_0327",
@@ -7476,8 +7468,8 @@
         "$ \\frac{2}{5} $."
       ],
       "subparts": [],
-      "detailed_explanation": "Đề bài chỉ cung cấp định nghĩa: \"Các cuốn sách truyện và tạp chí là các cuốn sách giải trí; trong khi các cuốn sách còn lại là các cuốn sách học.\" Tuy nhiên, đề bài không cung cấp bất kỳ dữ kiện số lượng cụ thể nào về tổng số sách, số sách truyện, số tạp chí hay số sách học. Do đó, không thể tính được xác suất cụ thể.\nCác lựa chọn đáp án đều là các phân số cụ thể, nhưng không có dữ kiện để tính toán ra bất kỳ phân số nào trong số đó.\nVì vậy, bài toán thiếu dữ kiện cần thiết để giải quyết.",
-      "correct_index": 0
+      "detailed_explanation": "Prompt hiện tại không còn biểu đồ nguồn của bài toán tủ sách nên chưa thể tái dựng phép đếm số sách giải trí chỉ từ dữ liệu đang lưu. Theo answers.json, đáp án chuẩn là lựa chọn [2], tương ứng với $ \\frac{1}{2} $.",
+      "correct_index": 2
     },
     {
       "chunk_id": "essay_0328",

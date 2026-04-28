@@ -259,6 +259,20 @@
       ]
     },
     {
+      id: 'satelliteDish',
+      title: 'Ăng ten vệ tinh',
+      desc: 'Hình ăng ten vệ tinh kiểu TikZ với chân đỡ, chảo quay và nhãn kích thước.',
+      category: 'Ứng dụng',
+      tags: ['ăng ten', 'parabol', 'vệ tinh', 'tikz'],
+      sample: { preset: 'satelliteDish', mouthDiameter: 300, focusDistance: 75, bbox: [-5, 9, 8, -5], height: 340 },
+      fields: [
+        { key: 'mouthDiameter', label: 'Đường kính miệng (cm)', type: 'number', default: 300 },
+        { key: 'focusDistance', label: 'Khoảng cách OF cần hỏi (cm)', type: 'number', default: 75 },
+        { key: 'mouthGapLabel', label: 'Nhãn khoảng cách đầu thu-miệng', type: 'text', default: '150 cm' },
+        { key: 'rotationDeg', label: 'Góc quay chảo (độ)', type: 'number', default: 35 }
+      ]
+    },
+    {
       id: 'multiGraph',
       title: 'Mạng đồ thị (nhiều cạnh)',
       desc: 'Các đỉnh nối với nhau bằng nhiều cạnh song song. Dùng cho bài đếm đường đi.',

@@ -50,6 +50,15 @@ window.MathJax = {
   .form label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600}
   .form input[type=text],.form input[type=number],.form textarea,.form select{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.55;background:#fff}
   .form textarea{resize:vertical;min-height:80px}
+  .rich-wrap{border:1px solid var(--border);border-radius:6px;background:#fff;overflow:hidden}
+  .rich-toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:8px;border-bottom:1px solid var(--border);background:#f8fafc}
+  .rich-toolbar button{padding:4px 8px;font-size:12px}
+  .rich-editor{min-height:140px;padding:10px 12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.6;outline:none;overflow:auto}
+  .rich-editor[data-field="prompt"]{min-height:120px}
+  .rich-editor[data-field="detailed_explanation"]{min-height:220px}
+  .rich-editor:empty:before{content:attr(data-placeholder);color:#94a3b8}
+  .rich-editor img{max-width:100%;height:auto;display:block;margin:8px 0;border-radius:4px}
+  .rich-help{padding:8px 12px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);background:#f8fafc}
   .option-row,.subpart-row{display:flex;gap:6px;margin-bottom:6px;align-items:flex-start}
   .option-row input[type=radio]{margin-top:10px}
   .option-row input[type=text],.subpart-row input[type=text],.subpart-row textarea{flex:1}
@@ -69,6 +78,7 @@ window.MathJax = {
   .preview .option.correct{border-color:var(--success);background:#dcfce7;font-weight:600}
   .preview .option .letter{display:inline-block;width:20px;font-weight:700;color:var(--primary)}
   .preview .expl{margin-top:16px;padding:10px;background:#f8fafc;border-left:3px solid var(--primary);border-radius:3px;white-space:pre-wrap}
+  .preview .qprompt img,.preview .expl img{max-width:100%;height:auto;display:block;margin:8px 0;border-radius:4px}
   .preview .meta{font-size:12px;color:var(--muted);margin-bottom:6px}
   .problems-banner{padding:8px 12px;margin:0 16px 12px;border-radius:6px;font-size:13px;background:#fef3c7;color:#92400e;border:1px solid #fde68a}
   .problems-banner ul{margin:4px 0 0 18px;padding:0}
@@ -142,21 +152,208 @@ window.MathJax = {
   </div>
 </div>
 
+<input id="rich-image-file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none">
+
+<script src="assets/js/diagrams.js"></script>
 <script>
 const API_BASE = (() => {
-  // If served from file:// or a port other than 3001, assume backend at :3001
+  // Use backend at :3001 unless this page itself is already served from :3001
   const { protocol, hostname, port } = window.location;
   if (protocol === 'file:') return 'http://localhost:3001';
-  if (port && port !== '3001') return `${protocol}//${hostname}:3001`;
+  if (port !== '3001') return `${protocol}//${hostname}:3001`;
   return '';
 })();
 
 let allQuestions = [];      // list items from /api/g9/questions
 let currentQ = null;        // full question object being edited
 let originalSnapshot = null; // JSON string for dirty detection
+let activeRichField = null;
+let pendingImageField = null;
 
 const $ = id => document.getElementById(id);
 const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const looksLikeHtml = s => /<\/?[a-z][^>]*>/i.test(String(s || ''));
+
+function textToEditorHtml(value) {
+  const raw = String(value ?? '');
+  if (!raw) return '';
+  if (looksLikeHtml(raw)) return raw;
+  return escapeHtml(raw).replace(/\n/g, '<br>');
+}
+
+function textToPreviewHtml(value) {
+  const raw = String(value ?? '');
+  if (!raw) return '';
+  if (looksLikeHtml(raw)) return raw;
+  return escapeHtml(raw).replace(/\n/g, '<br>');
+}
+
+function resetDiagramsIn(root) {
+  if (!root) return;
+  root.querySelectorAll('.jxg-diagram').forEach(el => {
+    el.removeAttribute('data-jxg-rendered');
+    el.innerHTML = '';
+  });
+}
+
+async function readJsonOrThrow(response) {
+  const text = await response.text();
+  let data = null;
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch (_) {
+    data = null;
+  }
+  if (data) return data;
+  const preview = String(text || '').slice(0, 160).replace(/\s+/g, ' ').trim();
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}${preview ? `: ${preview}` : ''}`);
+  }
+  throw new Error(preview || 'Phản hồi không phải JSON hợp lệ');
+}
+
+function normalizeEditorHtml(html) {
+  return String(html || '')
+    .replace(/<div><br><\/div>/gi, '<br>')
+    .replace(/<div>/gi, '<br>')
+    .replace(/<\/div>/gi, '')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/^(<br\s*\/?>(\s|&nbsp;)*)+|(<br\s*\/?>(\s|&nbsp;)*)+$/gi, '')
+    .trim();
+}
+
+function getSelectionRangeInside(editor) {
+  const sel = window.getSelection();
+  if (!sel || sel.rangeCount === 0) return null;
+  const range = sel.getRangeAt(0);
+  const container = range.commonAncestorContainer;
+  if (editor === container || editor.contains(container.nodeType === 1 ? container : container.parentNode)) {
+    return range.cloneRange();
+  }
+  return null;
+}
+
+function setActiveRichField(field) {
+  activeRichField = field;
+  if (field && field._editor) {
+    const range = getSelectionRangeInside(field._editor);
+    if (range) field._savedRange = range;
+  }
+}
+
+function insertHtmlIntoRichField(field, html, rangeOverride) {
+  if (!field || !field._editor) return;
+  const editor = field._editor;
+  editor.focus();
+  const sel = window.getSelection();
+  const range = rangeOverride || field._savedRange || getSelectionRangeInside(editor);
+  if (range && sel) {
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+  if (document.execCommand) {
+    document.execCommand('insertHTML', false, html);
+  } else if (sel && sel.rangeCount) {
+    const liveRange = sel.getRangeAt(0);
+    liveRange.deleteContents();
+    const frag = liveRange.createContextualFragment(html);
+    liveRange.insertNode(frag);
+    liveRange.collapse(false);
+  } else {
+    editor.insertAdjacentHTML('beforeend', html);
+  }
+  syncRichField(field);
+}
+
+function syncRichField(field) {
+  if (!field || !field._editor || !field.dataset) return;
+  const key = field.dataset.richBind;
+  currentQ[key] = normalizeEditorHtml(field._editor.innerHTML);
+  const range = getSelectionRangeInside(field._editor);
+  if (range) field._savedRange = range;
+  renderPreview();
+  updateSaveStatus();
+}
+
+async function uploadImageDataUrl(dataUrl, fieldName) {
+  const r = await fetch(`${API_BASE}/api/g9/upload-image`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      imageData: dataUrl,
+      questionId: currentQ && currentQ.chunk_id,
+      field: fieldName
+    })
+  });
+  const data = await readJsonOrThrow(r);
+  if (!r.ok || !data.success) throw new Error(data.error || 'upload_failed');
+  return data.url;
+}
+
+async function handleImageFileForField(file, field, rangeOverride) {
+  if (!file || !field) return;
+  if (!/^image\//i.test(file.type)) throw new Error('invalid_image_type');
+  const dataUrl = await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error('read_failed'));
+    reader.readAsDataURL(file);
+  });
+  const url = await uploadImageDataUrl(dataUrl, field.dataset.richBind);
+  insertHtmlIntoRichField(field, `<img src="${escapeHtml(url)}" alt="Hình minh họa">`, rangeOverride);
+}
+
+function bindRichField(field) {
+  const key = field.dataset.richBind;
+  const editor = field.querySelector('.rich-editor');
+  field._editor = editor;
+  editor.innerHTML = textToEditorHtml(currentQ[key] || '');
+  const saveRange = () => setActiveRichField(field);
+  editor.addEventListener('focus', saveRange);
+  editor.addEventListener('click', saveRange);
+  editor.addEventListener('keyup', saveRange);
+  editor.addEventListener('mouseup', saveRange);
+  editor.addEventListener('input', () => syncRichField(field));
+  editor.addEventListener('paste', async (e) => {
+    const items = Array.from((e.clipboardData && e.clipboardData.items) || []);
+    const imageItem = items.find(item => item.type && item.type.startsWith('image/'));
+    if (!imageItem) return;
+    e.preventDefault();
+    const file = imageItem.getAsFile();
+    const range = getSelectionRangeInside(editor) || field._savedRange;
+    try {
+      await handleImageFileForField(file, field, range);
+    } catch (err) {
+      alert('Không tải được ảnh: ' + err.message);
+    }
+  });
+  field.querySelectorAll('[data-rich-cmd]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      editor.focus();
+      const cmd = btn.dataset.richCmd;
+      if (cmd === 'latex-inline') {
+        insertHtmlIntoRichField(field, '$...$');
+        return;
+      }
+      if (cmd === 'latex-block') {
+        insertHtmlIntoRichField(field, '<br>$$<br>...<br>$$<br>');
+        return;
+      }
+      if (cmd === 'diagram') {
+        insertHtmlIntoRichField(field, `<div class="jxg-diagram" data-jxg='{"preset":"axes","bbox":[-5,5,5,-5],"height":220}'></div>`);
+        return;
+      }
+      if (cmd === 'image') {
+        pendingImageField = field;
+        $('rich-image-file').value = '';
+        $('rich-image-file').click();
+        return;
+      }
+      document.execCommand(cmd, false, null);
+      syncRichField(field);
+    });
+  });
+}
 
 // ============== LOAD LIST ==============
 async function loadList() {
@@ -250,7 +447,7 @@ function renderEditor() {
     <div class="group"><label>Subsection</label><input type="text" data-bind="subsection"></div>
     <div class="group"><label>Group</label><input type="text" data-bind="group"></div>
     <div class="group"><label>Type</label><input type="text" data-bind="type" disabled></div>
-    <div class="group"><label>Prompt (hỗ trợ LaTeX \\( \\) hoặc $…$)</label><textarea data-bind="prompt" rows="4"></textarea></div>`;
+    <div class="group"><label>Prompt (rich editor — hỗ trợ LaTeX, HTML, ảnh dán từ clipboard)</label><div class="rich-wrap" data-rich-bind="prompt"><div class="rich-toolbar"><button type="button" data-rich-cmd="bold"><strong>B</strong></button><button type="button" data-rich-cmd="italic"><em>I</em></button><button type="button" data-rich-cmd="insertUnorderedList">• List</button><button type="button" data-rich-cmd="latex-inline">$...$</button><button type="button" data-rich-cmd="latex-block">$$...$$</button><button type="button" data-rich-cmd="image">🖼 Ảnh</button><button type="button" data-rich-cmd="diagram">📐 Diagram</button></div><div class="rich-editor" data-field="prompt" contenteditable="true" data-placeholder="Dán nội dung hoặc nhấn Ctrl+V để chèn ảnh..."></div><div class="rich-help">Có thể dán ảnh trực tiếp bằng <span class="kbd">Ctrl</span> + <span class="kbd">V</span>. Ảnh sẽ được lưu tự động vào server và chèn vào đề bài.</div></div></div>`;
 
   if (q.type === 'multiple_choice') {
     body += `<div class="group"><label>Options (chọn 1 đáp án đúng)</label><div id="mc-options"></div>
@@ -261,7 +458,7 @@ function renderEditor() {
   }
 
   body += `<div class="group"><label>Final answer (đáp số tổng — hiển thị dưới phần lời giải trên học liệu)</label><input type="text" data-bind="final_answer" placeholder="Ví dụ: $-2$ hoặc $x=3$"></div>`;
-  body += `<div class="group"><label>Detailed explanation (lời giải chi tiết — fallback khi không có subpart_solutions)</label><textarea data-bind="detailed_explanation" rows="10"></textarea></div>`;
+  body += `<div class="group"><label>Detailed explanation (rich editor — fallback khi không có subpart_solutions)</label><div class="rich-wrap" data-rich-bind="detailed_explanation"><div class="rich-toolbar"><button type="button" data-rich-cmd="bold"><strong>B</strong></button><button type="button" data-rich-cmd="italic"><em>I</em></button><button type="button" data-rich-cmd="insertUnorderedList">• List</button><button type="button" data-rich-cmd="latex-inline">$...$</button><button type="button" data-rich-cmd="latex-block">$$...$$</button><button type="button" data-rich-cmd="image">🖼 Ảnh</button><button type="button" data-rich-cmd="diagram">📐 Diagram</button></div><div class="rich-editor" data-field="detailed_explanation" contenteditable="true" data-placeholder="Nhập lời giải chi tiết hoặc dán ảnh minh họa..."></div><div class="rich-help">Phần này cho phép định dạng chữ, công thức và ảnh. Nội dung sẽ được lưu ở dạng HTML.</div></div></div>`;
 
   // subpart_solutions block (essay only, or any chunk that already has it)
   if (q.type === 'essay' || Array.isArray(q.subpart_solutions)) {
@@ -292,6 +489,7 @@ function renderEditor() {
       updateSaveStatus();
     });
   });
+  $('edit-body').querySelectorAll('[data-rich-bind]').forEach(bindRichField);
 
   if (q.type === 'multiple_choice') renderOptions();
   else if (q.type === 'essay') renderSubparts();
@@ -415,7 +613,7 @@ function doRenderPreview() {
   const q = currentQ;
   if (!q) { $('preview').innerHTML = '<div class="empty">—</div>'; return; }
   let html = `<div class="meta">${escapeHtml(q.section || '')} · ${escapeHtml(q.subsection || '')} · ${q.type === 'multiple_choice' ? 'Trắc nghiệm' : 'Tự luận'}</div>`;
-  html += `<div class="qprompt">${escapeHtml(q.prompt || '')}</div>`;
+  html += `<div class="qprompt">${textToPreviewHtml(q.prompt || '')}</div>`;
   if (q.type === 'multiple_choice' && Array.isArray(q.options)) {
     const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
     html += q.options.map((o, i) => `<div class="option ${q.correct_index === i ? 'correct' : ''}"><span class="letter">${letters[i] || (i+1)}.</span>${escapeHtml(o)}${q.correct_index === i ? ' ✓' : ''}</div>`).join('');
@@ -426,21 +624,25 @@ function doRenderPreview() {
   if (Array.isArray(q.subpart_solutions) && q.subpart_solutions.length) {
     html += `<div class="expl"><strong>Lời giải theo từng ý (từ subpart_solutions — đây là cái học liệu ưu tiên hiển thị):</strong>`;
     html += q.subpart_solutions.map(s => {
-      const expl = escapeHtml(s.explanation || s.solution || '');
+      const expl = textToPreviewHtml(s.explanation || s.solution || '');
       const fin = s.final_answer ? `<div style="margin-top:4px"><em>Đáp số:</em> ${escapeHtml(s.final_answer)}</div>` : '';
       return `<div style="margin-top:10px;padding:8px;background:#fff;border-radius:4px;border-left:3px solid var(--success)"><strong>${escapeHtml(s.label || '')}</strong>\n${expl}${fin}</div>`;
     }).join('');
     html += `</div>`;
     if (q.detailed_explanation) {
-      html += `<details style="margin-top:10px"><summary style="cursor:pointer;color:var(--muted);font-size:13px">detailed_explanation (fallback, không được dùng khi có subpart_solutions)</summary><div class="expl" style="opacity:0.6">${escapeHtml(q.detailed_explanation)}</div></details>`;
+      html += `<details style="margin-top:10px"><summary style="cursor:pointer;color:var(--muted);font-size:13px">detailed_explanation (fallback, không được dùng khi có subpart_solutions)</summary><div class="expl" style="opacity:0.6">${textToPreviewHtml(q.detailed_explanation)}</div></details>`;
     }
   } else if (q.detailed_explanation) {
-    html += `<div class="expl"><strong>Lời giải:</strong>\n${escapeHtml(q.detailed_explanation)}</div>`;
+    html += `<div class="expl"><strong>Lời giải:</strong><div>${textToPreviewHtml(q.detailed_explanation)}</div></div>`;
   }
   if (q.final_answer) {
     html += `<div style="margin-top:10px;padding:8px 10px;background:#fef3c7;border:1px solid #fde68a;border-radius:4px"><strong>Đáp số (final_answer):</strong> ${escapeHtml(q.final_answer)}</div>`;
   }
   $('preview').innerHTML = html;
+  resetDiagramsIn($('preview'));
+  if (window.Diagrams && window.Diagrams.renderAll) {
+    Promise.resolve(window.Diagrams.renderAll($('preview'), { mode: 'static' })).catch(() => {});
+  }
   if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([$('preview')]).catch(()=>{});
 }
 
@@ -498,6 +700,19 @@ $('btn-revert').addEventListener('click', revert);
 $('filter-search').addEventListener('input', renderList);
 $('filter-type').addEventListener('change', renderList);
 $('filter-flagged').addEventListener('change', renderList);
+$('rich-image-file').addEventListener('change', async e => {
+  const file = e.target.files && e.target.files[0];
+  const field = pendingImageField || activeRichField;
+  pendingImageField = null;
+  if (!file || !field) return;
+  try {
+    await handleImageFileForField(file, field, field._savedRange);
+  } catch (err) {
+    alert('Không tải được ảnh: ' + err.message);
+  } finally {
+    e.target.value = '';
+  }
+});
 
 // Ctrl+S to save
 window.addEventListener('keydown', e => {

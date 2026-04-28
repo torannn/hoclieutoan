@@ -1,67 +1,410 @@
 {
-  "total_chunks": 347,
-  "total_flagged": 5,
+  "total_chunks": 345,
+  "total_flagged": 40,
   "duplicate_ids": [],
   "issue_histogram": {
-    "mc_no_options": 4,
-    "mc_correct_index_out_of_range": 3,
-    "mc_missing_correct_index": 1,
-    "mc_options_not_4": 1
+    "visual_reference_without_embedded_data": 40
   },
   "issues": [
     {
-      "chunk_id": "mc_0146",
+      "chunk_id": "essay_0081",
+      "type": "essay",
+      "section": "Chủ đề 3. CĂN THỨC",
+      "index": 8,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Một mảnh vườn hình tam giác vuông ABC tiếp giáp với hai thừa ruộng hình vuông có diện tích như hình sau đây. So sánh chu"
+    },
+    {
+      "chunk_id": "essay_0097",
+      "type": "essay",
+      "section": "Chủ đề 3. CĂN THỨC",
+      "index": 24,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Bác Thanh dự định dành ra một thừa đất có dạng hình chữ nhật trong mảnh đất lớn của gia đình để làm khu vực sản xuất. Bá"
+    },
+    {
+      "chunk_id": "mc_0100",
       "type": "multiple_choice",
-      "section": "Chủ đề 6. TỈ SỐ LƯỢNG GIÁC CỦA GÓC NHỌN. MỘT SỐ HỆ THỨC VỀ CẠNH VÀ GÓC TRONG TAM GIÁC VUÔNG",
+      "section": "Chủ đề 4. HÀM SỐ $ y = ax^2 (a \\neq 0) $",
+      "index": 3,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Hình vẽ dưới đây là đồ thị của hàm số nào?"
+    },
+    {
+      "chunk_id": "mc_0104",
+      "type": "multiple_choice",
+      "section": "Chủ đề 4. HÀM SỐ $ y = ax^2 (a \\neq 0) $",
+      "index": 7,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Một chiếc đèn đường được lắp đặt trên một cột đèn cao. Khi ánh sáng chiếu xuống mặt đường, vùng sáng trên mặt đất tạo th"
+    },
+    {
+      "chunk_id": "essay_0113",
+      "type": "essay",
+      "section": "Chủ đề 4. HÀM SỐ $ y = ax^2 (a \\neq 0) $",
       "index": 4,
       "problems": [
-        "mc_no_options",
-        "mc_correct_index_out_of_range"
+        "visual_reference_without_embedded_data"
       ],
-      "preview": "Cho tam giác $ MNP $ vuông tại $ M $. Hãy tính tỉ số lượng giác tan $ P $, biết rằng $ NP = 9 $ cm, $ MN = 5 $ cm."
+      "preview": "Cho đồ thị $ (P) $ của hàm số \\[ y = f(x) = ax^2 \\ (a \\neq 0). \\]"
     },
     {
-      "chunk_id": "mc_0280",
-      "type": "multiple_choice",
-      "section": "Chủ đề 11. TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
-      "index": 1,
+      "chunk_id": "essay_0118",
+      "type": "essay",
+      "section": "Chủ đề 4. HÀM SỐ $ y = ax^2 (a \\neq 0) $",
+      "index": 9,
       "problems": [
-        "mc_no_options",
-        "mc_correct_index_out_of_range"
+        "visual_reference_without_embedded_data"
       ],
-      "preview": "Trong ngày hôm qua, nhà ăn tại một trường đã ghi lại 400 lượt gọi món như bảng sau: \\begin{tabular}{|c|c|c|c|c|c|} \\hlin"
+      "preview": "Từ mặt đất, người ta bắn một viên bi lên bầu trời theo quỹ đạo hình parabol. Quỹ đạo của viên bi được mô tả bởi đồ thị h"
     },
     {
-      "chunk_id": "mc_0286",
+      "chunk_id": "mc_0151",
       "type": "multiple_choice",
+      "section": "Chủ đề 6. TỈ SỐ LƯỢNG GIÁC CỦA GÓC NHỌN. MỘT SỐ HỆ THỨC VỀ CẠNH VÀ GÓC TRONG TAM GIÁC VUÔNG",
+      "index": 9,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Một mái nhà có chiều dài cạnh nghiêng là 6 m và chiều cao từ chân mái đến đỉnh mái là 3 m (như hình dưới). Hai mái nghiê"
+    },
+    {
+      "chunk_id": "essay_0162",
+      "type": "essay",
+      "section": "Chủ đề 6. TỈ SỐ LƯỢNG GIÁC CỦA GÓC NHỌN. MỘT SỐ HỆ THỨC VỀ CẠNH VÀ GÓC TRONG TAM GIÁC VUÔNG",
+      "index": 8,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Một toà nhà cao tầng có chiều cao 12 m. Một người đang đứng cách chân toà nhà 10 m và mắt người ấy cách mặt đất 1,6 m. H"
+    },
+    {
+      "chunk_id": "essay_0164",
+      "type": "essay",
+      "section": "Chủ đề 6. TỈ SỐ LƯỢNG GIÁC CỦA GÓC NHỌN. MỘT SỐ HỆ THỨC VỀ CẠNH VÀ GÓC TRONG TAM GIÁC VUÔNG",
+      "index": 10,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Từ một điểm $ A $ trên mặt đất, một máy đo laser được đặt để đo đạc hai toà nhà có chiều cao lần lượt là 35 m và 80 m (n"
+    },
+    {
+      "chunk_id": "mc_0179",
+      "type": "multiple_choice",
+      "section": "Chủ đề 7. ĐƯỜNG TRÒN",
+      "index": 15,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Trong hình bên, biết MA và MB là tiếp tuyến của $(O)$ và $ \\widehat{AMB} = 50^\\circ $. Số đo góc x bằng:"
+    },
+    {
+      "chunk_id": "essay_0181",
+      "type": "essay",
+      "section": "Chủ đề 7. ĐƯỜNG TRÒN",
+      "index": 2,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Cho hình bên."
+    },
+    {
+      "chunk_id": "essay_0182",
+      "type": "essay",
+      "section": "Chủ đề 7. ĐƯỜNG TRÒN",
+      "index": 3,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Cho (O; 10 cm) như hình sau đây, biết $ \\widehat{DBE} = 60^\\circ $."
+    },
+    {
+      "chunk_id": "essay_0185",
+      "type": "essay",
+      "section": "Chủ đề 7. ĐƯỜNG TRÒN",
+      "index": 6,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Trên mặt một chiếc đồng hồ có các vạch chia như hình bên. Hỏi cứ sau mỗi khoảng thời gian 12 phút:"
+    },
+    {
+      "chunk_id": "essay_0187",
+      "type": "essay",
+      "section": "Chủ đề 7. ĐƯỜNG TRÒN",
+      "index": 8,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Xem hình bên và so sánh độ dài của cung $AmB$ với độ dài đường gấp khúc $AOB$."
+    },
+    {
+      "chunk_id": "essay_0189",
+      "type": "essay",
+      "section": "Chủ đề 7. ĐƯỜNG TRÒN",
+      "index": 10,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Hình viên phân là phần hình tròn giới hạn bởi một cung và dây căng cung ấy. Hãy tính diện tích hình viên phân $AmB$, biế"
+    },
+    {
+      "chunk_id": "essay_0190",
+      "type": "essay",
+      "section": "Chủ đề 7. ĐƯỜNG TRÒN",
+      "index": 11,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Hình bên mô tả cách một thợ may cắt mảnh vải dùng để làm cổ áo có dạng một phần tư hình vành khuyên, trong đó hình vành "
+    },
+    {
+      "chunk_id": "essay_0191",
+      "type": "essay",
+      "section": "Chủ đề 7. ĐƯỜNG TRÒN",
+      "index": 12,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Trong hình bên, biết $\\Delta$ABC vuông góc tại A, AB = 4; AC = 6. Hai nửa đường tròn đường kính AB và AC cắt nhau tại H."
+    },
+    {
+      "chunk_id": "mc_0201",
+      "type": "multiple_choice",
+      "section": "Chủ đề 8. ĐƯỜNG TRÒN NGOẠI TIẾP VÀ ĐƯỜNG TRÒN NỘI TIẾP",
+      "index": 4,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Cho hình vẽ bên, biết $ \\widehat{BMC} = 47^\\circ $, số đo góc $ BAC $ là"
+    },
+    {
+      "chunk_id": "mc_0202",
+      "type": "multiple_choice",
+      "section": "Chủ đề 8. ĐƯỜNG TRÒN NGOẠI TIẾP VÀ ĐƯỜNG TRÒN NỘI TIẾP",
+      "index": 5,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Cho hình vẽ bên, biết $ \\widehat{MAN} = 25^\\circ $. Số đo góc $ PCQ $ là"
+    },
+    {
+      "chunk_id": "mc_0208",
+      "type": "multiple_choice",
+      "section": "Chủ đề 8. ĐƯỜNG TRÒN NGOẠI TIẾP VÀ ĐƯỜNG TRÒN NỘI TIẾP",
+      "index": 11,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Hình bên có $\\widehat{ABC} = 105^\\circ$. Số đo góc $ADC$ là"
+    },
+    {
+      "chunk_id": "mc_0209",
+      "type": "multiple_choice",
+      "section": "Chủ đề 8. ĐƯỜNG TRÒN NGOẠI TIẾP VÀ ĐƯỜNG TRÒN NỘI TIẾP",
+      "index": 12,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Trong hình bên, biết $MA$ và $MB$ là tiếp tuyến của $(O)$ và $\\widehat{AMB} = 56^\\circ$. Số đo góc $x$ bằng"
+    },
+    {
+      "chunk_id": "mc_0212",
+      "type": "multiple_choice",
+      "section": "Chủ đề 8. ĐƯỜNG TRÒN NGOẠI TIẾP VÀ ĐƯỜNG TRÒN NỘI TIẾP",
+      "index": 15,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Cho hình vẽ bên: Số tứ giác nội tiếp được trong đường tròn là"
+    },
+    {
+      "chunk_id": "essay_0238",
+      "type": "essay",
+      "section": "Chủ đề 9. ĐA GIÁC ĐỀU. PHÉP QUAY",
+      "index": 4,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Một sân vườn hình chữ nhật được lát bởi các viên gạch hình bát giác đều và các viên gạch hình vuông hoặc hình tam giác v"
+    },
+    {
+      "chunk_id": "essay_0240",
+      "type": "essay",
+      "section": "Chủ đề 9. ĐA GIÁC ĐỀU. PHÉP QUAY",
+      "index": 6,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Cho đa giác đều 8 cạnh có tâm $ I $ và $ AB, BC $ là hai cạnh của đa giác như hình dưới đây."
+    },
+    {
+      "chunk_id": "essay_0241",
+      "type": "essay",
+      "section": "Chủ đề 9. ĐA GIÁC ĐỀU. PHÉP QUAY",
+      "index": 7,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Chỉ ra các phép quay thuận chiều biến mỗi hình sau thành chính nó."
+    },
+    {
+      "chunk_id": "essay_0242",
+      "type": "essay",
+      "section": "Chủ đề 9. ĐA GIÁC ĐỀU. PHÉP QUAY",
+      "index": 8,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Hình bên là một vòng quay may mắn hình đa giác đều 20 cạnh. Hãy tìm các phép quay biến đa giác này thành chính nó:"
+    },
+    {
+      "chunk_id": "essay_0244",
+      "type": "essay",
+      "section": "Chủ đề 9. ĐA GIÁC ĐỀU. PHÉP QUAY",
+      "index": 10,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Cho lục giác đều $ABCDEG$ nội tiếp đường tròn tâm $O$, bán kính 2 cm. Tính phần diện tích được tô đậm trong hình."
+    },
+    {
+      "chunk_id": "essay_0269",
+      "type": "essay",
+      "section": "Chủ đề 10. CÁC HÌNH KHỐI TRONG THỰC TIỄN",
+      "index": 9,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Một hình nón được gắn với nửa hình cầu bán kính 4 cm như hình vẽ bên. Biết rằng tổng chiều cao của khối hình là 10 cm, t"
+    },
+    {
+      "chunk_id": "essay_0271",
+      "type": "essay",
+      "section": "Chủ đề 10. CÁC HÌNH KHỐI TRONG THỰC TIỄN",
+      "index": 11,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Một phần của ống nước bằng thép được thể hiện như hình sau đây. Bán kính phần bên ngoài là 36 cm, bán kính phần bên tron"
+    },
+    {
+      "chunk_id": "essay_0272",
+      "type": "essay",
+      "section": "Chủ đề 10. CÁC HÌNH KHỐI TRONG THỰC TIỄN",
+      "index": 12,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Một quả cầu bán kính 10 cm nằm vừa khít bên trong một chiếc hộp hình lập phương như hình vẽ bên. Hãy tính phần trăm thể "
+    },
+    {
+      "chunk_id": "essay_0273",
+      "type": "essay",
+      "section": "Chủ đề 10. CÁC HÌNH KHỐI TRONG THỰC TIỄN",
+      "index": 13,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Một chiếc tạ tay được làm từ thép theo thiết kế như hình dưới đây."
+    },
+    {
+      "chunk_id": "essay_0275",
+      "type": "essay",
+      "section": "Chủ đề 10. CÁC HÌNH KHỐI TRONG THỰC TIỄN",
+      "index": 15,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Một quả bóng hình cầu được thả chìm trong một bể nước có dạng hình trụ như hình bên. Hãy tính lượng nước dâng lên sau kh"
+    },
+    {
+      "chunk_id": "essay_0276",
+      "type": "essay",
+      "section": "Chủ đề 10. CÁC HÌNH KHỐI TRONG THỰC TIỄN",
+      "index": 16,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Người ta dự tính tạo một hình nón từ tấm thép sau đây."
+    },
+    {
+      "chunk_id": "essay_0277",
+      "type": "essay",
+      "section": "Chủ đề 10. CÁC HÌNH KHỐI TRONG THỰC TIỄN",
+      "index": 17,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Từ một khối thép hình nón, người ta cắt phần đỉnh của hình nón đó. Sau đó cắt một hình trụ có đường kính đáy 28 cm như h"
+    },
+    {
+      "chunk_id": "essay_0278",
+      "type": "essay",
+      "section": "Chủ đề 10. CÁC HÌNH KHỐI TRONG THỰC TIỄN",
+      "index": 18,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Bác Bình có một tấm ni lông trong suốt hình chữ nhật $ABCD$ có chiều dài 10 m và chiều rộng 6 m như hình dưới đây. Bác d"
+    },
+    {
+      "chunk_id": "essay_0304",
+      "type": "essay",
       "section": "Chủ đề 11. TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
       "index": 7,
       "problems": [
-        "mc_no_options",
-        "mc_correct_index_out_of_range"
+        "visual_reference_without_embedded_data"
       ],
-      "preview": "Cho bảng tần số ghép nhóm về thời gian học tại nhà của học sinh lớp 9A như sau: \\begin{tabular}{|c|c|c|c|c|} \\hline Thời"
+      "preview": "Biểu đồ dưới đây biểu diễn tỉ lệ vé bán ra tại một rạp chiếu phim theo độ tuổi trong tuần qua. Biết rằng có 300 người đế"
     },
     {
-      "chunk_id": "mc_0292",
-      "type": "multiple_choice",
-      "section": "Chủ đề 11. TẦN SỐ VÀ TẦN SỐ TƯƠNG ĐỐI",
-      "index": 13,
-      "problems": [
-        "mc_no_options",
-        "mc_missing_correct_index"
-      ],
-      "preview": "Cho biểu đồ tần số ghép nhóm biểu diễn chiều cao của các vận động viên trong đội tuyển A như sau: Biểu đồ cột cho chiều "
-    },
-    {
-      "chunk_id": "mc_0319",
-      "type": "multiple_choice",
+      "chunk_id": "essay_0329",
+      "type": "essay",
       "section": "Chủ đề 12. XÁC SUẤT CỦA BIẾN CỐ TRONG MỘT SỐ MÔ HÌNH ĐƠN GIẢN",
-      "index": 11,
+      "index": 2,
       "problems": [
-        "mc_options_not_4"
+        "visual_reference_without_embedded_data"
       ],
-      "preview": "Trong giờ học nhảy, giáo viên chia lớp thành 2 nhóm, mỗi nhóm 3 học sinh. Giáo viên lựa chọn ghép cặp ngẫu nhiên một bạn"
+      "preview": "Một con quay gồm 8 phần bằng nhau, được đánh số lần lượt từ 1 đến 8 như hình bên. Người ta quay con quay đó một cách ngẫ"
+    },
+    {
+      "chunk_id": "essay_0332",
+      "type": "essay",
+      "section": "Chủ đề 12. XÁC SUẤT CỦA BIẾN CỐ TRONG MỘT SỐ MÔ HÌNH ĐƠN GIẢN",
+      "index": 5,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Giáo viên thực hiện một thống kê về số bạn của mỗi học sinh trên nền tảng xã hội Facebook và nhận được biểu đồ như hình "
+    },
+    {
+      "chunk_id": "essay_0334",
+      "type": "essay",
+      "section": "Chủ đề 12. XÁC SUẤT CỦA BIẾN CỐ TRONG MỘT SỐ MÔ HÌNH ĐƠN GIẢN",
+      "index": 7,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Một con quay được chia làm 4 phần bằng nhau và đánh nhãn lần lượt là A, B, C, D như hình bên. Mai quay con quay trên hai"
+    },
+    {
+      "chunk_id": "essay_0341",
+      "type": "essay",
+      "section": "Chủ đề 12. XÁC SUẤT CỦA BIẾN CỐ TRONG MỘT SỐ MÔ HÌNH ĐƠN GIẢN",
+      "index": 14,
+      "problems": [
+        "visual_reference_without_embedded_data"
+      ],
+      "preview": "Việt dùng 24 khối lập phương đơn vị màu trắng để ghép được thành một khối như hình bên. Bạn ấy đã tô tất cả các mặt ngoà"
     }
   ]
 }

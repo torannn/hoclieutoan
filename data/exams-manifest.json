@@ -87,35 +87,40 @@
               "id": "lop10_ontap_7",
               "title": "Đề HK2 Toán 10 — THPT Việt Đức (Hà Nội) 2025–2026",
               "type": "exam",
-              "description": "Đề học kỳ 2 Toán 10 năm 2025–2026 trường THPT Việt Đức – Hà Nội: Tổ hợp – Xác suất, Phương pháp toạ độ, Elip/Hypebol, Bất phương trình bậc hai, Phương trình chứa căn, và 2 bài tự luận.",
+              "category": "ck2",
+              "description": "Đề ôn tập cuối kì 2 Toán 10 theo sách KNTT năm 2025–2026 trường THPT Việt Đức – Hà Nội: Tổ hợp – Xác suất, Phương pháp toạ độ, Elip/Hypebol, Bất phương trình bậc hai, Phương trình chứa căn, và 2 bài tự luận.",
               "path": "data/grade10/de-on-tap-7/"
             },
             {
               "id": "lop10_ontap_8",
               "title": "Đề CK2 Toán 10 — THPT Phạm Hồng Thái (Hà Nội) 2025–2026",
               "type": "exam",
-              "description": "Đề cuối kỳ 2 Toán 10 năm 2025–2026 trường THPT Phạm Hồng Thái – Hà Nội: Đường thẳng – Đường tròn, Conic, Tổ hợp – Xác suất, Tam thức bậc hai, và 3 bài tự luận ứng dụng.",
+              "category": "ck2",
+              "description": "Đề ôn tập cuối kì 2 Toán 10 theo sách KNTT năm 2025–2026 trường THPT Phạm Hồng Thái – Hà Nội: Đường thẳng – Đường tròn, Conic, Tổ hợp – Xác suất, Tam thức bậc hai, và 3 bài tự luận ứng dụng.",
               "path": "data/grade10/de-on-tap-8/"
             },
             {
               "id": "lop10_ontap_9",
               "title": "Đề HK2 Toán 10 — THPT Trấn Biên 2024–2025",
               "type": "exam",
-              "description": "Đề kiểm tra cuối học kì 2 môn Toán lớp 10 trường THPT Trấn Biên năm học 2024–2025: trắc nghiệm nhiều phương án, đúng/sai, trắc nghiệm trả lời ngắn (gồm bài cổng parabol và bài hai xe ô tô) và 3 bài tự luận.",
+              "category": "ck2",
+              "description": "Đề ôn tập cuối kì 2 Toán 10 theo sách KNTT trường THPT Trấn Biên năm học 2024–2025: trắc nghiệm nhiều phương án, đúng/sai, trắc nghiệm trả lời ngắn (gồm bài cổng parabol và bài hai xe ô tô) và 3 bài tự luận.",
               "path": "data/grade10/de-on-tap-9/"
             },
             {
               "id": "lop10_ontap_10",
               "title": "Đề HK2 Toán 10 — Chuyên Lương Thế Vinh 2024–2025",
               "type": "exam",
-              "description": "Đề kiểm tra cuối học kỳ II môn Toán lớp 10 chuyên Lương Thế Vinh năm học 2024–2025: Phương pháp toạ độ trong mặt phẳng, conic, tổ hợp – xác suất và tự luận ứng dụng.",
+              "category": "ck2",
+              "description": "Đề ôn tập cuối kì 2 Toán 10 theo các sách khác (chuyên Lương Thế Vinh) năm học 2024–2025: Phương pháp toạ độ trong mặt phẳng, conic, tổ hợp – xác suất và tự luận ứng dụng.",
               "path": "data/grade10/de-on-tap-10/"
             },
             {
               "id": "lop10_ontap_11",
               "title": "Đề HK2 Toán 10 — THPT Ngô Quyền 2024–2025",
               "type": "exam",
-              "description": "Đề kiểm tra học kì II môn Toán khối lớp 10 trường THPT Ngô Quyền năm học 2024–2025: nhị thức Newton, conic (parabol – ăng-ten vệ tinh), tổ hợp – xác suất và tự luận.",
+              "category": "ck2",
+              "description": "Đề ôn tập cuối kì 2 Toán 10 theo các sách khác (THPT Ngô Quyền) năm học 2024–2025: nhị thức Newton, conic (parabol – ăng-ten vệ tinh), tổ hợp – xác suất và tự luận.",
               "path": "data/grade10/de-on-tap-11/"
             },
             {

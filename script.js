@@ -1428,15 +1428,18 @@ function populateExamMenu(grade) {
       div.setAttribute('data-ripple','');
       div.setAttribute('data-item-type','exam');
       try{
-        const id = it.id || ''; const title = it.title || '';
-        let cat = 'other';
+        const id = it.id || '';
+        const title = it.title || '';
+        const explicit = (typeof it.category === 'string') ? it.category.trim().toLowerCase() : '';
+        let cat = ['gk1','ck1','gk2','ck2','chuong'].includes(explicit) ? explicit : 'other';
         const t = title.toLowerCase();
-        if(['lop10_ontap_1','lop10_ontap_2','lop10_ontap_3'].includes(id)) cat = 'gk1';
-        else if(/giữa\s*hk1/i.test(title)) cat = 'gk1';
-        else if(/cuối\s*hk1/i.test(title)) cat = 'ck1';
-        else if(/giữa\s*hk2/i.test(title)) cat = 'gk2';
-        else if(/cuối\s*hk2/i.test(title)) cat = 'ck2';
-        else if(/chương/i.test(t)) cat = 'chuong';
+        if(cat === 'other') {
+          if(['lop10_ontap_1','lop10_ontap_2','lop10_ontap_3'].includes(id) || /giữa\s*hk1|gk1/i.test(title)) cat = 'gk1';
+          else if(/cuối\s*hk1|ck1|hk1/i.test(title)) cat = 'ck1';
+          else if(/giữa\s*hk2|gk2/i.test(title)) cat = 'gk2';
+          else if(/cuối\s*hk2|ck2|hk2/i.test(title)) cat = 'ck2';
+          else if(/chương/i.test(t)) cat = 'chuong';
+        }
         div.setAttribute('data-cat', cat);
         div.setAttribute('data-title', title.toLowerCase());
       }catch(e){}

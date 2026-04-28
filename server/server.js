@@ -25,7 +25,7 @@ app.use(cors({
   origin: true, // Allow all origins for easier local testing/development
   credentials: true
 }));
-app.use(express.json({ limit: '1mb' }));
+app.use(express.json({ limit: '15mb' }));
 
 // Rate limiting
 const apiLimiter = rateLimit({
@@ -47,11 +47,15 @@ const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_MODEL = 'llama-3.3-70b-versatile';
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
+const ASSETS_DIR = path.join(PROJECT_ROOT, 'assets');
+const G9_UPLOAD_DIR = path.join(ASSETS_DIR, 'uploads', 'g9-editor');
 const BANK_DIR = path.join(PROJECT_ROOT, 'BankOnTap');
 const BANK_EXAM_PATH = path.join(BANK_DIR, 'exam.json');
 const BANK_ANSWERS_PATH = path.join(BANK_DIR, 'answers.json');
 const BANK_SECTIONS_DIR = path.join(BANK_DIR, 'sections');
 const BANK_ERRORS_DIR = path.join(BANK_DIR, 'errors');
+
+app.use('/assets', express.static(ASSETS_DIR));
 
 if (!GROQ_API_KEY) {
   console.warn('Missing GROQ_API_KEY. AI endpoints will not work until you set it in environment variables (e.g. in a local .env file).');
@@ -997,6 +1001,58 @@ function writeG9WithBackup(data) {
   } catch (_) {}
   fs.writeFileSync(G9_CHUNKS_PATH, JSON.stringify(data, null, 2), 'utf8');
 }
+
+function parseDataUrlImage(dataUrl) {
+  const match = String(dataUrl || '').match(/^data:(image\/(png|jpeg|jpg|webp|gif));base64,([a-z0-9+/=\s]+)$/i);
+  if (!match) return null;
+  const mime = match[1].toLowerCase();
+  const extMap = {
+    'image/png': 'png',
+    'image/jpeg': 'jpg',
+    'image/jpg': 'jpg',
+    'image/webp': 'webp',
+    'image/gif': 'gif'
+  };
+  const ext = extMap[mime];
+  if (!ext) return null;
+  const buffer = Buffer.from(match[3].replace(/\s+/g, ''), 'base64');
+  return { mime, ext, buffer };
+}
+
+function safeNamePart(value, fallback) {
+  const cleaned = String(value || '')
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[^a-z0-9_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60);
+  return cleaned || fallback;
+}
+
+app.post('/api/g9/upload-image', (req, res) => {
+  try {
+    const imageData = req.body && req.body.imageData;
+    const parsed = parseDataUrlImage(imageData);
+    if (!parsed) return res.status(400).json({ error: 'invalid_image_data' });
+    if (parsed.buffer.length === 0 || parsed.buffer.length > 8 * 1024 * 1024) {
+      return res.status(400).json({ error: 'image_too_large' });
+    }
+    ensureDir(G9_UPLOAD_DIR);
+    const questionId = safeNamePart(req.body && req.body.questionId, 'question');
+    const field = safeNamePart(req.body && req.body.field, 'content');
+    const filename = `${questionId}-${field}-${Date.now()}.${parsed.ext}`;
+    const absPath = path.join(G9_UPLOAD_DIR, filename);
+    fs.writeFileSync(absPath, parsed.buffer);
+    res.json({
+      success: true,
+      url: `/assets/uploads/g9-editor/${filename}`,
+      filename,
+      bytes: parsed.buffer.length
+    });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
 // GET all questions (lightweight list + optional flagged-only)
 app.get('/api/g9/questions', (req, res) => {

@@ -1409,6 +1409,20 @@
           </div>`;
       }
 
+      function resolveExamCategory(it){
+        const explicit = (it && typeof it.category === 'string') ? it.category.trim().toLowerCase() : '';
+        if(['gk1','ck1','gk2','ck2','chuong'].includes(explicit)) return explicit;
+
+        const id = (it && it.id) ? String(it.id) : '';
+        const title = (it && it.title) ? String(it.title) : '';
+        if (/giữa.*hk1|gk1/i.test(title) || ['lop10_ontap_1','lop10_ontap_2','lop10_ontap_3'].includes(id)) return 'gk1';
+        if (/cuối.*hk1|ck1|hk1/i.test(title)) return 'ck1';
+        if (/giữa.*hk2|gk2/i.test(title)) return 'gk2';
+        if (/cuối.*hk2|ck2|hk2/i.test(title)) return 'ck2';
+        if (/chương/i.test(title)) return 'chuong';
+        return 'other';
+      }
+
       function buildCards(grade){
         const grid = document.getElementById('exam-cards-grid');
         if(!grid){ console.log('buildCards: grid not found'); return; }
@@ -1428,14 +1442,7 @@
           wrapper.className = 'sticky-card-wrapper card-item';
           wrapper.dataset.type = it._v3type; wrapper.dataset.title = (it.title||'').toLowerCase();
           try{
-            const id = it.id || ''; const title = it.title || '';
-            let cat = 'other';
-            if(/giữa.*hk1|gk1/i.test(title) || ['lop10_ontap_1','lop10_ontap_2','lop10_ontap_3'].includes(id)) cat = 'gk1';
-            else if(/cuối.*hk1|ck1/i.test(title)) cat = 'ck1';
-            else if(/giữa.*hk2|gk2/i.test(title)) cat = 'gk2';
-            else if(/cuối.*hk2|ck2/i.test(title)) cat = 'ck2';
-            else if(/chương/i.test(title)) cat = 'chuong';
-            wrapper.dataset.cat = cat;
+            wrapper.dataset.cat = resolveExamCategory(it);
           }catch(e){}
           
           const typeClass = it._v3type==='exam' ? 'exam' : (it._v3type==='lesson' ? 'lesson' : 'tool');
@@ -1483,14 +1490,7 @@
           item.className = `modern-list-item ${typeClass} card-item`;
           item.dataset.type = it._v3type; item.dataset.title = (it.title||'').toLowerCase();
           try{
-            const id = it.id || ''; const title = it.title || '';
-            let cat = 'other';
-            if(/giữa.*hk1|gk1/i.test(title) || ['lop10_ontap_1','lop10_ontap_2','lop10_ontap_3'].includes(id)) cat = 'gk1';
-            else if(/cuối.*hk1|ck1/i.test(title)) cat = 'ck1';
-            else if(/giữa.*hk2|gk2/i.test(title)) cat = 'gk2';
-            else if(/cuối.*hk2|ck2/i.test(title)) cat = 'ck2';
-            else if(/chương/i.test(title)) cat = 'chuong';
-            item.dataset.cat = cat;
+            item.dataset.cat = resolveExamCategory(it);
           }catch(e){}
           
           const iconClass = it._v3type==='exam' ? 'fa-file-pen' : (it._v3type==='lesson' ? 'fa-book-open' : 'fa-lightbulb');
@@ -1558,14 +1558,7 @@
           slide.dataset.type = it._v3type; slide.dataset.title = (it.title||'').toLowerCase();
           slide.dataset.index = idx;
           try{
-            const id = it.id || ''; const title = it.title || '';
-            let cat = 'other';
-            if(/giữa.*hk1|gk1/i.test(title) || ['lop10_ontap_1','lop10_ontap_2','lop10_ontap_3'].includes(id)) cat = 'gk1';
-            else if(/cuối.*hk1|ck1/i.test(title)) cat = 'ck1';
-            else if(/giữa.*hk2|gk2/i.test(title)) cat = 'gk2';
-            else if(/cuối.*hk2|ck2/i.test(title)) cat = 'ck2';
-            else if(/chương/i.test(title)) cat = 'chuong';
-            slide.dataset.cat = cat;
+            slide.dataset.cat = resolveExamCategory(it);
           }catch(e){}
           
           const headerClass = it._v3type==='exam' ? 'exam' : (it._v3type==='lesson' ? 'lesson' : 'tool');

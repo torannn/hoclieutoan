@@ -41,6 +41,10 @@ const duplicateIds = [];
 
 for (const c of chunks) {
   const problems = [];
+  const promptText = String(c.prompt || '');
+  const optionTexts = Array.isArray(c.options) ? c.options.map((o) => String(o || '')) : [];
+  const explanationText = String(c.detailed_explanation || '');
+  const finalAnswerText = String(c.final_answer || '');
 
   // 1) Duplicate id
   if (idSeen.has(c.chunk_id)) {
@@ -54,6 +58,10 @@ for (const c of chunks) {
   if (!c.prompt || !c.prompt.trim()) problems.push('empty_prompt');
   else if (c.prompt.trim().length < 5) problems.push('very_short_prompt');
 
+  if (/Sử dụng dữ liệu sau để trả lời/i.test(promptText)) {
+    problems.push('prompt_contains_followup_marker');
+  }
+
   // 3) MC checks
   if (c.type === 'multiple_choice') {
     const opts = Array.isArray(c.options) ? c.options : [];
@@ -66,6 +74,17 @@ for (const c of chunks) {
     if (ci === undefined || ci === null) problems.push('mc_missing_correct_index');
     else if (typeof ci !== 'number' || !Number.isInteger(ci)) problems.push('mc_correct_index_not_integer');
     else if (ci < 0 || ci >= opts.length) problems.push('mc_correct_index_out_of_range');
+
+    const normalizedOpts = optionTexts.map((o) => o.trim()).filter(Boolean);
+    if (new Set(normalizedOpts).size !== normalizedOpts.length) {
+      problems.push('mc_duplicate_options');
+    }
+
+    optionTexts.forEach((opt, idx) => {
+      if (/Sử dụng dữ liệu sau để trả lời/i.test(opt)) {
+        problems.push(`mc_option_${idx}_contains_followup_marker`);
+      }
+    });
   }
 
   // 4) Essay checks
@@ -93,6 +112,19 @@ for (const c of chunks) {
   const dollars = countDollars(fullText);
   if (dollars % 2 !== 0) problems.push('latex_unbalanced_dollar');
   if (hasUnbalancedBraces(fullText)) problems.push('latex_unbalanced_braces');
+
+  const hasVisualCue = /(hình bên|như hình|xem hình|hình vẽ|hình dưới|hình sau|trong hình|tô đậm trong hình|biểu đồ dưới đây|biểu đồ sau|đồ thị dưới đây|đồ thị sau|cho hình bên|quan sát hình|biết hình|tấm thép sau đây)/i.test(fullText);
+  const hasEmbeddedVisualData = /\\begin\{tabular\}|<img|data-jxg|https?:\/\//i.test(fullText);
+  if (hasVisualCue && !hasEmbeddedVisualData) {
+    problems.push('visual_reference_without_embedded_data');
+  }
+
+  const solutionText = `${explanationText}\n${finalAnswerText}`;
+  const reportsMissingData = /thiếu dữ kiện|không có dữ liệu|không thể xác định được đáp án đúng|không thể giải được với dữ kiện hiện tại|không thể tính/i.test(solutionText);
+  const reportsOptionMismatch = /không xuất hiện trong (bốn )?lựa chọn|không có trong đáp án|không có đáp án đúng trong các lựa chọn|phương án có khả năng bị lỗi|phương án không khớp|đáp án.*không khớp|đề bài có sai sót|đề bài ghi nhầm/i.test(solutionText);
+  if (reportsMissingData && !reportsOptionMismatch && !(hasVisualCue && !hasEmbeddedVisualData)) {
+    problems.push('solution_reports_missing_data');
+  }
 
   // 6) detailed_explanation missing (cả MC và essay)
   if (!c.detailed_explanation || !c.detailed_explanation.trim()) {
